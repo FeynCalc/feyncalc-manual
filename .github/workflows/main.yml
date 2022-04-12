@@ -6,8 +6,8 @@ jobs:
     container:
       image: ghcr.io/vsht/feyncalc/latex-docker
       credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.CR_PAT }}
+        username: ${{ secrets.GHCR_USERNAME }}
+        password: ${{ secrets.GHCR_TOKEN }}
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v2
