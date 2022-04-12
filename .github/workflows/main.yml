@@ -4,7 +4,7 @@ jobs:
   build_latex:
     runs-on: ubuntu-latest    
     container:
-      image: ghcr.io/vsht/feyncalc/latex-docker:latest
+      image: ghcr.io/vsht/feyncalc/latex-docker:main-17909e0
       credentials:
         username: ${{ secrets.GHCR_USERNAME }}
         password: ${{ secrets.GHCR_TOKEN }}
