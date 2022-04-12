@@ -4,7 +4,7 @@ jobs:
   build_latex:
     runs-on: ubuntu-latest    
     container:
-      image: ghcr.io/vsht/feyncalc/latex-docker:main-17909e0
+      image: ghcr.io/vsht/feyncalc/latex-docker:latest
       credentials:
         username: ${{ secrets.GHCR_USERNAME }}
         password: ${{ secrets.GHCR_TOKEN }}
@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Compile LaTeX document
         run: |
-          ararar FeynCalcManual.tex
+          arara FeynCalcManual.tex
       - name: Upload the resulting PDF
         uses: ncipollo/release-action@v1
         with:
