@@ -1,0 +1,43 @@
+% !TeX program = pdflatex
+% !TeX root = Series3.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{series3}{%
+\section{Series3}\label{series3}}
+
+\texttt{Series3} performs a series expansion around \texttt{0}.
+\texttt{Series3} is equivalent to \texttt{Series}, except that it
+applies \texttt{Normal} on the result and that some \texttt{Series} bugs
+are fixed.
+
+\texttt{Series3[\allowbreak{}f,\ \allowbreak{}e,\ \allowbreak{}n]} is
+equivalent to
+\texttt{Series3[\allowbreak{}f,\ \allowbreak{}\{\allowbreak{}e,\ \allowbreak{}0,\ \allowbreak{}n\}]}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{series2}{Series2}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Series3}\OperatorTok{[}\NormalTok{(}\FunctionTok{x}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{))}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Delta}\OperatorTok{]}\SpecialCharTok{/}\DecValTok{2}\NormalTok{)}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Delta}\OperatorTok{],} \DecValTok{1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} \delta  \log ((1-x) x)+1
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Series3}\OperatorTok{[}\FunctionTok{Gamma}\OperatorTok{[}\FunctionTok{x}\OperatorTok{],} \FunctionTok{x}\OperatorTok{,} \DecValTok{1}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{FullSimplify}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{x}-\gamma +1
+\end{dmath*}
+\end{document}

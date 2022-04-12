@@ -1,0 +1,72 @@
+% !TeX program = pdflatex
+% !TeX root = BackgroundGluonVertex.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{backgroundgluonvertex}{%
+\section{BackgroundGluonVertex}\label{backgroundgluonvertex}}
+
+\texttt{BackgroundGluonVertex[\allowbreak{}\{\allowbreak{}p,\ \allowbreak{}mu,\ \allowbreak{}a\},\ \allowbreak{}\{\allowbreak{}q,\ \allowbreak{}nu,\ \allowbreak{}b\},\ \allowbreak{}\{\allowbreak{}k,\ \allowbreak{}la,\ \allowbreak{}c\}]}
+yields the 3-gluon vertex in the background field gauge, where the first
+set of arguments corresponds to the external background field.
+\texttt{BackgroundGluonVertex[\allowbreak{}\{\allowbreak{}p,\ \allowbreak{}mu,\ \allowbreak{}a\},\ \allowbreak{}\{\allowbreak{}q,\ \allowbreak{}nu,\ \allowbreak{}b\},\ \allowbreak{}\{\allowbreak{}k,\ \allowbreak{}la,\ \allowbreak{}c\},\ \allowbreak{}\{\allowbreak{}s,\ \allowbreak{}si,\ \allowbreak{}d\}]}
+yields the 4-gluon vertex, with
+\texttt{\{\allowbreak{}p,\ \allowbreak{}mu ,\ \allowbreak{}a\}} and
+\texttt{\{\allowbreak{}k,\ \allowbreak{}la,\ \allowbreak{}c\}} denoting
+the external background fields.
+
+The gauge, dimension and the name of the coupling constant are
+determined by the options \texttt{Gauge}, \texttt{Dimension} and
+\texttt{CouplingConstant}.
+
+The Feynman rules are taken from L. Abbot NPB 185 (1981), 189-203;
+except that all momenta are incoming. Note that Abbot's coupling
+constant convention is consistent with the default setting of
+\texttt{GluonVertex}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BackgroundGluonVertex}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{b}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{k}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Lambda}\OperatorTok{],} \FunctionTok{c}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+g_s f^{abc} \left(g^{\mu \nu } (-k+p-q)^{\lambda }+g^{\lambda \mu } (k-p+q)^{\nu }+g^{\lambda \nu } (q-k)^{\mu }\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BackgroundGluonVertex}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{b}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{k}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Lambda}\OperatorTok{],} \FunctionTok{c}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{s}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{],} \FunctionTok{d}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-i g_s^2 \left(f^{ad\text{FCGV}(\text{u19})} f^{bc\text{FCGV}(\text{u19})} \left(g^{\lambda \sigma } g^{\mu \nu }-g^{\lambda \nu } g^{\mu \sigma }-g^{\lambda \mu } g^{\nu \sigma }\right)+f^{ac\text{FCGV}(\text{u19})} f^{bd\text{FCGV}(\text{u19})} \left(g^{\lambda \sigma } g^{\mu \nu }-g^{\lambda \nu } g^{\mu \sigma }\right)+f^{ab\text{FCGV}(\text{u19})} f^{cd\text{FCGV}(\text{u19})} \left(g^{\lambda \sigma } g^{\mu \nu }-g^{\lambda \nu } g^{\mu \sigma }+g^{\lambda \mu } g^{\nu \sigma }\right)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BackgroundGluonVertex}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{b}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{k}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Lambda}\OperatorTok{],} \FunctionTok{c}\OperatorTok{\},}\NormalTok{Gauge }\OtherTok{{-}\textgreater{}} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+g_s f^{abc} \left(g^{\mu \nu } \left(-\frac{k}{\alpha }+p-q\right)^{\lambda }+g^{\lambda \mu } \left(k-p+\frac{q}{\alpha }\right)^{\nu }+g^{\lambda \nu } (q-k)^{\mu }\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{BackgroundGluonVertex}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{b}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{k}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Lambda}\OperatorTok{],} \FunctionTok{c}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{s}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{],} \FunctionTok{d}\OperatorTok{\},}\NormalTok{ Gauge }\OtherTok{{-}\textgreater{}} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-i g_s^2 \left(f^{ad\text{FCGV}(\text{u20})} f^{bc\text{FCGV}(\text{u20})} \left(-\frac{g^{\lambda \nu } g^{\mu \sigma }}{\alpha }+g^{\lambda \sigma } g^{\mu \nu }-g^{\lambda \mu } g^{\nu \sigma }\right)+f^{ab\text{FCGV}(\text{u20})} f^{cd\text{FCGV}(\text{u20})} \left(\frac{g^{\lambda \sigma } g^{\mu \nu }}{\alpha }-g^{\lambda \nu } g^{\mu \sigma }+g^{\lambda \mu } g^{\nu \sigma }\right)+f^{ac\text{FCGV}(\text{u20})} f^{bd\text{FCGV}(\text{u20})} \left(g^{\lambda \sigma } g^{\mu \nu }-g^{\lambda \nu } g^{\mu \sigma }\right)\right)
+\end{dmath*}
+\end{document}

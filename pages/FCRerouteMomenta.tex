@@ -1,0 +1,57 @@
+% !TeX program = pdflatex
+% !TeX root = FCRerouteMomenta.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcreroutemomenta}{%
+\section{FCRerouteMomenta}\label{fcreroutemomenta}}
+
+\texttt{FCRerouteMomenta[\allowbreak{}exp,\ \allowbreak{}\{\allowbreak{}p1,\ \allowbreak{}p2,\ \allowbreak{}...\},\ \allowbreak{}\{\allowbreak{}k1,\ \allowbreak{}k2,\ \allowbreak{}...\}]}
+changes the routing of the momenta by exploiting the 4-momentum
+conservation law \(p_1+p_2+ \ldots = k_1+k_2+ \ldots\).
+
+The main aim of this function is to simplify the input expression by
+replacing simple linear combinations of the external momenta with
+shorter expressions.
+
+For example, in a process \(a(p_1) + b(p_2) -> c(k_1)+ d(k_2)+ e(k_3)\),
+the combination \(k_1+k_2-p_2\) can be replaced with the shorter
+expression \(p_1-k_3\).
+
+The replacements are applied using the \texttt{FeynCalcExternal} form of
+the expression. Ideally, this function should be used directly on the
+output of a diagram generator such as FeynArts or QGRAF.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}.
+
+\subsection{Examples}
+
+Reroute momenta according to the momentum conservation relation
+\(l_1+l_2=p_1+p_2+k_p\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{exp} \ExtensionTok{=}\NormalTok{ (}\SpecialCharTok{{-}}\FunctionTok{I}\NormalTok{)}\SpecialCharTok{*}\NormalTok{Spinor}\OperatorTok{[}\SpecialCharTok{{-}}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{l2}\OperatorTok{],}\NormalTok{ ME}\OperatorTok{,} \DecValTok{1}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{l1}\OperatorTok{],}\NormalTok{ ME}\OperatorTok{,} 
+     \DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\NormalTok{Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_Q"}\OperatorTok{],} \DecValTok{1}\OperatorTok{]}\NormalTok{ . GS}\OperatorTok{[}\NormalTok{Polarization}\OperatorTok{[}\NormalTok{kp}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{,} 
+\NormalTok{      Transversality }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]]}\NormalTok{ . (GS}\OperatorTok{[}\NormalTok{kp }\SpecialCharTok{+}\NormalTok{ p1}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_Q"}\OperatorTok{]}\NormalTok{) . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . Spinor}\OperatorTok{[}\SpecialCharTok{{-}}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],} 
+\NormalTok{     SMP}\OperatorTok{[}\StringTok{"m\_Q"}\OperatorTok{],} \DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\NormalTok{FAD}\OperatorTok{[}\NormalTok{kp }\SpecialCharTok{+}\NormalTok{ p1 }\SpecialCharTok{+}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ Dimension }\OtherTok{{-}\textgreater{}} \DecValTok{4}\OperatorTok{]}\SpecialCharTok{*}\NormalTok{FAD}\OperatorTok{[\{}\SpecialCharTok{{-}}\NormalTok{l1 }\SpecialCharTok{{-}}\NormalTok{ l2 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_Q"}\OperatorTok{]\},} 
+\NormalTok{    Dimension }\OtherTok{{-}\textgreater{}} \DecValTok{4}\OperatorTok{]}\SpecialCharTok{*}\NormalTok{SDF}\OperatorTok{[}\NormalTok{cq}\OperatorTok{,}\NormalTok{ cqbar}\OperatorTok{]}\SpecialCharTok{*}\NormalTok{SMP}\OperatorTok{[}\StringTok{"e"}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{3}\SpecialCharTok{*}\NormalTok{SMP}\OperatorTok{[}\StringTok{"Q\_u"}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{i \;\text{e}^3 Q_u^2 \delta _{\text{cq}\;\text{cqbar}} \left(\varphi (-\overline{\text{l2}},\text{ME})\right).\bar{\gamma }^{\mu }.\left(\varphi (\overline{\text{l1}},\text{ME})\right) \left(\varphi (\overline{\text{p1}},m_Q)\right).\left(\bar{\gamma }\cdot \bar{\varepsilon }^*(\text{kp})\right).\left(\bar{\gamma }\cdot \left(\overline{\text{kp}}+\overline{\text{p1}}\right)+m_Q\right).\bar{\gamma }^{\mu }.\left(\varphi (-\overline{\text{p2}},m_Q)\right)}{(\overline{\text{kp}}+\overline{\text{p1}}+\overline{\text{p2}})^2 \left((-\overline{\text{l1}}-\overline{\text{l2}}-\overline{\text{p2}})^2-m_Q^2\right)}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCRerouteMomenta}\OperatorTok{[}\FunctionTok{exp}\OperatorTok{,} \OperatorTok{\{}\NormalTok{l1}\OperatorTok{,}\NormalTok{ l2}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ kp}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{i \;\text{e}^3 Q_u^2 \delta _{\text{cq}\;\text{cqbar}} \left(\varphi (-\overline{\text{l2}},\text{ME})\right).\bar{\gamma }^{\mu }.\left(\varphi (\overline{\text{l1}},\text{ME})\right) \left(\varphi (\overline{\text{p1}},m_Q)\right).\left(\bar{\gamma }\cdot \bar{\varepsilon }^*(\text{kp})\right).\left(\bar{\gamma }\cdot \left(\overline{\text{kp}}+\overline{\text{p1}}\right)+m_Q\right).\bar{\gamma }^{\mu }.\left(\varphi (-\overline{\text{p2}},m_Q)\right)}{(\overline{\text{l1}}+\overline{\text{l2}})^2 \left((-\overline{\text{l1}}-\overline{\text{l2}}-\overline{\text{p2}})^2-m_Q^2\right)}
+\end{dmath*}
+\end{document}

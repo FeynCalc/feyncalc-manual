@@ -1,0 +1,377 @@
+% !TeX program = pdflatex
+% !TeX root = FunctionalD.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{functionald}{%
+\section{FunctionalD}\label{functionald}}
+
+\texttt{FunctionalD[\allowbreak{}exp,\ \allowbreak{}\{\allowbreak{}QuantumField[\allowbreak{}name,\ \allowbreak{}LorentzIndex[\allowbreak{}mu],\ \allowbreak{}...,\ \allowbreak{}SUNIndex[\allowbreak{}a]][\allowbreak{}p],\ \allowbreak{}...\}]}
+calculates the functional derivative of exp with respect to the
+QuantumField list (with incoming momenta \(\text{p}\), etc.) and does
+the Fourier transform.
+
+\texttt{FunctionalD[\allowbreak{}expr,\ \allowbreak{}\{\allowbreak{}QuantumField[\allowbreak{}name,\ \allowbreak{}LorentzIndex[\allowbreak{}mu],\ \allowbreak{}... SUNIndex[\allowbreak{}a]],\ \allowbreak{}...\}]}
+calculates the functional derivative and does partial integration but
+omits the \(\text{x}\)-space delta functions.
+
+\texttt{FunctionalD} is a low level function used in \texttt{FeynRule}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{feynrule}{FeynRule},
+\hyperlink{quantumfield}{QuantumField}.
+
+\subsection{Examples}
+
+Instead of the usual
+\(\delta \phi (x)/ \delta \phi (y)= \delta ^{(D)}(x-y)\) the arguments
+and the \(\delta\) function are omitted, i.e.~for the program for
+simplicity: \(\delta \phi / \delta \phi =1\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FunctionalD}\OperatorTok{[}\NormalTok{QuantumField}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Phi}\OperatorTok{]],}\NormalTok{ QuantumField}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Phi}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+1
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FunctionalD}\OperatorTok{[}\NormalTok{QuantumField}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Phi}\OperatorTok{]]}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ QuantumField}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Phi}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+2 \phi
+\end{dmath*}
+
+Instead of the usual
+\((\delta \partial _{\mu} \phi (x) )/ \delta \phi (y)= \partial _{\mu} \delta^{(D)}(x-y)\)
+the arguments are omitted, and the \(\partial_\mu\) operator is
+specified by default to be an integration by parts operator, i.e.~the
+right hand side will be just \texttt{Null} or, more precisely, (by
+default) \(-\partial _{mu }\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FunctionalD}\OperatorTok{[}\NormalTok{QuantumField}\OperatorTok{[}\NormalTok{FCPartialD}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Phi}\OperatorTok{]],}\NormalTok{ QuantumField}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Phi}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\vec{\partial }_{\mu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(QuantumField}\OperatorTok{[}\NormalTok{FCPartialD}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Phi}\OperatorTok{]]}\NormalTok{ . QuantumField}\OperatorTok{[}\NormalTok{FCPartialD}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]} 
+       \OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Phi}\OperatorTok{]]} \SpecialCharTok{{-}} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ QuantumField}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Phi}\OperatorTok{]]}\NormalTok{ . QuantumField}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Phi}\OperatorTok{]]}\NormalTok{)}\SpecialCharTok{/}\DecValTok{2} 
+ 
+\NormalTok{FunctionalD}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ QuantumField}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Phi}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} \left(\left(\left.(\partial _{\mu }\phi \right)\right).\left(\left.(\partial _{\mu }\phi \right)\right)-m^2 \phi .\phi \right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+m^2 (-\phi )-\left(\partial _{\mu }\partial _{\mu }\phi \right)
+\end{dmath*}
+
+Consider
+\(S[A] = -\int d^D x \frac{1}{4} F_a^{\mu \nu }(x) F_{\mu \nu }(x)\)
+
+First approach:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{F1 }\ExtensionTok{=}\NormalTok{ FieldStrength}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{A}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{\},} \DecValTok{1}\OperatorTok{,}\NormalTok{ Explicit }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]} 
+ 
+\NormalTok{F2 }\ExtensionTok{=}\NormalTok{ FieldStrength}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{A}\OperatorTok{,} \FunctionTok{d}\OperatorTok{,} \FunctionTok{e}\OperatorTok{\},} \DecValTok{1}\OperatorTok{,}\NormalTok{ Explicit }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]} 
+ 
+\FunctionTok{S}\OperatorTok{[}\FunctionTok{A}\OperatorTok{]} \ExtensionTok{=} \SpecialCharTok{{-}}\DecValTok{1}\SpecialCharTok{/}\DecValTok{4}\NormalTok{ F1 . F2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f^{abc} A_{\mu }^b.A_{\nu }^c+\left.(\partial _{\mu }A_{\nu }^a\right)-\left.(\partial _{\nu }A_{\mu }^a\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+f^{ade} A_{\mu }^d.A_{\nu }^e+\left.(\partial _{\mu }A_{\nu }^a\right)-\left.(\partial _{\nu }A_{\mu }^a\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-\frac{1}{4} \left(f^{abc} A_{\mu }^b.A_{\nu }^c+\left.(\partial _{\mu }A_{\nu }^a\right)-\left.(\partial _{\nu }A_{\mu }^a\right)\right).\left(f^{ade} A_{\mu }^d.A_{\nu }^e+\left.(\partial _{\mu }A_{\nu }^a\right)-\left.(\partial _{\nu }A_{\mu }^a\right)\right)
+\end{dmath*}
+
+In order to derive the equation of motion, the functional derivative of
+\(S\) with respect to \(A_{\sigma }^g\) has to be set to zero. Bearing
+in mind that for FeynCalc we have to be precise as to where which
+operators (coming from the substitution of the derivative of the delta
+function) act.
+
+Act with the functional derivative operator on the first field strength:
+
+\(0 = (\delta S) / ( \delta A_ {\sigma }^g(y) ) =-2/4 \int d^D x (\delta / (\delta A_ {\sigma }^g (y) ) F^a_{\mu \nu}(x)) F_a^{\mu \nu} (x)\)
+
+See what happens with just \((\delta S[A]) / (\delta A_{\sigma }^g)\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Ag }\ExtensionTok{=}\NormalTok{ QuantumField}\OperatorTok{[}\FunctionTok{A}\OperatorTok{,} \OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]\},} \OperatorTok{\{}\FunctionTok{g}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+A_{\sigma }^g
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FunctionalD}\OperatorTok{[}\NormalTok{F1}\OperatorTok{,}\NormalTok{ Ag}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+A_{\mu }^b \bar{g}^{\nu \sigma } f^{abg}-A_{\nu }^c \bar{g}^{\mu \sigma } f^{acg}+\delta ^{ag} \vec{\partial }_{\mu } \left(-\bar{g}^{\nu \sigma }\right)+\delta ^{ag} \vec{\partial }_{\nu } \bar{g}^{\mu \sigma }
+\end{dmath*}
+
+Use \texttt{FCCanonicalizeDummyIndices} to minimize the number of dummy
+indices.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{t1 }\ExtensionTok{=}\NormalTok{ FCCanonicalizeDummyIndices}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ SUNIndexNames }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{c1}\OperatorTok{\}]} \OtherTok{/.}\NormalTok{ c1 }\OtherTok{{-}\textgreater{}} \FunctionTok{c}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+A_{\mu }^c \bar{g}^{\nu \sigma } f^{acg}-A_{\nu }^c \bar{g}^{\mu \sigma } f^{acg}+\delta ^{ag} \vec{\partial }_{\mu } \left(-\bar{g}^{\nu \sigma }\right)+\delta ^{ag} \vec{\partial }_{\nu } \bar{g}^{\mu \sigma }
+\end{dmath*}
+
+Instead of inserting the definition for the second \(F_a^{\mu \nu}\),
+introduce a \texttt{QuantumField} object with antisymmetry built into
+the Lorentz indices:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{F} \SpecialCharTok{/}\NormalTok{: QuantumField}\OperatorTok{[}\AttributeTok{pard\_\_\_}\OperatorTok{,} \FunctionTok{F}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{]}\NormalTok{\_}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{]}\NormalTok{\_}\OperatorTok{,} \AttributeTok{s\_}\OperatorTok{]} \ExtensionTok{:=} \SpecialCharTok{{-}}\NormalTok{QuantumField}\OperatorTok{[}\NormalTok{pard}\OperatorTok{,} \FunctionTok{F}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \FunctionTok{s}\OperatorTok{]} \SpecialCharTok{/}\NormalTok{; ! }\FunctionTok{OrderedQ}\OperatorTok{[\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{]\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QuantumField}\OperatorTok{[}\FunctionTok{F}\OperatorTok{,} \OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]\},} \OperatorTok{\{}\FunctionTok{a}\OperatorTok{\}]} 
+ 
+\SpecialCharTok{\%} \OtherTok{/.} \OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]}\NormalTok{ :\textgreater{} }\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]}\NormalTok{ :\textgreater{} }\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+F_{\mu \nu }^a
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-F_{\mu \nu }^a
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{t2 }\ExtensionTok{=}\NormalTok{ Contract}\OperatorTok{[}\NormalTok{ExpandPartialD}\OperatorTok{[}\SpecialCharTok{{-}}\DecValTok{1}\SpecialCharTok{/}\DecValTok{2}\NormalTok{ t1 . QuantumField}\OperatorTok{[}\FunctionTok{F}\OperatorTok{,}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]],} 
+\NormalTok{        SUNIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{]]]]} \OtherTok{/.} \FunctionTok{Dot} \OtherTok{{-}\textgreater{}} \FunctionTok{Times}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{1}{2} A_{\mu }^c f^{acg} F_{\mu \sigma }^a-\frac{1}{2} A_{\nu }^c f^{acg} F_{\nu \sigma }^a+\frac{1}{2} \left(\left.(\partial _{\mu }F_{\mu \sigma }^g\right)\right)+\frac{1}{2} \left(\left.(\partial _{\nu }F_{\nu \sigma }^g\right)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{t3 }\ExtensionTok{=}\NormalTok{ FCCanonicalizeDummyIndices}\OperatorTok{[}\NormalTok{t2}\OperatorTok{,}\NormalTok{ LorentzIndexNames }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{mu}\OperatorTok{\},}\NormalTok{ SUNIndexNames }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{aa}\OperatorTok{,} 
+\NormalTok{      cc}\OperatorTok{\}]} \OtherTok{/.} \OperatorTok{\{}\NormalTok{mu }\OtherTok{{-}\textgreater{}} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],}\NormalTok{ aa }\OtherTok{{-}\textgreater{}} \FunctionTok{a}\OperatorTok{,}\NormalTok{ cc }\OtherTok{{-}\textgreater{}} \FunctionTok{c}\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+A_{\mu }^a f^{acg} F_{\mu \sigma }^c+\left.(\partial _{\mu }F_{\mu \sigma }^g\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{t4 }\ExtensionTok{=}\NormalTok{ FCE}\OperatorTok{[}\NormalTok{t3}\OperatorTok{]} \OtherTok{/.}\NormalTok{ SUNF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{g}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \SpecialCharTok{{-}}\NormalTok{SUNF}\OperatorTok{[}\FunctionTok{g}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{a}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left.(\partial _{\mu }F_{\mu \sigma }^g\right)-A_{\mu }^a f^{gca} F_{\mu \sigma }^c
+\end{dmath*}
+
+Since the variational derivative vanishes \texttt{t4} implies that
+\(0= D_{\mu} F_g^{\mu \sigma }\)
+
+Second approach:
+
+It is of course also possible to do the functional derivative on the
+\(S[A]\) with both field strength tensors inserted.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{S}\OperatorTok{[}\FunctionTok{A}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{1}{4} \left(f^{abc} A_{\mu }^b.A_{\nu }^c+\left.(\partial _{\mu }A_{\nu }^a\right)-\left.(\partial _{\nu }A_{\mu }^a\right)\right).\left(f^{ade} A_{\mu }^d.A_{\nu }^e+\left.(\partial _{\mu }A_{\nu }^a\right)-\left.(\partial _{\nu }A_{\mu }^a\right)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{r1 }\ExtensionTok{=}\NormalTok{ FunctionalD}\OperatorTok{[}\FunctionTok{S}\OperatorTok{[}\FunctionTok{A}\OperatorTok{],}\NormalTok{ Ag}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{1}{4} f^{abc} f^{adg} A_{\mu }^b.A_{\sigma }^c.A_{\mu }^d+\frac{1}{4} f^{abc} f^{aeg} A_{\sigma }^b.A_{\nu }^c.A_{\nu }^e-\frac{1}{4} f^{abg} f^{ade} A_{\mu }^b.A_{\mu }^d.A_{\sigma }^e-\frac{1}{4} f^{abg} A_{\mu }^b.\left(\left.(\partial _{\mu }A_{\sigma }^a\right)\right)+\frac{1}{4} f^{abg} A_{\mu }^b.\left(\left.(\partial _{\sigma }A_{\mu }^a\right)\right)+\frac{1}{4} f^{acg} f^{ade} A_{\nu }^c.A_{\sigma }^d.A_{\nu }^e-\frac{1}{4} f^{acg} A_{\nu }^c.\left(\left.(\partial _{\nu }A_{\sigma }^a\right)\right)+\frac{1}{4} f^{acg} A_{\nu }^c.\left(\left.(\partial _{\sigma }A_{\nu }^a\right)\right)-\frac{1}{4} f^{adg} \left(\left.(\partial _{\mu }A_{\sigma }^a\right)\right).A_{\mu }^d+\frac{1}{4} f^{adg} \left(\left.(\partial _{\sigma }A_{\mu }^a\right)\right).A_{\mu }^d-\frac{1}{4} f^{aeg} \left(\left.(\partial _{\nu }A_{\sigma }^a\right)\right).A_{\nu }^e+\frac{1}{4} f^{aeg} \left(\left.(\partial _{\sigma }A_{\nu }^a\right)\right).A_{\nu }^e+\frac{1}{4} f^{bcg} A_{\mu }^b.\left(\left.(\partial _{\mu }A_{\sigma }^c\right)\right)+\frac{1}{4} f^{bcg} \left(\left.(\partial _{\mu }A_{\mu }^b\right)\right).A_{\sigma }^c-\frac{1}{4} f^{bcg} A_{\sigma }^b.\left(\left.(\partial _{\nu }A_{\nu }^c\right)\right)-\frac{1}{4} f^{bcg} \left(\left.(\partial _{\nu }A_{\sigma }^b\right)\right).A_{\nu }^c+\frac{1}{4} f^{deg} A_{\mu }^d.\left(\left.(\partial _{\mu }A_{\sigma }^e\right)\right)+\frac{1}{4} f^{deg} \left(\left.(\partial _{\mu }A_{\mu }^d\right)\right).A_{\sigma }^e-\frac{1}{4} f^{deg} A_{\sigma }^d.\left(\left.(\partial _{\nu }A_{\nu }^e\right)\right)-\frac{1}{4} f^{deg} \left(\left.(\partial _{\nu }A_{\sigma }^d\right)\right).A_{\nu }^e+\frac{1}{2} \left(\partial _{\mu }\partial _{\mu }A_{\sigma }^g\right)-\frac{1}{2} \left(\partial _{\mu }\partial _{\sigma }A_{\mu }^g\right)+\frac{1}{2} \left(\partial _{\nu }\partial _{\nu }A_{\sigma }^g\right)-\frac{1}{2} \left(\partial _{\nu }\partial _{\sigma }A_{\nu }^g\right)
+\end{dmath*}
+
+This is just functional derivation and partial integration and simple
+contraction of indices. At first no attempt is made to rename dummy
+indices (since this is difficult in general).
+
+With a general replacement rule only valid for commuting fields the
+color indices can be canonicalized a bit more. The idea is to use the
+commutative properties of the vector fields, and canonicalize the color
+indices by a trick.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Commutator}\OperatorTok{[}\NormalTok{QuantumField}\OperatorTok{[}\AttributeTok{aaa\_\_\_}\NormalTok{FCPartialD}\OperatorTok{,} \FunctionTok{A}\OperatorTok{,} \AttributeTok{bbb\_\_}\OperatorTok{],}\NormalTok{ QuantumField}\OperatorTok{[}\AttributeTok{ccc\_\_\_}\NormalTok{FCPartialD}\OperatorTok{,} \FunctionTok{A}\OperatorTok{,} 
+      \AttributeTok{ddd\_\_}\OperatorTok{]]} \ExtensionTok{=} \DecValTok{0}\NormalTok{; }
+ 
+\NormalTok{r2 }\ExtensionTok{=}\NormalTok{ r1 }\SpecialCharTok{//}\NormalTok{ DotSimplify }\SpecialCharTok{//}\NormalTok{ FCCanonicalizeDummyIndices}\OperatorTok{[}\NormalTok{\#}\OperatorTok{,}\NormalTok{ SUNIndexNames }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{a1}\OperatorTok{,}\NormalTok{ b1}\OperatorTok{,}\NormalTok{ c1}\OperatorTok{,}\NormalTok{ d1}\OperatorTok{\},} 
+\NormalTok{       LorentzIndexNames }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{mu}\OperatorTok{,}\NormalTok{ nu}\OperatorTok{,}\NormalTok{ rho}\OperatorTok{\}]}\NormalTok{ \& }\SpecialCharTok{//} \FunctionTok{ReplaceAll}\OperatorTok{[}\NormalTok{\#}\OperatorTok{,} \OperatorTok{\{}\NormalTok{a1 }\OtherTok{{-}\textgreater{}} \FunctionTok{a}\OperatorTok{,}\NormalTok{ b1 }\OtherTok{{-}\textgreater{}} \FunctionTok{b}\OperatorTok{,}\NormalTok{ c1 }\OtherTok{{-}\textgreater{}} \FunctionTok{c}\OperatorTok{,} 
+\NormalTok{       d1 }\OtherTok{{-}\textgreater{}} \FunctionTok{d}\OperatorTok{,}\NormalTok{ mu }\OtherTok{{-}\textgreater{}} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],}\NormalTok{ nu }\OtherTok{{-}\textgreater{}} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],}\NormalTok{ rho }\OtherTok{{-}\textgreater{}} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]\}]}\NormalTok{ \& }\SpecialCharTok{//}\NormalTok{ Collect2}\OperatorTok{[}\NormalTok{\#}\OperatorTok{,}\NormalTok{ SUNF}\OperatorTok{]}\NormalTok{ \&}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} f^{adg} f^{bcd} A_{\mu }^a.A_{\mu }^b.A_{\sigma }^c+\frac{1}{2} f^{acd} f^{bdg} A_{\mu }^a.A_{\mu }^b.A_{\sigma }^c+f^{abg} \left(2 A_{\mu }^a.\left(\left.(\partial _{\mu }A_{\sigma }^b\right)\right)-A_{\mu }^a.\left(\left.(\partial _{\sigma }A_{\mu }^b\right)\right)-A_{\sigma }^a.\left(\left.(\partial _{\mu }A_{\mu }^b\right)\right)\right)+\left(\partial _{\mu }\partial _{\mu }A_{\sigma }^g\right)-\left(\partial _{\mu }\partial _{\sigma }A_{\mu }^g\right)
+\end{dmath*}
+
+Inspection reveals that still terms are the same. Gather the terms with
+two \texttt{f}'s:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{twof }\ExtensionTok{=} \FunctionTok{Select}\OperatorTok{[}\NormalTok{r2 }\SpecialCharTok{//} \FunctionTok{Expand}\OperatorTok{,} \FunctionTok{Count}\OperatorTok{[}\NormalTok{\#}\OperatorTok{,}\NormalTok{ SUNF}\OperatorTok{[}\AttributeTok{\_\_}\OperatorTok{]]} \ExtensionTok{===} \DecValTok{2}\NormalTok{ \&}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} f^{adg} f^{bcd} A_{\mu }^a.A_{\mu }^b.A_{\sigma }^c+\frac{1}{2} f^{acd} f^{bdg} A_{\mu }^a.A_{\mu }^b.A_{\sigma }^c
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{twofnew }\ExtensionTok{=}\NormalTok{ ((twof}\OperatorTok{[[}\DecValTok{1}\OperatorTok{]]} \OtherTok{/.} \OperatorTok{\{}\FunctionTok{a} \OtherTok{{-}\textgreater{}} \FunctionTok{b}\OperatorTok{,} \FunctionTok{b} \OtherTok{{-}\textgreater{}} \FunctionTok{a}\OperatorTok{\}}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ twof}\OperatorTok{[[}\DecValTok{2}\OperatorTok{]]}\NormalTok{) }\SpecialCharTok{//}\NormalTok{ DotSimplify}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f^{acd} f^{bdg} A_{\mu }^a.A_{\mu }^b.A_{\sigma }^c
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{r3 }\ExtensionTok{=}\NormalTok{ r2 }\SpecialCharTok{{-}}\NormalTok{ twof }\SpecialCharTok{+}\NormalTok{ twofnew}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f^{acd} f^{bdg} A_{\mu }^a.A_{\mu }^b.A_{\sigma }^c+f^{abg} \left(2 A_{\mu }^a.\left(\left.(\partial _{\mu }A_{\sigma }^b\right)\right)-A_{\mu }^a.\left(\left.(\partial _{\sigma }A_{\mu }^b\right)\right)-A_{\sigma }^a.\left(\left.(\partial _{\mu }A_{\mu }^b\right)\right)\right)+\left(\partial _{\mu }\partial _{\mu }A_{\sigma }^g\right)-\left(\partial _{\mu }\partial _{\sigma }A_{\mu }^g\right)
+\end{dmath*}
+
+Check that this is now indeed the same as the \texttt{t4} result from
+the first attempt.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{t4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left.(\partial _{\mu }F_{\mu \sigma }^g\right)-A_{\mu }^a f^{gca} F_{\mu \sigma }^c
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{w0 }\ExtensionTok{=}\NormalTok{ RightPartialD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . FieldStrength}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{],} \FunctionTok{g}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{A}\OperatorTok{,} \FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{\},} \DecValTok{1}\OperatorTok{]} \SpecialCharTok{+} 
+\NormalTok{   QuantumField}\OperatorTok{[}\FunctionTok{A}\OperatorTok{,}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],}\NormalTok{ SUNIndex}\OperatorTok{[}\FunctionTok{c}\OperatorTok{]]}\NormalTok{ . FieldStrength}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{],} \FunctionTok{a}\OperatorTok{,} 
+      \OperatorTok{\{}\FunctionTok{A}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{d}\OperatorTok{\},} \DecValTok{1}\OperatorTok{]}\NormalTok{ SUNF}\OperatorTok{[}\FunctionTok{g}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{a}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f^{gca} A_{\mu }^c.F_{\mu \sigma }^{a\{A,b,d\}1}+\vec{\partial }_{\mu }.F_{\mu \sigma }^{g\{A,a,b\}1}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{w1 }\ExtensionTok{=}\NormalTok{ Explicit}\OperatorTok{[}\NormalTok{w0}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f^{gca} A_{\mu }^c.\left(f^{abd} A_{\mu }^b.A_{\sigma }^d+\left.(\partial _{\mu }A_{\sigma }^a\right)-\left.(\partial _{\sigma }A_{\mu }^a\right)\right)+\vec{\partial }_{\mu }.\left(f^{gab} A_{\mu }^a.A_{\sigma }^b+\left.(\partial _{\mu }A_{\sigma }^g\right)-\left.(\partial _{\sigma }A_{\mu }^g\right)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{w2 }\ExtensionTok{=}\NormalTok{ ExpandPartialD}\OperatorTok{[}\NormalTok{w1}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ DotSimplify}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-f^{abd} f^{acg} A_{\mu }^b.A_{\mu }^c.A_{\sigma }^d+f^{abg} A_{\mu }^a.\left(\left.(\partial _{\mu }A_{\sigma }^b\right)\right)+f^{abg} A_{\sigma }^b.\left(\left.(\partial _{\mu }A_{\mu }^a\right)\right)-f^{acg} A_{\mu }^c.\left(\left.(\partial _{\mu }A_{\sigma }^a\right)\right)+f^{acg} A_{\mu }^c.\left(\left.(\partial _{\sigma }A_{\mu }^a\right)\right)+\left(\partial _{\mu }\partial _{\mu }A_{\sigma }^g\right)-\left(\partial _{\mu }\partial _{\sigma }A_{\mu }^g\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dif1 }\ExtensionTok{=}\NormalTok{ w2 }\SpecialCharTok{{-}}\NormalTok{ r3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-f^{abd} f^{acg} A_{\mu }^b.A_{\mu }^c.A_{\sigma }^d-f^{acd} f^{bdg} A_{\mu }^a.A_{\mu }^b.A_{\sigma }^c+f^{abg} A_{\mu }^a.\left(\left.(\partial _{\mu }A_{\sigma }^b\right)\right)-f^{abg} \left(2 A_{\mu }^a.\left(\left.(\partial _{\mu }A_{\sigma }^b\right)\right)-A_{\mu }^a.\left(\left.(\partial _{\sigma }A_{\mu }^b\right)\right)-A_{\sigma }^a.\left(\left.(\partial _{\mu }A_{\mu }^b\right)\right)\right)+f^{abg} A_{\sigma }^b.\left(\left.(\partial _{\mu }A_{\mu }^a\right)\right)-f^{acg} A_{\mu }^c.\left(\left.(\partial _{\mu }A_{\sigma }^a\right)\right)+f^{acg} A_{\mu }^c.\left(\left.(\partial _{\sigma }A_{\mu }^a\right)\right)
+\end{dmath*}
+
+As expected:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dif1 }\SpecialCharTok{//}\NormalTok{ FCCanonicalizeDummyIndices}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+Finally, unset the commutator of the bosonic fields.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{UnDeclareCommutator}\OperatorTok{[}\NormalTok{QuantumField}\OperatorTok{[}\AttributeTok{aaa\_\_\_}\NormalTok{FCPartialD}\OperatorTok{,} \FunctionTok{A}\OperatorTok{,} \AttributeTok{bbb\_\_}\OperatorTok{],} 
+\NormalTok{    QuantumField}\OperatorTok{[}\AttributeTok{ccc\_\_\_}\NormalTok{FCPartialD}\OperatorTok{,} \FunctionTok{A}\OperatorTok{,} \AttributeTok{ddd\_\_}\OperatorTok{]]} \ExtensionTok{=} \DecValTok{0}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

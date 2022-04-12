@@ -1,0 +1,59 @@
+% !TeX program = pdflatex
+% !TeX root = Map2.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{map2}{%
+\section{Map2}\label{map2}}
+
+\texttt{Map2[\allowbreak{}f,\ \allowbreak{}exp]} is equivalent to
+\texttt{Map} if \texttt{Nterms[\allowbreak{}exp] > 0}, otherwise
+\texttt{Map2[\allowbreak{}f,\ \allowbreak{}exp]} gives
+\texttt{f[\allowbreak{}exp]}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{nterms}{NTerms}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Map2}\OperatorTok{[}\FunctionTok{f}\OperatorTok{,} \FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{b}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f(a)+f(-b)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Map2}\OperatorTok{[}\FunctionTok{f}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f(x)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Map2}\OperatorTok{[}\FunctionTok{f}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f(\{a,b,c\})
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Map2}\OperatorTok{[}\FunctionTok{f}\OperatorTok{,} \DecValTok{1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f(1)
+\end{dmath*}
+\end{document}

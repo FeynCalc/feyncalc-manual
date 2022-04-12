@@ -1,0 +1,39 @@
+% !TeX program = pdflatex
+% !TeX root = SirlinSimplify.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{sirlinsimplify}{%
+\section{SirlinSimplify}\label{sirlinsimplify}}
+
+\texttt{SirlinSimplify[\allowbreak{}exp]} simplifies spinor chains that
+contain Dirac matrices using relations derived by A. Sirlin in
+\href{https://doi.org/10.1016/0550-3213(81)90195-4}{Nuclear Physics B192
+(1981) 93-99}. Contrary to the original paper, the sign of the
+Levi-Civita tensor is chosen as \(\varepsilon^{0123}=1\) which is the
+standard choice in FeynCalc.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{diracgamma}{DiracGamma},
+\hyperlink{spinor}{Spinor},
+\hyperlink{spinorchaintrick}{SpinorChainTrick}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpinorUBar}\OperatorTok{[}\NormalTok{p3}\OperatorTok{,}\NormalTok{ m3}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \DecValTok{7}\OperatorTok{]}\NormalTok{ . SpinorU}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{]}\NormalTok{ SpinorUBar}\OperatorTok{[}\NormalTok{p4}\OperatorTok{,}\NormalTok{ m4}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Tau}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \DecValTok{7}\OperatorTok{]}\NormalTok{ . SpinorU}\OperatorTok{[}\NormalTok{p2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{]} 
+ 
+\NormalTok{SirlinSimplify}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{u}(\text{p3},\text{m3}).\bar{\gamma }^{\mu }.\bar{\gamma }^{\rho }.\bar{\gamma }^{\nu }.\bar{\gamma }^7.u(\text{p1},\text{m1}) \bar{u}(\text{p4},\text{m4}).\bar{\gamma }^{\mu }.\bar{\gamma }^{\tau }.\bar{\gamma }^{\nu }.\bar{\gamma }^7.u(\text{p2},\text{m2})
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+4 \bar{g}^{\rho \tau } \left(\varphi (\overline{\text{p3}},\text{m3})\right).\bar{\gamma }^{\text{liS29}}.\bar{\gamma }^7.\left(\varphi (\overline{\text{p1}},\text{m1})\right) \left(\varphi (\overline{\text{p4}},\text{m4})\right).\bar{\gamma }^{\text{liS29}}.\bar{\gamma }^7.\left(\varphi (\overline{\text{p2}},\text{m2})\right)
+\end{dmath*}
+\end{document}

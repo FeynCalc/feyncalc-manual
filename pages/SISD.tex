@@ -1,0 +1,67 @@
+% !TeX program = pdflatex
+% !TeX root = SISD.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{sisd}{%
+\section{SISD}\label{sisd}}
+
+\texttt{SISD[\allowbreak{}p]} can be used as input for
+\(D-1\)-dimensional \(\sigma^{\mu } p_{\mu }\) with \(D\)-dimensional
+Lorentz vector \(p\) and is transformed into
+\texttt{PauliSigma[\allowbreak{}Momentum[\allowbreak{}p,\ \allowbreak{}D],\ \allowbreak{}D-1]}
+by \texttt{FeynCalcInternal}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{paulisigma}{PauliSigma},
+\hyperlink{sis}{SIS}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SISD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\sigma \cdot p
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SISD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*PauliSigma[Momentum[p, D], {-}1 + D]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SISD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,} \FunctionTok{r}\OperatorTok{,} \FunctionTok{s}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(\sigma \cdot p).(\sigma \cdot q).(\sigma \cdot r).(\sigma \cdot s)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SISD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,} \FunctionTok{r}\OperatorTok{,} \FunctionTok{s}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SISD[p] . SISD[q] . SISD[r] . SISD[s]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SISD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]}\NormalTok{ . (SISD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{m}\NormalTok{) . SISD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(\sigma \cdot q).(m+\sigma \cdot p).(\sigma \cdot q)
+\end{dmath*}
+\end{document}

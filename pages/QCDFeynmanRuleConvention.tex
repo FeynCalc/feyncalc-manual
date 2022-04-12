@@ -1,0 +1,96 @@
+% !TeX program = pdflatex
+% !TeX root = QCDFeynmanRuleConvention.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{qcdfeynmanruleconvention}{%
+\section{QCDFeynmanRuleConvention}\label{qcdfeynmanruleconvention}}
+
+\texttt{QCDFeynmanRuleConvention} fixes the sign convention in the QCD
+Feynman rules for the ghost propagator and the ghost-gluon vertex.This
+is done by setting the value of
+\texttt{QCDFeynmanRuleConvention[\allowbreak{}GhostPropagator]} and
+\texttt{QCDFeynmanRuleConvention[\allowbreak{}GluonGhostVertex]}.
+
+The default values are \texttt{1} for both, which corresponds to the
+convention used in most books. Setting them to \texttt{-1} enforces the
+convention that can be found e.g.~in the book ``Applications of
+Perturbative QCD'' by R. Field.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{gluonghostvertex}{GluonGhostVertex},
+\hyperlink{ghostpropagator}{GhostPropagator}.
+
+\subsection{Examples}
+
+Enforce the convention as in ``Applications of Perturbative QCD'' by R.
+Field.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QCDFeynmanRuleConvention}\OperatorTok{[}\NormalTok{GhostPropagator}\OperatorTok{]} \ExtensionTok{=} \SpecialCharTok{{-}}\DecValTok{1}\NormalTok{; }
+ 
+\NormalTok{QCDFeynmanRuleConvention}\OperatorTok{[}\NormalTok{GluonGhostVertex}\OperatorTok{]} \ExtensionTok{=} \SpecialCharTok{{-}}\DecValTok{1}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GHP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ Explicit}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{i \delta ^{ab}}{p^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GGV}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{b}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{k}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \FunctionTok{c}\OperatorTok{\}]} \SpecialCharTok{//}\NormalTok{ Explicit}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+g_s k^{\mu } f^{abc}
+\end{dmath*}
+
+Back to the standard convention.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QCDFeynmanRuleConvention}\OperatorTok{[}\NormalTok{GhostPropagator}\OperatorTok{]} \ExtensionTok{=} \DecValTok{1} 
+ 
+\NormalTok{QCDFeynmanRuleConvention}\OperatorTok{[}\NormalTok{GluonGhostVertex}\OperatorTok{]} \ExtensionTok{=} \DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+1
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+1
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GHP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ Explicit}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{i \delta ^{ab}}{p^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GGV}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{b}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{k}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \FunctionTok{c}\OperatorTok{\}]} \SpecialCharTok{//}\NormalTok{ Explicit}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+g_s \left(-k^{\mu }\right) f^{abc}
+\end{dmath*}
+\end{document}

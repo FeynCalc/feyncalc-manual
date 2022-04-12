@@ -1,0 +1,126 @@
+% !TeX program = pdflatex
+% !TeX root = Momentum.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{momentum}{%
+\section{Momentum}\label{momentum}}
+
+\texttt{Momentum[\allowbreak{}p]} is the head of a four momentum
+\texttt{p}.
+
+The internal representation of a \(4\)-dimensional \(p\) is
+\texttt{Momentum[\allowbreak{}p]}.
+
+For other than \(4\) dimensions:
+\texttt{Momentum[\allowbreak{}p,\ \allowbreak{}dim]}.
+
+\texttt{Momentum[\allowbreak{}p,\ \allowbreak{}4]} simplifies to
+\texttt{Momentum[\allowbreak{}p]}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{diracgamma}{DiracGamma},
+\hyperlink{eps}{Eps}, \hyperlink{lorentzindex}{LorentzIndex},
+\hyperlink{momentumexpand}{MomentumExpand}.
+
+\subsection{Examples}
+
+This is a \(4\)-dimensional momentum.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}
+\end{dmath*}
+
+As an optional second argument the dimension must be specified if it is
+different from \(4\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p
+\end{dmath*}
+
+The dimension index is suppressed in the output.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{d}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Momentum}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\overline{q}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Momentum}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{q}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*{-}Momentum[q]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ Momentum}\OperatorTok{[}\DecValTok{2} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\overline{p}-\overline{q}\right)+2 \overline{q}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*Momentum[p {-} q] + 2 Momentum[q]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//}\NormalTok{ MomentumExpand }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*Momentum[p] + Momentum[q]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//}\NormalTok{ MomentumCombine }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*Momentum[p + q]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ChangeDimension}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],} \FunctionTok{d}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*Momentum[p, d]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

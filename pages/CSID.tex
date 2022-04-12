@@ -1,0 +1,67 @@
+% !TeX program = pdflatex
+% !TeX root = CSID.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{csid}{%
+\section{CSID}\label{csid}}
+
+\texttt{CSID[\allowbreak{}i]} can be used as input for
+\(D-1\)-dimensional \(\sigma^i\) with \(D-1\)-dimensional Cartesian
+index \texttt{i} and is transformed into
+\texttt{PauliSigma[\allowbreak{}CartesianIndex[\allowbreak{}i,\ \allowbreak{}D-1],\ \allowbreak{}D-1]}
+by \texttt{FeynCalcInternal}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{paulisigma}{PauliSigma}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CSID}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\sigma ^i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CSID}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]} \SpecialCharTok{{-}}\NormalTok{ CSID}\OperatorTok{[}\FunctionTok{j}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\sigma ^i.\sigma ^j-\sigma ^j.\sigma ^i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{StandardForm}\OperatorTok{[}\NormalTok{FCI}\OperatorTok{[}\NormalTok{CSID}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]]]}
+
+\CommentTok{(*PauliSigma[CartesianIndex[i, {-}1 + D], {-}1 + D]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CSID}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{,} \FunctionTok{l}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\sigma ^i.\sigma ^j.\sigma ^k.\sigma ^l
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{StandardForm}\OperatorTok{[}\NormalTok{CSID}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{,} \FunctionTok{l}\OperatorTok{]]}
+
+\CommentTok{(*CSID[i] . CSID[j] . CSID[k] . CSID[l]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

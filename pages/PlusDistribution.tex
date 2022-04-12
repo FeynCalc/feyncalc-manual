@@ -1,0 +1,77 @@
+% !TeX program = pdflatex
+% !TeX root = PlusDistribution.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{plusdistribution}{%
+\section{PlusDistribution}\label{plusdistribution}}
+
+\texttt{PlusDistribution[\allowbreak{}1/(1 - x)]} denotes a distribution
+(in the sense of the ``+'' prescription).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{integrate2}{Integrate2}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PlusDistribution}\OperatorTok{[}\DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\frac{1}{1-x}\right)_+
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PlusDistribution}\OperatorTok{[}\FunctionTok{Log}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\frac{\log (1-x)}{1-x}\right)_+
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\NormalTok{PlusDistribution}\OperatorTok{[}\DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\NormalTok{PlusDistribution}\OperatorTok{[}\FunctionTok{Log}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\NormalTok{PlusDistribution}\OperatorTok{[}\FunctionTok{Log}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PlusDistribution}\OperatorTok{[}\FunctionTok{Log}\OperatorTok{[}\FunctionTok{x}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{]}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\log (x)}{1-x}+\left(\frac{\log (1-x)}{1-x}\right)_+
+\end{dmath*}
+\end{document}

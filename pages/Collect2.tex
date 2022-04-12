@@ -1,0 +1,207 @@
+% !TeX program = pdflatex
+% !TeX root = Collect2.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{collect2}{%
+\section{Collect2}\label{collect2}}
+
+\texttt{Collect2[\allowbreak{}expr,\ \allowbreak{}x]} collects together
+terms which are not free of any occurrence of \texttt{x}.
+
+\texttt{Collect2[\allowbreak{}expr,\ \allowbreak{}\{\allowbreak{}x1,\ \allowbreak{}x2,\ \allowbreak{}...\}]}
+(or also
+\texttt{Collect2[\allowbreak{}expr,\ \allowbreak{}x1,\ \allowbreak{}x2,\ \allowbreak{}...]})
+collects together terms which are not free of any occurrence of
+\texttt{x1,\ \allowbreak{}x2,\ \allowbreak{}...}.
+
+The coefficients are put over a common denominator. If \texttt{expr} is
+expanded before collecting depends on the option \texttt{Factoring},
+which may be set to \texttt{Factor}, \texttt{Factor2}, or any other
+function, which is applied to the coefficients. If \texttt{expr} is
+already expanded with respect to \texttt{x} (\texttt{x1}, \texttt{x2},
+\ldots), the option \texttt{Expanding} can be set to \texttt{False.}
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{isolate}{Isolate}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Collect2}\OperatorTok{[}\NormalTok{t1 }\ExtensionTok{=} \FunctionTok{a} \SpecialCharTok{+} \FunctionTok{r} \FunctionTok{a} \SpecialCharTok{+} \FunctionTok{k}\SpecialCharTok{\^{}}\DecValTok{2} \FunctionTok{f}\OperatorTok{[}\FunctionTok{a}\OperatorTok{]} \SpecialCharTok{{-}} \FunctionTok{k} \FunctionTok{f}\OperatorTok{[}\FunctionTok{a}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{x}\SpecialCharTok{/}\DecValTok{2} \SpecialCharTok{{-}} \FunctionTok{y}\SpecialCharTok{/}\FunctionTok{w}\OperatorTok{,} \FunctionTok{a}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(k-1) k f(a)+a (r+1)+\frac{w x-2 y}{2 w}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Collect2}\OperatorTok{[}\NormalTok{t1}\OperatorTok{,} \FunctionTok{a}\OperatorTok{,}\NormalTok{ Factoring }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(k^2-k\right) f(a)+a (r+1)-\frac{y}{w}+\frac{x}{2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Collect2}\OperatorTok{[}\NormalTok{t1}\OperatorTok{,} \FunctionTok{a}\OperatorTok{,}\NormalTok{ Factoring }\OtherTok{{-}\textgreater{}} \FunctionTok{Factor}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(k-1) k f(a)+a (r+1)+\frac{w x-2 y}{2 w}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Collect2}\OperatorTok{[}\NormalTok{t1}\OperatorTok{,} \FunctionTok{a}\OperatorTok{,}\NormalTok{ Factoring }\OtherTok{{-}\textgreater{}} \FunctionTok{Simplify}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(k-1) k f(a)+a (r+1)-\frac{y}{w}+\frac{x}{2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Collect2}\OperatorTok{[}\DecValTok{2} \FunctionTok{a}\NormalTok{ (}\FunctionTok{b} \SpecialCharTok{{-}} \FunctionTok{a}\NormalTok{) (}\FunctionTok{h} \SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) }\SpecialCharTok{{-}} \FunctionTok{b}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ (}\FunctionTok{e} \FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{c}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{b}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-2 a^2 (h-1)-a b^2 e+2 a b (h-1)+b^2 (c+1)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Collect2}\OperatorTok{[}\FunctionTok{Expand}\OperatorTok{[}\NormalTok{(}\FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{b} \SpecialCharTok{{-}} \FunctionTok{c} \SpecialCharTok{{-}} \FunctionTok{d}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{5}\OperatorTok{],} \FunctionTok{a}\OperatorTok{,}\NormalTok{ IsolateNames }\OtherTok{{-}\textgreater{}}\NormalTok{ KK}\OperatorTok{]} 
+ 
+\NormalTok{FRH}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+a^5-5 a^4 \;\text{KK}(19)+10 a^3 \;\text{KK}(20)-10 a^2 \;\text{KK}(22)+5 a \;\text{KK}(21)-\text{KK}(23)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+a^5-5 a^4 (b+c+d)+10 a^3 (b+c+d)^2-10 a^2 (b+c+d)^3+5 a (b+c+d)^4-(b+c+d)^5
+\end{dmath*}
+
+The option \texttt{Head} is useful for subsequent manipulations of the
+output
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Collect2}\OperatorTok{[}\FunctionTok{Expand}\OperatorTok{[}\NormalTok{(}\FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{b} \SpecialCharTok{{-}} \FunctionTok{c} \SpecialCharTok{{-}} \FunctionTok{d}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{5}\OperatorTok{],} \FunctionTok{a}\OperatorTok{,} \FunctionTok{Head} \OtherTok{{-}\textgreater{}} \FunctionTok{h}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+h\left(a^5\right)-5 h\left(a^4\right) (b+c+d)+10 h\left(a^3\right) (b+c+d)^2-10 h\left(a^2\right) (b+c+d)^3+5 h(a) (b+c+d)^4-(b+c+d)^5
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Collect2}\OperatorTok{[}\FunctionTok{Expand}\OperatorTok{[}\NormalTok{(}\FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{b} \SpecialCharTok{{-}} \FunctionTok{c} \SpecialCharTok{{-}} \FunctionTok{d}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{5}\OperatorTok{],} \FunctionTok{a}\OperatorTok{,} \FunctionTok{Head} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{h1}\OperatorTok{,}\NormalTok{ h2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{h2}\left(1,\text{h1}\left(a^5\right)\right)+\text{h2}\left(-5 (b+c+d),\text{h1}\left(a^4\right)\right)+\text{h2}\left(10 (b+c+d)^2,\text{h1}\left(a^3\right)\right)+\text{h2}\left(-10 (b+c+d)^3,\text{h1}\left(a^2\right)\right)+\text{h2}\left(5 (b+c+d)^4,\text{h1}(a)\right)+\text{h2}\left(-(b+c+d)^5,1\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Collect2}\OperatorTok{[}\FunctionTok{Expand}\OperatorTok{[}\NormalTok{(}\FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{b} \SpecialCharTok{{-}} \FunctionTok{c} \SpecialCharTok{{-}} \FunctionTok{d}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{5}\OperatorTok{],} \FunctionTok{a}\OperatorTok{,} \FunctionTok{Head} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{Identity}\OperatorTok{,}\NormalTok{ h2}\OperatorTok{\}]} 
+ 
+\NormalTok{Cases2}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ h2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{h2}\left(1,a^5\right)+\text{h2}\left(-5 (b+c+d),a^4\right)+\text{h2}\left(10 (b+c+d)^2,a^3\right)+\text{h2}\left(-10 (b+c+d)^3,a^2\right)+\text{h2}\left(5 (b+c+d)^4,a\right)+\text{h2}\left(-(b+c+d)^5,1\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{h2}\left(1,a^5\right),\text{h2}\left(-5 (b+c+d),a^4\right),\text{h2}\left(10 (b+c+d)^2,a^3\right),\text{h2}\left(-10 (b+c+d)^3,a^2\right),\text{h2}\left(5 (b+c+d)^4,a\right),\text{h2}\left(-(b+c+d)^5,1\right)\right\}
+\end{dmath*}
+
+It is possible to use different factoring functions
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Clear}\OperatorTok{[}\NormalTok{fun}\OperatorTok{]} 
+ 
+\NormalTok{Collect2}\OperatorTok{[}\FunctionTok{Expand}\OperatorTok{[}\NormalTok{(}\FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{b} \SpecialCharTok{{-}} \FunctionTok{c}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{3}\OperatorTok{],} \FunctionTok{a}\OperatorTok{,}\NormalTok{ Factoring }\OtherTok{{-}\textgreater{}}\NormalTok{ fun}\OperatorTok{]} 
+ 
+\SpecialCharTok{\%} \OtherTok{/.}\NormalTok{ fun }\OtherTok{{-}\textgreater{}} \FunctionTok{FactorTerms}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+a^3 \;\text{fun}(1)+a^2 \;\text{fun}(-3 b-3 c)+a \;\text{fun}\left(3 b^2+6 b c+3 c^2\right)+\text{fun}\left(-b^3-3 b^2 c-3 b c^2-c^3\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+a^3-3 a^2 (b+c)+3 a \left(b^2+2 b c+c^2\right)-b^3-3 b^2 c-3 b c^2-c^3
+\end{dmath*}
+
+Another neat trick is to nest \texttt{Collect2} using the
+\texttt{Factoring} option
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Collect2}\OperatorTok{[}\FunctionTok{Expand}\OperatorTok{[}\NormalTok{((a1 }\SpecialCharTok{+}\NormalTok{ a2 }\SpecialCharTok{+}\NormalTok{ a3)}\SpecialCharTok{\^{}}\DecValTok{3} \SpecialCharTok{{-}}\NormalTok{ (b1 }\SpecialCharTok{+}\NormalTok{ b2 }\SpecialCharTok{+}\NormalTok{ b3)}\SpecialCharTok{\^{}}\DecValTok{3} \SpecialCharTok{{-}}\NormalTok{ (c1 }\SpecialCharTok{+}\NormalTok{ c2 }\SpecialCharTok{+}\NormalTok{ c3)}\SpecialCharTok{\^{}}\DecValTok{3}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{],} \OperatorTok{\{}\NormalTok{a1}\OperatorTok{,}\NormalTok{ a2}\OperatorTok{,}\NormalTok{ a3}\OperatorTok{\},} 
+\NormalTok{  Factoring }\OtherTok{{-}\textgreater{}} \FunctionTok{Function}\OperatorTok{[}\FunctionTok{x}\OperatorTok{,}\NormalTok{ Collect2}\OperatorTok{[}\FunctionTok{x}\OperatorTok{,} \OperatorTok{\{}\NormalTok{b1}\OperatorTok{,}\NormalTok{ c1}\OperatorTok{\}]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{a1}^6+6 \;\text{a2} \;\text{a1}^5+6 \;\text{a3} \;\text{a1}^5+15 \;\text{a2}^2 \;\text{a1}^4+15 \;\text{a3}^2 \;\text{a1}^4+30 \;\text{a2} \;\text{a3} \;\text{a1}^4+20 \;\text{a2}^3 \;\text{a1}^3+20 \;\text{a3}^3 \;\text{a1}^3+60 \;\text{a2} \;\text{a3}^2 \;\text{a1}^3+60 \;\text{a2}^2 \;\text{a3} \;\text{a1}^3+\left(-2 \;\text{b1}^3-6 (\text{b2}+\text{b3}) \;\text{b1}^2-6 (\text{b2}+\text{b3})^2 \;\text{b1}-2 \;\text{c1}^3-6 \;\text{c1} (\text{c2}+\text{c3})^2-6 \;\text{c1}^2 (\text{c2}+\text{c3})-2 (\text{b2}+\text{b3}+\text{c2}+\text{c3}) \left(\text{b2}^2+2 \;\text{b3} \;\text{b2}-\text{c2} \;\text{b2}-\text{c3} \;\text{b2}+\text{b3}^2+\text{c2}^2+\text{c3}^2-\text{b3} \;\text{c2}-\text{b3} \;\text{c3}+2 \;\text{c2} \;\text{c3}\right)\right) \;\text{a1}^3+15 \;\text{a2}^4 \;\text{a1}^2+15 \;\text{a3}^4 \;\text{a1}^2+60 \;\text{a2} \;\text{a3}^3 \;\text{a1}^2+90 \;\text{a2}^2 \;\text{a3}^2 \;\text{a1}^2+60 \;\text{a2}^3 \;\text{a3} \;\text{a1}^2+\text{a2} \left(-6 \;\text{b1}^3-18 (\text{b2}+\text{b3}) \;\text{b1}^2-18 (\text{b2}+\text{b3})^2 \;\text{b1}-6 \;\text{c1}^3-18 \;\text{c1} (\text{c2}+\text{c3})^2-18 \;\text{c1}^2 (\text{c2}+\text{c3})-6 (\text{b2}+\text{b3}+\text{c2}+\text{c3}) \left(\text{b2}^2+2 \;\text{b3} \;\text{b2}-\text{c2} \;\text{b2}-\text{c3} \;\text{b2}+\text{b3}^2+\text{c2}^2+\text{c3}^2-\text{b3} \;\text{c2}-\text{b3} \;\text{c3}+2 \;\text{c2} \;\text{c3}\right)\right) \;\text{a1}^2+\text{a3} \left(-6 \;\text{b1}^3-18 (\text{b2}+\text{b3}) \;\text{b1}^2-18 (\text{b2}+\text{b3})^2 \;\text{b1}-6 \;\text{c1}^3-18 \;\text{c1} (\text{c2}+\text{c3})^2-18 \;\text{c1}^2 (\text{c2}+\text{c3})-6 (\text{b2}+\text{b3}+\text{c2}+\text{c3}) \left(\text{b2}^2+2 \;\text{b3} \;\text{b2}-\text{c2} \;\text{b2}-\text{c3} \;\text{b2}+\text{b3}^2+\text{c2}^2+\text{c3}^2-\text{b3} \;\text{c2}-\text{b3} \;\text{c3}+2 \;\text{c2} \;\text{c3}\right)\right) \;\text{a1}^2+6 \;\text{a2}^5 \;\text{a1}+6 \;\text{a3}^5 \;\text{a1}+30 \;\text{a2} \;\text{a3}^4 \;\text{a1}+60 \;\text{a2}^2 \;\text{a3}^3 \;\text{a1}+60 \;\text{a2}^3 \;\text{a3}^2 \;\text{a1}+30 \;\text{a2}^4 \;\text{a3} \;\text{a1}+\text{a2} \;\text{a3} \left(-12 \;\text{b1}^3-36 (\text{b2}+\text{b3}) \;\text{b1}^2-36 (\text{b2}+\text{b3})^2 \;\text{b1}-12 \;\text{c1}^3-36 \;\text{c1} (\text{c2}+\text{c3})^2-36 \;\text{c1}^2 (\text{c2}+\text{c3})-12 (\text{b2}+\text{b3}+\text{c2}+\text{c3}) \left(\text{b2}^2+2 \;\text{b3} \;\text{b2}-\text{c2} \;\text{b2}-\text{c3} \;\text{b2}+\text{b3}^2+\text{c2}^2+\text{c3}^2-\text{b3} \;\text{c2}-\text{b3} \;\text{c3}+2 \;\text{c2} \;\text{c3}\right)\right) \;\text{a1}+\text{a2}^2 \left(-6 \;\text{b1}^3-18 (\text{b2}+\text{b3}) \;\text{b1}^2-18 (\text{b2}+\text{b3})^2 \;\text{b1}-6 \;\text{c1}^3-18 \;\text{c1} (\text{c2}+\text{c3})^2-18 \;\text{c1}^2 (\text{c2}+\text{c3})-6 (\text{b2}+\text{b3}+\text{c2}+\text{c3}) \left(\text{b2}^2+2 \;\text{b3} \;\text{b2}-\text{c2} \;\text{b2}-\text{c3} \;\text{b2}+\text{b3}^2+\text{c2}^2+\text{c3}^2-\text{b3} \;\text{c2}-\text{b3} \;\text{c3}+2 \;\text{c2} \;\text{c3}\right)\right) \;\text{a1}+\text{a3}^2 \left(-6 \;\text{b1}^3-18 (\text{b2}+\text{b3}) \;\text{b1}^2-18 (\text{b2}+\text{b3})^2 \;\text{b1}-6 \;\text{c1}^3-18 \;\text{c1} (\text{c2}+\text{c3})^2-18 \;\text{c1}^2 (\text{c2}+\text{c3})-6 (\text{b2}+\text{b3}+\text{c2}+\text{c3}) \left(\text{b2}^2+2 \;\text{b3} \;\text{b2}-\text{c2} \;\text{b2}-\text{c3} \;\text{b2}+\text{b3}^2+\text{c2}^2+\text{c3}^2-\text{b3} \;\text{c2}-\text{b3} \;\text{c3}+2 \;\text{c2} \;\text{c3}\right)\right) \;\text{a1}+\text{a2}^6+\text{a3}^6+\text{b1}^6+\text{c1}^6+6 \;\text{a2} \;\text{a3}^5+15 \;\text{a2}^2 \;\text{a3}^4+20 \;\text{a2}^3 \;\text{a3}^3+2 \;\text{b1}^3 \;\text{c1}^3+6 \;\text{b1} (\text{b2}+\text{b3})^2 \;\text{c1}^3+6 \;\text{b1}^2 (\text{b2}+\text{b3}) \;\text{c1}^3+15 \;\text{a2}^4 \;\text{a3}^2+15 \;\text{b1}^4 (\text{b2}+\text{b3})^2+15 \;\text{c1}^4 (\text{c2}+\text{c3})^2+6 \;\text{b1}^3 \;\text{c1} (\text{c2}+\text{c3})^2+18 \;\text{b1} (\text{b2}+\text{b3})^2 \;\text{c1} (\text{c2}+\text{c3})^2+18 \;\text{b1}^2 (\text{b2}+\text{b3}) \;\text{c1} (\text{c2}+\text{c3})^2+(\text{b2}+\text{b3}+\text{c2}+\text{c3})^2 \left(\text{b2}^2+2 \;\text{b3} \;\text{b2}-\text{c2} \;\text{b2}-\text{c3} \;\text{b2}+\text{b3}^2+\text{c2}^2+\text{c3}^2-\text{b3} \;\text{c2}-\text{b3} \;\text{c3}+2 \;\text{c2} \;\text{c3}\right)^2+6 \;\text{a2}^5 \;\text{a3}+6 \;\text{b1}^5 (\text{b2}+\text{b3})+6 \;\text{c1}^5 (\text{c2}+\text{c3})+6 \;\text{b1}^3 \;\text{c1}^2 (\text{c2}+\text{c3})+18 \;\text{b1} (\text{b2}+\text{b3})^2 \;\text{c1}^2 (\text{c2}+\text{c3})+18 \;\text{b1}^2 (\text{b2}+\text{b3}) \;\text{c1}^2 (\text{c2}+\text{c3})+6 \;\text{b1} (\text{b2}+\text{b3})^2 (\text{b2}+\text{b3}+\text{c2}+\text{c3}) \left(\text{b2}^2+2 \;\text{b3} \;\text{b2}-\text{c2} \;\text{b2}-\text{c3} \;\text{b2}+\text{b3}^2+\text{c2}^2+\text{c3}^2-\text{b3} \;\text{c2}-\text{b3} \;\text{c3}+2 \;\text{c2} \;\text{c3}\right)+6 \;\text{c1} (\text{c2}+\text{c3})^2 (\text{b2}+\text{b3}+\text{c2}+\text{c3}) \left(\text{b2}^2+2 \;\text{b3} \;\text{b2}-\text{c2} \;\text{b2}-\text{c3} \;\text{b2}+\text{b3}^2+\text{c2}^2+\text{c3}^2-\text{b3} \;\text{c2}-\text{b3} \;\text{c3}+2 \;\text{c2} \;\text{c3}\right)+2 \;\text{b1}^3 \left(10 \;\text{b2}^3+30 \;\text{b3} \;\text{b2}^2+30 \;\text{b3}^2 \;\text{b2}+10 \;\text{b3}^3+\text{c2}^3+\text{c3}^3+3 \;\text{c2} \;\text{c3}^2+3 \;\text{c2}^2 \;\text{c3}\right)+3 \;\text{b1}^2 (\text{b2}+\text{b3}) \left(5 \;\text{b2}^3+15 \;\text{b3} \;\text{b2}^2+15 \;\text{b3}^2 \;\text{b2}+5 \;\text{b3}^3+2 \;\text{c2}^3+2 \;\text{c3}^3+6 \;\text{c2} \;\text{c3}^2+6 \;\text{c2}^2 \;\text{c3}\right)+3 \;\text{c1}^2 (\text{c2}+\text{c3}) \left(2 \;\text{b2}^3+6 \;\text{b3} \;\text{b2}^2+6 \;\text{b3}^2 \;\text{b2}+2 \;\text{b3}^3+5 \;\text{c2}^3+5 \;\text{c3}^3+15 \;\text{c2} \;\text{c3}^2+15 \;\text{c2}^2 \;\text{c3}\right)+2 \;\text{c1}^3 \left(\text{b2}^3+3 \;\text{b3} \;\text{b2}^2+3 \;\text{b3}^2 \;\text{b2}+\text{b3}^3+10 \;\text{c2}^3+10 \;\text{c3}^3+30 \;\text{c2} \;\text{c3}^2+30 \;\text{c2}^2 \;\text{c3}\right)+\text{a2} \;\text{a3}^2 \left(-6 \;\text{b1}^3-18 (\text{b2}+\text{b3}) \;\text{b1}^2-18 (\text{b2}+\text{b3})^2 \;\text{b1}-6 \;\text{c1}^3-18 \;\text{c1} (\text{c2}+\text{c3})^2-18 \;\text{c1}^2 (\text{c2}+\text{c3})-6 (\text{b2}+\text{b3}+\text{c2}+\text{c3}) \left(\text{b2}^2+2 \;\text{b3} \;\text{b2}-\text{c2} \;\text{b2}-\text{c3} \;\text{b2}+\text{b3}^2+\text{c2}^2+\text{c3}^2-\text{b3} \;\text{c2}-\text{b3} \;\text{c3}+2 \;\text{c2} \;\text{c3}\right)\right)+\text{a2}^2 \;\text{a3} \left(-6 \;\text{b1}^3-18 (\text{b2}+\text{b3}) \;\text{b1}^2-18 (\text{b2}+\text{b3})^2 \;\text{b1}-6 \;\text{c1}^3-18 \;\text{c1} (\text{c2}+\text{c3})^2-18 \;\text{c1}^2 (\text{c2}+\text{c3})-6 (\text{b2}+\text{b3}+\text{c2}+\text{c3}) \left(\text{b2}^2+2 \;\text{b3} \;\text{b2}-\text{c2} \;\text{b2}-\text{c3} \;\text{b2}+\text{b3}^2+\text{c2}^2+\text{c3}^2-\text{b3} \;\text{c2}-\text{b3} \;\text{c3}+2 \;\text{c2} \;\text{c3}\right)\right)+\text{a2}^3 \left(-2 \;\text{b1}^3-6 (\text{b2}+\text{b3}) \;\text{b1}^2-6 (\text{b2}+\text{b3})^2 \;\text{b1}-2 \;\text{c1}^3-6 \;\text{c1} (\text{c2}+\text{c3})^2-6 \;\text{c1}^2 (\text{c2}+\text{c3})-2 (\text{b2}+\text{b3}+\text{c2}+\text{c3}) \left(\text{b2}^2+2 \;\text{b3} \;\text{b2}-\text{c2} \;\text{b2}-\text{c3} \;\text{b2}+\text{b3}^2+\text{c2}^2+\text{c3}^2-\text{b3} \;\text{c2}-\text{b3} \;\text{c3}+2 \;\text{c2} \;\text{c3}\right)\right)+\text{a3}^3 \left(-2 \;\text{b1}^3-6 (\text{b2}+\text{b3}) \;\text{b1}^2-6 (\text{b2}+\text{b3})^2 \;\text{b1}-2 \;\text{c1}^3-6 \;\text{c1} (\text{c2}+\text{c3})^2-6 \;\text{c1}^2 (\text{c2}+\text{c3})-2 (\text{b2}+\text{b3}+\text{c2}+\text{c3}) \left(\text{b2}^2+2 \;\text{b3} \;\text{b2}-\text{c2} \;\text{b2}-\text{c3} \;\text{b2}+\text{b3}^2+\text{c2}^2+\text{c3}^2-\text{b3} \;\text{c2}-\text{b3} \;\text{c3}+2 \;\text{c2} \;\text{c3}\right)\right)
+\end{dmath*}
+
+The options \texttt{IsolateFast} allows to save some time when Isolating
+prefactors, provided that no factoring is involved.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ClearAll}\OperatorTok{[}\FunctionTok{h}\OperatorTok{,} \FunctionTok{g}\OperatorTok{,} \FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]}\NormalTok{; }
+ 
+\FunctionTok{exp} \ExtensionTok{=} \FunctionTok{Sum}\OperatorTok{[}\FunctionTok{h}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{i}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{200000}\OperatorTok{\}]}\SpecialCharTok{*}\FunctionTok{a} \SpecialCharTok{+} \FunctionTok{Sum}\OperatorTok{[}\FunctionTok{g}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{i}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{200000}\OperatorTok{\}]}\SpecialCharTok{*}\FunctionTok{b} \SpecialCharTok{+} \FunctionTok{Sum}\OperatorTok{[}\FunctionTok{j}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{i}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{200000}\OperatorTok{\}]}\SpecialCharTok{*}\FunctionTok{c}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{AbsoluteTiming}\OperatorTok{[}\NormalTok{Collect2}\OperatorTok{[}\FunctionTok{exp}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{\},}\NormalTok{ Factoring }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{,}\NormalTok{ IsolateNames }\OtherTok{{-}\textgreater{}}\NormalTok{ KK}\OperatorTok{,}\NormalTok{ Expanding }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{2.28593,a \;\text{KK}(28)+b \;\text{KK}(29)+c \;\text{KK}(27)\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{AbsoluteTiming}\OperatorTok{[}\NormalTok{Collect2}\OperatorTok{[}\FunctionTok{exp}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{\},}\NormalTok{ Factoring }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{,}\NormalTok{ IsolateNames }\OtherTok{{-}\textgreater{}}\NormalTok{ KK}\OperatorTok{,}\NormalTok{ IsolateFast }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,}\NormalTok{ Expanding }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{1.38613,a \;\text{KK}(28)+b \;\text{KK}(29)+c \;\text{KK}(27)\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ClearAll}\OperatorTok{[}\FunctionTok{exp}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

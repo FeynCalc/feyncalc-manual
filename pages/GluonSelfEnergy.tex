@@ -1,0 +1,40 @@
+% !TeX program = pdflatex
+% !TeX root = GluonSelfEnergy.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{gluonselfenergy}{%
+\section{GluonSelfEnergy}\label{gluonselfenergy}}
+
+\texttt{GluonSelfEnergy[\allowbreak{}\{\allowbreak{}mu,\ \allowbreak{}a\},\ \allowbreak{}\{\allowbreak{}nu,\ \allowbreak{}b\}]}
+yields the 1-loop gluon self-energy.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{gluonpropagator}{GluonPropagator},
+\hyperlink{gluonghostvertex}{GluonGhostVertex},
+\hyperlink{gluonvertex}{GluonVertex},
+\hyperlink{ghostpropagator}{GhostPropagator}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GluonSelfEnergy}\OperatorTok{[\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{b}\OperatorTok{\},}\NormalTok{ Momentum }\OtherTok{{-}\textgreater{}} \FunctionTok{p}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} i \left(\frac{20}{3 \varepsilon }-\frac{62}{9}\right) C_A g_s^2 \delta ^{ab} \left(p^{\mu } p^{\nu }-p^2 g^{\mu \nu }\right)+i \left(\frac{20}{9}-\frac{8}{3 \varepsilon }\right) T_f g_s^2 \delta ^{ab} \left(p^{\mu } p^{\nu }-p^2 g^{\mu \nu }\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GluonSelfEnergy}\OperatorTok{[\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{b}\OperatorTok{\},}\NormalTok{ Gauge }\OtherTok{{-}\textgreater{}} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Xi}\OperatorTok{],}\NormalTok{ Momentum }\OtherTok{{-}\textgreater{}} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} i C_A \left(\frac{2 \left(\frac{13}{3}-\xi \right)}{\varepsilon }-\frac{1}{2} (1-\xi )^2+2 (1-\xi )-\frac{62}{9}\right) g_s^2 \delta ^{ab} \left(q^{\mu } q^{\nu }-q^2 g^{\mu \nu }\right)+i \left(\frac{20}{9}-\frac{8}{3 \varepsilon }\right) T_f g_s^2 \delta ^{ab} \left(q^{\mu } q^{\nu }-q^2 g^{\mu \nu }\right)
+\end{dmath*}
+\end{document}

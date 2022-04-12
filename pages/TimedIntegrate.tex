@@ -1,0 +1,43 @@
+% !TeX program = pdflatex
+% !TeX root = TimedIntegrate.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{timedintegrate}{%
+\section{TimedIntegrate}\label{timedintegrate}}
+
+\texttt{TimedIntegrate[\allowbreak{}exp,\ \allowbreak{}vars]} is like
+\texttt{Integrate}, but stops after the number of seconds specified by
+the option \texttt{Timing}. Options of \texttt{Integrate} can be given
+and are passed on.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+This should reach to be done
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TimedIntegrate}\OperatorTok{[}\FunctionTok{Log}\OperatorTok{[}\FunctionTok{x}\SpecialCharTok{\^{}}\DecValTok{5}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \FunctionTok{Timing} \OtherTok{{-}\textgreater{}} \DecValTok{1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-5
+\end{dmath*}
+
+This shouldn't
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TimedIntegrate}\OperatorTok{[}\FunctionTok{Log}\OperatorTok{[}\FunctionTok{Cos}\OperatorTok{[}\FunctionTok{x}\SpecialCharTok{\^{}}\DecValTok{5}\OperatorTok{]],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \FunctionTok{Timing} \OtherTok{{-}\textgreater{}} \DecValTok{10}\OperatorTok{,} \FunctionTok{Integrate} \OtherTok{{-}\textgreater{}}\NormalTok{ int}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{int}\left(\log \left(\cos \left(x^5\right)\right),\{x,0,1\},\text{Assumptions}\to \varepsilon >0\right)
+\end{dmath*}
+\end{document}

@@ -1,0 +1,39 @@
+% !TeX program = pdflatex
+% !TeX root = GaugeField.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{gaugefield}{%
+\section{GaugeField}\label{gaugefield}}
+
+\texttt{GaugeField} is just a name. No functional properties are
+associated with it. \texttt{GaugeField} is used as default setting for
+the option \texttt{QuantumField} of \texttt{FieldStrength}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fieldstrength}{FieldStrength},
+\hyperlink{quantumfield}{QuantumField}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GaugeField}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+A
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QuantumField}\OperatorTok{[}\NormalTok{GaugeField}\OperatorTok{,}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],}\NormalTok{ SUNIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+A_{\mu }^a
+\end{dmath*}
+\end{document}

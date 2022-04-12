@@ -1,0 +1,186 @@
+% !TeX program = pdflatex
+% !TeX root = DiracGamma.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{diracgamma}{%
+\section{DiracGamma}\label{diracgamma}}
+
+\texttt{DiracGamma[\allowbreak{}x,\ \allowbreak{}dim]} is the head of
+all Dirac matrices and slashes (in the internal representation). Use
+\texttt{GA}, \texttt{GAD}, \texttt{GS} or \texttt{GSD} for manual
+(short) input.
+
+\texttt{DiracGamma[\allowbreak{}x,\ \allowbreak{}4]} simplifies to
+\texttt{DiracGamma[\allowbreak{}x]}.
+
+\texttt{DiracGamma[\allowbreak{}5]} is \(\gamma ^5\).
+
+\texttt{DiracGamma[\allowbreak{}6]} is \((1+\gamma ^5)/2\).
+
+\texttt{DiracGamma[\allowbreak{}7]} is \((1-\gamma ^5)/2\).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{diracgammaexpand}{DiracGammaExpand}, \hyperlink{ga}{GA},
+\hyperlink{diracsimplify}{DiracSimplify}, \hyperlink{gs}{GS},
+\hyperlink{diractrick}{DiracTrick}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracGamma}\OperatorTok{[}\DecValTok{5}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^5
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracGamma}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\alpha }
+\end{dmath*}
+
+A Dirac-slash, i.e., \(\gamma ^{\mu }q_{\mu}\), is displayed as
+\(\gamma \cdot q\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracGamma}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]]} 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }\cdot \overline{q}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracGamma}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]]}\NormalTok{ . DiracGamma}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }\cdot \overline{q}\right).\left(\bar{\gamma }\cdot \left(\overline{p}-\overline{q}\right)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracGamma}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],} \FunctionTok{D}\OperatorTok{]} 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\gamma \cdot q
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GS}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{]}\NormalTok{ . GS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} 
+ 
+\NormalTok{DiracGammaExpand}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }\cdot \left(\overline{p}-\overline{q}\right)\right).\left(\bar{\gamma }\cdot \overline{p}\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }\cdot \overline{p}-\bar{\gamma }\cdot \overline{q}\right).\left(\bar{\gamma }\cdot \overline{p}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . GSD}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{]}\NormalTok{ . GSD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]}\NormalTok{ . GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\gamma ^{\mu }.(\gamma \cdot (p-q)).(\gamma \cdot q).\gamma ^{\mu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracTrick}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+4 ((p-q)\cdot q)+(D-4) (\gamma \cdot (p-q)).(\gamma \cdot q)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracSimplify}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+D (\gamma \cdot p).(\gamma \cdot q)-D q^2-4 (\gamma \cdot p).(\gamma \cdot q)+4 (p\cdot q)
+\end{dmath*}
+
+\texttt{DiracGamma} may also carry Cartesian indices or appear
+contracted with Cartesian momenta.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracGamma}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{\gamma }^i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracGamma}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{],} \FunctionTok{D}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\gamma ^i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracGamma}\OperatorTok{[}\NormalTok{CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{\gamma }\cdot \overline{p}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracGamma}\OperatorTok{[}\NormalTok{CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{],} \FunctionTok{D}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\gamma \cdot p
+\end{dmath*}
+
+Temporal indices are represented using
+\texttt{ExplicitLorentzIndex[\allowbreak{}0]}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracGamma}\OperatorTok{[}\NormalTok{ExplicitLorentzIndex}\OperatorTok{[}\DecValTok{0}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^0
+\end{dmath*}
+\end{document}

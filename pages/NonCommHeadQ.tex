@@ -1,0 +1,70 @@
+% !TeX program = pdflatex
+% !TeX root = NonCommHeadQ.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{noncommheadq}{%
+\section{NonCommHeadQ}\label{noncommheadq}}
+
+\texttt{NonCommHeadQ[\allowbreak{}exp]} yields \texttt{True} if the head
+of exp is a non-commutative object or \texttt{Dot}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{datatype}{DataType},
+\hyperlink{declarenoncommutative}{DeclareNonCommutative},
+\hyperlink{undeclarenoncommutative}{UnDeclareNonCommutative},
+\hyperlink{noncommfreeq}{NonCommFreeQ}, \hyperlink{noncommq}{NonCommQ}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NonCommHeadQ}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\NormalTok{mu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NonCommHeadQ}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\NormalTok{mu}\OperatorTok{,}\NormalTok{ nu}\OperatorTok{,}\NormalTok{ mu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NonCommHeadQ}\OperatorTok{[}\NormalTok{FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,}\NormalTok{ mu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NonCommHeadQ}\OperatorTok{[}\NormalTok{FCI}\OperatorTok{[}\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NonCommHeadQ}\OperatorTok{[}\NormalTok{FCI}\OperatorTok{[}\NormalTok{SUNTF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+\end{document}

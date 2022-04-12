@@ -1,0 +1,87 @@
+% !TeX program = pdflatex
+% !TeX root = LightPak.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{lightpak}{%
+\section{LightPak}\label{lightpak}}
+
+\texttt{LightPak} is an option for \texttt{FCLoopPakOrder} and other
+functions for finding equivalent topologies or integrals using Pak
+algorithm. When set to True, instead of using the full Pak algorithm
+(which can be slow for complicated integrals) we use only a lightweight
+version that is not guaranteed to find all mappings but requires
+significantly less time.
+
+The light Pak algorithm is described in the
+\href{https://secdec.readthedocs.io/en/stable/full_reference.html}{pySecDec
+manual}. Essentially, it means that in the step 5 of the full
+\href{https://arxiv.org/pdf/1111.0868.pdf}{Pak algorithm} we keep only
+the first matrix in the vector, so that the next iteration step
+generates significantly less matrices than in the full version.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fclooppakorder}{FCLoopPakOrder}.
+
+\subsection{Examples}
+
+Canonicalizing this characteristic Polynomial of a loop integral with 11
+propagators requires almost half a minute using the full Pak algorithm.
+The light Pak finishes here almost immediately.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{poly }\ExtensionTok{=}\NormalTok{ (}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{4}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{6}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{7}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{8}\OperatorTok{]}\SpecialCharTok{*}\NormalTok{(}\FunctionTok{x}\OperatorTok{[}\DecValTok{9}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{10}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{[}\DecValTok{9}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{11}\OperatorTok{]} \SpecialCharTok{+} 
+       \FunctionTok{x}\OperatorTok{[}\DecValTok{10}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{11}\OperatorTok{]}\NormalTok{) }\SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{4}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{6}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{7}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{8}\OperatorTok{]}\SpecialCharTok{*}\NormalTok{(m1}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ m1}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]} \SpecialCharTok{+} 
+\NormalTok{       m1}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ m1}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{4}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ m1}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ m1}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{6}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ m1}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{7}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ m1}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{8}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ m1}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{9}\OperatorTok{]} \SpecialCharTok{+} 
+\NormalTok{       m1}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{10}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{11}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(}\FunctionTok{x}\OperatorTok{[}\DecValTok{9}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{10}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{[}\DecValTok{9}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{11}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{[}\DecValTok{10}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{11}\OperatorTok{]}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+x(1) x(2) x(3) x(4) x(5) x(6) x(7) x(8) (x(9) x(10)+x(11) x(10)+x(9) x(11))-x(1) x(2) x(3) x(4) x(5) x(6) x(7) x(8) (x(9) x(10)+x(11) x(10)+x(9) x(11)) \left(\text{m1}^2 x(1)+\text{m1}^2 x(2)+\text{m1}^2 x(3)+\text{m1}^2 x(4)+\text{m1}^2 x(5)+\text{m1}^2 x(6)+\text{m1}^2 x(7)+\text{m1}^2 x(8)+\text{m1}^2 x(9)+\text{m1}^2 x(10)+\text{m3}^2 x(11)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopPakOrder}\OperatorTok{[}\NormalTok{poly}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{4}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{6}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{7}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{8}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{9}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{10}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{11}\OperatorTok{]\},} 
+\NormalTok{  LightPak }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{ccccccccccc}
+ 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 \\
+\end{array}
+\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{canoPoly1 }\ExtensionTok{=}\NormalTok{ FCLoopPakOrder}\OperatorTok{[}\NormalTok{poly}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{4}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{6}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{7}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{8}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{9}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{10}\OperatorTok{],}\FunctionTok{x}\OperatorTok{[}\DecValTok{11}\OperatorTok{]\},} 
+\NormalTok{    LightPak }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,}\NormalTok{ Rename }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{canoPoly2 }\ExtensionTok{=}\NormalTok{ FCLoopPakOrder}\OperatorTok{[}\NormalTok{poly }\OtherTok{/.} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{[}\DecValTok{11}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{11}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]\},} 
+    \OperatorTok{\{}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{4}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{6}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{7}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{8}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{9}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{10}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{11}\OperatorTok{]\},}\NormalTok{ LightPak }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,}\NormalTok{ Rename }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+Obviously, we can still find equivalence relations with using this
+algorithm
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{canoPoly1 }\SpecialCharTok{{-}}\NormalTok{ canoPoly2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+\end{document}

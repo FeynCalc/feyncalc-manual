@@ -1,0 +1,62 @@
+% !TeX program = pdflatex
+% !TeX root = FCGVToSymbol.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcgvtosymbol}{%
+\section{FCGVToSymbol}\label{fcgvtosymbol}}
+
+\texttt{FCGVToSymbol[\allowbreak{}exp]} converts objects of type
+\texttt{FCGV[\allowbreak{}"sth"]} in \texttt{exp} to symbols using
+\texttt{ToExpression[\allowbreak{}"sth"]}.
+
+The option \texttt{StringReplace} can be used to specify string
+replacement rules that will take care of special characters
+(e.g.~\texttt{^} or \texttt{_}) that cannot appear in valid Mathematica
+expressions. \texttt{SMPToSymbol} is useful when exporting FeynCalc
+expressions to other tools, e.g.~FORM.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fcgv}{FCGV},
+\hyperlink{smptosymbol}{SMPToSymbol}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCGV}\OperatorTok{[}\StringTok{"a"}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCGVToSymbol }
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//} \FunctionTok{InputForm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+a
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{a}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCGV}\OperatorTok{[}\StringTok{"$MU"}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCGVToSymbol }
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//} \FunctionTok{InputForm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{\$MU}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$MU}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

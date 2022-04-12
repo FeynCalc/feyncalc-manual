@@ -1,0 +1,88 @@
+% !TeX program = pdflatex
+% !TeX root = TFIOrder.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{tfiorder}{%
+\section{TFIOrder}\label{tfiorder}}
+
+\texttt{TFIOrder[\allowbreak{}exp]} orders the arguments of some
+\texttt{TFI} functions in exp in a standard way.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{tarcertofc}{TarcerToFC}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Tarcer\textasciigrave{}TFI}\OperatorTok{[}\FunctionTok{D}\OperatorTok{,} \FunctionTok{p}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{\{}\DecValTok{1}\OperatorTok{,}\NormalTok{ M2}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,}\NormalTok{ M1}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,}\NormalTok{ M3}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,}\NormalTok{ M4}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,}\NormalTok{ M5}\OperatorTok{\}\}]} 
+ 
+\NormalTok{TFIOrder}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{Tarcer$\grave{ }$TFI}\left(D,p^2,\left(
+\begin{array}{cc}
+ 1 & \;\text{M2} \\
+ 1 & \;\text{M1} \\
+ 1 & \;\text{M3} \\
+ 1 & \;\text{M4} \\
+ 1 & \;\text{M5} \\
+\end{array}
+\right)\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{Tarcer$\grave{ }$TFI}\left(D,p^2,\left(
+\begin{array}{cc}
+ 1 & \;\text{M1} \\
+ 1 & \;\text{M2} \\
+ 1 & \;\text{M4} \\
+ 1 & \;\text{M3} \\
+ 1 & \;\text{M5} \\
+\end{array}
+\right)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{((}\DecValTok{2}\SpecialCharTok{*}\NormalTok{m2}\SpecialCharTok{\^{}}\DecValTok{4}\SpecialCharTok{*}\NormalTok{m3}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{((}\SpecialCharTok{{-}}\DecValTok{2} \SpecialCharTok{+} \FunctionTok{D}\NormalTok{)}\SpecialCharTok{*}\NormalTok{m1}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ (}\SpecialCharTok{{-}}\DecValTok{6} \SpecialCharTok{+} \FunctionTok{D}\NormalTok{)}\SpecialCharTok{*}\NormalTok{m3}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\SpecialCharTok{*}\NormalTok{m4}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ m4}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{3} \SpecialCharTok{+} 
+             \FunctionTok{D}\NormalTok{)}\SpecialCharTok{*}\NormalTok{m1}\SpecialCharTok{\^{}}\DecValTok{4} \SpecialCharTok{+}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{3} \SpecialCharTok{+} \FunctionTok{D}\NormalTok{)}\SpecialCharTok{*}\NormalTok{m3}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{{-}}\NormalTok{ (}\SpecialCharTok{{-}}\DecValTok{4} \SpecialCharTok{+} \FunctionTok{D}\NormalTok{)}\SpecialCharTok{*}\NormalTok{m4}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ m1}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{4}\SpecialCharTok{*}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{3} \SpecialCharTok{+} \FunctionTok{D}\NormalTok{)}\SpecialCharTok{*}\NormalTok{m3}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ (}\SpecialCharTok{{-}}\DecValTok{2} \SpecialCharTok{+} 
+                \FunctionTok{D}\NormalTok{)}\SpecialCharTok{*}\NormalTok{m4}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)) }\SpecialCharTok{+}\NormalTok{ (}\SpecialCharTok{{-}}\NormalTok{(m2}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{(}\DecValTok{4}\SpecialCharTok{*}\NormalTok{m3}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ (}\SpecialCharTok{{-}}\DecValTok{6} \SpecialCharTok{+} \FunctionTok{D}\NormalTok{)}\SpecialCharTok{*}\NormalTok{m4}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)) }\SpecialCharTok{+}\NormalTok{ m4}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{((}\SpecialCharTok{{-}}\DecValTok{6} \SpecialCharTok{+} \FunctionTok{D}\NormalTok{)}\SpecialCharTok{*}\NormalTok{m1}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{{-}}\NormalTok{ (}\SpecialCharTok{{-}}\DecValTok{2} \SpecialCharTok{+} 
+                \FunctionTok{D}\NormalTok{)}\SpecialCharTok{*}\NormalTok{m3}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ (}\SpecialCharTok{{-}}\DecValTok{4} \SpecialCharTok{+} \FunctionTok{D}\NormalTok{)}\SpecialCharTok{*}\NormalTok{m4}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}\SpecialCharTok{*}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ (}\DecValTok{2}\SpecialCharTok{*}\NormalTok{m3}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{{-}}\NormalTok{ (}\SpecialCharTok{{-}}\DecValTok{4} \SpecialCharTok{+} \FunctionTok{D}\NormalTok{)}\SpecialCharTok{*}\NormalTok{m4}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\SpecialCharTok{*}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} 
+          \FunctionTok{p}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(Tarcer\textasciigrave{}TFI}\OperatorTok{[}\FunctionTok{D}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{p}\OperatorTok{],} \OperatorTok{\{\{}\DecValTok{1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,}\NormalTok{ m3}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,}\NormalTok{ m4}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,}\NormalTok{ m3}\OperatorTok{\}\}]} \SpecialCharTok{{-}} 
+\NormalTok{       Tarcer\textasciigrave{}TFI}\OperatorTok{[}\FunctionTok{D}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{p}\OperatorTok{],} \OperatorTok{\{\{}\DecValTok{1}\OperatorTok{,}\NormalTok{ m3}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,}\NormalTok{ m4}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,}\NormalTok{ m3}\OperatorTok{\}\}]}\NormalTok{))}\SpecialCharTok{/}\NormalTok{(}\DecValTok{4}\SpecialCharTok{*}\NormalTok{(m2}\SpecialCharTok{\^{}}\DecValTok{4}\SpecialCharTok{*}
+\NormalTok{        m3}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{{-}}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{(m1}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\SpecialCharTok{*}\NormalTok{m4}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ m4}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{(m1}\SpecialCharTok{\^{}}\DecValTok{4} \SpecialCharTok{+}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{4} \SpecialCharTok{+}\NormalTok{ m1}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{m3}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ m4}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)) }\SpecialCharTok{{-}} 
+\NormalTok{       ((m1}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\SpecialCharTok{*}\NormalTok{m4}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\NormalTok{m3}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{{-}}\NormalTok{ m4}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}\SpecialCharTok{*}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)) }
+ 
+\NormalTok{TFIOrder}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\left(p^2 \left(\text{m4}^2 \left((D-6) \;\text{m1}^2-(D-2) \;\text{m3}^2+(D-4) \;\text{m4}^2\right)-\text{m2}^2 \left((D-6) \;\text{m4}^2+4 \;\text{m3}^2\right)\right)+\text{m2}^2 \;\text{m4}^2 \left((D-6) \;\text{m3}^2-(D-2) \;\text{m1}^2\right)+\text{m4}^2 \left(2 (D-3) \;\text{m1}^4+\text{m1}^2 \left((D-2) \;\text{m4}^2-4 (D-3) \;\text{m3}^2\right)+\text{m3}^2 \left(2 (D-3) \;\text{m3}^2-(D-4) \;\text{m4}^2\right)\right)+p^4 \left(2 \;\text{m3}^2-(D-4) \;\text{m4}^2\right)+2 \;\text{m2}^4 \;\text{m3}^2\right) \left(\text{Tarcer$\grave{ }$TFI}\left(D,p^2,\left(
+\begin{array}{cc}
+ 1 & \;\text{m1} \\
+ 1 & \;\text{m2} \\
+ 1 & \;\text{m3} \\
+ 1 & \;\text{m4} \\
+ 1 & \;\text{m3} \\
+\end{array}
+\right)\right)-\text{Tarcer$\grave{ }$TFI}\left(D,p^2,\left(
+\begin{array}{cc}
+ 1 & \;\text{m3} \\
+ 1 & \;\text{m4} \\
+ 1 & \;\text{m1} \\
+ 1 & \;\text{m2} \\
+ 1 & \;\text{m3} \\
+\end{array}
+\right)\right)\right)\right)/\left(4 \left(-p^2 \left(\text{m4}^2 \left(\text{m1}^2+\text{m3}^2\right)+\text{m2}^2 \left(2 \;\text{m3}^2-\text{m4}^2\right)\right)-\text{m2}^2 \;\text{m4}^2 \left(\text{m1}^2+\text{m3}^2\right)+\text{m4}^2 \left(\text{m1}^4+\text{m1}^2 \left(\text{m4}^2-2 \;\text{m3}^2\right)+\text{m3}^4\right)+\text{m2}^4 \;\text{m3}^2+\text{m3}^2 p^4\right)\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+\end{document}

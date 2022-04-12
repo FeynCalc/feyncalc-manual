@@ -1,0 +1,75 @@
+% !TeX program = pdflatex
+% !TeX root = FAD.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fad}{%
+\section{FAD}\label{fad}}
+
+\texttt{FAD} is the FeynCalc external form of
+\texttt{FeynAmpDenominator} and denotes an inverse propagator.
+
+\texttt{FAD[\allowbreak{}q,\ \allowbreak{}q-p,\ \allowbreak{}...]} is
+\(\frac{1}{q^2 (q-p)^2 \ldots}\).
+
+\texttt{FAD[\allowbreak{}\{\allowbreak{}q1,\ \allowbreak{}m\},\ \allowbreak{}\{\allowbreak{}q1-p,\ \allowbreak{}m\},\ \allowbreak{}q2,\ \allowbreak{}...]}
+is \(\frac{1}{[q1^2 - m^2][(q1-p)^2 - m^2] q2^2}\). Translation into
+FeynCalc internal form is performed by \texttt{FeynCalcInternal}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fad}{FAD}, \hyperlink{fce}{FCE},
+\hyperlink{fci}{FCI},
+\hyperlink{feynampdenominator}{FeynAmpDenominator},
+\hyperlink{feynampdenominatorsimplify}{FeynAmpDenominatorSimplify},
+\hyperlink{propagatordenominator}{PropagatorDenominator}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{q^2.(p-q)^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{p^2.\left((p-q)^2-m^2\right)}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{2}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{,} \DecValTok{3}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\left(p^2\right)^2.\left((p-q)^2-m^2\right)^3}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*FeynAmpDenominator[PropagatorDenominator[Momentum[q, D], 0], PropagatorDenominator[Momentum[p, D] {-} Momentum[q, D], 0]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FeynAmpDenominatorCombine}\OperatorTok{[}\NormalTok{\#}\OperatorTok{,}\NormalTok{ FCE }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}\NormalTok{ \& }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*FAD[p, p {-} q]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

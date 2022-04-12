@@ -1,0 +1,45 @@
+% !TeX program = pdflatex
+% !TeX root = PropagatorDenominator.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{propagatordenominator}{%
+\section{PropagatorDenominator}\label{propagatordenominator}}
+
+\texttt{PropagatorDenominator[\allowbreak{}Momentum[\allowbreak{}q],\ \allowbreak{}m]}
+is a factor of the denominator of a propagator. If \texttt{q} is
+supposed to be \(D\)-dimensional, use
+\texttt{PropagatorDenominator[\allowbreak{}Momentum[\allowbreak{}q,\ \allowbreak{}D],\ \allowbreak{}m]}.
+What is meant is \(1/(q^2-m^2)\).
+
+\texttt{PropagatorDenominator} must appear inside
+\texttt{FeynAmpDenominator}, it is not a standalone object.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{feynampdenominator}{FeynAmpDenominator},
+\hyperlink{feynampdenominatorexplicit}{FeynAmpDenominatorExplicit}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{PropagatorDenominator}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],} \FunctionTok{m}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\overline{p}^2-m^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{PropagatorDenominator}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],} \FunctionTok{m}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{p^2-m^2}
+\end{dmath*}
+\end{document}

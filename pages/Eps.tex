@@ -1,0 +1,130 @@
+% !TeX program = pdflatex
+% !TeX root = Eps.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{eps}{%
+\section{Eps}\label{eps}}
+
+\texttt{Eps[\allowbreak{}a,\ \allowbreak{}b,\ \allowbreak{}c,\ \allowbreak{}d]}
+is the head of the totally antisymmetric \(\epsilon\) (Levi-Civita)
+tensor. The \texttt{a,\ \allowbreak{}b,\ \allowbreak{}...} may have head
+\texttt{LorentzIndex} or \texttt{Momentum}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{epscontract}{EpsContract},
+\hyperlink{epsevaluate}{EpsEvaluate}, \hyperlink{lc}{LC},
+\hyperlink{lcd}{LCD}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Eps}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\mu \nu \rho \sigma }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Eps}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\overline{p}\nu \rho \sigma }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Eps}\OperatorTok{[}\FunctionTok{b}\OperatorTok{,} \FunctionTok{a}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{d}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*Eps[b, a, c, d]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Eps}\OperatorTok{[}\NormalTok{ExplicitLorentzIndex}\OperatorTok{[}\DecValTok{0}\OperatorTok{],}\NormalTok{ ExplicitLorentzIndex}\OperatorTok{[}\DecValTok{1}\OperatorTok{],}\NormalTok{ ExplicitLorentzIndex}\OperatorTok{[}\DecValTok{2}\OperatorTok{],} 
+\NormalTok{  ExplicitLorentzIndex}\OperatorTok{[}\DecValTok{3}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{0123}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Eps}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]]} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%} \SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\mu \nu \rho \sigma }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-24
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Eps}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{D}\OperatorTok{],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{D}\OperatorTok{],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \FunctionTok{D}\OperatorTok{],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{],} \FunctionTok{D}\OperatorTok{]]} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%} \SpecialCharTok{\%}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ Factor2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overset{\text{}}{\epsilon }^{\mu \nu \rho \sigma }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+(1-D) (2-D) (3-D) D
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex1 }\ExtensionTok{=} \SpecialCharTok{{-}}\NormalTok{(}\FunctionTok{I}\SpecialCharTok{/}\DecValTok{24}\NormalTok{) LCD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{]]}\NormalTok{ . GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{]]} \SpecialCharTok{//}\NormalTok{ FCI}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{1}{24} i \overset{\text{}}{\epsilon }^{\mu \nu \rho \alpha }.\gamma ^{\mu }.\gamma ^{\nu }.\gamma ^{\rho }.\gamma ^{\alpha }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex2 }\ExtensionTok{=} \SpecialCharTok{{-}}\NormalTok{(}\FunctionTok{I}\SpecialCharTok{/}\DecValTok{24}\NormalTok{) LCD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]}\NormalTok{\textquotesingle{}}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]}\NormalTok{\textquotesingle{}}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]}\NormalTok{\textquotesingle{}}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{]}\NormalTok{\textquotesingle{}}\OperatorTok{]}\NormalTok{ . GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]}\NormalTok{\textquotesingle{}}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]}\NormalTok{\textquotesingle{}}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]}\NormalTok{\textquotesingle{}}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{]}\NormalTok{\textquotesingle{}}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{1}{24} i \overset{\text{}}{\epsilon }^{\mu '\nu '\rho '\alpha '}.\gamma ^{\mu '}.\gamma ^{\nu '}.\gamma ^{\rho '}.\gamma ^{\alpha '}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracSimplify}\OperatorTok{[}\NormalTok{ex1 . ex2}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ Factor2 }
+ 
+\SpecialCharTok{\%} \OtherTok{/.} \FunctionTok{D} \OtherTok{{-}\textgreater{}} \DecValTok{4} 
+  
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{1}{24} (1-D) (2-D) (3-D) D
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+1
+\end{dmath*}
+\end{document}

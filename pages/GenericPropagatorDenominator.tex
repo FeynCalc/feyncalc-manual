@@ -1,0 +1,52 @@
+% !TeX program = pdflatex
+% !TeX root = GenericPropagatorDenominator.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{genericpropagatordenominator}{%
+\section{GenericPropagatorDenominator}\label{genericpropagatordenominator}}
+
+\texttt{GenericPropagatorDenominator[\allowbreak{}expr,\ \allowbreak{}\{\allowbreak{}n,\ \allowbreak{}s\}]}
+is a generic factor of the denominator of a propagator. Unlike
+\texttt{PropagatorDenominator} that is supposed to mean \(1/(q^2-m^2)\),
+\texttt{expr} in \texttt{GenericPropagatorDenominator} can be an
+arbitrary combination of \texttt{Pair}, \texttt{CartesianPair} and
+\texttt{TemporalPair} objects.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{propagatordenominator}{PropagatorDenominator},
+\hyperlink{standardpropagatordenominator}{StandardPropagatorDenominator},
+\hyperlink{cartesianpropagatordenominator}{CartesianPropagatorDenominator}.
+
+Using \texttt{n} one can specify the power of the propagator, while
+\texttt{s} (\texttt{+1} or \texttt{-1}) fixes the sign of
+\texttt{I*eta}. \texttt{GenericPropagatorDenominator} is an internal
+object. To enter such propagators in FeynCalc you should use
+\texttt{GFAD}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{GenericPropagatorDenominator}\OperatorTok{[}\FunctionTok{x}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(x+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{GenericPropagatorDenominator}\OperatorTok{[}\DecValTok{2} \FunctionTok{z}\NormalTok{ Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],} 
+\NormalTok{      Momentum}\OperatorTok{[}\FunctionTok{Q}\OperatorTok{,} \FunctionTok{D}\OperatorTok{]]}\NormalTok{ Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p2}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{Q}\OperatorTok{,} \FunctionTok{D}\OperatorTok{]]} \SpecialCharTok{{-}}\NormalTok{ Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],} 
+\NormalTok{     Momentum}\OperatorTok{[}\NormalTok{p2}\OperatorTok{,} \FunctionTok{D}\OperatorTok{]],} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(2 z (\text{p1}\cdot Q) (\text{p2}\cdot Q)-\text{p1}\cdot \;\text{p2}+i \eta )}
+\end{dmath*}
+\end{document}

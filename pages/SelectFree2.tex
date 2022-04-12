@@ -1,0 +1,118 @@
+% !TeX program = pdflatex
+% !TeX root = SelectFree2.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{selectfree2}{%
+\section{SelectFree2}\label{selectfree2}}
+
+\texttt{SelectFree2[\allowbreak{}expr,\ \allowbreak{}a,\ \allowbreak{}b,\ \allowbreak{}...]}
+is similar to \texttt{SelectFree} but it also differs from the latter in
+several respects.
+
+If \texttt{expr} is a list, \texttt{SelectFree2} behaves exactly the
+same way as \texttt{SelectFree}.
+
+If \texttt{expr} is not a list, \texttt{SelectFree2} first expands the
+expression w.r.t. the arguments via \texttt{Expand2}.
+
+Furthermore, \texttt{SelectFree2[\allowbreak{}a,\ \allowbreak{}b]}
+returns \texttt{a} and
+\texttt{SelectFree2[\allowbreak{}a,\ \allowbreak{}a]} returns
+\texttt{0}. This differs from the behavior of \texttt{SelectFree} but is
+consistent with the naive expectations when applying the function to a
+sum of terms.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{freeq2}{FreeQ2},
+\hyperlink{selectfree}{SelectFree},
+\hyperlink{selectnotfree}{SelectNotFree},
+\hyperlink{selectnotfree2}{SelectNotFree2}.
+
+\subsection{Examples}
+
+Note the difference between SelectFree and SelectFree2
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SelectFree}\OperatorTok{[}\NormalTok{(}\FunctionTok{a} \SpecialCharTok{+} \FunctionTok{b}\NormalTok{) }\FunctionTok{c}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+c
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SelectFree2}\OperatorTok{[}\NormalTok{(}\FunctionTok{a} \SpecialCharTok{+} \FunctionTok{b}\NormalTok{) }\FunctionTok{c}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+a c
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SelectFree}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+a
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SelectFree2}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+a
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SelectFree}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{a}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+1
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SelectFree2}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{a}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+When there are hidden zeros, \texttt{SelectFree2} obviously works better
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SelectFree}\OperatorTok{[}\NormalTok{(}\FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{b} \SpecialCharTok{+} \FunctionTok{c}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{{-}}\NormalTok{ (}\FunctionTok{a}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{{-}} \DecValTok{2} \FunctionTok{a} \FunctionTok{b} \SpecialCharTok{+} \DecValTok{2} \FunctionTok{a} \FunctionTok{c} \SpecialCharTok{+} \FunctionTok{b}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{{-}} \DecValTok{2} \FunctionTok{b} \FunctionTok{c} \SpecialCharTok{+} \FunctionTok{c}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\OperatorTok{,}\FunctionTok{a}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-b^2+2 b c-c^2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SelectFree2}\OperatorTok{[}\NormalTok{(}\FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{b} \SpecialCharTok{+} \FunctionTok{c}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{{-}}\NormalTok{ (}\FunctionTok{a}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{{-}} \DecValTok{2} \FunctionTok{a} \FunctionTok{b} \SpecialCharTok{+} \DecValTok{2} \FunctionTok{a} \FunctionTok{c} \SpecialCharTok{+} \FunctionTok{b}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{{-}} \DecValTok{2} \FunctionTok{b} \FunctionTok{c} \SpecialCharTok{+} \FunctionTok{c}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\OperatorTok{,}\FunctionTok{a}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+\end{document}

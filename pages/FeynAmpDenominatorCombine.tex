@@ -1,0 +1,63 @@
+% !TeX program = pdflatex
+% !TeX root = FeynAmpDenominatorCombine.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{feynampdenominatorcombine}{%
+\section{FeynAmpDenominatorCombine}\label{feynampdenominatorcombine}}
+
+\texttt{FeynAmpDenominatorCombine[\allowbreak{}expr]} expands expr with
+respect to \texttt{FeynAmpDenominator} and combines products of
+\texttt{FeynAmpDenominator} in expr into one
+\texttt{FeynAmpDenominator}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{feynampdenominatorsplit}{FeynAmpDenominatorSplit}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[}\FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{]} 
+ 
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ FeynAmpDenominatorCombine}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{q^2 (q-p)^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{q^2.(q-p)^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//}\NormalTok{ FCE }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*FAD[q, {-}p + q]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex2 }\ExtensionTok{=}\NormalTok{ FeynAmpDenominatorSplit}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{q^2 (q-p)^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex2 }\SpecialCharTok{//}\NormalTok{ FCE }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*FAD[q] FAD[{-}p + q]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

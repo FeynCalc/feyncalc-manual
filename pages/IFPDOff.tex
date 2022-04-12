@@ -1,0 +1,58 @@
+% !TeX program = pdflatex
+% !TeX root = IFPDOff.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{ifpdoff}{%
+\section{IFPDOff}\label{ifpdoff}}
+
+\texttt{IFPDOff[\allowbreak{}exp_,\ \allowbreak{}q1,\ \allowbreak{}q2,\ \allowbreak{}...]}
+changes from \texttt{IFPD} representation to
+\texttt{FeynAmpDenominator[\allowbreak{}...]}. The
+\texttt{q1,\ \allowbreak{}q2,\ \allowbreak{}...} are the integration
+momenta.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{ifpd}{IFPD},
+\hyperlink{ifpdon}{IFPDOn}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{IFPD}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],} \FunctionTok{m}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(\overline{p}^2\text{ - }m^2)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{IFPD}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],} \FunctionTok{m}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*IFPD[Momentum[p], m]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ IFPDOff}\OperatorTok{[}\NormalTok{IFPD}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],} \FunctionTok{m}\OperatorTok{],} \FunctionTok{p}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^2-m^2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*{-}m\^{}2 + Pair[Momentum[p], Momentum[p]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

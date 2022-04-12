@@ -1,0 +1,61 @@
+% !TeX program = pdflatex
+% !TeX root = FieldDerivative.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fieldderivative}{%
+\section{FieldDerivative}\label{fieldderivative}}
+
+\texttt{FieldDerivative[\allowbreak{}f[\allowbreak{}x],\ \allowbreak{}x,\ \allowbreak{}li1,\ \allowbreak{}li2,\ \allowbreak{}...]}
+is the derivative of \texttt{f[\allowbreak{}x]} with respect to
+space-time variables \texttt{x} and with Lorentz indices
+\texttt{li1,\ \allowbreak{}li2,\ \allowbreak{} ...}, where
+\texttt{li1,\ \allowbreak{}li2,\ \allowbreak{}...} have head
+\texttt{LorentzIndex}.
+
+\texttt{FieldDerivative[\allowbreak{}f[\allowbreak{}x],\ \allowbreak{}x,\ \allowbreak{}li1,\ \allowbreak{}li2,\ \allowbreak{}...]}
+can be given as
+\texttt{FieldDerivative[\allowbreak{}f[\allowbreak{}x],\ \allowbreak{}x,\ \allowbreak{}\{\allowbreak{}l1,\ \allowbreak{}l2,\ \allowbreak{}...\}]},
+where \(l1\) is \(li1\) without the head.
+
+\texttt{FieldDerivative} is defined only for objects with head
+\texttt{QuantumField}. If the space-time derivative of other objects is
+wanted, the corresponding rule must be specified.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fcpartiald}{FCPartialD},
+\hyperlink{expandpartiald}{ExpandPartialD}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QuantumField}\OperatorTok{[}\FunctionTok{A}\OperatorTok{,} \OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]\}][}\FunctionTok{x}\OperatorTok{]}\NormalTok{ . QuantumField}\OperatorTok{[}\FunctionTok{B}\OperatorTok{,} \OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]\}][}\FunctionTok{y}\OperatorTok{]}\NormalTok{ . QuantumField}\OperatorTok{[}\FunctionTok{C}\OperatorTok{,} \OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]\}][}\FunctionTok{x}\OperatorTok{]}\NormalTok{ . QuantumField}\OperatorTok{[}\FunctionTok{D}\OperatorTok{,} \OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]\}][}\FunctionTok{y}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+A_{\mu }(x).B_{\nu }(y).C_{\rho }(x).D_{\sigma }(y)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FieldDerivative}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{x}\OperatorTok{,} \OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]\}]} \SpecialCharTok{//}\NormalTok{ DotExpand}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+A_{\mu }(x).B_{\nu }(y).\left(\left.(\partial _{\mu }C_{\rho }\right)\right)(x).D_{\sigma }(y)+\left(\left.(\partial _{\mu }A_{\mu }\right)\right)(x).B_{\nu }(y).C_{\rho }(x).D_{\sigma }(y)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FieldDerivative}\OperatorTok{[}\SpecialCharTok{\%\%}\OperatorTok{,} \FunctionTok{y}\OperatorTok{,} \OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]\}]} \SpecialCharTok{//}\NormalTok{ DotExpand}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+A_{\mu }(x).B_{\nu }(y).C_{\rho }(x).\left(\left.(\partial _{\nu }D_{\sigma }\right)\right)(y)+A_{\mu }(x).\left(\left.(\partial _{\nu }B_{\nu }\right)\right)(y).C_{\rho }(x).D_{\sigma }(y)
+\end{dmath*}
+\end{document}

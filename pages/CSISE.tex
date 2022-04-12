@@ -1,0 +1,56 @@
+% !TeX program = pdflatex
+% !TeX root = CSISE.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{csise}{%
+\section{CSISE}\label{csise}}
+
+CSISE{[}p{]} can be used as input for D-4-dimensional \(\sigma^i p^i\)
+with \(D-4\)-dimensional Cartesian vector p and is transformed into
+\texttt{PauliSigma[\allowbreak{}CartesianMomentum[\allowbreak{}p,\ \allowbreak{}D-4],\ \allowbreak{}D-4]}
+by FeynCalcInternal.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{paulisigma}{PauliSigma}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CSISE}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\hat{\sigma }\cdot \hat{p}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CSISE}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*PauliSigma[CartesianMomentum[p, {-}4 + D], {-}4 + D]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CSISE}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,} \FunctionTok{r}\OperatorTok{,} \FunctionTok{s}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\hat{\sigma }\cdot \hat{p}\right).\left(\hat{\sigma }\cdot \hat{q}\right).\left(\hat{\sigma }\cdot \hat{r}\right).\left(\hat{\sigma }\cdot \hat{s}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CSISE}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,} \FunctionTok{r}\OperatorTok{,} \FunctionTok{s}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*CSISE[p] . CSISE[q] . CSISE[r] . CSISE[s]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

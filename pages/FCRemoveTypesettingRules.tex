@@ -1,0 +1,57 @@
+% !TeX program = pdflatex
+% !TeX root = FCRemoveTypesettingRules.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcremovetypesettingrules}{%
+\section{FCRemoveTypesettingRules}\label{fcremovetypesettingrules}}
+
+\texttt{FCRemoveTypesettingRules[\allowbreak{}expr]} removes all
+typesetting rules attached to \texttt{expr}. Effectively it sets the
+\texttt{FormatValues} of \texttt{expr} to an empty list.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcattachtypesettingrule}{FCAttachTypesettingRule}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ST1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{ST1}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCAttachTypesettingRule}\OperatorTok{[}\NormalTok{ST1}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{SubscriptBox}\OperatorTok{,} \StringTok{"S"}\OperatorTok{,} \StringTok{"T,1"}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ST1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+S_{T,1}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCRemoveTypesettingRules}\OperatorTok{[}\NormalTok{ST1}\OperatorTok{]} 
+ 
+\NormalTok{ST1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{ST1}
+\end{dmath*}
+\end{document}

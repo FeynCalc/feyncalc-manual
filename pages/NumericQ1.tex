@@ -1,0 +1,49 @@
+% !TeX program = pdflatex
+% !TeX root = NumericQ1.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{numericq1}{%
+\section{NumericQ1}\label{numericq1}}
+
+\texttt{NumericQ1[\allowbreak{}x,\ \allowbreak{}\{\allowbreak{}a,\ \allowbreak{}b,\ \allowbreak{}..\}]}
+is like \texttt{NumericQ}, but assumes that
+\texttt{\{\allowbreak{}a,\ \allowbreak{}b,\ \allowbreak{}..\}} are
+numeric quantities.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{NumericQ}\OperatorTok{[}\DecValTok{3} \FunctionTok{a} \SpecialCharTok{+} \FunctionTok{Log}\OperatorTok{[}\FunctionTok{b}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{c}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NumericQ1}\OperatorTok{[}\DecValTok{3} \FunctionTok{a} \SpecialCharTok{+} \FunctionTok{Log}\OperatorTok{[}\FunctionTok{b}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{c}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NumericQ1}\OperatorTok{[}\DecValTok{3} \FunctionTok{a} \SpecialCharTok{+} \FunctionTok{Log}\OperatorTok{[}\FunctionTok{b}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{c}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+\end{document}

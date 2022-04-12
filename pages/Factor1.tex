@@ -1,0 +1,63 @@
+% !TeX program = pdflatex
+% !TeX root = Factor1.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{factor1}{%
+\section{Factor1}\label{factor1}}
+
+\texttt{Factor1[\allowbreak{}poly]} factorizes common terms in the
+summands of poly. It uses basically \texttt{PolynomialGCD}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{factor2}{Factor2}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{) (}\FunctionTok{b} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{) }
+ 
+\OperatorTok{\{}\NormalTok{Factor1}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{],} \FunctionTok{Factor}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(a-x) (b-x)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\{(a-x) (b-x),-((a-x) (x-b))\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=} \FunctionTok{Expand}\OperatorTok{[}\NormalTok{(}\FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{b}\NormalTok{) (}\FunctionTok{a} \SpecialCharTok{+} \FunctionTok{b}\NormalTok{)}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+a^2-b^2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Factor}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(a-b) (a+b)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Factor1}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+a^2-b^2
+\end{dmath*}
+\end{document}

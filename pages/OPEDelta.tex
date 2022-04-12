@@ -1,0 +1,44 @@
+% !TeX program = pdflatex
+% !TeX root = OPEDelta.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{opedelta}{%
+\section{OPEDelta}\label{opedelta}}
+
+\texttt{OPEDelta} is a lightlike axial vector as used e.g.~in the
+operator product expansion in QCD.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{twist2quarkoperator}{Twist2QuarkOperator}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FV}\OperatorTok{[}\NormalTok{OPEDelta}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%} \SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\Delta ^{\mu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SP}\OperatorTok{[}\NormalTok{OPEDelta}\OperatorTok{,}\NormalTok{ OPEDelta}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+\end{document}

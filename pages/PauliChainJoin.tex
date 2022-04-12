@@ -1,0 +1,39 @@
+% !TeX program = pdflatex
+% !TeX root = PauliChainJoin.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{paulichainjoin}{%
+\section{PauliChainJoin}\label{paulichainjoin}}
+
+\texttt{PauliChainJoin[\allowbreak{}exp]} joins chains of Pauli matrices
+with explicit Pauli indices wrapped with a head \texttt{PauliChain}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{paulichain}{PauliChain},
+\hyperlink{pchn}{PCHN}, \hyperlink{pauliindex}{PauliIndex},
+\hyperlink{pauliindexdelta}{PauliIndexDelta},
+\hyperlink{didelta}{DIDelta},
+\hyperlink{paulichaincombine}{PauliChainCombine},
+\hyperlink{paulichainexpand}{PauliChainExpand},
+\hyperlink{paulichainfactor}{PauliChainFactor}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PCHN}\OperatorTok{[}\NormalTok{PauliXi}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{],} \FunctionTok{i}\OperatorTok{]}\NormalTok{ PCHN}\OperatorTok{[}\NormalTok{CSID}\OperatorTok{[}\FunctionTok{a}\OperatorTok{]}\NormalTok{ . CSID}\OperatorTok{[}\FunctionTok{b}\OperatorTok{],} \FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}\NormalTok{ PCHN}\OperatorTok{[}\FunctionTok{j}\OperatorTok{,}\NormalTok{ PauliEta}\OperatorTok{[}\FunctionTok{I}\OperatorTok{]]} 
+ 
+\NormalTok{PauliChainJoin}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(\eta )_j \left(\xi ^{\dagger }\right){}_i \left(\sigma ^a.\sigma ^b\right){}_{ij}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\xi ^{\dagger }.\sigma ^a.\sigma ^b.\eta
+\end{dmath*}
+\end{document}

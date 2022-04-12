@@ -1,0 +1,62 @@
+% !TeX program = pdflatex
+% !TeX root = DollarLimitTo4.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{limitto4}{%
+\section{\$LimitTo4}\label{limitto4}}
+
+\texttt{\$LimitTo4} is a variable with default setting \texttt{False}.
+If set to \texttt{True}, the limit \texttt{Dimension -> 4} is performed
+after tensor integral decomposition.
+
+\$LimitTo4 is a global variable that determines whether UV-divergent
+Passarino-Veltman functions are simplified by taking the limit
+\(D-4 \to 0\).
+
+A generic IR-finite Passarino-Veltman function \(X\) can be written as
+\(X = \frac{a}{D-4} + b + \mathcal{O}(\varepsilon)\), with \(a\) being
+the prefactor of the pole and \(b\) being the finite part. Therefore,
+products of such functions with coefficients that are rational functions
+of \(D\) with \(f(D) = f(4) + (D-4) f'(4) + \mathcal{O}(\varepsilon^2)\)
+can be simplified to
+\(f(D) X = f(4) X + a f'(4) + \mathcal{O}(\varepsilon)\), whenever such
+products appear in the reduction.
+
+This relation is correct only if the Passarino-Veltman functions have no
+IR divergences, or if such divergences are regulated without using
+dimensional regularization.
+
+For this reason, even when \$LimitTo4 is set to \texttt{True}, the
+simplifications are applied only to \(A\) and \(B\) functions. Although
+\(B\) functions can exhibit an IR divergence, such integrals are zero in
+dimensional regularization, so that no mixing of \(\varepsilon\)-terms
+from IR and UV can occur.
+
+The default value of \texttt{\$LimitTo4} is \texttt{False}. Notice that
+even when the switch is set to \texttt{True}, it will essentially affect
+only the Passarino-Veltman reduction via \texttt{PaVeReduce}.
+
+The modern and more flexible way to simplify amplitudes involving
+IR-finite \texttt{PaVe} functions is to use the special routine
+\texttt{PaVeLimitTo4}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{pave}{PaVe},
+\hyperlink{pavereduce}{PaVeReduce}, \hyperlink{oneloop}{OneLoop},
+\hyperlink{limitto4irunsafe}{\$LimitTo4IRUnsafe},
+\hyperlink{pavelimitto4}{PaVeLimitTo4}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$LimitTo4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+\end{document}

@@ -1,0 +1,38 @@
+% !TeX program = pdflatex
+% !TeX root = TBox.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{tbox}{%
+\section{TBox}\label{tbox}}
+
+\texttt{TBox[\allowbreak{}a,\ \allowbreak{}b,\ \allowbreak{}...]}
+produces a
+\texttt{RowBox[\allowbreak{}\{\allowbreak{}a,\ \allowbreak{}b,\ \allowbreak{}...\}]}
+where \texttt{a,\ \allowbreak{}b,\ \allowbreak{}...} are boxed in
+\texttt{TraditionalForm}.
+
+\texttt{TBox} is used internally by FeynCalc to produce the typeset
+output in \texttt{TraditionalForm}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TBox}\OperatorTok{[}\FunctionTok{a} \SpecialCharTok{+} \FunctionTok{b}\OperatorTok{]}
+\SpecialCharTok{\%} \SpecialCharTok{//} \FunctionTok{DisplayForm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FormBox}[\text{RowBox}[\{\text{a},+,\text{b}\}],\text{TraditionalForm}]
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+a+b
+\end{dmath*}
+\end{document}

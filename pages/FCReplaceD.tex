@@ -1,0 +1,58 @@
+% !TeX program = pdflatex
+% !TeX root = FCReplaceD.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcreplaced}{%
+\section{FCReplaceD}\label{fcreplaced}}
+
+\texttt{FCReplaceD[\allowbreak{}expr,\ \allowbreak{}rule]} replaces
+\texttt{D} in expr according to the supplied replacement rule
+(e.g.~\texttt{D -> 4 - 2*Epsilon}) but doesn't touch \texttt{D} inside
+\texttt{Pair}s and \texttt{DiracGamma}s, i.e the dimension of scalar
+products, metric tensors and Dirac matrices is unchanged. The latter can
+and should be done via \texttt{ChangeDimension}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}.
+
+\subsection{Examples}
+
+Applying the replacement rule directly to the expression doesn't give
+the desired result
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\FunctionTok{D}\NormalTok{ MTD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]]} 
+ 
+\SpecialCharTok{\%} \OtherTok{/.} \FunctionTok{D} \OtherTok{{-}\textgreater{}} \DecValTok{4} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ Epsilon}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+D g^{\mu \nu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+(4-2 \varepsilon ) g_{\{4-2 \varepsilon ,4-2 \varepsilon \}}{}^{\mu \nu }
+\end{dmath*}
+
+With \texttt{FCReplaceD} we get what we want
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCReplaceD}\OperatorTok{[}\FunctionTok{D}\NormalTok{ MTD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]],} \FunctionTok{D} \OtherTok{{-}\textgreater{}} \DecValTok{4} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ Epsilon}\OperatorTok{]} 
+ 
+\NormalTok{ChangeDimension}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \DecValTok{4}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(4-2 \varepsilon ) g^{\mu \nu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+(4-2 \varepsilon ) \bar{g}^{\mu \nu }
+\end{dmath*}
+\end{document}

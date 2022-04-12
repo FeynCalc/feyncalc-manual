@@ -1,0 +1,89 @@
+% !TeX program = pdflatex
+% !TeX root = SP.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{sp}{%
+\section{SP}\label{sp}}
+
+\texttt{SP[\allowbreak{}a,\ \allowbreak{}b]} denotes a \(4\)-dimensional
+scalar product. \texttt{SP[\allowbreak{}a,\ \allowbreak{}b]} is
+transformed into \texttt{ScalarProduct[\allowbreak{}a,\ \allowbreak{}b]}
+by \texttt{FeynCalcInternal}.
+
+\texttt{SP[\allowbreak{}p]} is the same as
+\texttt{SP[\allowbreak{}p,\ \allowbreak{}p]} \((=p^2)\).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{calc}{Calc},
+\hyperlink{expandscalarproduct}{ExpandScalarProduct},
+\hyperlink{scalarproduct}{ScalarProduct}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ SP}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot \overline{q}+\overline{q}^2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SP}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \FunctionTok{q} \SpecialCharTok{+} \DecValTok{2} \FunctionTok{p}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(\overline{p}-\overline{q})\cdot (2 \overline{p}+\overline{q})
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Calc}\OperatorTok{[}\NormalTok{ SP}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \FunctionTok{q} \SpecialCharTok{+} \DecValTok{2} \FunctionTok{p}\OperatorTok{]} \OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\overline{p}\cdot \overline{q}+2 \overline{p}^2-\overline{q}^2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ExpandScalarProduct}\OperatorTok{[}\NormalTok{SP}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-2 \left(\overline{p}\cdot \overline{q}\right)+\overline{p}^2+\overline{q}^2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SP}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SP[a, b]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SP}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*Pair[Momentum[a], Momentum[b]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SP}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//}\NormalTok{ FCE }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SP[a, b]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

@@ -1,0 +1,68 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopPropagatorPowersCombine.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fclooppropagatorpowerscombine}{%
+\section{FCLoopPropagatorPowersCombine}\label{fclooppropagatorpowerscombine}}
+
+\texttt{FCLoopPropagatorPowersCombine[\allowbreak{}exp]} combines the
+same propagators in a \texttt{FeynAmpDenominator} to one propagator
+raised to an integer power.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fclooppropagatorpowersexpand}{FCLoopPropagatorPowersExpand}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SFAD}\OperatorTok{[\{\{}\FunctionTok{q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{m}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\},} \OperatorTok{\{\{}\FunctionTok{q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{m}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]} 
+ 
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ FCLoopPropagatorPowersCombine}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(q^2-m+i \eta )^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(q^2-m+i \eta )^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*FeynAmpDenominator[StandardPropagatorDenominator[Momentum[q, D], 0, {-}m, \{2, 1\}]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SFAD}\OperatorTok{[\{\{}\FunctionTok{q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{m}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\},} \OperatorTok{\{\{}\FunctionTok{q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{m}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]} 
+ 
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ FCLoopPropagatorPowersCombine}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\frac{1}{(q^2-m+i \eta )}.(q^2-m+i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+1
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*1*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

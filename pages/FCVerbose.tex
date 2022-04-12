@@ -1,0 +1,422 @@
+% !TeX program = pdflatex
+% !TeX root = FCVerbose.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcverbose}{%
+\section{FCVerbose}\label{fcverbose}}
+
+\texttt{FCVerbose} is an option for numerous functions that allows to
+specify a local value of \texttt{\$VeryVerbose} inside those functions.
+When set to a positive integer, all the debugging information inside the
+function will be given according to the value of \texttt{FCVerbose},
+while the debugging output of other functions will be still governed by
+the value of \texttt{\$VeryVerbose}. Following values are common
+
+\begin{itemize}
+\item
+  \texttt{1} - a brief description of the calculational steps including
+  timings
+\item
+  \texttt{2} - somewhat more debugging information
+\item
+  \texttt{3} - lots of debugging output, probably useful only for
+  developers
+\end{itemize}
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{veryverbose}{\$VeryVerbose}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracSimplify}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]],}\NormalTok{ FCVerbose }\OtherTok{{-}\textgreater{}} \DecValTok{1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Entering.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Normal mode.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Extracting Dirac objects.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Done extracting Dirac objects, timing: }0.03636
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Doing index contractions.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Index contractions done, timing: }0.000453
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Applying diracSimplifyEval}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracSimplifyEval done, timing: }0.01655
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Inserting Dirac objects back into products.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Done inserting Dirac objects back into products, timing: }0.000132
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Applying SpinorChainTrick.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Done applying SpinorChainTrick, timing: }0.001167
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Creating the final replacement rule.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Final replacement rule done, timing: }0.000119
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Expanding the result.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Expanding done, timing: }0.000413
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Leaving.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Total timing: }0.06579
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+4 \bar{\gamma }^{\rho }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracSimplify}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]],}\NormalTok{ FCVerbose }\OtherTok{{-}\textgreater{}} \DecValTok{2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Entering.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Normal mode.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Extracting Dirac objects.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Done extracting Dirac objects, timing: }0.008883
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Doing index contractions.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Index contractions done, timing: }0.000426
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Applying diracSimplifyEval}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracSimplifyEval: Entering}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracSimplifyEval: Applying DiracTrick.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracSimplifyEval: DiracTrick done, timing: }0.003183
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracSimplifyEval: Applying Dotsimplify.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracSimplifyEval: Dotsimplify done, timing: }0.002288
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracSimplifyEval: Applying DiracTrick.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracSimplifyEval: DiracTrick done, timing: }0.006512
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracSimplifyEval: Applying Dotsimplify.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracSimplifyEval: Dotsimplify done, timing: }0.002125
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracSimplifyEval done, timing: }0.01820
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Inserting Dirac objects back into products.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Done inserting Dirac objects back into products, timing: }0.000146
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Applying SpinorChainTrick.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Done applying SpinorChainTrick, timing: }0.001152
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Creating the final replacement rule.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Final replacement rule done, timing: }0.000123
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Expanding the result.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Expanding done, timing: }0.000374
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Leaving.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Total timing: }0.03523
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+4 \bar{\gamma }^{\rho }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracSimplify}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]],}\NormalTok{ FCVerbose }\OtherTok{{-}\textgreater{}} \DecValTok{3}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Entering.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Entering with }\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^{\rho }.\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Normal mode.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Extracting Dirac objects.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: dsPart: }\;\text{FeynCalc$\grave{ }$DiracSimplify$\grave{ }$Private$\grave{ }$dsHeadAll}\left(\text{FeynCalc$\grave{ }$DiracSimplify$\grave{ }$Private$\grave{ }$dsHead}\left(\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^{\rho }.\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }\right)\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: freePart: }0
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Done extracting Dirac objects, timing: }0.009456
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracObjects: }\left\{\text{FeynCalc$\grave{ }$DiracSimplify$\grave{ }$Private$\grave{ }$dsHead}\left(\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^{\rho }.\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }\right)\right\}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Doing index contractions.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Index contractions done, timing: }0.000418
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracObjectsEval after index contractions: }\left\{\text{FeynCalc$\grave{ }$DiracSimplify$\grave{ }$Private$\grave{ }$dsHead}\left(\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^{\rho }.\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }\right)\right\}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Applying diracSimplifyEval}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracSimplifyEval: Entering}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracSimplifyEval: Entering with: }\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^{\rho }.\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracSimplifyEval: Applying DiracTrick.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracSimplifyEval: DiracTrick done, timing: }0.002919
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracSimplifyEval: After DiracTrick: }4 \bar{\gamma }^{\rho }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracSimplifyEval: Applying Dotsimplify.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracSimplifyEval: Dotsimplify done, timing: }0.002082
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracSimplifyEval: After Dotsimplify: }4 \bar{\gamma }^{\rho }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracSimplifyEval: Applying DiracTrick.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracSimplifyEval: DiracTrick done, timing: }0.006242
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracSimplifyEval: After DiracTrick: }4 \bar{\gamma }^{\rho }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracSimplifyEval: Applying Dotsimplify.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracSimplifyEval: Dotsimplify done, timing: }0.002124
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracSimplifyEval: After Dotsimplify: }4 \bar{\gamma }^{\rho }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracSimplifyEval: Leaving with: }4 \bar{\gamma }^{\rho }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: After diracSimplifyEval: }\left\{4 \bar{\gamma }^{\rho }\right\}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: diracSimplifyEval done, timing: }0.02049
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Inserting Dirac objects back into products.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: repRule: }\left\{\text{FeynCalc$\grave{ }$DiracSimplify$\grave{ }$Private$\grave{ }$dsHead}\left(\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^{\rho }.\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }\right)\to 4 \bar{\gamma }^{\rho }\right\}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Done inserting Dirac objects back into products, timing: }0.001005
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Intermediate result: }\left\{4 \bar{\gamma }^{\rho }\right\}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Applying SpinorChainTrick.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Done applying SpinorChainTrick, timing: }0.001158
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: After SpinorChainTrick: }\left\{4 \bar{\gamma }^{\rho }\right\}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Creating the final replacement rule.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: repRule: }\left\{\text{FeynCalc$\grave{ }$DiracSimplify$\grave{ }$Private$\grave{ }$dsHeadAll}\left(\text{FeynCalc$\grave{ }$DiracSimplify$\grave{ }$Private$\grave{ }$dsHead}\left(\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^{\rho }.\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }\right)\right)\to 4 \bar{\gamma }^{\rho }\right\}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Final replacement rule done, timing: }0.000980
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Expanding the result.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Expanding done, timing: }0.000399
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: After expanding: }4 \bar{\gamma }^{\rho }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Leaving.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Total timing: }0.04359
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSimplify: Leaving with }4 \bar{\gamma }^{\rho }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+4 \bar{\gamma }^{\rho }
+\end{dmath*}
+\end{document}

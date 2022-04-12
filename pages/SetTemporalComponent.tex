@@ -1,0 +1,57 @@
+% !TeX program = pdflatex
+% !TeX root = SetTemporalComponent.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{settemporalcomponent}{%
+\section{SetTemporalComponent}\label{settemporalcomponent}}
+
+\texttt{SetTemporalComponent[\allowbreak{}p,\ \allowbreak{}val]} sets
+the value of the temporal component of a \(4\)-vector \(p\),
+\texttt{TemporalPair[\allowbreak{}ExplicitLorentzIndex[\allowbreak{}0],\ \allowbreak{}TemporalMomentum[\allowbreak{}p]]}
+to \texttt{val}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{tc}{TC},
+\hyperlink{temporalpair}{TemporalPair},
+\hyperlink{temporalmomentum}{TemporalMomentum}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClearScalarProducts}\OperatorTok{[]} 
+ 
+\FunctionTok{ClearAll}\OperatorTok{[}\FunctionTok{t}\OperatorTok{]} 
+ 
+\NormalTok{SetTemporalComponent}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{t}\OperatorTok{]} 
+ 
+\NormalTok{TC}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+t
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TC}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{+} \FunctionTok{q}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ ExpandScalarProduct}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+q^0+t
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ LorentzToCartesian}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+q^0 t-\overline{p}\cdot \overline{q}
+\end{dmath*}
+\end{document}

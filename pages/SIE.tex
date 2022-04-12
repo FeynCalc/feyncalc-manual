@@ -1,0 +1,77 @@
+% !TeX program = pdflatex
+% !TeX root = SIE.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{sie}{%
+\section{SIE}\label{sie}}
+
+\texttt{SIE[\allowbreak{}mu]} can be used as input for
+\(D-1\)-dimensional \(\sigma^{\mu }\) with \(D-4\)-dimensional Lorentz
+index \(\mu\) and is transformed into
+\texttt{PauliSigma[\allowbreak{}LorentzIndex[\allowbreak{}mu,\ \allowbreak{}D-4],\ \allowbreak{}D-4]}
+by FeynCalcInternal.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{paulisigma}{PauliSigma},
+\hyperlink{si}{SI}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SIE}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\hat{\sigma }^{\mu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SIE}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} \SpecialCharTok{{-}}\NormalTok{ SIE}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\hat{\sigma }^{\mu }.\hat{\sigma }^{\nu }-\hat{\sigma }^{\nu }.\hat{\sigma }^{\mu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{StandardForm}\OperatorTok{[}\NormalTok{FCI}\OperatorTok{[}\NormalTok{SIE}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]]}
+
+\CommentTok{(*PauliSigma[LorentzIndex[\textbackslash{}[Mu], {-}4 + D], {-}4 + D]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SIE}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\hat{\sigma }^{\mu }.\hat{\sigma }^{\nu }.\hat{\sigma }^{\rho }.\hat{\sigma }^{\sigma }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SIE}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SIE[\textbackslash{}[Mu]] . SIE[\textbackslash{}[Nu]] . SIE[\textbackslash{}[Rho]] . SIE[\textbackslash{}[Sigma]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SIE}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{]]}\NormalTok{ . (SISE}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{m}\NormalTok{) . SIE}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\hat{\sigma }^{\alpha }.\left(m+\hat{\sigma }\cdot \hat{p}\right).\hat{\sigma }^{\beta }
+\end{dmath*}
+\end{document}

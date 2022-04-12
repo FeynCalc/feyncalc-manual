@@ -1,0 +1,25 @@
+% !TeX program = pdflatex
+% !TeX root = SelectGraphs.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{selectgraphs}{%
+\section{SelectGraphs}\label{selectgraphs}}
+
+\texttt{SelectGraphs} is an option for \texttt{OneLoopSum} indicating
+that only a slected set of graphs of the list provided to
+\texttt{OneLoopSum} is to be calculated. Possible settings are:
+\texttt{SelectGraphs -> \{\allowbreak{}i,\ \allowbreak{}j,\ \allowbreak{}...\}}
+or
+\texttt{SelectGraphs -> \{\allowbreak{}a,\ \allowbreak{}\{\allowbreak{}b,\ \allowbreak{}c\},\ \allowbreak{}...\}}
+which indicates the graphs to be taken from the list provided to
+\texttt{OneLoopSum}. In the second setting the list
+\texttt{\{\allowbreak{}b,\ \allowbreak{}c\}} indicates that all
+amplitudes from \texttt{b} to \texttt{c} should be taken.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{oneloopsum}{OneLoopSum}.
+
+\subsection{Examples}
+\end{document}

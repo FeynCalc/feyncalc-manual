@@ -1,0 +1,26 @@
+% !TeX program = pdflatex
+% !TeX root = Tr2.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{tr2}{%
+\section{Tr2}\label{tr2}}
+
+If \texttt{exp} contains \texttt{DiracTrace}s,
+\texttt{Tr2[\allowbreak{}exp]} simplifies \texttt{exp} and does the
+Dirac traces unless more that 4 gamma matrices and
+\texttt{DiracGamma[\allowbreak{}5]} occur.
+\texttt{Tr2[\allowbreak{}exp]} also separates the color-structure, and
+takes the color trace if \texttt{Tf} occurs in \texttt{exp}. If
+\texttt{exp} does not contain \texttt{DiracTrace}s,
+\texttt{Tr2[\allowbreak{}exp]} takes the Dirac trace.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{tr}{Tr}, \hyperlink{tf}{Tf},
+\hyperlink{diractrace}{DiracTrace},
+\hyperlink{diracsimplify}{DiracSimplify},
+\hyperlink{suntrace}{SUNTrace}.
+
+\subsection{Examples}
+\end{document}

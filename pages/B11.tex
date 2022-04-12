@@ -1,0 +1,100 @@
+% !TeX program = pdflatex
+% !TeX root = B11.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{b11}{%
+\section{B11}\label{b11}}
+
+\texttt{B11[\allowbreak{}pp,\ \allowbreak{}ma^2,\ \allowbreak{}mb^2]} is
+the Passarino-Veltman \(B_{11}\)-function, i.e.~the coefficient function
+of \(p^{\mu } p^{\nu }\). All arguments are scalars and have dimension
+mass squared.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{b0}{B0}, \hyperlink{b00}{B00},
+\hyperlink{b1}{B1}, \hyperlink{pave}{PaVe}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B11}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \FunctionTok{M}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{\left(D m^4-2 D m^2 M^2+2 D m^2 p^2+D M^4-2 D M^2 p^2+D p^4-4 m^2 p^2\right) \;\text{B}_0\left(p^2,m^2,M^2\right)}{4 (1-D) p^4}+\frac{D \;\text{A}_0\left(m^2\right) \left(m^2-M^2+p^2\right)}{4 (1-D) p^4}-\frac{\text{A}_0\left(M^2\right) \left(D m^2-D M^2+3 D p^2-4 p^2\right)}{4 (1-D) p^4}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B11}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \FunctionTok{M}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ BReduce }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{B}_{11}\left(p^2,m^2,M^2\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B11}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\left(4 m^2-D p^2\right) \;\text{B}_0\left(p^2,m^2,m^2\right)}{4 (1-D) p^2}+\frac{(2-D) \;\text{A}_0\left(m^2\right)}{2 (1-D) p^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B11}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ BReduce }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{B}_{11}\left(p^2,m^2,m^2\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B11}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{3} \;\text{B}_0\left(0,m^2,m^2\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B11}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ BReduce }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{B}_{11}\left(0,m^2,m^2\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B11}\OperatorTok{[}\NormalTok{SmallVariable}\OperatorTok{[}\FunctionTok{M}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{],} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{m^2 \;\text{B}_0\left(M^2,m^2,m^2\right)}{(1-D) M^2}+\frac{(2-D) \;\text{A}_0\left(m^2\right)}{2 (1-D) M^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B11}\OperatorTok{[}\NormalTok{SmallVariable}\OperatorTok{[}\FunctionTok{M}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{],} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ BReduce }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{B}_{11}\left(M^2,m^2,m^2\right)
+\end{dmath*}
+\end{document}

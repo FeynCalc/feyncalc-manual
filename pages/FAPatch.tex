@@ -1,0 +1,52 @@
+% !TeX program = pdflatex
+% !TeX root = FAPatch.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fapatch}{%
+\section{FAPatch}\label{fapatch}}
+
+FAPatch{[}{]} is an auxiliary function that patches FeynArts to be
+compatible with FeynCalc. If an unpatched copy of FeynArts is present in
+\$FeynArtsDirectory, evaluating FAPatch{[}{]} will start the patching
+process.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{patchmodelsonly}{PatchModelsOnly},
+\hyperlink{famodelsdirectory}{FAModelsDirectory}.
+
+\subsection{Examples}
+
+Setting the option \texttt{Quiet} to \texttt{True} will suppress the
+\texttt{ChoiceDialog} asking whether you really want to patch FeynArts.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{(*FAPatch[Quiet{-}\textgreater{}True]*)}
+\end{Highlighting}
+\end{Shaded}
+
+If you just want to patch some new models (e.g.~generated with
+FeynRules), while your FeynArts version is already patched, use the
+option \texttt{PatchModelsOnly}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{(*FAPatch[PatchModelsOnly{-}\textgreater{}True]*)}
+\end{Highlighting}
+\end{Shaded}
+
+The model files do not necessarily have to be located inside
+\texttt{FileNameJoin[\allowbreak{}\{\allowbreak{}\$FeynArtsDirectory,\ \allowbreak{}"Models"\}]}.
+A custom location can be specified via the option
+\texttt{FAModelsDirectory} as in
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{(*FAPatch[PatchModelsOnly{-}\textgreater{}True,FAModelsDirectory{-}\textgreater{}}
+\CommentTok{FileNameJoin[\{ParentDirectory@NotebookDirectory[],"FeynArts","MyModel"\}]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

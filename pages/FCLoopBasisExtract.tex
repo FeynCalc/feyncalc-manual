@@ -1,0 +1,52 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopBasisExtract.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopbasisextract}{%
+\section{FCLoopBasisExtract}\label{fcloopbasisextract}}
+
+\texttt{FCLoopBasisExtract[\allowbreak{}int,\ \allowbreak{}\{\allowbreak{}q1,\ \allowbreak{}q2,\ \allowbreak{}...\}]}
+is an auxiliary function that extracts the scalar products that form the
+basis of the loop integral in int. It needs to know the loop momenta on
+which the integral depends and the dimensions of the momenta that may
+occur in the integral.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]}\NormalTok{ SFAD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{,} \FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{]} 
+ 
+\NormalTok{FCLoopBasisExtract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},}\NormalTok{ SetDimensions }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\DecValTok{4}\OperatorTok{,} \FunctionTok{D}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{p\cdot q}{(q^2+i \eta ).((q-p)^2+i \eta )^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left\{\left\{p\cdot q,q^2,-2 (p\cdot q)+p^2+q^2\right\},\left\{p\cdot q,q^2\right\},\{-1,1,2\},\left\{p\cdot q,\frac{1}{(q^2+i \eta )},\frac{1}{((q-p)^2+i \eta )}\right\}\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SFAD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{]} 
+ 
+\NormalTok{FCLoopBasisExtract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{\},}\NormalTok{ FCTopology }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,}\NormalTok{ FCE }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(\text{p1}^2+i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left\{\left\{\text{p1}^2\right\},\left\{\text{p1}^2,\text{p1}\cdot \;\text{p2},\text{p1}\cdot \;\text{p3},\text{p2}^2,\text{p2}\cdot \;\text{p3},\text{p3}^2\right\},\{1\},\left\{\frac{1}{(\text{p1}^2+i \eta )}\right\}\right\}
+\end{dmath*}
+\end{document}

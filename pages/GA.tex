@@ -1,0 +1,79 @@
+% !TeX program = pdflatex
+% !TeX root = GA.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{ga}{%
+\section{GA}\label{ga}}
+
+\texttt{GA[\allowbreak{}mu]} can be used as input for a 4-dimensional
+\(\gamma^{\mu }\) and is transformed into
+\texttt{DiracGamma[\allowbreak{}LorentzIndex[\allowbreak{}mu]]} by
+FeynCalcInternal (=FCI).
+
+\texttt{GA[\allowbreak{}mu ,\ \allowbreak{}nu ,\ \allowbreak{}...]} is a
+short form for \texttt{GA[\allowbreak{}mu].GA[\allowbreak{}nu]}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{diracgamma}{DiracGamma},
+\hyperlink{gad}{GAD}, \hyperlink{gs}{GS}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} \SpecialCharTok{{-}}\NormalTok{ GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }-\bar{\gamma }^{\nu }.\bar{\gamma }^{\mu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{StandardForm}\OperatorTok{[}\NormalTok{FCI}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]]}
+
+\CommentTok{(*DiracGamma[LorentzIndex[\textbackslash{}[Mu]]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^{\rho }.\bar{\gamma }^{\sigma }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{StandardForm}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]]}
+
+\CommentTok{(*GA[\textbackslash{}[Mu]] . GA[\textbackslash{}[Nu]] . GA[\textbackslash{}[Rho]] . GA[\textbackslash{}[Sigma]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{]]}\NormalTok{ . (GS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{m}\NormalTok{) . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\alpha }.\left(\bar{\gamma }\cdot \overline{p}+m\right).\bar{\gamma }^{\beta }
+\end{dmath*}
+\end{document}

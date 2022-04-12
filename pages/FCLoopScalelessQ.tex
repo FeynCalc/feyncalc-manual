@@ -1,0 +1,85 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopScalelessQ.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopscalelessq}{%
+\section{FCLoopScalelessQ}\label{fcloopscalelessq}}
+
+\texttt{FCLoopScalelessQ[\allowbreak{}int,\ \allowbreak{}\{\allowbreak{}p1,\ \allowbreak{}p2,\ \allowbreak{}...\}]}
+checks whether the loop integral \texttt{int} depending on the loop
+momenta \texttt{p1,\ \allowbreak{}p2,\ \allowbreak{}...} is scaleless.
+Only integrals that admit a Feynman parametrization with proper \(U\)
+and \(F\) polynomials are supported.
+
+The function uses the algorithm of Alexey Pak
+\href{https://arxiv.org/abs/1111.0868}{arXiv:1111.0868}. Cf. also the
+PhD thesis of Jens Hoff
+\href{https://doi.org/10.5445/IR/1000047447}{10.5445/IR/1000047447} for
+the detailed description of a possible implementation.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fctopology}{FCTopology},
+\hyperlink{gli}{GLI}, \hyperlink{fclooptopakform}{FCLoopToPakForm},
+\hyperlink{fclooppakorder}{FCLoopPakOrder},
+\hyperlink{fcloopscalelessq}{FCLoopScalelessQ}.
+
+\subsection{Examples}
+
+A scaleless 2-loop tadpole
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopScalelessQ}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{],} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+A 1-loop massless eikonal integral.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopScalelessQ}\OperatorTok{[}\NormalTok{SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{2} \FunctionTok{p}\NormalTok{ . }\FunctionTok{q}\OperatorTok{\},} \DecValTok{0}\OperatorTok{\},} \FunctionTok{p}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{p}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+A 1-loop massive eikonal integral.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopScalelessQ}\OperatorTok{[}\NormalTok{SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{2} \FunctionTok{p}\NormalTok{ . }\FunctionTok{q}\OperatorTok{\},} \DecValTok{0}\OperatorTok{\},} \FunctionTok{p}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{p}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+A scaleless topology
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCTopology}\OperatorTok{[}\NormalTok{topo}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{\{}\FunctionTok{I}\NormalTok{ p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\FunctionTok{I}\NormalTok{ p1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{    SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{2}\NormalTok{ p1 . }\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\FunctionTok{I}\NormalTok{ p3 }\SpecialCharTok{+} \FunctionTok{I} \FunctionTok{q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{{-}}\NormalTok{mb}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{    SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,}\NormalTok{ p1 . p3}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]} 
+ 
+\NormalTok{FCLoopScalelessQ}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCTopology}\left(\text{topo},\left\{\frac{1}{(-\text{p3}^2+i \eta )},\frac{1}{(-\text{p1}^2+i \eta )},\frac{1}{(-2 (\text{p1}\cdot q)+i \eta )},\frac{1}{((i \;\text{p3}+i q)^2+\text{mb}^2+i \eta )},\frac{1}{(\text{p1}\cdot \;\text{p3}+i \eta )}\right\},\{\text{p1},\text{p3}\},\{q\},\{\},\{\}\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+\end{document}

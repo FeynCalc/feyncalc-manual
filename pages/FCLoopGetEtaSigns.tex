@@ -1,0 +1,89 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopGetEtaSigns.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopgetetasigns}{%
+\section{FCLoopGetEtaSigns}\label{fcloopgetetasigns}}
+
+\texttt{FCLoopGetEtaSigns[\allowbreak{}exp]} is an auxiliary function
+that extracts the signs of \(i \eta\) from propagators present in the
+input expression. The result is returned as a list,
+e.g.~\texttt{\{\allowbreak{}\}}, \texttt{\{\allowbreak{}1\}},
+\texttt{\{\allowbreak{}-1\}} or
+\texttt{\{\allowbreak{}-1,\ \allowbreak{}1\}}.
+
+This is useful if one wants ensure that all propagators of the given
+integral or topology follow a particular \(i \eta\) sign convention.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fctopology}{FCTopology},
+\hyperlink{fcloopswitchetasign}{FCLoopSwitchEtaSign}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]} 
+ 
+\NormalTok{FCLoopGetEtaSigns}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{p^2-m^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\{1\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SFAD}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]} 
+ 
+\NormalTok{FCLoopGetEtaSigns}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p^2-m^2+i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\{1\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SFAD}\OperatorTok{[\{}\FunctionTok{I} \FunctionTok{p}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\},}\NormalTok{ EtaSign }\OtherTok{{-}\textgreater{}} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{]} 
+ 
+\NormalTok{FCLoopGetEtaSigns}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(-p^2+m^2-i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\{-1\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CFAD}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]} 
+ 
+\NormalTok{FCLoopGetEtaSigns}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p^2+m^2-i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\{-1\}
+\end{dmath*}
+\end{document}

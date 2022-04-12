@@ -1,0 +1,131 @@
+% !TeX program = pdflatex
+% !TeX root = PauliChain.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{paulichain}{%
+\section{PauliChain}\label{paulichain}}
+
+\texttt{PauliChain[\allowbreak{}x,\ \allowbreak{}i,\ \allowbreak{}j]}
+denotes a chain of Pauli matrices \texttt{x}, where the Pauli indices
+\texttt{i} and \texttt{j} are explicit.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{pchn}{PCHN},
+\hyperlink{pauliindex}{PauliIndex},
+\hyperlink{pauliindexdelta}{PauliIndexDelta},
+\hyperlink{paulichainjoin}{PauliChainJoin},
+\hyperlink{paulichainexpand}{PauliChainExpand},
+\hyperlink{paulichainfactor}{PauliChainFactor}.
+
+\subsection{Examples}
+
+A standalone Pauli matrix \(\sigma^i_{jk}\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliChain}\OperatorTok{[}\NormalTok{PauliSigma}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{]],}\NormalTok{ PauliIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],}\NormalTok{ PauliIndex}\OperatorTok{[}\FunctionTok{j}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\overline{\sigma }^a\right){}_{ij}
+\end{dmath*}
+
+A chain of Pauli matrices with open indices
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliChain}\OperatorTok{[}\NormalTok{PauliSigma}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{],} \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{]}\NormalTok{ . PauliSigma}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{b}\OperatorTok{,} \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{],} \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{],}\NormalTok{ PauliIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],}\NormalTok{ PauliIndex}\OperatorTok{[}\FunctionTok{j}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\sigma ^a.\sigma ^b\right){}_{ij}
+\end{dmath*}
+
+A \texttt{PauliChain} with only two arguments denotes a spinor component
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliChain}\OperatorTok{[}\NormalTok{PauliXi}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{],}\NormalTok{ PauliIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\xi ^{\dagger }\right){}_i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliChain}\OperatorTok{[}\NormalTok{PauliEta}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{],}\NormalTok{ PauliIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\eta ^{\dagger }\right){}_i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliChain}\OperatorTok{[}\NormalTok{PauliIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],}\NormalTok{ PauliXi}\OperatorTok{[}\FunctionTok{I}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(\xi )_i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliChain}\OperatorTok{[}\NormalTok{PauliIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],}\NormalTok{ PauliEta}\OperatorTok{[}\FunctionTok{I}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(\eta )_i
+\end{dmath*}
+
+The chain may also be partially open or closed
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliChain}\OperatorTok{[}\NormalTok{PauliSigma}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{]]}\NormalTok{ . (}\FunctionTok{m} \SpecialCharTok{+}\NormalTok{ PauliSigma}\OperatorTok{[}\NormalTok{CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}\NormalTok{) . PauliSigma}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{b}\OperatorTok{]],}\NormalTok{ PauliXi}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{],}\NormalTok{ PauliIndex}\OperatorTok{[}\FunctionTok{j}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\xi ^{\dagger }.\overline{\sigma }^a.\left(\overline{\sigma }\cdot \overline{p}+m\right).\overline{\sigma }^b\right){}_j
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliChain}\OperatorTok{[}\NormalTok{PauliSigma}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{]]}\NormalTok{ . (}\FunctionTok{m} \SpecialCharTok{+}\NormalTok{ PauliSigma}\OperatorTok{[}\NormalTok{CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}\NormalTok{) . PauliSigma}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{b}\OperatorTok{]],}\NormalTok{ PauliIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],}\NormalTok{ PauliXi}\OperatorTok{[}\FunctionTok{I}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\overline{\sigma }^a.\left(\overline{\sigma }\cdot \overline{p}+m\right).\overline{\sigma }^b.\xi \right){}_i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliChain}\OperatorTok{[}\NormalTok{PauliSigma}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{]]}\NormalTok{ . (}\FunctionTok{m} \SpecialCharTok{+}\NormalTok{ PauliSigma}\OperatorTok{[}\NormalTok{CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}\NormalTok{) . PauliSigma}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{b}\OperatorTok{]],}\NormalTok{ PauliXi}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{],}\NormalTok{ PauliEta}\OperatorTok{[}\FunctionTok{I}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\xi ^{\dagger }.\overline{\sigma }^a.\left(\overline{\sigma }\cdot \overline{p}+m\right).\overline{\sigma }^b.\eta \right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliChain}\OperatorTok{[}\DecValTok{1}\OperatorTok{,}\NormalTok{ PauliXi}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{],}\NormalTok{ PauliEta}\OperatorTok{[}\FunctionTok{I}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\xi ^{\dagger }.\eta \right)
+\end{dmath*}
+\end{document}

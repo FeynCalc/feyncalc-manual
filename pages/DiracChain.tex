@@ -1,0 +1,131 @@
+% !TeX program = pdflatex
+% !TeX root = DiracChain.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{diracchain}{%
+\section{DiracChain}\label{diracchain}}
+
+\texttt{DiracChain[\allowbreak{}x,\ \allowbreak{}i,\ \allowbreak{}j]}
+denotes a chain of Dirac matrices \texttt{x}, where the Dirac indices
+\texttt{i} and \texttt{j} are explicit.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{diracchain}{DiracChain},
+\hyperlink{dchn}{DCHN}, \hyperlink{diracindex}{DiracIndex},
+\hyperlink{diracindexdelta}{DiracIndexDelta},
+\hyperlink{diracchainjoin}{DiracChainJoin},
+\hyperlink{diracchainexpand}{DiracChainExpand},
+\hyperlink{diracchainfactor}{DiracChainFactor}.
+
+\subsection{Examples}
+
+A standalone Dirac matrix
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracChain}\OperatorTok{[}\NormalTok{DiracGamma}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]],}\NormalTok{ DiracIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],}\NormalTok{ DiracIndex}\OperatorTok{[}\FunctionTok{j}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }^{\mu }\right){}_{ij}
+\end{dmath*}
+
+A chain of Dirac matrices with open indices
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracChain}\OperatorTok{[}\NormalTok{DiracGamma}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{D}\OperatorTok{],} \FunctionTok{D}\OperatorTok{]}\NormalTok{ . DiracGamma}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{D}\OperatorTok{],} \FunctionTok{D}\OperatorTok{],}\NormalTok{ DiracIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],}\NormalTok{ DiracIndex}\OperatorTok{[}\FunctionTok{j}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\gamma ^{\mu }.\gamma ^{\nu }\right){}_{ij}
+\end{dmath*}
+
+A DiracChain with only two arguments denotes a spinor component
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracChain}\OperatorTok{[}\NormalTok{Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],} \FunctionTok{m}\OperatorTok{],}\NormalTok{ DiracIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\varphi (\overline{p},m)\right)_i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracChain}\OperatorTok{[}\NormalTok{Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{p}\OperatorTok{],} \FunctionTok{m}\OperatorTok{],}\NormalTok{ DiracIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\varphi (-\overline{p},m)\right)_i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracChain}\OperatorTok{[}\NormalTok{DiracIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],}\NormalTok{ Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],} \FunctionTok{m}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\varphi (\overline{p},m)\right)_i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracChain}\OperatorTok{[}\NormalTok{DiracIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],}\NormalTok{ Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{p}\OperatorTok{],} \FunctionTok{m}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\varphi (-\overline{p},m)\right)_i
+\end{dmath*}
+
+The chain may also be partially open or closed
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracChain}\OperatorTok{[}\NormalTok{DiracGamma}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]}\NormalTok{ . (}\FunctionTok{m} \SpecialCharTok{+}\NormalTok{ DiracGamma}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}\NormalTok{) . DiracGamma}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]],}\NormalTok{ Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],} \FunctionTok{m}\OperatorTok{,} \DecValTok{1}\OperatorTok{],}\NormalTok{ DiracIndex}\OperatorTok{[}\FunctionTok{j}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\varphi (\overline{p},m).\bar{\gamma }^{\mu }.\left(\bar{\gamma }\cdot \overline{p}+m\right).\bar{\gamma }^{\nu }\right){}_j
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracChain}\OperatorTok{[}\NormalTok{DiracGamma}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]}\NormalTok{ . (}\FunctionTok{m} \SpecialCharTok{+}\NormalTok{ DiracGamma}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}\NormalTok{) . DiracGamma}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]],}\NormalTok{ DiracIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],}\NormalTok{ Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],} \FunctionTok{m}\OperatorTok{,} \DecValTok{1}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }^{\mu }.\left(\bar{\gamma }\cdot \overline{p}+m\right).\bar{\gamma }^{\nu }.\varphi (\overline{p},m)\right){}_i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracChain}\OperatorTok{[}\NormalTok{DiracGamma}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]}\NormalTok{ . (}\FunctionTok{m} \SpecialCharTok{+}\NormalTok{ DiracGamma}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}\NormalTok{) . DiracGamma}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]],}\NormalTok{ Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],}\NormalTok{ m1}\OperatorTok{,} \DecValTok{1}\OperatorTok{],}\NormalTok{ Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],}\NormalTok{ m2}\OperatorTok{,} \DecValTok{1}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\varphi (\overline{\text{p1}},\text{m1}).\bar{\gamma }^{\mu }.\left(\bar{\gamma }\cdot \overline{p}+m\right).\bar{\gamma }^{\nu }.\varphi (\overline{\text{p2}},\text{m2})\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracChain}\OperatorTok{[}\DecValTok{1}\OperatorTok{,}\NormalTok{ Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],}\NormalTok{ m1}\OperatorTok{,} \DecValTok{1}\OperatorTok{],}\NormalTok{ Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],}\NormalTok{ m2}\OperatorTok{,} \DecValTok{1}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\varphi (\overline{\text{p1}},\text{m1}).\varphi (\overline{\text{p2}},\text{m2})\right)
+\end{dmath*}
+\end{document}

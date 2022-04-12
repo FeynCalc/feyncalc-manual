@@ -1,0 +1,56 @@
+% !TeX program = pdflatex
+% !TeX root = TrickMandelstam.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{trickmandelstam}{%
+\section{TrickMandelstam}\label{trickmandelstam}}
+
+\texttt{TrickMandelstam[\allowbreak{}expr,\ \allowbreak{}\{\allowbreak{}s,\ \allowbreak{}t,\ \allowbreak{}u,\ \allowbreak{}m1^2 + m2^2 + m3^2 + m4^2\}]}
+simplifies all sums in \texttt{expr} so that one of the Mandelstam
+variables \(s\), \(t\) or \(u\) is eliminated by the relation
+\(s + t + u = m_1^2 + m_2^2 + m_3^2 + m_4^2\) . The trick is that the
+resulting sum has the most short number of terms.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{setmandelstam}{SetMandelstam}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ClearAll}\OperatorTok{[}\FunctionTok{s}\OperatorTok{,} \FunctionTok{t}\OperatorTok{,} \FunctionTok{u}\OperatorTok{]} 
+ 
+\NormalTok{(}\FunctionTok{s} \SpecialCharTok{+} \FunctionTok{t} \SpecialCharTok{{-}} \FunctionTok{u}\NormalTok{) (}\DecValTok{2}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_W"}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{{-}} \FunctionTok{t} \SpecialCharTok{{-}} \FunctionTok{u}\NormalTok{) }
+ 
+\NormalTok{TrickMandelstam}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{s}\OperatorTok{,} \FunctionTok{t}\OperatorTok{,} \FunctionTok{u}\OperatorTok{,} \DecValTok{2}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_W"}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]} \SpecialCharTok{//}\NormalTok{ Factor2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(s+t-u) \left(2 m_W^2-t-u\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-2 s \left(u-m_W^2\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{M}\SpecialCharTok{\^{}}\DecValTok{2} \FunctionTok{s} \SpecialCharTok{{-}} \FunctionTok{s}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+} \FunctionTok{M}\SpecialCharTok{\^{}}\DecValTok{2} \FunctionTok{t} \SpecialCharTok{{-}} \FunctionTok{s} \FunctionTok{t} \SpecialCharTok{+} \FunctionTok{M}\SpecialCharTok{\^{}}\DecValTok{2} \FunctionTok{u} \SpecialCharTok{{-}} \FunctionTok{s} \FunctionTok{u} 
+ 
+\NormalTok{TrickMandelstam}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{s}\OperatorTok{,} \FunctionTok{t}\OperatorTok{,} \FunctionTok{u}\OperatorTok{,} \DecValTok{2} \FunctionTok{M}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]} 
+  
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+M^2 s+M^2 t+M^2 u-s^2-s t-s u
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+2 M^2 \left(M^2-s\right)
+\end{dmath*}
+\end{document}

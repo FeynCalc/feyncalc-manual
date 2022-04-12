@@ -1,0 +1,49 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopIBPReducableQ.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopibpreducableq}{%
+\section{FCLoopIBPReducableQ}\label{fcloopibpreducableq}}
+
+\texttt{FCLoopIBPReducableQ[\allowbreak{}int]} checks if the integral
+contains propagators raised to integer powers.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{]} 
+ 
+\NormalTok{FCLoopIBPReducableQ}\OperatorTok{[}\NormalTok{FCI}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{q^2.(q-p)^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{2}\OperatorTok{\},} \FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{]} 
+ 
+\NormalTok{FCLoopIBPReducableQ}\OperatorTok{[}\NormalTok{FCI}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\left(q^2\right)^2.(q-p)^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+\end{document}

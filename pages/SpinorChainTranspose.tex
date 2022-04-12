@@ -1,0 +1,73 @@
+% !TeX program = pdflatex
+% !TeX root = SpinorChainTranspose.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{spinorchaintranspose}{%
+\section{SpinorChainTranspose}\label{spinorchaintranspose}}
+
+\texttt{SpinorChainTranspose[\allowbreak{}exp]} transposes particular
+spinor chains in exp, which effectively switches the \(u\) and \(v\)
+spinors and reverses the order of the Dirac matrices using charge
+conjugation operator. This operation is often required in calculations
+that involve Majorana particles. By default, the function will tranpose
+all chains of the form \(\bar{v}.x.u\) and \(\bar{v}.x.v\). A different
+or more fine grained choice can be obtained via the option
+\texttt{Select}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcchargeconjugatetransposed}{FCChargeConjugateTransposed},
+\hyperlink{diracgamma}{DiracGamma}, \hyperlink{spinor}{Spinor}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpinorVBarD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{]}\NormalTok{ . GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . (GSD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{m}\NormalTok{) . GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . SpinorUD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{]} 
+ 
+\NormalTok{SpinorChainTranspose}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{v}(\text{p1},\text{m1}).\gamma ^{\mu }.(m+\gamma \cdot p).\gamma ^{\mu }.u(\text{p2},\text{m2})
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-(\varphi (-\text{p2},\text{m2})).\gamma ^{\mu }.(m-\gamma \cdot p).\gamma ^{\mu }.(\varphi (\text{p1},\text{m1}))
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpinorUBarD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{]}\NormalTok{ . GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . (GSD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{m}\NormalTok{) . GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . SpinorVD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{]} 
+ 
+\NormalTok{SpinorChainTranspose}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{u}(\text{p1},\text{m1}).\gamma ^{\mu }.(m+\gamma \cdot p).\gamma ^{\mu }.v(\text{p2},\text{m2})
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+(\varphi (\text{p1},\text{m1})).\gamma ^{\mu }.(m+\gamma \cdot p).\gamma ^{\mu }.(\varphi (-\text{p2},\text{m2}))
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpinorUBarD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{]}\NormalTok{ . GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . (GSD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{m}\NormalTok{) . GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . SpinorVD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{]} 
+ 
+\NormalTok{SpinorChainTranspose}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{Select} \OtherTok{{-}\textgreater{}} \OperatorTok{\{\{}\NormalTok{SpinorUBarD}\OperatorTok{[}\NormalTok{\_}\OperatorTok{,}\NormalTok{ \_}\OperatorTok{],}\NormalTok{ SpinorVD}\OperatorTok{[}\NormalTok{\_}\OperatorTok{,}\NormalTok{ \_}\OperatorTok{]\}\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{u}(\text{p1},\text{m1}).\gamma ^{\mu }.(m+\gamma \cdot p).\gamma ^{\mu }.v(\text{p2},\text{m2})
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-(\varphi (\text{p2},\text{m2})).\gamma ^{\mu }.(m-\gamma \cdot p).\gamma ^{\mu }.(\varphi (-\text{p1},\text{m1}))
+\end{dmath*}
+\end{document}

@@ -1,0 +1,38 @@
+% !TeX program = pdflatex
+% !TeX root = FactorFull.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{factorfull}{%
+\section{FactorFull}\label{factorfull}}
+
+\texttt{FactorFull} is an option of \texttt{Factor2} (default
+\texttt{False}). If set to \texttt{False}, products like
+\texttt{(a-b) (a+b)} will be replaced by \texttt{a^2-b^2}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{factor2}{Factor2}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Factor2}\OperatorTok{[}\NormalTok{(}\FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{b}\NormalTok{) (}\FunctionTok{a} \SpecialCharTok{+} \FunctionTok{b}\NormalTok{) (}\FunctionTok{c} \SpecialCharTok{+} \FunctionTok{d}\NormalTok{) (}\FunctionTok{c} \SpecialCharTok{{-}} \FunctionTok{d}\NormalTok{)}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(a^2-b^2\right) \left(c^2-d^2\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Factor2}\OperatorTok{[}\NormalTok{(}\FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{b}\NormalTok{) (}\FunctionTok{a} \SpecialCharTok{+} \FunctionTok{b}\NormalTok{) (}\FunctionTok{c} \SpecialCharTok{+} \FunctionTok{d}\NormalTok{) (}\FunctionTok{c} \SpecialCharTok{{-}} \FunctionTok{d}\NormalTok{)}\OperatorTok{,}\NormalTok{ FactorFull }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(a-b) (a+b) (c-d) (c+d)
+\end{dmath*}
+\end{document}

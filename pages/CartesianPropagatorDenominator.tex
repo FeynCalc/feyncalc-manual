@@ -1,0 +1,76 @@
+% !TeX program = pdflatex
+% !TeX root = CartesianPropagatorDenominator.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{cartesianpropagatordenominator}{%
+\section{CartesianPropagatorDenominator}\label{cartesianpropagatordenominator}}
+
+\texttt{CartesianPropagatorDenominator[\allowbreak{}propSq  + ...,\ \allowbreak{}propEik + ...,\ \allowbreak{}m^2,\ \allowbreak{}\{\allowbreak{}n,\ \allowbreak{}s\}]}
+encodes a generic Cartesian propagator denominator of the form
+\(\frac{1}{[(q1+...)^2 + q1.p1 + ... + m^2 + s*I \eta]^n}\)
+
+\texttt{propSq} should be of the form
+\texttt{CartesianMomentum[\allowbreak{}q1,\ \allowbreak{}D - 1]}, while
+\texttt{propEik} should look like
+\texttt{CartesianPair[\allowbreak{}CartesianMomentum[\allowbreak{}q1,\ \allowbreak{}D - 1],\ \allowbreak{}CartesianMomentum[\allowbreak{}p1,\ \allowbreak{}D - 1]}.
+
+\texttt{CartesianPropagatorDenominator} is an internal object. To enter
+such propagators in FeynCalc you should use \texttt{CFAD}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{cfad}{CFAD},
+\hyperlink{feynampdenominator}{FeynAmpDenominator}.
+
+\subsection{Examples}
+
+Standard \(3\)-dimensional Cartesian propagator
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{CartesianPropagatorDenominator}\OperatorTok{[}\NormalTok{CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{],} \DecValTok{0}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p^2+m^2-i \eta )}
+\end{dmath*}
+
+Here we switch the sign of the mass term
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{CartesianPropagatorDenominator}\OperatorTok{[}\NormalTok{CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{],} \DecValTok{0}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p^2-m^2-i \eta )}
+\end{dmath*}
+
+And here also the sign of \(i \eta\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{CartesianPropagatorDenominator}\OperatorTok{[}\NormalTok{CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{],} \DecValTok{0}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \SpecialCharTok{+}\DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p^2-m^2+i \eta )}
+\end{dmath*}
+
+Eikonal Cartesian propagator with a residual mass term
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{CartesianPropagatorDenominator}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} 
+\NormalTok{   CartesianPair}\OperatorTok{[}\NormalTok{CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{],}\NormalTok{ CartesianMomentum}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{]],} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p\cdot q+m^2-i \eta )}
+\end{dmath*}
+\end{document}

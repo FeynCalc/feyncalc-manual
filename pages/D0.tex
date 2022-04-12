@@ -1,0 +1,53 @@
+% !TeX program = pdflatex
+% !TeX root = D0.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{d0}{%
+\section{D0}\label{d0}}
+
+\texttt{D0[\allowbreak{}p10,\ \allowbreak{}p12,\ \allowbreak{}p23,\ \allowbreak{}p30,\ \allowbreak{}p20,\ \allowbreak{}p13,\ \allowbreak{}m1^2,\ \allowbreak{}m2^2,\ \allowbreak{}m3^2,\ \allowbreak{}m4^2 ]}
+is the Passarino-Veltman \(D_0\) function. The convention for the
+arguments is that if the denominator of the integrand has the form
+\(([q^2-m1^2] [(q+p1)^2-m2^2] [(q+p2)^2-m3^2] [(q+p3)^2-m4^2])\), the
+first six arguments of \texttt{D0} are the scalar products
+\(p10 = p1^2\), \(p12 = (p1-p2)^2\), \(p23 = (p2-p3)^2\),
+\(p30 = p3^2\), \(p20 = p2^2\), \(p13 = (p1-p3)^2\).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{b0}{B0}, \hyperlink{c0}{C0},
+\hyperlink{pave}{PaVe}, \hyperlink{paveorder}{PaVeOrder}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{D0}\OperatorTok{[}\NormalTok{p10}\OperatorTok{,}\NormalTok{ p12}\OperatorTok{,}\NormalTok{ p23}\OperatorTok{,}\NormalTok{ p30}\OperatorTok{,}\NormalTok{ p20}\OperatorTok{,}\NormalTok{ p13}\OperatorTok{,}\NormalTok{ m1}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m4}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{D}_0\left(\text{p10},\text{p12},\text{p23},\text{p30},\text{p20},\text{p13},\text{m1}^2,\text{m2}^2,\text{m3}^2,\text{m4}^2\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PaVeOrder}\OperatorTok{[}\NormalTok{D0}\OperatorTok{[}\NormalTok{p10}\OperatorTok{,}\NormalTok{ p12}\OperatorTok{,}\NormalTok{ p23}\OperatorTok{,}\NormalTok{ p30}\OperatorTok{,}\NormalTok{ p20}\OperatorTok{,}\NormalTok{ p13}\OperatorTok{,}\NormalTok{ m1}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m4}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{],}\NormalTok{ PaVeOrderList }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{p13}\OperatorTok{,}\NormalTok{ p20}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{D}_0\left(\text{p10},\text{p30},\text{p23},\text{p12},\text{p13},\text{p20},\text{m2}^2,\text{m1}^2,\text{m4}^2,\text{m3}^2\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PaVeOrder}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{D}_0\left(\text{p10},\text{p12},\text{p23},\text{p30},\text{p20},\text{p13},\text{m1}^2,\text{m2}^2,\text{m3}^2,\text{m4}^2\right)
+\end{dmath*}
+\end{document}

@@ -1,0 +1,73 @@
+% !TeX program = pdflatex
+% !TeX root = PauliTrick.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{paulitrick}{%
+\section{PauliTrick}\label{paulitrick}}
+
+\texttt{PauliTrick[\allowbreak{}exp]} contracts \(\sigma\) matrices with
+each other and performs several simplifications (no expansion, use
+\texttt{PauliSimplify} for this).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{paulisigma}{PauliSigma},
+\hyperlink{paulisimplify}{PauliSimplify}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CSIS}\OperatorTok{[}\NormalTok{p1}\OperatorTok{]}\NormalTok{ . CSI}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]}\NormalTok{ . CSIS}\OperatorTok{[}\NormalTok{p2}\OperatorTok{]} 
+ 
+\NormalTok{PauliTrick}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ Contract}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\overline{\sigma }\cdot \overline{\text{p1}}\right).\overline{\sigma }^i.\left(\overline{\sigma }\cdot \overline{\text{p2}}\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left(\overline{\sigma }\cdot \overline{\text{p1}}\right).\overline{\sigma }^i.\left(\overline{\sigma }\cdot \overline{\text{p2}}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CSID}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]} 
+ 
+\NormalTok{PauliTrick}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ Contract}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\sigma ^i.\sigma ^j.\sigma ^i
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-\left((D-3) \sigma ^j\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CSIS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]}\NormalTok{ . CSI}\OperatorTok{[}\FunctionTok{j}\OperatorTok{]}\NormalTok{ . CSIS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]}\NormalTok{ . CSIS}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]} 
+ 
+\NormalTok{PauliTrick}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ Contract }\SpecialCharTok{//}\NormalTok{ EpsEvaluate }\SpecialCharTok{//}\NormalTok{ FCCanonicalizeDummyIndices }
+ 
+\NormalTok{PauliTrick}\OperatorTok{[}\SpecialCharTok{\%\%}\OperatorTok{,}\NormalTok{ PauliReduce }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\overline{\sigma }\cdot \overline{p}\right).\overline{\sigma }^j.\left(\overline{\sigma }\cdot \overline{p}\right).\left(\overline{\sigma }\cdot \overline{i}\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+2 \overline{p}^j \left(\overline{\sigma }\cdot \overline{p}\right).\left(\overline{\sigma }\cdot \overline{i}\right)-\overline{p}^2 \overline{\sigma }^j.\left(\overline{\sigma }\cdot \overline{i}\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+2 \overline{p}^j \left(\overline{\sigma }\cdot \overline{p}\right).\left(\overline{\sigma }\cdot \overline{i}\right)-\overline{p}^2 \overline{\sigma }^j.\left(\overline{\sigma }\cdot \overline{i}\right)
+\end{dmath*}
+\end{document}

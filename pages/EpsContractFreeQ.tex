@@ -1,0 +1,54 @@
+% !TeX program = pdflatex
+% !TeX root = EpsContractFreeQ.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{epscontractfreeq}{%
+\section{EpsContractFreeQ}\label{epscontractfreeq}}
+
+\texttt{EpsContractFreeQ[\allowbreak{}exp]} returns \texttt{True} if the
+expression contains epsilon tensors that can be contracted with each
+other. The function is optimized for large expressions, i.e.~it is not
+so good as a criterion in e.g.~\texttt{Select}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{contract}{Contract},
+\hyperlink{epscontract}{EpsContract}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{LC}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{,}\NormalTok{ p4}\OperatorTok{]]} 
+ 
+\NormalTok{EpsContractFreeQ}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\text{p1}\;\text{p2}\;\text{p3}\;\text{p4}}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{LC}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{,}\NormalTok{ mu}\OperatorTok{]}\NormalTok{ LC}\OperatorTok{[}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{,}\NormalTok{ q3}\OperatorTok{,}\NormalTok{ q4}\OperatorTok{]]} 
+ 
+\NormalTok{EpsContractFreeQ}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]} 
+  
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\text{p1}\;\text{p2}\;\text{p3}\;\text{mu}} \bar{\epsilon }^{\text{q1}\;\text{q2}\;\text{q3}\;\text{q4}}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+\end{document}

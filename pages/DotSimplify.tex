@@ -1,0 +1,222 @@
+% !TeX program = pdflatex
+% !TeX root = DotSimplify.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{dotsimplify}{%
+\section{DotSimplify}\label{dotsimplify}}
+
+\texttt{DotSimplify[\allowbreak{}exp]} expands and reorders
+noncommutative terms in exp. Simplifying relations may be specified by
+the option \texttt{DotSimplifyRelations} or by \texttt{Commutator} and
+\texttt{AntiCommutator} definitions. Whether exp is expanded
+noncommutatively depends on the option \texttt{Expanding}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{anticommutator}{AntiCommutator},
+\hyperlink{commutator}{Commutator}, \hyperlink{calc}{Calc}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{UnDeclareAllCommutators}\OperatorTok{[]} 
+ 
+\NormalTok{UnDeclareAllAntiCommutators}\OperatorTok{[]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . (}\DecValTok{2}\NormalTok{ GS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{{-}}\NormalTok{ GS}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]}\NormalTok{) . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} 
+ 
+\NormalTok{DotSimplify}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }.\left(2 \bar{\gamma }\cdot \overline{p}-\bar{\gamma }\cdot \overline{q}\right).\bar{\gamma }^{\nu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+2 \bar{\gamma }^{\mu }.\left(\bar{\gamma }\cdot \overline{p}\right).\bar{\gamma }^{\nu }-\bar{\gamma }^{\mu }.\left(\bar{\gamma }\cdot \overline{q}\right).\bar{\gamma }^{\nu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DeclareNonCommutative}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]} 
+ 
+\FunctionTok{a}\NormalTok{ . (}\FunctionTok{b} \SpecialCharTok{{-}} \FunctionTok{z} \FunctionTok{c}\NormalTok{) . }\FunctionTok{a} 
+ 
+\NormalTok{DotSimplify}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+a.(b-c z).a
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+a.b.a-z a.c.a
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Commutator}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]} \ExtensionTok{=} \DecValTok{1} 
+ 
+\NormalTok{DotSimplify}\OperatorTok{[}\FunctionTok{a}\NormalTok{ . (}\FunctionTok{b} \SpecialCharTok{{-}} \FunctionTok{z} \FunctionTok{c}\NormalTok{) . }\FunctionTok{a}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+1
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+a.b.a-z (c.a.a+a)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Commutator}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]} \ExtensionTok{=}\NormalTok{. }
+ 
+\NormalTok{DotSimplify}\OperatorTok{[}\FunctionTok{a}\NormalTok{ . (}\FunctionTok{b} \SpecialCharTok{{-}} \FunctionTok{z} \FunctionTok{c}\NormalTok{) . }\FunctionTok{a}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+a.b.a-z a.c.a
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{AntiCommutator}\OperatorTok{[}\FunctionTok{b}\OperatorTok{,} \FunctionTok{a}\OperatorTok{]} \ExtensionTok{=} \FunctionTok{c} 
+ 
+\NormalTok{DotSimplify}\OperatorTok{[}\FunctionTok{a}\NormalTok{ . (}\FunctionTok{b} \SpecialCharTok{{-}} \FunctionTok{z} \FunctionTok{c}\NormalTok{) . }\FunctionTok{a}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+c
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-a.a.b-z a.c.a+a.c
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{AntiCommutator}\OperatorTok{[}\FunctionTok{b}\OperatorTok{,} \FunctionTok{a}\OperatorTok{]} \ExtensionTok{=}\NormalTok{. }
+ 
+\NormalTok{DotSimplify}\OperatorTok{[}\FunctionTok{a}\NormalTok{ . (}\FunctionTok{b} \SpecialCharTok{{-}} \FunctionTok{z} \FunctionTok{c}\NormalTok{) . }\FunctionTok{a}\OperatorTok{,}\NormalTok{ DotSimplifyRelations }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{a}\NormalTok{ . }\FunctionTok{c} \OtherTok{{-}\textgreater{}} \DecValTok{1}\SpecialCharTok{/}\FunctionTok{z}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+a.b.a-a
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{UnDeclareNonCommutative}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]} 
+ 
+\NormalTok{DeclareNonCommutative}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]} 
+ 
+\NormalTok{DotSimplify}\OperatorTok{[}\FunctionTok{x}\NormalTok{ . }\FunctionTok{x}\NormalTok{ . }\FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+x.x.x
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DotSimplify}\OperatorTok{[}\FunctionTok{x}\NormalTok{ . }\FunctionTok{x}\NormalTok{ . }\FunctionTok{x}\OperatorTok{,}\NormalTok{ DotPower }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]} 
+ 
+\NormalTok{UnDeclareNonCommutative}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+x^3
+\end{dmath*}
+
+Check some relations between noncommutative expressions involving two
+operators \(Q\) and \(P\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DeclareNonCommutative}\OperatorTok{[}\FunctionTok{Q}\OperatorTok{,} \FunctionTok{P}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lhs }\ExtensionTok{=}\NormalTok{ (}\FunctionTok{Q}\NormalTok{ . Commutator}\OperatorTok{[}\FunctionTok{Q}\OperatorTok{,} \FunctionTok{P}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ Commutator}\OperatorTok{[}\FunctionTok{Q}\OperatorTok{,} \FunctionTok{P}\OperatorTok{]}\NormalTok{ . }\FunctionTok{Q}\NormalTok{)}\SpecialCharTok{/}\DecValTok{2} 
+ 
+\NormalTok{rhs }\ExtensionTok{=}\NormalTok{ Commutator}\OperatorTok{[}\FunctionTok{Q}\OperatorTok{,} \FunctionTok{Q}\NormalTok{ . }\FunctionTok{P} \SpecialCharTok{+} \FunctionTok{P}\NormalTok{ . }\FunctionTok{Q}\OperatorTok{]}\SpecialCharTok{/}\DecValTok{2} 
+ 
+\NormalTok{DotSimplify}\OperatorTok{[}\NormalTok{lhs }\SpecialCharTok{{-}}\NormalTok{ rhs}\OperatorTok{]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//} \FunctionTok{ExpandAll}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} (Q.[Q,P]+[Q,P].Q)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} [Q,P.Q+Q.P]
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} (P.Q.Q-Q.Q.P)+\frac{1}{2} (Q.Q.P-P.Q.Q)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Commutator}\OperatorTok{[}\FunctionTok{Q}\OperatorTok{,} \FunctionTok{P}\OperatorTok{]} \ExtensionTok{=} \FunctionTok{I}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+Introduce the dilation operator \(D\) from the affine quantization and
+verify that \([Q,D]=i \hbar\) (cf.~arXiv:2108.10713)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DOp }\ExtensionTok{=}\NormalTok{ (}\FunctionTok{Q}\NormalTok{ . }\FunctionTok{P} \SpecialCharTok{+} \FunctionTok{P}\NormalTok{ . }\FunctionTok{Q}\NormalTok{)}\SpecialCharTok{/}\DecValTok{2}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Commutator}\OperatorTok{[}\FunctionTok{Q}\OperatorTok{,}\NormalTok{ DOp}\OperatorTok{]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ DotSimplify }\SpecialCharTok{//} \FunctionTok{ExpandAll}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left[Q,\frac{1}{2} (P.Q+Q.P)\right]
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+i Q
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{UnDeclareAllCommutators}\OperatorTok{[]} 
+ 
+\NormalTok{UnDeclareAllAntiCommutators}\OperatorTok{[]}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

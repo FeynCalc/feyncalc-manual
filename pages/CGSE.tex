@@ -1,0 +1,68 @@
+% !TeX program = pdflatex
+% !TeX root = CGSE.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{cgse}{%
+\section{CGSE}\label{cgse}}
+
+\texttt{CGSE[\allowbreak{}p]} is transformed into
+\texttt{DiracGamma[\allowbreak{}CartesianMomentum[\allowbreak{}p,\ \allowbreak{}D-4],\ \allowbreak{}D-4]}
+by FeynCalcInternal.
+
+\texttt{CGSE[\allowbreak{}p,\ \allowbreak{}q,\ \allowbreak{}...]} is
+equivalent to \texttt{CGSE[\allowbreak{}p].CGSE[\allowbreak{}q]}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{gse}{GSE},
+\hyperlink{diracgamma}{DiracGamma}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CGSE}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\hat{\gamma }\cdot \hat{p}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CGSE}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*DiracGamma[CartesianMomentum[p, {-}4 + D], {-}4 + D]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CGSE}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,} \FunctionTok{r}\OperatorTok{,} \FunctionTok{s}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\hat{\gamma }\cdot \hat{p}\right).\left(\hat{\gamma }\cdot \hat{q}\right).\left(\hat{\gamma }\cdot \hat{r}\right).\left(\hat{\gamma }\cdot \hat{s}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CGSE}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,} \FunctionTok{r}\OperatorTok{,} \FunctionTok{s}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*CGSE[p] . CGSE[q] . CGSE[r] . CGSE[s]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CGSE}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]}\NormalTok{ . (CGSE}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{m}\NormalTok{) . CGSE}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\hat{\gamma }\cdot \hat{q}\right).\left(m+\hat{\gamma }\cdot \hat{p}\right).\left(\hat{\gamma }\cdot \hat{q}\right)
+\end{dmath*}
+\end{document}

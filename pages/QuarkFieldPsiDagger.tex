@@ -1,0 +1,44 @@
+% !TeX program = pdflatex
+% !TeX root = QuarkFieldPsiDagger.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{quarkfieldpsidagger}{%
+\section{QuarkFieldPsiDagger}\label{quarkfieldpsidagger}}
+
+\texttt{QuarkFieldPsiDagger} is the name of a fermionic field.This is
+just a name with no functional properties. Only typesetting rules are
+attached.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QuarkFieldPsiDagger}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\psi ^{\dagger }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QuantumField}\OperatorTok{[}\NormalTok{QuarkFieldPsiDagger}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . CovariantD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . QuantumField}\OperatorTok{[}\NormalTok{QuarkFieldPsi}\OperatorTok{]} 
+ 
+\NormalTok{ExpandPartialD}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\psi ^{\dagger }.\bar{\gamma }^{\mu }.D_{\mu }.\psi
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu } \psi ^{\dagger }.\left(\left.(\partial _{\mu }\psi \right)\right)-i T^{\text{c19}} g_s \bar{\gamma }^{\mu } \psi ^{\dagger }.A_{\mu }^{\text{c19}}.\psi
+\end{dmath*}
+\end{document}

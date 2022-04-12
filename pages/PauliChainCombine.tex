@@ -1,0 +1,41 @@
+% !TeX program = pdflatex
+% !TeX root = PauliChainCombine.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{paulichaincombine}{%
+\section{PauliChainCombine}\label{paulichaincombine}}
+
+\texttt{PauliChainCombine[\allowbreak{}exp]} is (nearly) the inverse
+operation to \texttt{PauliChainExpand}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{paulichain}{PauliChain},
+\hyperlink{pchn}{PCHN}, \hyperlink{pauliindex}{PauliIndex},
+\hyperlink{pauliindexdelta}{PauliIndexDelta},
+\hyperlink{didelta}{DIDelta},
+\hyperlink{paulichainjoin}{PauliChainJoin},
+\hyperlink{paulichainexpand}{PauliChainExpand},
+\hyperlink{paulichainfactor}{PauliChainFactor}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(PCHN}\OperatorTok{[}\NormalTok{CSISD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{],}\NormalTok{ Dir3}\OperatorTok{,}\NormalTok{ Dir4}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{k}\OperatorTok{,}\NormalTok{ me}\OperatorTok{\}]}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(}\DecValTok{2}\NormalTok{ CSPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}\NormalTok{) }\SpecialCharTok{+} \DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\DecValTok{2}\NormalTok{ CSPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{*} 
+\NormalTok{    FAD}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{k} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,}\NormalTok{ me}\OperatorTok{\}]}\NormalTok{ (}\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{ DCHN}\OperatorTok{[}\NormalTok{CSISD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{],}\NormalTok{ Dir3}\OperatorTok{,}\NormalTok{ Dir4}\OperatorTok{]}\NormalTok{ CSPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]} \SpecialCharTok{+} \DecValTok{2}\NormalTok{ DCHN}\OperatorTok{[}\DecValTok{1}\OperatorTok{,}\NormalTok{ Dir3}\OperatorTok{,}\NormalTok{ Dir4}\OperatorTok{]}\SpecialCharTok{*}
+\NormalTok{       me CSPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ DCHN}\OperatorTok{[}\NormalTok{CSISD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{],}\NormalTok{ Dir3}\OperatorTok{,}\NormalTok{ Dir4}\OperatorTok{]}\NormalTok{ (}\SpecialCharTok{{-}}\NormalTok{me}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ CSPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}\NormalTok{)) }
+ 
+\NormalTok{PauliChainCombine}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\left(q^2-\text{me}^2\right) \left((1)_{\text{Dir3}\;\text{Dir4}} \sigma \cdot q\right)+2 \;\text{me} q^2 (1)_{\text{Dir3}\;\text{Dir4}}-2 q^2 \left((1)_{\text{Dir3}\;\text{Dir4}} \sigma \cdot q\right)}{2 q^2 k^2.\left((k-q)^2-\text{me}^2\right)}+\frac{(\sigma \cdot q)_{\text{Dir3}\;\text{Dir4}}}{2 q^2 \left(k^2-\text{me}^2\right)}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{(1)_{\text{Dir3}\;\text{Dir4}} \left(q^2-\text{me}^2\right) \sigma \cdot q+2 \;\text{me} q^2 (1)_{\text{Dir3}\;\text{Dir4}}-2 q^2 (1)_{\text{Dir3}\;\text{Dir4}} \sigma \cdot q}{2 q^2 k^2.\left((k-q)^2-\text{me}^2\right)}+\frac{(\sigma \cdot q)_{\text{Dir3}\;\text{Dir4}}}{2 q^2 \left(k^2-\text{me}^2\right)}
+\end{dmath*}
+\end{document}

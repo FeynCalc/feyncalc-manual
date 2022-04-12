@@ -1,0 +1,67 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopFindTopologies.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopfindtopologies}{%
+\section{FCLoopFindTopologies}\label{fcloopfindtopologies}}
+
+\texttt{FCLoopFindTopologies[\allowbreak{}exp,\ \allowbreak{}\{\allowbreak{}q1,\ \allowbreak{}q2,\ \allowbreak{}...\}]}
+attempts to identify the loop integral topologies present in
+\texttt{exp} by looking at the propagator denominators that depend on
+the loop momenta \texttt{q1,\ \allowbreak{}q2,\ \allowbreak{}...} . It
+returns a list of two entries, where the first one is the original
+expression with the denominators rewritten as \texttt{GLI}s, and the
+second one is the set of the identified topologies. Each of the
+identified topologies must contain linearly independent propagators
+(unless the option \texttt{FCLoopBasisOverdeterminedQ} is set to True),
+but may lack propagators needed to form a complete basis.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fctopology}{FCTopology},
+\hyperlink{gli}{GLI}.
+
+\subsection{Examples}
+
+Find topologies occurring in the 2-loop ghost self-energy amplitude
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{amp }\ExtensionTok{=} \FunctionTok{Get}\OperatorTok{[}\FunctionTok{FileNameJoin}\OperatorTok{[\{}\NormalTok{$FeynCalcDirectory}\OperatorTok{,} \StringTok{"Documentation"}\OperatorTok{,} \StringTok{"Examples"}\OperatorTok{,} 
+      \StringTok{"Amplitudes"}\OperatorTok{,} \StringTok{"Gh{-}Gh{-}2L.m"}\OperatorTok{\}]]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res }\ExtensionTok{=}\NormalTok{ FCLoopFindTopologies}\OperatorTok{[}\NormalTok{amp}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\}]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{Number of the initial candidate topologies: }3
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{Number of the identified unique topologies: }3
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{Number of the preferred topologies among the unique topologies: }0
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{Number of the identified subtopologies: }0
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res }\SpecialCharTok{//} \FunctionTok{Last}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{FCTopology}\left(\text{fctopology1},\left\{\frac{1}{(\text{q2}^2+i \eta )},\frac{1}{(\text{q1}^2+i \eta )},\frac{1}{((\text{q1}+\text{q2})^2+i \eta )},\frac{1}{((p+\text{q1})^2+i \eta )},\frac{1}{((p-\text{q2})^2+i \eta )}\right\},\{\text{q1},\text{q2}\},\{p\},\{\},\{\}\right),\text{FCTopology}\left(\text{fctopology2},\left\{\frac{1}{(\text{q2}^2+i \eta )},\frac{1}{(\text{q1}^2+i \eta )},\frac{1}{((p+\text{q2})^2+i \eta )},\frac{1}{((p-\text{q1})^2+i \eta )}\right\},\{\text{q1},\text{q2}\},\{p\},\{\},\{\}\right),\text{FCTopology}\left(\text{fctopology3},\left\{\frac{1}{(\text{q2}^2+i \eta )},\frac{1}{(\text{q1}^2+i \eta )},\frac{1}{((p-\text{q1})^2+i \eta )},\frac{1}{((p-\text{q1}+\text{q2})^2+i \eta )}\right\},\{\text{q1},\text{q2}\},\{p\},\{\},\{\}\right)\right\}
+\end{dmath*}
+\end{document}

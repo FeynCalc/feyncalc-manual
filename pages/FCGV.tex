@@ -1,0 +1,46 @@
+% !TeX program = pdflatex
+% !TeX root = FCGV.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcgv}{%
+\section{FCGV}\label{fcgv}}
+
+FCGV{[}x{]} is a FeynCalc global variable, i.e.~a container for string
+variables that allows to introduce new variables without polluting the
+Global context of Mathematica.
+
+Use the rule
+\texttt{FCGV[\allowbreak{}s_] :> ToExpression[\allowbreak{}s]} if you
+want to convert the string \texttt{x} to a symbol with the name
+\texttt{x}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fcgv}{FCGV}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCGV}\OperatorTok{[}\StringTok{"x"}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCGV}(\text{x})
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCGV}\OperatorTok{[}\StringTok{"x"}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{InputForm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCGV}\OperatorTok{[}\StringTok{"x"}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

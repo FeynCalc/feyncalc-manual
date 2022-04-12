@@ -1,0 +1,40 @@
+% !TeX program = pdflatex
+% !TeX root = SelectSplit.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{selectsplit}{%
+\section{SelectSplit}\label{selectsplit}}
+
+\texttt{SelectSplit[\allowbreak{}l,\ \allowbreak{}p]} constructs list of
+mutually exclusive subsets from \texttt{l} in which every element
+\texttt{li} satisfies a criterion \texttt{pj[\allowbreak{}li]} with
+\texttt{pj} from \texttt{p} and appends the subset of remaining
+unmatched elements.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{selectfree}{SelectFree}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SelectSplit}\OperatorTok{[\{}\FunctionTok{a}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \FunctionTok{b}\SpecialCharTok{\^{}}\DecValTok{3}\OperatorTok{,} \FunctionTok{c}\SpecialCharTok{\^{}}\DecValTok{4}\OperatorTok{,} \FunctionTok{d}\SpecialCharTok{\^{}}\DecValTok{5}\OperatorTok{,} \FunctionTok{e}\SpecialCharTok{\^{}}\DecValTok{6}\OperatorTok{,} \FunctionTok{f} \SpecialCharTok{+} \FunctionTok{g}\OperatorTok{,} \FunctionTok{h}\SpecialCharTok{\^{}}\DecValTok{4}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{MatchQ}\OperatorTok{[}\NormalTok{\#}\OperatorTok{,}\NormalTok{ \_}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{]}\NormalTok{ \&}\OperatorTok{,} \FunctionTok{MatchQ}\OperatorTok{[}\NormalTok{\#}\OperatorTok{,}\NormalTok{ \_}\SpecialCharTok{\^{}}\DecValTok{4}\OperatorTok{]}\NormalTok{ \&}\OperatorTok{,} \FunctionTok{FreeQ}\OperatorTok{[}\NormalTok{\#}\OperatorTok{,} \FunctionTok{Power}\OperatorTok{]}\NormalTok{ \&}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\left\{a^2\right\},\left\{c^4,h^4\right\},\{f+g\},\left\{b^3,d^5,e^6\right\}\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SelectSplit}\OperatorTok{[\{}\FunctionTok{a}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \FunctionTok{b}\SpecialCharTok{\^{}}\DecValTok{3}\OperatorTok{,} \FunctionTok{c}\SpecialCharTok{\^{}}\DecValTok{4}\OperatorTok{,} \FunctionTok{d}\SpecialCharTok{\^{}}\DecValTok{5}\OperatorTok{,} \FunctionTok{e}\SpecialCharTok{\^{}}\DecValTok{6}\OperatorTok{,} \FunctionTok{f} \SpecialCharTok{+} \FunctionTok{g}\OperatorTok{,} \FunctionTok{h}\SpecialCharTok{\^{}}\DecValTok{4}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{FreeQ}\OperatorTok{[}\NormalTok{\#}\OperatorTok{,} \FunctionTok{Plus}\OperatorTok{]}\NormalTok{ \&}\OperatorTok{,} \FunctionTok{FreeQ}\OperatorTok{[}\NormalTok{\#}\OperatorTok{,} \FunctionTok{Power}\OperatorTok{]}\NormalTok{ \&}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\left\{a^2,b^3,c^4,d^5,e^6,h^4\right\},\{f+g\},\{\}\right\}
+\end{dmath*}
+\end{document}

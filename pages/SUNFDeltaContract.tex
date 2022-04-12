@@ -1,0 +1,39 @@
+% !TeX program = pdflatex
+% !TeX root = SUNFDeltaContract.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{sunfdeltacontract}{%
+\section{SUNFDeltaContract}\label{sunfdeltacontract}}
+
+\texttt{SUNFDeltaContract[\allowbreak{}exp]} substitutes for all
+\texttt{SUNFDelta} in exp \texttt{SUNFDeltaContract}, contracts the
+fundamental \(\text{SU}(N)\) indices and resubstitutes
+\texttt{SUNFDelta}.\texttt{SUNFDeltaContract[\allowbreak{}i,\ \allowbreak{}j]}
+is the Kronecker-delta for \(\text{SU}(N)\) in the fundamental
+representation with contraction properties. It wraps the head
+\texttt{SUNFIndex} around its arguments.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{sunfdelta}{SUNFDelta},
+\hyperlink{sunfindex}{SUNFIndex}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNFDelta}\OperatorTok{[}\NormalTok{SUNFIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{],}\NormalTok{ SUNFIndex}\OperatorTok{[}\FunctionTok{b}\OperatorTok{]]}\SpecialCharTok{\^{}}\DecValTok{2} 
+ 
+\NormalTok{SUNFDeltaContract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\delta _{ab}^2
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+N
+\end{dmath*}
+\end{document}

@@ -1,0 +1,123 @@
+% !TeX program = pdflatex
+% !TeX root = PIDelta.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{pidelta}{%
+\section{PIDelta}\label{pidelta}}
+
+\texttt{PIDelta[\allowbreak{}i,\ \allowbreak{}j]} is the Kronecker-delta
+in the Pauli space. \texttt{PIDelta[\allowbreak{}i,\ \allowbreak{}j]} is
+transformed into
+\texttt{PauliIndexDelta[\allowbreak{}PauliIndex[\allowbreak{}i],\ \allowbreak{}PauliIndex[\allowbreak{}j]]}
+by FeynCalcInternal.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{paulichain}{PauliChain},
+\hyperlink{pchn}{PCHN}, \hyperlink{pauliindex}{PauliIndex},
+\hyperlink{pauliindexdelta}{PauliIndexDelta},
+\hyperlink{paulichainjoin}{PauliChainJoin},
+\hyperlink{paulichainexpand}{PauliChainExpand},
+\hyperlink{paulichainfactor}{PauliChainFactor}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PIDelta}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\delta _{ij}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PIDelta}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]} 
+ 
+\NormalTok{PauliChainJoin}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\delta _{ii}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+4
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PIDelta}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2} 
+ 
+\NormalTok{PauliChainJoin}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\delta _{ij}^2
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+4
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PIDelta}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}\NormalTok{ PIDelta}\OperatorTok{[}\FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]} 
+ 
+\NormalTok{PauliChainJoin}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\delta _{ij} \delta _{jk}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\delta _{ik}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ PIDelta}\OperatorTok{[}\NormalTok{i2}\OperatorTok{,}\NormalTok{ i3}\OperatorTok{]}\NormalTok{ PIDelta}\OperatorTok{[}\NormalTok{i4}\OperatorTok{,}\NormalTok{ i5}\OperatorTok{]}\NormalTok{  PCHN}\OperatorTok{[}\NormalTok{i7}\OperatorTok{,}\NormalTok{ PauliXi}\OperatorTok{[}\FunctionTok{I}\OperatorTok{]]}\NormalTok{ PauliChain}\OperatorTok{[}\NormalTok{PauliEta}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{],}\NormalTok{ PauliIndex}\OperatorTok{[}\NormalTok{i0}\OperatorTok{]]}\NormalTok{ PauliChain}\OperatorTok{[}\NormalTok{PauliSigma}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{]],}\NormalTok{ PauliIndex}\OperatorTok{[}\NormalTok{i1}\OperatorTok{],}\NormalTok{ PauliIndex}\OperatorTok{[}\NormalTok{i2}\OperatorTok{]]}\NormalTok{ PauliChain}\OperatorTok{[}\NormalTok{PauliSigma}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{b}\OperatorTok{]],}\NormalTok{ PauliIndex}\OperatorTok{[}\NormalTok{i5}\OperatorTok{],}\NormalTok{ PauliIndex}\OperatorTok{[}\NormalTok{i6}\OperatorTok{]]}\NormalTok{ PauliChain}\OperatorTok{[}\FunctionTok{m} \SpecialCharTok{+}\NormalTok{ PauliSigma}\OperatorTok{[}\NormalTok{CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]],}\NormalTok{ PauliIndex}\OperatorTok{[}\NormalTok{i3}\OperatorTok{],}\NormalTok{ PauliIndex}\OperatorTok{[}\NormalTok{i4}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(\xi )_{\text{i7}} \left(\eta ^{\dagger }\right){}_{\text{i0}} \delta _{\text{i2}\;\text{i3}} \delta _{\text{i4}\;\text{i5}} \left(\overline{\sigma }^a\right){}_{\text{i1}\;\text{i2}} \left(\overline{\sigma }^b\right){}_{\text{i5}\;\text{i6}} \left(\overline{\sigma }\cdot \overline{p}+m\right)_{\text{i3}\;\text{i4}}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliChainJoin}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(\xi )_{\text{i7}} \left(\eta ^{\dagger }\right){}_{\text{i0}} \left(\overline{\sigma }^a.\left(\overline{\sigma }\cdot \overline{p}+m\right).\overline{\sigma }^b\right){}_{\text{i1}\;\text{i6}}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliChainJoin}\OperatorTok{[}\NormalTok{ex PIDelta}\OperatorTok{[}\NormalTok{i0}\OperatorTok{,}\NormalTok{ i1}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(\xi )_{\text{i7}} \left(\eta ^{\dagger }.\overline{\sigma }^a.\left(\overline{\sigma }\cdot \overline{p}+m\right).\overline{\sigma }^b\right){}_{\text{i6}}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliChainJoin}\OperatorTok{[}\SpecialCharTok{\%}\NormalTok{ PIDelta}\OperatorTok{[}\NormalTok{i7}\OperatorTok{,}\NormalTok{ i6}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\eta ^{\dagger }.\overline{\sigma }^a.\left(\overline{\sigma }\cdot \overline{p}+m\right).\overline{\sigma }^b.\xi
+\end{dmath*}
+\end{document}

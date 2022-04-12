@@ -1,0 +1,48 @@
+% !TeX program = pdflatex
+% !TeX root = UnDeclareAllCommutators.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{undeclareallcommutators}{%
+\section{UnDeclareAllCommutators}\label{undeclareallcommutators}}
+
+\texttt{UnDeclareAllCommutators[\allowbreak{}]} undeclares all
+user-defined commutators.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{commutator}{Commutator},
+\hyperlink{commutatorexplicit}{CommutatorExplicit},
+\hyperlink{declarenoncommutative}{DeclareNonCommutative},
+\hyperlink{dotsimplify}{DotSimplify}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DeclareNonCommutative}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{d}\OperatorTok{]} 
+ 
+\NormalTok{Commutator}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]} \ExtensionTok{=}\NormalTok{ x1; }
+ 
+\NormalTok{Commutator}\OperatorTok{[}\FunctionTok{c}\OperatorTok{,} \FunctionTok{d}\OperatorTok{]} \ExtensionTok{=}\NormalTok{ x2; }
+ 
+\NormalTok{DotSimplify}\OperatorTok{[}\FunctionTok{a}\NormalTok{ . }\FunctionTok{b}\NormalTok{ . }\FunctionTok{c}\NormalTok{ . }\FunctionTok{d}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+b.a.d.c+\text{x2} b.a+\text{x1} d.c+\text{x1} \;\text{x2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{UnDeclareAllCommutators}\OperatorTok{[]} 
+ 
+\NormalTok{DotSimplify}\OperatorTok{[}\FunctionTok{a}\NormalTok{ . }\FunctionTok{b}\NormalTok{ . }\FunctionTok{c}\NormalTok{ . }\FunctionTok{d}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+a.b.c.d
+\end{dmath*}
+\end{document}

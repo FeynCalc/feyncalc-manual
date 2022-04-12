@@ -1,0 +1,48 @@
+% !TeX program = pdflatex
+% !TeX root = GammaExpand.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{gammaexpand}{%
+\section{GammaExpand}\label{gammaexpand}}
+
+\texttt{GammaExpand[\allowbreak{}exp]} rewrites
+\texttt{Gamma[\allowbreak{}n + m]} in \texttt{exp} (where \texttt{n} has
+\texttt{Head} \texttt{Integer}).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{gammaepsilon}{GammaEpsilon}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GammaExpand}\OperatorTok{[}\FunctionTok{Gamma}\OperatorTok{[}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ Epsilon}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(\varepsilon +1) \Gamma (\varepsilon +1)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GammaExpand}\OperatorTok{[}\FunctionTok{Gamma}\OperatorTok{[}\SpecialCharTok{{-}}\DecValTok{3} \SpecialCharTok{+}\NormalTok{ Epsilon}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\Gamma (\varepsilon +1)}{(\varepsilon -3) (\varepsilon -2) (\varepsilon -1) \varepsilon }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GammaExpand}\OperatorTok{[}\FunctionTok{Gamma}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ Epsilon}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\Gamma (\varepsilon +1)
+\end{dmath*}
+\end{document}

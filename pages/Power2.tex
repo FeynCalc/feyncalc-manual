@@ -1,0 +1,41 @@
+% !TeX program = pdflatex
+% !TeX root = Power2.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{power2}{%
+\section{Power2}\label{power2}}
+
+\texttt{Power2[\allowbreak{}x,\ \allowbreak{}y]} represents
+\texttt{x^y}. Sometimes \texttt{Power2} is more useful than the
+Mathematica \texttt{Power}.
+\texttt{Power2[\allowbreak{}-a,\ \allowbreak{}b]} simplifies to
+\texttt{(-1)^b Power2[\allowbreak{}a,\ \allowbreak{}b]} (if no
+\texttt{Epsilon} is in \texttt{b} \ldots).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{powerfactor}{PowerFactor}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Power}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(-a)^b
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Power2}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(-1)^b a^b
+\end{dmath*}
+\end{document}

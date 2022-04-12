@@ -1,0 +1,87 @@
+% !TeX program = pdflatex
+% !TeX root = TarcerToFC.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{tarcertofc}{%
+\section{TarcerToFC}\label{tarcertofc}}
+
+\texttt{TarcerToFC[\allowbreak{}expr,\ \allowbreak{}\{\allowbreak{}q1,\ \allowbreak{}q2\}]}
+translates loop integrals in the TARCER-notation to the FeynCalc
+notation.
+
+See \texttt{TFI} for details on the convention.
+
+As in the case of \texttt{ToTFI}, the \(\frac{1}{\pi^D}\) and
+\(\frac{1}{\pi^{D/2}}\) prefactors are implicit,
+i.e.~\texttt{TarcerToFC} doesn't add them.
+
+To recover momenta from scalar products use the option
+\texttt{ScalarProduct} e.g.~as in
+\texttt{TarcerToFC[\allowbreak{}TBI[\allowbreak{}D,\ \allowbreak{}pp^2,\ \allowbreak{}\{\allowbreak{}\{\allowbreak{}1,\ \allowbreak{}0\},\ \allowbreak{}\{\allowbreak{}1,\ \allowbreak{}0\}\}],\ \allowbreak{}\{\allowbreak{}q1,\ \allowbreak{}q2\},\ \allowbreak{}ScalarProduct -> \{\allowbreak{}\{\allowbreak{}pp^2,\ \allowbreak{}p1\}\}]}
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{tofi}{ToFI}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Tarcer\textasciigrave{}TFI}\OperatorTok{[}\FunctionTok{D}\OperatorTok{,}\NormalTok{ Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D}\OperatorTok{]],} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{3}\OperatorTok{,} \DecValTok{2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} 
+  \OperatorTok{\{\{}\DecValTok{4}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{Tarcer$\grave{ }$TFI}\left(D,p^2,\{0,0,3,2,0\},\left(
+\begin{array}{cc}
+ 4 & 0 \\
+ 2 & 0 \\
+ 1 & 0 \\
+ 0 & 0 \\
+ 1 & 0 \\
+\end{array}
+\right)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TarcerToFC}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{(p\cdot \;\text{q1})^3 (p\cdot \;\text{q2})^2}{\left(\text{q1}^2\right)^4.\left(\text{q2}^2\right)^2.(\text{q1}-p)^2.(\text{q1}-\text{q2})^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a1 Tarcer\textasciigrave{}TBI}\OperatorTok{[}\FunctionTok{D}\OperatorTok{,}\NormalTok{ pp}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}\}]} \SpecialCharTok{+}\NormalTok{ b1 Tarcer\textasciigrave{}TBI}\OperatorTok{[}\FunctionTok{D}\OperatorTok{,}\NormalTok{ mm1}\OperatorTok{,} \OperatorTok{\{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{a1} \;\text{Tarcer$\grave{ }$TBI}\left(D,\text{pp}^2,\left(
+\begin{array}{cc}
+ 1 & 0 \\
+ 1 & 0 \\
+\end{array}
+\right)\right)+\text{b1} \;\text{Tarcer$\grave{ }$TBI}\left(D,\text{mm1},\left(
+\begin{array}{cc}
+ 1 & 0 \\
+ 1 & 0 \\
+\end{array}
+\right)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TarcerToFC}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\},}\NormalTok{ ScalarProduct }\OtherTok{{-}\textgreater{}} \OperatorTok{\{\{}\NormalTok{pp}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ p1}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{mm1}\OperatorTok{,}\NormalTok{ p1}\OperatorTok{\}\},}\NormalTok{ FCE }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\text{a1}}{\text{q1}^2.(\text{q1}-\text{p1})^2}+\frac{\text{b1}}{\text{q1}^2.(\text{q1}-\text{p1})^2}
+\end{dmath*}
+\end{document}

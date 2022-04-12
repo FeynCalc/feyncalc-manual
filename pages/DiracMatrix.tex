@@ -1,0 +1,104 @@
+% !TeX program = pdflatex
+% !TeX root = DiracMatrix.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{diracmatrix}{%
+\section{DiracMatrix}\label{diracmatrix}}
+
+\texttt{DiracMatrix[\allowbreak{}mu]} denotes a Dirac gamma matrix with
+Lorentz index \(\mu\).
+
+\texttt{DiracMatrix[\allowbreak{}mu ,\ \allowbreak{}nu ,\ \allowbreak{}...]}
+is a product of \(\gamma\) matrices with Lorentz indices
+\texttt{mu ,\ \allowbreak{}nu ,\ \allowbreak{}...}
+
+\texttt{DiracMatrix[\allowbreak{}5]} is \(\gamma ^5\).
+
+\texttt{DiracMatrix[\allowbreak{}6]} is \((1 + \gamma^5)/2\).
+
+\texttt{DiracMatrix[\allowbreak{}7]} is \((1 - \gamma^5)/2\).
+
+The shortcut \texttt{DiracMatrix} is deprecated, please use \texttt{GA}
+instead!
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{ga}{GA}, \hyperlink{fci}{FCI}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracMatrix}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }
+\end{dmath*}
+
+This is how to enter the non-commutative product of two. The Mathematica
+Dot ``.'' is used as non-commutative multiplication operator.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracMatrix}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . DiracMatrix}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracMatrix}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{]]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*DiracGamma[LorentzIndex[\textbackslash{}[Alpha]]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{DiracMatrix} is scheduled for removal in the future versions of
+FeynCalc. The safe alternative is to use \texttt{GA}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\gamma ^{\mu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]} \ExtensionTok{===}\NormalTok{ DiracMatrix}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]} \ExtensionTok{===}\NormalTok{ DiracMatrix}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],}\NormalTok{ Dimension }\OtherTok{{-}\textgreater{}} \FunctionTok{D}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+\end{document}

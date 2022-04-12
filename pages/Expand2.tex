@@ -1,0 +1,51 @@
+% !TeX program = pdflatex
+% !TeX root = Expand2.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{expand2}{%
+\section{Expand2}\label{expand2}}
+
+\texttt{Expand2[\allowbreak{}exp,\ \allowbreak{}x]} expands all sums
+containing \texttt{x}.
+
+\texttt{Expand2[\allowbreak{}exp,\ \allowbreak{}\{\allowbreak{}x1,\ \allowbreak{}x2,\ \allowbreak{}...\}]}
+expands all sums containing
+\texttt{x1,\ \allowbreak{}x2,\ \allowbreak{}...}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{expandall2}{ExpandAll2}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Expand2}\OperatorTok{[}\NormalTok{(x1 }\SpecialCharTok{+}\NormalTok{ x2 }\SpecialCharTok{+}\NormalTok{ x3) (}\DecValTok{2}\NormalTok{ x1 }\SpecialCharTok{+} \DecValTok{3}\NormalTok{ x2) }\SpecialCharTok{+}\NormalTok{ (y1 }\SpecialCharTok{+}\NormalTok{ y2 }\SpecialCharTok{+}\NormalTok{ y3) (}\DecValTok{2}\NormalTok{ y1 }\SpecialCharTok{+} \DecValTok{3}\NormalTok{ y2)}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+2 \;\text{x1}^2+5 \;\text{x1} \;\text{x2}+2 \;\text{x1} \;\text{x3}+3 \;\text{x2}^2+3 \;\text{x2} \;\text{x3}+2 \;\text{y1}^2+5 \;\text{y1} \;\text{y2}+2 \;\text{y1} \;\text{y3}+3 \;\text{y2}^2+3 \;\text{y2} \;\text{y3}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Expand2}\OperatorTok{[}\NormalTok{(x1 }\SpecialCharTok{+}\NormalTok{ x2 }\SpecialCharTok{+}\NormalTok{ x3) (}\DecValTok{2}\NormalTok{ x1 }\SpecialCharTok{+} \DecValTok{3}\NormalTok{ x2) }\SpecialCharTok{+}\NormalTok{ (y1 }\SpecialCharTok{+}\NormalTok{ y2 }\SpecialCharTok{+}\NormalTok{ y3) (}\DecValTok{2}\NormalTok{ y1 }\SpecialCharTok{+} \DecValTok{3}\NormalTok{ y2)}\OperatorTok{,} \OperatorTok{\{}\NormalTok{y1}\OperatorTok{,}\NormalTok{ y2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(2 \;\text{x1}+3 \;\text{x2}) (\text{x1}+\text{x2}+\text{x3})+2 \;\text{y1}^2+5 \;\text{y1} \;\text{y2}+2 \;\text{y1} \;\text{y3}+3 \;\text{y2}^2+3 \;\text{y2} \;\text{y3}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Expand2}\OperatorTok{[}\NormalTok{(x1 }\SpecialCharTok{+}\NormalTok{ x2 }\SpecialCharTok{+}\NormalTok{ x3) (}\DecValTok{2}\NormalTok{ x1 }\SpecialCharTok{+} \DecValTok{3}\NormalTok{ x2) }\SpecialCharTok{+}\NormalTok{ (y1 }\SpecialCharTok{+}\NormalTok{ y2 }\SpecialCharTok{+}\NormalTok{ y3) (}\DecValTok{2}\NormalTok{ y1 }\SpecialCharTok{+} \DecValTok{3}\NormalTok{ y2)}\OperatorTok{,} \OperatorTok{\{}\NormalTok{x1}\OperatorTok{,}\NormalTok{ x2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+2 \;\text{x1}^2+5 \;\text{x1} \;\text{x2}+2 \;\text{x1} \;\text{x3}+3 \;\text{x2}^2+3 \;\text{x2} \;\text{x3}+(2 \;\text{y1}+3 \;\text{y2}) (\text{y1}+\text{y2}+\text{y3})
+\end{dmath*}
+\end{document}

@@ -1,0 +1,74 @@
+% !TeX program = pdflatex
+% !TeX root = CommutatorExplicit.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{commutatorexplicit}{%
+\section{CommutatorExplicit}\label{commutatorexplicit}}
+
+\texttt{CommutatorExplicit[\allowbreak{}exp]} substitutes any
+\texttt{Commutator} and \texttt{AntiCommutator} in \texttt{exp} by their
+definitions.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{calc}{Calc},
+\hyperlink{dotsimplify}{DotSimplify}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DeclareNonCommutative}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{d}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Commutator}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]} 
+ 
+\NormalTok{CommutatorExplicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+[a,b]
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+a.b-b.a
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{AntiCommutator}\OperatorTok{[}\FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \FunctionTok{b} \SpecialCharTok{{-}} \FunctionTok{d}\OperatorTok{]} 
+ 
+\NormalTok{CommutatorExplicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{a-c,\medspace b-d\}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+(a-c).(b-d)+(b-d).(a-c)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CommutatorExplicit}\OperatorTok{[}\NormalTok{AntiCommutator}\OperatorTok{[}\FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \FunctionTok{b} \SpecialCharTok{{-}} \FunctionTok{d}\OperatorTok{]]} \SpecialCharTok{//}\NormalTok{ DotSimplify}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+a.b+b.a-a.d-d.a-b.c-c.b+c.d+d.c
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{UnDeclareNonCommutative}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{d}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

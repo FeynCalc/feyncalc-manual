@@ -1,0 +1,26 @@
+% !TeX program = pdflatex
+% !TeX root = FCReloadFunctionFromFile.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcreloadfunctionfromfile}{%
+\section{FCReloadFunctionFromFile}\label{fcreloadfunctionfromfile}}
+
+\texttt{FCReloadFunctionFromFile[\allowbreak{}function,\ \allowbreak{}path]}
+is an auxiliary function that attempts to remove all the definitions of
+the given FeynCalc function and then reload them from the specified
+file.
+
+It is intended to be a helper tool for FeynCalc developers, which allows
+one to debug/improve internal functions and test the results without
+restarting the kernel. Depending on the complexity of the given
+function, there might also be unknown side effects.
+
+The function is not meant to be invoked by the normal users.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fcreloadaddons}{FCReloadAddOns}.
+
+\subsection{Examples}
+\end{document}

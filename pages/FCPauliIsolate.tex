@@ -1,0 +1,27 @@
+% !TeX program = pdflatex
+% !TeX root = FCPauliIsolate.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcpauliisolate}{%
+\section{FCPauliIsolate}\label{fcpauliisolate}}
+
+\texttt{FCPauliIsolate[\allowbreak{}exp]} wraps chains of Pauli matrices
+into heads specified by the user.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCPauliIsolate}\OperatorTok{[}\FunctionTok{y}\NormalTok{ SI}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{x}\NormalTok{ PauliXi}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{]}\NormalTok{ . SIS}\OperatorTok{[}\NormalTok{p1}\OperatorTok{]}\NormalTok{ . PauliEta}\OperatorTok{[}\FunctionTok{I}\OperatorTok{]}\NormalTok{ . PauliEta}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{]}\NormalTok{ . SIS}\OperatorTok{[}\NormalTok{p2}\OperatorTok{]}\NormalTok{ . PauliXi}\OperatorTok{[}\FunctionTok{I}\OperatorTok{],} \FunctionTok{Head} \OtherTok{{-}\textgreater{}}\NormalTok{ pChain}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+y \;\text{pChain}\left(\bar{\sigma }^i\right)+x \;\text{pChain}\left(\xi ^{\dagger }.\left(\bar{\sigma }\cdot \overline{\text{p1}}\right).\eta \right) \;\text{pChain}\left(\eta ^{\dagger }.\left(\bar{\sigma }\cdot \overline{\text{p2}}\right).\xi \right)
+\end{dmath*}
+\end{document}

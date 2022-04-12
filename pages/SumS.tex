@@ -1,0 +1,145 @@
+% !TeX program = pdflatex
+% !TeX root = SumS.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{sums}{%
+\section{SumS}\label{sums}}
+
+\texttt{SumS[\allowbreak{}1,\ \allowbreak{}m]} is the harmonic number
+\(S_ 1(m) = \sum _ {i=1}^m i^{-1}\).
+
+\texttt{SumS[\allowbreak{}1,\ \allowbreak{}1,\ \allowbreak{}m]} is
+\(\sum_{i=1}^m S_ 1 (i)/i\).
+
+\texttt{SumS[\allowbreak{}k,\ \allowbreak{}l,\ \allowbreak{}m]} is
+\(\sum _ {i=1}^m S_l (i)/i^k\).
+
+\texttt{SumS[\allowbreak{}r,\ \allowbreak{}n]} represents
+\texttt{Sum[\allowbreak{}Sign[\allowbreak{}r]^i/i^Abs[\allowbreak{}r],\ \allowbreak{}\{\allowbreak{}i,\ \allowbreak{}1,\ \allowbreak{}n\}]}.
+
+\texttt{SumS[\allowbreak{}r,\ \allowbreak{}s,\ \allowbreak{}n]} is
+\texttt{Sum[\allowbreak{}Sign[\allowbreak{}r]^k/k^Abs[\allowbreak{}r] Sign[\allowbreak{}s]^j/j^Abs[\allowbreak{}s],\ \allowbreak{}\{\allowbreak{}k,\ \allowbreak{}1,\ \allowbreak{}n\},\ \allowbreak{}\{\allowbreak{}j,\ \allowbreak{}1,\ \allowbreak{}k\}]}
+etc.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{sump}{SumP},
+\hyperlink{sumt}{SumT}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SumS}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \FunctionTok{m} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+S_1(m-1)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SumS}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \FunctionTok{m} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+S_2(m-1)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SumS}\OperatorTok{[}\SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{,} \FunctionTok{m}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+S_{-1}(m)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SumS}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \FunctionTok{m}\OperatorTok{,} \FunctionTok{Reduce} \OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+S_1(m-1)+\frac{1}{m}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SumS}\OperatorTok{[}\DecValTok{3}\OperatorTok{,} \FunctionTok{m} \SpecialCharTok{+} \DecValTok{2}\OperatorTok{,} \FunctionTok{Reduce} \OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+S_3(m+1)+\frac{1}{(m+2)^3}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{SetOptions}\OperatorTok{[}\NormalTok{SumS}\OperatorTok{,} \FunctionTok{Reduce} \OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}\NormalTok{; }
+ 
+\NormalTok{SumS}\OperatorTok{[}\DecValTok{3}\OperatorTok{,} \FunctionTok{m} \SpecialCharTok{+} \DecValTok{2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{m^3}+S_3(m-1)+\frac{1}{(m+1)^3}+\frac{1}{(m+2)^3}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{SetOptions}\OperatorTok{[}\NormalTok{SumS}\OperatorTok{,} \FunctionTok{Reduce} \OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}\NormalTok{; }
+ 
+\NormalTok{SumS}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{4}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{25}{12}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SumS}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{2}\OperatorTok{,} \FunctionTok{m} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+S_{12}(m-1)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SumS}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{11}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{31276937512951}{4260000729600}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SumS}\OperatorTok{[}\SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{,} \DecValTok{4}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{7}{12}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SumT}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{4}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{7}{12}
+\end{dmath*}
+\end{document}

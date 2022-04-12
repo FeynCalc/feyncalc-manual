@@ -1,0 +1,48 @@
+% !TeX program = pdflatex
+% !TeX root = Dimension.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{dimension}{%
+\section{Dimension}\label{dimension}}
+
+\texttt{Dimension} is an option of several functions and denotes the
+number of space-time dimensions. Possible settings are: \texttt{4},
+\texttt{n}, \texttt{d}, \texttt{D}, \ldots{} , the variable does not
+matter, but it should have head Symbol.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{scalarproduct}{ScalarProduct}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Options}\OperatorTok{[}\NormalTok{ScalarProduct}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{\text{Dimension}\to 4,\text{FeynCalcInternal}\to \;\text{True},\text{SetDimensions}\to \{4,D\}\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ ScalarProduct}\OperatorTok{[}\FunctionTok{m}\OperatorTok{,} \FunctionTok{n}\OperatorTok{,}\NormalTok{ Dimension }\OtherTok{{-}\textgreater{}} \FunctionTok{d}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+m\cdot n
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*Pair[Momentum[m, d], Momentum[n, d]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

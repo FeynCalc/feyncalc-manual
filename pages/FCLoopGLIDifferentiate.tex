@@ -1,0 +1,97 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopGLIDifferentiate.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopglidifferentiate}{%
+\section{FCLoopGLIDifferentiate}\label{fcloopglidifferentiate}}
+
+\texttt{FCLoopGLIDifferentiate[\allowbreak{}exp ,\ \allowbreak{}topos,\ \allowbreak{}inv]}
+calculates the partial derivative of GLIs present in \texttt{exp} with
+respect to the scalar quantity \texttt{inv}. Here \texttt{inv} can be a
+constant (e.g.~mass), a scalar product of some momenta or a 4-vector.
+
+The list topos must contain the topologies describing all of the
+occurring GLIs.
+
+To calculate multiple derivatives, use the notation
+\texttt{FCLoopGLIDifferentiate[\allowbreak{}exp ,\ \allowbreak{}topos,\ \allowbreak{}\{\allowbreak{}inv,\ \allowbreak{}n\}]}
+for scalars and
+\texttt{FCLoopGLIDifferentiate[\allowbreak{}exp ,\ \allowbreak{}topos,\ \allowbreak{}\{\allowbreak{}vec1,\ \allowbreak{}vec2,\ \allowbreak{}...\}]}
+for vectors.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fctopology}{FCTopology},
+\hyperlink{gli}{GLI}, \hyperlink{fcloopgliexpand}{FCLoopGLIExpand}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopGLIDifferentiate}\OperatorTok{[}\FunctionTok{x}\NormalTok{ GLI}\OperatorTok{[}\NormalTok{tad2l}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}],} 
+  \OperatorTok{\{}\NormalTok{FCTopology}\OperatorTok{[}\NormalTok{tad2l}\OperatorTok{,} \OperatorTok{\{}\NormalTok{FAD}\OperatorTok{[\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{p2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ m3}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]\},}\NormalTok{ m1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+2 \;\text{m1} x G^{\text{tad2l}}(2,1,1)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopGLIDifferentiate}\OperatorTok{[}\FunctionTok{x}\NormalTok{ GLI}\OperatorTok{[}\NormalTok{tad2l}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}],} 
+  \OperatorTok{\{}\NormalTok{FCTopology}\OperatorTok{[}\NormalTok{tad2l}\OperatorTok{,} \OperatorTok{\{}\NormalTok{FAD}\OperatorTok{[\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{p2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ m3}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]\},} \OperatorTok{\{}\NormalTok{m1}\OperatorTok{,} \DecValTok{5}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+3840 \;\text{m1}^5 x G^{\text{tad2l}}(6,1,1)+3840 \;\text{m1}^3 x G^{\text{tad2l}}(5,1,1)+720 \;\text{m1} x G^{\text{tad2l}}(4,1,1)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopGLIDifferentiate}\OperatorTok{[}\NormalTok{m2}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ GLI}\OperatorTok{[}\NormalTok{tad2l}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}],} 
+  \OperatorTok{\{}\NormalTok{FCTopology}\OperatorTok{[}\NormalTok{tad2l}\OperatorTok{,} \OperatorTok{\{}\NormalTok{FAD}\OperatorTok{[\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{p2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ m3}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]\},}\NormalTok{ m2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+2 \;\text{m2}^3 G^{\text{tad2l}}(1,2,1)+2 \;\text{m2} G^{\text{tad2l}}(1,1,1)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopGLIDifferentiate}\OperatorTok{[}\NormalTok{ GLI}\OperatorTok{[}\NormalTok{prop1l}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]} \SpecialCharTok{+}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]}\NormalTok{ GLI}\OperatorTok{[}\NormalTok{prop1l}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}],} 
+  \OperatorTok{\{}\NormalTok{FCTopology}\OperatorTok{[}\NormalTok{prop1l}\OperatorTok{,} \OperatorTok{\{}\NormalTok{FAD}\OperatorTok{[\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{p1 }\SpecialCharTok{+} \FunctionTok{q}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]\},}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+G^{\text{prop1l}}(1,0)-G^{\text{prop1l}}(1,2)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopGLIDifferentiate}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{]}\NormalTok{ GLI}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}],} 
+  \OperatorTok{\{}\NormalTok{FCTopology}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ m1}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{}\NormalTok{p2}\OperatorTok{,}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]\},} 
+\NormalTok{  FVD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ mu}\OperatorTok{],}\NormalTok{ FCE }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-2 G^{\text{topo1}}(1,1,2) \left(\text{p1}^{\text{mu}}-\text{p2}^{\text{mu}}\right) (\text{p1}\cdot \;\text{p2})-2 \;\text{p1}^{\text{mu}} G^{\text{topo1}}(2,1,1) (\text{p1}\cdot \;\text{p2})+\text{p2}^{\text{mu}} G^{\text{topo1}}(1,1,1)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopGLIDifferentiate}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{]}\NormalTok{ GLI}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}],} \OperatorTok{\{}\NormalTok{FCTopology}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,} 
+    \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ m1}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{}\NormalTok{p2}\OperatorTok{,}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]\}} 
+ \OperatorTok{,} \OperatorTok{\{}\NormalTok{FVD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ mu}\OperatorTok{],}\NormalTok{ FVD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{,}\NormalTok{ nu}\OperatorTok{]\},}\NormalTok{ FCE }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-2 G^{\text{topo1}}(1,1,2) \left(-g^{\text{mu}\;\text{nu}} (\text{p1}\cdot \;\text{p2})-2 \;\text{p2}^{\text{mu}} \;\text{p1}^{\text{nu}}+\text{p1}^{\text{mu}} \;\text{p1}^{\text{nu}}+\text{p2}^{\text{mu}} \;\text{p2}^{\text{nu}}\right)+G^{\text{topo1}}(1,1,1) g^{\text{mu}\;\text{nu}}-8 G^{\text{topo1}}(1,1,3) \left(\text{p1}^{\text{mu}}-\text{p2}^{\text{mu}}\right) \left(\text{p1}^{\text{nu}}-\text{p2}^{\text{nu}}\right) (\text{p1}\cdot \;\text{p2})+4 \;\text{p2}^{\text{nu}} G^{\text{topo1}}(1,2,2) \left(\text{p1}^{\text{mu}}-\text{p2}^{\text{mu}}\right) (\text{p1}\cdot \;\text{p2})-4 \;\text{p1}^{\text{mu}} G^{\text{topo1}}(2,1,2) \left(\text{p1}^{\text{nu}}-\text{p2}^{\text{nu}}\right) (\text{p1}\cdot \;\text{p2})+4 \;\text{p1}^{\text{mu}} \;\text{p2}^{\text{nu}} G^{\text{topo1}}(2,2,1) (\text{p1}\cdot \;\text{p2})-2 \;\text{p1}^{\text{mu}} \;\text{p1}^{\text{nu}} G^{\text{topo1}}(2,1,1)-2 \;\text{p2}^{\text{mu}} \;\text{p2}^{\text{nu}} G^{\text{topo1}}(1,2,1)
+\end{dmath*}
+\end{document}

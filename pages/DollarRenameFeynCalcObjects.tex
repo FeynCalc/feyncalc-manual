@@ -1,0 +1,35 @@
+% !TeX program = pdflatex
+% !TeX root = DollarRenameFeynCalcObjects.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{renamefeyncalcobjects}{%
+\section{\$RenameFeynCalcObjects}\label{renamefeyncalcobjects}}
+
+\texttt{\$RenameFeynCalcObjects} specifies a list of replacement rules
+that allow to rename FeynCalc objects on the fly to avoid conflicts with
+other package before FeynCalc is loaded (monkey patching). The value of
+\texttt{\$RenameFeynCalcObjects} must be specified before loading
+FeynCalc.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{loadaddons}{\$LoadAddOns}.
+
+\subsection{Examples}
+
+The following code (when executed on a fresh kernel with the last two
+lines uncommented) allows to load FeynCalc and Roman Lee's LiteRed on
+the same kernel without shadowing
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$RenameFeynCalcObjects }\ExtensionTok{=} \OperatorTok{\{}\StringTok{"MetricTensor"} \OtherTok{{-}\textgreater{}} \StringTok{"FCMetricTensor"}\OperatorTok{,} \StringTok{"Factor1"} \OtherTok{{-}\textgreater{}} \StringTok{"FCFactor1"}\OperatorTok{,} \StringTok{"Factor2"} \OtherTok{{-}\textgreater{}} \StringTok{"FCFactor2"}\OperatorTok{\}}\NormalTok{;}
+\CommentTok{(*}
+\CommentTok{\textless{}\textless{}FeynCalc\textasciigrave{}}
+\CommentTok{\textless{}\textless{}LiteRed\textasciigrave{}}
+\CommentTok{*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

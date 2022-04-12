@@ -1,0 +1,92 @@
+% !TeX program = pdflatex
+% !TeX root = DummyIndexFreeQ.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{dummyindexfreeq}{%
+\section{DummyIndexFreeQ}\label{dummyindexfreeq}}
+
+\texttt{DummyIndexFreeQ[\allowbreak{}exp,\ \allowbreak{}\{\allowbreak{}head1,\ \allowbreak{}head2,\ \allowbreak{}...\}]}
+returns \texttt{True} if the expression contains dummy indices with
+heads \texttt{head1}, \texttt{head2}, \ldots{} and \texttt{False}
+otherwise.
+
+As always in FeynCalc, Einstein summation convention is implicitly
+assumed.
+
+The function is optimized for large expressions, i.e.~it is not so good
+as a criterion in e.g.~Select.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcrenamedummyindices}{FCRenameDummyIndices},
+\hyperlink{contract}{Contract},
+\hyperlink{freeindexfreeq}{FreeIndexFreeQ}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]]} 
+ 
+\NormalTok{DummyIndexFreeQ}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{LorentzIndex}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\mu } \overline{q}^{\nu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]} 
+ 
+\NormalTok{DummyIndexFreeQ}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{LorentzIndex}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\mu } \overline{q}^{\mu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]]} 
+ 
+\NormalTok{DummyIndexFreeQ}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SUNIndex}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+T^a.T^b
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{a}\OperatorTok{]]} 
+ 
+\NormalTok{DummyIndexFreeQ}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SUNIndex}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+T^a.T^a
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+\end{document}

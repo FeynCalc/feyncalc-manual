@@ -1,0 +1,77 @@
+% !TeX program = pdflatex
+% !TeX root = FCApart.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcapart}{%
+\section{FCApart}\label{fcapart}}
+
+\texttt{FCApart[\allowbreak{}expr,\ \allowbreak{}\{\allowbreak{}q1,\ \allowbreak{}q2,\ \allowbreak{}...\}]}
+is an internal function that partial fractions a loop integral (that
+depends on \texttt{q1},\texttt{q2}, \ldots) into integrals that contain
+only linearly independent propagators. The algorithm is largely based on
+\href{https://arxiv.org/abs/1204.2314}{arXiv:1204.2314} by F.Feng.
+\texttt{FCApart} is meant to be applied to single loop integrals only.
+If you need to perform partial fractioning on an expression that
+contains multiple loop integrals, use \texttt{ApartFF}.
+
+There is actually no reason, why one would want to apply
+\texttt{FCApart} instead of \texttt{ApartFF}, except for cases, where
+\texttt{FCApart} is called from a different package that interacts with
+FeynCalc.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{apartff}{ApartFF},
+\hyperlink{feynampdenominatorsimplify}{FeynAmpDenominatorSimplify}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]} 
+ 
+\NormalTok{FCApart}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{q^2}{q^2-m^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{m^2}{q^2-m^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{r}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{r}\OperatorTok{\}]} 
+ 
+\NormalTok{FCApart}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{(p\cdot q) (q\cdot r)}{q^2.(q-p)^2.(q-r)^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{p^2 r^2}{4 q^2.(q-p)^2.(q-r)^2}+\frac{p^2+2 r^2}{4 q^2.(-p+q+r)^2}+\frac{q\cdot r}{2 q^2.(-p+q+r)^2}+-\frac{p^2}{4 q^2.(q-p)^2}-\frac{r^2}{4 q^2.(q-r)^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,}\NormalTok{ q1}\OperatorTok{]}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{q1}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q2}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},}\NormalTok{ q1 }\SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{,}\NormalTok{ q2 }\SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{,}\NormalTok{ q1 }\SpecialCharTok{{-}}\NormalTok{ q2}\OperatorTok{]} 
+ 
+\NormalTok{FCApart}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{(p\cdot \;\text{q1}) (p\cdot \;\text{q2})^2}{\left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-p)^2.(\text{q2}-p)^2.(\text{q1}-\text{q2})^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{\left(m^2+p^2\right)^3}{8 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-p)^2.(\text{q1}-\text{q2})^2.(\text{q2}-p)^2}-\frac{\left(m^2+p^2\right)^2}{4 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-p)^2.(\text{q1}-\text{q2})^2}-\frac{m^2+p^2}{4 \left(\text{q1}^2-m^2\right).(\text{q1}-\text{q2})^2.(\text{q2}-p)^2}+\frac{m^2+p^2}{8 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-\text{q2})^2}+\frac{\left(m^2+p^2\right) \left(m^2+2 p^2\right)}{4 \;\text{q1}^2.\text{q2}^2.\left((\text{q1}-p)^2-m^2\right).(\text{q1}-\text{q2})^2}-\frac{\left(m^2+p^2\right) (p\cdot \;\text{q1})}{4 \;\text{q1}^2.\text{q2}^2.(\text{q1}-\text{q2})^2.\left((\text{q2}-p)^2-m^2\right)}-\frac{\left(m^2+p^2\right) (p\cdot \;\text{q1})}{4 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-\text{q2})^2.(\text{q2}-p)^2}-\frac{p\cdot \;\text{q1}}{4 \left(\text{q1}^2-m^2\right).(\text{q1}-\text{q2})^2.(\text{q2}-p)^2}+\frac{p\cdot \;\text{q1}}{4 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-\text{q2})^2}-\frac{p\cdot \;\text{q1}}{4 \left(\text{q2}^2-m^2\right).(\text{q1}-p)^2.(\text{q1}-\text{q2})^2}
+\end{dmath*}
+\end{document}

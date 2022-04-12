@@ -1,0 +1,82 @@
+% !TeX program = pdflatex
+% !TeX root = Nielsen.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{nielsen}{%
+\section{Nielsen}\label{nielsen}}
+
+\texttt{Nielsen[\allowbreak{}i,\ \allowbreak{}j,\ \allowbreak{}x]}
+denotes Nielsen's polylogarithm.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{simplifypolylog}{SimplifyPolyLog}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Nielsen}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{2}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+S_{12}(x)
+\end{dmath*}
+
+Numerical evaluation is done via
+\texttt{N[\allowbreak{}Nielsen[\allowbreak{}n_,\ \allowbreak{}p_,\ \allowbreak{}x_]] := (-1)^(n+p-1)/(n-1)!/p! NIntegrate[\allowbreak{}Log[\allowbreak{}1-x t]^p Log[\allowbreak{}t]^(n-1)/t,\ \allowbreak{}\{\allowbreak{}t,\ \allowbreak{}0,\ \allowbreak{}1\}]}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{N}\OperatorTok{[}\NormalTok{Nielsen}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{2}\OperatorTok{,}\NormalTok{ .}\DecValTok{45}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0.0728716
+\end{dmath*}
+
+Some special values are built in.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\{}\NormalTok{Nielsen}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{2}\OperatorTok{,} \DecValTok{0}\OperatorTok{],}\NormalTok{ Nielsen}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{2}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{],}\NormalTok{ Nielsen}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{2}\OperatorTok{,} \DecValTok{1}\SpecialCharTok{/}\DecValTok{2}\OperatorTok{],}\NormalTok{ Nielsen}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{]\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{0,\frac{\zeta (3)}{8},\frac{\zeta (3)}{8},\zeta (3)\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Nielsen}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{2}\OperatorTok{,} \FunctionTok{x}\OperatorTok{,} \FunctionTok{PolyLog} \OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\text{Li}_3(1-x)+\text{Li}_2(1-x) \log (1-x)+\frac{1}{2} \log (x) \log ^2(1-x)+\zeta (3)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Nielsen}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{3}\OperatorTok{,} \FunctionTok{x}\OperatorTok{,} \FunctionTok{PolyLog} \OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\text{Li}_4(1-x)-\frac{1}{2} \;\text{Li}_2(1-x) \log ^2(1-x)+\text{Li}_3(1-x) \log (1-x)-\frac{1}{6} \log (x) \log ^3(1-x)+\frac{\pi ^4}{90}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Nielsen}\OperatorTok{[}\DecValTok{3}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \FunctionTok{x}\OperatorTok{,} \FunctionTok{PolyLog} \OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{Li}_4(x)
+\end{dmath*}
+\end{document}

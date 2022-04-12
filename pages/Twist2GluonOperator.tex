@@ -1,0 +1,55 @@
+% !TeX program = pdflatex
+% !TeX root = Twist2GluonOperator.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{twist2gluonoperator}{%
+\section{Twist2GluonOperator}\label{twist2gluonoperator}}
+
+\texttt{Twist2GluonOperator[\allowbreak{}\{\allowbreak{}p,\ \allowbreak{}mu,\ \allowbreak{}a\},\ \allowbreak{}\{\allowbreak{}nu,\ \allowbreak{}b\}]}
+or
+\texttt{Twist2GluonOperator[\allowbreak{}p,\ \allowbreak{}\{\allowbreak{}mu,\ \allowbreak{}a\},\ \allowbreak{}\{\allowbreak{}nu,\ \allowbreak{}b\}]}
+or
+\texttt{Twist2GluonOperator[\allowbreak{}p,\ \allowbreak{}mu,\ \allowbreak{}a,\ \allowbreak{}nu,\ \allowbreak{}b]}
+yields the 2-gluon operator (\texttt{p} is ingoing momentum
+corresponding to Lorentz index \texttt{mu}).
+
+\texttt{Twist2GluonOperator[\allowbreak{}\{\allowbreak{}p,\ \allowbreak{}mu,\ \allowbreak{}a\},\ \allowbreak{}\{\allowbreak{}q,\ \allowbreak{}nu,\ \allowbreak{}b\},\ \allowbreak{}\{\allowbreak{}k,\ \allowbreak{}la,\ \allowbreak{}c\}]}
+or
+\texttt{Twist2GluonOperator[\allowbreak{} p,\ \allowbreak{}mu,\ \allowbreak{}a ,\ \allowbreak{}q,\ \allowbreak{}nu,\ \allowbreak{}b ,\ \allowbreak{}k,\ \allowbreak{}la,\ \allowbreak{}c]}
+gives the 3-gluon operator.
+
+\texttt{Twist2GluonOperator[\allowbreak{}\{\allowbreak{}p,\ \allowbreak{}mu,\ \allowbreak{}a\},\ \allowbreak{}\{\allowbreak{}q,\ \allowbreak{}nu,\ \allowbreak{}b\},\ \allowbreak{}\{\allowbreak{}k,\ \allowbreak{}la,\ \allowbreak{}c\},\ \allowbreak{}\{\allowbreak{}s,\ \allowbreak{}si,\ \allowbreak{}d\}]}
+or
+\texttt{Twist2GluonOperator[\allowbreak{}p,\ \allowbreak{}mu,\ \allowbreak{}a ,\ \allowbreak{}q,\ \allowbreak{}nu,\ \allowbreak{}b ,\ \allowbreak{}k,\ \allowbreak{}la,\ \allowbreak{}c ,\ \allowbreak{}s,\ \allowbreak{}si,\ \allowbreak{}d]}
+yields the 4-Gluon operator.
+
+The dimension is determined by the option \texttt{Dimension}. The
+setting of the option \texttt{Polarization} (unpolarized: \texttt{0};
+polarized: \texttt{1}) determines whether the unpolarized or polarized
+Feynman rule is returned.
+
+With the setting \texttt{Explicit} set to \texttt{False} the
+color-structure and the (\texttt{1+(-1)^OPEm}) (for polarized:
+\texttt{(1-(-1)^OPEm)}) is extracted and the color indices are omitted
+in the arguments of \texttt{Twist2GluonOperator}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{twist2quarkoperator}{Twist2QuarkOperator}.
+
+\subsection{Examples}
+
+The setting All for Explicit performs the sums.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Twist2GluonOperator}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{b}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{r}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \FunctionTok{c}\OperatorTok{\},}\NormalTok{ Polarization }\OtherTok{{-}\textgreater{}} \DecValTok{1}\OperatorTok{,}\NormalTok{ Explicit }\OtherTok{{-}\textgreater{}} \ConstantTok{All}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(1-(-1)^m\right) g_s f^{abc} \left(O_{\nu \, \rho \, \mu }^{\text{G3}}(q,r,p)\right)
+\end{dmath*}
+\end{document}

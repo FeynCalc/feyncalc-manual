@@ -1,0 +1,60 @@
+% !TeX program = pdflatex
+% !TeX root = CV.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{cv}{%
+\section{CV}\label{cv}}
+
+\texttt{CV[\allowbreak{}p,\ \allowbreak{}i]} is a 3-dimensional
+Cartesian vector and is transformed into
+\texttt{CartesianPair[\allowbreak{}CartesianMomentum[\allowbreak{}p],\ \allowbreak{}CartesianIndex[\allowbreak{}i]]}
+by \texttt{FeynCalcInternal}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fv}{FV}, \hyperlink{pair}{Pair},
+\hyperlink{cartesianpair}{CartesianPair}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CV}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\overline{p}-\overline{q}\right)^i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{CV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*CartesianPair[CartesianIndex[i], CartesianMomentum[p]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{ExpandScalarProduct} is used to expand momenta in \texttt{CV}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ExpandScalarProduct}\OperatorTok{[}\NormalTok{CV}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^i-\overline{q}^i
+\end{dmath*}
+\end{document}

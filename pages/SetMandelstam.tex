@@ -1,0 +1,91 @@
+% !TeX program = pdflatex
+% !TeX root = SetMandelstam.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{setmandelstam}{%
+\section{SetMandelstam}\label{setmandelstam}}
+
+\texttt{SetMandelstam[\allowbreak{}s,\ \allowbreak{}t,\ \allowbreak{}u,\ \allowbreak{}p1 ,\ \allowbreak{}p2 ,\ \allowbreak{}p3 ,\ \allowbreak{}p4 ,\ \allowbreak{}m1 ,\ \allowbreak{}m2 ,\ \allowbreak{}m3 ,\ \allowbreak{}m4 ]}
+defines the Mandelstam variables \(s=(p_1+p_2)^2\), \(t=(p_1+p_3)^2\),
+\(u=(p_1+p_4)^2\) and sets the momenta on-shell: \(p_1^2=m_1^2\),
+\(p_2^2=m_2^2\), \(p_3^2=m_3^2\), \(p_4^2=m_4^2\). Notice that
+\(p_1+p_2+p_3+p_4=0\) is assumed.
+
+\texttt{SetMandelstam[\allowbreak{}x,\ \allowbreak{}\{\allowbreak{}p1,\ \allowbreak{}p2,\ \allowbreak{}p3,\ \allowbreak{}p4,\ \allowbreak{}p5\},\ \allowbreak{}\{\allowbreak{}m1,\ \allowbreak{}m2,\ \allowbreak{}m3,\ \allowbreak{}m4,\ \allowbreak{}m5\}]}
+defines \(x[i, j] = (p_i+p_j)^2\) and sets the \(p_i\) on-shell. The
+\(p_i\) satisfy: \(p_1 + p_2 + p_3 + p_4 + p_5 = 0\).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{mandelstam}{Mandelstam}.
+
+\subsection{Examples}
+
+\texttt{SetMandelstam} assumes all momenta to be ingoing. For scattering
+processes with \(p_1+p_2=p_3+p_4\), the outgoing momenta should be
+written with a minus sign.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClearScalarProducts}\OperatorTok{[]} 
+ 
+\NormalTok{SetMandelstam}\OperatorTok{[}\FunctionTok{s}\OperatorTok{,} \FunctionTok{t}\OperatorTok{,} \FunctionTok{u}\OperatorTok{,}\NormalTok{ p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,} \SpecialCharTok{{-}}\NormalTok{p3}\OperatorTok{,} \SpecialCharTok{{-}}\NormalTok{p4}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{,}\NormalTok{ m3}\OperatorTok{,}\NormalTok{ m4}\OperatorTok{]}\NormalTok{; }
+ 
+\NormalTok{SP}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{]} 
+ 
+\NormalTok{SP}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{]} 
+ 
+\NormalTok{SP}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p4}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{\text{m1}^2}{2}-\frac{\text{m2}^2}{2}+\frac{s}{2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{\text{m1}^2}{2}+\frac{\text{m3}^2}{2}-\frac{t}{2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{\text{m1}^2}{2}+\frac{\text{m4}^2}{2}-\frac{u}{2}
+\end{dmath*}
+
+\texttt{SetMandelstam} simultaneously sets scalar products in \(4\) and
+\$D dimensions. This is controlled by the option \texttt{Dimension}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{]} 
+ 
+\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{\text{m1}^2}{2}-\frac{\text{m2}^2}{2}+\frac{s}{2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{\text{m1}^2}{2}+\frac{\text{m3}^2}{2}-\frac{t}{2}
+\end{dmath*}
+
+It is also possible to have more than just 4 momenta. For example, for
+\(p1+p2=p3+p4+p5\) we can obtain
+\texttt{x[\allowbreak{}i,\ \allowbreak{}j]} given by \((p_i+p_j)^2\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClearScalarProducts}\OperatorTok{[]}\NormalTok{; }
+ 
+\NormalTok{SetMandelstam}\OperatorTok{[}\FunctionTok{x}\OperatorTok{,} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,} \SpecialCharTok{{-}}\NormalTok{p3}\OperatorTok{,} \SpecialCharTok{{-}}\NormalTok{p4}\OperatorTok{,} \SpecialCharTok{{-}}\NormalTok{p5}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{m1}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{,}\NormalTok{ m3}\OperatorTok{,}\NormalTok{ m4}\OperatorTok{,}\NormalTok{ m5}\OperatorTok{\}]}\NormalTok{; }
+ 
+\NormalTok{SPD}\OperatorTok{[}\NormalTok{p4}\OperatorTok{,}\NormalTok{ p5}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} x(4,5)-\frac{\text{m4}^2}{2}-\frac{\text{m5}^2}{2}
+\end{dmath*}
+\end{document}

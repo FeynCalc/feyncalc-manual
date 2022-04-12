@@ -1,0 +1,30 @@
+% !TeX program = pdflatex
+% !TeX root = FCHighlight.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fchighlight}{%
+\section{FCHighlight}\label{fchighlight}}
+
+\texttt{FCHighlight[\allowbreak{}exp,\ \allowbreak{}\{\allowbreak{}\{\allowbreak{}symbol1,\ \allowbreak{}color1\},\ \allowbreak{}\{\allowbreak{}symbol2,\ \allowbreak{}color2\},\ \allowbreak{}...\}]}
+highlights the given set of symbols in the output using \texttt{Style}
+and the provided colors. This works only in the frontend and alters the
+input expression in such a way, that it cannot be processed further
+(because of the introduced \texttt{Style} heads).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCHighlight}\OperatorTok{[}\FunctionTok{Expand}\OperatorTok{[}\NormalTok{(}\FunctionTok{a} \SpecialCharTok{+} \FunctionTok{b} \SpecialCharTok{+} \FunctionTok{c}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{],} \OperatorTok{\{\{}\FunctionTok{a}\OperatorTok{,} \FunctionTok{Red}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{b}\OperatorTok{,} \FunctionTok{Blue}\OperatorTok{\}\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+2 a b+2 a c+a^2+2 b c+b^2+c^2
+\end{dmath*}
+\end{document}

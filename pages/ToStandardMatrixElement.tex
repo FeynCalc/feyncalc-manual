@@ -1,0 +1,43 @@
+% !TeX program = pdflatex
+% !TeX root = ToStandardMatrixElement.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{tostandardmatrixelement}{%
+\section{ToStandardMatrixElement}\label{tostandardmatrixelement}}
+
+\texttt{ToStandardMatrixElement[\allowbreak{}exp]} wraps Dirac
+structures, color structures and polarization vectors with the head
+\texttt{StandardMatrixElement}.
+
+The idea of having standard matrix elements stems from A. Denner's
+``Techniques for the calculation of electroweak radiative corrections at
+the one-loop level and results for W-physics at LEP200'',
+cf.~\href{https://arxiv.org/abs/0709.1075}{arXiv:0709.1075}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{diracsubstitute5}{DiracSubstitute5},
+\hyperlink{diracgamma}{DiracGamma},
+\hyperlink{todiracgamma67}{ToDiracGamma67}, \hyperlink{spinor}{Spinor}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{k2}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{]}\NormalTok{ . GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . Spinor}\OperatorTok{[}\SpecialCharTok{{-}}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}
+\NormalTok{   Spinor}\OperatorTok{[}\SpecialCharTok{{-}}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{ps}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_s"}\OperatorTok{],} \DecValTok{1}\OperatorTok{]}\NormalTok{ . GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{pd}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_d"}\OperatorTok{],} \DecValTok{1}\OperatorTok{]} 
+ 
+\NormalTok{ToStandardMatrixElement}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(\varphi (\text{k2})).\gamma ^{\mu }.(\varphi (-\text{k1})) \left(\varphi (-\text{ps},m_s)\right).\gamma ^{\mu }.\left(\varphi (\text{pd},m_d)\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left\| (\varphi (\text{k2})).\gamma ^{\mu }.\bar{\gamma }^6.(\varphi (-\text{k1})) \left(\varphi (-\text{ps},m_s)\right).\gamma ^{\mu }.\bar{\gamma }^6.\left(\varphi (\text{pd},m_d)\right)\right\| +\left\| (\varphi (\text{k2})).\gamma ^{\mu }.\bar{\gamma }^7.(\varphi (-\text{k1})) \left(\varphi (-\text{ps},m_s)\right).\gamma ^{\mu }.\bar{\gamma }^6.\left(\varphi (\text{pd},m_d)\right)\right\| +\left\| (\varphi (\text{k2})).\gamma ^{\mu }.\bar{\gamma }^6.(\varphi (-\text{k1})) \left(\varphi (-\text{ps},m_s)\right).\gamma ^{\mu }.\bar{\gamma }^7.\left(\varphi (\text{pd},m_d)\right)\right\| +\left\| (\varphi (\text{k2})).\gamma ^{\mu }.\bar{\gamma }^7.(\varphi (-\text{k1})) \left(\varphi (-\text{ps},m_s)\right).\gamma ^{\mu }.\bar{\gamma }^7.\left(\varphi (\text{pd},m_d)\right)\right\|
+\end{dmath*}
+\end{document}

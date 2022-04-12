@@ -1,0 +1,38 @@
+% !TeX program = pdflatex
+% !TeX root = SUNFJacobi.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{sunfjacobi}{%
+\section{SUNFJacobi}\label{sunfjacobi}}
+
+\texttt{SUNFJacobi} is an option for \texttt{SUNSimplify}, indicating
+whether the Jacobi identity should be used.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{sunf}{SUNF},
+\hyperlink{sunsimplify}{SUNSimplify}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]}\NormalTok{ SUNF}\OperatorTok{[}\FunctionTok{e}\OperatorTok{,} \FunctionTok{f}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ SUNSimplify}\OperatorTok{[}\NormalTok{\#}\OperatorTok{,}\NormalTok{ SUNFJacobi }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}\NormalTok{ \&}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f^{cef} f^{abc}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]}\NormalTok{ SUNF}\OperatorTok{[}\FunctionTok{e}\OperatorTok{,} \FunctionTok{f}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ SUNSimplify}\OperatorTok{[}\NormalTok{\#}\OperatorTok{,}\NormalTok{ SUNFJacobi }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}\NormalTok{ \&}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f^{bcf} f^{ace}-f^{acf} f^{bce}
+\end{dmath*}
+\end{document}

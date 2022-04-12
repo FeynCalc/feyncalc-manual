@@ -1,0 +1,56 @@
+% !TeX program = pdflatex
+% !TeX root = PauliXi.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{paulixi}{%
+\section{PauliXi}\label{paulixi}}
+
+\texttt{PauliXi[\allowbreak{}I]} represents a two-component Pauli spinor
+\(\xi\), while \texttt{PauliXi[\allowbreak{}-I]} stands for
+\(\xi^{\dagger }\).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{paulieta}{PauliEta}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliXi}\OperatorTok{[}\FunctionTok{I}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\xi
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliXi}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\xi ^{\dagger }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliXi}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{]}\NormalTok{ . SIS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]}\NormalTok{ . PauliEta}\OperatorTok{[}\FunctionTok{I}\OperatorTok{]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ ComplexConjugate }
+  
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\xi ^{\dagger }.\left(\bar{\sigma }\cdot \overline{p}\right).\eta
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\eta ^{\dagger }.\left(\bar{\sigma }\cdot \overline{p}\right).\xi
+\end{dmath*}
+\end{document}

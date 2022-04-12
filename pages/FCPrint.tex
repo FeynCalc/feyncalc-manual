@@ -1,0 +1,34 @@
+% !TeX program = pdflatex
+% !TeX root = FCPrint.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcprint}{%
+\section{FCPrint}\label{fcprint}}
+
+\texttt{FCPrint[\allowbreak{}level,\ \allowbreak{}x]} outputs
+\texttt{Print[\allowbreak{}x]} if the value of \texttt{\$VeryVerbose} is
+larger than level.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{veryverbose}{\$VeryVerbose}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCPrint}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \StringTok{"Test"}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCPrint}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \StringTok{"Test"}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{Test}
+\end{dmath*}
+\end{document}

@@ -1,0 +1,132 @@
+% !TeX program = pdflatex
+% !TeX root = SUNF.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{sunf}{%
+\section{SUNF}\label{sunf}}
+
+\texttt{SUNF[\allowbreak{}a,\ \allowbreak{}b,\ \allowbreak{}c]} are the
+structure constants of \(SU(N)\). The arguments
+\texttt{a,\ \allowbreak{}b,\ \allowbreak{}c} should be of symbolic type.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{sund}{SUND},
+\hyperlink{sundelta}{SUNDelta}, \hyperlink{sunindex}{SUNIndex},
+\hyperlink{sunsimplify}{SUNSimplify}, \hyperlink{sunt}{SUNT},
+\hyperlink{trick}{Trick}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]} \FunctionTok{x} \SpecialCharTok{+}\NormalTok{ SUNF}\OperatorTok{[}\FunctionTok{b}\OperatorTok{,} \FunctionTok{a}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]} 
+ 
+\NormalTok{Calc}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]} 
+ 
+\NormalTok{SUNSimplify}\OperatorTok{[}\SpecialCharTok{\%\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+x f^{abc}+f^{bac}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+x f^{abc}-f^{abc}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+(x-1) f^{abc}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ Calc}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f^{aab}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+This is a consequence of the usual choice for the normalization of the
+\(T_a\) generators.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,}\NormalTok{ Explicit }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+2 i \left(\text{tr}(T^a.T^c.T^b)-\text{tr}(T^a.T^b.T^c)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNSimplify}\OperatorTok{[}\NormalTok{SUNF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]}\NormalTok{ SUNF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{d}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+C_A \delta ^{cd}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNSimplify}\OperatorTok{[}\NormalTok{SUNF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{],}\NormalTok{ Explicit }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-2 i \left(\text{tr}(T^a.T^b.T^c)-\text{tr}(T^b.T^a.T^c)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SUNF[a, b, c]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SUNF[SUNIndex[a], SUNIndex[b], SUNIndex[c]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//}\NormalTok{ FCE }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SUNF[a, b, c]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNF}\OperatorTok{[}\FunctionTok{b}\OperatorTok{,} \FunctionTok{a}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ FCI}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f^{bac}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-f^{abc}
+\end{dmath*}
+\end{document}

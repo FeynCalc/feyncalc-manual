@@ -1,0 +1,30 @@
+% !TeX program = pdflatex
+% !TeX root = SUNN.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{sunn}{%
+\section{SUNN}\label{sunn}}
+
+\texttt{SUNN} denotes the number of colors.
+\texttt{Trick[\allowbreak{}SUNDelta[\allowbreak{}a,\ \allowbreak{}a]]}
+yields \(n_c^2 -1\).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{sunsimplify}{SUNSimplify},
+\hyperlink{trick}{Trick}, \hyperlink{sunindex}{SUNIndex},
+\hyperlink{ca}{CA}, \hyperlink{cf}{CF}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNSimplify}\OperatorTok{[}\NormalTok{SUNDelta}\OperatorTok{[}\NormalTok{SUNIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{],}\NormalTok{ SUNIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{]],}\NormalTok{ SUNNToCACF }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+N^2-1
+\end{dmath*}
+\end{document}

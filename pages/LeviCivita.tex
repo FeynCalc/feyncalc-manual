@@ -1,0 +1,150 @@
+% !TeX program = pdflatex
+% !TeX root = LeviCivita.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{levicivita}{%
+\section{LeviCivita}\label{levicivita}}
+
+\texttt{LeviCivita[\allowbreak{}mu,\ \allowbreak{}nu,\ \allowbreak{}rho,\ \allowbreak{}si]}
+is an input function for the totally antisymmetric Levi-Civita tensor.
+It evaluates automatically to the internal representation
+\texttt{Eps[\allowbreak{}LorentzIndex[\allowbreak{}mu],\ \allowbreak{}LorentzIndex[\allowbreak{}nu],\ \allowbreak{}LorentzIndex[\allowbreak{}rho],\ \allowbreak{}LorentzIndex[\allowbreak{}si]]}
+(or with a second argument in \texttt{LorentzIndex} for the
+\texttt{Dimension}, if the option \texttt{Dimension} of
+\texttt{LeviCivita} is changed).
+
+\texttt{LeviCivita[\allowbreak{}mu ,\ \allowbreak{}nu,\ \allowbreak{}...][\allowbreak{}p,\ \allowbreak{}...]}
+evaluates to
+\texttt{Eps[\allowbreak{}LorentzIndex[\allowbreak{}mu],\ \allowbreak{}LorentzIndex[\allowbreak{}nu],\ \allowbreak{}...,\ \allowbreak{}Momentum[\allowbreak{}p],\ \allowbreak{}...]}.
+
+The shortcut \texttt{LeviCivita} is deprecated, please use \texttt{LC}
+instead!
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{lc}{LC}, \hyperlink{fci}{FCI}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LeviCivita}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Gamma}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Delta}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\alpha \beta \gamma \delta }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LeviCivita}\OperatorTok{[][}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,} \FunctionTok{r}\OperatorTok{,} \FunctionTok{s}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\overline{p}\overline{q}\overline{r}\overline{s}}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LeviCivita}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{]][}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\alpha \beta \overline{p}\overline{q}}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LeviCivita}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{]][}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*Eps[LorentzIndex[\textbackslash{}[Alpha]], LorentzIndex[\textbackslash{}[Beta]], Momentum[p], Momentum[q]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{LeviCivita} is scheduled for removal in the future versions of
+FeynCalc. The safe alternative is to use \texttt{LC}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LC}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Gamma}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Delta}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\alpha \beta \gamma \delta }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LC}\OperatorTok{[][}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,} \FunctionTok{r}\OperatorTok{,} \FunctionTok{s}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\overline{p}\overline{q}\overline{r}\overline{s}}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LC}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{]][}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\alpha \beta \overline{p}\overline{q}}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LCD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Gamma}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Delta}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overset{\text{}}{\epsilon }^{\alpha \beta \gamma \delta }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LCD}\OperatorTok{[][}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,} \FunctionTok{r}\OperatorTok{,} \FunctionTok{s}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overset{\text{}}{\epsilon }^{pqrs}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LCD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{]][}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overset{\text{}}{\epsilon }^{\alpha \beta pq}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{LC}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Gamma}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Delta}\OperatorTok{]]]} \ExtensionTok{===}\NormalTok{ LeviCivita}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Gamma}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Delta}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{LCD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Gamma}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Delta}\OperatorTok{]]]} \ExtensionTok{===}\NormalTok{ LeviCivita}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Gamma}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Delta}\OperatorTok{],}\NormalTok{ Dimension }\OtherTok{{-}\textgreater{}} \FunctionTok{D}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+\end{document}

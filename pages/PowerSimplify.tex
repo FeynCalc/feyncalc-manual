@@ -1,0 +1,65 @@
+% !TeX program = pdflatex
+% !TeX root = PowerSimplify.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{powersimplify}{%
+\section{PowerSimplify}\label{powersimplify}}
+
+\texttt{PowerSimplify[\allowbreak{}exp]} simplifies \texttt{(-x)^a} to
+\texttt{(-1)^a x^a} and \texttt{(y-x)^n} to \texttt{(-1)^n (x-y)^n} thus
+assuming that the exponent is an integer (even if it is symbolic).
+
+Furthermore, \texttt{(-1)^(a+n)} and \texttt{I^(a+n)} are expanded and
+\texttt{(I)^(2 m) -> (-1)^m and (-1)^(n_Integer?EvenQ m) -> 1} and
+\texttt{(-1)^(n_Integer?OddQ m) -> (-1)^m} for \texttt{n} even and odd
+respectively and (-1)\^{}(-n) -\textgreater{} (-1)\^{}n and Exp{[}I m
+Pi{]} -\textgreater{} (-1)\^{}m.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{datatype}{DataType},
+\hyperlink{opem}{OPEm}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PowerSimplify}\OperatorTok{[}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\SpecialCharTok{\^{}}\NormalTok{(}\DecValTok{2}\NormalTok{ OPEm)}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+1
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PowerSimplify}\OperatorTok{[}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\SpecialCharTok{\^{}}\NormalTok{(OPEm }\SpecialCharTok{+} \DecValTok{2}\NormalTok{)}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(-1)^m
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PowerSimplify}\OperatorTok{[}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\SpecialCharTok{\^{}}\NormalTok{(OPEm }\SpecialCharTok{{-}} \DecValTok{2}\NormalTok{)}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(-1)^m
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PowerSimplify}\OperatorTok{[}\FunctionTok{I}\SpecialCharTok{\^{}}\NormalTok{(}\DecValTok{2}\NormalTok{ OPEm)}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(-1)^m
+\end{dmath*}
+\end{document}

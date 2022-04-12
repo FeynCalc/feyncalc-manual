@@ -1,0 +1,114 @@
+% !TeX program = pdflatex
+% !TeX root = AntiCommutator.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{anticommutator}{%
+\section{AntiCommutator}\label{anticommutator}}
+
+\texttt{AntiCommutator[\allowbreak{}x,\ \allowbreak{}y] = c} defines the
+anti-commutator of the non commuting objects \texttt{x} and \texttt{y}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{commutator}{Commutator},
+\hyperlink{commutatorexplicit}{CommutatorExplicit},
+\hyperlink{declarenoncommutative}{DeclareNonCommutative},
+\hyperlink{dotsimplify}{DotSimplify}.
+
+\subsection{Examples}
+
+This declares \texttt{a} and \texttt{b} as noncommutative variables.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DeclareNonCommutative}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]} 
+ 
+\NormalTok{AntiCommutator}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]} 
+ 
+\NormalTok{CommutatorExplicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{a,\medspace b\}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+a.b+b.a
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CommutatorExplicit}\OperatorTok{[}\NormalTok{AntiCommutator}\OperatorTok{[}\FunctionTok{a} \SpecialCharTok{+} \FunctionTok{b}\OperatorTok{,} \FunctionTok{a} \SpecialCharTok{{-}} \DecValTok{2} \FunctionTok{b} \OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(a-2 b).(a+b)+(a+b).(a-2 b)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DotSimplify}\OperatorTok{[}\NormalTok{AntiCommutator}\OperatorTok{[}\FunctionTok{a} \SpecialCharTok{+} \FunctionTok{b}\OperatorTok{,} \FunctionTok{a} \SpecialCharTok{{-}} \DecValTok{2} \FunctionTok{b} \OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-a.b-b.a+2 a.a-4 b.b
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DeclareNonCommutative}\OperatorTok{[}\FunctionTok{c}\OperatorTok{,} \FunctionTok{d}\OperatorTok{,}\NormalTok{ ct}\OperatorTok{,} \FunctionTok{dt}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+Defining \texttt{\{\allowbreak{}c,\ \allowbreak{}d\} = z} results in
+replacements of \texttt{c.d} by \texttt{z-d.c.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{AntiCommutator}\OperatorTok{[}\FunctionTok{c}\OperatorTok{,} \FunctionTok{d}\OperatorTok{]} \ExtensionTok{=} \FunctionTok{z} 
+ 
+\NormalTok{DotSimplify}\OperatorTok{[} \FunctionTok{d}\NormalTok{ . }\FunctionTok{c}\NormalTok{ . }\FunctionTok{d} \OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+z
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+d z-d.d.c
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{AntiCommutator}\OperatorTok{[}\FunctionTok{dt}\OperatorTok{,}\NormalTok{ ct}\OperatorTok{]} \ExtensionTok{=}\NormalTok{ zt}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{zt}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DotSimplify}\OperatorTok{[}\FunctionTok{dt}\NormalTok{ . ct . }\FunctionTok{dt}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{dt} \;\text{zt}-\text{ct}.\text{dt}.\text{dt}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{UnDeclareNonCommutative}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{d}\OperatorTok{,}\NormalTok{ ct}\OperatorTok{,} \FunctionTok{dt}\OperatorTok{]} 
+ 
+\NormalTok{UnDeclareAllAntiCommutators}\OperatorTok{[]}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

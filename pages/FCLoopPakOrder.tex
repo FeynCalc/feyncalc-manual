@@ -1,0 +1,188 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopPakOrder.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fclooppakorder}{%
+\section{FCLoopPakOrder}\label{fclooppakorder}}
+
+\texttt{FCLoopPakOrder[\allowbreak{}poly,\ \allowbreak{}\{\allowbreak{}x1,\ \allowbreak{}x2,\ \allowbreak{}...\}]}
+determines a canonical ordering of the Feynman parameters
+\texttt{x1,\ \allowbreak{}x2,\ \allowbreak{}...} in the polynomial
+\texttt{poly}.
+
+The function uses the algorithm of Alexey Pak
+\href{https://arxiv.org/abs/1111.0868}{arXiv:1111.0868}. Cf. also the
+PhD thesis of Jens Hoff
+\href{https://doi.org/10.5445/IR/1000047447}{10.5445/IR/1000047447} for
+the detailed description of a possible implementation.
+
+The current implementation is based on the \texttt{PolyOrdering}
+function from FIRE 6
+\href{https://arxiv.org/abs/1901.07808}{arXiv:1901.07808}
+
+The function can also directly perform the renaming of the Feynman
+parameter variables returning the original polynomial in the canonical
+form. This is done by setting the option \texttt{Rename} to
+\texttt{True}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fctopology}{FCTopology},
+\hyperlink{gli}{GLI}, \hyperlink{fclooptopakform}{FCLoopToPakForm},
+\hyperlink{fclooppakorder}{FCLoopPakOrder}.
+
+\subsection{Examples}
+
+\hypertarget{canonicalizing-a-polynomial}{%
+\subsubsection{Canonicalizing a
+polynomial}\label{canonicalizing-a-polynomial}}
+
+Let us consider the following product of \texttt{U} and \texttt{F}
+polynomials of some loop integral
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{poly }\ExtensionTok{=}\NormalTok{ (}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{4}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{4}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{]} \SpecialCharTok{+} 
+     \FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{[}\DecValTok{4}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{*}\NormalTok{ (m1}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ m1}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]} \SpecialCharTok{+} 
+\NormalTok{     m1}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{   m3}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]} \SpecialCharTok{+} 
+\NormalTok{     m3}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ m1}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{4}\OperatorTok{]} \SpecialCharTok{{-}} 
+\NormalTok{      SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{4}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{4}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ m1}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{4}\OperatorTok{]} \SpecialCharTok{{-}} 
+\NormalTok{      SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{4}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{   m2}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{4}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{4}\OperatorTok{]} \SpecialCharTok{{-}} 
+\NormalTok{      SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{4}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{4}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ m1}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{]} \SpecialCharTok{+}   
+\NormalTok{      m1}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{]} \SpecialCharTok{{-}}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{]} \SpecialCharTok{+} 
+\NormalTok{      m3}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{]} \SpecialCharTok{{-}}\NormalTok{   SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{]} \SpecialCharTok{+} 
+\NormalTok{      m2}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{]} \SpecialCharTok{{-}}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ m1}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{4}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{]} \SpecialCharTok{{-}} 
+\NormalTok{      SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{4}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{4}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{4}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{]} \SpecialCharTok{{-}} 
+\NormalTok{      SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{4}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{]}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(x(1) x(2)+x(3) x(2)+x(4) x(2)+x(5) x(2)+x(1) x(3)+x(3) x(4)+x(1) x(5)+x(4) x(5)) \left(\text{m1}^2 x(1)^2 x(2)+\text{m1}^2 x(1)^2 x(3)+\text{m1}^2 x(1) x(2) x(3)+\text{m1}^2 x(1) x(2) x(4)+\text{m1}^2 x(1) x(3) x(4)+\text{m1}^2 x(1)^2 x(5)+\text{m1}^2 x(1) x(2) x(5)+\text{m1}^2 x(1) x(4) x(5)+\text{m2}^2 x(1) x(3)^2+\text{m2}^2 x(2) x(3)^2+\text{m2}^2 x(1) x(2) x(3)+\text{m2}^2 x(3)^2 x(4)+\text{m2}^2 x(2) x(3) x(4)+\text{m2}^2 x(1) x(3) x(5)+\text{m2}^2 x(2) x(3) x(5)+\text{m2}^2 x(3) x(4) x(5)+\text{m3}^2 x(1) x(2)^2+\text{m3}^2 x(2)^2 x(3)+\text{m3}^2 x(1) x(2) x(3)+\text{m3}^2 x(2)^2 x(4)+\text{m3}^2 x(2) x(3) x(4)+\text{m3}^2 x(2)^2 x(5)+\text{m3}^2 x(1) x(2) x(5)+\text{m3}^2 x(2) x(4) x(5)-q^2 x(1) x(2) x(4)-q^2 x(1) x(3) x(4)-q^2 x(2) x(3) x(4)-q^2 x(1) x(2) x(5)-q^2 x(1) x(3) x(5)-q^2 x(2) x(3) x(5)-q^2 x(1) x(4) x(5)-q^2 x(3) x(4) x(5)\right)
+\end{dmath*}
+
+Using \texttt{FCLoopPakOrder} we can obtain a canonical ordering for
+this polynomial
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sigma }\ExtensionTok{=}\NormalTok{ FCLoopPakOrder}\OperatorTok{[}\NormalTok{poly}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{ccccc}
+ 1 & 3 & 2 & 5 & 4 \\
+\end{array}
+\right)
+\end{dmath*}
+
+This output implies that the polynomial will become canonically ordered
+upon renaming the Feynman parameter variables as follows
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fpVars }\ExtensionTok{=} \FunctionTok{Table}\OperatorTok{[}\FunctionTok{x}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{i}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{5}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{x(1),x(2),x(3),x(4),x(5)\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{repRule }\ExtensionTok{=} \FunctionTok{Thread}\OperatorTok{[}\FunctionTok{Rule}\OperatorTok{[}\FunctionTok{Extract}\OperatorTok{[}\NormalTok{fpVars}\OperatorTok{,} \FunctionTok{List} \SpecialCharTok{/}\NormalTok{@ }\FunctionTok{First}\OperatorTok{[}\NormalTok{sigma}\OperatorTok{]],}\NormalTok{ fpVars}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{x(1)\to x(1),x(3)\to x(2),x(2)\to x(3),x(5)\to x(4),x(4)\to x(5)\}
+\end{dmath*}
+
+This way we obtain the canonical form of our polynomial \texttt{poly}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{poly }\OtherTok{/.}\NormalTok{ repRule}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(x(1) x(2)+x(3) x(2)+x(5) x(2)+x(1) x(3)+x(1) x(4)+x(3) x(4)+x(3) x(5)+x(4) x(5)) \left(\text{m1}^2 x(1)^2 x(2)+\text{m1}^2 x(1)^2 x(3)+\text{m1}^2 x(1) x(2) x(3)+\text{m1}^2 x(1)^2 x(4)+\text{m1}^2 x(1) x(3) x(4)+\text{m1}^2 x(1) x(2) x(5)+\text{m1}^2 x(1) x(3) x(5)+\text{m1}^2 x(1) x(4) x(5)+\text{m2}^2 x(1) x(2)^2+\text{m2}^2 x(2)^2 x(3)+\text{m2}^2 x(1) x(2) x(3)+\text{m2}^2 x(1) x(2) x(4)+\text{m2}^2 x(2) x(3) x(4)+\text{m2}^2 x(2)^2 x(5)+\text{m2}^2 x(2) x(3) x(5)+\text{m2}^2 x(2) x(4) x(5)+\text{m3}^2 x(1) x(3)^2+\text{m3}^2 x(2) x(3)^2+\text{m3}^2 x(1) x(2) x(3)+\text{m3}^2 x(3)^2 x(4)+\text{m3}^2 x(1) x(3) x(4)+\text{m3}^2 x(3)^2 x(5)+\text{m3}^2 x(2) x(3) x(5)+\text{m3}^2 x(3) x(4) x(5)-q^2 x(1) x(2) x(4)-q^2 x(1) x(3) x(4)-q^2 x(2) x(3) x(4)-q^2 x(1) x(2) x(5)-q^2 x(1) x(3) x(5)-q^2 x(2) x(3) x(5)-q^2 x(1) x(4) x(5)-q^2 x(2) x(4) x(5)\right)
+\end{dmath*}
+
+\hypertarget{checking-equivalence}{%
+\subsubsection{Checking equivalence}\label{checking-equivalence}}
+
+Let us consider the following two polynomials
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{poly1 }\ExtensionTok{=} \SpecialCharTok{{-}}\DecValTok{1}\SpecialCharTok{/}\DecValTok{4}\SpecialCharTok{*}\NormalTok{(}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\NormalTok{) }\SpecialCharTok{{-}}\NormalTok{ (}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{4}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{/}\DecValTok{4} \SpecialCharTok{{-}} 
+\NormalTok{   (}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{/}\DecValTok{4} \SpecialCharTok{+}\NormalTok{ (}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{/}\DecValTok{2} \SpecialCharTok{{-}}\NormalTok{ (}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{/}\DecValTok{4} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{4}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{1}{4} x(4) x(1)^2-\frac{1}{4} x(5) x(1)^2+\frac{1}{2} x(2) x(5) x(1)-\frac{1}{4} x(2)^2 x(3)-\frac{1}{4} x(2)^2 x(5)+x(3) x(4) x(5)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{poly2 }\ExtensionTok{=} \SpecialCharTok{{-}}\DecValTok{1}\SpecialCharTok{/}\DecValTok{4}\SpecialCharTok{*}\NormalTok{(}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\NormalTok{) }\SpecialCharTok{{-}}\NormalTok{ (}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{/}\DecValTok{4} \SpecialCharTok{+} 
+   \FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{4}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ (}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{/}\DecValTok{2} \SpecialCharTok{{-}}\NormalTok{ (}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\SpecialCharTok{/}\DecValTok{4} \SpecialCharTok{{-}}\NormalTok{ (}\FunctionTok{x}\OperatorTok{[}\DecValTok{4}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{5}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\SpecialCharTok{/}\DecValTok{4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{1}{4} x(2) x(1)^2-\frac{1}{4} x(3) x(1)^2+\frac{1}{2} x(3) x(5) x(1)-\frac{1}{4} x(3) x(5)^2-\frac{1}{4} x(4) x(5)^2+x(2) x(3) x(4)
+\end{dmath*}
+
+These polynomials are not identical
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{poly1 }\ExtensionTok{===}\NormalTok{ poly2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+
+However, one can easily recognize that they are actually the same upon
+renaming Feynman parameters \texttt{x[\allowbreak{}i]} in a suitable
+way. \texttt{FCLoopPakOrder} can do such renamings automatically
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{canoPoly1 }\ExtensionTok{=}\NormalTok{ FCLoopPakOrder}\OperatorTok{[}\NormalTok{poly1}\OperatorTok{,} \FunctionTok{x}\OperatorTok{,}\NormalTok{ Rename }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]} 
+ 
+\NormalTok{canoPoly2 }\ExtensionTok{=}\NormalTok{ FCLoopPakOrder}\OperatorTok{[}\NormalTok{poly2}\OperatorTok{,} \FunctionTok{x}\OperatorTok{,}\NormalTok{ Rename }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{1}{4} x(3) x(1)^2-\frac{1}{4} x(5) x(1)^2+\frac{1}{2} x(2) x(3) x(1)-\frac{1}{4} x(2)^2 x(3)-\frac{1}{4} x(2)^2 x(4)+x(3) x(4) x(5)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-\frac{1}{4} x(3) x(1)^2-\frac{1}{4} x(5) x(1)^2+\frac{1}{2} x(2) x(3) x(1)-\frac{1}{4} x(2)^2 x(3)-\frac{1}{4} x(2)^2 x(4)+x(3) x(4) x(5)
+\end{dmath*}
+
+When comparing the canonicalized versions of both polynomials we see
+that they are indeed identical
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{canoPoly1 }\ExtensionTok{===}\NormalTok{ canoPoly2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+\end{document}

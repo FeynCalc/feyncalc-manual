@@ -1,0 +1,54 @@
+% !TeX program = pdflatex
+% !TeX root = FCGetDimensions.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcgetdimensions}{%
+\section{FCGetDimensions}\label{fcgetdimensions}}
+
+\texttt{FCGetDimensions[\allowbreak{}expr]} is an auxiliary function
+that determines the dimensions in which 4-momenta and Dirac matrices of
+the given expression are defined. The result is returned as a list,
+e.g.~\texttt{\{\allowbreak{}4\}}, \texttt{\{\allowbreak{}D\}} or
+\texttt{\{\allowbreak{}4,\ \allowbreak{}D,\ \allowbreak{}D-4\}} etc.
+
+This is useful if one wants to be sure that all quantities inside a
+particular expression are purely \(4\)-dimensional or purely
+\(D\)-dimensional.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{changedimension}{ChangeDimension}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCGetDimensions}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{4\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCGetDimensions}\OperatorTok{[}\NormalTok{GSD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{D\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCGetDimensions}\OperatorTok{[}\NormalTok{FVE}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ GS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{4,D-4\}
+\end{dmath*}
+\end{document}

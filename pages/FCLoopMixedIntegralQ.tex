@@ -1,0 +1,49 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopMixedIntegralQ.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopmixedintegralq}{%
+\section{FCLoopMixedIntegralQ}\label{fcloopmixedintegralq}}
+
+\texttt{FCLoopMixedIntegralQ[\allowbreak{}exp]} returns \texttt{True} if
+the integral contains both Lorentz and Cartesian indices and momenta.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{FVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,}\NormalTok{ mu}\OperatorTok{]}\NormalTok{ CFAD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{]]} 
+ 
+\NormalTok{FCLoopMixedIntegralQ}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{p^{\text{mu}}}{(q^2-i \eta ).((q-p)^2-i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{FVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,}\NormalTok{ mu}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{]]} 
+ 
+\NormalTok{FCLoopMixedIntegralQ}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{p^{\text{mu}}}{q^2.(q-p)^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+\end{document}

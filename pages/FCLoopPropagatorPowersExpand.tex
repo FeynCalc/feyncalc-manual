@@ -1,0 +1,67 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopPropagatorPowersExpand.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fclooppropagatorpowersexpand}{%
+\section{FCLoopPropagatorPowersExpand}\label{fclooppropagatorpowersexpand}}
+
+\texttt{FCLoopPropagatorPowersExpand[\allowbreak{}exp]} rewrites
+propagators raised to integer powers as products.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fclooppropagatorpowerscombine}{FCLoopPropagatorPowersCombine}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SFAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{,} \DecValTok{2}\OperatorTok{\}]} 
+ 
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ FCLoopPropagatorPowersExpand}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(q^2-m+i \eta )^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(q^2-m+i \eta )^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*FeynAmpDenominator[StandardPropagatorDenominator[Momentum[q, D], 0, {-}m, \{1, 1\}], StandardPropagatorDenominator[Momentum[q, D], 0, {-}m, \{1, 1\}]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SFAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{,} \DecValTok{2}\OperatorTok{\},} \FunctionTok{q} \SpecialCharTok{+} \FunctionTok{p}\OperatorTok{]} 
+ 
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ FCLoopPropagatorPowersExpand}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(q^2-m+i \eta )^2.((p+q)^2+i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(q^2-m+i \eta )^2.((p+q)^2+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*FeynAmpDenominator[StandardPropagatorDenominator[Momentum[q, D], 0, {-}m, \{1, 1\}], StandardPropagatorDenominator[Momentum[q, D], 0, {-}m, \{1, 1\}], StandardPropagatorDenominator[Momentum[p, D] + Momentum[q, D], 0, 0, \{1, 1\}]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

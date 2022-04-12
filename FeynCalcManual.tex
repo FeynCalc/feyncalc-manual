@@ -1,0 +1,166 @@
+% arara: pdflatex
+% arara: pdflatex
+% arara: pdflatex
+% arara: latexmk: { clean: partial }
+
+% !TeX program = pdflatex
+% Options for packages loaded elsewhere
+
+\documentclass[11pt,a4paper,
+parskip=half, % half a line vertical space between paragraphs
+%headsepline,               % Kopfzeile mit horizontaler Liniel
+%headings=big
+]{scrreprt}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage[a4paper, includefoot, left=1.5cm, right=1.5cm, top=2cm, bottom=2 cm]{geometry}
+
+\author{}
+\date{}
+
+%\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%\usepackage{unicode-math}
+
+\usepackage{amsmath,amssymb}
+
+%https://tex.stackexchange.com/questions/60746/breqn-does-not-automatically-break-lines
+\newcommand{\breakingcomma}{%
+	\begingroup\lccode`~=`,
+	\lowercase{\endgroup\expandafter\def\expandafter~\expandafter{~\penalty0 }}}
+
+
+\usepackage{breqn}
+\usepackage{fleqn}
+\usepackage{lmodern}
+%\usepackage{newtxtext}
+\usepackage{PTSerif}
+\usepackage{textcomp} % provide euro and other symbols
+
+\usepackage{upquote} % Use upquote if available, for straight quotes in verbatim environments
+
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+
+\usepackage{fancyvrb}
+\usepackage{fvextra}
+\usepackage{xcolor}
+\usepackage{subfiles}
+\usepackage{xurl} % add URL line breaks if available
+
+%\usepackage[htt]{hyphenat}
+
+
+
+\usepackage{hyperref}
+
+\hypersetup{
+	pdftitle = {FeynCalc Manual},
+	pdfauthor = {Vladyslav Shtabovenko, Rolf Mertig and Frederik Orellana},
+	colorlinks,
+	filecolor=black,
+	linkcolor=teal,
+	urlcolor=teal
+}
+
+%\hypersetup{
+%	hidelinks,
+%	pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+%\usepackage{color}
+
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+
+\DefineVerbatimEnvironment
+{Highlighting}{Verbatim}
+{
+	frame=single,
+	breaklines=true, 
+	breakanywhere=true, breaksymbol=, 
+	breakanywheresymbolpre=,
+	framerule=0.5mm,
+	fontfamily=tt,
+%	framesep=3mm,
+%	rulecolor=\color{red},
+%	fillcolor=\color{yellow},
+	commandchars=\\\{\}}
+
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+	\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+%\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+
+% allow page breaks 
+\allowdisplaybreaks
+
+
+%%%%%%%%%%%%%%%%%%% TOC CUSTOMIZATION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addtocontents{toc}{\protect\hypertarget{toc}{}} % Add a link target to the TOC itself
+\renewcommand\TOCLineLeaderFill[1][]{\hfill} % get rid of the dots between the entry name and the page number
+\addtokomafont{partentry}{\Huge} % Part Überschriften
+\addtokomafont{disposition}{\sffamily\Large} % Chapter Überschriften
+% Let us have more space between subsection numbers and the titles, for things like 3.1.17. XXX ; 
+\DeclareTOCStyleEntry[numwidth=2.5em]{tocline}{part}
+\DeclareTOCStyleEntry[numwidth=2.5em]{tocline}{chapter}
+\DeclareTOCStyleEntry[numwidth=3.5em]{tocline}{section}
+\DeclareTOCStyleEntry[numwidth=4.5em]{tocline}{subsection}
+\DeclareTOCStyleEntry[numwidth=6.5em]{tocline}{subsubsection}
+
+\setcounter{tocdepth}{1}
+
+% enable numbering of subsubsections
+%\setcounter{secnumdepth}{1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+	
+\title{FeynCalc Manual}
+\author{Vladyslav Shtabovenko, Rolf Mertig and Frederik Orellana}
+\maketitle
+
+% Here comes the TOC!
+\tableofcontents
+	
+\include{includes.tex}
+%\subfile{pages/DollarTypesettingDim4.tex}
+%\subfile{pages/DiracSimplify.tex}
+%\subfile{pages/DiracEquation.tex}
+
+\end{document}

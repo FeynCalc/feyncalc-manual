@@ -1,0 +1,116 @@
+% !TeX program = pdflatex
+% !TeX root = SUNFDelta.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{sunfdelta}{%
+\section{SUNFDelta}\label{sunfdelta}}
+
+\texttt{SUNFDelta[\allowbreak{}a,\ \allowbreak{}b]} is the
+Kronecker-delta for \(SU(N)\) with color indices \texttt{a} and
+\texttt{b} in the fundamental representation.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{sundelta}{SUNDelta}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNFDelta}\OperatorTok{[}\NormalTok{SUNFIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{],}\NormalTok{ SUNFIndex}\OperatorTok{[}\FunctionTok{b}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\delta _{ab}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNFDelta}\OperatorTok{[}\NormalTok{SUNFIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{],}\NormalTok{ SUNFIndex}\OperatorTok{[}\FunctionTok{b}\OperatorTok{]]}\NormalTok{ SUNFDelta}\OperatorTok{[}\NormalTok{SUNFIndex}\OperatorTok{[}\FunctionTok{b}\OperatorTok{],}\NormalTok{ SUNFIndex}\OperatorTok{[}\FunctionTok{c}\OperatorTok{]]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ SUNSimplify}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\delta _{ab} \delta _{bc}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\delta _{ac}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNFDelta}\OperatorTok{[}\NormalTok{SUNFIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{],}\NormalTok{ SUNFIndex}\OperatorTok{[}\FunctionTok{b}\OperatorTok{]]}\SpecialCharTok{\^{}}\DecValTok{2} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ SUNSimplify}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\delta _{ab}^2
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+C_A
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNFDelta}\OperatorTok{[}\NormalTok{SUNFIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{],}\NormalTok{ SUNFIndex}\OperatorTok{[}\FunctionTok{b}\OperatorTok{]]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SUNFDelta[SUNFIndex[a], SUNFIndex[b]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNFDelta}\OperatorTok{[}\NormalTok{SUNFIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{],}\NormalTok{ SUNFIndex}\OperatorTok{[}\FunctionTok{b}\OperatorTok{]]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//}\NormalTok{ FCE }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SDF[a, b]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SDF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SUNFDelta[SUNFIndex[a], SUNFIndex[b]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+The arguments of \texttt{SUNFDelta} may also represent explicit integer
+indices via the head \texttt{ExplictiSUNFIndex}. The difference is that
+\texttt{SUNSimplify} and \texttt{SUNFSimplify} will only sum over
+symbolic indices.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ SUNFDelta}\OperatorTok{[}\NormalTok{SUNFIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{],}\NormalTok{ ExplicitSUNFIndex}\OperatorTok{[}\DecValTok{2}\OperatorTok{]]}\NormalTok{ SUNFDelta}\OperatorTok{[}\NormalTok{SUNFIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{],}\NormalTok{ SUNFIndex}\OperatorTok{[}\FunctionTok{b}\OperatorTok{]]}\NormalTok{ SUNFDelta}\OperatorTok{[}\NormalTok{SUNFIndex}\OperatorTok{[}\FunctionTok{c}\OperatorTok{],}\NormalTok{ ExplicitSUNFIndex}\OperatorTok{[}\DecValTok{2}\OperatorTok{]]} \SpecialCharTok{//}\NormalTok{ SUNFSimplify}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\delta _{2b} \delta _{2c}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SUNFDelta[ExplicitSUNFIndex[2], SUNFIndex[b]] SUNFDelta[ExplicitSUNFIndex[2], SUNFIndex[c]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SDF}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{2}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SUNFDelta[ExplicitSUNFIndex[1], ExplicitSUNFIndex[2]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

@@ -1,0 +1,29 @@
+% !TeX program = pdflatex
+% !TeX root = CouplingConstant.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{couplingconstant}{%
+\section{CouplingConstant}\label{couplingconstant}}
+
+\texttt{CouplingConstant} is an option for several Feynman rule
+functions and for \texttt{CovariantD} and \texttt{FieldStrength}. In the
+convention of the add-on PHI, \texttt{CouplingConstant} is also the head
+of coupling constants. \texttt{CouplingConstant} takes three extra
+optional arguments, with heads \texttt{RenormalizationState},
+\texttt{RenormalizationScheme} and \texttt{ExpansionState} respectively.
+E.g. \texttt{CouplingConstant[\allowbreak{}QED[\allowbreak{}1]]} is the
+unit charge,
+\texttt{CouplingConstant[\allowbreak{}ChPT2[\allowbreak{}4],\ \allowbreak{}1]}
+is the first of the coupling constants of the Lagrangian
+\texttt{ChPT2[\allowbreak{}4]}.
+
+\texttt{CouplingConstant[\allowbreak{}a_,\ \allowbreak{}b_,\ \allowbreak{}c___][\allowbreak{}i_] := CouplingConstant[\allowbreak{}a,\ \allowbreak{}b,\ \allowbreak{}RenormalizationState[\allowbreak{}i],\ \allowbreak{}c]}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{covariantd}{CovariantD},
+\hyperlink{fieldstrength}{FieldStrength}.
+
+\subsection{Examples}
+\end{document}

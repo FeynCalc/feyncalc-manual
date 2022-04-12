@@ -1,0 +1,50 @@
+% !TeX program = pdflatex
+% !TeX root = SO.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{so}{%
+\section{SO}\label{so}}
+
+\texttt{SO[\allowbreak{}q]} is a four-dimensional scalar product of
+\texttt{OPEDelta} with \texttt{q}. It is transformed into
+\texttt{Pair[\allowbreak{}Momentum[\allowbreak{}q],\ \allowbreak{}Momentum[\allowbreak{}OPEDelta]}
+by \texttt{FCI}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fci}{FCI},
+\hyperlink{opedelta}{OPEDelta}, \hyperlink{pair}{Pair},
+\hyperlink{scalarproduct}{ScalarProduct}, \hyperlink{sod}{SOD}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SO}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\Delta \cdot p
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SO}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\Delta \cdot (p-q)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SO}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*Pair[Momentum[OPEDelta], Momentum[p]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

@@ -1,0 +1,86 @@
+% !TeX program = pdflatex
+% !TeX root = CGA.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{cga}{%
+\section{CGA}\label{cga}}
+
+\texttt{CGA[\allowbreak{}i]} can be used as input for \(\gamma^i\) in 4
+dimensions, where \texttt{i} is a Cartesian index, and is transformed
+into \texttt{DiracGamma[\allowbreak{}CartesianIndex[\allowbreak{}i]]} by
+\texttt{FeynCalcInternal}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{ga}{GA},
+\hyperlink{diracgamma}{DiracGamma}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CGA}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{\gamma }^i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CGA}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]} \SpecialCharTok{{-}}\NormalTok{ CGA}\OperatorTok{[}\FunctionTok{j}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{\gamma }^i.\overline{\gamma }^j-\overline{\gamma }^j.\overline{\gamma }^i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{StandardForm}\OperatorTok{[}\NormalTok{FCI}\OperatorTok{[}\NormalTok{CGA}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]]]}
+
+\CommentTok{(*DiracGamma[CartesianIndex[i]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CGA}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{,} \FunctionTok{l}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{\gamma }^i.\overline{\gamma }^j.\overline{\gamma }^k.\overline{\gamma }^l
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{StandardForm}\OperatorTok{[}\NormalTok{CGA}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{,} \FunctionTok{l}\OperatorTok{]]}
+
+\CommentTok{(*CGA[i] . CGA[j] . CGA[k] . CGA[l]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracSimplify}\OperatorTok{[}\NormalTok{DiracTrace}\OperatorTok{[}\NormalTok{CGA}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{,} \FunctionTok{l}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+4 \bar{\delta }^{il} \bar{\delta }^{jk}-4 \bar{\delta }^{ik} \bar{\delta }^{jl}+4 \bar{\delta }^{ij} \bar{\delta }^{kl}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CGA}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]}\NormalTok{ . (CGS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{m}\NormalTok{) . CGA}\OperatorTok{[}\FunctionTok{j}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{\gamma }^i.\left(\overline{\gamma }\cdot \overline{p}+m\right).\overline{\gamma }^j
+\end{dmath*}
+\end{document}

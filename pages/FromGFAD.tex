@@ -1,0 +1,182 @@
+% !TeX program = pdflatex
+% !TeX root = FromGFAD.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fromgfad}{%
+\section{FromGFAD}\label{fromgfad}}
+
+\texttt{FromGFAD[\allowbreak{}exp]} converts all suitable generic
+propagator denominators into standard and Cartesian propagator
+denominators.
+
+The options \texttt{InitialSubstitutions} and
+\texttt{IntermediateSubstitutions} can be used to help the function
+handle nontrivial propagators.
+
+For propagators containing symbolic variables it might be necessary to
+tell the function that those are larger than zero (if applicable), so
+that expressions such as \(\sqrt{\lambda^2}\) can be simplified
+accordingly.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{gfad}{GFAD},
+\hyperlink{sfad}{SFAD}, \hyperlink{cfad}{CFAD},
+\hyperlink{feynampdenominatorexplicit}{FeynAmpDenominatorExplicit}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GFAD}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{]]} 
+ 
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ FromGFAD}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(\text{p1}^2+i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(\text{p1}^2+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*FeynAmpDenominator[StandardPropagatorDenominator[Momentum[p1, D], 0, 0, \{1, 1\}]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GFAD}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{]} \SpecialCharTok{+} \DecValTok{2}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{]]} 
+ 
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ FromGFAD}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(\text{p1}^2+2 (\text{p1}\cdot \;\text{p2})+i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(\text{p1}^2+2 (\text{p1}\cdot \;\text{p2})+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*FeynAmpDenominator[StandardPropagatorDenominator[Momentum[p1, D], 2 Pair[Momentum[p1, D], Momentum[p2, D]], 0, \{1, 1\}]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GFAD}\OperatorTok{[\{\{}\NormalTok{CSPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{]} \SpecialCharTok{+} \DecValTok{2}\NormalTok{ CSPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\},} \DecValTok{2}\OperatorTok{\}]} 
+ 
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ FromGFAD}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(m^2+\text{p1}^2+2 (\text{p1}\cdot \;\text{p2})-i \eta )^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(\text{p1}^2+2 (\text{p1}\cdot \;\text{p2})+m^2-i \eta )^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*FeynAmpDenominator[CartesianPropagatorDenominator[CartesianMomentum[p1, {-}1 + D], 2 CartesianPair[CartesianMomentum[p1, {-}1 + D], CartesianMomentum[p2, {-}1 + D]], m\^{}2, \{2, {-}1\}]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prop }\ExtensionTok{=}\NormalTok{ FeynAmpDenominator}\OperatorTok{[}\NormalTok{GenericPropagatorDenominator}\OperatorTok{[}\SpecialCharTok{{-}}\NormalTok{la Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],} 
+\NormalTok{       Momentum}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,} \FunctionTok{D}\OperatorTok{]]} \SpecialCharTok{+} \DecValTok{2}\NormalTok{ Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{D}\OperatorTok{]],} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,}\DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(2 (\text{p1}\cdot q)-\text{la} \;\text{p1}^2+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ FromGFAD}\OperatorTok{[}\NormalTok{prop}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(-\text{la} \;\text{p1}^2+2 (\text{p1}\cdot q)+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//} \FunctionTok{StandardForm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FeynAmpDenominator}\left[\text{StandardPropagatorDenominator}\left[\sqrt{-\text{la}} \;\text{Momentum}[\text{p1},D],2 \;\text{Pair}[\text{Momentum}[\text{p1},D],\text{Momentum}[q,D]],0,\{1,1\}\right]\right]
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ FromGFAD}\OperatorTok{[}\NormalTok{prop}\OperatorTok{,} \FunctionTok{PowerExpand} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{la}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(-\text{la} \;\text{p1}^2+2 (\text{p1}\cdot q)+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//} \FunctionTok{StandardForm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FeynAmpDenominator}\left[\text{StandardPropagatorDenominator}\left[i \sqrt{\text{la}} \;\text{Momentum}[\text{p1},D],2 \;\text{Pair}[\text{Momentum}[\text{p1},D],\text{Momentum}[q,D]],0,\{1,1\}\right]\right]
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ GFAD}\OperatorTok{[\{\{}\SpecialCharTok{{-}}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p1}\OperatorTok{],} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]}\SpecialCharTok{*}\NormalTok{GFAD}\OperatorTok{[\{\{}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,} \SpecialCharTok{{-}}\NormalTok{p1 }\SpecialCharTok{+} \DecValTok{2}\SpecialCharTok{*}\NormalTok{p3}\OperatorTok{]} \SpecialCharTok{{-}}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{p3}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{],} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]}\SpecialCharTok{*}
+\NormalTok{    GFAD}\OperatorTok{[\{\{}\SpecialCharTok{{-}}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p3}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{],} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]}\SpecialCharTok{*}\NormalTok{SFAD}\OperatorTok{[\{\{}\FunctionTok{I}\SpecialCharTok{*}\NormalTok{(p1 }\SpecialCharTok{+} \FunctionTok{q}\NormalTok{)}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{{-}}\NormalTok{mb}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]}\SpecialCharTok{*}
+\NormalTok{    SFAD}\OperatorTok{[\{\{}\FunctionTok{I}\SpecialCharTok{*}\NormalTok{(p3 }\SpecialCharTok{+} \FunctionTok{q}\NormalTok{)}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{{-}}\NormalTok{mb}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]} \SpecialCharTok{+}\NormalTok{  (}\SpecialCharTok{{-}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{mg}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{GFAD}\OperatorTok{[\{\{}\SpecialCharTok{{-}}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p1}\OperatorTok{],} \DecValTok{1}\OperatorTok{\},} \DecValTok{2}\OperatorTok{\}]}\SpecialCharTok{*}
+\NormalTok{       GFAD}\OperatorTok{[\{\{}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,} \SpecialCharTok{{-}}\NormalTok{p1 }\SpecialCharTok{+} \DecValTok{2}\SpecialCharTok{*}\NormalTok{p3}\OperatorTok{]} \SpecialCharTok{{-}}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{p3}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{],} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]}\SpecialCharTok{*}\NormalTok{GFAD}\OperatorTok{[\{\{}\SpecialCharTok{{-}}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p3}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{],} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]}\SpecialCharTok{*}
+\NormalTok{       SFAD}\OperatorTok{[\{\{}\FunctionTok{I}\SpecialCharTok{*}\NormalTok{(p1 }\SpecialCharTok{+} \FunctionTok{q}\NormalTok{)}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{{-}}\NormalTok{mb}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]}\SpecialCharTok{*}\NormalTok{SFAD}\OperatorTok{[\{\{}\FunctionTok{I}\SpecialCharTok{*}\NormalTok{(p3 }\SpecialCharTok{+} \FunctionTok{q}\NormalTok{)}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{{-}}\NormalTok{mb}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]} \SpecialCharTok{{-}} 
+        \DecValTok{2}\SpecialCharTok{*}\NormalTok{mg}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{GFAD}\OperatorTok{[\{\{}\SpecialCharTok{{-}}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p1}\OperatorTok{],} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]}\SpecialCharTok{*}\NormalTok{GFAD}\OperatorTok{[\{\{}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,} \SpecialCharTok{{-}}\NormalTok{p1 }\SpecialCharTok{+} \DecValTok{2}\SpecialCharTok{*}\NormalTok{p3}\OperatorTok{]} \SpecialCharTok{{-}}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{p3}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{],} 
+            \DecValTok{1}\OperatorTok{\},} \DecValTok{2}\OperatorTok{\}]}\SpecialCharTok{*}\NormalTok{GFAD}\OperatorTok{[\{\{}\SpecialCharTok{{-}}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p3}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{],} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]}\SpecialCharTok{*}\NormalTok{SFAD}\OperatorTok{[\{\{}\FunctionTok{I}\SpecialCharTok{*}\NormalTok{(p1 }\SpecialCharTok{+} \FunctionTok{q}\NormalTok{)}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{{-}}\NormalTok{mb}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]}\SpecialCharTok{*}
+\NormalTok{         SFAD}\OperatorTok{[\{\{}\FunctionTok{I}\SpecialCharTok{*}\NormalTok{(p3 }\SpecialCharTok{+} \FunctionTok{q}\NormalTok{)}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{{-}}\NormalTok{mb}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]} \SpecialCharTok{{-}}    \DecValTok{2}\SpecialCharTok{*}\NormalTok{mg}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{GFAD}\OperatorTok{[\{\{}\SpecialCharTok{{-}}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p1}\OperatorTok{],} \DecValTok{1}\OperatorTok{\},} 
+           \DecValTok{1}\OperatorTok{\}]}\SpecialCharTok{*}\NormalTok{GFAD}\OperatorTok{[\{\{}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,} \SpecialCharTok{{-}}\NormalTok{p1 }\SpecialCharTok{+} \DecValTok{2}\SpecialCharTok{*}\NormalTok{p3}\OperatorTok{]} \SpecialCharTok{{-}}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{p3}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{],} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]}\SpecialCharTok{*}\NormalTok{GFAD}\OperatorTok{[\{\{}\SpecialCharTok{{-}}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p3}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{],} 
+            \DecValTok{1}\OperatorTok{\},} \DecValTok{2}\OperatorTok{\}]}\SpecialCharTok{*}\NormalTok{SFAD}\OperatorTok{[\{\{}\FunctionTok{I}\SpecialCharTok{*}\NormalTok{(p1 }\SpecialCharTok{+} \FunctionTok{q}\NormalTok{)}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{{-}}\NormalTok{mb}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]}\SpecialCharTok{*}\NormalTok{SFAD}\OperatorTok{[\{\{}\FunctionTok{I}\SpecialCharTok{*}\NormalTok{(p3 }\SpecialCharTok{+} \FunctionTok{q}\NormalTok{)}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} 
+           \OperatorTok{\{}\SpecialCharTok{{-}}\NormalTok{mb}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]}\NormalTok{)}\SpecialCharTok{/}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} \left(-\frac{2 \;\text{mg}^2}{(-\text{p1}^2+i \eta )^2 (-\text{p3}^2+i \eta ) (-(\text{p1}+q)^2+\text{mb}^2+i \eta ) (-(\text{p3}+q)^2+\text{mb}^2+i \eta ) (\text{p1}\cdot (2 \;\text{p3}-\text{p1})-\text{p3}^2+i \eta )}-\frac{2 \;\text{mg}^2}{(-\text{p1}^2+i \eta ) (-\text{p3}^2+i \eta ) (-(\text{p1}+q)^2+\text{mb}^2+i \eta ) (-(\text{p3}+q)^2+\text{mb}^2+i \eta ) (\text{p1}\cdot (2 \;\text{p3}-\text{p1})-\text{p3}^2+i \eta )^2}-\frac{2 \;\text{mg}^2}{(-\text{p1}^2+i \eta ) (-\text{p3}^2+i \eta )^2 (-(\text{p1}+q)^2+\text{mb}^2+i \eta ) (-(\text{p3}+q)^2+\text{mb}^2+i \eta ) (\text{p1}\cdot (2 \;\text{p3}-\text{p1})-\text{p3}^2+i \eta )}\right)+\frac{1}{(-\text{p1}^2+i \eta ) (-\text{p3}^2+i \eta ) (-(\text{p1}+q)^2+\text{mb}^2+i \eta ) (-(\text{p3}+q)^2+\text{mb}^2+i \eta ) (\text{p1}\cdot (2 \;\text{p3}-\text{p1})-\text{p3}^2+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FromGFAD}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} \left(-\frac{2 \;\text{mg}^2}{(-\text{p1}^2+i \eta )^2 (-\text{p3}^2+i \eta ) (-(\text{p1}+q)^2+\text{mb}^2+i \eta ) (-(\text{p3}+q)^2+\text{mb}^2+i \eta ) (-\text{p3}^2+\text{p1}\cdot (2 \;\text{p3}-\text{p1})+i \eta )}-\frac{2 \;\text{mg}^2}{(-\text{p1}^2+i \eta ) (-\text{p3}^2+i \eta )^2 (-(\text{p1}+q)^2+\text{mb}^2+i \eta ) (-(\text{p3}+q)^2+\text{mb}^2+i \eta ) (-\text{p3}^2+\text{p1}\cdot (2 \;\text{p3}-\text{p1})+i \eta )}-\frac{2 \;\text{mg}^2}{(-\text{p1}^2+i \eta ) (-\text{p3}^2+i \eta ) (-(\text{p1}+q)^2+\text{mb}^2+i \eta ) (-(\text{p3}+q)^2+\text{mb}^2+i \eta ) (-\text{p3}^2+\text{p1}\cdot (2 \;\text{p3}-\text{p1})+i \eta )^2}\right)+\frac{1}{(-\text{p1}^2+i \eta ) (-\text{p3}^2+i \eta ) (-(\text{p1}+q)^2+\text{mb}^2+i \eta ) (-(\text{p3}+q)^2+\text{mb}^2+i \eta ) (-\text{p3}^2+\text{p1}\cdot (2 \;\text{p3}-\text{p1})+i \eta )}
+\end{dmath*}
+\end{document}

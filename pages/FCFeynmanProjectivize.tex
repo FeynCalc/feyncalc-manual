@@ -1,0 +1,97 @@
+% !TeX program = pdflatex
+% !TeX root = FCFeynmanProjectivize.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcfeynmanprojectivize}{%
+\section{FCFeynmanProjectivize}\label{fcfeynmanprojectivize}}
+
+\texttt{FCFeynmanProjectivize[\allowbreak{}int,\ \allowbreak{}x]} checks
+if the given Feynman parameter integral (without prefactors) depending
+on x{[}1{]}, x{[}2{]}, \ldots{} is a projective form. If this is not the
+case, the integral will be projectivized.
+
+Projectivity is a necessary condition for computing the integral with
+the aid of the Cheng-Wu theorem
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcfeynmanparametrize}{FCFeynmanParametrize},
+\hyperlink{fcfeynmanprepare}{FCFeynmanPrepare},
+\hyperlink{fcfeynmanprojectiveq}{FCFeynmanProjectiveQ}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{int }\ExtensionTok{=}\NormalTok{ SFAD}\OperatorTok{[\{}\NormalTok{p3}\OperatorTok{,}\NormalTok{ mg}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]}\NormalTok{ SFAD}\OperatorTok{[\{}\NormalTok{p3 }\SpecialCharTok{{-}}\NormalTok{ p1}\OperatorTok{,}\NormalTok{ mg}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]}\NormalTok{ SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{2}\NormalTok{ p1 . }\FunctionTok{q}\OperatorTok{\}\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(\text{p3}^2-\text{mg}^2+i \eta ) ((\text{p3}-\text{p1})^2-\text{mg}^2+i \eta ) (-2 (\text{p1}\cdot q)+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fp }\ExtensionTok{=}\NormalTok{ FCFeynmanParametrize}\OperatorTok{[}\NormalTok{int}\OperatorTok{,} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,}\NormalTok{ Indexed }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,}\NormalTok{ FCReplaceD }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{D} \OtherTok{{-}\textgreater{}} \DecValTok{4} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ ep}\OperatorTok{\},} 
+   \FunctionTok{Simplify} \OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,} \FunctionTok{Assumptions} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{mg \textgreater{} }\DecValTok{0}\OperatorTok{,}\NormalTok{ ep \textgreater{} }\DecValTok{0}\OperatorTok{\},}\NormalTok{ FinalSubstitutions }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]} \OtherTok{{-}\textgreater{}}\NormalTok{ qq}\OperatorTok{,}\NormalTok{ mg}\SpecialCharTok{\^{}}\DecValTok{2} \OtherTok{{-}\textgreater{}}\NormalTok{ mg2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{(x(2) x(3))^{3 \;\text{ep}-3} \left((x(2)+x(3)) \left(\text{mg2} x(2) x(3)+\text{qq} x(1)^2\right)\right)^{1-2 \;\text{ep}},-\Gamma (2 \;\text{ep}-1),\{x(1),x(2),x(3)\}\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanProjectivize}\OperatorTok{[}\NormalTok{fp}\OperatorTok{[[}\DecValTok{1}\OperatorTok{]],} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCFeynmanProjectivize: The integral is already projective, no further transformations are required.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+(x(2) x(3))^{3 \;\text{ep}-3} \left((x(2)+x(3)) \left(\text{mg2} x(2) x(3)+\text{qq} x(1)^2\right)\right)^{1-2 \;\text{ep}}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanProjectivize}\OperatorTok{[}\NormalTok{(}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{2} \SpecialCharTok{+} \DecValTok{2}\SpecialCharTok{*}\NormalTok{ep)}\SpecialCharTok{/}\NormalTok{(mb2}\SpecialCharTok{*}\NormalTok{(}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]} \SpecialCharTok{+} 
+        \FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}\SpecialCharTok{\^{}}\NormalTok{ep}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCFeynmanProjectivize: The integral is already projective, no further transformations are required.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+(x(1)+x(2))^{2 \;\text{ep}-2} \left(\text{mb2} \left(x(1)^2+x(2) x(1)+x(2)^2\right)\right)^{-\text{ep}}
+\end{dmath*}
+
+Feynman parametrizations derived from propagator representations should
+be projective in most cases. However, arbitrary Feynman parameter
+integrals do not necessarily have this property.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanProjectivize}\OperatorTok{[}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{\^{}}\NormalTok{(}\FunctionTok{x} \SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) (}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{\^{}}\NormalTok{(}\FunctionTok{y} \SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCFeynmanProjectivize: The integral is not projective, trying to projectivize.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCFeynmanProjectivize: Projective transformation successful, the integral is now projective.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{\left(\frac{x(1)}{x(1)+x(2)}\right)^{x-1} \left(\frac{x(2)}{x(1)+x(2)}\right)^{y-1}}{(x(1)+x(2))^2}
+\end{dmath*}
+\end{document}

@@ -1,0 +1,100 @@
+% !TeX program = pdflatex
+% !TeX root = FCFeynmanParameterJoin.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcfeynmanparameterjoin}{%
+\section{FCFeynmanParameterJoin}\label{fcfeynmanparameterjoin}}
+
+\texttt{FCFeynmanParameterJoin[\allowbreak{}\{\allowbreak{}\{\allowbreak{}\{\allowbreak{}prop1,\ \allowbreak{}prop2,\ \allowbreak{}x\},\ \allowbreak{}prop3,\ \allowbreak{}y\},\ \allowbreak{}...\},\ \allowbreak{}\{\allowbreak{}p1,\ \allowbreak{}p2,\ \allowbreak{}...\}]}
+joins all propagators in \texttt{int} using Feynman parameters but does
+not integrate over the loop momenta \(p_i\). The function returns
+\texttt{\{\allowbreak{}fpInt,\ \allowbreak{}pref,\ \allowbreak{}vars\}},
+where \texttt{fpInt} is the piece of the integral that contains a single
+\texttt{GFAD}-type propagator and \texttt{pref} is the part containing
+the \texttt{res}. The introduced Feynman parameters are listed in vars.
+The overall Dirac delta is omitted.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcfeynmanparametrize}{FCFeynmanParametrize}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{testProps }\ExtensionTok{=} \OperatorTok{\{}\NormalTok{FAD}\OperatorTok{[\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{p2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{p3}\OperatorTok{,}\NormalTok{ m3}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{p4}\OperatorTok{,}\NormalTok{ m4}\OperatorTok{\}]\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\frac{1}{\text{p1}^2-\text{m1}^2},\frac{1}{\text{p2}^2-\text{m2}^2},\frac{1}{\text{p3}^2-\text{m3}^2},\frac{1}{\text{p4}^2-\text{m4}^2}\right\}
+\end{dmath*}
+
+Let us first join two propagators with each other using Feynman
+parameters \texttt{x[\allowbreak{}i]}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanParameterJoin}\OperatorTok{[\{}\NormalTok{testProps}\OperatorTok{[[}\DecValTok{1}\OperatorTok{]],}\NormalTok{ testProps}\OperatorTok{[[}\DecValTok{2}\OperatorTok{]],} \FunctionTok{x}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{,}\NormalTok{ p4}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\frac{1}{(\left(\text{p1}^2-\text{m1}^2\right) x(1)+\left(\text{p2}^2-\text{m2}^2\right) x(2)+i \eta )^2},1,\{x(1),x(2)\}\right\}
+\end{dmath*}
+
+Now we can join the resulting propagator with another propagator by
+introducing another set of Feynman parameters \texttt{y[\allowbreak{}i]}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanParameterJoin}\OperatorTok{[\{\{}\NormalTok{testProps}\OperatorTok{[[}\DecValTok{1}\OperatorTok{]],}\NormalTok{ testProps}\OperatorTok{[[}\DecValTok{2}\OperatorTok{]],} \FunctionTok{x}\OperatorTok{\},}\NormalTok{ testProps}\OperatorTok{[[}\DecValTok{3}\OperatorTok{]],} \FunctionTok{y}\OperatorTok{\},} 
+  \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{,}\NormalTok{ p4}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\frac{1}{(\left(-x(1) \;\text{m1}^2+\text{p1}^2 x(1)-\text{m2}^2 x(2)+\text{p2}^2 x(2)\right) y(1)+\left(\text{p3}^2-\text{m3}^2\right) y(2)+i \eta )^3},2 y(1),\{x(1),x(2),y(1),y(2)\}\right\}
+\end{dmath*}
+
+If needed, this procedure can be nested even further
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanParameterJoin}\OperatorTok{[\{\{\{}\NormalTok{testProps}\OperatorTok{[[}\DecValTok{1}\OperatorTok{]],}\NormalTok{ testProps}\OperatorTok{[[}\DecValTok{2}\OperatorTok{]],} \FunctionTok{x}\OperatorTok{\},}\NormalTok{ testProps}\OperatorTok{[[}\DecValTok{3}\OperatorTok{]],} \FunctionTok{y}\OperatorTok{\},} 
+\NormalTok{   testProps}\OperatorTok{[[}\DecValTok{4}\OperatorTok{]],} \FunctionTok{z}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{,}\NormalTok{ p4}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\frac{1}{(\left(-x(1) y(1) \;\text{m1}^2+\text{p1}^2 x(1) y(1)-\text{m2}^2 x(2) y(1)+\text{p2}^2 x(2) y(1)-\text{m3}^2 y(2)+\text{p3}^2 y(2)\right) z(1)+\left(\text{p4}^2-\text{m4}^2\right) z(2)+i \eta )^4},6 y(1) z(1)^2,\{x(1),x(2),y(1),y(2),z(1),z(2)\}\right\}
+\end{dmath*}
+
+Notice that \texttt{FCFeynmanParametrize}knows how to deal with the
+output produced by \texttt{FCFeynmanParameterJoin}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{intT }\ExtensionTok{=}\NormalTok{ FCFeynmanParameterJoin}\OperatorTok{[\{\{}\NormalTok{SFAD}\OperatorTok{[\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ mg}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]}\NormalTok{ SFAD}\OperatorTok{[\{}\NormalTok{p3 }\SpecialCharTok{{-}}\NormalTok{ p1}\OperatorTok{,}\NormalTok{ mg}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],} \DecValTok{1}\OperatorTok{,} \FunctionTok{x}\OperatorTok{\},} 
+\NormalTok{    SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{2}\NormalTok{ p1 . }\FunctionTok{q}\OperatorTok{\}\}]}\NormalTok{ SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{2}\NormalTok{ p3 . }\FunctionTok{q}\OperatorTok{\}\}],} \FunctionTok{y}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\frac{1}{(\left(-x(1) \;\text{mg}^2-x(2) \;\text{mg}^2+\text{p1}^2 x(1)+\text{p1}^2 x(2)-2 (\text{p1}\cdot \;\text{p3}) x(2)+\text{p3}^2 x(2)\right) y(1)-2 (\text{p1}\cdot q) y(2)-2 (\text{p3}\cdot q) y(3)+i \eta )^4},6 y(1),\{x(1),x(2),y(1),y(2),y(3)\}\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanParametrize}\OperatorTok{[}\NormalTok{intT}\OperatorTok{[[}\DecValTok{1}\OperatorTok{]],}\NormalTok{ intT}\OperatorTok{[[}\DecValTok{2}\OperatorTok{]],} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{z}\OperatorTok{,}\NormalTok{ Indexed }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,} 
+\NormalTok{  FCReplaceD }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{D} \OtherTok{{-}\textgreater{}} \DecValTok{4} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ ep}\OperatorTok{\},} \FunctionTok{Simplify} \OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,} \FunctionTok{Assumptions} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{mg \textgreater{} }\DecValTok{0}\OperatorTok{,}\NormalTok{ ep \textgreater{} }\DecValTok{0}\OperatorTok{\},} 
+\NormalTok{  FinalSubstitutions }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{FCI@SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]} \OtherTok{{-}\textgreater{}}\NormalTok{ qq}\OperatorTok{,}\NormalTok{ mg}\SpecialCharTok{\^{}}\DecValTok{2} \OtherTok{{-}\textgreater{}}\NormalTok{ mg2}\OperatorTok{\},} \FunctionTok{Variables} \OtherTok{{-}\textgreater{}}\NormalTok{ intT}\OperatorTok{[[}\DecValTok{3}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\frac{\left(x(1) x(2) y(1)^2\right)^{3 \;\text{ep}} \left(\text{mg2} x(1) x(2) (x(1)+x(2)) y(1)^3+\text{qq} y(1) \left(x(1) y(3)^2+x(2) (y(2)+y(3))^2\right)\right)^{-2 \;\text{ep}}}{x(1)^2 x(2)^2 y(1)^3},\Gamma (2 \;\text{ep}),\{x(1),x(2),y(1),y(2),y(3)\}\right\}
+\end{dmath*}
+\end{document}

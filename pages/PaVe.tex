@@ -1,0 +1,35 @@
+% !TeX program = pdflatex
+% !TeX root = PaVe.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{pave}{%
+\section{PaVe}\label{pave}}
+
+\texttt{PaVe[\allowbreak{}i,\ \allowbreak{}j,\ \allowbreak{}...,\ \allowbreak{}\{\allowbreak{}p10,\ \allowbreak{}p12,\ \allowbreak{}...\},\ \allowbreak{}\{\allowbreak{}m1^2,\ \allowbreak{}mw^2,\ \allowbreak{}...\}]}
+denotes the invariant (and scalar) Passarino-Veltman integrals, i.e.~the
+coefficient functions of the tensor integral decomposition. Joining
+\texttt{plist} and \texttt{mlist} gives the same conventions as for
+\texttt{A0}, \texttt{B0}, \texttt{C0}, \texttt{D0}. Automatic
+simplifications are performed for the coefficient functions of two-point
+integrals and for the scalar integrals.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{pavereduce}{PaVeReduce}.
+
+\subsection{Examples}
+
+Some of the PaVe's reduce to special cases with
+\texttt{PaVeAutoReduce}to \texttt{True}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PaVe}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \OperatorTok{\{}\NormalTok{pp}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \FunctionTok{M}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\},}\NormalTok{ PaVeAutoReduce }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\left(m^2-2 m M+M^2-\text{pp}\right) \left(m^2+2 m M+M^2-\text{pp}\right) \;\text{B}_0\left(\text{pp},m^2,M^2\right)}{4 (1-D) \;\text{pp}}-\frac{\text{A}_0\left(m^2\right) \left(m^2-M^2+\text{pp}\right)}{4 (1-D) \;\text{pp}}+\frac{\text{A}_0\left(M^2\right) \left(m^2-M^2-\text{pp}\right)}{4 (1-D) \;\text{pp}}
+\end{dmath*}
+\end{document}

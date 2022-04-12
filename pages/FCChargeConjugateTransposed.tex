@@ -1,0 +1,75 @@
+% !TeX program = pdflatex
+% !TeX root = FCChargeConjugateTransposed.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcchargeconjugatetransposed}{%
+\section{FCChargeConjugateTransposed}\label{fcchargeconjugatetransposed}}
+
+\texttt{FCChargeConjugateTransposed[\allowbreak{}exp]} represents the
+application of the charge conjugation operator to the transposed of
+\texttt{exp}, i.e.~\(C^{-1} \;\text{exp}^T C\). Here \texttt{exp} is
+understood to be a single Dirac matrix or a chain thereof. The option
+setting \texttt{Explicit} determines whether the explicit result is
+returned or whether it is left in the unevaluated form.The unevaluated
+form will be also maintained if the function does not know how to obtain
+\(C^{-1} \;\text{exp}^T C\) from the given exp.
+
+The shortcut for \texttt{FCChargeConjugateTransposed} is \texttt{FCCCT}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{spinorchaintranspose}{SpinorChainTranspose},
+\hyperlink{diracgamma}{DiracGamma}, \hyperlink{spinor}{Spinor}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]]} 
+ 
+\NormalTok{FCChargeConjugateTransposed}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^{\rho }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+C\left(\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^{\rho }\right)^TC^{-1}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCChargeConjugateTransposed}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]],}\NormalTok{ Explicit }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\bar{\gamma }^{\rho }.\bar{\gamma }^{\nu }.\bar{\gamma }^{\mu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\DecValTok{5}\OperatorTok{]} 
+ 
+\NormalTok{FCCCT}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ Explicit}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^5
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+C\left(\bar{\gamma }^5\right)^TC^{-1}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^5
+\end{dmath*}
+\end{document}

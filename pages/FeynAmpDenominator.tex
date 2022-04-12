@@ -1,0 +1,357 @@
+% !TeX program = pdflatex
+% !TeX root = FeynAmpDenominator.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{feynampdenominator}{%
+\section{FeynAmpDenominator}\label{feynampdenominator}}
+
+\texttt{FeynAmpDenominator[\allowbreak{}...]} represents the inverse
+denominators of the propagators,
+i.e.~\texttt{FeynAmpDenominator[\allowbreak{}x]} is \(1/x\). Different
+propagator denominators are represented using special heads such as
+\texttt{PropagatorDenominator}, \texttt{StandardPropagatorDenominator},
+\texttt{CartesianPropagatorDenominator} etc.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fad}{FAD}, \hyperlink{sfad}{SFAD},
+\hyperlink{cfad}{CFAD}, \hyperlink{gfad}{GFAD},
+\hyperlink{feynampdenominatorsimplify}{FeynAmpDenominatorSimplify}.
+
+\subsection{Examples}
+
+The legacy way to represent standard Lorentzian propagators is to use
+\texttt{PropagatorDenominator}. Here the sign of the mass term is fixed
+to be \(-1\) and no information on the \(i \eta\)- prescription is
+available. Furthermore, this way it is not possible to enter eikonal
+propagators
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{PropagatorDenominator}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],} \FunctionTok{m}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{p^2-m^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{PropagatorDenominator}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],} \FunctionTok{m}\OperatorTok{],} 
+\NormalTok{  PropagatorDenominator}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],} \FunctionTok{m}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\left(p^2-m^2\right).\left((p-q)^2-m^2\right)}
+\end{dmath*}
+
+It is worth noting that the Euclidean mass dependence still can be
+introduced via a trick where the mass symbol is multiplied by the
+imaginary unit \(i\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{PropagatorDenominator}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],} \FunctionTok{I} \FunctionTok{m}\OperatorTok{]]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ FeynAmpDenominatorExplicit}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{p^2--m^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{m^2+p^2}
+\end{dmath*}
+
+The shortcut to enter \texttt{FeynAmpDenominator}s with
+\texttt{PropagatorDenominator}s is \texttt{FAD}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{p^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{p^2-m^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{,} \DecValTok{3}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\left(p^2-m^2\right)^3}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{PropagatorDenominator}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],} \FunctionTok{m}\OperatorTok{]]} \SpecialCharTok{//}\NormalTok{ FCE }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*FAD[\{p, m\}]*)}
+\end{Highlighting}
+\end{Shaded}
+
+Since version 9.3, a more flexible input is possible using
+\texttt{StandardPropagatorDenominator}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{StandardPropagatorDenominator}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],} \DecValTok{0}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p^2-m^2+i \eta )}
+\end{dmath*}
+
+The mass term can be anything, as long as it does not depend on the loop
+momenta
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{StandardPropagatorDenominator}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],} \DecValTok{0}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p^2+m^2+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{StandardPropagatorDenominator}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],} \DecValTok{0}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p^2-m^2+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{StandardPropagatorDenominator}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],} \DecValTok{0}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q}\OperatorTok{],} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p^2+q^2+i \eta )}
+\end{dmath*}
+
+One can also change the sign of \(i \eta\), although currently no
+internal functions make use of it
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{StandardPropagatorDenominator}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],} \DecValTok{0}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p^2-m^2-i \eta )}
+\end{dmath*}
+
+The propagator may also be raised to integer or symbolic powers
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{StandardPropagatorDenominator}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],} \DecValTok{0}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\DecValTok{3}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p^2+m^2+i \eta )^3}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{StandardPropagatorDenominator}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],} \DecValTok{0}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\SpecialCharTok{{-}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(p^2+m^2+i \eta )^2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{StandardPropagatorDenominator}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],} \DecValTok{0}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{n}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(p^2+m^2+i \eta )^{-n}
+\end{dmath*}
+
+Eikonal propagators are fully supported
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{StandardPropagatorDenominator}\OperatorTok{[}\DecValTok{0}\OperatorTok{,}\NormalTok{ Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{D}\OperatorTok{]],} 
+   \SpecialCharTok{{-}}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p\cdot q-m^2+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{StandardPropagatorDenominator}\OperatorTok{[}\DecValTok{0}\OperatorTok{,}\NormalTok{ Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{D}\OperatorTok{]],} 
+   \DecValTok{0}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p\cdot q+i \eta )}
+\end{dmath*}
+
+FeynCalc keeps trace of the signs of the scalar products in the eikonal
+propagators. This is where the \(i \eta\)- prescription may come handy
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{StandardPropagatorDenominator}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \SpecialCharTok{{-}}\NormalTok{Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{D}\OperatorTok{]],} 
+   \DecValTok{0}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(-p\cdot q+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{StandardPropagatorDenominator}\OperatorTok{[}\DecValTok{0}\OperatorTok{,}\NormalTok{ Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{D}\OperatorTok{]],} 
+   \DecValTok{0}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p\cdot q-i \eta )}
+\end{dmath*}
+
+The shortcut to enter \texttt{FeynAmpDenominators} with
+\texttt{StandardPropagatorDenominators} is \texttt{SFAD}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{StandardPropagatorDenominator}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],} \DecValTok{0}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]]} \SpecialCharTok{//}\NormalTok{ FCE }\SpecialCharTok{//} 
+  \FunctionTok{StandardForm}
+
+\CommentTok{(*SFAD[\{\{p, 0\}, \{m\^{}2, 1\}, 1\}]*)}
+\end{Highlighting}
+\end{Shaded}
+
+Eikonal propagators are entered using the \texttt{Dot} (\texttt{.}) as
+in noncommutative products
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{StandardPropagatorDenominator}\OperatorTok{[}\DecValTok{0}\OperatorTok{,}\NormalTok{ Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],} 
+\NormalTok{      Momentum}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{D}\OperatorTok{]],} \SpecialCharTok{{-}}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]]} \SpecialCharTok{//}\NormalTok{ FCE }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SFAD[\{\{0, p . q\}, \{m\^{}2, 1\}, 1\}]*)}
+\end{Highlighting}
+\end{Shaded}
+
+The Cartesian version of \texttt{StandardPropagatorDenominator} is
+called \texttt{CartesianPropagatorDenominator}. The syntax is almost the
+same as for \texttt{StandardPropagatorDenominator}, except that the
+momenta and scalar products must be Cartesian.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{CartesianPropagatorDenominator}\OperatorTok{[}\NormalTok{CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{],} \DecValTok{0}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} 
+   \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p^2+m^2-i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{CartesianPropagatorDenominator}\OperatorTok{[}\DecValTok{0}\OperatorTok{,}\NormalTok{ CartesianPair}\OperatorTok{[}\NormalTok{CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} 
+     \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{],}\NormalTok{ CartesianMomentum}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{]],} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p\cdot q+m^2-i \eta )}
+\end{dmath*}
+
+The shortcut to enter \texttt{FeynAmpDenominators} with
+\texttt{CartesianPropagatorDenominators} is \texttt{CFAD}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCE}\OperatorTok{[}\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{CartesianPropagatorDenominator}\OperatorTok{[}\NormalTok{CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{],} \DecValTok{0}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}
+     \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\}]]]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*CFAD[\{\{p, 0\}, \{m\^{}2, {-}1\}, 1\}]*)}
+\end{Highlighting}
+\end{Shaded}
+
+To represent completely arbitrary propagators one can use
+\texttt{GenericPropagatorDenominator}. However, one should keep in mind
+that the number of useful manipulations and automatic simplifications
+available for such propagators is very limited.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{GenericPropagatorDenominator}\OperatorTok{[}\FunctionTok{x}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(x+i \eta )}
+\end{dmath*}
+
+This is a nonlinear propagator that appears in the calculation of the
+QCD Energy-Energy-Correlation function
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{GenericPropagatorDenominator}\OperatorTok{[}\DecValTok{2} \FunctionTok{z}\NormalTok{ Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{Q}\OperatorTok{,} 
+       \FunctionTok{D}\OperatorTok{]]}\NormalTok{ Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p2}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{Q}\OperatorTok{,} \FunctionTok{D}\OperatorTok{]]} \SpecialCharTok{{-}}\NormalTok{ Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\NormalTok{p2}\OperatorTok{,} \FunctionTok{D}\OperatorTok{]],} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(2 z (\text{p1}\cdot Q) (\text{p2}\cdot Q)-\text{p1}\cdot \;\text{p2}+i \eta )}
+\end{dmath*}
+
+The shortcut to enter \texttt{FeynAmpDenominator}s with
+\texttt{GenericPropagatorDenominator}s is \texttt{GFAD}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{GenericPropagatorDenominator}\OperatorTok{[}\DecValTok{2} \FunctionTok{z}\NormalTok{ Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{Q}\OperatorTok{,} 
+         \FunctionTok{D}\OperatorTok{]]}\NormalTok{ Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p2}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{Q}\OperatorTok{,} \FunctionTok{D}\OperatorTok{]]} \SpecialCharTok{{-}}\NormalTok{ Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\NormalTok{p2}\OperatorTok{,} \FunctionTok{D}\OperatorTok{]],} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]]} \SpecialCharTok{//} 
+\NormalTok{   FCE }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*GFAD[\{\{{-}SPD[p1, p2] + 2 z SPD[p1, Q] SPD[p2, Q], 1\}, 1\}]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

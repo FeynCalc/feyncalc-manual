@@ -1,0 +1,42 @@
+% !TeX program = pdflatex
+% !TeX root = DiracChainExpand.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{diracchainexpand}{%
+\section{DiracChainExpand}\label{diracchainexpand}}
+
+\texttt{DiracChainExpand[\allowbreak{}exp]} expands all Dirac chains
+with explicit indices using linearity,
+e.g.~\texttt{DCHN[\allowbreak{}GA[\allowbreak{}p1]+GA[\allowbreak{}p2]+m,\ \allowbreak{}i,\ \allowbreak{}j]}
+becomes
+\texttt{DCHN[\allowbreak{}GA[\allowbreak{}p1],\ \allowbreak{}i,\ \allowbreak{}j]+DCHN[\allowbreak{}GA[\allowbreak{}p2],\ \allowbreak{}i,\ \allowbreak{}j]+m*DCHN[\allowbreak{}1,\ \allowbreak{}i,\ \allowbreak{}j]}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{diracchain}{DiracChain},
+\hyperlink{dchn}{DCHN}, \hyperlink{diracindex}{DiracIndex},
+\hyperlink{diracindexdelta}{DiracIndexDelta},
+\hyperlink{didelta}{DIDelta},
+\hyperlink{diracchainjoin}{DiracChainJoin},
+\hyperlink{diracchaincombine}{DiracChainCombine},
+\hyperlink{diracchainfactor}{DiracChainFactor}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DCHN}\OperatorTok{[}\NormalTok{(GS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{m}\NormalTok{) . GA}\OperatorTok{[}\NormalTok{mu}\OperatorTok{],} \FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]} 
+ 
+\NormalTok{DiracChainExpand}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\left(\bar{\gamma }\cdot \overline{p}+m\right).\bar{\gamma }^{\text{mu}}\right){}_{ij}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+m \left(\bar{\gamma }^{\text{mu}}\right){}_{ij}+\left(\left(\bar{\gamma }\cdot \overline{p}\right).\bar{\gamma }^{\text{mu}}\right){}_{ij}
+\end{dmath*}
+\end{document}

@@ -1,0 +1,139 @@
+% !TeX program = pdflatex
+% !TeX root = CartesianMomentum.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{cartesianmomentum}{%
+\section{CartesianMomentum}\label{cartesianmomentum}}
+
+\texttt{CartesianMomentum[\allowbreak{}p]} is the head of a 3-momentum
+\texttt{p}. The internal representation of a \(3\)-dimensional
+\texttt{p} is \texttt{CartesianMomentum[\allowbreak{}p]}. For other than
+three dimensions:
+\texttt{CartesianMomentum[\allowbreak{}p,\ \allowbreak{}Dimension]}.
+\texttt{CartesianMomentum[\allowbreak{}p,\ \allowbreak{}3]} simplifies
+to \texttt{CartesianMomentum[\allowbreak{}p]}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{momentum}{Momentum},
+\hyperlink{temporalmomentum}{TemporalMomentum}.
+
+\subsection{Examples}
+
+This is a 3-dimensional momentum
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}
+\end{dmath*}
+
+As an optional second argument the dimension must be specified if it is
+different from 3
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p
+\end{dmath*}
+
+The dimension index is suppressed in the output.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{d} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a1 }\ExtensionTok{=}\NormalTok{ CartesianMomentum}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\overline{q}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a1 }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*{-}CartesianMomentum[q]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a2 }\ExtensionTok{=}\NormalTok{ CartesianMomentum}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ CartesianMomentum}\OperatorTok{[}\DecValTok{2} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\overline{p}-\overline{q}\right)+2 \overline{q}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a2 }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*CartesianMomentum[p {-} q] + 2 CartesianMomentum[q]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a2 }\SpecialCharTok{//}\NormalTok{ MomentumExpand }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*CartesianMomentum[p] + CartesianMomentum[q]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a2 }\SpecialCharTok{//}\NormalTok{ MomentumCombine }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*CartesianMomentum[p + q]*)}
+\end{Highlighting}
+\end{Shaded}
+
+Notice that when changing the dimension, one must specify its value as
+if the the 3-vector were the spatial component of the corresponding
+4-vector
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ChangeDimension}\OperatorTok{[}\NormalTok{CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],} \FunctionTok{d} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*CartesianMomentum[p, {-}2 + d]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ChangeDimension}\OperatorTok{[}\NormalTok{CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],} \FunctionTok{d}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*CartesianMomentum[p, {-}1 + d]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Clear}\OperatorTok{[}\NormalTok{a1}\OperatorTok{,}\NormalTok{ a2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

@@ -1,0 +1,90 @@
+% !TeX program = pdflatex
+% !TeX root = TensorFunction.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{tensorfunction}{%
+\section{TensorFunction}\label{tensorfunction}}
+
+\texttt{TensorFunction[\allowbreak{}t,\ \allowbreak{}mu,\ \allowbreak{}nu,\ \allowbreak{}...]}
+transform into
+\texttt{t[\allowbreak{}LorentzIndex[\allowbreak{}mu],\ \allowbreak{}LorentzIndex[\allowbreak{}nu],\ \allowbreak{}...]},
+i.e., it can be used as an unspecified tensorial function \texttt{t}.
+
+A symmetric tensor can be obtained by
+\texttt{TensorFunction[\allowbreak{}\{\allowbreak{}t,\ \allowbreak{}"S"\},\ \allowbreak{}mu,\ \allowbreak{}nu,\ \allowbreak{}...]},
+and an antisymmetric one by
+\texttt{TensorFunction[\allowbreak{}\{\allowbreak{}t,\ \allowbreak{}"A"\},\ \allowbreak{}mu,\ \allowbreak{}nu,\ \allowbreak{}...]}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fcsymmetrize}{FCSymmetrize},
+\hyperlink{fcantisymmetrize}{FCAntiSymmetrize}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TensorFunction}\OperatorTok{[}\FunctionTok{t}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Tau}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+t(\mu ,\nu ,\tau )
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TensorFunction}\OperatorTok{[}\FunctionTok{t}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Tau}\OperatorTok{]]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*t[LorentzIndex[\textbackslash{}[Mu]], LorentzIndex[\textbackslash{}[Nu]], LorentzIndex[\textbackslash{}[Tau]]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Contract}\OperatorTok{[}\NormalTok{FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ TensorFunction}\OperatorTok{[}\FunctionTok{t}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Tau}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+t\left(\overline{p},\nu ,\tau \right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Contract}\OperatorTok{[}\NormalTok{FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ TensorFunction}\OperatorTok{[}\FunctionTok{t}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Tau}\OperatorTok{]]]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*t[Momentum[p], LorentzIndex[\textbackslash{}[Nu]], LorentzIndex[\textbackslash{}[Tau]]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TensorFunction}\OperatorTok{[\{}\FunctionTok{f}\OperatorTok{,} \StringTok{"S"}\OperatorTok{\},} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f(\alpha ,\beta )
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TensorFunction}\OperatorTok{[\{}\FunctionTok{f}\OperatorTok{,} \StringTok{"S"}\OperatorTok{\},} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{]]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*f[LorentzIndex[\textbackslash{}[Alpha]], LorentzIndex[\textbackslash{}[Beta]]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Attributes}\OperatorTok{[}\FunctionTok{f}\OperatorTok{]}
+\FunctionTok{ClearAttributes}\OperatorTok{[}\FunctionTok{f}\OperatorTok{,} \FunctionTok{Orderless}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{\text{Orderless}\}
+\end{dmath*}
+\end{document}

@@ -1,0 +1,309 @@
+% !TeX program = pdflatex
+% !TeX root = PaVeOrder.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{paveorder}{%
+\section{PaVeOrder}\label{paveorder}}
+
+\texttt{PaVeOrder[\allowbreak{}expr]} orders the arguments of PaVe
+functions in expr in a standard way.
+
+\texttt{PaVeOrder[\allowbreak{}expr,\ \allowbreak{}PaVeOrderList -> \{\allowbreak{} \{\allowbreak{}...,\ \allowbreak{}s,\ \allowbreak{}u,\ \allowbreak{}...\},\ \allowbreak{}\{\allowbreak{}... m1^2,\ \allowbreak{}m2^2,\ \allowbreak{}...\},\ \allowbreak{}...\}]}
+orders the arguments of \texttt{PaVe} functions in \texttt{expr}
+according to the specified ordering lists. The lists may contain only a
+subsequence of the kinematic variables.
+
+\texttt{PaVeOrder} has knows about symmetries in the arguments of PaVe
+functions with up to 6 legs.
+
+Available symmetry relations are saved here
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{FileBaseName} \SpecialCharTok{/}\NormalTok{@ }\FunctionTok{FileNames}\OperatorTok{[}\StringTok{"*.sym"}\OperatorTok{,} \FunctionTok{FileNameJoin}\OperatorTok{[\{}\NormalTok{$FeynCalcDirectory}\OperatorTok{,} \StringTok{"Tables"}\OperatorTok{,} 
+     \StringTok{"PaVeSymmetries"}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{\text{ScalarFunctions},\text{TensorBFunctions},\text{TensorCFunctions},\text{TensorDFunctions},\text{TensorEFunctions},\text{TensorFFunctions}\}
+\end{dmath*}
+
+For the time being, these tables contain relations for B-functions up to
+rank 10, C-functions up to rank 9, D-functions up to rank 8, E-functions
+(5-point functions) up to rank 7 and F-functions (6-point functions) up
+to rank 4. If needed, relations for more legs and higher tensor ranks
+can be calculated using FeynCalc and saved to PaVeSymmetries using
+template codes provided inside \texttt{*.sym} files.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{pavereduce}{PaVeReduce}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ClearAll}\OperatorTok{[}\FunctionTok{t}\OperatorTok{,} \FunctionTok{s}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+Use PaVeOrder to change the ordering of arguments in a \texttt{D0}
+function
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ D0}\OperatorTok{[}\NormalTok{me2}\OperatorTok{,}\NormalTok{ me2}\OperatorTok{,}\NormalTok{ mw2}\OperatorTok{,}\NormalTok{ mw2}\OperatorTok{,} \FunctionTok{t}\OperatorTok{,} \FunctionTok{s}\OperatorTok{,}\NormalTok{ me2}\OperatorTok{,} \DecValTok{0}\OperatorTok{,}\NormalTok{ me2}\OperatorTok{,} \DecValTok{0}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{D}_0(\text{me2},\text{me2},\text{mw2},\text{mw2},t,s,\text{me2},0,\text{me2},0)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PaVeOrder}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,}\NormalTok{ PaVeOrderList }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{me2}\OperatorTok{,}\NormalTok{ me2}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{D}_0(\text{me2},s,\text{mw2},t,\text{mw2},\text{me2},\text{me2},0,0,\text{me2})
+\end{dmath*}
+
+Different orderings are possible
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PaVeOrder}\OperatorTok{[}\NormalTok{D0}\OperatorTok{[}\NormalTok{me2}\OperatorTok{,}\NormalTok{ me2}\OperatorTok{,}\NormalTok{ mw2}\OperatorTok{,}\NormalTok{ mw2}\OperatorTok{,} \FunctionTok{t}\OperatorTok{,} \FunctionTok{s}\OperatorTok{,}\NormalTok{ me2}\OperatorTok{,} \DecValTok{0}\OperatorTok{,}\NormalTok{ me2}\OperatorTok{,} \DecValTok{0}\OperatorTok{],}\NormalTok{ PaVeOrderList }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,}\NormalTok{ me2}\OperatorTok{,}\NormalTok{ me2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{D}_0(s,\text{me2},t,\text{mw2},\text{mw2},\text{me2},0,0,\text{me2},\text{me2})
+\end{dmath*}
+
+When applying the function to an amplitude containing multiple PaVe
+functions, one can specify a list of possible orderings
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ D0}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{d}\OperatorTok{,} \FunctionTok{e}\OperatorTok{,} \FunctionTok{f}\OperatorTok{,}\NormalTok{ m12}\OperatorTok{,}\NormalTok{ m22}\OperatorTok{,}\NormalTok{ m32}\OperatorTok{,}\NormalTok{ m42}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ D0}\OperatorTok{[}\NormalTok{me2}\OperatorTok{,}\NormalTok{ me2}\OperatorTok{,}\NormalTok{ mw2}\OperatorTok{,}\NormalTok{ mw2}\OperatorTok{,} \FunctionTok{t}\OperatorTok{,} \FunctionTok{s}\OperatorTok{,}\NormalTok{ me2}\OperatorTok{,} \DecValTok{0}\OperatorTok{,}\NormalTok{ me2}\OperatorTok{,} \DecValTok{0}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{D}_0(a,b,c,d,e,f,\text{m12},\text{m22},\text{m32},\text{m42})+\text{D}_0(\text{me2},\text{me2},\text{mw2},\text{mw2},t,s,\text{me2},0,\text{me2},0)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PaVeOrder}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,}\NormalTok{ PaVeOrderList }\OtherTok{{-}\textgreater{}} \OperatorTok{\{\{}\NormalTok{me2}\OperatorTok{,}\NormalTok{ me2}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{f}\OperatorTok{,} \FunctionTok{e}\OperatorTok{\}\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{D}_0(a,b,c,d,e,f,\text{m12},\text{m22},\text{m32},\text{m42})+\text{D}_0(\text{me2},s,\text{mw2},t,\text{mw2},\text{me2},\text{me2},0,0,\text{me2})
+\end{dmath*}
+
+PaVeOrder can be useful to show that a particular linear combination of
+\texttt{PaVe} functions yields zero
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{diff }\ExtensionTok{=}\NormalTok{ PaVe}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \OperatorTok{\{}\NormalTok{p14}\OperatorTok{,}\NormalTok{ p30}\OperatorTok{,}\NormalTok{ p24}\OperatorTok{,}\NormalTok{ p13}\OperatorTok{,}\NormalTok{ p20}\OperatorTok{,}\NormalTok{ p40}\OperatorTok{,}\NormalTok{ p34}\OperatorTok{,}\NormalTok{ p23}\OperatorTok{,}\NormalTok{ p12}\OperatorTok{,}\NormalTok{ p10}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{m4}\OperatorTok{,}\NormalTok{ m3}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{,}\NormalTok{m1}\OperatorTok{,}\NormalTok{ m0}\OperatorTok{\},} 
+\NormalTok{    PaVeAutoOrder }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]} \SpecialCharTok{{-}}\NormalTok{ PaVe}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \OperatorTok{\{}\NormalTok{p10}\OperatorTok{,}\NormalTok{ p13}\OperatorTok{,}\NormalTok{ p12}\OperatorTok{,}\NormalTok{ p40}\OperatorTok{,}\NormalTok{ p30}\OperatorTok{,}\NormalTok{ p34}\OperatorTok{,}\NormalTok{ p20}\OperatorTok{,}\NormalTok{ p24}\OperatorTok{,}\NormalTok{ p14}\OperatorTok{,}\NormalTok{ p23}\OperatorTok{\},} 
+    \OperatorTok{\{}\NormalTok{m3}\OperatorTok{,}\NormalTok{ m0}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{,}\NormalTok{ m4}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{\},}\NormalTok{ PaVeAutoOrder }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{E}_{00}(\text{p14},\text{p30},\text{p24},\text{p13},\text{p20},\text{p40},\text{p34},\text{p23},\text{p12},\text{p10},\text{m4},\text{m3},\text{m2},\text{m1},\text{m0})-\text{E}_{00}(\text{p10},\text{p13},\text{p12},\text{p40},\text{p30},\text{p34},\text{p20},\text{p24},\text{p14},\text{p23},\text{m3},\text{m0},\text{m1},\text{m4},\text{m2})
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{diff }\SpecialCharTok{//}\NormalTok{ PaVeOrder}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+In most cases, such simplifications require not only 1-to-1 relations
+but also linear relations between \texttt{PaVe} functions. For example,
+here we have a 1-to-1 relation between \(C_1\) and \(C_2\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PaVe}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\NormalTok{p10}\OperatorTok{,}\NormalTok{ p12}\OperatorTok{,}\NormalTok{ p20}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{m1}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\},}\NormalTok{ PaVeAutoOrder }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]} 
+ 
+\NormalTok{PaVeOrder}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{C}_2\left(\text{p10},\text{p12},\text{p20},\text{m1}^2,\text{m2}^2,\text{m3}^2\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{C}_1\left(\text{p12},\text{p20},\text{p10},\text{m2}^2,\text{m3}^2,\text{m1}^2\right)
+\end{dmath*}
+
+It seems that \texttt{PaVeOrder} cannot rewrite \(C_1\) in such a way,
+that the mass arguments appear as \(m_2^2, m_1^2, m_3^2\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ PaVe}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \OperatorTok{\{}\NormalTok{p10}\OperatorTok{,}\NormalTok{ p12}\OperatorTok{,}\NormalTok{ p20}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{m1}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\},}\NormalTok{ PaVeAutoOrder }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{C}_1\left(\text{p10},\text{p12},\text{p20},\text{m1}^2,\text{m2}^2,\text{m3}^2\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PaVeOrder}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,}\NormalTok{ PaVeOrderList }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{m2}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{,}\NormalTok{ m3}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{C}_1\left(\text{p10},\text{p12},\text{p20},\text{m1}^2,\text{m2}^2,\text{m3}^2\right)
+\end{dmath*}
+
+In fact, such a rewriting is possible, but it involves a linear relation
+between multiple \texttt{PaVe} functions. To avoid an accidental
+expression swell, by default \texttt{PaVeOrder} uses only 1-to-1
+relations. Setting the option \texttt{Sum} to \texttt{True} allows the
+routine to return linear relations too
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PaVeOrder}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,}\NormalTok{ PaVeOrderList }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{m2}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{,}\NormalTok{ m3}\OperatorTok{\},} \FunctionTok{Sum} \OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\text{C}_0\left(\text{p10},\text{p20},\text{p12},\text{m2}^2,\text{m1}^2,\text{m3}^2\right)-\text{C}_1\left(\text{p10},\text{p20},\text{p12},\text{m2}^2,\text{m1}^2,\text{m3}^2\right)-\text{C}_2\left(\text{p10},\text{p20},\text{p12},\text{m2}^2,\text{m1}^2,\text{m3}^2\right)
+\end{dmath*}
+
+When trying to minimize the number of \texttt{PaVe} functions in the
+expression, one often has to try different orderings first
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{diff }\ExtensionTok{=}\NormalTok{ (C0}\OperatorTok{[}\DecValTok{0}\OperatorTok{,}\NormalTok{ SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{p}\OperatorTok{],}\NormalTok{ SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{p}\OperatorTok{],} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{]} \SpecialCharTok{+} \DecValTok{2}\NormalTok{ PaVe}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,}\NormalTok{ SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{p}\OperatorTok{],}\NormalTok{ SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}]} \SpecialCharTok{+} 
+\NormalTok{    PaVe}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{p}\OperatorTok{],}\NormalTok{ SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{p}\OperatorTok{],} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}]}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{C}_0\left(0,\overline{p}^2,\overline{p}^2,0,0,0\right)+2 \;\text{C}_1\left(0,\overline{p}^2,\overline{p}^2,0,0,0\right)+\text{C}_1\left(\overline{p}^2,\overline{p}^2,0,0,0,0\right)
+\end{dmath*}
+
+This ordering doesn't look very helpful
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PaVeOrder}\OperatorTok{[}\NormalTok{diff}\OperatorTok{,}\NormalTok{ PaVeOrderList }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,}\NormalTok{ SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{p}\OperatorTok{],}\NormalTok{ SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]\},} \FunctionTok{Sum} \OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ PaVeOrder}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{C}_0\left(0,\overline{p}^2,\overline{p}^2,0,0,0\right)+2 \;\text{C}_1\left(0,\overline{p}^2,\overline{p}^2,0,0,0\right)+\text{C}_2\left(0,\overline{p}^2,\overline{p}^2,0,0,0\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{C}_0\left(0,\overline{p}^2,\overline{p}^2,0,0,0\right)+2 \;\text{C}_1\left(0,\overline{p}^2,\overline{p}^2,0,0,0\right)+\text{C}_1\left(\overline{p}^2,\overline{p}^2,0,0,0,0\right)
+\end{dmath*}
+
+But this one does the job
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PaVeOrder}\OperatorTok{[}\NormalTok{diff}\OperatorTok{,}\NormalTok{ PaVeOrderList }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{p}\OperatorTok{],} \DecValTok{0}\OperatorTok{,}\NormalTok{ SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]\},} \FunctionTok{Sum} \OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ PaVeOrder}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{C}_1\left(\overline{p}^2,0,\overline{p}^2,0,0,0\right)-\text{C}_2\left(\overline{p}^2,0,\overline{p}^2,0,0,0\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+Here are few simpler cases
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{diff }\ExtensionTok{=}\NormalTok{ PaVe}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \OperatorTok{\{}\DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]} \SpecialCharTok{+}\NormalTok{ PaVe}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \OperatorTok{\{}\DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{m3}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]} \SpecialCharTok{+}\NormalTok{ PaVe}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \OperatorTok{\{}\DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{B}_0\left(0,\text{m2}^2,\text{m3}^2\right)+\text{B}_1\left(0,\text{m2}^2,\text{m3}^2\right)+\text{B}_1\left(0,\text{m3}^2,\text{m2}^2\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PaVeOrder}\OperatorTok{[}\NormalTok{diff}\OperatorTok{,}\NormalTok{ PaVeOrderList }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{m2}\OperatorTok{,}\NormalTok{ m3}\OperatorTok{\},} \FunctionTok{Sum} \OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{diff }\ExtensionTok{=}\NormalTok{ PaVe}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \OperatorTok{\{}\DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]} \SpecialCharTok{+} \DecValTok{2}\NormalTok{ PaVe}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \OperatorTok{\{}\DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{m3}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]} \SpecialCharTok{{-}}\NormalTok{ PaVe}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \OperatorTok{\{}\DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]} \SpecialCharTok{+} 
+\NormalTok{   PaVe}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \OperatorTok{\{}\DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{m3}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{B}_0\left(0,\text{m2}^2,\text{m3}^2\right)+2 \;\text{B}_1\left(0,\text{m3}^2,\text{m2}^2\right)-\text{B}_{11}\left(0,\text{m2}^2,\text{m3}^2\right)+\text{B}_{11}\left(0,\text{m3}^2,\text{m2}^2\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PaVeOrder}\OperatorTok{[}\NormalTok{diff}\OperatorTok{,} \FunctionTok{Sum} \OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,}\NormalTok{ PaVeOrderList }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{m3}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{diff }\ExtensionTok{=}\NormalTok{ PaVe}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m4}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]} \SpecialCharTok{+} \DecValTok{2}\NormalTok{ PaVe}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m4}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]} \SpecialCharTok{+} 
+   \DecValTok{2}\NormalTok{ PaVe}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{m3}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m4}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]} \SpecialCharTok{+}\NormalTok{ PaVe}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m4}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]} \SpecialCharTok{{-}} 
+\NormalTok{   PaVe}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m4}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]} \SpecialCharTok{+}\NormalTok{ PaVe}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{m3}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m4}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]} \SpecialCharTok{+} 
+   \DecValTok{2}\NormalTok{ PaVe}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{m4}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{C}_0\left(0,0,0,\text{m2}^2,\text{m3}^2,\text{m4}^2\right)+2 \;\text{C}_1\left(0,0,0,\text{m2}^2,\text{m3}^2,\text{m4}^2\right)+2 \;\text{C}_1\left(0,0,0,\text{m3}^2,\text{m2}^2,\text{m4}^2\right)+\text{C}_{11}\left(0,0,0,\text{m2}^2,\text{m3}^2,\text{m4}^2\right)-\text{C}_{11}\left(0,0,0,\text{m2}^2,\text{m4}^2,\text{m3}^2\right)+\text{C}_{11}\left(0,0,0,\text{m3}^2,\text{m2}^2,\text{m4}^2\right)+2 \;\text{C}_{12}\left(0,0,0,\text{m4}^2,\text{m2}^2,\text{m3}^2\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PaVeOrder}\OperatorTok{[}\NormalTok{diff}\OperatorTok{,} \FunctionTok{Sum} \OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,}\NormalTok{ PaVeOrderList }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{m3}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+\end{document}

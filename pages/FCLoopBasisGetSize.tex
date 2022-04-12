@@ -1,0 +1,70 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopBasisGetSize.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopbasisgetsize}{%
+\section{FCLoopBasisGetSize}\label{fcloopbasisgetsize}}
+
+\texttt{FCLoopBasisGetSize[\allowbreak{}n1,\ \allowbreak{}n2]} returns
+the number of linearly independent propagators for a topology that
+contains \texttt{n1} loop momenta and \texttt{n2} external momenta.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopBasisGetSize}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+1
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopBasisGetSize}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+5
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopBasisGetSize}\OperatorTok{[}\DecValTok{3}\OperatorTok{,} \DecValTok{2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+12
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopBasisGetSize}\OperatorTok{[}\DecValTok{4}\OperatorTok{,} \DecValTok{1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+14
+\end{dmath*}
+
+The third argument (if given) is simply added to the final result.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopBasisGetSize}\OperatorTok{[}\DecValTok{4}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+15
+\end{dmath*}
+\end{document}

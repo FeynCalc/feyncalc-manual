@@ -1,0 +1,44 @@
+% !TeX program = pdflatex
+% !TeX root = A00.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{a00}{%
+\section{A00}\label{a00}}
+
+\texttt{A00[\allowbreak{}m^2]} is the Passarino-Veltman coefficient
+function \(A_{00}\), i.e.~the coefficient function multiplying
+\(g^{\mu \nu}\). The argument is a scalar and has mass dimension 2.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{a0}{A0}, \hyperlink{b0}{B0},
+\hyperlink{c0}{C0}, \hyperlink{d0}{D0}, \hyperlink{pave}{PaVe}.
+
+\subsection{Examples}
+
+\(A_{00}\) get automatically reduced to \(A_0\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{A00}\OperatorTok{[}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{m^2 \;\text{A}_0\left(m^2\right)}{D}
+\end{dmath*}
+
+According to the rules of dimensional regularization \(A_{00}(0)\) is
+set to 0.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{A00}\OperatorTok{[}\DecValTok{0}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+\end{document}

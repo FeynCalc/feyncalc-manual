@@ -1,0 +1,51 @@
+% !TeX program = pdflatex
+% !TeX root = CartesianToLorentz.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{cartesiantolorentz}{%
+\section{CartesianToLorentz}\label{cartesiantolorentz}}
+
+\texttt{CartesianToLorentz[\allowbreak{}exp]} rewrites Cartesian tensors
+in form of Lorentz tensors (when possible). Using options one can
+specify which types of tensors should be converted.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{lorentztocartesian}{LorentzToCartesian}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CGS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ CartesianToLorentz}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{\gamma }\cdot \overline{p}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+p^0 \bar{\gamma }^0-\bar{\gamma }\cdot \overline{p}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CSP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ CartesianToLorentz}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot \overline{q}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+p^0 q^0-\overline{p}\cdot \overline{q}
+\end{dmath*}
+\end{document}

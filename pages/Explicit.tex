@@ -1,0 +1,73 @@
+% !TeX program = pdflatex
+% !TeX root = Explicit.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{explicit}{%
+\section{Explicit}\label{explicit}}
+
+\texttt{Explicit} is an option for \texttt{FieldStrength},
+\texttt{GluonVertex}, \texttt{SUNF}, and \texttt{Twist2GluonOperator}.
+If set to \texttt{True} the full form of the operator is inserted.
+
+\texttt{Explicit[\allowbreak{}exp]} inserts explicit expressions of
+\texttt{GluonVertex}, \texttt{Twist2GluonOperator} etc. in \texttt{exp}.
+\texttt{SUNF}s are replaced by \texttt{SUNTrace} objects.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{gluonvertex}{GluonVertex},
+\hyperlink{twist2gluonoperator}{Twist2GluonOperator}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GluonVertex}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{b}\OperatorTok{,} \FunctionTok{r}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \FunctionTok{c}\OperatorTok{]} 
+ 
+\NormalTok{Explicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f^{abc} V^{\mu \nu \rho }(p\text{, }q\text{, }r)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+g_s f^{abc} \left(g^{\mu \nu } \left(p^{\rho }-q^{\rho }\right)+g^{\mu \rho } \left(r^{\nu }-p^{\nu }\right)+g^{\nu \rho } \left(q^{\mu }-r^{\mu }\right)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Twist2GluonOperator}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{b}\OperatorTok{]} 
+ 
+\NormalTok{Explicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} \left((-1)^m+1\right) \delta ^{ab} \left(O_{\mu \, \nu }^{\text{G2}}(p)\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} \left((-1)^m+1\right) \delta ^{ab} (\Delta \cdot p)^{m-2} \left(g^{\mu \nu } (\Delta \cdot p)^2+p^2 \Delta ^{\mu } \Delta ^{\nu }-(\Delta \cdot p) \left(\Delta ^{\nu } p^{\mu }+\Delta ^{\mu } p^{\nu }\right)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FieldStrength}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{]} 
+ 
+\NormalTok{Explicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]} 
+  
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+F_{\mu \nu }^a
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+g_s f^{a\text{b19}\;\text{c20}} A_{\mu }^{\text{b19}}.A_{\nu }^{\text{c20}}+\left.(\partial _{\mu }A_{\nu }^a\right)-\left.(\partial _{\nu }A_{\mu }^a\right)
+\end{dmath*}
+\end{document}

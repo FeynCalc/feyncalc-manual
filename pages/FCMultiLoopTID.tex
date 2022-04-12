@@ -1,0 +1,37 @@
+% !TeX program = pdflatex
+% !TeX root = FCMultiLoopTID.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcmultilooptid}{%
+\section{FCMultiLoopTID}\label{fcmultilooptid}}
+
+\texttt{FCMultiLoopTID[\allowbreak{}amp,\ \allowbreak{}\{\allowbreak{}q1,\ \allowbreak{}q2,\ \allowbreak{}...\}]}
+does a multi-loop tensor integral decomposition, transforming the
+Lorentz indices away from the loop momenta
+\texttt{q1,\ \allowbreak{}q2,\ \allowbreak{}...} The decomposition is
+applied only to the loop integrals where loop momenta are contracted
+with Dirac matrices or epsilon tensors.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{tid}{TID}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{FVD}\OperatorTok{[}\NormalTok{q1}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FVD}\OperatorTok{[}\NormalTok{q2}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1 }\SpecialCharTok{{-}}\NormalTok{ p1}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q2 }\SpecialCharTok{{-}}\NormalTok{ p1}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q1 }\SpecialCharTok{{-}}\NormalTok{ q2}\OperatorTok{\}]]} 
+ 
+\NormalTok{FCMultiLoopTID}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\text{q1}^{\mu } \;\text{q2}^{\nu }}{\text{q1}^2.\text{q2}^2.(\text{q1}-\text{p1})^2.(\text{q2}-\text{p1})^2.(\text{q1}-\text{q2})^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{\text{p1}^{\mu } \;\text{p1}^{\nu }-\text{p1}^2 g^{\mu \nu }}{(1-D) \;\text{p1}^2 \;\text{q1}^2.\text{q2}^2.(\text{q1}-\text{p1})^2.(\text{q1}-\text{q2})^2}-\frac{\text{p1}^{\mu } \;\text{p1}^{\nu }-\text{p1}^2 g^{\mu \nu }}{2 (1-D) \;\text{p1}^2 \;\text{q1}^2.\text{q2}^2.(\text{q1}-\text{p1})^2.(\text{q2}-\text{p1})^2}-\frac{D \;\text{p1}^{\mu } \;\text{p1}^{\nu }-\text{p1}^2 g^{\mu \nu }}{4 (1-D) \;\text{q1}^2.\text{q2}^2.(\text{q1}-\text{p1})^2.(\text{q1}-\text{q2})^2.(\text{q2}-\text{p1})^2}+\frac{D \;\text{p1}^{\mu } \;\text{p1}^{\nu }-\text{p1}^2 g^{\mu \nu }}{2 (1-D) \;\text{p1}^4 \;\text{q1}^2.(\text{q1}-\text{q2})^2.(\text{q2}-\text{p1})^2}
+\end{dmath*}
+\end{document}

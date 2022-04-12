@@ -1,0 +1,28 @@
+% !TeX program = pdflatex
+% !TeX root = DollarLoadTARCER.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{loadtarcer}{%
+\section{\$LoadTARCER}\label{loadtarcer}}
+
+\texttt{\$LoadTARCER} is a legacy switch for loading TARCER. The modern
+way to achieve the same effect is to evaluate
+\texttt{\$LoadAddOns=\{\allowbreak{}"TARCER"\}} before loading FeynCalc.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{loadaddons}{\$LoadAddOns}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$LoadTARCER}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+\end{document}

@@ -1,0 +1,102 @@
+% !TeX program = pdflatex
+% !TeX root = FCSetPauliSigmaScheme.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcsetpaulisigmascheme}{%
+\section{FCSetPauliSigmaScheme}\label{fcsetpaulisigmascheme}}
+
+\texttt{FCSetPauliSigmaScheme[\allowbreak{}scheme]} allows you to
+specify how Pauli matrices will be handled in \(D-1\) dimensions.
+
+This is mainly related to the commutator of two Pauli matrices, which
+involves a Levi-Civita tensor. The latter is not a well-defined quantity
+in \(D-1\) dimensions. Following schemes are supported:
+
+\begin{itemize}
+\item
+  \texttt{"None"} - This is the default value. The anticommutator
+  relation is not applied to \(D-1\) dimensional Pauli matrices.
+\item
+  \texttt{"Naive"} - Naively apply the commutator relation in
+  \(D-1\)-dimensions,
+  i.e.~\(\{\sigma^i, \sigma^j \} = 2 i \varepsilon^{ijk} \sigma^k\). The
+  Levi-Civita tensor lives in \(D-1\)-dimensions, so that a contraction
+  of two such tensors which have all indices in common yields
+  \((D-3) (D-2) (D-1)\).
+\end{itemize}
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{paulisigma}{PauliSigma},
+\hyperlink{fcgetpaulisigmascheme}{FCGetPauliSigmaScheme}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCGetPauliSigmaScheme}\OperatorTok{[]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{None}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CSID}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]} 
+ 
+\NormalTok{PauliSimplify}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ PauliReduce }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\sigma ^i.\sigma ^j.\sigma ^k
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\sigma ^i.\sigma ^j.\sigma ^k
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCSetPauliSigmaScheme}\OperatorTok{[}\StringTok{"Naive"}\OperatorTok{]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCGetPauliSigmaScheme}\OperatorTok{[]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{Naive}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ PauliSimplify}\OperatorTok{[}\NormalTok{CSID}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{],}\NormalTok{ PauliReduce }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+i \overset{\text{}}{\epsilon }^{ijk}+D \sigma ^i \delta ^{jk}-D \sigma ^j \delta ^{ik}-3 \sigma ^i \delta ^{jk}+3 \sigma ^j \delta ^{ik}+\sigma ^k \delta ^{ij}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//}\NormalTok{ FCE }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*I CLCD[i, j, k] + CSID[k] KDD[i, j] + 3 CSID[j] KDD[i, k] {-} D CSID[j] KDD[i, k] {-} 3 CSID[i] KDD[j, k] + D CSID[i] KDD[j, k]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCSetPauliSigmaScheme}\OperatorTok{[}\StringTok{"None"}\OperatorTok{]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

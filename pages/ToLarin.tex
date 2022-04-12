@@ -1,0 +1,34 @@
+% !TeX program = pdflatex
+% !TeX root = ToLarin.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{tolarin}{%
+\section{ToLarin}\label{tolarin}}
+
+ToLarin{[}exp{]} substitutes \(\gamma^{\mu} \gamma^5\) with
+\(-\frac{I}{6}\varepsilon^{\mu \nu \lambda \sigma } \gamma^{\nu } \gamma^{\lambda} \gamma^{\sigma }\).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{eps}{Eps},
+\hyperlink{diracgamma}{DiracGamma}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ . GA}\OperatorTok{[}\DecValTok{5}\OperatorTok{]} 
+ 
+\NormalTok{ToLarin}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\gamma ^{\mu }.\gamma ^{\nu }.\bar{\gamma }^5
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-\frac{1}{6} i \gamma ^{\mu }.\gamma ^{\text{du19}}.\gamma ^{\text{du20}}.\gamma ^{\text{du21}} \overset{\text{}}{\epsilon }^{\nu \;\text{du19}\;\text{du20}\;\text{du21}}
+\end{dmath*}
+\end{document}

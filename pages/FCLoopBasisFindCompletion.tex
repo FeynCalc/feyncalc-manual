@@ -1,0 +1,137 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopBasisFindCompletion.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopbasisfindcompletion}{%
+\section{FCLoopBasisFindCompletion}\label{fcloopbasisfindcompletion}}
+
+\texttt{FCLoopBasisFindCompletion[\allowbreak{}int,\ \allowbreak{}\{\allowbreak{}q1,\ \allowbreak{}q2,\ \allowbreak{}...\}]}
+determines propagators that need to be included in the loop integral
+\texttt{int} (that depends on the loop momenta \texttt{q1}, \texttt{q2},
+\ldots), to ensure that the propagators of \texttt{int} form a basis.
+
+For integrals with propagators that do not form a basis, such a
+completion must be found prior to processing those integrals with tools
+that do Integration-By-Parts (IBP) reduction (e.g.~FIRE, KIRA or
+LiteRed). Furthermore, \texttt{int} may not contain linearly dependent
+propagators.
+
+The input can also consist of an \texttt{FCTopology} object or a list
+thereof.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcloopbasisincompleteq}{FCLoopBasisIncompleteQ}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p} \SpecialCharTok{+} \FunctionTok{l}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]} 
+ 
+\NormalTok{FCLoopBasisFindCompletion}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{q^2.\left((l-p+q)^2-m^2\right)}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left\{\frac{1}{q^2.\left((l-p+q)^2-m^2\right)},\{l\cdot q\}\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAD}\OperatorTok{[\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{\}]} 
+ 
+\NormalTok{FCLoopBasisFindCompletion}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\left(\text{q1}^2-\text{m1}^2\right).\left(\text{q2}^2-\text{m2}^2\right)}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left\{\frac{1}{\left(\text{q1}^2-\text{m1}^2\right).\left(\text{q2}^2-\text{m2}^2\right)},\{\text{q1}\cdot \;\text{q2}\}\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAD}\OperatorTok{[}\NormalTok{q1 }\SpecialCharTok{+} \FunctionTok{p}\OperatorTok{,}\NormalTok{ q2 }\SpecialCharTok{{-}} \FunctionTok{k}\OperatorTok{]}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{]} 
+ 
+\NormalTok{FCLoopBasisFindCompletion}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\},} \FunctionTok{Method} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{FAD}\OperatorTok{[\{}\NormalTok{q2 }\SpecialCharTok{+} \FunctionTok{k}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{q1 }\SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}],}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{],}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,}\NormalTok{ q1}\OperatorTok{]\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\text{q1}\cdot \;\text{q2}}{(p+\text{q1})^2.(\text{q2}-k)^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left\{\frac{\text{q1}\cdot \;\text{q2}}{(p+\text{q1})^2.(\text{q2}-k)^2},\left\{\frac{1}{(k+\text{q2})^2-m^2},\frac{1}{(\text{q1}-p)^2-m^2},p\cdot \;\text{q2},k\cdot \;\text{q1}\right\}\right\}
+\end{dmath*}
+
+Cartesian integrals are also supported.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CFAD}\OperatorTok{[}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1 }\SpecialCharTok{{-}}\NormalTok{ l1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q2 }\SpecialCharTok{{-}}\NormalTok{ l2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{\}]} 
+ 
+\NormalTok{FCLoopBasisFindCompletion}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(\text{q1}^2-i \eta ).(\text{q2}^2-i \eta ).((\text{q1}-\text{l1})^2+\text{m1}-i \eta ).((\text{q2}-\text{l2})^2+\text{m2}-i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left\{\frac{1}{(\text{q1}^2-i \eta ).(\text{q2}^2-i \eta ).((\text{q1}-\text{l1})^2+\text{m1}-i \eta ).((\text{q2}-\text{l2})^2+\text{m2}-i \eta )},\{\text{l1}\cdot \;\text{q2},\text{l2}\cdot \;\text{q1},\text{q1}\cdot \;\text{q2}\}\right\}
+\end{dmath*}
+
+Extending \texttt{FCTopology} objects
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopBasisFindCompletion}\OperatorTok{[}\NormalTok{FCTopology}\OperatorTok{[}\NormalTok{topo}\OperatorTok{,} \OperatorTok{\{}\NormalTok{FAD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p2 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCTopology}\left(\text{topo},\left\{\frac{1}{\text{p1}^2},\frac{1}{\text{p2}^2},\frac{1}{(\text{p1}-q)^2},\frac{1}{(\text{p2}-q)^2},\frac{1}{(\text{p1}\cdot \;\text{p2}+i \eta )}\right\},\{\text{p1},\text{p2}\},\{q\},\{\},\{\}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopBasisFindCompletion}\OperatorTok{[\{}
+\NormalTok{   FCTopology}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,} \OperatorTok{\{}\NormalTok{FAD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p2 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}],} 
+\NormalTok{   FCTopology}\OperatorTok{[}\NormalTok{topo2}\OperatorTok{,} \OperatorTok{\{}\NormalTok{FAD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p2 }\SpecialCharTok{{-}}\NormalTok{ p1}\OperatorTok{]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]} 
+  \OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{FCTopology}\left(\text{topo1},\left\{\frac{1}{\text{p1}^2},\frac{1}{\text{p2}^2},\frac{1}{(\text{p1}-q)^2},\frac{1}{(\text{p2}-q)^2},\frac{1}{(\text{p1}\cdot \;\text{p2}+i \eta )}\right\},\{\text{p1},\text{p2}\},\{q\},\{\},\{\}\right),\text{FCTopology}\left(\text{topo2},\left\{\frac{1}{\text{p1}^2},\frac{1}{\text{p2}^2},\frac{1}{(\text{p1}-q)^2},\frac{1}{(\text{p2}-\text{p1})^2},\frac{1}{(\text{p2}\cdot q+i \eta )}\right\},\{\text{p1},\text{p2}\},\{q\},\{\},\{\}\right)\right\}
+\end{dmath*}
+
+The function pays attention to the \(i \eta\) signs in the propagators
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopBasisFindCompletion}\OperatorTok{[\{}\NormalTok{FCTopology}\OperatorTok{[}
+\NormalTok{    asyR1prop2Ltopo13011X11011NAux1}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{\{}\FunctionTok{I}\SpecialCharTok{*}\NormalTok{p1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \OperatorTok{\{}\SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\}\},} \DecValTok{1}\OperatorTok{\}],}
+\NormalTok{        SFAD}\OperatorTok{[\{\{}\NormalTok{(}\SpecialCharTok{{-}}\FunctionTok{I}\NormalTok{)}\SpecialCharTok{*}\NormalTok{p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{{-}}\NormalTok{mb}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{        SFAD}\OperatorTok{[\{\{}\FunctionTok{I}\SpecialCharTok{*}\NormalTok{(p1 }\SpecialCharTok{+}\NormalTok{ p3)}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{{-}}\NormalTok{mb}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{        SFAD}\OperatorTok{[\{\{}\FunctionTok{I}\SpecialCharTok{*}\NormalTok{(p1 }\SpecialCharTok{{-}} \FunctionTok{q}\NormalTok{)}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{{-}}\NormalTok{mb}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,} 
+\NormalTok{        p3}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]} \OtherTok{{-}\textgreater{}}\NormalTok{ mb}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\},} \OperatorTok{\{\}]\},}\NormalTok{ FCE }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{FCTopology}\left(\text{asyR1prop2Ltopo13011X11011NAux1},\left\{\frac{1}{(-\text{p1}^2-i \eta )},\frac{1}{(-\text{p3}^2+\text{mb}^2-i \eta )},\frac{1}{(-(\text{p1}+\text{p3})^2+\text{mb}^2-i \eta )},\frac{1}{(-(\text{p1}-q)^2+\text{mb}^2-i \eta )},\frac{1}{(\text{p3}\cdot q-i \eta )}\right\},\{\text{p1},\text{p3}\},\{q\},\left\{q^2\to \;\text{mb}^2\right\},\{\}\right)\right\}
+\end{dmath*}
+\end{document}

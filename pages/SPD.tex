@@ -1,0 +1,99 @@
+% !TeX program = pdflatex
+% !TeX root = SPD.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{spd}{%
+\section{SPD}\label{spd}}
+
+\texttt{SPD[\allowbreak{}a,\ \allowbreak{}b]} denotes a
+\(D\)-dimensional scalar product.
+
+\texttt{SPD[\allowbreak{}a,\ \allowbreak{}b]} is transformed into
+\texttt{ScalarProduct[\allowbreak{}a,\ \allowbreak{}b,\ \allowbreak{}Dimension->D]}
+by \texttt{FeynCalcInternal}.
+
+\texttt{SPD[\allowbreak{}p]} is the same as
+\texttt{SPD[\allowbreak{}p,\ \allowbreak{}p]} \((=p^2)\).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{pd}{PD}, \hyperlink{calc}{Calc},
+\hyperlink{expandscalarproduct}{ExpandScalarProduct},
+\hyperlink{scalarproduct}{ScalarProduct}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p\cdot q+q^2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \FunctionTok{q} \SpecialCharTok{+} \DecValTok{2} \FunctionTok{p}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(p-q)\cdot (2 p+q)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Calc}\OperatorTok{[}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \FunctionTok{q} \SpecialCharTok{+} \DecValTok{2} \FunctionTok{p}\OperatorTok{]} \OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-p\cdot q+2 p^2-q^2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ExpandScalarProduct}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-2 (p\cdot q)+p^2+q^2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SPD[a, b]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*Pair[Momentum[a, D], Momentum[b, D]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//}\NormalTok{ FCE }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SPD[a, b]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCE}\OperatorTok{[}\NormalTok{ChangeDimension}\OperatorTok{[}\NormalTok{SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{],} \FunctionTok{D}\OperatorTok{]]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SPD[p, q]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

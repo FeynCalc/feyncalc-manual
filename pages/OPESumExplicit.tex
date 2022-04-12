@@ -1,0 +1,51 @@
+% !TeX program = pdflatex
+% !TeX root = OPESumExplicit.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{opesumexplicit}{%
+\section{OPESumExplicit}\label{opesumexplicit}}
+
+\texttt{OPESumExplicit[\allowbreak{}exp]} calculates \texttt{OPESum}s.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{opesum}{OPESum},
+\hyperlink{opesumsimplify}{OPESumSimplify}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{OPESum}\OperatorTok{[}\FunctionTok{A}\SpecialCharTok{\^{}}\NormalTok{iB}\SpecialCharTok{\^{}}\NormalTok{(}\FunctionTok{m} \SpecialCharTok{{-}} \FunctionTok{i} \SpecialCharTok{{-}} \DecValTok{3}\NormalTok{)}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{i}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \FunctionTok{m} \SpecialCharTok{{-}} \DecValTok{3}\OperatorTok{\}]} 
+ 
+\NormalTok{OPESumExplicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\sum _{i=0}^{-3+m} A^{\text{iB}^{-3-i+m}}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\sum _{i=0}^{-3+m} A^{\text{iB}^{-3-i+m}}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{OPESum}\OperatorTok{[}\FunctionTok{a}\SpecialCharTok{\^{}}\NormalTok{ib}\SpecialCharTok{\^{}}\NormalTok{(}\FunctionTok{j} \SpecialCharTok{{-}} \FunctionTok{i}\NormalTok{) }\FunctionTok{c}\SpecialCharTok{\^{}}\NormalTok{(}\FunctionTok{m} \SpecialCharTok{{-}} \FunctionTok{j} \SpecialCharTok{{-}} \DecValTok{4}\NormalTok{)}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{i}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \FunctionTok{j}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{j}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \FunctionTok{m} \SpecialCharTok{{-}} \DecValTok{4}\OperatorTok{\}]} 
+ 
+\NormalTok{OPESumExplicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]} 
+  
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\sum _{j=0}^{-4+m} \;\text{}\;\text{} (j+1)c^{-j+m-4} a^{\text{ib}^{j-i}}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\sum _{j=0}^{-4+m} \;\text{}\;\text{} (j+1)c^{-j+m-4} a^{\text{ib}^{j-i}}
+\end{dmath*}
+\end{document}

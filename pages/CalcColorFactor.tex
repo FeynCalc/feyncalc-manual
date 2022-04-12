@@ -1,0 +1,28 @@
+% !TeX program = pdflatex
+% !TeX root = CalcColorFactor.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{calccolorfactor}{%
+\section{CalcColorFactor}\label{calccolorfactor}}
+
+\texttt{CalcColorFactor[\allowbreak{}exp]} calculates the color factor
+of exp. \texttt{CalcColorFactor} is useful for application on FeynArts
+produced amplitudes.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{sunsimplify}{SUNSimplify}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CalcColorFactor}\OperatorTok{[}\NormalTok{SUNF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]}\NormalTok{ SUNF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{d}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+C_A \delta ^{cd}
+\end{dmath*}
+\end{document}

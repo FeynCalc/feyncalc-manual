@@ -1,0 +1,37 @@
+% !TeX program = pdflatex
+% !TeX root = FCReorderList.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcreorderlist}{%
+\section{FCReorderList}\label{fcreorderlist}}
+
+\texttt{FCReorderList[\allowbreak{}li,\ \allowbreak{}ord]} reorders the
+list \texttt{li} according to the given ordering \texttt{ord}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{myList }\ExtensionTok{=} \FunctionTok{Table}\OperatorTok{[}\NormalTok{mat}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{i}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{23}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{\text{mat}(1),\text{mat}(2),\text{mat}(3),\text{mat}(4),\text{mat}(5),\text{mat}(6),\text{mat}(7),\text{mat}(8),\text{mat}(9),\text{mat}(10),\text{mat}(11),\text{mat}(12),\text{mat}(13),\text{mat}(14),\text{mat}(15),\text{mat}(16),\text{mat}(17),\text{mat}(18),\text{mat}(19),\text{mat}(20),\text{mat}(21),\text{mat}(22),\text{mat}(23)\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCReorderList}\OperatorTok{[}\NormalTok{myList}\OperatorTok{,} \OperatorTok{\{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{10}\OperatorTok{\},} \DecValTok{23}\OperatorTok{,} \OperatorTok{\{}\DecValTok{11}\OperatorTok{,} \DecValTok{20}\OperatorTok{\},} \DecValTok{22}\OperatorTok{,} \DecValTok{21}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{\text{mat}(1),\text{mat}(2),\text{mat}(3),\text{mat}(4),\text{mat}(5),\text{mat}(6),\text{mat}(7),\text{mat}(8),\text{mat}(9),\text{mat}(10),\text{mat}(23),\text{mat}(11),\text{mat}(12),\text{mat}(13),\text{mat}(14),\text{mat}(15),\text{mat}(16),\text{mat}(17),\text{mat}(18),\text{mat}(19),\text{mat}(20),\text{mat}(22),\text{mat}(21)\}
+\end{dmath*}
+\end{document}

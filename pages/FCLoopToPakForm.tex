@@ -1,0 +1,137 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopToPakForm.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fclooptopakform}{%
+\section{FCLoopToPakForm}\label{fclooptopakform}}
+
+\texttt{FCLoopToPakForm[\allowbreak{}int,\ \allowbreak{}\{\allowbreak{}p1,\ \allowbreak{}p2,\ \allowbreak{}...\}]}
+determines a canonical \(UF\)-based representation for the scalar
+multi-loop integral \texttt{int} that depend on the loop momenta
+\texttt{p1,\ \allowbreak{}p2,\ \allowbreak{}...} using the algorithm of
+Alexey Pak \href{https://arxiv.org/abs/1111.0868}{arXiv:1111.0868}.
+
+The current implementation is based on the \texttt{FindEquivalents}
+function from FIRE 6
+\href{https://arxiv.org/abs/1901.07808}{arXiv:1901.07808}.
+\texttt{FCLoopToPakForm} is a backend function used in
+\texttt{FCLoopPakScalelessQ}, \texttt{FCLoopFindIntegralMappings},
+\texttt{FCLoopFindTopologyMappings} etc.
+
+It is also possible to invoke the function as
+\texttt{FCLoopToPakForm[\allowbreak{}GLI[\allowbreak{}...],\ \allowbreak{}FCTopology[\allowbreak{}...]]}
+or FCLoopToPakForm{[}FCTopology{[}\ldots{]}{]}. Notice that in this case
+the value of the option \texttt{FinalSubstitutions} is ignored, as
+replacement rules will be extracted directly from the definition of the
+topology.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fctopology}{FCTopology},
+\hyperlink{gli}{GLI}, \hyperlink{fclooptopakform}{FCLoopToPakForm},
+\hyperlink{fclooppakscalelessq}{FCLoopPakScalelessQ},
+\hyperlink{fcloopscalelessq}{FCLoopScalelessQ},
+\hyperlink{fcloopfindintegralmappings}{FCLoopFindIntegralMappings},
+\hyperlink{fcloopfindtopologymappings}{FCLoopFindTopologyMappings}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopToPakForm}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,} \OperatorTok{\{}\NormalTok{p3}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{p1 }\SpecialCharTok{{-}}\NormalTok{ p4}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\},}\NormalTok{ p1 }\SpecialCharTok{+}\NormalTok{ q1}\OperatorTok{,}\NormalTok{ p1 }\SpecialCharTok{+}\NormalTok{ q1}\OperatorTok{,}\NormalTok{ p3 }\SpecialCharTok{+}\NormalTok{ q1}\OperatorTok{,}\NormalTok{ p1 }\SpecialCharTok{{-}}\NormalTok{ p3 }\SpecialCharTok{{-}}\NormalTok{ p4}\OperatorTok{],} 
+  \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{,}\NormalTok{ p4}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,} \FunctionTok{Head} \OtherTok{{-}\textgreater{}}\NormalTok{ ph}\OperatorTok{,} \FunctionTok{Power} \OtherTok{{-}\textgreater{}}\NormalTok{ pow}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\frac{1}{\text{p1}^2.\left(\text{p3}^2-\text{m1}^2\right).\left((\text{p1}-\text{p4})^2-\text{m1}^2\right).(\text{p1}+\text{q1})^4.(\text{p3}+\text{q1})^2.(\text{p1}-\text{p3}-\text{p4})^2},\text{ph}\left(\text{m1}^2 \;\text{pow}(2) x(2) x(4)^2 x(6)+\text{m1}^2 \;\text{pow}(2) x(3) x(4)^2 x(6)+\text{m1}^2 \;\text{pow}(2) x(2)^2 x(3) x(6)+\text{m1}^2 \;\text{pow}(2) x(2)^2 x(4) x(6)+2 \;\text{m1}^2 \;\text{pow}(2) x(2) x(3) x(4) x(6)+\text{m1}^2 \;\text{pow}(2) x(2)^2 x(5) x(6)+\text{m1}^2 \;\text{pow}(2) x(2) x(3) x(5) x(6)+\text{m1}^2 \;\text{pow}(2) x(2) x(4) x(5) x(6)+\text{m1}^2 \;\text{pow}(2) x(3) x(4) x(5) x(6)+\text{m1}^2 x(1) x(2) x(4)^2+\text{m1}^2 x(1) x(3) x(4)^2+\text{m1}^2 x(1) x(2)^2 x(3)+\text{m1}^2 x(1) x(2)^2 x(4)+2 \;\text{m1}^2 x(1) x(2) x(3) x(4)+\text{m1}^2 x(1) x(2)^2 x(5)+\text{m1}^2 x(1) x(2) x(3) x(5)+\text{m1}^2 x(1) x(2) x(4) x(5)+\text{m1}^2 x(1) x(3) x(4) x(5)-\text{pow}(2) \;\text{q1}^2 x(1) x(2) x(3) x(6)-\text{pow}(2) \;\text{q1}^2 x(1) x(2) x(4) x(6)-\text{pow}(2) \;\text{q1}^2 x(1) x(3) x(4) x(6)-\text{pow}(2) \;\text{q1}^2 x(1) x(2) x(5) x(6)-\text{pow}(2) \;\text{q1}^2 x(1) x(3) x(5) x(6)-\text{pow}(2) \;\text{q1}^2 x(2) x(3) x(5) x(6)-\text{pow}(2) \;\text{q1}^2 x(2) x(4) x(5) x(6)-\text{pow}(2) \;\text{q1}^2 x(3) x(4) x(5) x(6)+\text{pow}(2) x(2) x(3) x(6)+\text{pow}(2) x(2) x(4) x(6)+\text{pow}(2) x(3) x(4) x(6)+\text{pow}(2) x(2) x(5) x(6)+\text{pow}(2) x(3) x(5) x(6)-\text{q1}^2 x(1) x(2) x(3) x(5)-\text{q1}^2 x(1) x(2) x(4) x(5)-\text{q1}^2 x(1) x(3) x(4) x(5)+x(1) x(2) x(3)+x(1) x(2) x(4)+x(1) x(3) x(4)+x(1) x(2) x(5)+x(1) x(3) x(5),\left(
+\begin{array}{cccccc}
+ x(1) & x(3) & x(4) & x(2) & x(6) & x(5) \\
+ \frac{1}{\text{p1}^2} & \frac{1}{(\text{p1}-\text{p4})^2-\text{m1}^2} & \frac{1}{(\text{p1}-\text{p3}-\text{p4})^2} & \frac{1}{\text{p3}^2-\text{m1}^2} & \frac{1}{(\text{p3}+\text{q1})^2} & \frac{1}{(\text{p1}+\text{q1})^2} \\
+ 1 & 1 & 1 & 1 & 1 & 2 \\
+\end{array}
+\right)\right)\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{topo1 }\ExtensionTok{=}\NormalTok{ FCTopology}\OperatorTok{[}\StringTok{"prop2Lv1"}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ m1}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{}\NormalTok{p2}\OperatorTok{,}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p2 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[\{}\NormalTok{p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{Q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]} 
+ 
+\NormalTok{topo2 }\ExtensionTok{=}\NormalTok{ FCTopology}\OperatorTok{[}\StringTok{"prop2Lv2"}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ m1}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{}\NormalTok{p2}\OperatorTok{,}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{}\NormalTok{p1 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \FunctionTok{M}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{}\NormalTok{p2 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \FunctionTok{M}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{Q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCTopology}\left(\text{prop2Lv1},\left\{\frac{1}{(\text{p1}^2-\text{m1}^2+i \eta )},\frac{1}{(\text{p2}^2-\text{m2}^2+i \eta )},\frac{1}{((\text{p1}-q)^2+i \eta )},\frac{1}{((\text{p2}-q)^2+i \eta )},\frac{1}{((\text{p1}-\text{p2})^2-\text{m3}^2+i \eta )}\right\},\{\text{p1},\text{p2}\},\{Q\},\{\},\{\}\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCTopology}\left(\text{prop2Lv2},\left\{\frac{1}{(\text{p1}^2-\text{m1}^2+i \eta )},\frac{1}{(\text{p2}^2-\text{m2}^2+i \eta )},\frac{1}{((\text{p1}-q)^2-M^2+i \eta )},\frac{1}{((\text{p2}-q)^2-M^2+i \eta )},\frac{1}{((\text{p1}-\text{p2})^2+i \eta )}\right\},\{\text{p1},\text{p2}\},\{Q\},\{\},\{\}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopToPakForm}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,} \FunctionTok{Head} \OtherTok{{-}\textgreater{}}\NormalTok{ ph}\OperatorTok{,} \FunctionTok{Power} \OtherTok{{-}\textgreater{}}\NormalTok{ pow}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{FCTopology}\left(\text{prop2Lv1},\left\{\frac{1}{(\text{p1}^2-\text{m1}^2+i \eta )},\frac{1}{(\text{p2}^2-\text{m2}^2+i \eta )},\frac{1}{((\text{p1}-q)^2+i \eta )},\frac{1}{((\text{p2}-q)^2+i \eta )},\frac{1}{((\text{p1}-\text{p2})^2-\text{m3}^2+i \eta )}\right\},\{\text{p1},\text{p2}\},\{Q\},\{\},\{\}\right),\text{ph}\left(\text{m1}^2 x(1) x(2)^2+\text{m1}^2 x(1) x(2) x(3)+\text{m1}^2 x(2)^2 x(4)+\text{m1}^2 x(1) x(2) x(4)+\text{m1}^2 x(2) x(3) x(4)+\text{m1}^2 x(2)^2 x(5)+\text{m1}^2 x(1) x(2) x(5)+\text{m1}^2 x(2) x(3) x(5)+\text{m2}^2 x(1) x(4)^2+\text{m2}^2 x(2) x(4)^2+\text{m2}^2 x(3) x(4)^2+\text{m2}^2 x(1) x(2) x(4)+\text{m2}^2 x(1) x(3) x(4)+\text{m2}^2 x(1) x(4) x(5)+\text{m2}^2 x(2) x(4) x(5)+\text{m2}^2 x(3) x(4) x(5)+\text{m3}^2 x(1)^2 x(2)+\text{m3}^2 x(1)^2 x(3)+\text{m3}^2 x(1)^2 x(4)+\text{m3}^2 x(1) x(2) x(4)+\text{m3}^2 x(1) x(3) x(4)+\text{m3}^2 x(1)^2 x(5)+\text{m3}^2 x(1) x(2) x(5)+\text{m3}^2 x(1) x(3) x(5)-q^2 x(1) x(2) x(3)-q^2 x(1) x(3) x(4)-q^2 x(2) x(3) x(4)-q^2 x(1) x(2) x(5)-q^2 x(2) x(3) x(5)-q^2 x(1) x(4) x(5)-q^2 x(2) x(4) x(5)-q^2 x(3) x(4) x(5)+x(1) x(2)+x(1) x(3)+x(1) x(4)+x(2) x(4)+x(3) x(4)+x(1) x(5)+x(2) x(5)+x(3) x(5),\left(
+\begin{array}{ccccc}
+ x(5) & x(1) & x(3) & x(2) & x(4) \\
+ \frac{1}{((\text{p1}-\text{p2})^2-\text{m3}^2+i \eta )} & \frac{1}{(\text{p1}^2-\text{m1}^2+i \eta )} & \frac{1}{((\text{p1}-q)^2+i \eta )} & \frac{1}{(\text{p2}^2-\text{m2}^2+i \eta )} & \frac{1}{((\text{p2}-q)^2+i \eta )} \\
+ 1 & 1 & 1 & 1 & 1 \\
+\end{array}
+\right)\right)\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopToPakForm}\OperatorTok{[\{}\NormalTok{GLI}\OperatorTok{[}\StringTok{"prop2Lv1"}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}],}\NormalTok{ GLI}\OperatorTok{[}\StringTok{"prop2Lv2"}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{topo1}\OperatorTok{,}\NormalTok{ topo2}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,} \FunctionTok{Head} \OtherTok{{-}\textgreater{}}\NormalTok{ ph}\OperatorTok{,} \FunctionTok{Power} \OtherTok{{-}\textgreater{}}\NormalTok{ pow}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{cc}
+ G^{\text{prop2Lv1}}(1,1,1,1,0) & \;\text{ph}\left(\text{m1}^2 x(1)^2 x(3)+\text{m1}^2 x(1) x(2) x(3)+\text{m1}^2 x(1)^2 x(4)+\text{m1}^2 x(1) x(2) x(4)+\text{m2}^2 x(1) x(3)^2+\text{m2}^2 x(2) x(3)^2+\text{m2}^2 x(1) x(3) x(4)+\text{m2}^2 x(2) x(3) x(4)-q^2 x(1) x(2) x(3)-q^2 x(1) x(2) x(4)-q^2 x(1) x(3) x(4)-q^2 x(2) x(3) x(4)+x(1) x(3)+x(2) x(3)+x(1) x(4)+x(2) x(4),\left(
+\begin{array}{cccc}
+ x(1) & x(3) & x(2) & x(4) \\
+ \frac{1}{(\text{p1}^2-\text{m1}^2+i \eta )} & \frac{1}{((\text{p1}-q)^2+i \eta )} & \frac{1}{(\text{p2}^2-\text{m2}^2+i \eta )} & \frac{1}{((\text{p2}-q)^2+i \eta )} \\
+ 1 & 1 & 1 & 1 \\
+\end{array}
+\right)\right) \\
+ G^{\text{prop2Lv2}}(1,1,0,0,1) & \;\text{ph}\left(\text{m1}^2 x(1)^2 x(2)+\text{m1}^2 x(1)^2 x(3)+\text{m1}^2 x(1) x(2) x(3)+\text{m2}^2 x(1) x(2)^2+\text{m2}^2 x(2)^2 x(3)+\text{m2}^2 x(1) x(2) x(3)+x(1) x(2)+x(1) x(3)+x(2) x(3),\left(
+\begin{array}{ccc}
+ x(1) & x(3) & x(2) \\
+ \frac{1}{(\text{p1}^2-\text{m1}^2+i \eta )} & \frac{1}{(\text{p2}^2-\text{m2}^2+i \eta )} & \frac{1}{((\text{p1}-\text{p2})^2+i \eta )} \\
+ 1 & 1 & 1 \\
+\end{array}
+\right)\right) \\
+\end{array}
+\right)
+\end{dmath*}
+
+Products of \texttt{GLI}s are also supported.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopToPakForm}\OperatorTok{[\{}\NormalTok{GLI}\OperatorTok{[}\StringTok{"prop2Lv1"}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}]}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{topo1}\OperatorTok{,}\NormalTok{ topo2}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,} \FunctionTok{Head} \OtherTok{{-}\textgreater{}}\NormalTok{ ph}\OperatorTok{,} \FunctionTok{Power} \OtherTok{{-}\textgreater{}}\NormalTok{ pow}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{cc}
+ G^{\text{prop2Lv1}}(1,1,0,0,0)^2 & \;\text{ph}\left(\text{m1}^2 x(2) x(3) x(4) x(1)^2+\text{m1}^2 x(2)^2 x(3) x(4) x(1)+\text{m2}^2 x(2) x(3) x(4)^2 x(1)+\text{m2}^2 x(2) x(3)^2 x(4) x(1)+x(2) x(3) x(4) x(1),\left(
+\begin{array}{cccc}
+ x(1) & x(3) & x(2) & x(4) \\
+ \frac{1}{(\text{FCGV}(\text{lmom})(1,1)^2-\text{m1}^2+i \eta )} & \frac{1}{(\text{FCGV}(\text{lmom})(2,1)^2-\text{m1}^2+i \eta )} & \frac{1}{(\text{FCGV}(\text{lmom})(1,2)^2-\text{m2}^2+i \eta )} & \frac{1}{(\text{FCGV}(\text{lmom})(2,2)^2-\text{m2}^2+i \eta )} \\
+ 1 & 1 & 1 & 1 \\
+\end{array}
+\right)\right) \\
+\end{array}
+\right)
+\end{dmath*}
+\end{document}

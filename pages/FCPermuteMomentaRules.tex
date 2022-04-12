@@ -1,0 +1,56 @@
+% !TeX program = pdflatex
+% !TeX root = FCPermuteMomentaRules.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcpermutemomentarules}{%
+\section{FCPermuteMomentaRules}\label{fcpermutemomentarules}}
+
+\texttt{FCPermuteMomentaRules[\allowbreak{}\{\allowbreak{}p1,\ \allowbreak{}p2,\ \allowbreak{}...\}]}
+returns a set of rules that contain all possible permutations of the
+momenta \texttt{p1}, \texttt{p2}, \ldots{} . This can be useful when
+working with amplitudes that exhibit a symmetry in some or all of the
+final state momenta or when trying to find mappings between loop
+integrals from different topologies.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcreplacemomenta}{FCReplaceMomenta}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCPermuteMomentaRules}\OperatorTok{[\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\}]} 
+ 
+\FunctionTok{f}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{]} \OtherTok{/.} \SpecialCharTok{\%}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{\{\},\{\text{p1}\to \;\text{p2},\text{p2}\to \;\text{p1}\}\}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\{f(\text{p1},\text{p2}),f(\text{p2},\text{p1})\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCPermuteMomentaRules}\OperatorTok{[\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{\}]} 
+ 
+\FunctionTok{f}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{]} \OtherTok{/.} \SpecialCharTok{\%} 
+  
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{\{\},\{\text{p1}\to \;\text{p2},\text{p2}\to \;\text{p1}\},\{\text{p1}\to \;\text{p3},\text{p3}\to \;\text{p1}\},\{\text{p2}\to \;\text{p3},\text{p3}\to \;\text{p2}\},\{\text{p1}\to \;\text{p2},\text{p2}\to \;\text{p3},\text{p3}\to \;\text{p1}\},\{\text{p1}\to \;\text{p3},\text{p2}\to \;\text{p1},\text{p3}\to \;\text{p2}\}\}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\{f(\text{p1},\text{p2},\text{p3}),f(\text{p2},\text{p1},\text{p3}),f(\text{p3},\text{p2},\text{p1}),f(\text{p1},\text{p3},\text{p2}),f(\text{p2},\text{p3},\text{p1}),f(\text{p3},\text{p1},\text{p2})\}
+\end{dmath*}
+\end{document}

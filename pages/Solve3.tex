@@ -1,0 +1,31 @@
+% !TeX program = pdflatex
+% !TeX root = Solve3.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{solve3}{%
+\section{Solve3}\label{solve3}}
+
+\texttt{Solve3} is equivalent to \texttt{Solve}, except that it works
+only for linear equations (and returns just a list) and uses the ``high
+school algorithm.
+
+Sometimes it is better than \texttt{Solve} for systems involving
+rational polynomials.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{solve2}{Solve2}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Solve3}\OperatorTok{[\{}\DecValTok{2} \FunctionTok{x} \ExtensionTok{==} \FunctionTok{b} \SpecialCharTok{{-}} \FunctionTok{w}\SpecialCharTok{/}\DecValTok{2}\OperatorTok{,} \FunctionTok{y} \SpecialCharTok{{-}} \FunctionTok{d} \ExtensionTok{==} \FunctionTok{p}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \FunctionTok{y}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{x\to \frac{1}{4} (2 b-w),y\to d+p\right\}
+\end{dmath*}
+\end{document}

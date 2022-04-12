@@ -1,0 +1,273 @@
+% !TeX program = pdflatex
+% !TeX root = InverseMellin.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{inversemellin}{%
+\section{InverseMellin}\label{inversemellin}}
+
+\texttt{InverseMellin[\allowbreak{}exp,\ \allowbreak{}y]} performs the
+inverse Mellin transform of polynomials in OPE. The inverse transforms
+are not calculated but a table-lookup is done.
+
+WARNING: do not ``trust'' the results for the inverse Mellin transform
+involving SumT's; there is an unresolved inconsistency here (related to
+\((-1)^{m}\)).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{deltafunction}{DeltaFunction},
+\hyperlink{integrate2}{Integrate2}, \hyperlink{opem}{OPEm},
+\hyperlink{sums}{SumS}, \hyperlink{sumt}{SumT}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{InverseMellin}\OperatorTok{[}\DecValTok{1}\SpecialCharTok{/}\NormalTok{OPEm}\OperatorTok{,} \FunctionTok{y}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+y^{m-1}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{InverseMellin}\OperatorTok{[}\DecValTok{1}\SpecialCharTok{/}\NormalTok{(OPEm }\SpecialCharTok{+} \DecValTok{3}\NormalTok{)}\OperatorTok{,} \FunctionTok{y}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+y^{m+2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{InverseMellin}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \FunctionTok{y}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+y^{m-1} \delta (1-y)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{InverseMellin}\OperatorTok{[}\DecValTok{1}\SpecialCharTok{/}\NormalTok{OPEm}\SpecialCharTok{\^{}}\DecValTok{4}\OperatorTok{,} \FunctionTok{y}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{1}{6} y^{m-1} \log ^3(y)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{InverseMellin}\OperatorTok{[}\DecValTok{1}\SpecialCharTok{/}\NormalTok{OPEm }\SpecialCharTok{+} \DecValTok{1}\OperatorTok{,} \FunctionTok{y}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+y^{m-1} \delta (1-y)+y^{m-1}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{InverseMellin}\OperatorTok{[}\DecValTok{1}\SpecialCharTok{/}\FunctionTok{i} \SpecialCharTok{+} \DecValTok{1}\OperatorTok{,} \FunctionTok{y}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+y^{i-1} \delta (1-y)+y^{i-1}
+\end{dmath*}
+
+The inverse operation to \texttt{InverseMellin} is done by
+\texttt{Integrate2}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\NormalTok{InverseMellin}\OperatorTok{[}\DecValTok{1}\SpecialCharTok{/}\NormalTok{OPEm}\OperatorTok{,} \FunctionTok{y}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{y}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{m}
+\end{dmath*}
+
+Below is a list of all built-in basic inverse Mellin transforms .
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{list} \ExtensionTok{=} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\SpecialCharTok{/}\NormalTok{(OPEm }\SpecialCharTok{+} \FunctionTok{n}\NormalTok{)}\OperatorTok{,} \DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{OPEm }\SpecialCharTok{+} \FunctionTok{n}\NormalTok{)}\OperatorTok{,} \FunctionTok{PolyGamma}\OperatorTok{[}\DecValTok{0}\OperatorTok{,}\NormalTok{ OPEm}\OperatorTok{],}\NormalTok{ SumS}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ OPEm}\OperatorTok{],} 
+\NormalTok{    SumS}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ OPEm}\OperatorTok{]}\SpecialCharTok{/}\NormalTok{(OPEm }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}\OperatorTok{,}\NormalTok{ SumS}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ OPEm}\OperatorTok{]}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ OPEm)}\OperatorTok{,}\NormalTok{ SumS}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ OPEm}\OperatorTok{]}\SpecialCharTok{/}\NormalTok{(OPEm }\SpecialCharTok{+} \DecValTok{1}\NormalTok{)}\OperatorTok{,} 
+\NormalTok{    SumS}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ OPEm}\OperatorTok{]}\SpecialCharTok{/}\NormalTok{OPEm}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ SumS}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ OPEm}\OperatorTok{]}\SpecialCharTok{/}\NormalTok{OPEm}\OperatorTok{,}\NormalTok{ SumS}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ OPEm}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}\NormalTok{OPEm}\OperatorTok{,} 
+\NormalTok{    SumS}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ OPEm}\OperatorTok{],}\NormalTok{ SumS}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ OPEm}\OperatorTok{]}\SpecialCharTok{/}\NormalTok{OPEm}\OperatorTok{,}\NormalTok{ SumS}\OperatorTok{[}\DecValTok{3}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ OPEm}\OperatorTok{],}\NormalTok{ SumS}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ OPEm}\OperatorTok{],} 
+\NormalTok{    SumS}\OperatorTok{[}\DecValTok{1}\OperatorTok{,}\NormalTok{ OPEm }\SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ SumS}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{2}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ OPEm}\OperatorTok{],}\NormalTok{ SumS}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ OPEm}\OperatorTok{],}\NormalTok{SumS}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ OPEm}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{3}\OperatorTok{,} 
+\NormalTok{    SumS}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ OPEm}\OperatorTok{]}\NormalTok{ SumS}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ OPEm}\OperatorTok{],}\NormalTok{ SumS}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ OPEm}\OperatorTok{]\}}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{im}\OperatorTok{[}\AttributeTok{z\_}\OperatorTok{]} \ExtensionTok{:=} \FunctionTok{z} \OtherTok{{-}\textgreater{}}\NormalTok{ InverseMellin}\OperatorTok{[}\FunctionTok{z}\OperatorTok{,} \FunctionTok{y}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{im}\OperatorTok{[}\NormalTok{OPEm}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{3}\NormalTok{)}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{m^3}\to \frac{1}{2} y^{m-1} \log ^2(y)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{im}\OperatorTok{[}\NormalTok{OPEm}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{)}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{m^2}\to -y^{m-1} \log (y)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{im}\OperatorTok{[}\FunctionTok{PolyGamma}\OperatorTok{[}\DecValTok{0}\OperatorTok{,}\NormalTok{ OPEm}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\psi ^{(0)}(m)\to -\gamma  y^{m-1} \delta (1-y)-\left(\frac{1}{1-y}\right)_+ y^{m-1}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{im}\OperatorTok{[}\NormalTok{SumS}\OperatorTok{[}\DecValTok{1}\OperatorTok{,}\NormalTok{ OPEm }\SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+S_1(m-1)\to \left(\frac{1}{1-y}\right)_+ \left(-y^{m-1}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{im}\OperatorTok{[}\NormalTok{SumS}\OperatorTok{[}\DecValTok{1}\OperatorTok{,}\NormalTok{ OPEm }\SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{]}\SpecialCharTok{/}\NormalTok{(OPEm }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{S_1(m-1)}{m-1}\to -y^{m-2} \log (1-y)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{im}\OperatorTok{[}\NormalTok{SumS}\OperatorTok{[}\DecValTok{1}\OperatorTok{,}\NormalTok{ OPEm }\SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{]}\SpecialCharTok{/}\NormalTok{(OPEm }\SpecialCharTok{+} \DecValTok{1}\NormalTok{)}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{S_1(m-1)}{m+1}\to -y^{m-1}+y^m-y^m \log (1-y)+y^m \log (y)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{im}\OperatorTok{[}\NormalTok{SumS}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ OPEm}\OperatorTok{]}\SpecialCharTok{/}\NormalTok{OPEm}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{S_1(m-1)}{m^2}\to y^{m-1} \left(\zeta (2)-\text{Li}_2(y)-\frac{1}{2} \log ^2(y)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{im}\OperatorTok{[}\NormalTok{SumS}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ OPEm}\OperatorTok{]}\SpecialCharTok{/}\NormalTok{OPEm}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{S_1(m-1)}{m}\to y^{m-1} (\log (y)-\log (1-y))
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{im}\OperatorTok{[}\NormalTok{SumS}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ OPEm}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}\NormalTok{OPEm}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{S_1^2(m-1)}{m}\to y^{m-1} \left(-3 \zeta (2)+\text{Li}_2(1-y)+2 \;\text{Li}_2(y)+\log ^2(1-y)+\frac{\log ^2(y)}{2}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{im}\OperatorTok{[}\NormalTok{SumS}\OperatorTok{[}\DecValTok{2}\OperatorTok{,}\NormalTok{ OPEm }\SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+S_2(m-1)\to y^{m-1} \left(\zeta (2) \delta (1-y)+\frac{\log (y)}{1-y}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{im}\OperatorTok{[}\NormalTok{SumS}\OperatorTok{[}\DecValTok{2}\OperatorTok{,}\NormalTok{ OPEm }\SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{]}\SpecialCharTok{/}\NormalTok{OPEm}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{S_2(m-1)}{m}\to y^{m-1} \left(\zeta (2)-\text{Li}_2(1-y)-\frac{1}{2} \log ^2(y)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{im}\OperatorTok{[}\NormalTok{SumS}\OperatorTok{[}\DecValTok{3}\OperatorTok{,}\NormalTok{ OPEm }\SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+S_3(m-1)\to y^{m-1} \left(\zeta (3) \delta (1-y)-\frac{\log ^2(y)}{2 (1-y)}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{im}\OperatorTok{[}\NormalTok{SumS}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,}\NormalTok{ OPEm }\SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+S_{11}(m-1)\to y^{m-1} \left(\frac{\log (1-y)}{1-y}\right)_+
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{im}\OperatorTok{[}\NormalTok{SumS}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{,}\NormalTok{ OPEm }\SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+S_{21}(m-1)\to y^{m-1} \left(\frac{\text{Li}_2(y)}{1-y}-\zeta (2) \left(\frac{1}{1-y}\right)_++2 \zeta (3) \delta (1-y)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{im}\OperatorTok{[}\NormalTok{SumS}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,}\NormalTok{ OPEm }\SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+S_{111}(m-1)\to -\frac{1}{2} y^{m-1} \left(\frac{\log ^2(1-y)}{1-y}\right){}_+
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Clear}\OperatorTok{[}\FunctionTok{im}\OperatorTok{,} \FunctionTok{list}\OperatorTok{]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

@@ -1,0 +1,60 @@
+% !TeX program = pdflatex
+% !TeX root = Apart2.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{apart2}{%
+\section{Apart2}\label{apart2}}
+
+\texttt{Apart2[\allowbreak{}expr]} partial fractions propagators of the
+form \(1/[(q^2-m1^2)(q^2-m2^2)]\).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fad}{FAD},
+\hyperlink{feynampdenominator}{FeynAmpDenominator},
+\hyperlink{apartff}{ApartFF}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{M}\OperatorTok{\},} \FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{]} 
+ 
+\NormalTok{Apart2}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]} 
+ 
+\FunctionTok{StandardForm}\OperatorTok{[}\NormalTok{FCE}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\left(q^2-m^2\right).\left(q^2-M^2\right).(q-p)^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{\frac{1}{\left(q^2-m^2\right).(q-p)^2}-\frac{1}{\left(q^2-M^2\right).(q-p)^2}}{m^2-M^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{\text{FAD}[\{q,m\},-p+q]-\text{FAD}[\{q,M\},-p+q]}{m^2-M^2}
+\end{dmath*}
+
+Apart2 can also handle Cartesian propagators with square roots. To
+disable this mode use \(text{Sqrt}to text{False}\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{int }\ExtensionTok{=}\NormalTok{ CFAD}\OperatorTok{[\{\{}\FunctionTok{k}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{+}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\},} \OperatorTok{\{\{}\FunctionTok{k} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]}\NormalTok{ GFAD}\OperatorTok{[\{\{}\NormalTok{DE }\SpecialCharTok{{-}} \FunctionTok{Sqrt}\OperatorTok{[}\NormalTok{CSPD}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]],} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]} 
+ 
+\NormalTok{int }\SpecialCharTok{//}\NormalTok{ FeynAmpDenominatorCombine }\SpecialCharTok{//}\NormalTok{ Apart2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(\text{DE}-\sqrt{k^2}+i \eta ) (k^2+m^2-i \eta ).((k-p)^2-i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{\frac{\text{DE}}{(k^2+m^2-i \eta ).((k-p)^2-i \eta )}+\frac{1}{(\text{DE}-\sqrt{k^2}+i \eta ).((k-p)^2-i \eta )}+\frac{\sqrt{k^2}}{(k^2+m^2-i \eta ).((k-p)^2-i \eta )}}{\text{DE}^2+m^2}
+\end{dmath*}
+\end{document}

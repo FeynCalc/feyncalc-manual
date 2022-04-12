@@ -1,0 +1,63 @@
+% !TeX program = pdflatex
+% !TeX root = DollarFCShowIEta.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcshowieta}{%
+\section{\$FCShowIEta}\label{fcshowieta}}
+
+The Boolean setting of \texttt{\$FCShowIEta} determines whether
+\(i \eta\) should be displayed in the typesetting of propagator objects
+(except for \texttt{FAD}s) or not. This setting affects only the
+TraditionalForm typesetting and has absolutely no influence on the
+internal handling of propagator denominators in FeynCalc.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{sfad}{SFAD},
+\hyperlink{cfad}{CFAD}, \hyperlink{gfad}{GFAD}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$FCShowIEta }
+ 
+\NormalTok{SFAD}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p^2-m^2+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$FCShowIEta }\ExtensionTok{=} \ConstantTok{False} 
+ 
+\NormalTok{SFAD}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p^2-m^2)}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$FCShowIEta }\ExtensionTok{=} \ConstantTok{True}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+\end{document}

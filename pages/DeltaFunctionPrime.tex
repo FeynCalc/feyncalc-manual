@@ -1,0 +1,51 @@
+% !TeX program = pdflatex
+% !TeX root = DeltaFunctionPrime.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{deltafunctionprime}{%
+\section{DeltaFunctionPrime}\label{deltafunctionprime}}
+
+\texttt{DeltaFunctionPrime[\allowbreak{}1 - x]} is the derivative of the
+Dirac delta-function \(\delta (x)\).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{convolute}{Convolute},
+\hyperlink{deltafunction}{DeltaFunction},
+\hyperlink{deltafunctiondoubleprime}{DeltaFunctionDoublePrime},
+\hyperlink{integrate2}{Integrate2},
+\hyperlink{simplifydeltafunction}{SimplifyDeltaFunction}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DeltaFunctionPrime}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\delta '(1-x)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\NormalTok{DeltaFunctionPrime}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]} \FunctionTok{f}\OperatorTok{[}\FunctionTok{x}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f'(1)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\NormalTok{DeltaFunctionPrime}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]} \FunctionTok{x}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+2
+\end{dmath*}
+\end{document}

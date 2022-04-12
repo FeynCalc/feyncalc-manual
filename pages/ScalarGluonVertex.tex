@@ -1,0 +1,37 @@
+% !TeX program = pdflatex
+% !TeX root = ScalarGluonVertex.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{scalargluonvertex}{%
+\section{ScalarGluonVertex}\label{scalargluonvertex}}
+
+\texttt{ScalarGluonVertex[\allowbreak{}\{\allowbreak{}p\},\ \allowbreak{}\{\allowbreak{}q\},\ \allowbreak{}\{\allowbreak{}mu,\ \allowbreak{}a\}]}
+or
+\texttt{ScalarGluonVertex[\allowbreak{}p,\ \allowbreak{} q,\ \allowbreak{} mu,\ \allowbreak{}a]}
+yields the scalar-scalar-gluon vertex, where \texttt{p} and \texttt{q}
+are incoming momenta.
+
+\texttt{ScalarGluonVertex[\allowbreak{}\{\allowbreak{}mu,\ \allowbreak{}a\},\ \allowbreak{}\{\allowbreak{}nu,\ \allowbreak{}b\}]}
+yields the scalar-scalar-gluon-gluon vertex, where \texttt{p} and
+\texttt{q} are incoming momenta.
+
+The dimension and the name of the coupling constant are determined by
+the options \texttt{Dimension} and \texttt{CouplingConstant}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ScalarGluonVertex}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+i T^a g_s (p-q)^{\mu }
+\end{dmath*}
+\end{document}

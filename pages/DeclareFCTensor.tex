@@ -1,0 +1,42 @@
+% !TeX program = pdflatex
+% !TeX root = DeclareFCTensor.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{declarefctensor}{%
+\section{DeclareFCTensor}\label{declarefctensor}}
+
+\texttt{DeclareFCTensor[\allowbreak{}a,\ \allowbreak{}b,\ \allowbreak{}...]}
+declares \texttt{a},\texttt{b}, \ldots{} to be tensor heads, i.e.,
+\texttt{DataType[\allowbreak{}a,\ \allowbreak{}b,\ \allowbreak{}...,\ \allowbreak{} FCTensor]}
+is set to \texttt{True}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{expandscalarproduct}{ExpandScalarProduct},
+\hyperlink{uncontract}{Uncontract}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ClearAll}\OperatorTok{[}\NormalTok{myTens}\OperatorTok{]} 
+ 
+\NormalTok{DeclareFCTensor}\OperatorTok{[}\NormalTok{myTens}\OperatorTok{]} 
+ 
+\NormalTok{ExpandScalarProduct}\OperatorTok{[}\NormalTok{myTens}\OperatorTok{[}\FunctionTok{z}\OperatorTok{,}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{a} \SpecialCharTok{+} \FunctionTok{b}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{c} \SpecialCharTok{+} \FunctionTok{d}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{myTens}\left(z,\overline{a},\overline{c}\right)+\text{myTens}\left(z,\overline{a},\overline{d}\right)+\text{myTens}\left(z,\overline{b},\overline{c}\right)+\text{myTens}\left(z,\overline{b},\overline{d}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{UnDeclareFCTensor}\OperatorTok{[}\NormalTok{myTens}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

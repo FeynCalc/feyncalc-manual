@@ -1,0 +1,52 @@
+% !TeX program = pdflatex
+% !TeX root = DiracSigmaExplicit.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{diracsigmaexplicit}{%
+\section{DiracSigmaExplicit}\label{diracsigmaexplicit}}
+
+\texttt{DiracSigmaExplicit[\allowbreak{}exp]} inserts in exp for all
+\texttt{DiracSigma} its definition. \texttt{DiracSigmaExplict} is also
+an option of \texttt{DiracSimplify}. \texttt{DiracSigmaExplict} is also
+an option of various FeynCalc functions that handle the Dirac algebra.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{diracgamma}{DiracGamma},
+\hyperlink{diracsigma}{DiracSigma}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracSigma}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{]],}\NormalTok{ GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{]]]} 
+ 
+\NormalTok{DiracSigmaExplicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\sigma ^{\alpha \beta }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} i \left(\bar{\gamma }^{\alpha }.\bar{\gamma }^{\beta }-\bar{\gamma }^{\beta }.\bar{\gamma }^{\alpha }\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GSD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]}\NormalTok{ . DiracSigma}\OperatorTok{[}\NormalTok{GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],}\NormalTok{ GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]]}\NormalTok{ . GSD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]} 
+ 
+\NormalTok{DiracSigmaExplicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(\gamma \cdot p).\sigma ^{\mu \nu }.(\gamma \cdot q)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} i \left((\gamma \cdot p).\gamma ^{\mu }.\gamma ^{\nu }.(\gamma \cdot q)-(\gamma \cdot p).\gamma ^{\nu }.\gamma ^{\mu }.(\gamma \cdot q)\right)
+\end{dmath*}
+\end{document}

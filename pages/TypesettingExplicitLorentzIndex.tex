@@ -1,0 +1,63 @@
+% !TeX program = pdflatex
+% !TeX root = TypesettingExplicitLorentzIndex.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{typesettingexplicitlorentzindex}{%
+\section{TypesettingExplicitLorentzIndex}\label{typesettingexplicitlorentzindex}}
+
+\texttt{TypesettingExplicitLorentzIndex} determines the
+\texttt{TraditionalForm} typesetting of explicit Lorentz indices.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}.
+
+\subsection{Examples}
+
+Current setting
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TypesettingExplicitLorentzIndex}
+\SpecialCharTok{\%} \SpecialCharTok{//} \FunctionTok{InputForm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FeynCalc$\grave{ }$SharedObjects$\grave{ }$Private$\grave{ }$x}\to \;\text{FeynCalc$\grave{ }$SharedObjects$\grave{ }$Private$\grave{ }$x}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Function}\OperatorTok{[}\NormalTok{FeynCalc\textasciigrave{}SharedObjects\textasciigrave{}Private\textasciigrave{}}\FunctionTok{x}\OperatorTok{,} 
+\NormalTok{ FeynCalc\textasciigrave{}SharedObjects\textasciigrave{}Private\textasciigrave{}}\FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+Make explicit Lorentz indices look red
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TypesettingExplicitLorentzIndex }\ExtensionTok{=} \FunctionTok{Function}\OperatorTok{[}\FunctionTok{x}\OperatorTok{,} \FunctionTok{Style}\OperatorTok{[}\FunctionTok{x}\OperatorTok{,} \FunctionTok{Red}\OperatorTok{]]}\NormalTok{; }
+ 
+\DecValTok{4} \FunctionTok{M}\SpecialCharTok{\^{}}\DecValTok{2} \FunctionTok{u}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \DecValTok{0}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{{-}} \DecValTok{4} \FunctionTok{M}\SpecialCharTok{\^{}}\DecValTok{2} \FunctionTok{u}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \DecValTok{3}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{{-}} \DecValTok{4} \FunctionTok{M}\NormalTok{ SP}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]} \SpecialCharTok{{-}} \DecValTok{2} \FunctionTok{M} \FunctionTok{u}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \DecValTok{0}\OperatorTok{]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \DecValTok{3}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+} \DecValTok{4} \FunctionTok{M} \FunctionTok{u}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \DecValTok{0}\OperatorTok{]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \DecValTok{2}\OperatorTok{]} \SpecialCharTok{{-}} \FunctionTok{u}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \DecValTok{2}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-4 M^2 u \left(\overline{k}^3\right)^2-2 k^0 M u \left(\overline{k}^3\right)^2+4 k^0 M u \overline{k}^2-4 M \overline{k}^2-u^2 \left(\overline{k}^2\right)^2+4 \left(k^0\right)^2 M^2 u
+\end{dmath*}
+
+Back to the standard settings
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TypesettingExplicitLorentzIndex }\ExtensionTok{=} \FunctionTok{Function}\OperatorTok{[}\FunctionTok{x}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+x\to x
+\end{dmath*}
+\end{document}

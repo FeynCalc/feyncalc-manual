@@ -1,0 +1,66 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopRemoveNegativePropagatorPowers.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopremovenegativepropagatorpowers}{%
+\section{FCLoopRemoveNegativePropagatorPowers}\label{fcloopremovenegativepropagatorpowers}}
+
+\texttt{FCLoopRemoveNegativePropagatorPowers[\allowbreak{}exp]} rewrites
+propagators raised to integer powers as products.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SFAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\}]} 
+ 
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ FCLoopRemoveNegativePropagatorPowers}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(q^2-m+i \eta )
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+q^2-m
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*{-}m + Pair[Momentum[q, D], Momentum[q, D]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SFAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},} \FunctionTok{q} \SpecialCharTok{+} \FunctionTok{p}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{2}\OperatorTok{\}]} 
+ 
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ FCLoopRemoveNegativePropagatorPowers}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(q^2-m+i \eta ).((p+q)^2+i \eta ).\frac{1}{(q^2-m+i \eta )^2}}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{q^2-m}{((p+q)^2+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*FeynAmpDenominator[StandardPropagatorDenominator[Momentum[p, D] + Momentum[q, D], 0, 0, \{1, 1\}]] ({-}m + Pair[Momentum[q, D], Momentum[q, D]])*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

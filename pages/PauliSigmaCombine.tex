@@ -1,0 +1,50 @@
+% !TeX program = pdflatex
+% !TeX root = PauliSigmaCombine.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{paulisigmacombine}{%
+\section{PauliSigmaCombine}\label{paulisigmacombine}}
+
+\texttt{PauliSigmaCombine[\allowbreak{}exp]} is (nearly) the inverse
+operation to PauliSigmaExpand.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{paulisigmaexpand}{PauliSigmaExpand}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SIS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ SIS}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]} 
+ 
+\NormalTok{PauliSigmaCombine}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\sigma }\cdot \overline{p}+\bar{\sigma }\cdot \overline{q}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\sigma }\cdot \left(\overline{p}+\overline{q}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliXi}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{]}\NormalTok{ . (SIS}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p2}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ SIS}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]}\NormalTok{) . PauliEta}\OperatorTok{[}\FunctionTok{I}\OperatorTok{]} 
+ 
+\NormalTok{PauliSigmaCombine}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\xi ^{\dagger }.\left(\bar{\sigma }\cdot \left(\overline{\text{p1}}+\overline{\text{p2}}\right)+\bar{\sigma }\cdot \overline{q}\right).\eta
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\xi ^{\dagger }.\left(\bar{\sigma }\cdot \left(\overline{\text{p1}}+\overline{\text{p2}}+\overline{q}\right)\right).\eta
+\end{dmath*}
+\end{document}

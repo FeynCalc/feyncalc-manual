@@ -1,0 +1,180 @@
+% !TeX program = pdflatex
+% !TeX root = CartesianPair.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{cartesianpair}{%
+\section{CartesianPair}\label{cartesianpair}}
+
+\texttt{CartesianPair[\allowbreak{}a,\ \allowbreak{}b]} is a special
+pairing used in the internal representation. \texttt{a} and \texttt{b}
+may have heads \texttt{CartesianIndex} or \texttt{CartesianMomentum}. If
+both \texttt{a} and \texttt{b} have head \texttt{CartesianIndex}, the
+Kronecker delta is understood. If \texttt{a} and \texttt{b} have head
+\texttt{CartesianMomentum}, a Cartesian scalar product is meant. If one
+of \texttt{a} and \texttt{b} has head \texttt{CartesianIndex} and the
+other \texttt{CartesianMomentum}, a Cartesian vector \(p^i\) is
+understood.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{pair}{Pair},
+\hyperlink{temporalpair}{TemporalPair}.
+
+\subsection{Examples}
+
+This represents a three-dimensional Kronecker delta
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CartesianPair}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],}\NormalTok{ CartesianIndex}\OperatorTok{[}\FunctionTok{j}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\delta }^{ij}
+\end{dmath*}
+
+This is a \(D-1\)-dimensional Kronecker delta
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CartesianPair}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{],}\NormalTok{ CartesianIndex}\OperatorTok{[}\FunctionTok{j}\OperatorTok{,} \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\delta ^{ij}
+\end{dmath*}
+
+If the Cartesian indices live in different dimensions, this gets
+resolved according to the t'Hoft-Veltman-Breitenlohner-Maison
+prescription
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CartesianPair}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{],}\NormalTok{ CartesianIndex}\OperatorTok{[}\FunctionTok{j}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\delta }^{ij}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CartesianPair}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{],}\NormalTok{ CartesianIndex}\OperatorTok{[}\FunctionTok{j}\OperatorTok{,} \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{4}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\hat{\delta }^{ij}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CartesianPair}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],}\NormalTok{ CartesianIndex}\OperatorTok{[}\FunctionTok{j}\OperatorTok{,} \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{4}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+A \(3\)-dimensional Cartesian vector
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CartesianPair}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],}\NormalTok{ CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^i
+\end{dmath*}
+
+A \(D-1\)-dimensional Cartesian vector
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CartesianPair}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{],}\NormalTok{ CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p^i
+\end{dmath*}
+
+\(3\)-dimensional scalar products of Cartesian vectors
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CartesianPair}\OperatorTok{[}\NormalTok{CartesianMomentum}\OperatorTok{[}\FunctionTok{q}\OperatorTok{],}\NormalTok{ CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot \overline{q}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CartesianPair}\OperatorTok{[}\NormalTok{CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],}\NormalTok{ CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CartesianPair}\OperatorTok{[}\NormalTok{CartesianMomentum}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{],}\NormalTok{ CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot (\overline{p}-\overline{q})
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CartesianPair}\OperatorTok{[}\NormalTok{CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],}\NormalTok{ CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}\SpecialCharTok{\^{}}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^4
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CartesianPair}\OperatorTok{[}\NormalTok{CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],}\NormalTok{ CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}\SpecialCharTok{\^{}}\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^6
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ExpandScalarProduct}\OperatorTok{[}\NormalTok{CartesianPair}\OperatorTok{[}\NormalTok{CartesianMomentum}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{],}\NormalTok{ CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^2-\overline{p}\cdot \overline{q}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CartesianPair}\OperatorTok{[}\NormalTok{CartesianMomentum}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{q}\OperatorTok{],}\NormalTok{ CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]} \SpecialCharTok{+} 
+\NormalTok{  CartesianPair}\OperatorTok{[}\NormalTok{CartesianMomentum}\OperatorTok{[}\FunctionTok{q}\OperatorTok{],}\NormalTok{ CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+\end{document}

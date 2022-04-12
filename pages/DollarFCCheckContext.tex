@@ -1,0 +1,30 @@
+% !TeX program = pdflatex
+% !TeX root = DollarFCCheckContext.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fccheckcontext}{%
+\section{\$FCCheckContext}\label{fccheckcontext}}
+
+If \texttt{\$FCCheckContext} set to \texttt{True}, FeynCalc will try to
+detect unwanted leakage of internal objects into the \texttt{Global} or
+\texttt{FeynCalc} contexts. The default value is \texttt{False}, however
+\texttt{\$FCCheckContext} will be automatically enabled in the
+development version.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$FCCheckContext}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+\end{document}

@@ -1,0 +1,82 @@
+% !TeX program = pdflatex
+% !TeX root = DiracSpinorNormalization.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{diracspinornormalization}{%
+\section{DiracSpinorNormalization}\label{diracspinornormalization}}
+
+\texttt{DiracSpinorNormalization} is an option for
+\texttt{SpinorChainEvaluate}, \texttt{DiracSimplify} and other
+functions. It specifies the normalization of the spinor inner products
+\(\bar{u}(p) u(p)\) and \(\bar{v}(p) v(p)\). Following values are
+supported:
+
+\begin{itemize}
+\item
+  \texttt{"Relativistic"} - this is the standard value corresponding to
+  \(\bar{u}(p) u(p) = 2 m\), \(\bar{v}(p) v(p) = - 2 m\).
+\item
+  \texttt{"Rest"} - this sets \(\bar{u}(p) u(p) = 1\),
+  \(\bar{v}(p) v(p) = - 1\).
+\item
+  \texttt{"Nonrelativistic"} - this sets
+  \(\bar{u}(p) u(p) = \frac{m}{p^0}\),
+  \(\bar{v}(p) v(p) = - \frac{m}{p^0}\).
+\end{itemize}
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{diracsimplify}{DiracSimplify},
+\hyperlink{spinorchainevaluate}{SpinorChainEvaluate}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpinorUBar}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{]}\NormalTok{ . SpinorU}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{]} 
+ 
+\NormalTok{DiracSimplify}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{u}(p,m).u(p,m)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+2 m
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpinorUBar}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{]}\NormalTok{ . SpinorU}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{]} 
+ 
+\NormalTok{DiracSimplify}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ DiracSpinorNormalization }\OtherTok{{-}\textgreater{}} \StringTok{"Rest"}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{u}(p,m).u(p,m)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+1
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpinorUBar}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{]}\NormalTok{ . SpinorU}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{]} 
+ 
+\NormalTok{DiracSimplify}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ DiracSpinorNormalization }\OtherTok{{-}\textgreater{}} \StringTok{"Nonrelativistic"}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{u}(p,m).u(p,m)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{m}{p^0}
+\end{dmath*}
+\end{document}

@@ -1,0 +1,41 @@
+% !TeX program = pdflatex
+% !TeX root = PauliChainFactor.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{paulichainfactor}{%
+\section{PauliChainFactor}\label{paulichainfactor}}
+
+\texttt{PauliChainFactor[\allowbreak{}exp]} factors out all expressions
+inside a \texttt{PauliChain} to which the chain doesn't apply. For
+example, all objects that are not Pauli matrices can be safely factored
+out from every Pauli chain.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{paulichain}{PauliChain},
+\hyperlink{pchn}{PCHN}, \hyperlink{pauliindex}{PauliIndex},
+\hyperlink{pauliindexdelta}{PauliIndexDelta},
+\hyperlink{didelta}{DIDelta},
+\hyperlink{paulichainjoin}{PauliChainJoin},
+\hyperlink{paulichaincombine}{PauliChainCombine},
+\hyperlink{paulichainexpand}{PauliChainExpand}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PCHN}\OperatorTok{[}\NormalTok{CV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ CSI}\OperatorTok{[}\FunctionTok{a}\OperatorTok{]}\NormalTok{ . CSI}\OperatorTok{[}\FunctionTok{b}\OperatorTok{]}\NormalTok{ . CSI}\OperatorTok{[}\FunctionTok{a}\OperatorTok{],} \FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]} 
+ 
+\NormalTok{PauliChainFactor}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\overline{p}^{\nu } \overline{\sigma }^a.\overline{\sigma }^b.\overline{\sigma }^a\right){}_{ij}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\nu } \left(\overline{\sigma }^a.\overline{\sigma }^b.\overline{\sigma }^a\right){}_{ij}
+\end{dmath*}
+\end{document}

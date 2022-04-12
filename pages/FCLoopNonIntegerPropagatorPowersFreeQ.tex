@@ -1,0 +1,67 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopNonIntegerPropagatorPowersFreeQ.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopnonintegerpropagatorpowersfreeq}{%
+\section{FCLoopNonIntegerPropagatorPowersFreeQ}\label{fcloopnonintegerpropagatorpowersfreeq}}
+
+\texttt{FCLoopNonIntegerPropagatorPowersFreeQ[\allowbreak{}int]} checks
+if the integral contains propagators raised to noninteger
+(i.e.~fractional or symbolic) powers.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcloopremovenegativepropagatorpowers}{FCLoopRemoveNegativePropagatorPowers}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SFAD}\OperatorTok{[\{}\FunctionTok{q} \SpecialCharTok{+} \FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{2}\OperatorTok{\}]} 
+ 
+\NormalTok{FCLoopNonIntegerPropagatorPowersFreeQ}\OperatorTok{[}\NormalTok{FCI}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{((p+q)^2-m^2+i \eta )^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SFAD}\OperatorTok{[\{}\FunctionTok{q} \SpecialCharTok{+} \FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \FunctionTok{n}\OperatorTok{\}]} 
+ 
+\NormalTok{FCLoopNonIntegerPropagatorPowersFreeQ}\OperatorTok{[}\NormalTok{FCI}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+((p+q)^2-m^2+i \eta )^{-n}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CFAD}\OperatorTok{[\{}\FunctionTok{l}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\SpecialCharTok{/}\DecValTok{2}\OperatorTok{\}]} 
+ 
+\NormalTok{FCLoopNonIntegerPropagatorPowersFreeQ}\OperatorTok{[}\NormalTok{FCI}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\sqrt{(l^2+m^2-i \eta )}}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+\end{document}

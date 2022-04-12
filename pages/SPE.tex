@@ -1,0 +1,98 @@
+% !TeX program = pdflatex
+% !TeX root = SPE.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{spe}{%
+\section{SPE}\label{spe}}
+
+\texttt{SPE[\allowbreak{}a,\ \allowbreak{}b]} denotes a
+\(D-4\)-dimensional scalar product.
+\texttt{SPE[\allowbreak{}a,\ \allowbreak{}b]} is transformed into
+\texttt{Pair[\allowbreak{}Momentum[\allowbreak{}a,\ \allowbreak{}-4 + D],\ \allowbreak{}Momentum[\allowbreak{}b,\ \allowbreak{}-4 + D]]}
+by \texttt{FeynCalcInternal}.
+
+\texttt{SPE[\allowbreak{}p]} is the same as
+\texttt{SPE[\allowbreak{}p,\ \allowbreak{}p]} \((=p^2)\).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{pd}{PD}, \hyperlink{calc}{Calc},
+\hyperlink{expandscalarproduct}{ExpandScalarProduct},
+\hyperlink{scalarproduct}{ScalarProduct}, \hyperlink{spd}{SPD}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPE}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ SPE}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\hat{p}\cdot \hat{q}+\hat{q}^2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPE}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \FunctionTok{q} \SpecialCharTok{+} \DecValTok{2} \FunctionTok{p}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(\hat{p}-\hat{q})\cdot (2 \hat{p}+\hat{q})
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Calc}\OperatorTok{[}\NormalTok{ SPE}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \FunctionTok{q} \SpecialCharTok{+} \DecValTok{2} \FunctionTok{p}\OperatorTok{]} \OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\hat{p}\cdot \hat{q}+2 \hat{p}^2-\hat{q}^2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ExpandScalarProduct}\OperatorTok{[}\NormalTok{SPE}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-2 \left(\hat{p}\cdot \hat{q}\right)+\hat{p}^2+\hat{q}^2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPE}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SPE[a, b]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPE}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*Pair[Momentum[a, {-}4 + D], Momentum[b, {-}4 + D]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPE}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//}\NormalTok{ FCE }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SPE[a, b]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCE}\OperatorTok{[}\NormalTok{ChangeDimension}\OperatorTok{[}\NormalTok{SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{],} \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{4}\OperatorTok{]]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SPE[p, q]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

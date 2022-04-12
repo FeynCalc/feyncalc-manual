@@ -1,0 +1,52 @@
+% !TeX program = pdflatex
+% !TeX root = HypergeometricIR.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{hypergeometricir}{%
+\section{HypergeometricIR}\label{hypergeometricir}}
+
+\texttt{HypergeometricIR[\allowbreak{}exp,\ \allowbreak{}t]} substitutes
+for all
+\texttt{Hypergeometric2F1[\allowbreak{}a,\ \allowbreak{}b,\ \allowbreak{}c,\ \allowbreak{}z]}
+in \texttt{exp} by its Euler integral representation. The factor
+\texttt{Integratedx[\allowbreak{}t,\ \allowbreak{}0,\ \allowbreak{}1]}
+can be omitted by setting the option \texttt{Integratedx -> False}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{hypergeometricac}{HypergeometricAC},
+\hyperlink{hypergeometricse}{HypergeometricSE},
+\hyperlink{tohypergeometric}{ToHypergeometric}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{HypergeometricIR}\OperatorTok{[}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\OperatorTok{],} \FunctionTok{t}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{t^{b-1} \Gamma (c) (1-t z)^{-a} (1-t)^{-b+c-1}}{\Gamma (b) \Gamma (c-b)}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToHypergeometric}\OperatorTok{[}\FunctionTok{t}\SpecialCharTok{\^{}}\FunctionTok{b}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{t}\NormalTok{)}\SpecialCharTok{\^{}}\FunctionTok{c}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{t} \FunctionTok{z}\NormalTok{)}\SpecialCharTok{\^{}}\FunctionTok{a}\OperatorTok{,} \FunctionTok{t}\OperatorTok{]} 
+ 
+\NormalTok{HypergeometricIR}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{t}\OperatorTok{]} 
+  
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\Gamma (b+1) \Gamma (c+1) \, _2F_1(-a,b+1;b+c+2;-z)}{\Gamma (b+c+2)}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+t^b (1-t)^c (t z+1)^a
+\end{dmath*}
+\end{document}

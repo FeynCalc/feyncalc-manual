@@ -1,0 +1,99 @@
+% !TeX program = pdflatex
+% !TeX root = FermionSpinSum.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fermionspinsum}{%
+\section{FermionSpinSum}\label{fermionspinsum}}
+
+\texttt{FermionSpinSum[\allowbreak{}exp]} converts products of closed
+spinor chains in \texttt{exp} into Dirac traces. Both Dirac and Majorana
+particles are supported. It is understood, that \texttt{exp} represents
+a squared amplitude.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{spinor}{Spinor},
+\hyperlink{complexconjugate}{ComplexConjugate},
+\hyperlink{diractrace}{DiracTrace}.
+
+\subsection{Examples}
+
+FeynCalc uses the customary relativistic normalization of the spinors.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpinorUBar}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],} \FunctionTok{m}\OperatorTok{]}\NormalTok{ . SpinorU}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],} \FunctionTok{m}\OperatorTok{]} 
+ 
+\NormalTok{FermionSpinSum}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]} 
+ 
+\NormalTok{DiracSimplify}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{u}\left(\overline{p},m\right).u\left(\overline{p},m\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{tr}\left(\bar{\gamma }\cdot \overline{p}+m\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+4 m
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpinorVBar}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],} \FunctionTok{m}\OperatorTok{]}\NormalTok{ . SpinorV}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],} \FunctionTok{m}\OperatorTok{]} 
+ 
+\NormalTok{FermionSpinSum}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]} 
+ 
+\NormalTok{DiracSimplify}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{v}\left(\overline{p},m\right).v\left(\overline{p},m\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{tr}\left(\bar{\gamma }\cdot \overline{p}-m\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-4 m
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{amp }\ExtensionTok{=}\NormalTok{ SpinorUBar}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,} \FunctionTok{m}\OperatorTok{]}\NormalTok{ . GS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\DecValTok{5}\OperatorTok{]}\NormalTok{ . SpinorU}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,} \FunctionTok{m}\OperatorTok{]} 
+ 
+\NormalTok{ampSq }\ExtensionTok{=}\NormalTok{ amp ComplexConjugate}\OperatorTok{[}\NormalTok{amp}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{u}(\text{k1},m).\left(\bar{\gamma }\cdot \overline{p}\right).\bar{\gamma }^5.u(\text{p1},m)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{u}(\text{k1},m).\left(\bar{\gamma }\cdot \overline{p}\right).\bar{\gamma }^5.u(\text{p1},m) \left(-\left(\varphi (\overline{\text{p1}},m)\right).\bar{\gamma }^5.\left(\bar{\gamma }\cdot \overline{p}\right).\left(\varphi (\overline{\text{k1}},m)\right)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FermionSpinSum}\OperatorTok{[}\NormalTok{ampSq}\OperatorTok{]} 
+ 
+\NormalTok{DiracSimplify}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\text{tr}\left(\left(\bar{\gamma }\cdot \overline{\text{k1}}+m\right).\left(\bar{\gamma }\cdot \overline{p}\right).\bar{\gamma }^5.\left(\bar{\gamma }\cdot \overline{\text{p1}}+m\right).\bar{\gamma }^5.\left(\bar{\gamma }\cdot \overline{p}\right)\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-4 \overline{p}^2 \left(\overline{\text{k1}}\cdot \overline{\text{p1}}\right)+8 \left(\overline{\text{k1}}\cdot \overline{p}\right) \left(\overline{p}\cdot \overline{\text{p1}}\right)-4 m^2 \overline{p}^2
+\end{dmath*}
+\end{document}

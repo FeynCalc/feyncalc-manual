@@ -1,0 +1,58 @@
+% !TeX program = pdflatex
+% !TeX root = FCMatchSolve.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcmatchsolve}{%
+\section{FCMatchSolve}\label{fcmatchsolve}}
+
+\texttt{FCMatchSolve[\allowbreak{}expr,\ \allowbreak{}\{\allowbreak{}notvar1,\ \allowbreak{}notvar2,\ \allowbreak{}...\}]}
+assumes that \texttt{expr} is a sum that must vanish term-wise and
+converts it to a system of linear equations. The function automatically
+determines which variables to solve for, excluding
+\texttt{notvar1,\ \allowbreak{}notvar2,\ \allowbreak{}...} from the
+list.
+
+FCMatchSolve can also handle overdetermined systems of equations. This
+function is useful e.g.~for determining renormalization constants or
+matching coefficients, where looking at each term separately and
+determining the values of the constants/coefficients by hand is too
+tedious.
+
+The input (say a sum or a difference of amplitudes) should be prepared
+using \texttt{Collect2} by collecting w.r.t distinct objects,
+e.g.~matrix elements or coupling constants so that each term must vanish
+separately.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{collect2}{Collect2},
+\hyperlink{solve2}{Solve2}, \hyperlink{solve3}{Solve3}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCMatchSolve}\OperatorTok{[}\SpecialCharTok{{-}}\DecValTok{1}\SpecialCharTok{/}\DecValTok{8}\SpecialCharTok{*}\NormalTok{(tauPref}\SpecialCharTok{*}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{128} \SpecialCharTok{+} \DecValTok{64}\SpecialCharTok{*}\NormalTok{nc }\SpecialCharTok{+} \DecValTok{160}\SpecialCharTok{*}\NormalTok{nc}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{{-}} \DecValTok{8}\SpecialCharTok{*}\NormalTok{nc}\SpecialCharTok{*}\NormalTok{zz14 }\SpecialCharTok{+} \DecValTok{4}\SpecialCharTok{*}\NormalTok{nc}\SpecialCharTok{*}\NormalTok{zz44 }\SpecialCharTok{{-}} 
+         \DecValTok{16}\SpecialCharTok{*}\NormalTok{evFlag}\OperatorTok{[}\DecValTok{4}\OperatorTok{,} \DecValTok{3}\OperatorTok{,} \DecValTok{1}\OperatorTok{]} \SpecialCharTok{+} \DecValTok{8}\SpecialCharTok{*}\NormalTok{nc}\SpecialCharTok{*}\NormalTok{evFlag}\OperatorTok{[}\DecValTok{4}\OperatorTok{,} \DecValTok{3}\OperatorTok{,} \DecValTok{1}\OperatorTok{]} \SpecialCharTok{{-}} \DecValTok{16}\SpecialCharTok{*}\NormalTok{evFlag}\OperatorTok{[}\DecValTok{5}\OperatorTok{,} \DecValTok{3}\OperatorTok{,} \DecValTok{1}\OperatorTok{]} \SpecialCharTok{+} \DecValTok{8}\SpecialCharTok{*}\NormalTok{nc}\SpecialCharTok{*}\NormalTok{evFlag}\OperatorTok{[}\DecValTok{5}\OperatorTok{,} \DecValTok{3}\OperatorTok{,} \DecValTok{1}\OperatorTok{]} \SpecialCharTok{+} 
+\NormalTok{         nc}\SpecialCharTok{*}\NormalTok{evFlag}\OperatorTok{[}\DecValTok{9}\OperatorTok{,} \DecValTok{3}\OperatorTok{,} \DecValTok{1}\OperatorTok{]} \SpecialCharTok{{-}} \DecValTok{2}\SpecialCharTok{*}\NormalTok{evFlag}\OperatorTok{[}\DecValTok{10}\OperatorTok{,} \DecValTok{3}\OperatorTok{,} \DecValTok{1}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ nc}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{evFlag}\OperatorTok{[}\DecValTok{10}\OperatorTok{,} \DecValTok{3}\OperatorTok{,} \DecValTok{1}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{*}\NormalTok{OP}\OperatorTok{[}\FunctionTok{Q}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{/}\NormalTok{nc }\SpecialCharTok{+} 
+\NormalTok{   (tauPref}\SpecialCharTok{*}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{96}\SpecialCharTok{*}\NormalTok{nc }\SpecialCharTok{{-}} \DecValTok{96}\SpecialCharTok{*}\NormalTok{nc}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+} \DecValTok{4}\SpecialCharTok{*}\NormalTok{nc}\SpecialCharTok{*}\NormalTok{zz24 }\SpecialCharTok{{-}} \DecValTok{4}\SpecialCharTok{*}\NormalTok{nc}\SpecialCharTok{*}\NormalTok{zz44 }\SpecialCharTok{{-}} \DecValTok{16}\SpecialCharTok{*}\NormalTok{evFlag}\OperatorTok{[}\DecValTok{4}\OperatorTok{,} \DecValTok{3}\OperatorTok{,} \DecValTok{1}\OperatorTok{]} \SpecialCharTok{+} 
+        \DecValTok{24}\SpecialCharTok{*}\NormalTok{nc}\SpecialCharTok{*}\NormalTok{evFlag}\OperatorTok{[}\DecValTok{4}\OperatorTok{,} \DecValTok{3}\OperatorTok{,} \DecValTok{1}\OperatorTok{]} \SpecialCharTok{+} \DecValTok{16}\SpecialCharTok{*}\NormalTok{nc}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{evFlag}\OperatorTok{[}\DecValTok{4}\OperatorTok{,} \DecValTok{3}\OperatorTok{,} \DecValTok{1}\OperatorTok{]} \SpecialCharTok{+} \DecValTok{16}\SpecialCharTok{*}\NormalTok{evFlag}\OperatorTok{[}\DecValTok{5}\OperatorTok{,} \DecValTok{3}\OperatorTok{,} \DecValTok{1}\OperatorTok{]} \SpecialCharTok{{-}} 
+        \DecValTok{8}\SpecialCharTok{*}\NormalTok{nc}\SpecialCharTok{*}\NormalTok{evFlag}\OperatorTok{[}\DecValTok{5}\OperatorTok{,} \DecValTok{3}\OperatorTok{,} \DecValTok{1}\OperatorTok{]} \SpecialCharTok{{-}}\NormalTok{ nc}\SpecialCharTok{*}\NormalTok{evFlag}\OperatorTok{[}\DecValTok{9}\OperatorTok{,} \DecValTok{3}\OperatorTok{,} \DecValTok{1}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ nc}\SpecialCharTok{*}\NormalTok{evFlag}\OperatorTok{[}\DecValTok{9}\OperatorTok{,} \DecValTok{4}\OperatorTok{,} \DecValTok{1}\OperatorTok{]} \SpecialCharTok{+} \DecValTok{2}\SpecialCharTok{*}\NormalTok{evFlag}\OperatorTok{[}\DecValTok{10}\OperatorTok{,} \DecValTok{3}\OperatorTok{,} \DecValTok{1}\OperatorTok{]} \SpecialCharTok{{-}} 
+\NormalTok{        nc}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{evFlag}\OperatorTok{[}\DecValTok{10}\OperatorTok{,} \DecValTok{3}\OperatorTok{,} \DecValTok{1}\OperatorTok{]} \SpecialCharTok{{-}} \DecValTok{2}\SpecialCharTok{*}\NormalTok{evFlag}\OperatorTok{[}\DecValTok{10}\OperatorTok{,} \DecValTok{4}\OperatorTok{,} \DecValTok{1}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ nc}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{evFlag}\OperatorTok{[}\DecValTok{10}\OperatorTok{,} \DecValTok{4}\OperatorTok{,} \DecValTok{1}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{*}\NormalTok{OP}\OperatorTok{[}\NormalTok{QS}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(}\DecValTok{4}\SpecialCharTok{*}\NormalTok{nc)}\OperatorTok{,} 
+  \OperatorTok{\{}\NormalTok{OP}\OperatorTok{[}\NormalTok{\_}\OperatorTok{],}\NormalTok{ nc}\OperatorTok{,}\NormalTok{ evFlag}\OperatorTok{[}\AttributeTok{\_\_}\OperatorTok{],}\NormalTok{ tauPref}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCMatchSolve: Solving for: }\{\text{zz14},\text{zz24},\text{zz44}\}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCMatchSolve: A solution exists.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{zz24}\to \frac{1}{4 \;\text{nc}}\left(-16 \;\text{nc}^2 \;\text{evFlag}(4,3,1)-\text{nc}^2 \;\text{evFlag}(10,4,1)-32 \;\text{nc} \;\text{evFlag}(4,3,1)-\text{nc} \;\text{evFlag}(9,4,1)+32 \;\text{evFlag}(4,3,1)+2 \;\text{evFlag}(10,4,1)-64 \;\text{nc}^2+8 \;\text{nc} \;\text{zz14}+32 \;\text{nc}+128\right),\text{zz44}\to \frac{1}{4 \;\text{nc}}\left(\text{nc}^2 (-\text{evFlag}(10,3,1))-8 \;\text{nc} \;\text{evFlag}(4,3,1)-8 \;\text{nc} \;\text{evFlag}(5,3,1)-\text{nc} \;\text{evFlag}(9,3,1)+16 \;\text{evFlag}(4,3,1)+16 \;\text{evFlag}(5,3,1)+2 \;\text{evFlag}(10,3,1)-160 \;\text{nc}^2+8 \;\text{nc} \;\text{zz14}-64 \;\text{nc}+128\right)\right\}
+\end{dmath*}
+\end{document}

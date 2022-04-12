@@ -1,0 +1,89 @@
+% !TeX program = pdflatex
+% !TeX root = FCAbbreviate.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcabbreviate}{%
+\section{FCAbbreviate}\label{fcabbreviate}}
+
+\texttt{FCAbbreviate[\allowbreak{}exp,\ \allowbreak{}\{\allowbreak{}q1,\ \allowbreak{}q2,\ \allowbreak{}...\},\ \allowbreak{}\{\allowbreak{}p1,\ \allowbreak{}p2,\ \allowbreak{}...\}]}
+introduces abbreivations for scalar products of external momenta,
+\texttt{SMP}-symbols and other variables that are present in the
+expression. Functions (\texttt{LeafCount > 1}) are not supported. The
+main purpose is to simplify the export of FeynCalc expressions to other
+software tools that might not provide the richness of Mathematica's
+syntax. The result is returned as a list of replacement rules for scalar
+products, \texttt{SMP}s and all other variables present.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{scalarproduct}{ScalarProduct},
+\hyperlink{smp}{SMP}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\FunctionTok{a} \SpecialCharTok{+} \FunctionTok{I} \FunctionTok{b}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2} 
+ 
+\NormalTok{FCAbbreviate}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{\},} \OperatorTok{\{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(a+i b)^2
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\{\{\},\{\},\{a\to \;\text{var1},b\to \;\text{var2}\}\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_e"}\OperatorTok{]\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{+} \FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]} 
+ 
+\NormalTok{FCAbbreviate}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{p}\OperatorTok{,} \FunctionTok{k}\OperatorTok{\},} \FunctionTok{Head} \OtherTok{{-}\textgreater{}}\NormalTok{ spd}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{k\cdot p}{\left(q^2-m_e^2\right).\left((p+q)^2-m^2\right)}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left\{\{\text{spd}(k,k)\to \;\text{sp1},\text{spd}(k,p)\to \;\text{sp2},\text{spd}(p,p)\to \;\text{sp3}\},\left\{m_e\to \;\text{sm1}\right\},\{m\to \;\text{var1}\}\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClearScalarProducts}\OperatorTok{[]}\NormalTok{; }
+ 
+\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p1}\OperatorTok{]} \ExtensionTok{=} \DecValTok{0}\NormalTok{; }
+ 
+\NormalTok{SPD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{]} \ExtensionTok{=} \DecValTok{0}\NormalTok{; }
+ 
+\NormalTok{SPD}\OperatorTok{[}\NormalTok{p3}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{]} \ExtensionTok{=} \DecValTok{0}\NormalTok{; }
+ 
+\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{]} \ExtensionTok{=} \FunctionTok{s}\SpecialCharTok{/}\DecValTok{2}\NormalTok{; SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{]} \ExtensionTok{=} \SpecialCharTok{{-}}\NormalTok{(}\FunctionTok{s} \SpecialCharTok{+} \FunctionTok{t}\NormalTok{)}\SpecialCharTok{/}\DecValTok{2}\NormalTok{; SPD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{]} \ExtensionTok{=} \FunctionTok{t}\SpecialCharTok{/}\DecValTok{2}\NormalTok{; }
+ 
+\NormalTok{SPD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q} \SpecialCharTok{{-}}\NormalTok{ p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{,} \FunctionTok{q} \SpecialCharTok{{-}}\NormalTok{ p1 }\SpecialCharTok{{-}}\NormalTok{ p2 }\SpecialCharTok{{-}}\NormalTok{ p3}\OperatorTok{]} 
+ 
+\NormalTok{FCAbbreviate}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{\},} \FunctionTok{Head} \OtherTok{{-}\textgreater{}}\NormalTok{ spd}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{t}{2 q^2.(-\text{p1}-\text{p2}+q)^2.(-\text{p1}-\text{p2}-\text{p3}+q)^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left\{\left\{\text{spd}(\text{p1},\text{p1})\to 0,\text{spd}(\text{p1},\text{p2})\to \frac{\text{var1}}{2},\text{spd}(\text{p1},\text{p3})\to \frac{1}{2} (-\text{var1}-\text{var2}),\text{spd}(\text{p2},\text{p2})\to 0,\text{spd}(\text{p2},\text{p3})\to \frac{\text{var2}}{2},\text{spd}(\text{p3},\text{p3})\to 0\right\},\{\},\{s\to \;\text{var1},t\to \;\text{var2}\}\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClearScalarProducts}\OperatorTok{[]}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

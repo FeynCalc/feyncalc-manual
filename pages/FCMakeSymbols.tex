@@ -1,0 +1,53 @@
+% !TeX program = pdflatex
+% !TeX root = FCMakeSymbols.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcmakesymbols}{%
+\section{FCMakeSymbols}\label{fcmakesymbols}}
+
+\texttt{FCMakeSymbols[\allowbreak{}name,\ \allowbreak{}range,\ \allowbreak{}type]}
+generates a list or a sequence of symbols (depending on the value of
+type) by attaching elements of the list range to name.
+
+For example,
+\texttt{FCMakeSymbols[\allowbreak{}mu,\ \allowbreak{}Range[\allowbreak{}1,\ \allowbreak{}3],\ \allowbreak{}List]}
+returns
+\texttt{\{\allowbreak{}mu1,\ \allowbreak{}mu2,\ \allowbreak{}mu3\}}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fcmakeindex}{FCMakeIndex}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCMakeSymbols}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{Range}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{4}\OperatorTok{],} \FunctionTok{List}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{\text{a1},\text{a2},\text{a3},\text{a4}\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{f}\OperatorTok{[}\NormalTok{FCMakeSymbols}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{Range}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{4}\OperatorTok{],} \FunctionTok{Sequence}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f(\text{a1},\text{a2},\text{a3},\text{a4})
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{f}\OperatorTok{[}\NormalTok{FCMakeSymbols}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{3}\OperatorTok{\},} \FunctionTok{Sequence}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f(\text{a1},\text{a3})
+\end{dmath*}
+\end{document}

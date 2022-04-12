@@ -1,0 +1,215 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopSingularityStructure.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopsingularitystructure}{%
+\section{FCLoopSingularityStructure}\label{fcloopsingularitystructure}}
+
+\texttt{FCLoopSingularityStructure[\allowbreak{}int,\ \allowbreak{}\{\allowbreak{}q1,\ \allowbreak{}q2,\ \allowbreak{}...\}]}
+returns a list of expressions
+\texttt{\{\allowbreak{}pref,\ \allowbreak{}U,\ \allowbreak{}F,\ \allowbreak{}gbF\}}
+that are useful to analyze the singular behavior of the loop integral
+\texttt{int}.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{pref} is the \(\varepsilon\)-dependent prefactor of the
+  Feynman parameter integral that can reveal an overall UV-singularity
+\item
+  \texttt{U} and \texttt{F} denote the first and second Symanzik
+  polynomials respectively
+\item
+  \texttt{gbF} is the Groebner basis of
+  \({F, \partial F / \partial x_i}\) with respect to the Feynman
+  parameters
+\end{itemize}
+
+The idea to search for solutions of Landau equations for the
+\(F\)-polynomial using Groebner bases was adopted from
+\href{https://arxiv.org/abs/1810.06270}{1810.06270} and
+\href{https://arxiv.org/abs/2003.02451}{2003.02451} by B.
+Ananthanarayan, Abhishek Pal, S. Ramanan Ratan Sarkar and Abhijit B.
+Das.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcfeynmanprepare}{FCFeynmanPrepare},
+\hyperlink{fcfeynmanparametrize}{FCFeynmanParametrize}
+
+\subsection{Examples}
+
+\hypertarget{loop-tadpole}{%
+\subsubsection{1-loop tadpole}\label{loop-tadpole}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{out} \ExtensionTok{=}\NormalTok{ FCLoopSingularityStructure}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}],} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\Gamma (\varepsilon -1) \left(-\left(m^2\right)^{1-\varepsilon }\right),x(1),m^2 x(1)^2,\left\{m^2 x(1)\right\}\right\}
+\end{dmath*}
+
+The integral has an apparent UV-singularity from the prefactor
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Normal}\OperatorTok{[}\FunctionTok{Series}\OperatorTok{[}\FunctionTok{out}\OperatorTok{[[}\DecValTok{1}\OperatorTok{]],} \OperatorTok{\{}\NormalTok{Epsilon}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{m^2}{\varepsilon }
+\end{dmath*}
+
+\hypertarget{massless-1-loop-2-point-function}{%
+\subsubsection{Massless 1-loop 2-point
+function}\label{massless-1-loop-2-point-function}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{out} \ExtensionTok{=}\NormalTok{ FCLoopSingularityStructure}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\Gamma (\varepsilon ),x(1)+x(2),-p^2 x(1) x(2),\left\{p^2 x(2),p^2 x(1)\right\}\right\}
+\end{dmath*}
+
+The integral has an apparent UV-singularity from the prefactor
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Normal}\OperatorTok{[}\FunctionTok{Series}\OperatorTok{[}\FunctionTok{out}\OperatorTok{[[}\DecValTok{1}\OperatorTok{]],} \OperatorTok{\{}\NormalTok{Epsilon}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\varepsilon }
+\end{dmath*}
+
+but there is also an IR-divergence for \(p^2 = 0\) (the trivial solution
+with all \(x_i\) being 0 is not relevant here)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Reduce}\OperatorTok{[}\FunctionTok{Equal}\OperatorTok{[}\NormalTok{\#}\OperatorTok{,} \DecValTok{0}\OperatorTok{]}\NormalTok{ \& }\SpecialCharTok{/}\NormalTok{@ }\FunctionTok{out}\OperatorTok{[[}\DecValTok{4}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(x(2)=0\land x(1)=0)\lor p^2=0
+\end{dmath*}
+
+\hypertarget{loop-massless-box}{%
+\subsubsection{1-loop massless box}\label{loop-massless-box}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{out} \ExtensionTok{=}\NormalTok{ FCLoopSingularityStructure}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{p} \SpecialCharTok{+}\NormalTok{ q1}\OperatorTok{,} \FunctionTok{p} \SpecialCharTok{+}\NormalTok{ q1 }\SpecialCharTok{+}\NormalTok{ q2}\OperatorTok{,} \FunctionTok{p} \SpecialCharTok{+}\NormalTok{ q1 }\SpecialCharTok{+}\NormalTok{ q2 }\SpecialCharTok{+}\NormalTok{ q3}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{p}\OperatorTok{\},} 
+   \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,}\NormalTok{ FinalSubstitutions }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\NormalTok{q1}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{q2}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{q3}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{2^{-\varepsilon -2} \Gamma (\varepsilon +2),x(1)+x(2)+x(3)+x(4),-2 (x(1) x(3) (\text{q1}\cdot \;\text{q2})+x(1) x(4) (\text{q1}\cdot \;\text{q2})+x(1) x(4) (\text{q1}\cdot \;\text{q3})+x(1) x(4) (\text{q2}\cdot \;\text{q3})+x(2) x(4) (\text{q2}\cdot \;\text{q3})),\{x(4) (\text{q2}\cdot \;\text{q3}),x(3) (\text{q1}\cdot \;\text{q2})+x(4) (\text{q1}\cdot \;\text{q2})+x(4) (\text{q1}\cdot \;\text{q3}),x(2) (\text{q1}\cdot \;\text{q2}) (\text{q2}\cdot \;\text{q3}),x(1) (\text{q1}\cdot \;\text{q3})+x(1) (\text{q2}\cdot \;\text{q3})+x(2) (\text{q2}\cdot \;\text{q3}),x(1) (\text{q1}\cdot \;\text{q2})\}\right\}
+\end{dmath*}
+
+As expected a 1-loop box has no overall UV-divergence
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Normal}\OperatorTok{[}\FunctionTok{Series}\OperatorTok{[}\FunctionTok{out}\OperatorTok{[[}\DecValTok{1}\OperatorTok{]],} \OperatorTok{\{}\NormalTok{Epsilon}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+The form of the U-polynomial readily suggests that there is no
+UV-subdivergence (again as expected)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Reduce}\OperatorTok{[}\FunctionTok{out}\OperatorTok{[[}\DecValTok{2}\OperatorTok{]]} \ExtensionTok{==} \DecValTok{0}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{],} \FunctionTok{x}\OperatorTok{[}\DecValTok{4}\OperatorTok{]\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+x(4)=-x(1)-x(2)-x(3)
+\end{dmath*}
+
+As far as the IR-divergences are concerned, we find a rather nontrivial
+set of solutions satisfying Landau equations
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Reduce}\OperatorTok{[}\FunctionTok{Equal}\OperatorTok{[}\NormalTok{\#}\OperatorTok{,} \DecValTok{0}\OperatorTok{]}\NormalTok{ \& }\SpecialCharTok{/}\NormalTok{@ }\FunctionTok{out}\OperatorTok{[[}\DecValTok{4}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(\text{q2}\cdot \;\text{q3}=0\land x(1)\neq 0\land \;\text{q1}\cdot \;\text{q3}=0\land \;\text{q1}\cdot \;\text{q2}=0)\lor \left(x(1)=0\land \;\text{q2}\cdot \;\text{q3}=0\land x(3)+x(4)\neq 0\land \;\text{q1}\cdot \;\text{q2}=-\frac{x(4) (\text{q1}\cdot \;\text{q3})}{x(3)+x(4)}\right)\lor (x(4)=0\land x(1)=0\land \;\text{q2}\cdot \;\text{q3}=0\land \;\text{q1}\cdot \;\text{q2}=0)\lor (x(4)=0\land x(2)=0\land x(1)=0\land \;\text{q1}\cdot \;\text{q2}=0)\lor (x(4)=0\land x(3)=0\land x(1)=0\land \;\text{q2}\cdot \;\text{q3}=0)\lor (x(4)=0\land x(3)=0\land x(2)=0\land x(1)=0)\lor \left(x(4)=0\land x(1)\neq 0\land \;\text{q1}\cdot \;\text{q3}=\frac{x(1) (-(\text{q2}\cdot \;\text{q3}))-x(2) (\text{q2}\cdot \;\text{q3})}{x(1)}\land \;\text{q1}\cdot \;\text{q2}=0\right)\lor (x(1)=0\land \;\text{q2}\cdot \;\text{q3}=0\land x(4)\neq 0\land \;\text{q1}\cdot \;\text{q3}=0\land \;\text{q1}\cdot \;\text{q2}=0)\lor (x(3)=-x(4)\land x(1)=0\land \;\text{q2}\cdot \;\text{q3}=0\land x(4)\neq 0\land \;\text{q1}\cdot \;\text{q3}=0)\lor (x(4)=0\land x(1)=0\land x(2)\neq 0\land \;\text{q2}\cdot \;\text{q3}=0\land \;\text{q1}\cdot \;\text{q2}=0)\lor (x(4)=0\land x(2)=0\land x(1)=0\land x(3)\neq 0\land \;\text{q1}\cdot \;\text{q2}=0)
+\end{dmath*}
+
+\hypertarget{a-2-loop-eikonal-integral-with-massive-and-massless-lines}{%
+\subsubsection{A 2-loop eikonal integral with massive and massless
+lines}\label{a-2-loop-eikonal-integral-with-massive-and-massless-lines}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{out} \ExtensionTok{=}\NormalTok{ FCLoopSingularityStructure}\OperatorTok{[}\NormalTok{SFAD}\OperatorTok{[\{}\NormalTok{ p1}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]}\NormalTok{ SFAD}\OperatorTok{[\{}\NormalTok{ p3}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]}\NormalTok{ SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,} 
+       \DecValTok{2}\NormalTok{ p1 . }\FunctionTok{n}\OperatorTok{\}\}]}\NormalTok{ SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{2}\NormalTok{ (p1 }\SpecialCharTok{+}\NormalTok{ p3) . }\FunctionTok{n}\OperatorTok{\}\}],} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,}
+\NormalTok{   FinalSubstitutions }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{n}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{1}\OperatorTok{,} \FunctionTok{m} \OtherTok{{-}\textgreater{}} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\Gamma (2 \varepsilon ),x(3) x(4),x(4) x(1)^2+2 x(2) x(4) x(1)+x(3) x(4)^2+x(2)^2 x(3)+x(2)^2 x(4)+x(3)^2 x(4),\left\{x(3) x(4)^2,x(3)^2 x(4),x(2) x(3),x(2)^2+x(4)^2+2 x(3) x(4),x(1) x(4)+x(2) x(4),x(1)^2+2 x(2) x(1)+x(3)^2-x(4)^2\right\}\right\}
+\end{dmath*}
+
+The integral has no IR-divergence, the only solution to the Landau
+equations is a trivial one
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Reduce}\OperatorTok{[}\FunctionTok{Equal}\OperatorTok{[}\NormalTok{\#}\OperatorTok{,} \DecValTok{0}\OperatorTok{]}\NormalTok{ \& }\SpecialCharTok{/}\NormalTok{@ }\FunctionTok{out}\OperatorTok{[[}\DecValTok{4}\OperatorTok{]],} \BuiltInTok{Reals}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+x(4)=0\land x(3)=0\land x(2)=0\land x(1)=0
+\end{dmath*}
+
+Notice that the mass is acting as an IR regulator here. Setting it to 0
+makes the IR pole resurface
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{out} \ExtensionTok{=}\NormalTok{ FCLoopSingularityStructure}\OperatorTok{[}\NormalTok{SFAD}\OperatorTok{[\{}\NormalTok{ p1}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]}\NormalTok{ SFAD}\OperatorTok{[\{}\NormalTok{ p3}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]}\NormalTok{ SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,} 
+       \DecValTok{2}\NormalTok{ p1 . }\FunctionTok{n}\OperatorTok{\}\}]}\NormalTok{ SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{2}\NormalTok{ (p1 }\SpecialCharTok{+}\NormalTok{ p3) . }\FunctionTok{n}\OperatorTok{\}\}],} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,}
+\NormalTok{   FinalSubstitutions }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{n}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{1}\OperatorTok{,} \FunctionTok{m} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{0,x(3) x(4),x(4) x(1)^2+2 x(2) x(4) x(1)+x(2)^2 x(3)+x(2)^2 x(4),\left\{x(2) x(3),x(2)^2,x(1) x(4)+x(2) x(4),x(1)^2+2 x(2) x(1)\right\}\right\}
+\end{dmath*}
+
+and here is our nontrivial solution
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Reduce}\OperatorTok{[}\FunctionTok{Equal}\OperatorTok{[}\NormalTok{\#}\OperatorTok{,} \DecValTok{0}\OperatorTok{]}\NormalTok{ \& }\SpecialCharTok{/}\NormalTok{@ }\FunctionTok{out}\OperatorTok{[[}\DecValTok{4}\OperatorTok{]],} \BuiltInTok{Reals}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+x(1)=0\land x(2)=0
+\end{dmath*}
+\end{document}

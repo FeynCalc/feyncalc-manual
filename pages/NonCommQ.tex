@@ -1,0 +1,51 @@
+% !TeX program = pdflatex
+% !TeX root = NonCommQ.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{noncommq}{%
+\section{NonCommQ}\label{noncommq}}
+
+\texttt{NonCommQ[\allowbreak{}exp]} yields \texttt{True} if \texttt{exp}
+contains non-commutative objects (i.e.~those objects which are listed in
+\texttt{\$NonComm}) not inside \texttt{DiracTrace}s or
+\texttt{SUNTrace}s.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{noncomm}{\$NonComm},
+\hyperlink{noncommfreeq}{NonCommFreeQ},
+\hyperlink{diractrace}{DiracTrace}, \hyperlink{suntrace}{SUNTrace}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NonCommQ}\OperatorTok{[}\NormalTok{xx }\SpecialCharTok{+}\NormalTok{ yy}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NonCommQ}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . GS}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{+} \FunctionTok{m}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NonCommQ}\OperatorTok{[}\NormalTok{DCHN}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],} \FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+\end{document}

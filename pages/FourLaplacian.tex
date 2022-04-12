@@ -1,0 +1,52 @@
+% !TeX program = pdflatex
+% !TeX root = FourLaplacian.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fourlaplacian}{%
+\section{FourLaplacian}\label{fourlaplacian}}
+
+\texttt{FourLaplacian[\allowbreak{}exp,\ \allowbreak{}p,\ \allowbreak{}q]}
+is
+\(\frac{\partial}{\partial p_{\mu }} \frac{\partial}{\partial q_{\mu }}\)
+applied to \texttt{exp}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fourdivergence}{FourDivergence},
+\hyperlink{threedivergence}{ThreeDivergence}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SP}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]} 
+ 
+\NormalTok{FourLaplacian}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{q}^2
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+2 D
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SOD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]}\SpecialCharTok{\^{}}\NormalTok{OPEmFAD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{]} 
+ 
+\NormalTok{FourLaplacian}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(\Delta \cdot q)^{\text{OPEmFAD}(q,q-p)}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+\end{document}

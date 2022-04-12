@@ -1,0 +1,66 @@
+% !TeX program = pdflatex
+% !TeX root = FCShowEpsilon.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcshowepsilon}{%
+\section{FCShowEpsilon}\label{fcshowepsilon}}
+
+\texttt{FCShowEpsilon[\allowbreak{}expr]} substitutes
+\texttt{SMP[\allowbreak{}"Delta"]} with
+\texttt{1/Epsilon - EulerGamma + Log[\allowbreak{}4 Pi]}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fchideepsilon}{FCHideEpsilon}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SMP}\OperatorTok{[}\StringTok{"Delta"}\OperatorTok{]} 
+ 
+\NormalTok{FCShowEpsilon}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\Delta
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\varepsilon }-\gamma +\log (4 \pi )
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SMP}\OperatorTok{[}\StringTok{"Delta\_UV"}\OperatorTok{]} 
+ 
+\NormalTok{FCShowEpsilon}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\Delta _{\text{UV}}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\varepsilon _{\text{UV}}}-\gamma +\log (4 \pi )
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SMP}\OperatorTok{[}\StringTok{"Delta\_IR"}\OperatorTok{]} 
+ 
+\NormalTok{FCShowEpsilon}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\Delta _{\text{IR}}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\varepsilon _{\text{IR}}}-\gamma +\log (4 \pi )
+\end{dmath*}
+\end{document}

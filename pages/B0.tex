@@ -1,0 +1,63 @@
+% !TeX program = pdflatex
+% !TeX root = B0.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{b0}{%
+\section{B0}\label{b0}}
+
+\texttt{B0[\allowbreak{}pp,\ \allowbreak{}ma^2,\ \allowbreak{}mb^2]} is
+the Passarino-Veltman two-point integral \(B_0\). All arguments are
+scalars and have dimension mass squared. If the option \texttt{BReduce}
+is set to \texttt{True}, certain \texttt{B0}'s are reduced to
+\texttt{A0}'s. Setting the option \texttt{B0Unique} to \texttt{True}
+simplifies \texttt{B0[\allowbreak{}a,\ \allowbreak{}0,\ \allowbreak{}a]}
+and \texttt{B0[\allowbreak{}0,\ \allowbreak{}0,\ \allowbreak{}a]}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{b1}{B1}, \hyperlink{b00}{B00},
+\hyperlink{b11}{B11}, \hyperlink{pave}{PaVe}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B0}\OperatorTok{[}\NormalTok{SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{p}\OperatorTok{],} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{B}_0\left(\overline{p}^2,m^2,m^2\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B0}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ B0Unique }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,}\NormalTok{ B0Real }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{B}_0\left(0,m^2,m^2\right)+1
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B0}\OperatorTok{[}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ B0Unique }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,}\NormalTok{ B0Real }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{B}_0\left(0,m^2,m^2\right)+2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B0}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{B}_0\left(0,m^2,m^2\right)
+\end{dmath*}
+\end{document}

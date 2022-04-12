@@ -1,0 +1,143 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopBasisIncompleteQ.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopbasisincompleteq}{%
+\section{FCLoopBasisIncompleteQ}\label{fcloopbasisincompleteq}}
+
+\texttt{FCLoopBasisIncompleteQ[\allowbreak{}int,\ \allowbreak{}\{\allowbreak{}q1,\ \allowbreak{}q2,\ \allowbreak{}...\}]}
+checks whether the loop integral or topology \texttt{int} lacks
+propagators need to have a linearly independent basis .
+
+The input can also consist of an \texttt{FCTopology} object or a list
+thereof.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcloopbasisoverdeterminedq}{FCLoopBasisOverdeterminedQ}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAD}\OperatorTok{[\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\}]} 
+ 
+\NormalTok{FCLoopBasisIncompleteQ}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\text{q1}^2-\text{m1}^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPD}\OperatorTok{[}\NormalTok{q1}\OperatorTok{,} \FunctionTok{l}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q1 }\SpecialCharTok{{-}} \FunctionTok{l} \SpecialCharTok{+} \FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]} 
+ 
+\NormalTok{FCLoopBasisIncompleteQ}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{l\cdot \;\text{q1}}{\left(\text{q1}^2-\text{m1}^2\right).\left((-l+p+\text{q1})^2-m^2\right)}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAD}\OperatorTok{[\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{\}]} 
+ 
+\NormalTok{FCLoopBasisIncompleteQ}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\left(\text{q1}^2-\text{m1}^2\right).\left(\text{q2}^2-\text{m2}^2\right)}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAD}\OperatorTok{[}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1 }\SpecialCharTok{{-}}\NormalTok{ l1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q2 }\SpecialCharTok{{-}}\NormalTok{ l2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{\}]} 
+ 
+\NormalTok{FCLoopBasisIncompleteQ}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\text{q1}^2.\text{q2}^2.\left((\text{q1}-\text{l1})^2-\text{m1}^2\right).\left((\text{q2}-\text{l2})^2-\text{m2}^2\right)}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CSPD}\OperatorTok{[}\NormalTok{q1}\OperatorTok{,} \FunctionTok{l}\OperatorTok{]}\NormalTok{ CFAD}\OperatorTok{[\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q1 }\SpecialCharTok{{-}} \FunctionTok{l} \SpecialCharTok{+} \FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]} 
+ 
+\NormalTok{FCLoopBasisIncompleteQ}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{l\cdot \;\text{q1}}{(\text{q1}^2+\text{m1}-i \eta ).((-l+p+\text{q1})^2+m-i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SFAD}\OperatorTok{[\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{\}]} 
+ 
+\NormalTok{FCLoopBasisIncompleteQ}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(\text{q1}^2-\text{m1}+i \eta ).(\text{q2}^2-\text{m2}+i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopBasisIncompleteQ}\OperatorTok{[}\NormalTok{FCTopology}\OperatorTok{[}\NormalTok{topo}\OperatorTok{,} \OperatorTok{\{}\NormalTok{FAD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],} 
+\NormalTok{    FAD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p2 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopBasisIncompleteQ}\OperatorTok{[\{}
+\NormalTok{   FCTopology}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,} \OperatorTok{\{}\NormalTok{FAD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p2 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}],} 
+\NormalTok{   FCTopology}\OperatorTok{[}\NormalTok{topo2}\OperatorTok{,} \OperatorTok{\{}\NormalTok{FAD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p2 }\SpecialCharTok{{-}}\NormalTok{ p1}\OperatorTok{]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}],} 
+\NormalTok{   FCTopology}\OperatorTok{[}\NormalTok{topo3}\OperatorTok{,} \OperatorTok{\{}\NormalTok{FAD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]} 
+  \OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{\text{True},\text{True},\text{False}\}
+\end{dmath*}
+\end{document}

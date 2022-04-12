@@ -1,0 +1,68 @@
+% !TeX program = pdflatex
+% !TeX root = CGS.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{cgs}{%
+\section{CGS}\label{cgs}}
+
+\texttt{CGS[\allowbreak{}p]} is transformed into
+\texttt{DiracGamma[\allowbreak{}CartesianMomentum[\allowbreak{}p]]} by
+\texttt{FeynCalcInternal}.
+
+\texttt{CGS[\allowbreak{}p,\ \allowbreak{}q,\ \allowbreak{}...]} is
+equivalent to \texttt{CGS[\allowbreak{}p].CGS[\allowbreak{}q]}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{gs}{GS},
+\hyperlink{diracgamma}{DiracGamma}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CGS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{\gamma }\cdot \overline{p}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CGS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*DiracGamma[CartesianMomentum[p]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CGS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,} \FunctionTok{r}\OperatorTok{,} \FunctionTok{s}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\overline{\gamma }\cdot \overline{p}\right).\left(\overline{\gamma }\cdot \overline{q}\right).\left(\overline{\gamma }\cdot \overline{r}\right).\left(\overline{\gamma }\cdot \overline{s}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CGS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,} \FunctionTok{r}\OperatorTok{,} \FunctionTok{s}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*CGS[p] . CGS[q] . CGS[r] . CGS[s]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CGS}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]}\NormalTok{ . (CGS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{m}\NormalTok{) . CGS}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\overline{\gamma }\cdot \overline{q}\right).\left(\overline{\gamma }\cdot \overline{p}+m\right).\left(\overline{\gamma }\cdot \overline{q}\right)
+\end{dmath*}
+\end{document}

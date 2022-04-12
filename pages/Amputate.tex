@@ -1,0 +1,42 @@
+% !TeX program = pdflatex
+% !TeX root = Amputate.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{amputate}{%
+\section{Amputate}\label{amputate}}
+
+\texttt{Amputate[\allowbreak{}exp,\ \allowbreak{}q1,\ \allowbreak{}q2,\ \allowbreak{}...]}
+amputates \texttt{Eps} and \texttt{DiracGamma}.
+\texttt{Amputate[\allowbreak{}exp,\ \allowbreak{}q1,\ \allowbreak{}q2,\ \allowbreak{}Pair->\{\allowbreak{}p\}]}
+amputates also \texttt{p.q1} and \texttt{p.q2}; \texttt{Pair->All}
+amputates all except \texttt{OPEDelta}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{diracgamma}{DiracGamma},
+\hyperlink{ga}{GA}, \hyperlink{diracsimplify}{DiracSimplify},
+\hyperlink{gs}{GS}, \hyperlink{diractrick}{DiracTrick}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]}\NormalTok{ . GS}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }\cdot \overline{p}\right).\left(\bar{\gamma }\cdot \overline{q}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Amputate}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+q^{\text{\$AL\$16479}(1)} \left(\bar{\gamma }\cdot \overline{p}\right).\gamma ^{\text{\$AL\$16479}(1)}
+\end{dmath*}
+\end{document}

@@ -1,0 +1,63 @@
+% !TeX program = pdflatex
+% !TeX root = ToHypergeometric.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{tohypergeometric}{%
+\section{ToHypergeometric}\label{tohypergeometric}}
+
+\texttt{ToHypergeometric[\allowbreak{}t^b (1 - t)^c (1+tz)^a,\ \allowbreak{}t]}
+returns
+\texttt{u^a Gamma[\allowbreak{}b+1] Gamma[\allowbreak{}c+1]/Gamma[\allowbreak{}b+c+2] Hypergeometric2F1[\allowbreak{}-a,\ \allowbreak{}b+1,\ \allowbreak{}b+c+2,\ \allowbreak{}-z/u]}.
+Remember that \(\textrm{Re}(b) >0\) and \(\textrm{Re} (c-b) > 0\) should
+hold (need not be set in Mathematica).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{hypergeometricac}{HypergeometricAC},
+\hyperlink{hypergeometricir}{HypergeometricIR},
+\hyperlink{hypergeometricse}{HypergeometricSE}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToHypergeometric}\OperatorTok{[}\FunctionTok{t}\SpecialCharTok{\^{}}\FunctionTok{b}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{t}\NormalTok{)}\SpecialCharTok{\^{}}\FunctionTok{c}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{t} \FunctionTok{z}\NormalTok{)}\SpecialCharTok{\^{}}\FunctionTok{a}\OperatorTok{,} \FunctionTok{t}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\Gamma (b+1) \Gamma (c+1) \, _2F_1(-a,b+1;b+c+2;-z)}{\Gamma (b+c+2)}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToHypergeometric}\OperatorTok{[}\FunctionTok{w} \FunctionTok{t}\SpecialCharTok{\^{}}\NormalTok{(}\FunctionTok{b} \SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) (}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{t}\NormalTok{)}\SpecialCharTok{\^{}}\NormalTok{(}\FunctionTok{c} \SpecialCharTok{{-}} \FunctionTok{b} \SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) (}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{t} \FunctionTok{z}\NormalTok{)}\SpecialCharTok{\^{}{-}}\FunctionTok{a}\OperatorTok{,} \FunctionTok{t}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{w \Gamma (b) \Gamma (c-b) \, _2F_1(a,b;c;z)}{\Gamma (c)}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToHypergeometric}\OperatorTok{[}\FunctionTok{t}\SpecialCharTok{\^{}}\FunctionTok{b}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{t}\NormalTok{)}\SpecialCharTok{\^{}}\FunctionTok{c}\NormalTok{ (}\FunctionTok{u} \SpecialCharTok{+} \FunctionTok{t} \FunctionTok{z}\NormalTok{)}\SpecialCharTok{\^{}}\FunctionTok{a}\OperatorTok{,} \FunctionTok{t}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{u^a \Gamma (b+1) \Gamma (c+1) \, _2F_1\left(-a,b+1;b+c+2;-\frac{z}{u}\right)}{\Gamma (b+c+2)}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToHypergeometric}\OperatorTok{[}\FunctionTok{w} \FunctionTok{t}\SpecialCharTok{\^{}}\NormalTok{(}\FunctionTok{b} \SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) (}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{t}\NormalTok{)}\SpecialCharTok{\^{}}\NormalTok{(}\FunctionTok{c} \SpecialCharTok{{-}} \FunctionTok{b} \SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) (}\FunctionTok{u} \SpecialCharTok{{-}} \FunctionTok{t} \FunctionTok{z}\NormalTok{)}\SpecialCharTok{\^{}{-}}\FunctionTok{a}\OperatorTok{,} \FunctionTok{t}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{w u^{-a} \Gamma (b) \Gamma (c-b) \, _2F_1\left(a,b;c;\frac{z}{u}\right)}{\Gamma (c)}
+\end{dmath*}
+\end{document}

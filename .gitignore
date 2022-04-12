@@ -1,0 +1,13 @@
+FeynCalcManual.pdf
+*.aux
+*.log
+*.toc
+*.dvi
+*.out
+*.fdb_latexmk
+*.gz
+*.bbl
+*.blg
+*.cfg
+*.fls
+.nfs*

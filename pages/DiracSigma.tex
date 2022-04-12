@@ -1,0 +1,75 @@
+% !TeX program = pdflatex
+% !TeX root = DiracSigma.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{diracsigma}{%
+\section{DiracSigma}\label{diracsigma}}
+
+\texttt{DiracSigma[\allowbreak{}a,\ \allowbreak{}b]} stands for
+\(I/2(a.b-b.a)\) in 4 dimensions.
+
+\texttt{a} and \texttt{b} must have head \texttt{DiracGamma},
+\texttt{GA} or \texttt{GS}. Only antisymmetry is implemented.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{diracsigmaexplicit}{DiracSigmaExplicit}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracSigma}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{]],}\NormalTok{ GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{]]]} 
+ 
+\NormalTok{DiracSigmaExplicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\sigma ^{\alpha \beta }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} i \left(\bar{\gamma }^{\alpha }.\bar{\gamma }^{\beta }-\bar{\gamma }^{\beta }.\bar{\gamma }^{\alpha }\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracSigma}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{]],}\NormalTok{ GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\sigma ^{\alpha \beta }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracSigma}\OperatorTok{[}\NormalTok{GS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],}\NormalTok{ GS}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]]} 
+ 
+\NormalTok{DiracSigmaExplicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\sigma ^{pq}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} i \left(\left(\bar{\gamma }\cdot \overline{p}\right).\left(\bar{\gamma }\cdot \overline{q}\right)-\left(\bar{\gamma }\cdot \overline{q}\right).\left(\bar{\gamma }\cdot \overline{p}\right)\right)
+\end{dmath*}
+
+The antisymmetry property is built-in
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracSigma}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{]],}\NormalTok{ GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+\end{document}

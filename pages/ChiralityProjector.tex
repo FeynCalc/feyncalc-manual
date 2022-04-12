@@ -1,0 +1,71 @@
+% !TeX program = pdflatex
+% !TeX root = ChiralityProjector.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{chiralityprojector}{%
+\section{ChiralityProjector}\label{chiralityprojector}}
+
+\texttt{ChiralityProjector[\allowbreak{}+1]} denotes
+\(1/2\left(1+\gamma^5\right)\).
+
+ChiralityProjector{[}-1{]} denotes \(1/2\left(1+\gamma ^5\right)\).
+
+The shortcut \texttt{ChiralityProjector} is deprecated, please use
+\texttt{GA[\allowbreak{}6]} and \texttt{GA[\allowbreak{}7]} instead!
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{ga}{GA}, \hyperlink{fci}{FCI}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\{}\NormalTok{ChiralityProjector}\OperatorTok{[}\SpecialCharTok{+}\DecValTok{1}\OperatorTok{],}\NormalTok{ ChiralityProjector}\OperatorTok{[}\SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{]\}}
+\NormalTok{DiracSimplify}\OperatorTok{[}\NormalTok{\#}\OperatorTok{,}\NormalTok{ DiracSubstitute67 }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}\NormalTok{ \& }\SpecialCharTok{/}\NormalTok{@ }\SpecialCharTok{\%}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\bar{\gamma }^6,\bar{\gamma }^7\right\}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left\{\frac{\bar{\gamma }^5}{2}+\frac{1}{2},\frac{1}{2}-\frac{\bar{\gamma }^5}{2}\right\}
+\end{dmath*}
+
+\texttt{ChiralityProjector} is scheduled for removal in the future
+versions of FeynCalc. The safe alternative is to use GA{[}6{]} and
+GA{[}7{]}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\{}\NormalTok{GA}\OperatorTok{[}\DecValTok{6}\OperatorTok{],}\NormalTok{ GA}\OperatorTok{[}\DecValTok{7}\OperatorTok{]\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\bar{\gamma }^6,\bar{\gamma }^7\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\DecValTok{6}\OperatorTok{]]} \ExtensionTok{===}\NormalTok{ ChiralityProjector}\OperatorTok{[}\SpecialCharTok{+}\DecValTok{1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\DecValTok{7}\OperatorTok{]]} \ExtensionTok{===}\NormalTok{ ChiralityProjector}\OperatorTok{[}\SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+\end{document}

@@ -1,0 +1,72 @@
+% !TeX program = pdflatex
+% !TeX root = SquareAmplitude.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{squareamplitude}{%
+\section{SquareAmplitude}\label{squareamplitude}}
+
+\texttt{SquareAmplitude[\allowbreak{}m1,\ \allowbreak{}m2]} multiplies
+the amplitudes from the list \texttt{m1} with their complex conjugate
+from the list \texttt{m2} to obtain the list of products \(m1_i m2_j\).
+This function can be useful when exporting amplitudes obtained with
+FeynCalc to FORM.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Clear}\OperatorTok{[}\NormalTok{a1}\OperatorTok{,}\NormalTok{ a2}\OperatorTok{,}\NormalTok{ a3}\OperatorTok{,}\NormalTok{ b1}\OperatorTok{,}\NormalTok{ b2}\OperatorTok{,}\NormalTok{ b3}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SquareAmplitude}\OperatorTok{[\{}\NormalTok{a1}\OperatorTok{,}\NormalTok{ a2}\OperatorTok{,}\NormalTok{ a3}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{b1}\OperatorTok{,}\NormalTok{ b2}\OperatorTok{,}\NormalTok{ b3}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{\text{a1} \;\text{b1},\text{a1} \;\text{b2},\text{a1} \;\text{b3},\text{a2} \;\text{b1},\text{a2} \;\text{b2},\text{a2} \;\text{b3},\text{a3} \;\text{b1},\text{a3} \;\text{b2},\text{a3} \;\text{b3}\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SquareAmplitude}\OperatorTok{[\{}\NormalTok{a1}\OperatorTok{,}\NormalTok{ a2}\OperatorTok{,}\NormalTok{ a3}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{b1}\OperatorTok{,}\NormalTok{ b2}\OperatorTok{,}\NormalTok{ b3}\OperatorTok{\},} \FunctionTok{List} \OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{a1} \;\text{b1}+\text{a1} \;\text{b2}+\text{a1} \;\text{b3}+\text{a2} \;\text{b1}+\text{a2} \;\text{b2}+\text{a2} \;\text{b3}+\text{a3} \;\text{b1}+\text{a3} \;\text{b2}+\text{a3} \;\text{b3}
+\end{dmath*}
+
+When the option \texttt{Real} is set to \texttt{True}, the amplitudes
+are assumed to have no imaginary part
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SquareAmplitude}\OperatorTok{[\{}\NormalTok{a1}\OperatorTok{,}\NormalTok{ a2}\OperatorTok{,}\NormalTok{ a3}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{b1}\OperatorTok{,}\NormalTok{ b2}\OperatorTok{,}\NormalTok{ b3}\OperatorTok{\},} \FunctionTok{Real} \OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,} \FunctionTok{List} \OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{a1} \;\text{b1}+2 \;\text{a2} \;\text{b1}+\text{a2} \;\text{b2}+2 \;\text{a3} \;\text{b1}+2 \;\text{a3} \;\text{b2}+\text{a3} \;\text{b3}
+\end{dmath*}
+
+The option \texttt{Indexed} allows us to attach a marker to each
+contribution
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SquareAmplitude}\OperatorTok{[\{}\NormalTok{a1}\OperatorTok{,}\NormalTok{ a2}\OperatorTok{,}\NormalTok{ a3}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{b1}\OperatorTok{,}\NormalTok{ b2}\OperatorTok{,}\NormalTok{ b3}\OperatorTok{\},} \FunctionTok{Real} \OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,} \FunctionTok{List} \OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{,}\NormalTok{ Indexed }\OtherTok{{-}\textgreater{}}\NormalTok{ mark}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{a1} \;\text{b1} \;\text{mark}(1,1)+2 \;\text{a2} \;\text{b1} \;\text{mark}(2,1)+\text{a2} \;\text{b2} \;\text{mark}(2,2)+2 \;\text{a3} \;\text{b1} \;\text{mark}(3,1)+2 \;\text{a3} \;\text{b2} \;\text{mark}(3,2)+\text{a3} \;\text{b3} \;\text{mark}(3,3)
+\end{dmath*}
+\end{document}

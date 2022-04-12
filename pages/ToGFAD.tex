@@ -1,0 +1,80 @@
+% !TeX program = pdflatex
+% !TeX root = ToGFAD.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{togfad}{%
+\section{ToGFAD}\label{togfad}}
+
+\texttt{ToGFAD[\allowbreak{}exp]} converts all occurring propagator
+types (\texttt{FAD}, \texttt{SFAD}, \texttt{CFAD}) to \texttt{GFAD}s.
+This is mainly useful when doing expansions in kinematic invariants,
+where e.g.~scalar products may not be appear explicitly when using
+\texttt{FAD}- or \texttt{SFAD}-notation.
+
+ToGFAD is the inverse operation to FromGFAD.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{gfad}{GFAD},
+\hyperlink{sfad}{SFAD}, \hyperlink{cfad}{CFAD},
+\hyperlink{feynampdenominatorexplicit}{FeynAmpDenominatorExplicit},
+\hyperlink{fromgfad}{FromGFAD}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToGFAD}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p^2+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToGFAD}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*FeynAmpDenominator[GenericPropagatorDenominator[Pair[Momentum[p, D], Momentum[p, D]], \{1, 1\}]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToGFAD}\OperatorTok{[}\NormalTok{SFAD}\OperatorTok{[\{}\FunctionTok{p} \SpecialCharTok{+} \FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(-m^2+p^2+2 (p\cdot q)+q^2+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToGFAD}\OperatorTok{[}\NormalTok{SFAD}\OperatorTok{[\{}\FunctionTok{p} \SpecialCharTok{+} \FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*FeynAmpDenominator[GenericPropagatorDenominator[{-}m\^{}2 + Pair[Momentum[p, D], Momentum[p, D]] + 2 Pair[Momentum[p, D], Momentum[q, D]] + Pair[Momentum[q, D], Momentum[q, D]], \{1, 1\}]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToGFAD}\OperatorTok{[}\NormalTok{SFAD}\OperatorTok{[\{}\FunctionTok{p} \SpecialCharTok{+} \FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ FinalSubstitutions }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(-m^2+p^2+2 (p\cdot q)+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToGFAD}\OperatorTok{[}\NormalTok{SFAD}\OperatorTok{[\{}\FunctionTok{p} \SpecialCharTok{+} \FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ FinalSubstitutions }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{\}]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*FeynAmpDenominator[GenericPropagatorDenominator[{-}m\^{}2 + Pair[Momentum[p, D], Momentum[p, D]] + 2 Pair[Momentum[p, D], Momentum[q, D]], \{1, 1\}]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

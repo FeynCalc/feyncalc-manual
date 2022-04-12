@@ -1,0 +1,59 @@
+% !TeX program = pdflatex
+% !TeX root = QuarkPropagator.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{quarkpropagator}{%
+\section{QuarkPropagator}\label{quarkpropagator}}
+
+\texttt{QuarkPropagator[\allowbreak{}p]} is the massless quark
+propagator.
+
+\texttt{QuarkPropagator[\allowbreak{}\{\allowbreak{}p,\ \allowbreak{}m\}]}
+gives the quark propagator with mass \(m\).
+
+\texttt{QP} can be used as an abbreviation of \texttt{QuarkPropagator}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{gluonpropagator}{GluonPropagator},
+\hyperlink{quarkgluonvertex}{QuarkGluonVertex}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QuarkPropagator}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,}\NormalTok{ Explicit }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{i \gamma \cdot p}{p^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QuarkPropagator}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},}\NormalTok{ Explicit }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{i (m+\gamma \cdot p)}{p^2-m^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QP}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]} 
+ 
+\NormalTok{Explicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\Pi _q(p)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{i (m+\gamma \cdot p)}{p^2-m^2}
+\end{dmath*}
+\end{document}

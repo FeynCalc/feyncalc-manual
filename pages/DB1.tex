@@ -1,0 +1,29 @@
+% !TeX program = pdflatex
+% !TeX root = DB1.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{db1}{%
+\section{DB1}\label{db1}}
+
+\texttt{DB1[\allowbreak{}p2,\ \allowbreak{}m1^2,\ \allowbreak{}m2^2]} is
+the derivative of
+\texttt{B1[\allowbreak{}p2,\ \allowbreak{}m1^2,\ \allowbreak{}m2^2]}
+with respect to \texttt{p2}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{b1}{B1}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{D}\OperatorTok{[}\NormalTok{B1}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{2}\OperatorTok{],} \FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{m}\OperatorTok{,} \DecValTok{1}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{m}\OperatorTok{,} \DecValTok{2}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{],} \FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{2}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\left(m_1^2-m_2^2+p_2\right) \;\text{B}_0\left(p_2,m_1^2,m_2^2\right)}{2 p_2^2}-\frac{\text{B}_0\left(p_2,m_1^2,m_2^2\right)}{2 p_2}-\frac{\left(m_1^2-m_2^2+p_2\right) \;\text{DB0}\left(p_2,m_1^2,m_2^2\right)}{2 p_2}-\frac{\text{A}_0\left(m_1^2\right)}{2 p_2^2}+\frac{\text{A}_0\left(m_2^2\right)}{2 p_2^2}
+\end{dmath*}
+\end{document}

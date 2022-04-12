@@ -1,0 +1,61 @@
+% !TeX program = pdflatex
+% !TeX root = CartesianIndex.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{cartesianindex}{%
+\section{CartesianIndex}\label{cartesianindex}}
+
+\texttt{CartesianIndex} is the head of Cartesian indices. The internal
+representation of a \(3\)-dimensional \texttt{i} is
+\texttt{CartesianIndex[\allowbreak{}i]}.
+
+For other than three dimensions:
+\texttt{CartesianIndex[\allowbreak{}i,\ \allowbreak{}Dimension]}.
+
+\texttt{CartesianIndex[\allowbreak{}i,\ \allowbreak{}3]} simplifies to
+\texttt{CartesianIndex[\allowbreak{}i]}. The first argument cannot be an
+integer.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{lorentzindex}{LorentzIndex},
+\hyperlink{explicitlorentzindex}{ExplicitLorentzIndex}.
+
+\subsection{Examples}
+
+This denotes a 3-dimensional Cartesian index.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+i
+\end{dmath*}
+
+An optional second argument can be given for a dimension different from
+3.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{4}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+i
+\end{dmath*}
+\end{document}

@@ -1,0 +1,113 @@
+% !TeX program = pdflatex
+% !TeX root = Anti5.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{anti5}{%
+\section{Anti5}\label{anti5}}
+
+\texttt{Anti5[\allowbreak{}exp]} anticommutes all \(\gamma^5\) in exp to
+the right. \texttt{Anti5[\allowbreak{}exp,\ \allowbreak{}n]}
+anticommutes all \(\gamma^5\) \(n\)-times to the right.
+\texttt{Anti5[\allowbreak{}exp,\ \allowbreak{}-n]} anticommutes all
+\(\gamma^5\) \(n\)-times to the left.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{diracorder}{DiracOrder},
+\hyperlink{diracsimplify}{DiracSimplify},
+\hyperlink{diractrick}{DiracTrick}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\DecValTok{5}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]} 
+ 
+\NormalTok{Anti5}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]} 
+ 
+\NormalTok{Anti5}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^5.\bar{\gamma }^{\mu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-\bar{\gamma }^{\mu }.\bar{\gamma }^5
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^5.\bar{\gamma }^{\mu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\DecValTok{5}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Gamma}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Delta}\OperatorTok{]]} 
+ 
+\NormalTok{Anti5}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \DecValTok{2}\OperatorTok{]} 
+ 
+\NormalTok{Anti5}\OperatorTok{[}\SpecialCharTok{\%\%}\OperatorTok{,} \FunctionTok{Infinity}\OperatorTok{]} 
+ 
+\NormalTok{Anti5}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{Infinity}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^5.\bar{\gamma }^{\alpha }.\bar{\gamma }^{\beta }.\bar{\gamma }^{\gamma }.\bar{\gamma }^{\delta }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\alpha }.\bar{\gamma }^{\beta }.\bar{\gamma }^5.\bar{\gamma }^{\gamma }.\bar{\gamma }^{\delta }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\alpha }.\bar{\gamma }^{\beta }.\bar{\gamma }^{\gamma }.\bar{\gamma }^{\delta }.\bar{\gamma }^5
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^5.\bar{\gamma }^{\alpha }.\bar{\gamma }^{\beta }.\bar{\gamma }^{\gamma }.\bar{\gamma }^{\delta }
+\end{dmath*}
+
+In the naive \(\gamma^5\)-scheme \(D\)-dimensional \(\gamma\)-matrices
+anticommute with \(\gamma^5\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA5 . GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]} 
+ 
+\NormalTok{Anti5}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^5.\gamma ^{\mu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-\gamma ^{\mu }.\bar{\gamma }^5
+\end{dmath*}
+
+\texttt{Anti5} also works in the t'Hooft-Veltman-Breitenlohner-Maison
+scheme
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCSetDiracGammaScheme}\OperatorTok{[}\StringTok{"BMHV"}\OperatorTok{]}\NormalTok{; }
+ 
+\NormalTok{Anti5}\OperatorTok{[}\NormalTok{GA5 . GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+2 \hat{\gamma }^{\mu }.\bar{\gamma }^5-\gamma ^{\mu }.\bar{\gamma }^5
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCSetDiracGammaScheme}\OperatorTok{[}\StringTok{"NDR"}\OperatorTok{]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

@@ -1,0 +1,67 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopMixedToCartesianAndTemporal.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopmixedtocartesianandtemporal}{%
+\section{FCLoopMixedToCartesianAndTemporal}\label{fcloopmixedtocartesianandtemporal}}
+
+\texttt{FCLoopMixedToCartesianAndTemporal[\allowbreak{}int,\ \allowbreak{}\{\allowbreak{}q1,\ \allowbreak{}q2,\ \allowbreak{}...\}]}
+attempts to convert loop integrals that contain both Lorentz and
+Cartesian or temporal indices/momenta to pure temporal and Cartesian
+indices.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI@SFAD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]} 
+ 
+\NormalTok{FCLoopMixedToCartesianAndTemporal}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},}\NormalTok{ FCE }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(q^2+i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-\frac{1}{(q^2-\left(q^0\right)^2-i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI@SFAD}\OperatorTok{[\{}\NormalTok{q1 }\SpecialCharTok{+}\NormalTok{ q2 }\SpecialCharTok{+} \FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]} 
+ 
+\NormalTok{FCLoopMixedToCartesianAndTemporal}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{((p+\text{q1}+\text{q2})^2-m^2+i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-\frac{1}{((p+\text{q1}+\text{q2})^2+m^2-\left((p+\text{q1}+\text{q2})^0\right)^2-i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{TC}\OperatorTok{[}\FunctionTok{k}\OperatorTok{]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,}\NormalTok{ mu}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \FunctionTok{k} \SpecialCharTok{+} \FunctionTok{p}\OperatorTok{]]} 
+ 
+\NormalTok{FCLoopMixedToCartesianAndTemporal}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{k}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{k^0 k^{\text{mu}}}{k^2.(k+p)^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{k^0 \left(k^0 \bar{g}^{0\text{mu}}-k^{\$} g^{\$\text{mu}}\right)}{(k^2-\left(k^0\right)^2-i \eta ).((k+p)^2-\left((k+p)^0\right)^2-i \eta )}
+\end{dmath*}
+\end{document}

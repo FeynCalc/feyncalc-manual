@@ -1,0 +1,41 @@
+% !TeX program = pdflatex
+% !TeX root = FCSplit.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcsplit}{%
+\section{FCSplit}\label{fcsplit}}
+
+\texttt{FCSplit[\allowbreak{}exp,\ \allowbreak{}\{\allowbreak{}v1,\ \allowbreak{}v2,\ \allowbreak{}...\}]}
+splits expr into pieces that are free of any occurrence of
+\texttt{v1,\ \allowbreak{}v2,\ \allowbreak{}...} and pieces that contain
+those variables. This works both on sums and products. The output is
+provided in the form of a two element list. One can recover the original
+expression by applying \texttt{Total} to that list.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fcproductsplit}{FCProductSplit}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCSplit}\OperatorTok{[}\NormalTok{(}\FunctionTok{a} \SpecialCharTok{+} \FunctionTok{b}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{a}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{b^2,a^2+2 a b\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCSplit}\OperatorTok{[}\NormalTok{(}\FunctionTok{a} \SpecialCharTok{+} \FunctionTok{b} \SpecialCharTok{+} \FunctionTok{c}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{c^2,a^2+2 a b+2 a c+b^2+2 b c\right\}
+\end{dmath*}
+\end{document}

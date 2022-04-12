@@ -1,0 +1,80 @@
+% !TeX program = pdflatex
+% !TeX root = Integrate3.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{integrate3}{%
+\section{Integrate3}\label{integrate3}}
+
+\texttt{Integrate3} contains the integral table used by
+\texttt{Integrate2}. Integration is performed in a distributional sense.
+\texttt{Integrate3} works more effectively on a sum of expressions if
+they are expanded or collected with respect to the integration variable.
+See the examples in \texttt{Integrate2}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{integrate2}{Integrate2}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate3}\OperatorTok{[}\FunctionTok{x}\SpecialCharTok{\^{}}\NormalTok{OPEm }\FunctionTok{Log}\OperatorTok{[}\FunctionTok{x}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{1}{(m+1)^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate3}\OperatorTok{[}\NormalTok{(}\FunctionTok{x}\SpecialCharTok{\^{}}\NormalTok{OPEm }\FunctionTok{Log}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]} \FunctionTok{Log}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\zeta (2) S_1(m)-S_{12}(m)-S_{21}(m)+\zeta (3)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate3}\OperatorTok{[}\FunctionTok{a}\NormalTok{ (}\FunctionTok{x}\SpecialCharTok{\^{}}\NormalTok{OPEm }\FunctionTok{Log}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]} \FunctionTok{Log}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{b}\NormalTok{ (}\FunctionTok{x}\SpecialCharTok{\^{}}\NormalTok{OPEm }\FunctionTok{PolyLog}\OperatorTok{[}\DecValTok{3}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{x}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{x}\NormalTok{)}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+a \left(\zeta (2) S_1(m)-S_{12}(m)-S_{21}(m)+\zeta (3)\right)+b (-1)^m \left(\frac{\zeta (2)^2}{8}+\frac{1}{2} \zeta (2) S_{-2}(m)-\frac{3}{4} \zeta (3) S_{-1}(m)+S_{3-1}(m)+\log (2) \left(S_3(m)-S_{-3}(m)\right)-\frac{3}{4} \zeta (3) \log (2)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate3}\OperatorTok{[}\NormalTok{DeltaFunctionPrime}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate3}\OperatorTok{[}\FunctionTok{f}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]}\NormalTok{ DeltaFunctionPrime}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f'(1)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate3}\OperatorTok{[}\DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+\end{document}

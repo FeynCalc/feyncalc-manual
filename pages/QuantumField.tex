@@ -1,0 +1,157 @@
+% !TeX program = pdflatex
+% !TeX root = QuantumField.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{quantumfield}{%
+\section{QuantumField}\label{quantumfield}}
+
+\texttt{QuantumField} is the head of quantized fields and their
+derivatives.
+
+\texttt{QuantumField[\allowbreak{}par,\ \allowbreak{}ftype,\ \allowbreak{}\{\allowbreak{}lorind\},\ \allowbreak{}\{\allowbreak{}sunind\}]}
+denotes a quantum field of type \texttt{ftype} with (possible)
+Lorentz-indices \texttt{lorind} and \(SU(N)\) indices \texttt{sunind}.
+The optional first argument \texttt{par} denotes a partial derivative
+acting on the field.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{feynrule}{FeynRule},
+\hyperlink{fcpartiald}{FCPartialD},
+\hyperlink{expandpartiald}{ExpandPartialD}.
+
+\subsection{Examples}
+
+This denotes a scalar field.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QuantumField}\OperatorTok{[}\FunctionTok{S}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+S
+\end{dmath*}
+
+Quark fields
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QuantumField}\OperatorTok{[}\NormalTok{AntiQuarkField}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\psi }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QuantumField}\OperatorTok{[}\NormalTok{QuarkField}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\psi
+\end{dmath*}
+
+This is a field with a Lorentz index.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QuantumField}\OperatorTok{[}\FunctionTok{B}\OperatorTok{,} \OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+B_{\mu }
+\end{dmath*}
+
+Color indices should be put after the Lorentz ones.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QuantumField}\OperatorTok{[}\NormalTok{GaugeField}\OperatorTok{,} \OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]\},} \OperatorTok{\{}\FunctionTok{a}\OperatorTok{\}]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*QuantumField[GaugeField, LorentzIndex[\textbackslash{}[Mu]], SUNIndex[a]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\(A_{\Delta}^a\) is a short form for \(\Delta ^{mu } A_{mu }^a\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QuantumField}\OperatorTok{[}\FunctionTok{A}\OperatorTok{,} \OperatorTok{\{}\NormalTok{OPEDelta}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{a}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+A_{\Delta }^a
+\end{dmath*}
+
+The first list of indices is usually interpreted as type
+\texttt{LorentzIndex}, except for \texttt{OPEDelta}, which gets
+converted to type \texttt{Momentum}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QuantumField}\OperatorTok{[}\FunctionTok{A}\OperatorTok{,} \OperatorTok{\{}\NormalTok{OPEDelta}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{a}\OperatorTok{\}]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*QuantumField[A, Momentum[OPEDelta], SUNIndex[a]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+Derivatives of fields are denoted as follows.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QuantumField}\OperatorTok{[}\NormalTok{FCPartialD}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]],} \FunctionTok{A}\OperatorTok{,} \OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left.(\partial _{\mu }A_{\mu }\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QuantumField}\OperatorTok{[}\NormalTok{FCPartialD}\OperatorTok{[}\NormalTok{OPEDelta}\OperatorTok{],} \FunctionTok{S}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left.(\partial _{\Delta }S\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QuantumField}\OperatorTok{[}\NormalTok{FCPartialD}\OperatorTok{[}\NormalTok{OPEDelta}\OperatorTok{],} \FunctionTok{A}\OperatorTok{,} \OperatorTok{\{}\NormalTok{OPEDelta}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{a}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left.(\partial _{\Delta }A_{\Delta }^a\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QuantumField}\OperatorTok{[}\NormalTok{FCPartialD}\OperatorTok{[}\NormalTok{OPEDelta}\OperatorTok{]}\SpecialCharTok{\^{}}\NormalTok{OPEm}\OperatorTok{,} \FunctionTok{A}\OperatorTok{,} \OperatorTok{\{}\NormalTok{OPEDelta}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{a}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\partial _{\Delta }^m{}^{A\Delta a}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QuantumField}\OperatorTok{[}\NormalTok{QuantumField}\OperatorTok{[}\FunctionTok{A}\OperatorTok{]]} \ExtensionTok{===}\NormalTok{ QuantumField}\OperatorTok{[}\FunctionTok{A}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+\end{document}

@@ -1,0 +1,103 @@
+% !TeX program = pdflatex
+% !TeX root = GluonVertex.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{gluonvertex}{%
+\section{GluonVertex}\label{gluonvertex}}
+
+\texttt{GluonVertex[\allowbreak{}\{\allowbreak{}p,\ \allowbreak{}mu,\ \allowbreak{}a\},\ \allowbreak{}\{\allowbreak{}q,\ \allowbreak{}nu,\ \allowbreak{}b\},\ \allowbreak{}\{\allowbreak{}k,\ \allowbreak{}la,\ \allowbreak{}c\}]}
+or
+\texttt{GluonVertex[\allowbreak{}p,\ \allowbreak{}mu,\ \allowbreak{}a,\ \allowbreak{}q,\ \allowbreak{}nu,\ \allowbreak{}b,\ \allowbreak{}k,\ \allowbreak{}la,\ \allowbreak{}c]}
+yields the 3-gluon vertex.
+
+\texttt{GluonVertex[\allowbreak{}\{\allowbreak{}p,\ \allowbreak{}mu\},\ \allowbreak{}\{\allowbreak{}q,\ \allowbreak{}nu\},\ \allowbreak{}\{\allowbreak{}k,\ \allowbreak{}la\}]}
+yields the 3-gluon vertex without color structure and the coupling
+constant.
+
+\texttt{GluonVertex[\allowbreak{}\{\allowbreak{}p,\ \allowbreak{}mu,\ \allowbreak{}a\},\ \allowbreak{}\{\allowbreak{}q,\ \allowbreak{}nu,\ \allowbreak{}b\},\ \allowbreak{}\{\allowbreak{}k,\ \allowbreak{}la,\ \allowbreak{}c\},\ \allowbreak{}\{\allowbreak{}s,\ \allowbreak{}si,\ \allowbreak{}d\}]}
+or
+\texttt{GluonVertex[\allowbreak{}\{\allowbreak{}mu,\ \allowbreak{}a\},\ \allowbreak{}\{\allowbreak{}nu,\ \allowbreak{}b\},\ \allowbreak{}\{\allowbreak{}la,\ \allowbreak{}c\},\ \allowbreak{}\{\allowbreak{}si,\ \allowbreak{}d\}]}
+or
+\texttt{GluonVertex[\allowbreak{}p,\ \allowbreak{}mu,\ \allowbreak{}a,\ \allowbreak{}q,\ \allowbreak{}nu,\ \allowbreak{}b,\ \allowbreak{}k,\ \allowbreak{}la,\ \allowbreak{}c ,\ \allowbreak{}s,\ \allowbreak{}si,\ \allowbreak{}d]}
+or
+\texttt{GluonVertex[\allowbreak{}mu,\ \allowbreak{}a,\ \allowbreak{}nu,\ \allowbreak{}b,\ \allowbreak{}la,\ \allowbreak{}c,\ \allowbreak{}si,\ \allowbreak{}d]}
+yields the 4-gluon vertex.
+
+\texttt{GV} can be used as an abbreviation of \texttt{GluonVertex}.
+
+The dimension and the name of the coupling constant are determined by
+the options \texttt{Dimension} and \texttt{CouplingConstant}. All
+momenta are flowing into the vertex.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{gluonpropagator}{GluonPropagator},
+\hyperlink{gluonghostvertex}{GluonGhostVertex}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GluonVertex}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{b}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{r}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \FunctionTok{c}\OperatorTok{\}]} 
+ 
+\NormalTok{Explicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f^{abc} V^{\mu \nu \rho }(p\text{, }q\text{, }r)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+g_s f^{abc} \left(g^{\mu \nu } \left(p^{\rho }-q^{\rho }\right)+g^{\mu \rho } \left(r^{\nu }-p^{\nu }\right)+g^{\nu \rho } \left(q^{\mu }-r^{\mu }\right)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GV}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]\},} \OperatorTok{\{}\FunctionTok{r}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]\}]} 
+ 
+\NormalTok{Explicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+V^{\mu \nu \rho }(p\text{, }q\text{, }r)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+g_s \left(g^{\mu \nu } \left(p^{\rho }-q^{\rho }\right)+g^{\mu \rho } \left(r^{\nu }-p^{\nu }\right)+g^{\nu \rho } \left(q^{\mu }-r^{\mu }\right)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GluonVertex}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{b}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{r}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \FunctionTok{c}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{s}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{],} \FunctionTok{d}\OperatorTok{\}]} 
+ 
+\NormalTok{Explicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+V_{abcd}^{\mu \nu \rho \sigma }(p\text{, }q\text{, }r\text{, }s)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-i g_s^2 \left(f^{ad\text{FCGV}(\text{u19})} f^{bc\text{FCGV}(\text{u19})} \left(g^{\mu \nu } g^{\rho \sigma }-g^{\mu \rho } g^{\nu \sigma }\right)+f^{ac\text{FCGV}(\text{u19})} f^{bd\text{FCGV}(\text{u19})} \left(g^{\mu \nu } g^{\rho \sigma }-g^{\mu \sigma } g^{\nu \rho }\right)+f^{ab\text{FCGV}(\text{u19})} f^{cd\text{FCGV}(\text{u19})} \left(g^{\mu \rho } g^{\nu \sigma }-g^{\mu \sigma } g^{\nu \rho }\right)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GV}\OperatorTok{[\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{b}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \FunctionTok{c}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{],} \FunctionTok{d}\OperatorTok{\}]} 
+ 
+\NormalTok{Explicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+V^{abcd}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-i g_s^2 \left(f^{ad\text{FCGV}(\text{u20})} f^{bc\text{FCGV}(\text{u20})} \left(g^{\mu \nu } g^{\rho \sigma }-g^{\mu \rho } g^{\nu \sigma }\right)+f^{ac\text{FCGV}(\text{u20})} f^{bd\text{FCGV}(\text{u20})} \left(g^{\mu \nu } g^{\rho \sigma }-g^{\mu \sigma } g^{\nu \rho }\right)+f^{ab\text{FCGV}(\text{u20})} f^{cd\text{FCGV}(\text{u20})} \left(g^{\mu \rho } g^{\nu \sigma }-g^{\mu \sigma } g^{\nu \rho }\right)\right)
+\end{dmath*}
+\end{document}

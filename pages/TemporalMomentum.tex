@@ -1,0 +1,67 @@
+% !TeX program = pdflatex
+% !TeX root = TemporalMomentum.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{temporalmomentum}{%
+\section{TemporalMomentum}\label{temporalmomentum}}
+
+\texttt{TemporalMomentum[\allowbreak{}p]} is the head of the temporal
+component of a \(4\)-momentum \(p^0\). The internal representation of
+the temporal component \(p^0\) is
+\texttt{TemporalMomentum[\allowbreak{}p]}.
+
+\texttt{TemporalMomentum} may appear only inside \texttt{TemporalPair}s.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{temporalpair}{TemporalPair},
+\hyperlink{explicitlorentzindex}{ExplicitLorentzIndex}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TemporalMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TemporalMomentum}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{q}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*{-}TemporalMomentum[q]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TemporalMomentum}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{+} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p+q
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TemporalMomentum}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{+} \FunctionTok{q}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ MomentumExpand }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*TemporalMomentum[p] + TemporalMomentum[q]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TemporalMomentum}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{+} \FunctionTok{q}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ MomentumExpand }\SpecialCharTok{//}\NormalTok{ MomentumCombine }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*TemporalMomentum[p + q]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

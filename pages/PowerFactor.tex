@@ -1,0 +1,35 @@
+% !TeX program = pdflatex
+% !TeX root = PowerFactor.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{powerfactor}{%
+\section{PowerFactor}\label{powerfactor}}
+
+\texttt{PowerFactor[\allowbreak{}exp]} replaces \texttt{x^a y^a} with
+\texttt{(x y)^a}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{powersimplify}{PowerSimplify}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{x}\SpecialCharTok{\^{}}\FunctionTok{a} \FunctionTok{y}\SpecialCharTok{\^{}}\FunctionTok{a} 
+ 
+\NormalTok{PowerFactor}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]} 
+  
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+x^a y^a
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+(x y)^a
+\end{dmath*}
+\end{document}

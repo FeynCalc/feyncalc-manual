@@ -1,0 +1,37 @@
+% !TeX program = pdflatex
+% !TeX root = PartialDRelations.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{partialdrelations}{%
+\section{PartialDRelations}\label{partialdrelations}}
+
+\texttt{PartialDRelations} is an option for \texttt{ExpandPartialD}. It
+is a list of rules applied by \texttt{ExpandPartialD} at the end.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fcpartiald}{FCPartialD},
+\hyperlink{expandpartiald}{ExpandPartialD},
+\hyperlink{leftpartiald}{LeftPartialD},
+\hyperlink{leftrightpartiald}{LeftRightPartialD},
+\hyperlink{rightpartiald}{RightPartialD}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QuantumField}\OperatorTok{[}\FunctionTok{A}\OperatorTok{,} \OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]\}]}\NormalTok{ . QuantumField}\OperatorTok{[}\FunctionTok{B}\OperatorTok{,} \OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]\}]}\NormalTok{ . LeftPartialD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} 
+ 
+\NormalTok{ExpandPartialD}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ PartialDRelations }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{A} \OtherTok{{-}\textgreater{}} \FunctionTok{C}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+A_{\mu }.B_{\mu }.\overleftarrow{\partial }_{\nu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+C_{\mu }.\left(\left.(\partial _{\nu }B_{\mu }\right)\right)+\left(\left.(\partial _{\nu }C_{\mu }\right)\right).B_{\mu }
+\end{dmath*}
+\end{document}

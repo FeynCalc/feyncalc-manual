@@ -1,0 +1,90 @@
+% !TeX program = pdflatex
+% !TeX root = Coefficient2.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{coefficient2}{%
+\section{Coefficient2}\label{coefficient2}}
+
+\texttt{Coefficient2[\allowbreak{}exp,\ \allowbreak{}form1,\ \allowbreak{}form2,\ \allowbreak{}...]}
+is like Coefficient, but it also allows to extracts coefficients of
+\texttt{form1,\ \allowbreak{}form2,\ \allowbreak{}...} sequentially. To
+specify the power in \texttt{formi}, write it as
+\texttt{\{\allowbreak{}var,\ \allowbreak{}pow\}}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{cases2}{Cases2}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ y0 }\SpecialCharTok{+}\NormalTok{ ep y1 }\SpecialCharTok{+}\NormalTok{ a4 (}\DecValTok{1}\SpecialCharTok{/}\NormalTok{ep x1 }\SpecialCharTok{+}\NormalTok{ x2 }\SpecialCharTok{+}\NormalTok{ x3 ep) }\SpecialCharTok{+}\NormalTok{ a4}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{/}\NormalTok{ep}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ z1 }\SpecialCharTok{+} \DecValTok{1}\SpecialCharTok{/}\NormalTok{ep z2 }\SpecialCharTok{+}\NormalTok{ z3 }\SpecialCharTok{+}\NormalTok{ x4 ep)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{a4}^2 \left(\frac{\text{z1}}{\text{ep}^2}+\text{ep} \;\text{x4}+\frac{\text{z2}}{\text{ep}}+\text{z3}\right)+\text{a4} \left(\frac{\text{x1}}{\text{ep}}+\text{ep} \;\text{x3}+\text{x2}\right)+\text{ep} \;\text{y1}+\text{y0}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Coefficient2}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,}\NormalTok{ a4}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\text{x1}}{\text{ep}}+\text{ep} \;\text{x3}+\text{x2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Coefficient2}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,}\NormalTok{ a4}\OperatorTok{,} \DecValTok{2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\text{z1}}{\text{ep}^2}+\text{ep} \;\text{x4}+\frac{\text{z2}}{\text{ep}}+\text{z3}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Coefficient2}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,} \OperatorTok{\{}\NormalTok{a4}\OperatorTok{,} \DecValTok{2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\text{z1}}{\text{ep}^2}+\text{ep} \;\text{x4}+\frac{\text{z2}}{\text{ep}}+\text{z3}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Coefficient2}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,} \OperatorTok{\{}\NormalTok{a4}\OperatorTok{,} \DecValTok{2}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{ep}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{z2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Coefficient2}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,} \OperatorTok{\{}\NormalTok{a4}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{ep}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{x2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Coefficient2}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,}\NormalTok{ a4}\OperatorTok{,}\NormalTok{ ep}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{x3}
+\end{dmath*}
+\end{document}

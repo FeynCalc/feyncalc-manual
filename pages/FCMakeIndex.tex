@@ -1,0 +1,78 @@
+% !TeX program = pdflatex
+% !TeX root = FCMakeIndex.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcmakeindex}{%
+\section{FCMakeIndex}\label{fcmakeindex}}
+
+\texttt{FCMakeIndex[\allowbreak{}str1,\ \allowbreak{}str2,\ \allowbreak{}head]}
+generates an index with the given head out of the string \texttt{str1}
+and \texttt{str2}. For example,
+\texttt{FCMakeIndex[\allowbreak{}"Lor",\ \allowbreak{}"1",\ \allowbreak{}LorentzIndex]}
+yields \texttt{LorentzIndex[\allowbreak{}Lor1]}. The second argument can
+also be an integer. \texttt{FCMakeIndex} is useful for converting the
+output of different diagram generators such as FeynArts or QGAF into the
+FeynCalc notation. It uses memoization to improve the performance.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fcmakesymbols}{FCMakeSymbols}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCMakeIndex}\OperatorTok{[}\StringTok{"Lor"}\OperatorTok{,} \StringTok{"1"}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{Lor1}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCMakeIndex}\OperatorTok{[}\StringTok{"Lor"}\OperatorTok{,} \StringTok{"1"}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*Lor1*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCMakeIndex}\OperatorTok{[}\StringTok{"Lor"}\OperatorTok{,} \OperatorTok{\{}\DecValTok{3}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{4}\OperatorTok{\},}\NormalTok{ LorentzIndex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{\text{Lor3},\text{Lor1},\text{Lor4}\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCMakeIndex}\OperatorTok{[}\StringTok{"Lor"}\OperatorTok{,} \OperatorTok{\{}\DecValTok{3}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{4}\OperatorTok{\},}\NormalTok{ LorentzIndex}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*\{LorentzIndex[Lor3], LorentzIndex[Lor1], LorentzIndex[Lor4]\}*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCMakeIndex}\OperatorTok{[}\StringTok{"Sun"}\OperatorTok{,} \OperatorTok{\{}\StringTok{"a"}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{4}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{\text{Suna},\text{Sun1},\text{SunMinus4}\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCMakeIndex}\OperatorTok{[}\StringTok{"Sun"}\OperatorTok{,} \OperatorTok{\{}\StringTok{"a"}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{4}\OperatorTok{\}]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*\{Suna, Sun1, SunMinus4\}*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

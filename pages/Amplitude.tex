@@ -1,0 +1,56 @@
+% !TeX program = pdflatex
+% !TeX root = Amplitude.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{amplitude}{%
+\section{Amplitude}\label{amplitude}}
+
+\texttt{Amplitude} is a database of Feynman amplitudes.
+\texttt{Amplitude[\allowbreak{}"name"]} returns the amplitude
+corresponding to the string \texttt{"name"}. A list of all defined names
+is obtained with \texttt{Amplitude[\allowbreak{}]}. New amplitudes can
+be added to the file \texttt{"Amplitude.m"}. It is strongly recommended
+to use names that reflect the process.
+
+The option \texttt{Gauge -> 1} means `t Hooft Feynman gauge;
+
+\texttt{Polarization -> 0} gives unpolarized OPE-type amplitudes,
+\texttt{Polarization -> 1} the polarized ones.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{feynamp}{FeynAmp}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Amplitude}\OperatorTok{[]} \SpecialCharTok{//} \FunctionTok{Length}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+98
+\end{dmath*}
+
+This is the amplitude of a gluon self-energy diagram:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Amplitude}\OperatorTok{[}\StringTok{"se1g1"}\OperatorTok{]} 
+ 
+\NormalTok{Explicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]} 
+  
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{SUNDeltaContract}\left(f^{\text{FCGV}(\text{a})\text{FCGV}(\text{c})\text{FCGV}(\text{e})} f^{\text{FCGV}(\text{b})\text{FCGV}(\text{d})\text{FCGV}(\text{f})} \Pi _{\text{FCGV}(\text{e})\text{FCGV}(\text{f})}^{\text{FCGV}(\beta )\text{FCGV}(\sigma )}(\text{FCGV}(\text{q})) V^{\text{FCGV}(\mu )\text{FCGV}(\alpha )\text{FCGV}(\beta )}(\text{FCGV}(\text{p})\text{, }\;\text{FCGV}(\text{q})-\text{FCGV}(\text{p})\text{, }-\text{FCGV}(\text{q})) V^{\text{FCGV}(\nu )\text{FCGV}(\rho )\text{FCGV}(\sigma )}(-\text{FCGV}(\text{p})\text{, }\;\text{FCGV}(\text{p})-\text{FCGV}(\text{q})\text{, }\;\text{FCGV}(\text{q})) \Pi _{\text{FCGV}(\text{c})\text{FCGV}(\text{d})}^{\text{FCGV}(\alpha )\text{FCGV}(\rho )}(\text{FCGV}(\text{p})-\text{FCGV}(\text{q}))\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-\frac{1}{\text{FCGV}(\text{q})^2 (\text{FCGV}(\text{p})-\text{FCGV}(\text{q}))^2}g_s^2 g^{\text{FCGV}(\alpha )\text{FCGV}(\rho )} g^{\text{FCGV}(\beta )\text{FCGV}(\sigma )} f^{\text{FCGV}(\text{a})\text{FCGV}(\text{d})\text{FCGV}(\text{f})} f^{\text{FCGV}(\text{b})\text{FCGV}(\text{d})\text{FCGV}(\text{f})} \left(g^{\text{FCGV}(\beta )\text{FCGV}(\mu )} \left(-\text{FCGV}(\text{p})^{\text{FCGV}(\alpha )}-\text{FCGV}(\text{q})^{\text{FCGV}(\alpha )}\right)+g^{\text{FCGV}(\alpha )\text{FCGV}(\mu )} \left(2 \;\text{FCGV}(\text{p})^{\text{FCGV}(\beta )}-\text{FCGV}(\text{q})^{\text{FCGV}(\beta )}\right)+g^{\text{FCGV}(\alpha )\text{FCGV}(\beta )} \left(2 \;\text{FCGV}(\text{q})^{\text{FCGV}(\mu )}-\text{FCGV}(\text{p})^{\text{FCGV}(\mu )}\right)\right) \left(g^{\text{FCGV}(\rho )\text{FCGV}(\sigma )} \left(\text{FCGV}(\text{p})^{\text{FCGV}(\nu )}-2 \;\text{FCGV}(\text{q})^{\text{FCGV}(\nu )}\right)+g^{\text{FCGV}(\nu )\text{FCGV}(\sigma )} \left(\text{FCGV}(\text{p})^{\text{FCGV}(\rho )}+\text{FCGV}(\text{q})^{\text{FCGV}(\rho )}\right)+g^{\text{FCGV}(\nu )\text{FCGV}(\rho )} \left(\text{FCGV}(\text{q})^{\text{FCGV}(\sigma )}-2 \;\text{FCGV}(\text{p})^{\text{FCGV}(\sigma )}\right)\right)
+\end{dmath*}
+\end{document}

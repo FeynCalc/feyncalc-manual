@@ -1,0 +1,64 @@
+% !TeX program = pdflatex
+% !TeX root = GammaEpsilon.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{gammaepsilon}{%
+\section{GammaEpsilon}\label{gammaepsilon}}
+
+\texttt{GammaEpsilon[\allowbreak{}exp]} gives a series expansion of
+\texttt{Gamma[\allowbreak{}exp]} in \texttt{Epsilon} up to order
+\texttt{6} (where \texttt{EulerGamma} is neglected).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{gammaexpand}{GammaExpand},
+\hyperlink{series2}{Series2}.
+
+\subsection{Examples}
+
+If the argument is of the form \texttt{(1+a Epsilon)} the result is not
+calculated but tabulated.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GammaEpsilon}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{a}\NormalTok{ Epsilon}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\varepsilon ^5 \left(-\frac{a^5 \zeta (5)}{5}-\frac{1}{36} \pi ^2 a^5 \zeta (3)\right)+\frac{1}{160} \pi ^4 a^4 \varepsilon ^4-\frac{1}{3} a^3 \varepsilon ^3 \zeta (3)+\frac{1}{12} \pi ^2 a^2 \varepsilon ^2+\text{C\$16471} \varepsilon ^6+1
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GammaEpsilon}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ Epsilon}\SpecialCharTok{/}\DecValTok{2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{C\$16508} \varepsilon ^6+\frac{\pi ^4 \varepsilon ^4}{2560}+\frac{\pi ^2 \varepsilon ^2}{48}+\varepsilon ^5 \left(\frac{\pi ^2 \zeta (3)}{1152}+\frac{\zeta (5)}{160}\right)+\frac{\varepsilon ^3 \zeta (3)}{24}+1
+\end{dmath*}
+
+For other arguments the expansion is calculated.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GammaEpsilon}\OperatorTok{[}\NormalTok{Epsilon}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{C\$17651} \varepsilon ^6+\frac{\pi ^4 \varepsilon ^3}{160}+\frac{\pi ^2 \varepsilon }{12}+\frac{1}{\varepsilon }+\frac{1}{720} \varepsilon ^5 \left(\frac{61 \pi ^6}{168}+10 \psi ^{(2)}(1)^2\right)+\frac{\varepsilon ^2 \psi ^{(2)}(1)}{6}+\frac{\varepsilon ^6 \left(-84 \pi ^2 \zeta (5)+\frac{21 \pi ^4 \psi ^{(2)}(1)}{4}+\psi ^{(6)}(1)\right)}{5040}+\frac{1}{120} \varepsilon ^4 \left(\frac{5 \pi ^2 \psi ^{(2)}(1)}{3}-24 \zeta (5)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GammaEpsilon}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\Gamma (x)
+\end{dmath*}
+\end{document}

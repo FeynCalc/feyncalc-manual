@@ -1,0 +1,73 @@
+% !TeX program = pdflatex
+% !TeX root = SpinorU.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{spinoru}{%
+\section{SpinorU}\label{spinoru}}
+
+\texttt{SpinorU[\allowbreak{}p,\ \allowbreak{}m]} denotes a
+\(u(p,m)\)-spinor that depends on the \(4\)-dimensional momentum \(p\).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{spinor}{Spinor},
+\hyperlink{spinorubar}{SpinorUBar}, \hyperlink{spinorv}{SpinorV},
+\hyperlink{spinorvbar}{SpinorVBar},
+\hyperlink{spinorubard}{SpinorUBarD}, \hyperlink{spinorud}{SpinorUD},
+\hyperlink{spinorvd}{SpinorVD}, \hyperlink{spinorvbard}{SpinorVBarD}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpinorU}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+u(p,m)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpinorU}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*Spinor[Momentum[p], m, 1]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpinorU}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+u(p)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpinorU}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*Spinor[Momentum[p], 0, 1]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]}\NormalTok{ . SpinorU}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} 
+ 
+\NormalTok{DiracEquation}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }\cdot \overline{p}\right).u(p)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+\end{document}

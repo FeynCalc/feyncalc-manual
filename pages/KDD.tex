@@ -1,0 +1,63 @@
+% !TeX program = pdflatex
+% !TeX root = KDD.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{kdd}{%
+\section{KDD}\label{kdd}}
+
+\texttt{KDD[\allowbreak{}i,\ \allowbreak{}j]} is the Kronecker delta in
+\(D-1\) dimensions.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{cartesianpair}{CartesianPair},
+\hyperlink{kd}{KD}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{KDD}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\delta ^{ij}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Contract}\OperatorTok{[}\NormalTok{KDD}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}\NormalTok{ KDD}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+D-1
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{KDD}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*KDD[a, b]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{KDD}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*CartesianPair[CartesianIndex[a, {-}1 + D], CartesianIndex[b, {-}1 + D]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCE}\OperatorTok{[}\NormalTok{FCI}\OperatorTok{[}\NormalTok{KDD}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]]]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*KDD[a, b]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

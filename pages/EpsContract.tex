@@ -1,0 +1,56 @@
+% !TeX program = pdflatex
+% !TeX root = EpsContract.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{epscontract}{%
+\section{EpsContract}\label{epscontract}}
+
+\texttt{EpsContract[\allowbreak{}exp]} handles contractions of two
+Levi-Civita tensors. It is also an option of \texttt{Contract} and other
+functions that specifies whether such contractions should be done or
+not.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{eps}{Eps},
+\hyperlink{contract}{Contract}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LCD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]} 
+ 
+\NormalTok{EpsContract}\OperatorTok{[}\SpecialCharTok{\%} \SpecialCharTok{\%}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ Factor2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overset{\text{}}{\epsilon }^{\mu \nu \rho \sigma }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+(1-D) (2-D) (3-D) D
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Contract}\OperatorTok{[}\NormalTok{LCD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ Factor2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(1-D) (2-D) (3-D) D
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Contract}\OperatorTok{[}\NormalTok{LCD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ EpsContract }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\overset{\text{}}{\epsilon }^{\mu \nu \rho \sigma }\right)^2
+\end{dmath*}
+\end{document}

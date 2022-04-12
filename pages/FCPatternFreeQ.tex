@@ -1,0 +1,53 @@
+% !TeX program = pdflatex
+% !TeX root = FCPatternFreeQ.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcpatternfreeq}{%
+\section{FCPatternFreeQ}\label{fcpatternfreeq}}
+
+\texttt{FCPatternFreeQ[\allowbreak{}\{\allowbreak{}exp\}]} yields
+\texttt{True} if \texttt{\{\allowbreak{}exp\}} does not contain any
+pattern objects, e.g.~\texttt{Pattern}, \texttt{Blank},
+\texttt{BlankSequence} and \texttt{BlankNullSequence}.
+
+\texttt{FCPatternFreeQ[\allowbreak{}\{\allowbreak{}exp\},\ \allowbreak{}\{\allowbreak{}h1,\ \allowbreak{}h2,\ \allowbreak{}...\}]}
+checks that in addition to the pattern objects, no heads
+\texttt{h1,\ \allowbreak{}h2,\ \allowbreak{}...} are present.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{freeq2}{FreeQ2}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCPatternFreeQ}\OperatorTok{[\{}\FunctionTok{a}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCPatternFreeQ}\OperatorTok{[\{}\AttributeTok{a\_}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCPatternFreeQ}\OperatorTok{[\{}\FunctionTok{g}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]\},} \OperatorTok{\{}\FunctionTok{g}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+\end{document}

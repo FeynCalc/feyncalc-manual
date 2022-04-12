@@ -1,0 +1,299 @@
+% !TeX program = pdflatex
+% !TeX root = ComplexConjugate.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{complexconjugate}{%
+\section{ComplexConjugate}\label{complexconjugate}}
+
+\texttt{ComplexConjugate[\allowbreak{}exp]} returns the complex
+conjugate of \texttt{exp}, where the input expression must be a proper
+matrix element. All Dirac matrices are assumed to be inside closed Dirac
+spinor chains. If this is not the case, the result will be inconsistent.
+Denominators may not contain explicit \(i\)'s.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcrenamedummyindices}{FCRenameDummyIndices},
+\hyperlink{fermionspinsum}{FermionSpinSum},
+\hyperlink{diracgamma}{DiracGamma}.
+
+\subsection{Examples}
+
+ComplexConjugate is meant to be applied to amplitudes, i.e.~given a
+matrix element \(\mathcal{M}\), it will return \(\mathcal{M}^\ast\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{amp }\ExtensionTok{=}\NormalTok{ (Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{k1}\OperatorTok{],}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_e"}\OperatorTok{],} \DecValTok{1}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_e"}\OperatorTok{],} \DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}
+\NormalTok{     Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{k2}\OperatorTok{],}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_e"}\OperatorTok{],} \DecValTok{1}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ . Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_e"}\OperatorTok{],} \DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}
+\NormalTok{     FAD}\OperatorTok{[}\NormalTok{k1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ Dimension }\OtherTok{{-}\textgreater{}} \DecValTok{4}\OperatorTok{]}\SpecialCharTok{*}\NormalTok{SMP}\OperatorTok{[}\StringTok{"e"}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{{-}}\NormalTok{ Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{k1}\OperatorTok{],}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_e"}\OperatorTok{],} 
+       \DecValTok{1}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_e"}\OperatorTok{],} \DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\NormalTok{Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{k2}\OperatorTok{],} 
+\NormalTok{       SMP}\OperatorTok{[}\StringTok{"m\_e"}\OperatorTok{],} \DecValTok{1}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ . Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_e"}\OperatorTok{],} \DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\NormalTok{FAD}\OperatorTok{[}\NormalTok{k2 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{,} 
+\NormalTok{      Dimension }\OtherTok{{-}\textgreater{}} \DecValTok{4}\OperatorTok{]}\SpecialCharTok{*}\NormalTok{SMP}\OperatorTok{[}\StringTok{"e"}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\text{e}^2 \left(\varphi (\overline{\text{k1}},m_e)\right).\bar{\gamma }^{\mu }.\left(\varphi (\overline{\text{p2}},m_e)\right) \left(\varphi (\overline{\text{k2}},m_e)\right).\bar{\gamma }^{\nu }.\left(\varphi (\overline{\text{p1}},m_e)\right)}{(\overline{\text{k1}}-\overline{\text{p2}})^2}-\frac{\text{e}^2 \left(\varphi (\overline{\text{k1}},m_e)\right).\bar{\gamma }^{\mu }.\left(\varphi (\overline{\text{p1}},m_e)\right) \left(\varphi (\overline{\text{k2}},m_e)\right).\bar{\gamma }^{\nu }.\left(\varphi (\overline{\text{p2}},m_e)\right)}{(\overline{\text{k2}}-\overline{\text{p2}})^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ComplexConjugate}\OperatorTok{[}\NormalTok{amp}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\text{e}^2 \left(\varphi (\overline{\text{p2}},m_e)\right).\bar{\gamma }^{\mu }.\left(\varphi (\overline{\text{k1}},m_e)\right) \left(\varphi (\overline{\text{p1}},m_e)\right).\bar{\gamma }^{\nu }.\left(\varphi (\overline{\text{k2}},m_e)\right)}{(\overline{\text{k1}}-\overline{\text{p2}})^2}-\frac{\text{e}^2 \left(\varphi (\overline{\text{p1}},m_e)\right).\bar{\gamma }^{\mu }.\left(\varphi (\overline{\text{k1}},m_e)\right) \left(\varphi (\overline{\text{p2}},m_e)\right).\bar{\gamma }^{\nu }.\left(\varphi (\overline{\text{k2}},m_e)\right)}{(\overline{\text{k2}}-\overline{\text{p2}})^2}
+\end{dmath*}
+
+Although one can also apply the function to standalone Dirac matrices,
+it should be understood that the result is not equivalent to the complex
+conjugation of such matrices.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]} 
+ 
+\NormalTok{ComplexConjugate}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\DecValTok{5}\OperatorTok{]} 
+ 
+\NormalTok{ComplexConjugate}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^5
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-\bar{\gamma }^5
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(GS}\OperatorTok{[}\NormalTok{Polarization}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{,}\NormalTok{ Transversality }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]]}\NormalTok{ . (GS}\OperatorTok{[}\NormalTok{k1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_e"}\OperatorTok{]}\NormalTok{) . }
+\NormalTok{    GS}\OperatorTok{[}\NormalTok{Polarization}\OperatorTok{[}\NormalTok{k2}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{,}\NormalTok{ Transversality }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]]}\NormalTok{) }
+ 
+\NormalTok{ComplexConjugate}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }\cdot \bar{\varepsilon }^*(\text{k1})\right).\left(\bar{\gamma }\cdot \left(\overline{\text{k1}}-\overline{\text{p2}}\right)+m_e\right).\left(\bar{\gamma }\cdot \bar{\varepsilon }^*(\text{k2})\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }\cdot \bar{\varepsilon }(\text{k2})\right).\left(\bar{\gamma }\cdot \left(\overline{\text{k1}}-\overline{\text{p2}}\right)+m_e\right).\left(\bar{\gamma }\cdot \bar{\varepsilon }(\text{k1})\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNTrace}\OperatorTok{[}\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]]} 
+ 
+\NormalTok{ComplexConjugate}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{tr}(T^a.T^b.T^c)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{tr}(T^c.T^b.T^a)
+\end{dmath*}
+
+Since FeynCalc 9.3 \texttt{ComplexConjugate} will automatically rename
+dummy indices.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PolarizationVector}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ PolarizationVector}\OperatorTok{[}\NormalTok{p2}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ MT}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} 
+ 
+\NormalTok{ComplexConjugate}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{g}^{\mu \nu } \bar{\varepsilon }^{\mu }(\text{p1}) \bar{\varepsilon }^{\nu }(\text{p2})
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{g}^{\text{\$AL}(\text{\$19})\text{\$AL}(\text{\$20})} \bar{\varepsilon }^{*\text{\$AL}(\text{\$19})}(\text{p1}) \bar{\varepsilon }^{*\text{\$AL}(\text{\$20})}(\text{p2})
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ LC}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]][}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{]} 
+ 
+\NormalTok{ComplexConjugate}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu } \bar{\epsilon }^{\mu \nu \overline{\text{p1}}\;\overline{\text{p2}}}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\text{\$AL}(\text{\$21})}.\bar{\gamma }^{\text{\$AL}(\text{\$22})} \bar{\epsilon }^{\text{\$AL}(\text{\$22})\text{\$AL}(\text{\$21})\overline{\text{p1}}\;\overline{\text{p2}}}
+\end{dmath*}
+
+This behavior can be disabled by setting the option
+\texttt{FCRenameDummyIndices} to \texttt{False}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ComplexConjugate}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ LC}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]][}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{],}\NormalTok{ FCRenameDummyIndices }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\nu }.\bar{\gamma }^{\mu } \bar{\epsilon }^{\mu \nu \overline{\text{p1}}\;\overline{\text{p2}}}
+\end{dmath*}
+
+If particular variables must be replaced with their conjugate values,
+use the option \texttt{Conjugate}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . (c1 GA}\OperatorTok{[}\DecValTok{6}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ c2 GA}\OperatorTok{[}\DecValTok{7}\OperatorTok{]}\NormalTok{) . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} 
+ 
+\NormalTok{ComplexConjugate}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }.\left(\text{c1} \bar{\gamma }^6+\text{c2} \bar{\gamma }^7\right).\bar{\gamma }^{\nu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\nu }.\left(\text{c1} \bar{\gamma }^7+\text{c2} \bar{\gamma }^6\right).\bar{\gamma }^{\mu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ ComplexConjugate}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . (c1 GA}\OperatorTok{[}\DecValTok{6}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ c2 GA}\OperatorTok{[}\DecValTok{7}\OperatorTok{]}\NormalTok{) . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]],} \FunctionTok{Conjugate} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{c1}\OperatorTok{,}\NormalTok{ c2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\nu }.\left(\bar{\gamma }^7 \;\text{c1}^*+\bar{\gamma }^6 \;\text{c2}^*\right).\bar{\gamma }^{\mu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*DiracGamma[LorentzIndex[\textbackslash{}[Nu]]] . (Conjugate[c2] DiracGamma[6] + Conjugate[c1] DiracGamma[7]) . DiracGamma[LorentzIndex[\textbackslash{}[Mu]]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+It may happen that one needs to deal with amplitudes with amputated
+spinors, i.e.~with open Dirac or Pauli indices. If the amplitude
+contains only a single chain of Dirac/Pauli matrices, everything remains
+unambiguous and the missing spinors are understood
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \DecValTok{5}\OperatorTok{]}\NormalTok{ CSI}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]} 
+ 
+\NormalTok{ComplexConjugate}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{\sigma }^i.\overline{\sigma }^j \bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^{\rho }.\bar{\gamma }^5
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-\overline{\sigma }^j.\overline{\sigma }^i \bar{\gamma }^5.\bar{\gamma }^{\rho }.\bar{\gamma }^{\nu }.\bar{\gamma }^{\mu }
+\end{dmath*}
+
+However, when there are at least two spinor chains of the same type
+involved, such expressions do not make sense anymore. In these cases one
+should introduce explicit spinor indices to avoid ambiguities
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DCHN}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \DecValTok{5}\OperatorTok{],} \FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}\NormalTok{ DCHN}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \DecValTok{5}\OperatorTok{],} \FunctionTok{k}\OperatorTok{,} \FunctionTok{l}\OperatorTok{]} 
+ 
+\NormalTok{ComplexConjugate}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^{\rho }.\bar{\gamma }^5\right){}_{ij} \left(\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^{\rho }.\bar{\gamma }^5\right){}_{kl}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }^5.\bar{\gamma }^{\text{\$AL}(\text{\$23})}.\bar{\gamma }^{\text{\$AL}(\text{\$24})}.\bar{\gamma }^{\text{\$AL}(\text{\$25})}\right){}_{ji} \left(\bar{\gamma }^5.\bar{\gamma }^{\text{\$AL}(\text{\$23})}.\bar{\gamma }^{\text{\$AL}(\text{\$24})}.\bar{\gamma }^{\text{\$AL}(\text{\$25})}\right){}_{lk}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PCHN}\OperatorTok{[}\NormalTok{CSI}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{],} \FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]}\NormalTok{ PCHN}\OperatorTok{[}\NormalTok{CSI}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{],} \FunctionTok{c}\OperatorTok{,} \FunctionTok{d}\OperatorTok{]} 
+ 
+\NormalTok{ComplexConjugate}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\overline{\sigma }^i.\overline{\sigma }^j.\overline{\sigma }^k\right){}_{ab} \left(\overline{\sigma }^i.\overline{\sigma }^j.\overline{\sigma }^k\right){}_{cd}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left(\overline{\sigma }^{\text{\$AL}(\text{\$26})}.\overline{\sigma }^{\text{\$AL}(\text{\$27})}.\overline{\sigma }^{\text{\$AL}(\text{\$28})}\right){}_{ba} \left(\overline{\sigma }^{\text{\$AL}(\text{\$26})}.\overline{\sigma }^{\text{\$AL}(\text{\$27})}.\overline{\sigma }^{\text{\$AL}(\text{\$28})}\right){}_{dc}
+\end{dmath*}
+
+The function does not apply \texttt{Conjugate} to symbols that do not
+depend on \texttt{I} and are unrelated to Dirac/Pauli/Color matrices.
+One can specify symbols that need to be explicitly conjugated using the
+\texttt{Conjugate} option
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cc SpinorU}\OperatorTok{[}\NormalTok{p1}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\NormalTok{mu}\OperatorTok{]}\NormalTok{ . SpinorV}\OperatorTok{[}\NormalTok{p2}\OperatorTok{]} 
+ 
+\NormalTok{ComplexConjugate}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{cc} u(\text{p1}).\bar{\gamma }^{\text{mu}}.v(\text{p2})
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{cc} \left(\varphi (-\overline{\text{p2}})\right).\bar{\gamma }^{\text{mu}}.\left(\varphi (\overline{\text{p1}})\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cc SpinorU}\OperatorTok{[}\NormalTok{p1}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\NormalTok{mu}\OperatorTok{]}\NormalTok{ . SpinorV}\OperatorTok{[}\NormalTok{p2}\OperatorTok{]} 
+ 
+\NormalTok{ComplexConjugate}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{Conjugate} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{cc}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{cc} u(\text{p1}).\bar{\gamma }^{\text{mu}}.v(\text{p2})
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{cc}^* \left(\varphi (-\overline{\text{p2}})\right).\bar{\gamma }^{\text{mu}}.\left(\varphi (\overline{\text{p1}})\right)
+\end{dmath*}
+\end{document}

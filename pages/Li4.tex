@@ -1,0 +1,56 @@
+% !TeX program = pdflatex
+% !TeX root = Li4.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{li4}{%
+\section{Li4}\label{li4}}
+
+\texttt{Li4} is an abbreviation for the weight 4 polylogarithm function,
+i.e.~\texttt{Li4 = PolyLog[\allowbreak{}4,\ \allowbreak{}\#{}\allowbreak{}]\&{}\allowbreak{}}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{li2}{Li2}, \hyperlink{li3}{Li3},
+\hyperlink{simplifypolylog}{SimplifyPolyLog}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Li4}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{Li}_4(x)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Li4 }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*PolyLog[4, \#1] \&*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{D}\OperatorTok{[}\NormalTok{Li4}\OperatorTok{[}\FunctionTok{x}\OperatorTok{],} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\text{Li}_3(x)}{x}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Integrate}\OperatorTok{[}\NormalTok{Li3}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]}\SpecialCharTok{/}\FunctionTok{x}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{Li}_4(x)
+\end{dmath*}
+\end{document}

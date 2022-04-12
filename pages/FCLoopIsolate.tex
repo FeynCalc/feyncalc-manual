@@ -1,0 +1,101 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopIsolate.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopisolate}{%
+\section{FCLoopIsolate}\label{fcloopisolate}}
+
+\texttt{FCLoopIsolate[\allowbreak{}expr,\ \allowbreak{}\{\allowbreak{}q1,\ \allowbreak{}q2,\ \allowbreak{}...\}]}
+wraps loop integrals into heads specified by the user. This is useful
+when you want to know which loop integrals appear in the given
+expression.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fcloopextract}{FCLoopExtract}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{GSD}\OperatorTok{[}\FunctionTok{q} \SpecialCharTok{{-}}\NormalTok{ p1}\OperatorTok{]}\NormalTok{ . (GSD}\OperatorTok{[}\FunctionTok{q} \SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{M}\NormalTok{) . GSD}\OperatorTok{[}\NormalTok{p3}\OperatorTok{]}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q} \SpecialCharTok{{-}}\NormalTok{ p1}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]]} 
+ 
+\NormalTok{FCLoopIsolate}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \FunctionTok{Head} \OtherTok{{-}\textgreater{}}\NormalTok{ loopInt}\OperatorTok{]} 
+ 
+\NormalTok{Cases2}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ loopInt}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{(\text{p2}\cdot q) (\gamma \cdot (q-\text{p1})).(M+\gamma \cdot (q-\text{p2})).(\gamma \cdot \;\text{p3})}{q^2.(q-\text{p1})^2.\left((q-\text{p2})^2-m^2\right)}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+((\gamma \cdot \;\text{p1}).(\gamma \cdot \;\text{p2}).(\gamma \cdot \;\text{p3})-M (\gamma \cdot \;\text{p1}).(\gamma \cdot \;\text{p3})) \;\text{loopInt}\left(\frac{\text{p2}\cdot q}{q^2.(q-\text{p1})^2.\left((q-\text{p2})^2-m^2\right)}\right)+M \;\text{loopInt}\left(\frac{(\text{p2}\cdot q) (\gamma \cdot q).(\gamma \cdot \;\text{p3})}{q^2.(q-\text{p1})^2.\left((q-\text{p2})^2-m^2\right)}\right)-\text{loopInt}\left(\frac{(\text{p2}\cdot q) (\gamma \cdot \;\text{p1}).(\gamma \cdot q).(\gamma \cdot \;\text{p3})}{q^2.(q-\text{p1})^2.\left((q-\text{p2})^2-m^2\right)}\right)-\text{loopInt}\left(\frac{(\text{p2}\cdot q) (\gamma \cdot q).(\gamma \cdot \;\text{p2}).(\gamma \cdot \;\text{p3})}{q^2.(q-\text{p1})^2.\left((q-\text{p2})^2-m^2\right)}\right)+\text{loopInt}\left(\frac{(\text{p2}\cdot q) (\gamma \cdot q).(\gamma \cdot q).(\gamma \cdot \;\text{p3})}{q^2.(q-\text{p1})^2.\left((q-\text{p2})^2-m^2\right)}\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{loopInt}\left(\frac{\text{p2}\cdot q}{q^2.(q-\text{p1})^2.\left((q-\text{p2})^2-m^2\right)}\right),\text{loopInt}\left(\frac{(\text{p2}\cdot q) (\gamma \cdot q).(\gamma \cdot \;\text{p3})}{q^2.(q-\text{p1})^2.\left((q-\text{p2})^2-m^2\right)}\right),\text{loopInt}\left(\frac{(\text{p2}\cdot q) (\gamma \cdot \;\text{p1}).(\gamma \cdot q).(\gamma \cdot \;\text{p3})}{q^2.(q-\text{p1})^2.\left((q-\text{p2})^2-m^2\right)}\right),\text{loopInt}\left(\frac{(\text{p2}\cdot q) (\gamma \cdot q).(\gamma \cdot \;\text{p2}).(\gamma \cdot \;\text{p3})}{q^2.(q-\text{p1})^2.\left((q-\text{p2})^2-m^2\right)}\right),\text{loopInt}\left(\frac{(\text{p2}\cdot q) (\gamma \cdot q).(\gamma \cdot q).(\gamma \cdot \;\text{p3})}{q^2.(q-\text{p1})^2.\left((q-\text{p2})^2-m^2\right)}\right)\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TID}\OperatorTok{[}\NormalTok{FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{+} \FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{+} \FunctionTok{r}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}],} \FunctionTok{q}\OperatorTok{,}\NormalTok{ UsePaVeBasis }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]} 
+ 
+\NormalTok{FCLoopIsolate}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \FunctionTok{Head} \OtherTok{{-}\textgreater{}} \FunctionTok{l}\OperatorTok{]} 
+ 
+\NormalTok{Cases2}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{l}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+i \pi ^2 g^{\mu \nu } \;\text{C}_{00}\left(p^2,r^2,-2 (p\cdot r)+p^2+r^2,m^2,m^2,m^2\right)+i \pi ^2 p^{\mu } p^{\nu } \;\text{C}_{11}\left(p^2,-2 (p\cdot r)+p^2+r^2,r^2,m^2,m^2,m^2\right)+i \pi ^2 r^{\mu } r^{\nu } \;\text{C}_{11}\left(r^2,-2 (p\cdot r)+p^2+r^2,p^2,m^2,m^2,m^2\right)+i \pi ^2 \left(p^{\nu } r^{\mu }+p^{\mu } r^{\nu }\right) \;\text{C}_{12}\left(p^2,-2 (p\cdot r)+p^2+r^2,r^2,m^2,m^2,m^2\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+i \pi ^2 g^{\mu \nu } l\left(\text{C}_{00}\left(p^2,r^2,-2 (p\cdot r)+p^2+r^2,m^2,m^2,m^2\right)\right)+i \pi ^2 p^{\mu } p^{\nu } l\left(\text{C}_{11}\left(p^2,-2 (p\cdot r)+p^2+r^2,r^2,m^2,m^2,m^2\right)\right)+i \pi ^2 r^{\mu } r^{\nu } l\left(\text{C}_{11}\left(r^2,-2 (p\cdot r)+p^2+r^2,p^2,m^2,m^2,m^2\right)\right)+i \pi ^2 \left(p^{\nu } r^{\mu }+p^{\mu } r^{\nu }\right) l\left(\text{C}_{12}\left(p^2,-2 (p\cdot r)+p^2+r^2,r^2,m^2,m^2,m^2\right)\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left\{l\left(\text{C}_{00}\left(p^2,r^2,-2 (p\cdot r)+p^2+r^2,m^2,m^2,m^2\right)\right),l\left(\text{C}_{11}\left(p^2,-2 (p\cdot r)+p^2+r^2,r^2,m^2,m^2,m^2\right)\right),l\left(\text{C}_{11}\left(r^2,-2 (p\cdot r)+p^2+r^2,p^2,m^2,m^2,m^2\right)\right),l\left(\text{C}_{12}\left(p^2,-2 (p\cdot r)+p^2+r^2,r^2,m^2,m^2,m^2\right)\right)\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]} \SpecialCharTok{+}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]} 
+ 
+\NormalTok{FCLoopIsolate}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},}\NormalTok{ DropScaleless }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{q^4}{q^2-m^2}+q^2
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCGV}(\text{LoopInt})\left(\frac{q^4}{q^2-m^2}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{a}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{q1}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q2}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]} \SpecialCharTok{+} \FunctionTok{b}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{q1}\OperatorTok{,} \FunctionTok{m}\OperatorTok{,} \DecValTok{2}\OperatorTok{\}]} 
+ 
+\NormalTok{FCLoopIsolate}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\}]} 
+ 
+\NormalTok{FCLoopIsolate}\OperatorTok{[}\SpecialCharTok{\%\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\},}\NormalTok{ MultiLoop }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{a}{\left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right)}+\frac{b}{\left(\text{q1}^2-m^2\right)^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+a \;\text{FCGV}(\text{LoopInt})\left(\frac{1}{\left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right)}\right)+b \;\text{FCGV}(\text{LoopInt})\left(\frac{1}{\left(\text{q1}^2-m^2\right)^2}\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+a \;\text{FCGV}(\text{LoopInt})\left(\frac{1}{\left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right)}\right)+\frac{b}{\left(\text{q1}^2-m^2\right)^2}
+\end{dmath*}
+\end{document}

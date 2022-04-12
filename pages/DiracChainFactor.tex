@@ -1,0 +1,41 @@
+% !TeX program = pdflatex
+% !TeX root = DiracChainFactor.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{diracchainfactor}{%
+\section{DiracChainFactor}\label{diracchainfactor}}
+
+\texttt{DiracChainFactor[\allowbreak{}exp]} factors out all expressions
+inside a \texttt{DiracChain} to which the chain doesn't apply. For
+example, all objects that are not Dirac matrices can be safely factrored
+out from every Dirac chain.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{diracchain}{DiracChain},
+\hyperlink{dchn}{DCHN}, \hyperlink{diracindex}{DiracIndex},
+\hyperlink{diracindexdelta}{DiracIndexDelta},
+\hyperlink{didelta}{DIDelta},
+\hyperlink{diracchainjoin}{DiracChainJoin},
+\hyperlink{diracchaincombine}{DiracChainCombine},
+\hyperlink{diracchainexpand}{DiracChainExpand}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DCHN}\OperatorTok{[}\NormalTok{FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],} \FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]} 
+ 
+\NormalTok{DiracChainFactor}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\overline{p}^{\nu } \bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^{\mu }\right){}_{ij}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\nu } \left(\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^{\mu }\right){}_{ij}
+\end{dmath*}
+\end{document}

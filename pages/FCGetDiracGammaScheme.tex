@@ -1,0 +1,63 @@
+% !TeX program = pdflatex
+% !TeX root = FCGetDiracGammaScheme.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcgetdiracgammascheme}{%
+\section{FCGetDiracGammaScheme}\label{fcgetdiracgammascheme}}
+
+\texttt{FCGetDiracGammaScheme[\allowbreak{}]} shows the currently used
+scheme for handling Dirac matrices in \(D\) dimensions.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcsetdiracgammascheme}{FCSetDiracGammaScheme},
+\hyperlink{diractrace}{DiracTrace}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCSetDiracGammaScheme}\OperatorTok{[}\StringTok{"BMHV"}\OperatorTok{]} 
+ 
+\NormalTok{FCGetDiracGammaScheme}\OperatorTok{[]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//} \FunctionTok{FullForm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{BMHV}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{BMHV}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{BMHV}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCSetDiracGammaScheme}\OperatorTok{[}\StringTok{"NDR"}\OperatorTok{]} 
+ 
+\NormalTok{FCGetDiracGammaScheme}\OperatorTok{[]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//} \FunctionTok{FullForm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{NDR}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{NDR}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{NDR}
+\end{dmath*}
+\end{document}

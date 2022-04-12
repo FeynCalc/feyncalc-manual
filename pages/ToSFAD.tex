@@ -1,0 +1,76 @@
+% !TeX program = pdflatex
+% !TeX root = ToSFAD.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{tosfad}{%
+\section{ToSFAD}\label{tosfad}}
+
+\texttt{ToSFAD[\allowbreak{}exp]} converts all propagator denominators
+written as \texttt{FAD} or
+\texttt{FeynAmpDenmoninator[\allowbreak{}...,\ \allowbreak{}PropagatorDenominator[\allowbreak{}...],\ \allowbreak{}...]}
+to \texttt{SFAD} or
+\texttt{FeynAmpDenmoninator[\allowbreak{}...,\ \allowbreak{}StandardPropagatorDenominator[\allowbreak{}...],\ \allowbreak{}...]}
+respectively.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fad}{FAD}, \hyperlink{sfad}{SFAD}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToSFAD}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p^2+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToSFAD}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*FeynAmpDenominator[StandardPropagatorDenominator[Momentum[p, D], 0, 0, \{1, 1\}]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToSFAD}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p^2-m^2+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToSFAD}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*FeynAmpDenominator[StandardPropagatorDenominator[Momentum[p, D], 0, {-}m\^{}2, \{1, 1\}]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToSFAD}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{p} \SpecialCharTok{+} \FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{,} \DecValTok{2}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{((p+q)^2-m^2+i \eta )^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToSFAD}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{p} \SpecialCharTok{+} \FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{,} \DecValTok{2}\OperatorTok{\}]]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*FeynAmpDenominator[StandardPropagatorDenominator[Momentum[p + q, D], 0, {-}m\^{}2, \{1, 1\}], StandardPropagatorDenominator[Momentum[p + q, D], 0, {-}m\^{}2, \{1, 1\}]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

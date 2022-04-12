@@ -1,0 +1,95 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopBasisOverdeterminedQ.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopbasisoverdeterminedq}{%
+\section{FCLoopBasisOverdeterminedQ}\label{fcloopbasisoverdeterminedq}}
+
+\texttt{FCLoopBasisOverdeterminedQ[\allowbreak{}int,\ \allowbreak{}\{\allowbreak{}q1,\ \allowbreak{}q2,\ \allowbreak{}...\}]}
+checks whether the loop integral or topology \texttt{int} contains
+linearly dependent propagators.
+
+The input can also consist of an \texttt{FCTopology} object or a list
+thereof.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcloopbasisincompleteq}{FCLoopBasisIncompleteQ}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAD}\OperatorTok{[\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q1 }\SpecialCharTok{{-}} \FunctionTok{l} \SpecialCharTok{+} \FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]} 
+ 
+\NormalTok{FCLoopBasisOverdeterminedQ}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\left(\text{q1}^2-\text{m1}^2\right).\left((-l+p+\text{q1})^2-m^2\right)}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAD}\OperatorTok{[}\NormalTok{q1}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\}]} 
+ 
+\NormalTok{FCLoopBasisOverdeterminedQ}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\text{q1}^2.\left(\text{q1}^2-\text{m1}^2\right)}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAD}\OperatorTok{[}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1 }\SpecialCharTok{+} \FunctionTok{l}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q1 }\SpecialCharTok{{-}} \FunctionTok{l}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q2 }\SpecialCharTok{+} \FunctionTok{l}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q2 }\SpecialCharTok{{-}} \FunctionTok{l}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\}]} 
+ 
+\NormalTok{FCLoopBasisOverdeterminedQ}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\text{q1}^2.\text{q2}^2.\left((l+\text{q1})^2-\text{m1}^2\right).\left((\text{q1}-l)^2-\text{m1}^2\right).\left((l+\text{q2})^2-\text{m1}^2\right).\left((\text{q2}-l)^2-\text{m1}^2\right)}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopBasisOverdeterminedQ}\OperatorTok{[}\NormalTok{FCTopology}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,} \OperatorTok{\{}\NormalTok{FAD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],} 
+\NormalTok{    FAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p2 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p2 }\SpecialCharTok{+} \FunctionTok{q}\OperatorTok{]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopBasisOverdeterminedQ}\OperatorTok{[\{}\NormalTok{FCTopology}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,} \OperatorTok{\{}\NormalTok{FAD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],} 
+\NormalTok{     FAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p2 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p2 }\SpecialCharTok{+} \FunctionTok{q}\OperatorTok{]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}],} 
+\NormalTok{   FCTopology}\OperatorTok{[}\NormalTok{topo2}\OperatorTok{,} \OperatorTok{\{}\NormalTok{FAD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],} 
+\NormalTok{     FAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p2 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]} 
+  \OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{\text{True},\text{False}\}
+\end{dmath*}
+\end{document}

@@ -1,0 +1,30 @@
+% !TeX program = pdflatex
+% !TeX root = CounterT.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{countert}{%
+\section{CounterT}\label{countert}}
+
+\texttt{CounterT} is a factor used by \texttt{GluonPropagator} and
+\texttt{QuarkPropagator} when \texttt{CounterTerms} is set to
+\texttt{All}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{counterterm}{CounterTerm},
+\hyperlink{gluonpropagator}{GluonPropagator},
+\hyperlink{quarkpropagator}{QuarkPropagator}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GluonPropagator}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{b}\OperatorTok{,}\NormalTok{ Explicit }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,}\NormalTok{ CounterTerm }\OtherTok{{-}\textgreater{}} \ConstantTok{All}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{CounterT} \left(\frac{i C_A g_s^2 S_n \delta ^{ab} \left(\frac{10 p^{\mu } p^{\nu }}{3}-\frac{10}{3} p^2 g^{\mu \nu }\right)}{\varepsilon }+\frac{i T_f g_s^2 S_n \delta ^{ab} \left(\frac{4}{3} p^2 g^{\mu \nu }-\frac{4 p^{\mu } p^{\nu }}{3}\right)}{\varepsilon }\right)-\frac{i \delta ^{ab} g^{\mu \nu }}{p^2}
+\end{dmath*}
+\end{document}

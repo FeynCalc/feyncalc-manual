@@ -1,0 +1,35 @@
+% !TeX program = pdflatex
+% !TeX root = Abbreviation.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{abbreviation}{%
+\section{Abbreviation}\label{abbreviation}}
+
+\texttt{Abbreviation} is a function used by \texttt{OneLoop} and
+\texttt{PaVeReduce} for generating smaller files when saving results to
+the hard disk. The convention is that a definition like
+\texttt{GP = GluonPropagator} should be accompanied by the definition
+\texttt{Abbreviation[\allowbreak{}GluonPropagator] = HoldForm[\allowbreak{}GP]}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{abbreviations}{\$Abbreviations},
+\hyperlink{oneloop}{OneLoop}, \hyperlink{pavereduce}{PaVeReduce},
+\hyperlink{writeout}{WriteOut}, \hyperlink{writeoutpave}{WriteOutPaVe},
+\hyperlink{gluonpropagator}{GluonPropagator},
+\hyperlink{gluonvertex}{GluonVertex},
+\hyperlink{quarkpropagator}{QuarkPropagator}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{b}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\Pi _{ab}^{\mu \nu }(p)
+\end{dmath*}
+\end{document}

@@ -1,0 +1,157 @@
+% !TeX program = pdflatex
+% !TeX root = TR.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{tr}{%
+\section{TR}\label{tr}}
+
+\texttt{TR[\allowbreak{}exp]} calculates the Dirac trace of
+\texttt{exp}. Depending on the setting of the option \texttt{SUNTrace}
+also a trace over \(SU(N)\) objects is performed.
+
+The Mathematica build-in function \texttt{Tr} is overloaded to call
+\texttt{TR} if any of \texttt{DiracGamma}, \texttt{GA}, \texttt{GAD},
+\texttt{GS} or \texttt{GSD} are in the expression.
+
+\texttt{Tr[\allowbreak{}list]} finds the trace of the matrix or tensor
+list.
+
+\texttt{Tr[\allowbreak{}list,\ \allowbreak{}f]} finds a generalized
+trace, combining terms with f instead of \texttt{Plus}.
+
+\texttt{Tr[\allowbreak{}list,\ \allowbreak{}f,\ \allowbreak{}n]} goes
+down to level \texttt{n} in \texttt{list}.
+
+\texttt{Tr[\allowbreak{}expression]} calculates the \texttt{DiracTrace},
+i.e., \texttt{TR[\allowbreak{}expression]} if any of
+\texttt{DiracGamma}, \texttt{GA}, \texttt{GAD}, \texttt{GS} or
+\texttt{GSD} is present in expression.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{diracsimplify}{DiracSimplify},
+\hyperlink{diractrace}{DiracTrace},
+\hyperlink{fermionspinsum}{FermionSpinSum},
+\hyperlink{suntrace}{SUNTrace}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} 
+ 
+\FunctionTok{TR}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+4 \bar{g}^{\mu \nu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{TR}\OperatorTok{[}\NormalTok{(GSD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{m}\NormalTok{) . GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . (GSD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]} \SpecialCharTok{{-}} \FunctionTok{m}\NormalTok{) . GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-4 \left(m^2 g^{\mu \nu }+g^{\mu \nu } (p\cdot q)-p^{\nu } q^{\mu }-p^{\mu } q^{\nu }\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{TR}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{],} \DecValTok{5}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-4 i \bar{\epsilon }^{\mu \nu \rho \sigma }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{TR}\OperatorTok{[}\NormalTok{GS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,} \FunctionTok{r}\OperatorTok{,} \FunctionTok{s}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+4 \left(\left(\overline{p}\cdot \overline{s}\right) \left(\overline{q}\cdot \overline{r}\right)-\left(\overline{p}\cdot \overline{r}\right) \left(\overline{q}\cdot \overline{s}\right)+\left(\overline{p}\cdot \overline{q}\right) \left(\overline{r}\cdot \overline{s}\right)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{TR}\OperatorTok{[}\NormalTok{(GS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{m}\NormalTok{) . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . (GS}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{m}\NormalTok{) . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],}\NormalTok{ Factoring }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+8 \left(2 m^2-\overline{p}\cdot \overline{q}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{TR}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{]],}\NormalTok{ FCE }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+4 \bar{g}^{\alpha \beta }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ SUNT}\OperatorTok{[}\FunctionTok{b}\OperatorTok{]}\NormalTok{ . SUNT}\OperatorTok{[}\FunctionTok{c}\OperatorTok{]}\NormalTok{ SUNDelta}\OperatorTok{[}\FunctionTok{c}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]} 
+ 
+\FunctionTok{TR}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ SUNTrace }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{,}\NormalTok{ SUNNToCACF }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]} 
+ 
+\FunctionTok{TR}\OperatorTok{[}\SpecialCharTok{\%\%}\OperatorTok{,}\NormalTok{ SUNTrace }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,}\NormalTok{ SUNNToCACF }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\delta ^{bc} T^b.T^c \bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+4 C_F \bar{g}^{\mu \nu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+4 C_F \bar{g}^{\mu \nu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{TR}\OperatorTok{[}\DecValTok{1}\OperatorTok{,}\NormalTok{ SUNTrace }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{,}\NormalTok{ SUNNToCACF }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+4
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{TR}\OperatorTok{[}\DecValTok{1}\OperatorTok{,}\NormalTok{ SUNTrace }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,}\NormalTok{ SUNNToCACF }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+4
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Tr}\OperatorTok{[}\NormalTok{ GA}\OperatorTok{[}\FunctionTok{m}\OperatorTok{,} \FunctionTok{n}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+4 \bar{g}^{mn}
+\end{dmath*}
+\end{document}

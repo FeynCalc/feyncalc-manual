@@ -1,0 +1,56 @@
+% !TeX program = pdflatex
+% !TeX root = TIDL.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{tidl}{%
+\section{TIDL}\label{tidl}}
+
+TIDL is a database of tensorial reduction formulas.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{tid}{TID}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TIDL}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,}\NormalTok{ mu}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{p}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{p^{\text{mu}} (p\cdot q)}{p^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TIDL}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,}\NormalTok{ mu}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\text{p1}^{\text{mu}} \left((\text{p1}\cdot \;\text{p2}) (\text{p2}\cdot q)-\text{p2}^2 (\text{p1}\cdot q)\right)}{(\text{p1}\cdot \;\text{p2})^2-\text{p1}^2 \;\text{p2}^2}-\frac{\text{p2}^{\text{mu}} \left(\text{p1}^2 (\text{p2}\cdot q)-(\text{p1}\cdot \;\text{p2}) (\text{p1}\cdot q)\right)}{(\text{p1}\cdot \;\text{p2})^2-\text{p1}^2 \;\text{p2}^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TIDL}\OperatorTok{[\{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ mu}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q2}\OperatorTok{,}\NormalTok{ nu}\OperatorTok{\}\},} \OperatorTok{\{}\FunctionTok{p}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{g^{\text{mu}\;\text{nu}} \left((p\cdot \;\text{q1}) (p\cdot \;\text{q2})-p^2 (\text{q1}\cdot \;\text{q2})\right)}{(1-D) p^2}-\frac{p^{\text{mu}} p^{\text{nu}} \left(D (p\cdot \;\text{q1}) (p\cdot \;\text{q2})-p^2 (\text{q1}\cdot \;\text{q2})\right)}{(1-D) p^4}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TIDL}\OperatorTok{[\{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ mu}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q2}\OperatorTok{,}\NormalTok{ nu}\OperatorTok{\}\},} \OperatorTok{\{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{g^{\text{mu}\;\text{nu}} (\text{q1}\cdot \;\text{q2})}{D}
+\end{dmath*}
+\end{document}

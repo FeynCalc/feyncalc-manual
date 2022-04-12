@@ -1,0 +1,114 @@
+% !TeX program = pdflatex
+% !TeX root = SimplifyDeltaFunction.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{simplifydeltafunction}{%
+\section{SimplifyDeltaFunction}\label{simplifydeltafunction}}
+
+\texttt{SimplifyDeltaFunction[\allowbreak{}exp,\ \allowbreak{}x]}
+simplifies \texttt{f[\allowbreak{}x]*DeltaFunction[\allowbreak{}1-x]} to
+\texttt{Limit[\allowbreak{}f[\allowbreak{}x],\ \allowbreak{}x->1] DeltaFunction[\allowbreak{}1-x]}
+and applies a list of transformation rules for
+\texttt{DeltaFunctionPrime[\allowbreak{}1-x]*x^(OPEm-1)*f[\allowbreak{}x]}
+where \texttt{x^(OPEm-1)} is suppressed in \texttt{exp}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{deltafunction}{DeltaFunction},
+\hyperlink{deltafunctionprime}{DeltaFunctionPrime}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{g}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]}\NormalTok{ DeltaFunction}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]} 
+ 
+\NormalTok{SimplifyDeltaFunction}\OperatorTok{[} \SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+g(x) \delta (1-x)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\delta (1-x) \underset{x\to 1}{\text{lim}}g(x)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{g}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]}\NormalTok{ DeltaFunctionPrime}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]} 
+ 
+\NormalTok{SimplifyDeltaFunction}\OperatorTok{[} \SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]} 
+ 
+\FunctionTok{x} \FunctionTok{Log}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]}\NormalTok{ DeltaFunctionPrime}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]} 
+ 
+\NormalTok{SimplifyDeltaFunction}\OperatorTok{[} \SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+g(x) \delta '(1-x)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\delta (1-x) \underset{x\to 1}{\text{lim}}g'(x)+\delta '(1-x) \underset{x\to 1}{\text{lim}}g(x)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+x \log (x) \delta '(1-x)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\delta (1-x)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{PolyLog}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]}\NormalTok{ DeltaFunctionPrime}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]} 
+ 
+\NormalTok{SimplifyDeltaFunction}\OperatorTok{[} \SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{Li}_2(1-x) \delta '(1-x)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-\delta (1-x)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Log}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]} \FunctionTok{PolyLog}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]}\NormalTok{ DeltaFunctionPrime}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]} 
+ 
+\NormalTok{SimplifyDeltaFunction}\OperatorTok{[} \SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{Li}_2(1-x) \log (x) \delta '(1-x)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{PolyLog}\OperatorTok{[}\DecValTok{3}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]}\NormalTok{ DeltaFunctionPrime}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]} 
+ 
+\NormalTok{SimplifyDeltaFunction}\OperatorTok{[} \SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{Li}_3(1-x) \delta '(1-x)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-\delta (1-x)
+\end{dmath*}
+\end{document}

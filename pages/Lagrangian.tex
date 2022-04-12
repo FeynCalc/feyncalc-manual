@@ -1,0 +1,84 @@
+% !TeX program = pdflatex
+% !TeX root = Lagrangian.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{lagrangian}{%
+\section{Lagrangian}\label{lagrangian}}
+
+\texttt{Lagrangian[\allowbreak{}"oqu"]} gives the unpolarized OPE quark
+operator.
+
+\texttt{Lagrangian[\allowbreak{}"oqp"]} gives the polarized quark OPE
+operator.
+
+\texttt{Lagrangian[\allowbreak{}"ogu"]} gives the unpolarized gluon OPE
+operator.
+
+\texttt{Lagrangian[\allowbreak{}"ogp"]} gives the polarized gluon OPE
+operator.
+
+\texttt{Lagrangian[\allowbreak{}"ogd"]} gives the sigma-term part of the
+QCD Lagrangian.
+
+\texttt{Lagrangian[\allowbreak{}"QCD"]} gives the gluon self interaction
+part of the QCD Lagrangian.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{feynrule}{FeynRule}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Lagrangian}\OperatorTok{[}\StringTok{"QCD"}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{1}{4} F_{\text{FCGV}(\alpha )\text{FCGV}(\beta )}^{\text{FCGV}(\text{a})}.F_{\text{FCGV}(\alpha )\text{FCGV}(\beta )}^{\text{FCGV}(\text{a})}
+\end{dmath*}
+
+Twist-2 operator product expansion operators
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Lagrangian}\OperatorTok{[}\StringTok{"ogu"}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} i^{m-1} F_{\text{FCGV}(\alpha )\Delta }^{\text{FCGV}(\text{a})}.\left(D_{\Delta }^{\text{FCGV}(\text{a})\text{FCGV}(\text{b})}\right){}^{m-2}.F_{\text{FCGV}(\alpha )\Delta }^{\text{FCGV}(\text{b})}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Lagrangian}\OperatorTok{[}\StringTok{"ogp"}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} i^m \bar{\epsilon }^{\text{FCGV}(\alpha )\text{FCGV}(\beta )\text{FCGV}(\gamma )\Delta }.F_{\text{FCGV}(\beta )\text{FCGV}(\gamma )}^{\text{FCGV}(\text{a})}.\left(D_{\Delta }^{\text{FCGV}(\text{a})\text{FCGV}(\text{b})}\right){}^{m-2}.F_{\text{FCGV}(\alpha )\Delta }^{\text{FCGV}(\text{b})}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Lagrangian}\OperatorTok{[}\StringTok{"oqu"}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+i^m \bar{\psi }.\left(\bar{\gamma }\cdot \Delta \right).D_{\Delta }{}^{m-1}.\psi
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Lagrangian}\OperatorTok{[}\StringTok{"oqp"}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+i^m \bar{\psi }.\bar{\gamma }^5.\left(\bar{\gamma }\cdot \Delta \right).D_{\Delta }{}^{m-1}.\psi
+\end{dmath*}
+\end{document}

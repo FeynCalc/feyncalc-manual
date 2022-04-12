@@ -1,0 +1,76 @@
+% !TeX program = pdflatex
+% !TeX root = FCDiracIsolate.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcdiracisolate}{%
+\section{FCDiracIsolate}\label{fcdiracisolate}}
+
+\texttt{FCDiracIsolate[\allowbreak{}exp]} wraps chains of Dirac matrices
+into heads specified by the user.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{diracgamma}{DiracGamma},
+\hyperlink{spinor}{Spinor}.
+
+\subsection{Examples}
+
+\texttt{FCDiracIsolate} provides an easy way to extract the Dirac
+structures present in the expression (e.g.~an amplitude)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{amp }\ExtensionTok{=}\NormalTok{ (Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_u"}\OperatorTok{],} \DecValTok{1}\OperatorTok{]}\NormalTok{ . (}\SpecialCharTok{{-}}\FunctionTok{I}\NormalTok{ GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"g\_s"}\OperatorTok{]}\NormalTok{ SUNTF}\OperatorTok{[\{}\NormalTok{Glu2}\OperatorTok{\},} 
+\NormalTok{         Col3}\OperatorTok{,}\NormalTok{ Col5}\OperatorTok{]}\NormalTok{) . (GS}\OperatorTok{[}\SpecialCharTok{{-}}\NormalTok{k1 }\SpecialCharTok{+}\NormalTok{ p2}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_u"}\OperatorTok{]}\NormalTok{) . (}\SpecialCharTok{{-}}\FunctionTok{I}\NormalTok{ GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"g\_s"}\OperatorTok{]}\NormalTok{ SUNTF}\OperatorTok{[\{}\NormalTok{Glu4}\OperatorTok{\},} 
+\NormalTok{         Col5}\OperatorTok{,}\NormalTok{ Col1}\OperatorTok{]}\NormalTok{) . Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_u"}\OperatorTok{],} \DecValTok{1}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{k1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{,} 
+\NormalTok{       SMP}\OperatorTok{[}\StringTok{"m\_u"}\OperatorTok{]\},}\NormalTok{ Dimension }\OtherTok{{-}\textgreater{}} \DecValTok{4}\OperatorTok{]}\NormalTok{ FV}\OperatorTok{[}\NormalTok{Polarization}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,} \FunctionTok{I}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\NormalTok{Polarization}\OperatorTok{[}\NormalTok{k2}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{],} 
+      \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} \SpecialCharTok{+}\NormalTok{ Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_u"}\OperatorTok{],} \DecValTok{1}\OperatorTok{]}\NormalTok{ . (}\SpecialCharTok{{-}}\FunctionTok{I}\NormalTok{ GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"g\_s"}\OperatorTok{]}\NormalTok{ SUNTF}\OperatorTok{[\{}\NormalTok{Glu4}\OperatorTok{\},} 
+\NormalTok{         Col3}\OperatorTok{,}\NormalTok{ Col5}\OperatorTok{]}\NormalTok{) . (GS}\OperatorTok{[}\NormalTok{k2 }\SpecialCharTok{+}\NormalTok{ p2}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_u"}\OperatorTok{]}\NormalTok{) . (}\SpecialCharTok{{-}}\FunctionTok{I}\NormalTok{ GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"g\_s"}\OperatorTok{]}\NormalTok{ SUNTF}\OperatorTok{[\{}\NormalTok{Glu2}\OperatorTok{\},} 
+\NormalTok{         Col5}\OperatorTok{,}\NormalTok{ Col1}\OperatorTok{]}\NormalTok{) . Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_u"}\OperatorTok{],} \DecValTok{1}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[\{}\SpecialCharTok{{-}}\NormalTok{k2 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_u"}\OperatorTok{]\},} 
+\NormalTok{      Dimension }\OtherTok{{-}\textgreater{}} \DecValTok{4}\OperatorTok{]}\NormalTok{ FV}\OperatorTok{[}\NormalTok{Polarization}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,} \FunctionTok{I}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\NormalTok{Polarization}\OperatorTok{[}\NormalTok{k2}\OperatorTok{,} 
+       \SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} \SpecialCharTok{{-}}\NormalTok{ Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_u"}\OperatorTok{],} \DecValTok{1}\OperatorTok{]}\NormalTok{ . (}\SpecialCharTok{{-}}\FunctionTok{I}\NormalTok{ GA}\OperatorTok{[}\NormalTok{Lor3}\OperatorTok{]}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"g\_s"}\OperatorTok{]}\NormalTok{ SUNTF}\OperatorTok{[\{}\NormalTok{Glu5}\OperatorTok{\},} 
+\NormalTok{         Col3}\OperatorTok{,}\NormalTok{ Col1}\OperatorTok{]}\NormalTok{) . Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_u"}\OperatorTok{],} \DecValTok{1}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[}\SpecialCharTok{{-}}\NormalTok{k1 }\SpecialCharTok{+}\NormalTok{ k2}\OperatorTok{,} 
+\NormalTok{      Dimension }\OtherTok{{-}\textgreater{}} \DecValTok{4}\OperatorTok{]}\NormalTok{ FV}\OperatorTok{[}\NormalTok{Polarization}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,} \FunctionTok{I}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\NormalTok{Polarization}\OperatorTok{[}\NormalTok{k2}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{],} 
+      \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ MT}\OperatorTok{[}\NormalTok{Lor3}\OperatorTok{,}\NormalTok{ Lor4}\OperatorTok{]}\NormalTok{ (FV}\OperatorTok{[}\DecValTok{2}\NormalTok{ k1 }\SpecialCharTok{{-}}\NormalTok{ k2}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ MT}\OperatorTok{[}\NormalTok{Lor4}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]} \SpecialCharTok{+}\NormalTok{ FV}\OperatorTok{[}\SpecialCharTok{{-}}\NormalTok{k1 }\SpecialCharTok{+} \DecValTok{2}\NormalTok{ k2}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ MT}\OperatorTok{[}\NormalTok{Lor4}\OperatorTok{,} 
+         \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} \SpecialCharTok{+}\NormalTok{ FV}\OperatorTok{[}\SpecialCharTok{{-}}\NormalTok{k1 }\SpecialCharTok{{-}}\NormalTok{ k2}\OperatorTok{,}\NormalTok{ Lor4}\OperatorTok{]}\NormalTok{ MT}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{) SMP}\OperatorTok{[}\StringTok{"g\_s"}\OperatorTok{]}\NormalTok{ SUNF}\OperatorTok{[}\NormalTok{Glu2}\OperatorTok{,}\NormalTok{ Glu4}\OperatorTok{,}\NormalTok{ Glu5}\OperatorTok{]}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\bar{\varepsilon }^{\mu }(\text{k1}) \bar{\varepsilon }^{*\nu }(\text{k2}) \left(\varphi (\overline{\text{p2}},m_u)\right).\left(-i g_s \bar{\gamma }^{\mu } T_{\text{Col3}\;\text{Col5}}^{\text{Glu2}}\right).\left(\bar{\gamma }\cdot \left(\overline{\text{p2}}-\overline{\text{k1}}\right)+m_u\right).\left(-i g_s \bar{\gamma }^{\nu } T_{\text{Col5}\;\text{Col1}}^{\text{Glu4}}\right).\left(\varphi (\overline{\text{p1}},m_u)\right)}{(\overline{\text{k1}}-\overline{\text{p2}})^2-m_u^2}+\frac{\bar{\varepsilon }^{\mu }(\text{k1}) \bar{\varepsilon }^{*\nu }(\text{k2}) \left(\varphi (\overline{\text{p2}},m_u)\right).\left(-i g_s \bar{\gamma }^{\nu } T_{\text{Col3}\;\text{Col5}}^{\text{Glu4}}\right).\left(\bar{\gamma }\cdot \left(\overline{\text{k2}}+\overline{\text{p2}}\right)+m_u\right).\left(-i g_s \bar{\gamma }^{\mu } T_{\text{Col5}\;\text{Col1}}^{\text{Glu2}}\right).\left(\varphi (\overline{\text{p1}},m_u)\right)}{(-\overline{\text{k2}}-\overline{\text{p2}})^2-m_u^2}-\frac{1}{(\overline{\text{k2}}-\overline{\text{k1}})^2}g_s \bar{g}^{\text{Lor3}\;\text{Lor4}} \bar{\varepsilon }^{\mu }(\text{k1}) \bar{\varepsilon }^{*\nu }(\text{k2}) f^{\text{Glu2}\;\text{Glu4}\;\text{Glu5}} \left(\bar{g}^{\text{Lor4}\mu } \left(2 \overline{\text{k1}}-\overline{\text{k2}}\right)^{\nu }+\bar{g}^{\text{Lor4}\nu } \left(2 \overline{\text{k2}}-\overline{\text{k1}}\right)^{\mu }+\bar{g}^{\mu \nu } \left(-\overline{\text{k1}}-\overline{\text{k2}}\right)^{\text{Lor4}}\right) \left(\varphi (\overline{\text{p2}},m_u)\right).\left(-i g_s \bar{\gamma }^{\text{Lor3}} T_{\text{Col3}\;\text{Col1}}^{\text{Glu5}}\right).\left(\varphi (\overline{\text{p1}},m_u)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ampIso }\ExtensionTok{=}\NormalTok{ FCDiracIsolate}\OperatorTok{[}\NormalTok{amp}\OperatorTok{,} \FunctionTok{Head} \OtherTok{{-}\textgreater{}}\NormalTok{ diracS}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{g_s^2 \bar{\varepsilon }^{\mu }(\text{k1}) \bar{\varepsilon }^{*\nu }(\text{k2}) T_{\text{Col5}\;\text{Col1}}^{\text{Glu2}} T_{\text{Col3}\;\text{Col5}}^{\text{Glu4}} \;\text{diracS}\left(\left(\varphi (\overline{\text{p2}},m_u)\right).\bar{\gamma }^{\nu }.\left(\bar{\gamma }\cdot \left(\overline{\text{k2}}+\overline{\text{p2}}\right)+m_u\right).\bar{\gamma }^{\mu }.\left(\varphi (\overline{\text{p1}},m_u)\right)\right)}{(-\overline{\text{k2}}-\overline{\text{p2}})^2-m_u^2}-\frac{g_s^2 \bar{\varepsilon }^{\mu }(\text{k1}) \bar{\varepsilon }^{*\nu }(\text{k2}) T_{\text{Col5}\;\text{Col1}}^{\text{Glu4}} T_{\text{Col3}\;\text{Col5}}^{\text{Glu2}} \;\text{diracS}\left(\left(\varphi (\overline{\text{p2}},m_u)\right).\bar{\gamma }^{\mu }.\left(\bar{\gamma }\cdot \left(\overline{\text{p2}}-\overline{\text{k1}}\right)+m_u\right).\bar{\gamma }^{\nu }.\left(\varphi (\overline{\text{p1}},m_u)\right)\right)}{(\overline{\text{k1}}-\overline{\text{p2}})^2-m_u^2}+\frac{1}{(\overline{\text{k2}}-\overline{\text{k1}})^2}i g_s^2 \bar{g}^{\text{Lor3}\;\text{Lor4}} \bar{\varepsilon }^{\mu }(\text{k1}) \bar{\varepsilon }^{*\nu }(\text{k2}) T_{\text{Col3}\;\text{Col1}}^{\text{Glu5}} f^{\text{Glu2}\;\text{Glu4}\;\text{Glu5}} \left(\bar{g}^{\mu \nu } \left(-\left(\overline{\text{k1}}+\overline{\text{k2}}\right)^{\text{Lor4}}\right)-\bar{g}^{\text{Lor4}\nu } \left(\overline{\text{k1}}-2 \overline{\text{k2}}\right)^{\mu }+\bar{g}^{\text{Lor4}\mu } \left(2 \overline{\text{k1}}-\overline{\text{k2}}\right)^{\nu }\right) \;\text{diracS}\left(\left(\varphi (\overline{\text{p2}},m_u)\right).\bar{\gamma }^{\text{Lor3}}.\left(\varphi (\overline{\text{p1}},m_u)\right)\right)
+\end{dmath*}
+
+Now that all Dirac structures are wrapped into the head \texttt{diracS}
+it is easy to extract them to a separate list
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Cases2}\OperatorTok{[}\NormalTok{ampIso}\OperatorTok{,}\NormalTok{ diracS}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{diracS}\left(\left(\varphi (\overline{\text{p2}},m_u)\right).\bar{\gamma }^{\text{Lor3}}.\left(\varphi (\overline{\text{p1}},m_u)\right)\right),\text{diracS}\left(\left(\varphi (\overline{\text{p2}},m_u)\right).\bar{\gamma }^{\mu }.\left(\bar{\gamma }\cdot \left(\overline{\text{p2}}-\overline{\text{k1}}\right)+m_u\right).\bar{\gamma }^{\nu }.\left(\varphi (\overline{\text{p1}},m_u)\right)\right),\text{diracS}\left(\left(\varphi (\overline{\text{p2}},m_u)\right).\bar{\gamma }^{\nu }.\left(\bar{\gamma }\cdot \left(\overline{\text{k2}}+\overline{\text{p2}}\right)+m_u\right).\bar{\gamma }^{\mu }.\left(\varphi (\overline{\text{p1}},m_u)\right)\right)\right\}
+\end{dmath*}
+
+This way we obtain a sorted list of all unique Dirac structures in
+\texttt{amp}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ClearAll}\OperatorTok{[}\NormalTok{amp}\OperatorTok{,}\NormalTok{ ampIso}\OperatorTok{,}\NormalTok{ diracS}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

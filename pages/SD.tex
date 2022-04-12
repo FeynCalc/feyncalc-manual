@@ -1,0 +1,49 @@
+% !TeX program = pdflatex
+% !TeX root = SD.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{sd}{%
+\section{SD}\label{sd}}
+
+\texttt{SD[\allowbreak{}i,\ \allowbreak{}j]} denotes the \(SU(N)\)
+Kronecker delta with color indices \texttt{i} and \texttt{j} in the
+adjoint representation.
+
+\texttt{SD[\allowbreak{}i,\ \allowbreak{}j]} is transformed into
+\texttt{SUNDelta[\allowbreak{}SUNIndex[\allowbreak{}i],\ \allowbreak{}SUNIndex[\allowbreak{}j]]}
+by \texttt{FeynCalcInternal}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{sundelta}{SUNDelta}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SD}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\delta ^{ab}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SD}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SUNDelta[SUNIndex[a], SUNIndex[b]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SD}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCE }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SD[a, b]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

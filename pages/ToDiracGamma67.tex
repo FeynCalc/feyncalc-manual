@@ -1,0 +1,57 @@
+% !TeX program = pdflatex
+% !TeX root = ToDiracGamma67.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{todiracgamma67}{%
+\section{ToDiracGamma67}\label{todiracgamma67}}
+
+\texttt{ToDiracGamma67[\allowbreak{}exp]} substitutes
+\(\frac{1}{2} \left(1 + \gamma^5\right)\) and
+\(\frac{1}{2}\left(1-\gamma^5\right)\) by the chirality projectors
+\(\gamma^6\) and \(\gamma^7\).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{diracsubstitute5}{DiracSubstitute5},
+\hyperlink{diracgamma}{DiracGamma},
+\hyperlink{todiracgamma67}{ToDiracGamma67}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . (}\DecValTok{1}\SpecialCharTok{/}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ GA}\OperatorTok{[}\DecValTok{5}\OperatorTok{]}\SpecialCharTok{/}\DecValTok{2}\NormalTok{) . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} 
+ 
+\NormalTok{ToDiracGamma67}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }.\left(\frac{\bar{\gamma }^5}{2}+\frac{1}{2}\right).\bar{\gamma }^{\nu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }.\bar{\gamma }^6.\bar{\gamma }^{\nu }
+\end{dmath*}
+
+When the option \texttt{All} is set to \texttt{True}, also standalone
+\(\gamma^5\) will be replaced
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \DecValTok{5}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} 
+ 
+\NormalTok{ToDiracGamma67}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \ConstantTok{All} \OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }.\bar{\gamma }^5.\bar{\gamma }^{\nu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }.\left(\bar{\gamma }^6-\bar{\gamma }^7\right).\bar{\gamma }^{\nu }
+\end{dmath*}
+\end{document}

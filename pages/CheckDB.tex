@@ -1,0 +1,87 @@
+% !TeX program = pdflatex
+% !TeX root = CheckDB.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{checkdb}{%
+\section{CheckDB}\label{checkdb}}
+
+\texttt{CheckDB[\allowbreak{}exp,\ \allowbreak{}fil]} saves (with
+\texttt{Put}) or retrieves (with \texttt{Get}) \texttt{exp} from a file
+\texttt{fil}. It checks if the setting of the option \texttt{Directory}
+is a valid directory name and if \texttt{fil} is a valid file name and
+does exist. If it does, \texttt{Get[\allowbreak{}fil]} is executed. If
+\texttt{fil} does not exist, \texttt{exp} gets evaluated and saved to
+\texttt{fil}.
+
+Saving and evaluating can be further controlled with the options
+\texttt{ForceSave} and \texttt{NoSave}. If the option \texttt{Check} is
+set to \texttt{False} the return value is what is evaluated (see above).
+If \texttt{Check} is set to \texttt{True} the return value is
+\texttt{True} or \texttt{False} depending on whether the evaluation of
+\texttt{exp} agrees with what is loaded from \texttt{fil} or
+\texttt{fil} does not exist.
+
+Default value of Check : \texttt{False}. If \texttt{fil} ends with
+\texttt{".Gen"} or \texttt{".Mod"}, the setting of \texttt{Directory} is
+ignored and \texttt{fil} is saved in the \texttt{"CouplingVectors"}
+subdirectory of \texttt{"Phi"}. If \texttt{fil} ends with
+\texttt{".Fac"}, the setting of Directory is ignored and \texttt{fil} is
+saved in the \texttt{"Factors"} subdirectory of \texttt{"Phi"}.
+
+If \texttt{fil} is a file name with full path, the setting of
+\texttt{Directory} is also ignored.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+The first time the Table function is evaluated and the result saved into
+the test.s file.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CheckDB}\OperatorTok{[}\FunctionTok{Table}\OperatorTok{[}\FunctionTok{WriteString}\OperatorTok{[}\StringTok{"stdout"}\OperatorTok{,} \StringTok{"test "}\OperatorTok{]}\NormalTok{; }\FunctionTok{i}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{i}\OperatorTok{,} \DecValTok{2}\OperatorTok{\}],} \StringTok{"test.s"}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+test test
+
+\begin{dmath*}\breakingcomma
+\{1,2\}
+\end{dmath*}
+
+Executing the same a second time will just load the result from test.s
+and not evaluate the Table function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CheckDB}\OperatorTok{[}\FunctionTok{Table}\OperatorTok{[}\FunctionTok{WriteString}\OperatorTok{[}\StringTok{"stdout"}\OperatorTok{,} \StringTok{"test "}\OperatorTok{]}\NormalTok{; }\FunctionTok{i}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{i}\OperatorTok{,} \DecValTok{2}\OperatorTok{\}],} \StringTok{"test.s"}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{1,2\}
+\end{dmath*}
+
+This shows the actual saved value of test.s.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Import}\OperatorTok{[}\NormalTok{ToFileName}\OperatorTok{[}\FunctionTok{Directory} \OtherTok{/.} \FunctionTok{Options}\OperatorTok{[}\NormalTok{CheckDB}\OperatorTok{],} \StringTok{"test.s"}\OperatorTok{],} \StringTok{"Text"}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{$\{$1, 2$\}$}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{DeleteFile}\OperatorTok{[}\NormalTok{ToFileName}\OperatorTok{[}\FunctionTok{Directory} \OtherTok{/.} \FunctionTok{Options}\OperatorTok{[}\NormalTok{CheckDB}\OperatorTok{],} \StringTok{"test.s"}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

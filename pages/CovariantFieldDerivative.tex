@@ -1,0 +1,31 @@
+% !TeX program = pdflatex
+% !TeX root = CovariantFieldDerivative.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\texttt{CovariantFieldDerivative[\allowbreak{}f[\allowbreak{}x],\ \allowbreak{}x,\ \allowbreak{}\{\allowbreak{}li1,\ \allowbreak{}li2,\ \allowbreak{}...\}]}
+is a covariant derivative of \texttt{f[\allowbreak{}x]} with respect to
+space-time variables \texttt{x} and with Lorentz indices
+\texttt{li1,\ \allowbreak{}li2,\ \allowbreak{}...}.
+\texttt{CovariantFieldDerivative} has only typesetting definitions by
+default. The user is must supply his/her own definition of the actual
+function.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{covariantd}{CovariantD},
+\hyperlink{expandpartiald}{ExpandPartialD},
+\hyperlink{fieldderivative}{FieldDerivative}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CovariantFieldDerivative}\OperatorTok{[}\NormalTok{QuantumField}\OperatorTok{[}\FunctionTok{A}\OperatorTok{,} \OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]\}][}\FunctionTok{x}\OperatorTok{],} \FunctionTok{x}\OperatorTok{,} \OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{\textit{$\mathcal{D}$}}_{\mu }\left(A_{\mu }(x)\right)
+\end{dmath*}
+\end{document}

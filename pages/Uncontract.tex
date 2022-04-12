@@ -1,0 +1,123 @@
+% !TeX program = pdflatex
+% !TeX root = Uncontract.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{uncontract}{%
+\section{Uncontract}\label{uncontract}}
+
+\texttt{Uncontract[\allowbreak{}exp,\ \allowbreak{}q1,\ \allowbreak{}q2,\ \allowbreak{}...]}
+uncontracts \texttt{Eps} and \texttt{DiracGamma}.
+
+\texttt{Uncontract[\allowbreak{}exp,\ \allowbreak{}q1,\ \allowbreak{}q2,\ \allowbreak{}Pair -> \{\allowbreak{}p\}]}
+uncontracts also \(p \cdot q_1\) and \(p \cdot q_2\);
+
+The option \texttt{Pair -> All} uncontracts all momenta except
+\texttt{OPEDelta}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{contract}{Contract}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LC}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]][}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]} 
+ 
+\NormalTok{Uncontract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\mu \nu \overline{p}\overline{q}}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\text{\$AL}(\text{\$19})} \bar{\epsilon }^{\mu \nu \;\text{\$AL}(\text{\$19})\overline{q}}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} 
+ 
+\NormalTok{Uncontract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }\cdot \overline{p}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\text{\$AL}(\text{\$20})} \overline{p}^{\text{\$AL}(\text{\$20})}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Uncontract}\OperatorTok{[}\NormalTok{LC}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]][}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{],} \FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\text{\$AL}(\text{\$22})} \overline{q}^{\text{\$AL}(\text{\$21})} \left(-\bar{\epsilon }^{\mu \nu \;\text{\$AL}(\text{\$21})\text{\$AL}(\text{\$22})}\right)
+\end{dmath*}
+
+By default scalar products are not uncontracted.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Uncontract}\OperatorTok{[}\NormalTok{SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{],} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot \overline{q}
+\end{dmath*}
+
+Use the option \texttt{Pair->All} to make the function take care of the
+scalar products as well
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Uncontract}\OperatorTok{[}\NormalTok{SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{],} \FunctionTok{q}\OperatorTok{,}\NormalTok{ Pair }\OtherTok{{-}\textgreater{}} \ConstantTok{All}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\text{\$AL}(\text{\$23})} \overline{q}^{\text{\$AL}(\text{\$23})}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Uncontract}\OperatorTok{[}\NormalTok{SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,}\NormalTok{ Pair }\OtherTok{{-}\textgreater{}} \ConstantTok{All}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\text{\$AL}(\text{\$24})} \overline{p}^{\text{\$AL}(\text{\$25})} \overline{q}^{\text{\$AL}(\text{\$24})} \overline{q}^{\text{\$AL}(\text{\$25})}
+\end{dmath*}
+
+For Cartesian scalar products you need to use the option
+\texttt{CartesianPair->All}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Uncontract}\OperatorTok{[}\NormalTok{CSP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{],} \FunctionTok{q}\OperatorTok{,}\NormalTok{ Pair }\OtherTok{{-}\textgreater{}} \ConstantTok{All}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot \overline{q}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Uncontract}\OperatorTok{[}\NormalTok{CSP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{],} \FunctionTok{q}\OperatorTok{,}\NormalTok{ CartesianPair }\OtherTok{{-}\textgreater{}} \ConstantTok{All}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\text{\$AL}(\text{\$26})} \overline{q}^{\text{\$AL}(\text{\$26})}
+\end{dmath*}
+\end{document}

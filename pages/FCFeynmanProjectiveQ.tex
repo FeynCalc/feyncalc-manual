@@ -1,0 +1,80 @@
+% !TeX program = pdflatex
+% !TeX root = FCFeynmanProjectiveQ.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcfeynmanprojectiveq}{%
+\section{FCFeynmanProjectiveQ}\label{fcfeynmanprojectiveq}}
+
+\texttt{FCFeynmanProjectiveQ[\allowbreak{}int,\ \allowbreak{}x]} checks
+if the given Feynman parameter integral (without prefactors) depending
+on x{[}1{]}, x{[}2{]}, \ldots{} is a projective form.
+
+It is similar to \texttt{FCFeynmanProjectivize} but unlike the former it
+simply returns \texttt{True} or \texttt{False} depending on whether the
+integral is projective or not.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcfeynmanparametrize}{FCFeynmanParametrize},
+\hyperlink{fcfeynmanprepare}{FCFeynmanPrepare},
+\hyperlink{fcfeynmanprojectivize}{FCFeynmanProjectivize}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{int }\ExtensionTok{=}\NormalTok{ SFAD}\OperatorTok{[\{}\NormalTok{p3}\OperatorTok{,}\NormalTok{ mg}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]}\NormalTok{ SFAD}\OperatorTok{[\{}\NormalTok{p3 }\SpecialCharTok{{-}}\NormalTok{ p1}\OperatorTok{,}\NormalTok{ mg}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]}\NormalTok{ SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{2}\NormalTok{ p1 . }\FunctionTok{q}\OperatorTok{\}\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(\text{p3}^2-\text{mg}^2+i \eta ) ((\text{p3}-\text{p1})^2-\text{mg}^2+i \eta ) (-2 (\text{p1}\cdot q)+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fp }\ExtensionTok{=}\NormalTok{ FCFeynmanParametrize}\OperatorTok{[}\NormalTok{int}\OperatorTok{,} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,}\NormalTok{ Indexed }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,}\NormalTok{ FCReplaceD }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{D} \OtherTok{{-}\textgreater{}} \DecValTok{4} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ ep}\OperatorTok{\},} 
+   \FunctionTok{Simplify} \OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,} \FunctionTok{Assumptions} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{mg \textgreater{} }\DecValTok{0}\OperatorTok{,}\NormalTok{ ep \textgreater{} }\DecValTok{0}\OperatorTok{\},}\NormalTok{ FinalSubstitutions }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]} \OtherTok{{-}\textgreater{}}\NormalTok{ qq}\OperatorTok{,}\NormalTok{ mg}\SpecialCharTok{\^{}}\DecValTok{2} \OtherTok{{-}\textgreater{}}\NormalTok{ mg2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{(x(2) x(3))^{3 \;\text{ep}-3} \left((x(2)+x(3)) \left(\text{mg2} x(2) x(3)+\text{qq} x(1)^2\right)\right)^{1-2 \;\text{ep}},-\Gamma (2 \;\text{ep}-1),\{x(1),x(2),x(3)\}\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanProjectiveQ}\OperatorTok{[}\NormalTok{fp}\OperatorTok{[[}\DecValTok{1}\OperatorTok{]],} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanProjectiveQ}\OperatorTok{[}\NormalTok{(}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{2} \SpecialCharTok{+} \DecValTok{2}\SpecialCharTok{*}\NormalTok{ep)}\SpecialCharTok{/}\NormalTok{(mb2}\SpecialCharTok{*}\NormalTok{(}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}\SpecialCharTok{\^{}}\NormalTok{ep}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+Feynman parametrization derived from propagator representation should be
+projective in most cases. However, arbitrary Feynman parameter integral
+do not necessarily have this property.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanProjectiveQ}\OperatorTok{[}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{\^{}}\NormalTok{(}\FunctionTok{x} \SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) (}\FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{\^{}}\NormalTok{(}\FunctionTok{y} \SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+\end{document}

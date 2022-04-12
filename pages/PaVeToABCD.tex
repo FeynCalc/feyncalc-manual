@@ -1,0 +1,96 @@
+% !TeX program = pdflatex
+% !TeX root = PaVeToABCD.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{pavetoabcd}{%
+\section{PaVeToABCD}\label{pavetoabcd}}
+
+\texttt{PaVeToABCD[\allowbreak{}expr]} converts suitable PaVe functions
+to direct Passarino-Veltman functions (\texttt{A0}, \texttt{A00},
+\texttt{B0}, \texttt{B1}, \texttt{B00}, \texttt{B11}, \texttt{C0},
+\texttt{D0}). \texttt{PaVeToABCD} is nearly the inverse of
+\texttt{ToPaVe2}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{topave}{ToPaVe},
+\hyperlink{topave2}{ToPaVe2}, \hyperlink{a0}{A0}, \hyperlink{a00}{A00},
+\hyperlink{b0}{B0}, \hyperlink{b1}{B1}, \hyperlink{b00}{B00},
+\hyperlink{b11}{B11}, \hyperlink{c0}{C0}, \hyperlink{d0}{D0}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PaVe}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \OperatorTok{\{}\NormalTok{pp}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{m1}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]} 
+ 
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ PaVeToABCD}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{B}_0\left(\text{pp},\text{m1}^2,\text{m2}^2\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{B}_0\left(\text{pp},\text{m1}^2,\text{m2}^2\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*B0[pp, m1\^{}2, m2\^{}2]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PaVe}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],} \DecValTok{0}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{]\},} \OperatorTok{\{}\NormalTok{m1}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]} 
+ 
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ PaVeToABCD}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{C}_0\left(0,\text{p1}^2,\text{p2}^2,\text{m3}^2,\text{m2}^2,\text{m1}^2\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{C}_0\left(0,\text{p1}^2,\text{p2}^2,\text{m3}^2,\text{m2}^2,\text{m1}^2\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*C0[0, Pair[Momentum[p1, D], Momentum[p1, D]], Pair[Momentum[p2, D], Momentum[p2, D]], m3\^{}2, m2\^{}2, m1\^{}2]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PaVe}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],} \DecValTok{0}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{]\},} \OperatorTok{\{}\NormalTok{m1}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]} 
+ 
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ PaVeToABCD}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{C}_{00}\left(0,\text{p1}^2,\text{p2}^2,\text{m3}^2,\text{m2}^2,\text{m1}^2\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{C}_{00}\left(0,\text{p1}^2,\text{p2}^2,\text{m3}^2,\text{m2}^2,\text{m1}^2\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*PaVe[0, 0, \{0, Pair[Momentum[p1, D], Momentum[p1, D]], Pair[Momentum[p2, D], Momentum[p2, D]]\}, \{m3\^{}2, m2\^{}2, m1\^{}2\}]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

@@ -1,0 +1,52 @@
+% !TeX program = pdflatex
+% !TeX root = CartesianIndexNames.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{cartesianindexnames}{%
+\section{CartesianIndexNames}\label{cartesianindexnames}}
+
+\texttt{CartesianIndexNames} is an option for \texttt{FCFAConvert},
+\texttt{FCCanonicalizeDummyIndices} and other functions. It renames the
+generic dummy Cartesian indices to the indices in the supplied list.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fcfaconvert}{FCFAConvert},
+\hyperlink{fccanonicalizedummyindices}{FCCanonicalizeDummyIndices},
+\hyperlink{cartesianindexnames}{CartesianIndexNames}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CLC}\OperatorTok{[}\NormalTok{i1}\OperatorTok{,}\NormalTok{ i2}\OperatorTok{,}\NormalTok{ i3}\OperatorTok{]}\NormalTok{ CGA}\OperatorTok{[}\NormalTok{i1}\OperatorTok{,}\NormalTok{ i2}\OperatorTok{,}\NormalTok{ i3}\OperatorTok{]} 
+ 
+\NormalTok{FCCanonicalizeDummyIndices}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{\gamma }^{\text{i1}}.\overline{\gamma }^{\text{i2}}.\overline{\gamma }^{\text{i3}} \bar{\epsilon }^{\text{i1}\;\text{i2}\;\text{i3}}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{\gamma }^{\text{FCGV}(\text{ci201})}.\overline{\gamma }^{\text{FCGV}(\text{ci202})}.\overline{\gamma }^{\text{FCGV}(\text{ci203})} \bar{\epsilon }^{\text{FCGV}(\text{ci201})\text{FCGV}(\text{ci202})\text{FCGV}(\text{ci203})}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CLC}\OperatorTok{[}\NormalTok{i1}\OperatorTok{,}\NormalTok{ i2}\OperatorTok{,}\NormalTok{ i3}\OperatorTok{]}\NormalTok{ CGA}\OperatorTok{[}\NormalTok{i1}\OperatorTok{,}\NormalTok{ i2}\OperatorTok{,}\NormalTok{ i3}\OperatorTok{]} 
+ 
+\NormalTok{FCCanonicalizeDummyIndices}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ CartesianIndexNames }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{\gamma }^{\text{i1}}.\overline{\gamma }^{\text{i2}}.\overline{\gamma }^{\text{i3}} \bar{\epsilon }^{\text{i1}\;\text{i2}\;\text{i3}}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{\gamma }^i.\overline{\gamma }^j.\overline{\gamma }^k \bar{\epsilon }^{ijk}
+\end{dmath*}
+\end{document}

@@ -1,0 +1,58 @@
+% !TeX program = pdflatex
+% !TeX root = CF.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{cf}{%
+\section{CF}\label{cf}}
+
+\texttt{CF} is one of the Casimir operator eigenvalues of \(SU(N)\) (CF
+= \(\frac{N^2-1}{2N}\)).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{ca}{CA},
+\hyperlink{sunsimplify}{SUNSimplify}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CF}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+C_F
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNSimplify}\OperatorTok{[}\NormalTok{CF}\OperatorTok{,}\NormalTok{ SUNNToCACF }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{N^2-1}{2 N}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNN}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+N
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNSimplify}\OperatorTok{[}\NormalTok{SUNN}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{,}\NormalTok{ SUNNToCACF }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+2 C_A C_F
+\end{dmath*}
+\end{document}

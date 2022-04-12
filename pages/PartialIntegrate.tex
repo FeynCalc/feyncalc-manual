@@ -1,0 +1,75 @@
+% !TeX program = pdflatex
+% !TeX root = PartialIntegrate.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{partialintegrate}{%
+\section{PartialIntegrate}\label{partialintegrate}}
+
+\texttt{PartialIntegrate[\allowbreak{}exp,\ \allowbreak{}ap,\ \allowbreak{}t]}
+does a partial integration of the definite integral
+\texttt{Integrate[\allowbreak{}exp,\ \allowbreak{}\{\allowbreak{}t,\ \allowbreak{}0,\ \allowbreak{}1\}]},
+with \texttt{ap} the factor that is to be integrated and \texttt{exp/ap}
+the factor that is to be differentiated.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{integratebyparts}{IntegrateByParts},
+\hyperlink{integrate2}{Integrate2}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PartialIntegrate}\OperatorTok{[}\FunctionTok{f}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]} \FunctionTok{g}\OperatorTok{[}\FunctionTok{x}\OperatorTok{],} \FunctionTok{g}\OperatorTok{[}\FunctionTok{x}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-(f(x) \int g(x) \, dx\text{/.}\, x\to 0)+(f(x) \int g(x) \, dx\text{/.}\, x\to 1)-\int_0^1 f'(x) (\int g(x) \, dx) \, dx
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{f}\OperatorTok{[}\AttributeTok{x\_}\OperatorTok{]} \ExtensionTok{=} \FunctionTok{Integrate}\OperatorTok{[}\FunctionTok{Log}\OperatorTok{[}\DecValTok{3} \FunctionTok{x} \SpecialCharTok{+} \DecValTok{2}\OperatorTok{],} \FunctionTok{x}\OperatorTok{]} 
+ 
+\FunctionTok{g}\OperatorTok{[}\AttributeTok{x\_}\OperatorTok{]} \ExtensionTok{=} \FunctionTok{D}\OperatorTok{[}\DecValTok{1}\SpecialCharTok{/}\FunctionTok{Log}\OperatorTok{[}\DecValTok{3} \FunctionTok{x} \SpecialCharTok{+} \DecValTok{2}\OperatorTok{],} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(x+\frac{2}{3}\right) \log (3 x+2)-x
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-\frac{3}{(3 x+2) \log ^2(3 x+2)}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Integrate}\OperatorTok{[}\NormalTok{PartialIntegrate}\OperatorTok{[}\FunctionTok{f}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]} \FunctionTok{g}\OperatorTok{[}\FunctionTok{x}\OperatorTok{],} \FunctionTok{f}\OperatorTok{[}\FunctionTok{x}\OperatorTok{],} \FunctionTok{x}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]} \SpecialCharTok{//} \FunctionTok{FullSimplify}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{1}{\log (5)}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Integrate}\OperatorTok{[}\FunctionTok{f}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]} \FunctionTok{g}\OperatorTok{[}\FunctionTok{x}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]} \SpecialCharTok{//} \FunctionTok{Simplify}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{1}{\log (5)}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Clear}\OperatorTok{[}\FunctionTok{f}\OperatorTok{,} \FunctionTok{g}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

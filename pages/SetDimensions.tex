@@ -1,0 +1,31 @@
+% !TeX program = pdflatex
+% !TeX root = SetDimensions.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{setdimensions}{%
+\section{SetDimensions}\label{setdimensions}}
+
+\texttt{SetDimensions} is an option for \texttt{ScalarProduct},
+\texttt{CartesianScalarProduct} and various \texttt{FCLoopBasis*}
+functions.
+
+For scalar products it specifies the dimensions for which the scalar
+products will be set when \texttt{ScalarProduct} or
+\texttt{CartesianScalarProduct} are used with the equality sign, e.g.~in
+\texttt{ScalarProduct[\allowbreak{}a,\ \allowbreak{}b] = m^2}. By
+default, the scalar products are set for 4 and D dimensions. By changing
+this option the user can add other dimensions or remove the existing
+ones.
+
+In case of the \texttt{FCLoopBasis*} functions this option specifies the
+dimensions of the loop and external momenta to be taken into account
+when extracting the propagator basis.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{scalarproduct}{ScalarProduct},
+\hyperlink{cartesianscalarproduct}{CartesianScalarProduct}.
+
+\subsection{Examples}
+\end{document}

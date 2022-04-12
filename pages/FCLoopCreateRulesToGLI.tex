@@ -1,0 +1,94 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopCreateRulesToGLI.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopcreaterulestogli}{%
+\section{FCLoopCreateRulesToGLI}\label{fcloopcreaterulestogli}}
+
+\texttt{FCLoopCreateRulesToGLI[\allowbreak{}topo]} creates replacement
+rules for converting numerators from the given topology to GLI objects
+with inverse propagators.
+
+It is also possible to use
+\texttt{FCLoopCreateRulesToGLI[\allowbreak{}\{\allowbreak{}topo1,\ \allowbreak{}topo2,\ \allowbreak{}...\}]}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fctopology}{FCTopology},
+\hyperlink{gli}{GLI},
+\hyperlink{fcloopfindtopologies}{FCLoopFindTopologies},
+\hyperlink{fcloopfindtopologymappings}{FCLoopFindTopologyMappings}.
+
+\subsection{Examples}
+
+1-loop tadpole
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopCreateRulesToGLI}\OperatorTok{[}\NormalTok{FCTopology}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{}\NormalTok{p1}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{p1}^2\to G^{\text{topo1}}(-1)+m^2\right\}
+\end{dmath*}
+
+2-loop tadpole with 3 different masses
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopCreateRulesToGLI}\OperatorTok{[}\NormalTok{FCTopology}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ m1}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{}\NormalTok{p2}\OperatorTok{,}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],} 
+\NormalTok{    SFAD}\OperatorTok{[\{}\NormalTok{p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{p1}^2\to G^{\text{topo1}}(-1,0,0)+\text{m1}^2,\text{p2}^2\to G^{\text{topo1}}(0,-1,0)+\text{m2}^2,\text{p1}\cdot \;\text{p2}\to \frac{1}{2} \left(G^{\text{topo1}}(-1,0,0)+G^{\text{topo1}}(0,-1,0)-G^{\text{topo1}}(0,0,-1)+\text{m1}^2+\text{m2}^2-\text{m3}^2\right)\right\}
+\end{dmath*}
+
+2-loop self-energy
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopCreateRulesToGLI}\OperatorTok{[}\NormalTok{FCTopology}\OperatorTok{[}\StringTok{"prop2Lv1"}\OperatorTok{,} 
+   \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ m1}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{}\NormalTok{p2}\OperatorTok{,}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p2 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{],} 
+\NormalTok{    SFAD}\OperatorTok{[\{}\NormalTok{p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{Q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{p1}^2\to G^{\text{prop2Lv1}}(-1,0,0,0,0)+\text{m1}^2,\text{p2}^2\to G^{\text{prop2Lv1}}(0,-1,0,0,0)+\text{m2}^2,\text{p1}\cdot \;\text{p2}\to \frac{1}{2} \left(G^{\text{prop2Lv1}}(-1,0,0,0,0)+G^{\text{prop2Lv1}}(0,-1,0,0,0)-G^{\text{prop2Lv1}}(0,0,0,0,-1)+\text{m1}^2+\text{m2}^2-\text{m3}^2\right),\text{p1}\cdot q\to \frac{1}{2} \left(G^{\text{prop2Lv1}}(-1,0,0,0,0)-G^{\text{prop2Lv1}}(0,0,-1,0,0)+\text{m1}^2+q^2\right),\text{p2}\cdot q\to \frac{1}{2} \left(G^{\text{prop2Lv1}}(0,-1,0,0,0)-G^{\text{prop2Lv1}}(0,0,0,-1,0)+\text{m2}^2+q^2\right)\right\}
+\end{dmath*}
+
+A list of 3-loop self-energy topologies
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{topoList }\ExtensionTok{=} \OperatorTok{\{}
+\NormalTok{   FCTopology}\OperatorTok{[}\StringTok{"prop3Lv1"}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p3}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p2 }\SpecialCharTok{{-}}\NormalTok{ p3}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ q1}\OperatorTok{],} 
+\NormalTok{        SFAD}\OperatorTok{[}\NormalTok{p2 }\SpecialCharTok{+}\NormalTok{ q1}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p3 }\SpecialCharTok{+}\NormalTok{ q1}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,}\NormalTok{ p1 . p3}\OperatorTok{\}\}]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}],} 
+   
+\NormalTok{   FCTopology}\OperatorTok{[}\StringTok{"prop3L2"}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p3}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p2 }\SpecialCharTok{{-}}\NormalTok{ p3}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{{-}}\NormalTok{ p3}\OperatorTok{],} 
+\NormalTok{        SFAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ q1}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p3 }\SpecialCharTok{+}\NormalTok{ q1}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,}\NormalTok{ (p1 }\SpecialCharTok{{-}}\NormalTok{ p2) . q1}\OperatorTok{\}\}]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}],} 
+    
+\NormalTok{   FCTopology}\OperatorTok{[}\StringTok{"prop3L3"}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{{-}}\NormalTok{ p4}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p3}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p4}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{{-}}\NormalTok{ p3 }\SpecialCharTok{{-}}\NormalTok{ p4}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ q1}\OperatorTok{],} 
+\NormalTok{        SFAD}\OperatorTok{[}\NormalTok{p3 }\SpecialCharTok{+}\NormalTok{ p4 }\SpecialCharTok{+}\NormalTok{ q1}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p3 }\SpecialCharTok{+}\NormalTok{ q1}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,}\NormalTok{ (p4) . q1}\OperatorTok{\}\}]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{,}\NormalTok{ p4}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]} 
+  \OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{FCTopology}\left(\text{prop3Lv1},\left\{\frac{1}{(\text{p1}^2+i \eta )},\frac{1}{(\text{p2}^2+i \eta )},\frac{1}{(\text{p3}^2+i \eta )},\frac{1}{((\text{p1}-\text{p2})^2+i \eta )},\frac{1}{((\text{p2}-\text{p3})^2+i \eta )},\frac{1}{((\text{p1}+\text{q1})^2+i \eta )},\frac{1}{((\text{p2}+\text{q1})^2+i \eta )},\frac{1}{((\text{p3}+\text{q1})^2+i \eta )},\frac{1}{(\text{p1}\cdot \;\text{p3}+i \eta )}\right\},\{\text{p1},\text{p2},\text{p3}\},\{\text{q1}\},\{\},\{\}\right),\text{FCTopology}\left(\text{prop3L2},\left\{\frac{1}{(\text{p1}^2+i \eta )},\frac{1}{(\text{p2}^2+i \eta )},\frac{1}{(\text{p3}^2+i \eta )},\frac{1}{((\text{p1}-\text{p2})^2+i \eta )},\frac{1}{((\text{p2}-\text{p3})^2+i \eta )},\frac{1}{((\text{p1}-\text{p3})^2+i \eta )},\frac{1}{((\text{p1}+\text{q1})^2+i \eta )},\frac{1}{((\text{p3}+\text{q1})^2+i \eta )},\frac{1}{((\text{p1}-\text{p2})\cdot \;\text{q1}+i \eta )}\right\},\{\text{p1},\text{p2},\text{p3}\},\{\text{q1}\},\{\},\{\}\right),\text{FCTopology}\left(\text{prop3L3},\left\{\frac{1}{(\text{p1}^2+i \eta )},\frac{1}{((\text{p1}-\text{p4})^2+i \eta )},\frac{1}{(\text{p3}^2+i \eta )},\frac{1}{(\text{p4}^2+i \eta )},\frac{1}{((\text{p1}-\text{p3}-\text{p4})^2+i \eta )},\frac{1}{((\text{p1}+\text{q1})^2+i \eta )},\frac{1}{((\text{p3}+\text{p4}+\text{q1})^2+i \eta )},\frac{1}{((\text{p3}+\text{q1})^2+i \eta )},\frac{1}{(\text{p4}\cdot \;\text{q1}+i \eta )}\right\},\{\text{p1},\text{p3},\text{p4}\},\{\text{q1}\},\{\},\{\}\right)\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopCreateRulesToGLI}\OperatorTok{[}\NormalTok{topoList}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\left\{\text{p1}^2\to G^{\text{prop3Lv1}}(-1,0,0,0,0,0,0,0,0),\text{p2}^2\to G^{\text{prop3Lv1}}(0,-1,0,0,0,0,0,0,0),\text{p3}^2\to G^{\text{prop3Lv1}}(0,0,-1,0,0,0,0,0,0),\text{p1}\cdot \;\text{p2}\to \frac{1}{2} \left(G^{\text{prop3Lv1}}(-1,0,0,0,0,0,0,0,0)+G^{\text{prop3Lv1}}(0,-1,0,0,0,0,0,0,0)-G^{\text{prop3Lv1}}(0,0,0,-1,0,0,0,0,0)\right),\text{p1}\cdot \;\text{p3}\to G^{\text{prop3Lv1}}(0,0,0,0,0,0,0,0,-1),\text{p2}\cdot \;\text{p3}\to \frac{1}{2} \left(G^{\text{prop3Lv1}}(0,-1,0,0,0,0,0,0,0)+G^{\text{prop3Lv1}}(0,0,-1,0,0,0,0,0,0)-G^{\text{prop3Lv1}}(0,0,0,0,-1,0,0,0,0)\right),\text{p1}\cdot \;\text{q1}\to \frac{1}{2} \left(-G^{\text{prop3Lv1}}(-1,0,0,0,0,0,0,0,0)+G^{\text{prop3Lv1}}(0,0,0,0,0,-1,0,0,0)-\text{q1}^2\right),\text{p2}\cdot \;\text{q1}\to \frac{1}{2} \left(-G^{\text{prop3Lv1}}(0,-1,0,0,0,0,0,0,0)+G^{\text{prop3Lv1}}(0,0,0,0,0,0,-1,0,0)-\text{q1}^2\right),\text{p3}\cdot \;\text{q1}\to \frac{1}{2} \left(-G^{\text{prop3Lv1}}(0,0,-1,0,0,0,0,0,0)+G^{\text{prop3Lv1}}(0,0,0,0,0,0,0,-1,0)-\text{q1}^2\right)\right\},\left\{\text{p1}^2\to G^{\text{prop3L2}}(-1,0,0,0,0,0,0,0,0),\text{p2}^2\to G^{\text{prop3L2}}(0,-1,0,0,0,0,0,0,0),\text{p3}^2\to G^{\text{prop3L2}}(0,0,-1,0,0,0,0,0,0),\text{p1}\cdot \;\text{p2}\to \frac{1}{2} \left(G^{\text{prop3L2}}(-1,0,0,0,0,0,0,0,0)+G^{\text{prop3L2}}(0,-1,0,0,0,0,0,0,0)-G^{\text{prop3L2}}(0,0,0,-1,0,0,0,0,0)\right),\text{p1}\cdot \;\text{p3}\to \frac{1}{2} \left(G^{\text{prop3L2}}(-1,0,0,0,0,0,0,0,0)+G^{\text{prop3L2}}(0,0,-1,0,0,0,0,0,0)-G^{\text{prop3L2}}(0,0,0,0,0,-1,0,0,0)\right),\text{p2}\cdot \;\text{p3}\to \frac{1}{2} \left(G^{\text{prop3L2}}(0,-1,0,0,0,0,0,0,0)+G^{\text{prop3L2}}(0,0,-1,0,0,0,0,0,0)-G^{\text{prop3L2}}(0,0,0,0,-1,0,0,0,0)\right),\text{p1}\cdot \;\text{q1}\to \frac{1}{2} \left(-G^{\text{prop3L2}}(-1,0,0,0,0,0,0,0,0)+G^{\text{prop3L2}}(0,0,0,0,0,0,-1,0,0)-\text{q1}^2\right),\text{p2}\cdot \;\text{q1}\to \frac{1}{2} \left(-G^{\text{prop3L2}}(-1,0,0,0,0,0,0,0,0)+G^{\text{prop3L2}}(0,0,0,0,0,0,-1,0,0)-2 G^{\text{prop3L2}}(0,0,0,0,0,0,0,0,-1)-\text{q1}^2\right),\text{p3}\cdot \;\text{q1}\to \frac{1}{2} \left(-G^{\text{prop3L2}}(0,0,-1,0,0,0,0,0,0)+G^{\text{prop3L2}}(0,0,0,0,0,0,0,-1,0)-\text{q1}^2\right)\right\},\left\{\text{p1}^2\to G^{\text{prop3L3}}(-1,0,0,0,0,0,0,0,0),\text{p3}^2\to G^{\text{prop3L3}}(0,0,-1,0,0,0,0,0,0),\text{p4}^2\to G^{\text{prop3L3}}(0,0,0,-1,0,0,0,0,0),\text{p1}\cdot \;\text{p3}\to \frac{1}{2} \left(G^{\text{prop3L3}}(0,-1,0,0,0,0,0,0,0)+G^{\text{prop3L3}}(0,0,-1,0,0,0,0,0,0)-G^{\text{prop3L3}}(0,0,0,-1,0,0,0,0,0)-G^{\text{prop3L3}}(0,0,0,0,-1,0,0,0,0)+G^{\text{prop3L3}}(0,0,0,0,0,0,-1,0,0)-G^{\text{prop3L3}}(0,0,0,0,0,0,0,-1,0)-2 G^{\text{prop3L3}}(0,0,0,0,0,0,0,0,-1)\right),\text{p1}\cdot \;\text{p4}\to \frac{1}{2} \left(G^{\text{prop3L3}}(-1,0,0,0,0,0,0,0,0)-G^{\text{prop3L3}}(0,-1,0,0,0,0,0,0,0)+G^{\text{prop3L3}}(0,0,0,-1,0,0,0,0,0)\right),\text{p3}\cdot \;\text{p4}\to \frac{1}{2} \left(-G^{\text{prop3L3}}(0,0,0,-1,0,0,0,0,0)+G^{\text{prop3L3}}(0,0,0,0,0,0,-1,0,0)-G^{\text{prop3L3}}(0,0,0,0,0,0,0,-1,0)-2 G^{\text{prop3L3}}(0,0,0,0,0,0,0,0,-1)\right),\text{p1}\cdot \;\text{q1}\to \frac{1}{2} \left(-G^{\text{prop3L3}}(-1,0,0,0,0,0,0,0,0)+G^{\text{prop3L3}}(0,0,0,0,0,-1,0,0,0)-\text{q1}^2\right),\text{p3}\cdot \;\text{q1}\to \frac{1}{2} \left(-G^{\text{prop3L3}}(0,0,-1,0,0,0,0,0,0)+G^{\text{prop3L3}}(0,0,0,0,0,0,0,-1,0)-\text{q1}^2\right),\text{p4}\cdot \;\text{q1}\to G^{\text{prop3L3}}(0,0,0,0,0,0,0,0,-1)\right\}\right\}
+\end{dmath*}
+\end{document}

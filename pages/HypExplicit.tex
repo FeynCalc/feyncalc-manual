@@ -1,0 +1,51 @@
+% !TeX program = pdflatex
+% !TeX root = HypExplicit.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{hypexplicit}{%
+\section{HypExplicit}\label{hypexplicit}}
+
+\texttt{HypExplicit[\allowbreak{}exp,\ \allowbreak{}nu]} expresses
+Hypergeometric functions in exp by their definition in terms of a sum
+(the \texttt{Sum} is omitted and \texttt{nu} is the summation index).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{hypergeometricir}{HypergeometricIR}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]} 
+ 
+\NormalTok{HypExplicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1(a,b;c;z)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{\Gamma (c) z^{\nu } \Gamma (a+\nu ) \Gamma (b+\nu )}{\Gamma (a) \Gamma (b) \Gamma (\nu +1) \Gamma (c+\nu )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{HypergeometricPFQ}\OperatorTok{[\{}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{d}\OperatorTok{,} \FunctionTok{e}\OperatorTok{\},} \FunctionTok{z}\OperatorTok{]} 
+ 
+\NormalTok{HypExplicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _3F_2(a,b,c;d,e;z)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{\Gamma (d) \Gamma (e) z^{\nu } \Gamma (a+\nu ) \Gamma (b+\nu ) \Gamma (c+\nu )}{\Gamma (a) \Gamma (b) \Gamma (c) \Gamma (\nu +1) \Gamma (d+\nu ) \Gamma (e+\nu )}
+\end{dmath*}
+\end{document}

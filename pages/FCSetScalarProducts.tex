@@ -1,0 +1,53 @@
+% !TeX program = pdflatex
+% !TeX root = FCSetScalarProducts.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcsetscalarproducts}{%
+\section{FCSetScalarProducts}\label{fcsetscalarproducts}}
+
+\texttt{FCSetScalarProducts[\allowbreak{}]} assigns values in the second
+list to scalar products (or other kinematic-related symbols such as
+\texttt{Momentum}, \texttt{CartesianMomentum}, \texttt{TC} etc.) in the
+first list.
+
+The values can be also modified if the quantities in the first list are
+entered by hand. To modify the definitions programmatically without
+resorting to \texttt{With} and similar delayed evaluation tricks one can
+use placeholders in conjunction with the \texttt{InitialSubstitutions}
+option.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{scalarproduct}{ScalarProduct}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClearScalarProducts}\OperatorTok{[]}\NormalTok{; }
+ 
+\NormalTok{FCSetScalarProducts}\OperatorTok{[\{}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{p3}\OperatorTok{,}\NormalTok{ p4}\OperatorTok{]\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,}\NormalTok{ xx1}\OperatorTok{,}\NormalTok{ xx2}\OperatorTok{\}]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{p3}\OperatorTok{,}\NormalTok{ p4}\OperatorTok{]\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{0,\text{xx1},\text{xx2}\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCSetScalarProducts}\OperatorTok{[\{}\NormalTok{spd}\OperatorTok{[}\NormalTok{p1}\OperatorTok{]\},} \OperatorTok{\{}\NormalTok{val}\OperatorTok{\},}\NormalTok{ InitialSubstitutions }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{spd }\OtherTok{{-}\textgreater{}}\NormalTok{ SPD}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{\text{val}\}
+\end{dmath*}
+\end{document}

@@ -1,0 +1,56 @@
+% !TeX program = pdflatex
+% !TeX root = ToPaVe2.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{topave2}{%
+\section{ToPaVe2}\label{topave2}}
+
+\texttt{ToPaVe2[\allowbreak{}expr]} converts all the direct
+Passarino-Veltman functions (\texttt{A0}, \texttt{A00}, \texttt{B0},
+\texttt{B1}, \texttt{B00}, \texttt{B11}, \texttt{C0}, \texttt{D0}) to
+\texttt{PaVe}-functions.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{topave}{ToPaVe}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToPaVe2}\OperatorTok{[}\NormalTok{A0}\OperatorTok{[}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{A}_0\left(m^2\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToPaVe2}\OperatorTok{[}\NormalTok{A0}\OperatorTok{[}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{]]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*PaVe[0, \{\}, \{m\^{}2\}]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToPaVe2}\OperatorTok{[}\NormalTok{B11}\OperatorTok{[}\NormalTok{pp}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \FunctionTok{M}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ BReduce }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{B}_{11}\left(\text{pp},m^2,M^2\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToPaVe2}\OperatorTok{[}\NormalTok{B11}\OperatorTok{[}\NormalTok{pp}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \FunctionTok{M}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ BReduce }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*PaVe[1, 1, \{pp\}, \{m\^{}2, M\^{}2\}]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

@@ -1,0 +1,103 @@
+% !TeX program = pdflatex
+% !TeX root = QuarkGluonVertex.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{quarkgluonvertex}{%
+\section{QuarkGluonVertex}\label{quarkgluonvertex}}
+
+\texttt{QuarkGluonVertex[\allowbreak{}mu,\ \allowbreak{}a]} gives the
+Feynman rule for the quark-gluon vertex.
+
+\texttt{QGV} can be used as an abbreviation of
+\texttt{QuarkGluonVertex}.
+
+The dimension and the name of the coupling constant are determined by
+the options \texttt{Dimension} and \texttt{CouplingConstant}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{gluonvertex}{GluonVertex}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QuarkGluonVertex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{,}\NormalTok{ Explicit }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+i g_s T^a.\gamma ^{\mu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QGV}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+Q_a^{\mu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Explicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+i g_s T^a.\gamma ^{\mu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QuarkGluonVertex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{,}\NormalTok{ CounterTerm }\OtherTok{{-}\textgreater{}} \DecValTok{1}\OperatorTok{,}\NormalTok{ Explicit }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{2 i g_s^3 S_n \left(C_F-\frac{C_A}{2}\right) T^a.\gamma ^{\mu }}{\varepsilon }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QuarkGluonVertex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{,}\NormalTok{ CounterTerm }\OtherTok{{-}\textgreater{}} \DecValTok{2}\OperatorTok{,}\NormalTok{ Explicit }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{3 i C_A g_s^3 S_n T^a.\gamma ^{\mu }}{\varepsilon }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QuarkGluonVertex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{,}\NormalTok{ CounterTerm }\OtherTok{{-}\textgreater{}} \DecValTok{3}\OperatorTok{,}\NormalTok{ Explicit }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{2 i g_s^3 S_n \left(C_A+C_F\right) T^a.\gamma ^{\mu }}{\varepsilon }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QuarkGluonVertex}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{k}\OperatorTok{\},}\NormalTok{ OPE }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,}\NormalTok{ Explicit }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\Omega  \Delta ^{\mu } g_s (\gamma \cdot \Delta ).T^a \left(\sum _{i=0}^{-2+m} (-1)^i (k\cdot \Delta )^i (\Delta \cdot q)^{-2-i+m}\right)+i g_s T^a.\gamma ^{\mu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QuarkGluonVertex}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{k}\OperatorTok{\},}\NormalTok{ OPE }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{,}\NormalTok{ Explicit }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+i g_s T^a.\gamma ^{\mu }
+\end{dmath*}
+\end{document}

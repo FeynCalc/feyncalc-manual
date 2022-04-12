@@ -1,0 +1,69 @@
+% !TeX program = pdflatex
+% !TeX root = LorentzToCartesian.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{lorentztocartesian}{%
+\section{LorentzToCartesian}\label{lorentztocartesian}}
+
+\texttt{LorentzToCartesian[\allowbreak{}exp]} rewrites Lorentz tensors
+in form of Cartesian tensors (when possible). Using options one can
+specify which types of tensors should be converted.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{cartesiantolorentz}{CartesianToLorentz}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ LorentzToCartesian}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p\cdot q
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+p^0 q^0-p\cdot q
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LC}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]][}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ LorentzToCartesian}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\mu \nu \overline{p}\overline{q}}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{g}^{0\mu } \bar{g}^{\text{\$MU}(\text{\$20})\nu } \left(-\bar{\epsilon }^{\text{\$MU}(\text{\$20})\overline{p}\overline{q}}\right)-\bar{g}^{\text{\$MU}(\text{\$20})\mu } \left(\bar{g}^{0\nu } \left(-\bar{\epsilon }^{\text{\$MU}(\text{\$20})\overline{p}\overline{q}}\right)-\bar{g}^{\text{\$MU}(\text{\$21})\nu } \left(q^0 \bar{\epsilon }^{\text{\$MU}(\text{\$20})\text{\$MU}(\text{\$21})\overline{p}}-p^0 \bar{\epsilon }^{\text{\$MU}(\text{\$20})\text{\$MU}(\text{\$21})\overline{q}}\right)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ LorentzToCartesian }
+  
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\gamma ^{\mu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^0 \bar{g}^{0\mu }-\gamma ^{\text{\$MU}(\text{\$22})} g^{\text{\$MU}(\text{\$22})\mu }
+\end{dmath*}
+\end{document}

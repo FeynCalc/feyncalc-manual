@@ -1,0 +1,102 @@
+% !TeX program = pdflatex
+% !TeX root = SUNDelta.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{sundelta}{%
+\section{SUNDelta}\label{sundelta}}
+
+\texttt{SUNDelta[\allowbreak{}a,\ \allowbreak{}b]} is the
+Kronecker-delta for \(SU(N)\) with color indices \texttt{a} and
+\texttt{b} in the adjoint representation.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{explicitsunindex}{ExplicitSUNIndex}, \hyperlink{sd}{SD},
+\hyperlink{sunf}{SUNF}, \hyperlink{sunindex}{SUNIndex},
+\hyperlink{sunsimplify}{SUNSimplify}, \hyperlink{trick}{Trick}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNDelta}\OperatorTok{[}\NormalTok{SUNIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{],}\NormalTok{ SUNIndex}\OperatorTok{[}\FunctionTok{b}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\delta ^{ab}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNDelta}\OperatorTok{[}\NormalTok{SUNIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{],}\NormalTok{ SUNIndex}\OperatorTok{[}\FunctionTok{b}\OperatorTok{]]}\NormalTok{ SUNDelta}\OperatorTok{[}\NormalTok{SUNIndex}\OperatorTok{[}\FunctionTok{b}\OperatorTok{],}\NormalTok{ SUNIndex}\OperatorTok{[}\FunctionTok{c}\OperatorTok{]]} 
+ 
+\NormalTok{SUNSimplify}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\delta ^{ab} \delta ^{bc}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\delta ^{ac}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNDelta}\OperatorTok{[}\NormalTok{SUNIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{],}\NormalTok{ SUNIndex}\OperatorTok{[}\FunctionTok{b}\OperatorTok{]]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SUNDelta[SUNIndex[a], SUNIndex[b]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNDelta}\OperatorTok{[}\NormalTok{SUNIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{],}\NormalTok{ SUNIndex}\OperatorTok{[}\FunctionTok{b}\OperatorTok{]]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//}\NormalTok{ FCE }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SD[a, b]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SD}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SUNDelta[SUNIndex[a], SUNIndex[b]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+The arguments of \texttt{SUNDelta} may also represent explicit integer
+indices via the head \texttt{ExplictiSUNIndex}. The difference is that
+\texttt{SUNSimplify} will only sum over symbolic indices.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ SUNDelta}\OperatorTok{[}\NormalTok{SUNIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{],}\NormalTok{ ExplicitSUNIndex}\OperatorTok{[}\DecValTok{2}\OperatorTok{]]}\NormalTok{ SUNDelta}\OperatorTok{[}\NormalTok{SUNIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{],}\NormalTok{ SUNIndex}\OperatorTok{[}\FunctionTok{b}\OperatorTok{]]}\NormalTok{ SUNDelta}\OperatorTok{[}\NormalTok{SUNIndex}\OperatorTok{[}\FunctionTok{c}\OperatorTok{],}\NormalTok{ ExplicitSUNIndex}\OperatorTok{[}\DecValTok{2}\OperatorTok{]]} \SpecialCharTok{//}\NormalTok{ SUNSimplify}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\delta ^{2b} \delta ^{2c}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SUNDelta[ExplicitSUNIndex[2], SUNIndex[b]] SUNDelta[ExplicitSUNIndex[2], SUNIndex[c]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SD}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{2}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SUNDelta[ExplicitSUNIndex[1], ExplicitSUNIndex[2]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

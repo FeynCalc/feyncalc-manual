@@ -1,0 +1,164 @@
+% !TeX program = pdflatex
+% !TeX root = Pair.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{pair}{%
+\section{Pair}\label{pair}}
+
+\texttt{Pair[\allowbreak{}x,\ \allowbreak{}y]} is the head of a special
+pairing used in the internal representation: \texttt{x} and \texttt{y}
+may have heads \texttt{LorentzIndex} or \texttt{Momentum}.
+
+If both \texttt{x} and \texttt{y} have head \texttt{LorentzIndex}, the
+metric tensor (e.g.~\(g^{\mu \nu}\)) is understood.
+
+If \texttt{x} and \texttt{y} have head \texttt{Momentum}, a scalar
+product (e.g.~\(p \cdot q\)) is meant.
+
+If one of \texttt{x} and \texttt{y} has head \texttt{LorentzIndex} and
+the other \texttt{Momentum}, a Lorentz vector (e.g.~\(p^{\mu }\)) is
+implied.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fv}{FV}, \hyperlink{fvd}{FVD},
+\hyperlink{mt}{MT}, \hyperlink{mtd}{MTD},
+\hyperlink{scalarproduct}{ScalarProduct}, \hyperlink{sp}{SP},
+\hyperlink{spd}{SPD}.
+
+\subsection{Examples}
+
+This represents a \(4\)-dimensional metric tensor
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pair}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{]],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{g}^{\alpha \beta }
+\end{dmath*}
+
+This is a D-dimensional metric tensor
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pair}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \FunctionTok{D}\OperatorTok{],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \FunctionTok{D}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+g^{\alpha \beta }
+\end{dmath*}
+
+If the Lorentz indices live in different dimensions, this gets resolved
+according to the t'Hooft-Veltman-Breitenlohner-Maison prescription
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pair}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \FunctionTok{n} \SpecialCharTok{{-}} \DecValTok{4}\OperatorTok{],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+A \(4\)-dimensional Lorentz vector
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pair}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{]],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\alpha }
+\end{dmath*}
+
+A \(D\)-dimensional Lorentz vector
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pair}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \FunctionTok{D}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p^{\alpha }
+\end{dmath*}
+
+\(4\)-dimensional scalar products of Lorentz vectors
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{q}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot \overline{q}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot (\overline{p}-\overline{q})
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}\SpecialCharTok{\^{}}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^4
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}\SpecialCharTok{\^{}}\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^6
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ExpandScalarProduct}\OperatorTok{[}\NormalTok{Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^2-\overline{p}\cdot \overline{q}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{q}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]} \SpecialCharTok{+}\NormalTok{ Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{q}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+\end{document}

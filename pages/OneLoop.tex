@@ -1,0 +1,62 @@
+% !TeX program = pdflatex
+% !TeX root = OneLoop.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{oneloop}{%
+\section{OneLoop}\label{oneloop}}
+
+\texttt{OneLoop[\allowbreak{}q,\ \allowbreak{}amplitude]} calculates the
+1-loop Feynman diagram amplitude. The argument \texttt{q} denotes the
+integration variable, i.e., the loop momentum.
+\texttt{OneLoop[\allowbreak{}name,\ \allowbreak{}q,\ \allowbreak{}amplitude]}
+has as first argument a name of the amplitude. If the second argument
+has head \texttt{FeynAmp} then
+\texttt{OneLoop[\allowbreak{}q,\ \allowbreak{}FeynAmp[\allowbreak{}name,\ \allowbreak{}k,\ \allowbreak{}expr]]}
+and
+\texttt{OneLoop[\allowbreak{}FeynAmp[\allowbreak{}name,\ \allowbreak{}k,\ \allowbreak{}expr]]}
+tranform to
+\texttt{OneLoop[\allowbreak{}name,\ \allowbreak{}k,\ \allowbreak{}expr]}.
+\texttt{OneLoop} is deprecated, please use \texttt{TID} instead!
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{topave}{ToPaVe},
+\hyperlink{topave2}{ToPaVe2}, \hyperlink{a0}{A0}, \hyperlink{a00}{A00},
+\hyperlink{b0}{B0}, \hyperlink{b1}{B1}, \hyperlink{b00}{B00},
+\hyperlink{b11}{B11}, \hyperlink{c0}{C0}, \hyperlink{d0}{D0}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{{-}}\FunctionTok{I}\SpecialCharTok{/}\FunctionTok{Pi}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]} 
+ 
+\NormalTok{OneLoop}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{i}{\pi ^2 \left(q^2-m^2\right)}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{A}_0\left(m^2\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{I}\NormalTok{ ((el}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(}\DecValTok{16} \FunctionTok{Pi}\SpecialCharTok{\^{}}\DecValTok{4}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{D}\NormalTok{))) FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,}\NormalTok{ mf}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{k}\OperatorTok{,}\NormalTok{ mf}\OperatorTok{\}]}\NormalTok{ DiracTrace}\OperatorTok{[}\NormalTok{(mf }\SpecialCharTok{+}\NormalTok{ GSD}\OperatorTok{[}\FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{k}\OperatorTok{]}\NormalTok{) . GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . (mf }\SpecialCharTok{+}\NormalTok{ GSD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]}\NormalTok{) . GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]} 
+ 
+\NormalTok{OneLoop}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{i \;\text{el}^2 \;\text{tr}\left((\gamma \cdot (q-k)+\text{mf}).\gamma ^{\mu }.(\text{mf}+\gamma \cdot q).\gamma ^{\mu }\right)}{16 \pi ^4 (1-D) \left(q^2-\text{mf}^2\right).\left((q-k)^2-\text{mf}^2\right)}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{\text{el}^2 \left(-\frac{8 \;\text{mf}^2 \;\text{B}_0\left(\overline{k}^2,\text{mf}^2,\text{mf}^2\right)}{1-D}+\frac{2 (2-D) \overline{k}^2 \;\text{B}_0\left(\overline{k}^2,\text{mf}^2,\text{mf}^2\right)}{1-D}+\frac{4 D \;\text{A}_0\left(\text{mf}^2\right)}{1-D}-\frac{8 \;\text{A}_0\left(\text{mf}^2\right)}{1-D}\right)}{16 \pi ^2}
+\end{dmath*}
+\end{document}

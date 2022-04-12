@@ -1,0 +1,41 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopSolutionList.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopsolutionlist}{%
+\section{FCLoopSolutionList}\label{fcloopsolutionlist}}
+
+\texttt{FCLoopSolutionList[\allowbreak{}loopList,\ \allowbreak{}reversedRepIndexList,\ \allowbreak{}canIndexList,\ \allowbreak{}uniqueCanIndexList\},\ \allowbreak{}solsList]}
+is an auxiliary internal function that uses the output of
+FCLoopCanonicalize and the list of simplified integrals solsList to
+create the substitution list of type
+\texttt{"Integral" -> "simplified Integral"}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcloopcanonicalize}{FCLoopCanonicalize}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{li }\ExtensionTok{=}\NormalTok{ FCLoopCanonicalize}\OperatorTok{[}\NormalTok{myHead}\OperatorTok{[}\NormalTok{FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ FAD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{+} \FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]]} \SpecialCharTok{+}\NormalTok{ myHead}\OperatorTok{[}\NormalTok{FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]}\NormalTok{ FAD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{+} \FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]],} \FunctionTok{q}\OperatorTok{,}\NormalTok{ myHead}\OperatorTok{]} 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\left\{\text{myHead}\left(\frac{q^{\mu } q^{\nu }}{q^2.\left((p+q)^2-m^2\right)}\right),\text{myHead}\left(\frac{q^{\rho } q^{\sigma }}{q^2.\left((p+q)^2-m^2\right)}\right)\right\},\{\{\text{FCGV}(\text{cli191})\to \mu ,\text{FCGV}(\text{cli192})\to \nu \},\{\text{FCGV}(\text{cli191})\to \rho ,\text{FCGV}(\text{cli192})\to \sigma \}\},\left\{\text{myHead}\left(\frac{q^{\text{FCGV}(\text{cli191})} q^{\text{FCGV}(\text{cli192})}}{q^2.\left((p+q)^2-m^2\right)}\right),\text{myHead}\left(\frac{q^{\text{FCGV}(\text{cli191})} q^{\text{FCGV}(\text{cli192})}}{q^2.\left((p+q)^2-m^2\right)}\right)\right\},\left\{\text{myHead}\left(\frac{q^{\text{FCGV}(\text{cli191})} q^{\text{FCGV}(\text{cli192})}}{q^2.\left((p+q)^2-m^2\right)}\right)\right\}\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopSolutionList}\OperatorTok{[}\NormalTok{li}\OperatorTok{,}\NormalTok{ prefactor (li}\OperatorTok{[[}\DecValTok{4}\OperatorTok{]]} \OtherTok{/.}\NormalTok{ myHead }\OtherTok{{-}\textgreater{}} \FunctionTok{Identity} \OtherTok{/.} \FunctionTok{q} \OtherTok{{-}\textgreater{}} \FunctionTok{p}\NormalTok{)}\OperatorTok{,} \FunctionTok{Dispatch} \OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{myHead}\left(\frac{q^{\mu } q^{\nu }}{q^2.\left((p+q)^2-m^2\right)}\right)\to \frac{\text{prefactor} p^{\mu } p^{\nu }}{p^2.\left(4 p^2-m^2\right)},\text{myHead}\left(\frac{q^{\rho } q^{\sigma }}{q^2.\left((p+q)^2-m^2\right)}\right)\to \frac{\text{prefactor} p^{\rho } p^{\sigma }}{p^2.\left(4 p^2-m^2\right)}\right\}
+\end{dmath*}
+\end{document}

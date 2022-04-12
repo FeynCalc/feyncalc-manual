@@ -1,0 +1,39 @@
+% !TeX program = pdflatex
+% !TeX root = Twist4GluonOperator.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{twist4gluonoperator}{%
+\section{Twist4GluonOperator}\label{twist4gluonoperator}}
+
+\texttt{Twist4GluonOperator[\allowbreak{}\{\allowbreak{}oa,\ \allowbreak{}ob,\ \allowbreak{}oc,\ \allowbreak{}od\},\ \allowbreak{}\{\allowbreak{}p1,\ \allowbreak{}la1,\ \allowbreak{}a1\},\ \allowbreak{}\{\allowbreak{}p2,\ \allowbreak{}la2,\ \allowbreak{}a2\},\ \allowbreak{}\{\allowbreak{}p3,\ \allowbreak{}la3,\ \allowbreak{}a3\},\ \allowbreak{}\{\allowbreak{}p4,\ \allowbreak{}la4,\ \allowbreak{}a4\}]}
+is a special routine for particular QCD calculations.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{twist2quarkoperator}{Twist2QuarkOperator},
+\hyperlink{twist3quarkoperator}{Twist3QuarkOperator},
+\hyperlink{twist2gluonoperator}{Twist2GluonOperator}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res }\ExtensionTok{=}\NormalTok{ Twist4GluonOperator}\OperatorTok{[\{}\NormalTok{oa}\OperatorTok{,}\NormalTok{ ob}\OperatorTok{,}\NormalTok{ oc}\OperatorTok{,}\NormalTok{ od}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ la1}\OperatorTok{,}\NormalTok{ a1}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{p2}\OperatorTok{,}\NormalTok{ la2}\OperatorTok{,}\NormalTok{ a2}\OperatorTok{\},} 
+    \OperatorTok{\{}\NormalTok{p3}\OperatorTok{,}\NormalTok{ la3}\OperatorTok{,}\NormalTok{ a3}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{p4}\OperatorTok{,}\NormalTok{ la4}\OperatorTok{,}\NormalTok{ a4}\OperatorTok{\}]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+This is how the first two terms look like
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res}\OperatorTok{[[}\DecValTok{1}\NormalTok{ ;; }\DecValTok{2}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\delta ^{\text{a1}\;\text{od}} \delta ^{\text{a2}\;\text{oc}} \delta ^{\text{a3}\;\text{ob}} \delta ^{\text{a4}\;\text{oa}} \left(-\bar{g}^{\text{la1}\;\text{la2}} \left(\Delta \cdot \overline{\text{p1}}\right) \left(\Delta \cdot \overline{\text{p2}}\right)+\Delta ^{\text{la2}} \overline{\text{p2}}^{\text{la1}} \left(\Delta \cdot \overline{\text{p1}}\right)+\Delta ^{\text{la1}} \overline{\text{p1}}^{\text{la2}} \left(\Delta \cdot \overline{\text{p2}}\right)-\Delta ^{\text{la1}} \Delta ^{\text{la2}} \left(\overline{\text{p1}}\cdot \overline{\text{p2}}\right)\right) \left(-\bar{g}^{\text{la3}\;\text{la4}} \left(\Delta \cdot \overline{\text{p3}}\right) \left(\Delta \cdot \overline{\text{p4}}\right)+\Delta ^{\text{la4}} \overline{\text{p4}}^{\text{la3}} \left(\Delta \cdot \overline{\text{p3}}\right)+\Delta ^{\text{la3}} \overline{\text{p3}}^{\text{la4}} \left(\Delta \cdot \overline{\text{p4}}\right)-\Delta ^{\text{la3}} \Delta ^{\text{la4}} \left(\overline{\text{p3}}\cdot \overline{\text{p4}}\right)\right)+\delta ^{\text{a1}\;\text{oc}} \delta ^{\text{a2}\;\text{od}} \delta ^{\text{a3}\;\text{ob}} \delta ^{\text{a4}\;\text{oa}} \left(-\bar{g}^{\text{la1}\;\text{la2}} \left(\Delta \cdot \overline{\text{p1}}\right) \left(\Delta \cdot \overline{\text{p2}}\right)+\Delta ^{\text{la2}} \overline{\text{p2}}^{\text{la1}} \left(\Delta \cdot \overline{\text{p1}}\right)+\Delta ^{\text{la1}} \overline{\text{p1}}^{\text{la2}} \left(\Delta \cdot \overline{\text{p2}}\right)-\Delta ^{\text{la1}} \Delta ^{\text{la2}} \left(\overline{\text{p1}}\cdot \overline{\text{p2}}\right)\right) \left(-\bar{g}^{\text{la3}\;\text{la4}} \left(\Delta \cdot \overline{\text{p3}}\right) \left(\Delta \cdot \overline{\text{p4}}\right)+\Delta ^{\text{la4}} \overline{\text{p4}}^{\text{la3}} \left(\Delta \cdot \overline{\text{p3}}\right)+\Delta ^{\text{la3}} \overline{\text{p3}}^{\text{la4}} \left(\Delta \cdot \overline{\text{p4}}\right)-\Delta ^{\text{la3}} \Delta ^{\text{la4}} \left(\overline{\text{p3}}\cdot \overline{\text{p4}}\right)\right)
+\end{dmath*}
+\end{document}

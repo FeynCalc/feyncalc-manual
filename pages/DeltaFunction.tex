@@ -1,0 +1,73 @@
+% !TeX program = pdflatex
+% !TeX root = DeltaFunction.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{deltafunction}{%
+\section{DeltaFunction}\label{deltafunction}}
+
+\texttt{DeltaFunction[\allowbreak{}x]} is the Dirac delta-function
+\(\delta (x)\).
+
+Mathematica also provides a built-in function \texttt{DiracDelta} with
+comparable properties.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{convolute}{Convolute},
+\hyperlink{deltafunctionprime}{DeltaFunctionPrime},
+\hyperlink{integrate2}{Integrate2},
+\hyperlink{simplifydeltafunction}{SimplifyDeltaFunction}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DeltaFunction}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\delta (1-x)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\NormalTok{DeltaFunction}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]} \FunctionTok{f}\OperatorTok{[}\FunctionTok{x}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f(1)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\NormalTok{DeltaFunction}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]} \FunctionTok{f}\OperatorTok{[}\FunctionTok{x}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f(0)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\NormalTok{DeltaFunction}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]} \FunctionTok{f}\OperatorTok{[}\FunctionTok{x}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f(1)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Convolute}\OperatorTok{[}\NormalTok{DeltaFunction}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{],} \FunctionTok{x}\OperatorTok{]} \OtherTok{/.}\NormalTok{ FCGV}\OperatorTok{[}\AttributeTok{z\_}\OperatorTok{]}\NormalTok{ :\textgreater{} }\FunctionTok{ToExpression}\OperatorTok{[}\FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-x \delta (1-x) \log (x)
+\end{dmath*}
+\end{document}

@@ -1,0 +1,328 @@
+% !TeX program = pdflatex
+% !TeX root = Contract.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{contract}{%
+\section{Contract}\label{contract}}
+
+\texttt{Contract[\allowbreak{}expr]} contracts pairs of Lorentz or
+Cartesian indices of metric tensors, vectors and (depending on the value
+of the option \texttt{EpsContract}) of Levi-Civita tensors in
+\texttt{expr}.
+
+For contractions of Dirac matrices with each other use
+\texttt{DiracSimplify}.
+
+\texttt{Contract[\allowbreak{}exp1,\ \allowbreak{}exp2]} contracts
+\texttt{(exp1*exp2)}, where \texttt{exp1} and \texttt{exp2} may be
+larger products of sums of metric tensors and 4-vectors. This can be
+also useful when evaluating polarization sums, where \texttt{exp2}
+should be the product (or expanded sum) of the polarization sums for the
+vector bosons.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{pair}{Pair},
+\hyperlink{cartesianpair}{CartesianPair},
+\hyperlink{diracsimplify}{DiracSimplify},
+\hyperlink{momentumcombine}{MomentumCombine}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MT}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\mu } \bar{g}^{\mu \nu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\nu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu } \overline{p}^{\mu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }\cdot \overline{p}
+\end{dmath*}
+
+The default dimension for a metric tensor is 4.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MT}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{g}^{\mu \mu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+4
+\end{dmath*}
+
+A quick way to enter \(D\)-dimensional metric tensors is given by
+\texttt{MTD}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MTD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{  MTD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(g^{\mu \nu})^2
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+D
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%} \OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\mu } \overline{q}^{\mu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot \overline{q}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FV}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{b}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\overline{a}-\overline{b}\right)^{\mu } \left(\overline{p}-\overline{q}\right)^{\mu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{a}\cdot \overline{p}-\overline{a}\cdot \overline{q}-\overline{b}\cdot \overline{p}+\overline{b}\cdot \overline{q}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FVD}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{b}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(a-b)^{\nu } (p-q)^{\nu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+a\cdot p-a\cdot q-b\cdot p+b\cdot q
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LC}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\sigma } \bar{\epsilon }^{\mu \nu \alpha \sigma }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\alpha \mu \nu \overline{p}}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LC}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{]]}\NormalTok{ LC}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\mu \nu \alpha \beta } \bar{\epsilon }^{\mu \nu \alpha \sigma }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-6 \bar{g}^{\beta \sigma }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LCD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{]]}\NormalTok{ LCD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ Factor2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overset{\text{}}{\epsilon }^{\mu \nu \alpha \beta } \overset{\text{}}{\epsilon }^{\mu \nu \alpha \sigma }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+(1-D) (2-D) (3-D) g^{\beta \sigma }
+\end{dmath*}
+
+Contractions of Cartesian tensors are also possible. They can live in
+\(3\), \(D-1\) or \(D-4\) dimensions.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{KD}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}\NormalTok{ CV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^i \bar{\delta }^{ij}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^j
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]}\NormalTok{ CGA}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{\gamma }^i \overline{p}^i
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{\gamma }\cdot \overline{p}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{KD}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\delta }^{ii}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+3
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{KD}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(\bar{\delta}^{ij})^2
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+3
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CV}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}\NormalTok{ CV}\OperatorTok{[}\FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{b}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\overline{a}-\overline{b}\right)^j \left(\overline{p}-\overline{q}\right)^j
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+(\overline{a}-\overline{b})\cdot (\overline{p}-\overline{q})
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CLC}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]}\NormalTok{ CV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^k \bar{\epsilon }^{ijk}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{ij\overline{p}}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CLC}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]}\NormalTok{ CLC}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{l}\OperatorTok{]} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{ijk} \bar{\epsilon }^{ijl}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+2 \bar{\delta }^{kl}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CLCD}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]}\NormalTok{ CLCD}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{l}\OperatorTok{]} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ Factor2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overset{\text{}}{\epsilon }^{ijk} \overset{\text{}}{\epsilon }^{ijl}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+(2-D) (3-D) \delta ^{kl}
+\end{dmath*}
+\end{document}

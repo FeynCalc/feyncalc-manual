@@ -1,0 +1,74 @@
+% !TeX program = pdflatex
+% !TeX root = SumP.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{sump}{%
+\section{SumP}\label{sump}}
+
+\texttt{SumP[\allowbreak{}k,\ \allowbreak{}m]} is
+\(2^{k-1}\sum _{i=1}^{2m}\left(1+(-1)^i\right)/i^k\).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{sums}{SumS},
+\hyperlink{sumt}{SumT}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SumP}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \FunctionTok{m} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+S_1^{'(m-1)}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SumP}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \FunctionTok{m} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+S_2^{'(m-1)}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SumP}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \FunctionTok{m}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+S_1^{'(m)}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SumP}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{4}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{25}{12}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Explicit}\OperatorTok{[}\NormalTok{SumP}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \FunctionTok{n}\SpecialCharTok{/}\DecValTok{2}\OperatorTok{]]} 
+ 
+\SpecialCharTok{\%} \OtherTok{/.} \FunctionTok{n} \OtherTok{{-}\textgreater{}} \DecValTok{8}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} \left(1-(-1)^n\right) S_1\left(\frac{n-1}{2}\right)+\frac{1}{2} \left((-1)^n+1\right) S_1\left(\frac{n}{2}\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{25}{12}
+\end{dmath*}
+\end{document}

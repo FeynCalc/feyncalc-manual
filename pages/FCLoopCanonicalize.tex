@@ -1,0 +1,53 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopCanonicalize.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopcanonicalize}{%
+\section{FCLoopCanonicalize}\label{fcloopcanonicalize}}
+
+\texttt{FCLoopCanonicalize[\allowbreak{}exp,\ \allowbreak{}q,\ \allowbreak{}loopHead]}
+is an auxiliary internal function that canonicalizes indices of 1-loop
+integrals with loop momentum \texttt{q} that are wrapped with
+\texttt{loopHead}. The output is given as a list of 4 entries, of which
+the last one contains a list of all the unique 1-loop integrals in the
+given expression. After those are simplified, the original output of
+\texttt{FCLoopCanonicalize} together with the list of the simplified
+unique integrals should be inserted into \texttt{FCLoopSolutionList} to
+obtain the final replacement list that will be applied to the original
+expression.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcloopsolutionlist}{FCLoopSolutionList}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopCanonicalize}\OperatorTok{[}\NormalTok{myHead}\OperatorTok{[}\NormalTok{FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]],} \FunctionTok{q}\OperatorTok{,}\NormalTok{ myHead}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{c}
+ \;\text{myHead}\left(q^{\mu }\right) \\
+ \{\text{FCGV}(\text{cli191})\to \mu \} \\
+ \;\text{myHead}\left(q^{\text{FCGV}(\text{cli191})}\right) \\
+ \;\text{myHead}\left(q^{\text{FCGV}(\text{cli191})}\right) \\
+\end{array}
+\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopCanonicalize}\OperatorTok{[}\NormalTok{myHead}\OperatorTok{[}\NormalTok{FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ FAD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{+} \FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]]} \SpecialCharTok{+}\NormalTok{ myHead}\OperatorTok{[}\NormalTok{FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]}\NormalTok{ FAD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{+} \FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]],} \FunctionTok{q}\OperatorTok{,}\NormalTok{ myHead}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\left\{\text{myHead}\left(\frac{q^{\mu } q^{\nu }}{q^2.\left((p+q)^2-m^2\right)}\right),\text{myHead}\left(\frac{q^{\rho } q^{\sigma }}{q^2.\left((p+q)^2-m^2\right)}\right)\right\},\{\{\text{FCGV}(\text{cli201})\to \mu ,\text{FCGV}(\text{cli202})\to \nu \},\{\text{FCGV}(\text{cli201})\to \rho ,\text{FCGV}(\text{cli202})\to \sigma \}\},\left\{\text{myHead}\left(\frac{q^{\text{FCGV}(\text{cli201})} q^{\text{FCGV}(\text{cli202})}}{q^2.\left((p+q)^2-m^2\right)}\right),\text{myHead}\left(\frac{q^{\text{FCGV}(\text{cli201})} q^{\text{FCGV}(\text{cli202})}}{q^2.\left((p+q)^2-m^2\right)}\right)\right\},\left\{\text{myHead}\left(\frac{q^{\text{FCGV}(\text{cli201})} q^{\text{FCGV}(\text{cli202})}}{q^2.\left((p+q)^2-m^2\right)}\right)\right\}\right\}
+\end{dmath*}
+\end{document}

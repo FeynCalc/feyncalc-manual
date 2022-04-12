@@ -1,0 +1,60 @@
+% !TeX program = pdflatex
+% !TeX root = CVE.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{cve}{%
+\section{CVE}\label{cve}}
+
+\texttt{CVE[\allowbreak{}p,\ \allowbreak{}i]} is a \(D-4\)-dimensional
+Cartesian vector and is transformed into
+\texttt{CartesianPair[\allowbreak{}CartesianMomentum[\allowbreak{}p,\ \allowbreak{}D-4],\ \allowbreak{}CartesianIndex[\allowbreak{}i,\ \allowbreak{}D-4]]}
+by \texttt{FeynCalcInternal}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fve}{FVE}, \hyperlink{pair}{Pair},
+\hyperlink{cartesianpair}{CartesianPair}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CVE}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\hat{p}^i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CVE}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\hat{p}-\hat{q}\right)^i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{CVE}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*CartesianPair[CartesianIndex[i, {-}4 + D], CartesianMomentum[p, {-}4 + D]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{ExpandScalarProduct} is used to expand momenta in \texttt{CVE}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ExpandScalarProduct}\OperatorTok{[}\NormalTok{CVE}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\hat{p}^i-\hat{q}^i
+\end{dmath*}
+\end{document}

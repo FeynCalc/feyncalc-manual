@@ -1,0 +1,53 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopBasisCreateScalarProducts.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopbasiscreatescalarproducts}{%
+\section{FCLoopBasisCreateScalarProducts}\label{fcloopbasiscreatescalarproducts}}
+
+\texttt{FCLoopBasisCreateScalarProducts \{\allowbreak{}q1,\ \allowbreak{}q2,\ \allowbreak{}...\},\ \allowbreak{}\{\allowbreak{}p1,\ \allowbreak{}p2,\ \allowbreak{}...\},\ \allowbreak{}\{\allowbreak{}d1,\ \allowbreak{}d2,\ \allowbreak{}...\},\ \allowbreak{}head]}
+generates a list of all loop-momentum dependent scalar products made out
+of the loop momenta \texttt{q1,\ \allowbreak{}q2,\ \allowbreak{}...} and
+external momenta \texttt{p1,\ \allowbreak{}p2,\ \allowbreak{}...} in the
+space-time dimensions \texttt{d1,\ \allowbreak{}d2,\ \allowbreak{}...}.
+The argument \texttt{head} can be \texttt{Pair} to generate Lorentzian
+scalar products or \texttt{CartesianPair} to generate Cartesian scalar
+products.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopBasisCreateScalarProducts}\OperatorTok{[\{}\FunctionTok{l}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{}\FunctionTok{D}\OperatorTok{\},}\NormalTok{ Pair}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{l^2\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopBasisCreateScalarProducts}\OperatorTok{[\{}\FunctionTok{l}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{4}\OperatorTok{\},}\NormalTok{ Pair}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\overline{l}^2,\overline{l}\cdot \overline{\text{p1}},\overline{l}\cdot \overline{\text{p2}}\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopBasisCreateScalarProducts}\OperatorTok{[\{}\FunctionTok{l}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{}\FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{\},}\NormalTok{ CartesianPair}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{l^2\right\}
+\end{dmath*}
+\end{document}

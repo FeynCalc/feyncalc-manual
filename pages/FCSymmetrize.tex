@@ -1,0 +1,39 @@
+% !TeX program = pdflatex
+% !TeX root = FCSymmetrize.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcsymmetrize}{%
+\section{FCSymmetrize}\label{fcsymmetrize}}
+
+\texttt{FCSymmetrize[\allowbreak{}expr,\ \allowbreak{}\{\allowbreak{}a1,\ \allowbreak{}a2,\ \allowbreak{}...\}]}
+symmetrizes expr with respect to the variables
+\texttt{a1,\ \allowbreak{}a2,\ \allowbreak{}...}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcantisymmetrize}{FCAntiSymmetrize}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCSymmetrize}\OperatorTok{[}\FunctionTok{f}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} (f(a,b)+f(b,a))
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCSymmetrize}\OperatorTok{[}\FunctionTok{f}\OperatorTok{[}\FunctionTok{x}\OperatorTok{,} \FunctionTok{y}\OperatorTok{,} \FunctionTok{z}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \FunctionTok{y}\OperatorTok{,} \FunctionTok{z}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{6} (f(x,y,z)+f(x,z,y)+f(y,x,z)+f(y,z,x)+f(z,x,y)+f(z,y,x))
+\end{dmath*}
+\end{document}

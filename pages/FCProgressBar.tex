@@ -1,0 +1,33 @@
+% !TeX program = pdflatex
+% !TeX root = FCProgressBar.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcprogressbar}{%
+\section{FCProgressBar}\label{fcprogressbar}}
+
+\texttt{FCProgressBar[\allowbreak{}text,\ \allowbreak{}i,\ \allowbreak{}total]}
+is a simple auxiliary function that can be used to display the progress
+of a certain evaluation, e.g.~mapping a list of integrals to some
+function. Here i is the number of the current step while total denotes
+the overall number of steps.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+A simple usage example
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Table}\OperatorTok{[}\NormalTok{FCProgressBar}\OperatorTok{[}\StringTok{"Calculating integral "}\OperatorTok{,} \FunctionTok{i}\OperatorTok{,} \DecValTok{10}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{i}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{10}\OperatorTok{\}]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+Calculating integral 1 / 10 Calculating integral 2 / 10 Calculating
+integral 3 / 10 Calculating integral 4 / 10 Calculating integral 5 / 10
+Calculating integral 6 / 10 Calculating integral 7 / 10 Calculating
+integral 8 / 10 Calculating integral 9 / 10 Calculating integral 10 / 10
+\end{document}

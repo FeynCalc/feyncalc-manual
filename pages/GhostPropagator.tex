@@ -1,0 +1,56 @@
+% !TeX program = pdflatex
+% !TeX root = GhostPropagator.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{ghostpropagator}{%
+\section{GhostPropagator}\label{ghostpropagator}}
+
+\texttt{GhostPropagator[\allowbreak{}p,\ \allowbreak{}a,\ \allowbreak{}b]}
+gives the ghost propagator where \texttt{a} and \texttt{b} are the color
+indices.
+
+\texttt{GhostPropagator[\allowbreak{}p]} omits the \(\delta _{ab}\).
+
+\texttt{GHP} can be used as an abbreviation of \texttt{GhostPropagator}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{gluonpropagator}{GluonPropagator},
+\hyperlink{qcdfeynmanruleconvention}{QCDFeynmanRuleConvention},
+\hyperlink{gluonghostvertex}{GluonGhostVertex}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GhostPropagator}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]} 
+ 
+\NormalTok{Explicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\Pi _{ab}(p)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{i \delta ^{ab}}{p^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GHP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} 
+ 
+\NormalTok{Explicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\Pi _u(p)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{i}{p^2}
+\end{dmath*}
+\end{document}

@@ -1,0 +1,29 @@
+% !TeX program = pdflatex
+% !TeX root = DollarLoadFeynArts.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{loadfeynarts}{%
+\section{\$LoadFeynArts}\label{loadfeynarts}}
+
+\texttt{\$LoadFeynArts} is a legacy switch for loading FeynArts. The
+modern way to achieve the same effect is to evaluate
+\texttt{\$LoadAddOns=\{\allowbreak{}"FeynArts"\}} before loading
+FeynCalc.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{loadaddons}{\$LoadAddOns}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$LoadFeynArts}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+\end{document}

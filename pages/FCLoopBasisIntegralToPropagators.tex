@@ -1,0 +1,70 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopBasisIntegralToPropagators.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopbasisintegraltopropagators}{%
+\section{FCLoopBasisIntegralToPropagators}\label{fcloopbasisintegraltopropagators}}
+
+\texttt{FCLoopBasisIntegralToPropagators[\allowbreak{}int,\ \allowbreak{}\{\allowbreak{}q1,\ \allowbreak{}q2,\ \allowbreak{}...\}]}
+is an auxiliary function that converts the loop integral int that
+depends on the loop momenta
+\texttt{q1,\ \allowbreak{}q2,\ \allowbreak{}...} to a list of
+propagators and scalar products. All propagators and scalar products
+that do not depend on the loop momenta are discarded, unless the
+\texttt{Rest} option is set to \texttt{True}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SFAD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{]} 
+ 
+\NormalTok{FCLoopBasisIntegralToPropagators}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(\text{p1}^2+i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left\{\frac{1}{(\text{p1}^2+i \eta )}\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SFAD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{]} 
+ 
+\NormalTok{FCLoopBasisIntegralToPropagators}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(\text{p1}^2+i \eta ).(\text{p2}^2+i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left\{\frac{1}{(\text{p1}^2+i \eta )},\frac{1}{(\text{p2}^2+i \eta )}\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]}\NormalTok{ SFAD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{,} \FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{]} 
+ 
+\NormalTok{FCLoopBasisIntegralToPropagators}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{p\cdot q}{(q^2+i \eta ).((q-p)^2+i \eta )^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left\{(p\cdot q+i \eta ),\frac{1}{(q^2+i \eta )},\frac{1}{((q-p)^2+i \eta )}\right\}
+\end{dmath*}
+\end{document}

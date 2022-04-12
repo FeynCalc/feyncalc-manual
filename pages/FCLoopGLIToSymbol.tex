@@ -1,0 +1,55 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopGLIToSymbol.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopglitosymbol}{%
+\section{FCLoopGLIToSymbol}\label{fcloopglitosymbol}}
+
+\texttt{FCLoopGLIToSymbol[\allowbreak{}exp]} converts \texttt{GLI}s to
+symbols.
+
+The option \texttt{Head} determines the prefix of the symbol and can be
+set to \texttt{FCTopology} (default) or \texttt{GLI}
+
+The option \texttt{Character} specifies the separator between to prefix
+and the indices.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{gli}{GLI},
+\hyperlink{smptosymbol}{SMPToSymbol},
+\hyperlink{fcgvtosymbol}{FCGVToSymbol}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopGLIToSymbol}\OperatorTok{[}\NormalTok{GLI}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{topo1X11111}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopGLIToSymbol}\OperatorTok{[}\NormalTok{GLI}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}],} \FunctionTok{Head} \OtherTok{{-}\textgreater{}}\NormalTok{ GLI}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{GLIXtopo1X11111}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopGLIToSymbol}\OperatorTok{[}\NormalTok{GLI}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}],} \FunctionTok{Character} \OtherTok{{-}\textgreater{}} \StringTok{"$"}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{topo1\$11111}
+\end{dmath*}
+\end{document}

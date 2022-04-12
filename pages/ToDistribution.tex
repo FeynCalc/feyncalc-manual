@@ -1,0 +1,61 @@
+% !TeX program = pdflatex
+% !TeX root = ToDistribution.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{todistribution}{%
+\section{ToDistribution}\label{todistribution}}
+
+\texttt{ToDistribution[\allowbreak{}exp,\ \allowbreak{}x]} replaces
+\texttt{(1-x)^(a Epsilon - 1)} in \texttt{exp} by
+\texttt{1/(a Epsilon) DeltaFunction[\allowbreak{}1-x] + 1/(1-x) + a Epsilon Log[\allowbreak{}1-x]/(1-x) + 1/2 a^2 Epsilon^2 Log[\allowbreak{}1-x]^2/(1-x)]}
+and \texttt{(1-x)^(a Epsilon - 2)} in \texttt{exp} by
+\texttt{-1/(a Epsilon) DeltaFunctionPrime[\allowbreak{}1-x] + 1/(1-x)^2 + (a Epsilon) Log[\allowbreak{}1-x]/(1-x)^2 + a^2 Epsilon^2/2 Log[\allowbreak{}1-x]^2/(1-x)^2 + a^3 Epsilon^3/6 Log[\allowbreak{}1-x]^3/(1-x)^2}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{plusdistribution}{PlusDistribution}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToDistribution}\OperatorTok{[}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\SpecialCharTok{\^{}}\NormalTok{(Epsilon }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}\OperatorTok{,} \FunctionTok{x}\OperatorTok{,}\NormalTok{ PlusDistribution }\OtherTok{{-}\textgreater{}}\NormalTok{ pd}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{6} \varepsilon ^3 \;\text{pd}\left(\frac{\log ^3(1-x)}{1-x}\right)+\frac{1}{2} \varepsilon ^2 \;\text{pd}\left(\frac{\log ^2(1-x)}{1-x}\right)+\varepsilon  \;\text{pd}\left(\frac{\log (1-x)}{1-x}\right)+\text{pd}\left(\frac{1}{1-x}\right)+\frac{\delta (1-x)}{\varepsilon }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToDistribution}\OperatorTok{[}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\SpecialCharTok{\^{}}\NormalTok{(Epsilon }\SpecialCharTok{{-}} \DecValTok{2}\NormalTok{)}\OperatorTok{,} \FunctionTok{x}\OperatorTok{,}\NormalTok{ PlusDistribution }\OtherTok{{-}\textgreater{}} \FunctionTok{Identity}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{\delta '(1-x)}{\varepsilon }+\frac{\varepsilon ^3 \log ^3(1-x)}{6 (1-x)^2}+\frac{\varepsilon ^2 \log ^2(1-x)}{2 (1-x)^2}+\frac{\varepsilon  \log (1-x)}{(1-x)^2}+\frac{1}{(1-x)^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Series2}\OperatorTok{[}\FunctionTok{Integrate}\OperatorTok{[}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\SpecialCharTok{\^{}}\NormalTok{(Epsilon }\SpecialCharTok{{-}} \DecValTok{2}\NormalTok{)}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \FunctionTok{GenerateConditions} \OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{],}\NormalTok{ Epsilon}\OperatorTok{,} \DecValTok{3}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\varepsilon ^3-\varepsilon ^2-\varepsilon -1
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\NormalTok{ToDistribution}\OperatorTok{[}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\SpecialCharTok{\^{}}\NormalTok{(Epsilon }\SpecialCharTok{{-}} \DecValTok{2}\NormalTok{)}\OperatorTok{,} \FunctionTok{x}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\varepsilon ^3-\varepsilon ^2-\varepsilon -1
+\end{dmath*}
+\end{document}

@@ -1,0 +1,138 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopPakScalelessQ.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fclooppakscalelessq}{%
+\section{FCLoopPakScalelessQ}\label{fclooppakscalelessq}}
+
+\texttt{FCLoopPakScalelessQ[\allowbreak{}poly,\ \allowbreak{}x]} checks
+whether the characteristic polynomial poly (in the \(U \times xF\) form)
+with the Feynman parameters
+\texttt{x[\allowbreak{}1],\ \allowbreak{}x[\allowbreak{}2],\ \allowbreak{}...}
+corresponds to a scaleless loop integral or loop integral topology. The
+polynomial does not need to be canonically ordered.
+
+The function uses the algorithm of Alexey Pak
+\href{https://arxiv.org/abs/1111.0868}{arXiv:1111.0868}. Cf. also the
+PhD thesis of Jens Hoff
+\href{https://doi.org/10.5445/IR/1000047447}{10.5445/IR/1000047447} for
+the detailed description of a possible implementation.
+\texttt{FCLoopPakScalelessQ} is a backend function used in
+\texttt{FCLoopScalelessQ}, \texttt{FCLoopFindSubtopologies} etc.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fctopology}{FCTopology},
+\hyperlink{gli}{GLI}, \hyperlink{fclooptopakform}{FCLoopToPakForm},
+\hyperlink{fcloopscalelessq}{FCLoopScalelessQ}.
+
+\subsection{Examples}
+
+A scaleless 2-loop tadpole is a clear case, since here the
+characteristic polynomial vanishes
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{int }\ExtensionTok{=}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{]} 
+ 
+\NormalTok{pf }\ExtensionTok{=}\NormalTok{ FCLoopToPakForm}\OperatorTok{[}\NormalTok{int}\OperatorTok{,} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,} 
+     
+     \FunctionTok{CharacteristicPolynomial} \OtherTok{{-}\textgreater{}} \FunctionTok{Function}\OperatorTok{[\{}\FunctionTok{u}\OperatorTok{,} \FunctionTok{f}\OperatorTok{\},} \FunctionTok{u} \FunctionTok{f}\OperatorTok{]][[}\DecValTok{2}\OperatorTok{]][[}\DecValTok{1}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\text{p1}^2.\text{p2}^2.(\text{p1}-\text{p2})^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopPakScalelessQ}\OperatorTok{[}\NormalTok{pf}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+A somewhat less obvious (but still simple) case is this 1-loop eikonal
+integral.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{int }\ExtensionTok{=}\NormalTok{ SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{2} \FunctionTok{p}\NormalTok{ . }\FunctionTok{q}\OperatorTok{\},} \DecValTok{0}\OperatorTok{\},} \FunctionTok{p}\OperatorTok{]} 
+ 
+\NormalTok{pf }\ExtensionTok{=}\NormalTok{ FCLoopToPakForm}\OperatorTok{[}\NormalTok{int}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{p}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,} 
+     
+     \FunctionTok{CharacteristicPolynomial} \OtherTok{{-}\textgreater{}} \FunctionTok{Function}\OperatorTok{[\{}\FunctionTok{u}\OperatorTok{,} \FunctionTok{f}\OperatorTok{\},} \FunctionTok{u} \FunctionTok{f}\OperatorTok{]][[}\DecValTok{2}\OperatorTok{]][[}\DecValTok{1}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(2 (p\cdot q)+i \eta ).(p^2+i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+q^2 x(1)^2 x(2)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopPakScalelessQ}\OperatorTok{[}\NormalTok{pf}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+Adding a mass term to the quadratic propagator makes this integral
+nonvanishing
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{int }\ExtensionTok{=}\NormalTok{ SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{2} \FunctionTok{p}\NormalTok{ . }\FunctionTok{q}\OperatorTok{\},} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]} 
+ 
+\NormalTok{pf }\ExtensionTok{=}\NormalTok{ FCLoopToPakForm}\OperatorTok{[}\NormalTok{int}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{p}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,} 
+     
+     \FunctionTok{CharacteristicPolynomial} \OtherTok{{-}\textgreater{}} \FunctionTok{Function}\OperatorTok{[\{}\FunctionTok{u}\OperatorTok{,} \FunctionTok{f}\OperatorTok{\},} \FunctionTok{u} \FunctionTok{f}\OperatorTok{]][[}\DecValTok{2}\OperatorTok{]][[}\DecValTok{1}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(2 (p\cdot q)+i \eta ).(p^2-m^2+i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+m^2 x(1)^3+q^2 x(2)^2 x(1)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopPakScalelessQ}\OperatorTok{[}\NormalTok{pf}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+
+Notice that \texttt{FCLoopPakScalelessQ} is more of an auxiliary
+function. The corresponding end-user function is called
+\texttt{FCLoopScalelessQ}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopScalelessQ}\OperatorTok{[}\NormalTok{SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{2} \FunctionTok{p}\NormalTok{ . }\FunctionTok{q}\OperatorTok{\},} \DecValTok{0}\OperatorTok{\},} \FunctionTok{p}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{p}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+\end{document}

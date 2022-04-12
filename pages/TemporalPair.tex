@@ -1,0 +1,46 @@
+% !TeX program = pdflatex
+% !TeX root = TemporalPair.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{temporalpair}{%
+\section{TemporalPair}\label{temporalpair}}
+
+\texttt{TemporalPair[\allowbreak{}ExplicitLorentzIndex[\allowbreak{}0],\ \allowbreak{}TemporalMomentum[\allowbreak{}p]]}
+is a special pairing used in the internal representation to denote
+\(p^0\), the temporal component of a 4-momentum \(p\).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{temporalpair}{TemporalPair},
+\hyperlink{tc}{TC},
+\hyperlink{explicitlorentzindex}{ExplicitLorentzIndex}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TemporalPair}\OperatorTok{[}\NormalTok{ExplicitLorentzIndex}\OperatorTok{[}\DecValTok{0}\OperatorTok{],}\NormalTok{ TemporalMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p^0
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TemporalPair}\OperatorTok{[}\NormalTok{ExplicitLorentzIndex}\OperatorTok{[}\DecValTok{0}\OperatorTok{],}\NormalTok{ TemporalMomentum}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{+} \FunctionTok{q}\OperatorTok{]]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ ExpandScalarProduct}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(p+q)^0
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+p^0+q^0
+\end{dmath*}
+\end{document}

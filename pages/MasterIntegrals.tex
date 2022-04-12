@@ -1,0 +1,77 @@
+% !TeX program = pdflatex
+% !TeX root = MasterIntegrals.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{master-integrals}{%
+\section{Master integrals}\label{master-integrals}}
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}.
+
+For the sake of the users that try to employ FeynCalc in calculations
+beyond 1-loop but do not belong to the multiloop community, let us
+summarize some basic facts about master integrals in multiloop
+calculations
+
+\hypertarget{analytic-results}{%
+\subsection{Analytic results}\label{analytic-results}}
+
+\begin{itemize}
+\item
+  Even at 2-loop there is no library containing analytic results for all
+  master integrals with arbitrary mass distributions. That is, there is
+  simply nothing similar to Package-X beyond 1-loop
+\item
+  The available libraries usually focus on very specific integral
+  families,
+  e.g.~\href{https://www.nikhef.nl/~form/maindir/packages/mincer/mincer.html}{Mincer}
+  (3-loop massless 2-point functions),
+  \href{https://github.com/benruijl/forcer}{Forcer} (4-loop massless
+  2-point functions),
+  \href{https://www.ttp.kit.edu/~ms/software.html}{MATAD},
+  \href{https://github.com/apik/matad-ng}{MATAD-ng} (massive 3-loop
+  tadpoles), \href{https://github.com/apik/fmft}{FMFT} (massive 4-loop
+  tadpoles),
+  \href{http://theor.jinr.ru/~kalmykov/onshell2/onshell2.html}{ON-SHELL2}
+  (on-shell 2-point functions with one mass scale)
+\item
+  The main source for analytic results are scientific publications. When
+  people calculate new master integrals needed for their research, they
+  often provide explicit analytic results in the paper itself or put
+  them into ancillary files accompanying the preprint. Unfortunately,
+  there is no compendium of all calculated integrals that would tell you
+  where to find the corresponding expression. The
+  \href{https://arxiv.org/abs/1709.01266}{Loopedia} project is an
+  attempt to create something like a search engine for loop integrals,
+  but its database is still far from being comprehensive.
+\item
+  Some relevant publications for 2-loop 2-point functions include (this
+  list is far from being complete)
+  \href{https://arxiv.org/abs/hep-ph/9907431}{arXiv:hep-ph/9907431},
+  \href{https://arxiv.org/abs/hep-ph/0202123v2}{arXiv:hep-ph/0202123},
+  \href{https://arxiv.org/abs/hep-ph/0307101v1}{hep-ph/0307101}
+\end{itemize}
+
+\hypertarget{numerical-results}{%
+\subsection{Numerical results}\label{numerical-results}}
+
+\begin{itemize}
+\tightlist
+\item
+  Numerical results are much simpler to obtain and universal libraries
+  that can calculate almost any integral (given enough time and
+  computing resources) are publicly available. Two prominent examples
+  are \href{https://secdec.readthedocs.io/en/stable/}{pySecDec} and
+  \href{https://bitbucket.org/feynmanIntegrals/fiesta/src/master/}{FIESTA}
+\item
+  Apart from that, there are also libraries that cover specific integral
+  families and may offer better numerical stability due to the
+  corresponding optimizations. Two very useful tools are
+  \href{https://sites.pitt.edu/~afreitas/}{TVID2} for the evaluation of
+  3-loop 2-point functions with arbitrary masses and
+  \href{https://www.niu.edu/spmartin/3VIL/}{3VIL} for the calculation of
+  3-loop tadpoles with arbitrary masses.
+\end{itemize}
+\end{document}

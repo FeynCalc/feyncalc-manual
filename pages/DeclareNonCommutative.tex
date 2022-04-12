@@ -1,0 +1,64 @@
+% !TeX program = pdflatex
+% !TeX root = DeclareNonCommutative.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{declarenoncommutative}{%
+\section{DeclareNonCommutative}\label{declarenoncommutative}}
+
+\texttt{DeclareNonCommutative[\allowbreak{}a,\ \allowbreak{}b,\ \allowbreak{}...]}
+declares \texttt{a,\ \allowbreak{}b,\ \allowbreak{}...} to be
+non-commutative, i.e.,
+\texttt{DataType[\allowbreak{}a,\ \allowbreak{}b,\ \allowbreak{}...,\ \allowbreak{}NonCommutative]}
+is set to \texttt{True}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{datatype}{DataType},
+\hyperlink{undeclarenoncommutative}{UnDeclareNonCommutative}.
+
+\subsection{Examples}
+
+As a side effect of \texttt{DeclareNonCommutative}, \texttt{x} is
+declared to be of data type \texttt{NonCommutative}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DeclareNonCommutative}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DataType}\OperatorTok{[}\FunctionTok{x}\OperatorTok{,}\NormalTok{ NonCommutative}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DeclareNonCommutative}\OperatorTok{[}\FunctionTok{y}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]} 
+ 
+\NormalTok{DataType}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{x}\OperatorTok{,} \FunctionTok{y}\OperatorTok{,} \FunctionTok{z}\OperatorTok{,}\NormalTok{ NonCommutative}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{\text{False},\text{True},\text{True},\text{True}\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{UnDeclareNonCommutative}\OperatorTok{[}\FunctionTok{x}\OperatorTok{,} \FunctionTok{y}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]} 
+ 
+\NormalTok{DataType}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{x}\OperatorTok{,} \FunctionTok{y}\OperatorTok{,} \FunctionTok{z}\OperatorTok{,}\NormalTok{ NonCommutative}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{\text{False},\text{False},\text{False},\text{False}\}
+\end{dmath*}
+\end{document}

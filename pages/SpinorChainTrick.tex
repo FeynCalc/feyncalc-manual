@@ -1,0 +1,52 @@
+% !TeX program = pdflatex
+% !TeX root = SpinorChainTrick.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{spinorchaintrick}{%
+\section{SpinorChainTrick}\label{spinorchaintrick}}
+
+\texttt{SpinorChainTrick[\allowbreak{}exp]} applies several
+simplifications to products of spinor chains.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fccanonicalizedummyindices}{FCCanonicalizeDummyIndices},
+\hyperlink{diracgamma}{DiracGamma}, \hyperlink{spinor}{Spinor}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{a}\NormalTok{ SpinorUBar}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . SpinorU}\OperatorTok{[}\NormalTok{p2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{]}\NormalTok{ SpinorVBar}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . SpinorV}\OperatorTok{[}\NormalTok{p4}\OperatorTok{,}\NormalTok{ m4}\OperatorTok{]} \SpecialCharTok{+}
+   \FunctionTok{b}\NormalTok{ SpinorUBar}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ . SpinorU}\OperatorTok{[}\NormalTok{p2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{]}\NormalTok{ SpinorVBar}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ . SpinorV}\OperatorTok{[}\NormalTok{p4}\OperatorTok{,}\NormalTok{ m4}\OperatorTok{]} 
+ 
+\NormalTok{SpinorChainTrick}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+a \bar{u}(\text{p1},\text{m1}).\bar{\gamma }^{\mu }.u(\text{p2},\text{m2}) \bar{v}(\text{p1},\text{m1}).\bar{\gamma }^{\mu }.v(\text{p4},\text{m4})+b \bar{u}(\text{p1},\text{m1}).\bar{\gamma }^{\nu }.u(\text{p2},\text{m2}) \bar{v}(\text{p1},\text{m1}).\bar{\gamma }^{\nu }.v(\text{p4},\text{m4})
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+(a+b) \left(\varphi (\overline{\text{p1}},\text{m1})\right).\bar{\gamma }^{\text{FCGV}(\text{LI191})}.\left(\varphi (\overline{\text{p2}},\text{m2})\right) \left(\varphi (-\overline{\text{p1}},\text{m1})\right).\bar{\gamma }^{\text{FCGV}(\text{LI191})}.\left(\varphi (-\overline{\text{p4}},\text{m4})\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpinorUBar}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{]}\NormalTok{ . GAE}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . SpinorU}\OperatorTok{[}\NormalTok{p2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{]}\NormalTok{ SpinorVBar}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . SpinorV}\OperatorTok{[}\NormalTok{p4}\OperatorTok{,}\NormalTok{ m4}\OperatorTok{]} 
+ 
+\NormalTok{SpinorChainTrick}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{u}(\text{p1},\text{m1}).\hat{\gamma }^{\mu }.u(\text{p2},\text{m2}) \bar{v}(\text{p1},\text{m1}).\bar{\gamma }^{\mu }.v(\text{p4},\text{m4})
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+\end{document}

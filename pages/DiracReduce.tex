@@ -1,0 +1,142 @@
+% !TeX program = pdflatex
+% !TeX root = DiracReduce.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{diracreduce}{%
+\section{DiracReduce}\label{diracreduce}}
+
+\texttt{DiracReduce[\allowbreak{}exp]} reduces all \(4\)-dimensional
+Dirac matrices in exp to the standard basis \((S, P, V, A, T)\) using
+the Chisholm identity.
+
+In the result the basic Dirac structures can be wrapped with a head
+\texttt{DiracBasis}, that is
+
+\begin{itemize}
+\tightlist
+\item
+  \(S\): \texttt{DiracBasis[\allowbreak{}1]}
+\item
+  \(P\): \texttt{DiracBasis[\allowbreak{}GA[\allowbreak{}5]]}
+\item
+  \(V\): \texttt{DiracBasis[\allowbreak{}GA[\allowbreak{}mu]]}
+\item
+  \(A\):
+  \texttt{DiracBasis[\allowbreak{}GA[\allowbreak{}mu,\ \allowbreak{}5]]}
+\item
+  \(T\):
+  \texttt{DiracBasis[\allowbreak{}DiracSigma[\allowbreak{}GA[\allowbreak{}mu,\ \allowbreak{}nu]]]}
+\end{itemize}
+
+By default \texttt{DiracBasis} is substituted to \texttt{Identity}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{chisholm}{Chisholm},
+\hyperlink{diracsimplify}{DiracSimplify},
+\hyperlink{epschisholm}{EpsChisholm}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} 
+ 
+\NormalTok{DiracReduce}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{g}^{\mu \nu }-i \sigma ^{\mu \nu }
+\end{dmath*}
+
+\texttt{DiracReduce} only works with Dirac matrices in \(4\) dimensions,
+\(D\)-dimensional matrices are ignored.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} 
+ 
+\NormalTok{DiracReduce}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\gamma ^{\mu }.\gamma ^{\nu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\gamma ^{\mu }.\gamma ^{\nu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpinorUBar}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{1}\OperatorTok{],} \FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{m}\OperatorTok{,} \DecValTok{1}\OperatorTok{]]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]]}\NormalTok{ . SpinorV}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{2}\OperatorTok{],} \FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{m}\OperatorTok{,} \DecValTok{2}\OperatorTok{]]} 
+ 
+\NormalTok{DiracReduce}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{u}\left(p_1,m_1\right).\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^{\rho }.v\left(p_2,m_2\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+i \bar{\epsilon }^{\mu \nu \rho \;\text{\$MU}(\text{\$31})} \left(\varphi (\overline{p}_1,m_1)\right).\bar{\gamma }^{\text{\$MU}(\text{\$31})}.\bar{\gamma }^5.\left(\varphi (-\overline{p}_2,m_2)\right)+\bar{g}^{\mu \nu } \left(\varphi (\overline{p}_1,m_1)\right).\bar{\gamma }^{\rho }.\left(\varphi (-\overline{p}_2,m_2)\right)-\bar{g}^{\mu \rho } \left(\varphi (\overline{p}_1,m_1)\right).\bar{\gamma }^{\nu }.\left(\varphi (-\overline{p}_2,m_2)\right)+\bar{g}^{\nu \rho } \left(\varphi (\overline{p}_1,m_1)\right).\bar{\gamma }^{\mu }.\left(\varphi (-\overline{p}_2,m_2)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]} 
+ 
+\NormalTok{DiracReduce}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^{\rho }.\bar{\gamma }^{\sigma }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-i \bar{\gamma }^5 \bar{\epsilon }^{\mu \nu \rho \sigma }-i \sigma ^{\rho \sigma } \bar{g}^{\mu \nu }+i \sigma ^{\nu \sigma } \bar{g}^{\mu \rho }-i \sigma ^{\nu \rho } \bar{g}^{\mu \sigma }-i \sigma ^{\mu \sigma } \bar{g}^{\nu \rho }+i \sigma ^{\mu \rho } \bar{g}^{\nu \sigma }-i \sigma ^{\mu \nu } \bar{g}^{\rho \sigma }+\bar{g}^{\mu \sigma } \bar{g}^{\nu \rho }-\bar{g}^{\mu \rho } \bar{g}^{\nu \sigma }+\bar{g}^{\mu \nu } \bar{g}^{\rho \sigma }
+\end{dmath*}
+
+Do some checks of the results
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracSimplify}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-128
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracSimplify}\OperatorTok{[}\NormalTok{DiracReduce}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]]}\NormalTok{ . DiracReduce}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-128
+\end{dmath*}
+
+We may also keep the head \texttt{DiracBasis} in the final result
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracReduce}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]],}\NormalTok{ FinalSubstitutions }\OtherTok{{-}\textgreater{}} \OperatorTok{\{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-i \bar{g}^{\mu \nu } \;\text{DiracBasis}\left(\text{DiracSigma}\left(\text{DiracBasis}\left(\bar{\gamma }^{\rho }\right),\text{DiracBasis}\left(\bar{\gamma }^{\sigma }\right)\right)\right)+i \bar{g}^{\mu \rho } \;\text{DiracBasis}\left(\text{DiracSigma}\left(\text{DiracBasis}\left(\bar{\gamma }^{\nu }\right),\text{DiracBasis}\left(\bar{\gamma }^{\sigma }\right)\right)\right)-i \bar{g}^{\mu \sigma } \;\text{DiracBasis}\left(\text{DiracSigma}\left(\text{DiracBasis}\left(\bar{\gamma }^{\nu }\right),\text{DiracBasis}\left(\bar{\gamma }^{\rho }\right)\right)\right)-i \bar{g}^{\nu \rho } \;\text{DiracBasis}\left(\text{DiracSigma}\left(\text{DiracBasis}\left(\bar{\gamma }^{\mu }\right),\text{DiracBasis}\left(\bar{\gamma }^{\sigma }\right)\right)\right)+i \bar{g}^{\nu \sigma } \;\text{DiracBasis}\left(\text{DiracSigma}\left(\text{DiracBasis}\left(\bar{\gamma }^{\mu }\right),\text{DiracBasis}\left(\bar{\gamma }^{\rho }\right)\right)\right)-i \bar{g}^{\rho \sigma } \;\text{DiracBasis}\left(\text{DiracSigma}\left(\text{DiracBasis}\left(\bar{\gamma }^{\mu }\right),\text{DiracBasis}\left(\bar{\gamma }^{\nu }\right)\right)\right)-i \;\text{DiracBasis}\left(\bar{\gamma }^5\right) \bar{\epsilon }^{\mu \nu \rho \sigma }+\text{DiracBasis}(1) \bar{g}^{\mu \sigma } \bar{g}^{\nu \rho }-\text{DiracBasis}(1) \bar{g}^{\mu \rho } \bar{g}^{\nu \sigma }+\text{DiracBasis}(1) \bar{g}^{\mu \nu } \bar{g}^{\rho \sigma }
+\end{dmath*}
+\end{document}

@@ -1,0 +1,35 @@
+% !TeX program = pdflatex
+% !TeX root = HypInt.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{hypint}{%
+\section{HypInt}\label{hypint}}
+
+\texttt{HypInt[\allowbreak{}exp,\ \allowbreak{}t]} substitutes all
+\texttt{Hypergeometric2F1[\allowbreak{}a,\ \allowbreak{}b,\ \allowbreak{}c,\ \allowbreak{}z]}
+in \texttt{exp} with
+\texttt{Gamma[\allowbreak{}c]/(Gamma[\allowbreak{}b] Gamma[\allowbreak{}c-b]) Integratedx[\allowbreak{}t,\ \allowbreak{}0,\ \allowbreak{}1]  t^(b-1) (1-t)^(c-b-1) (1-t z)^(-a)}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{series2}{Series2}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]} 
+ 
+\NormalTok{HypInt}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{t}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1(a,b;c;z)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{t^{b-1} \Gamma (c) (1-t z)^{-a} (1-t)^{-b+c-1} \int _0^1dt\, }{\Gamma (b) \Gamma (c-b)}
+\end{dmath*}
+\end{document}

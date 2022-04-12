@@ -1,0 +1,89 @@
+% !TeX program = pdflatex
+% !TeX root = Calc.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{calc}{%
+\section{Calc}\label{calc}}
+
+\texttt{Calc[\allowbreak{}exp]} performs several simplifications that
+involve \texttt{Contract}, \texttt{DiracSimplify}, \texttt{SUNSimplify},
+\texttt{DotSimplify}, \texttt{EpsEvaluate},
+\texttt{ExpandScalarProduct}, \texttt{PowerSimplify}, \texttt{Expand2}
+and \texttt{Trick}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{trick}{Trick},
+\hyperlink{diracsimplify}{DiracSimplify},
+\hyperlink{diractrick}{DiracTrick}.
+
+\subsection{Examples}
+
+This calculates \(\gamma ^{\mu} \gamma _{\mu}\) in \(4\) dimensions and
+\(g_{\nu }^{\nu}\) in \(D\) dimensions.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Calc}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+4
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Calc}\OperatorTok{[}\NormalTok{ MTD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+D
+\end{dmath*}
+
+This simplifies \(f_{abc} f_{abe}\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Calc}\OperatorTok{[}\NormalTok{SUNF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]}\NormalTok{ SUNF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{e}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+C_A \delta ^{ce}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FV}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{+} \FunctionTok{r}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ MT}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} 
+ 
+\NormalTok{Calc}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{g}^{\mu \nu } \left(\overline{q}-\overline{p}\right)^{\nu } \left(\overline{p}+\overline{r}\right)^{\mu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot \overline{q}-\overline{p}\cdot \overline{r}-\overline{p}^2+\overline{q}\cdot \overline{r}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GluonVertex}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,}\NormalTok{ li1}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{,}\NormalTok{ li2}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{{-}}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,}\NormalTok{ li3}\OperatorTok{\}]} 
+ 
+\NormalTok{Calc}\OperatorTok{[}\SpecialCharTok{\%}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,}\NormalTok{ li1}\OperatorTok{]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,}\NormalTok{ li2}\OperatorTok{]}\NormalTok{ FVD}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,}\NormalTok{ li3}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+V^{\text{li1}\;\text{li2}\;\text{li3}}(p\text{, }q\text{, }-p-q)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+\end{document}

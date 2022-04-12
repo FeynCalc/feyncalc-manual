@@ -1,0 +1,86 @@
+% !TeX program = pdflatex
+% !TeX root = DiracSubstitute67.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{diracsubstitute67}{%
+\section{DiracSubstitute67}\label{diracsubstitute67}}
+
+\texttt{DiracSubstitute67[\allowbreak{}exp]} inserts the explicit
+definitions of the chirality projectors \(\gamma^6\) and \(\gamma^7\).
+\texttt{DiracSubstitute67} is also an option of various FeynCalc
+functions that handle Dirac algebra.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{diracsubstitute5}{DiracSubstitute5},
+\hyperlink{diracgamma}{DiracGamma},
+\hyperlink{todiracgamma67}{ToDiracGamma67}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracGamma}\OperatorTok{[}\DecValTok{6}\OperatorTok{]} 
+ 
+\NormalTok{DiracSubstitute67}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^6
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{\bar{\gamma }^5}{2}+\frac{1}{2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracGamma}\OperatorTok{[}\DecValTok{7}\OperatorTok{]} 
+ 
+\NormalTok{DiracSubstitute67}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^7
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2}-\frac{\bar{\gamma }^5}{2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpinorUBar}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{1}\OperatorTok{]]}\NormalTok{ . GA}\OperatorTok{[}\DecValTok{6}\OperatorTok{]}\NormalTok{ . SpinorU}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{2}\OperatorTok{]]} 
+ 
+\NormalTok{DiracSubstitute67}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{u}\left(p_1\right).\bar{\gamma }^6.u\left(p_2\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left(\varphi (\overline{p}_1)\right).\left(\frac{\bar{\gamma }^5}{2}+\frac{1}{2}\right).\left(\varphi (\overline{p}_2)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpinorUBar}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{1}\OperatorTok{]]}\NormalTok{ . GA}\OperatorTok{[}\DecValTok{7}\OperatorTok{]}\NormalTok{ . SpinorU}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{2}\OperatorTok{]]} 
+ 
+\NormalTok{DiracSubstitute67}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{u}\left(p_1\right).\bar{\gamma }^7.u\left(p_2\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left(\varphi (\overline{p}_1)\right).\left(\frac{1}{2}-\frac{\bar{\gamma }^5}{2}\right).\left(\varphi (\overline{p}_2)\right)
+\end{dmath*}
+\end{document}

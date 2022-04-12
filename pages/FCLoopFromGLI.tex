@@ -1,0 +1,111 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopFromGLI.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\texttt{FCLoopFromGLI[\allowbreak{}exp,\ \allowbreak{}topologies]}
+replaces \texttt{GLI}s in \texttt{exp} with the corresponding loop
+integrals in the \texttt{FeynAmpDenominator} notation according to the
+information provided in topologies.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fctopology}{FCTopology},
+\hyperlink{gli}{GLI},
+\hyperlink{fcloopvalidtopologyq}{FCLoopValidTopologyQ}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{topos }\ExtensionTok{=} \OperatorTok{\{}
+\NormalTok{   FCTopology}\OperatorTok{[}\StringTok{"topoBox1L"}\OperatorTok{,} \OperatorTok{\{}\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,}\NormalTok{ m0}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q} \SpecialCharTok{+}\NormalTok{ p1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q} \SpecialCharTok{+}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q} \SpecialCharTok{+}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ m3}\OperatorTok{\}]\},} 
+    \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}],} 
+\NormalTok{   FCTopology}\OperatorTok{[}\StringTok{"topoTad2L"}\OperatorTok{,} \OperatorTok{\{}\NormalTok{FAD}\OperatorTok{[\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{q2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{q1 }\SpecialCharTok{{-}}\NormalTok{ q2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{FCTopology}\left(\text{topoBox1L},\left\{\frac{1}{q^2-\text{m0}^2},\frac{1}{(\text{p1}+q)^2-\text{m1}^2},\frac{1}{(\text{p2}+q)^2-\text{m2}^2},\frac{1}{(\text{p2}+q)^2-\text{m3}^2}\right\},\{q\},\{\text{p1},\text{p2},\text{p3}\},\{\},\{\}\right),\text{FCTopology}\left(\text{topoTad2L},\left\{\frac{1}{\text{q1}^2-\text{m1}^2},\frac{1}{\text{q2}^2-\text{m2}^2},\frac{1}{(\text{q1}-\text{q2})^2}\right\},\{\text{q1},\text{q2}\},\{\},\{\},\{\}\right)\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{exp} \ExtensionTok{=}\NormalTok{ a1 GLI}\OperatorTok{[}\StringTok{"topoBox1L"}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]} \SpecialCharTok{+}\NormalTok{ a2 GLI}\OperatorTok{[}\StringTok{"topoTad2L"}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{2}\OperatorTok{,} \DecValTok{2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{a1} G^{\text{topoBox1L}}(1,1,1,1)+\text{a2} G^{\text{topoTad2L}}(1,2,2)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopFromGLI}\OperatorTok{[}\FunctionTok{exp}\OperatorTok{,}\NormalTok{ topos}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\text{a1}}{\left(q^2-\text{m0}^2\right) \left((\text{p1}+q)^2-\text{m1}^2\right) \left((\text{p2}+q)^2-\text{m2}^2\right) \left((\text{p2}+q)^2-\text{m3}^2\right)}+\frac{\text{a2}}{\left(\text{q1}^2-\text{m1}^2\right) \left(\text{q2}^2-\text{m2}^2\right)^2 (\text{q1}-\text{q2})^4}
+\end{dmath*}
+
+Notice that it is necessary to specify all topologies present in
+\texttt{exp}. The function will not accept \texttt{GLI}s defined for
+unknown topologies
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopFromGLI}\OperatorTok{[}\NormalTok{GLI}\OperatorTok{[}\StringTok{"topoXYZ"}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ topos}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.6\linewidth]{img/00f6ck72ejb3p.pdf}
+\end{figure}
+
+\begin{dmath*}\breakingcomma
+\text{\$Aborted}
+\end{dmath*}
+
+\texttt{FCLoopFromGLI} can also handle products of \texttt{GLI}s
+(currently only for standalone integrals or lists of integrals but not
+for amplitudes). In this case it will automatically introduce dummy
+names for the loop momenta.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopFromGLI}\OperatorTok{[}\NormalTok{GLI}\OperatorTok{[}\StringTok{"topoBox1L"}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}]}\NormalTok{ GLI}\OperatorTok{[}\StringTok{"topoBox1L"}\OperatorTok{,} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ topos}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\left(\text{FCGV}(\text{lmom21})^2-\text{m0}^2\right) \left((\text{p1}+\text{FCGV}(\text{lmom11}))^2-\text{m1}^2\right) \left((\text{p2}+\text{FCGV}(\text{lmom11}))^2-\text{m3}^2\right) \left((\text{p2}+\text{FCGV}(\text{lmom21}))^2-\text{m2}^2\right)}
+\end{dmath*}
+
+You can customize the naming scheme for the momenta via the
+\texttt{LoopMomentum} option. The first argument gives the number of the
+loop integral, while the second corresponds to a particular loop
+momentum this integral depends on.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SelectNotFree}\OperatorTok{[}\FunctionTok{Options}\OperatorTok{[}\NormalTok{FCLoopFromGLI}\OperatorTok{],}\NormalTok{ LoopMomenta}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{\text{LoopMomenta}\to (\{\text{FeynCalc$\grave{ }$FCLoopFromGLI$\grave{ }$Private$\grave{ }$x},\text{FeynCalc$\grave{ }$FCLoopFromGLI$\grave{ }$Private$\grave{ }$y}\}\to \;\text{FCGV}(\text{lmom}<>\text{ToString}[\text{FeynCalc$\grave{ }$FCLoopFromGLI$\grave{ }$Private$\grave{ }$x}]<>\text{ToString}[\text{FeynCalc$\grave{ }$FCLoopFromGLI$\grave{ }$Private$\grave{ }$y}]))\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopFromGLI}\OperatorTok{[}\NormalTok{GLI}\OperatorTok{[}\StringTok{"topoBox1L"}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}]}\NormalTok{ GLI}\OperatorTok{[}\StringTok{"topoBox1L"}\OperatorTok{,} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ topos}\OperatorTok{,} 
+\NormalTok{  LoopMomenta }\OtherTok{{-}\textgreater{}} \FunctionTok{Function}\OperatorTok{[\{}\FunctionTok{x}\OperatorTok{,} \FunctionTok{y}\OperatorTok{\},} \StringTok{"p"}\NormalTok{ \textless{}\textgreater{} }\FunctionTok{ToString}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]}\NormalTok{ \textless{}\textgreater{} }\FunctionTok{ToString}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\left(\text{p22}^2-\text{m0}^2\right) \left((\text{p11}+\text{p1})^2-\text{m1}^2\right) \left((\text{p22}+\text{p2})^2-\text{m2}^2\right) \left((\text{p11}+\text{p2})^2-\text{m3}^2\right)}
+\end{dmath*}
+\end{document}

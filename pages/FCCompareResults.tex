@@ -1,0 +1,51 @@
+% !TeX program = pdflatex
+% !TeX root = FCCompareResults.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fccompareresults}{%
+\section{FCCompareResults}\label{fccompareresults}}
+
+\texttt{FCCompareResults[\allowbreak{}\{\allowbreak{}res1,\ \allowbreak{}res2,\ \allowbreak{}...\},\ \allowbreak{}\{\allowbreak{}res1Known,\ \allowbreak{}res2Known,\ \allowbreak{}...\}]}
+compares the given list of expression
+\texttt{\{\allowbreak{}res1,\ \allowbreak{}res2,\ \allowbreak{}...\}} to
+the list of expressions
+\texttt{\{\allowbreak{}res1Known,\ \allowbreak{}res2Known,\ \allowbreak{}...\}}
+that represents the correct results. This is handy for checking both
+intermediate and final results of calculations, where you know what
+should come out at the end.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fcmatchsolve}{FCMatchSolve}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCCompareResults}\OperatorTok{[\{}\DecValTok{4}\OperatorTok{,} \DecValTok{4}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{8}\SpecialCharTok{/}\DecValTok{2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{Check of the results:} \;\text{The results agree.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCCompareResults}\OperatorTok{[\{}\DecValTok{3}\OperatorTok{,} \DecValTok{5}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{8}\SpecialCharTok{/}\DecValTok{2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{Check of the results:} \;\text{The results disagree.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+\end{document}

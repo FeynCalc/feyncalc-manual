@@ -1,0 +1,98 @@
+% !TeX program = pdflatex
+% !TeX root = PauliSigma.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{paulisigma}{%
+\section{PauliSigma}\label{paulisigma}}
+
+\texttt{PauliSigma[\allowbreak{}x,\ \allowbreak{}dim]} is the internal
+representation of a Pauli matrix with a Lorentz or Cartesian index or a
+contraction of a Pauli matrix and a Lorentz or Cartesian vector.
+
+\texttt{PauliSigma[\allowbreak{}x,\ \allowbreak{}3]} simplifies to
+\texttt{PauliSigma[\allowbreak{}x]}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{si}{SI}, \hyperlink{csi}{CSI}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliSigma}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\sigma }^{\alpha }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliSigma}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{\sigma }^i
+\end{dmath*}
+
+A Pauli matrix contracted with a Lorentz or Cartesian vector is
+displayed as \(\sigma \cdot p\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliSigma}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\sigma }\cdot \overline{p}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliSigma}\OperatorTok{[}\NormalTok{CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{\sigma }\cdot \overline{p}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliSigma}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]]}\NormalTok{ . PauliSigma}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{]]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ PauliSigmaExpand}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\sigma }\cdot \overline{q}\right).\left(\bar{\sigma }\cdot \left(\overline{p}-\overline{q}\right)\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\sigma }\cdot \overline{q}\right).\left(\bar{\sigma }\cdot \overline{p}-\bar{\sigma }\cdot \overline{q}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliSigma}\OperatorTok{[}\NormalTok{CartesianMomentum}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]]}\NormalTok{ . PauliSigma}\OperatorTok{[}\NormalTok{CartesianMomentum}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{]]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ PauliSigmaExpand }
+  
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\overline{\sigma }\cdot \overline{q}\right).\left(\overline{\sigma }\cdot \left(\overline{p}-\overline{q}\right)\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left(\overline{\sigma }\cdot \overline{q}\right).\left(\overline{\sigma }\cdot \overline{p}-\overline{\sigma }\cdot \overline{q}\right)
+\end{dmath*}
+\end{document}

@@ -1,0 +1,30 @@
+% !TeX program = pdflatex
+% !TeX root = DollarFCTraditionalFormOutput.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fctraditionalformoutput}{%
+\section{\$FCTraditionalFormOutput}\label{fctraditionalformoutput}}
+
+The Boolean setting of \texttt{\$FCTraditionalFormOutput} determines
+which output format type should be used in the notebook front end when
+FeynCalc is loaded. If set to \texttt{True}, FeynCalc will activate the
+\texttt{TraditionalForm} output. Otherwise, the \texttt{StandardForm}
+output (Mathematica's default) will be used.
+
+This setting only changes the output format of the current notebook,
+i.e.~it is not persistent and will not modify the global options of
+Mathematica.
+
+If unsure, it is recommended to set \texttt{\$FCTraditionalFormOutput}
+to \texttt{True}, so that you can benefit from the nice FeynCalc
+typesetting for various QFT quantities.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcenabletraditionalformoutput}{FCEnableTraditionalFormOutput},
+\hyperlink{fcdisabletraditionalformoutput}{FCDisableTraditionalFormOutput}.
+
+\subsection{Examples}
+\end{document}

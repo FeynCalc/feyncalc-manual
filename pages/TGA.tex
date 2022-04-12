@@ -1,0 +1,48 @@
+% !TeX program = pdflatex
+% !TeX root = TGA.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{tga}{%
+\section{TGA}\label{tga}}
+
+\texttt{TGA[\allowbreak{}]} can be used as input for \(\gamma^0\) in
+\(4\) dimensions and is transformed into
+\texttt{DiracGamma[\allowbreak{}ExplicitLorentzIndex[\allowbreak{}0]]}
+by \texttt{FeynCalcInternal}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{ga}{GA},
+\hyperlink{diracgamma}{DiracGamma}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TGA}\OperatorTok{[]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^0
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TGA}\OperatorTok{[]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*DiracGamma[ExplicitLorentzIndex[0]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TGA}\OperatorTok{[]}\NormalTok{ . TGA}\OperatorTok{[]} \SpecialCharTok{//}\NormalTok{ DiracSimplify}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+1
+\end{dmath*}
+\end{document}

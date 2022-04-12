@@ -1,0 +1,140 @@
+% !TeX program = pdflatex
+% !TeX root = FCRenameDummyIndices.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcrenamedummyindices}{%
+\section{FCRenameDummyIndices}\label{fcrenamedummyindices}}
+
+\texttt{FCRenameDummyIndices[\allowbreak{}expr]} identifies dummy
+indices and changes their names pairwise to random symbols. This can be
+useful if you have an expression that contains dummy indices and want to
+compute the square of it. For example, the square of
+\texttt{GA[\allowbreak{}a,\ \allowbreak{}l,\ \allowbreak{}a]} equals
+\(16\). However, if you forget to rename the dummy indices and compute
+\texttt{GA[\allowbreak{}a,\ \allowbreak{}l,\ \allowbreak{}a,\ \allowbreak{}a,\ \allowbreak{}l,\ \allowbreak{}a]}
+instead of
+\texttt{GA[\allowbreak{}a,\ \allowbreak{}l,\ \allowbreak{}a,\ \allowbreak{}b,\ \allowbreak{}l,\ \allowbreak{}b]},
+you will get \(64\).
+
+Notice that this routine does not perform any canonicalization. Use
+\texttt{FCCanonicalizeDummyIndices} for that.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{complexconjugate}{ComplexConjugate},
+\hyperlink{fccanonicalizedummyindices}{FCCanonicalizeDummyIndices}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,}\NormalTok{ mu}\OperatorTok{]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,}\NormalTok{ mu}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,}\NormalTok{ nu}\OperatorTok{]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,}\NormalTok{ nu}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,}\NormalTok{ si}\OperatorTok{]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{r}\OperatorTok{,}\NormalTok{ si}\OperatorTok{]} 
+ 
+\NormalTok{FCRenameDummyIndices}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ Factor2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p^{\text{mu}} q^{\text{mu}}+p^{\text{nu}} q^{\text{nu}}+q^{\text{si}} r^{\text{si}}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+p^{\text{\$AL}(\text{\$19})} q^{\text{\$AL}(\text{\$19})}+p^{\text{\$AL}(\text{\$20})} q^{\text{\$AL}(\text{\$20})}+q^{\text{\$AL}(\text{\$21})} r^{\text{\$AL}(\text{\$21})}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Uncontract}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,} \FunctionTok{p}\OperatorTok{,}\NormalTok{ Pair }\OtherTok{{-}\textgreater{}} \ConstantTok{All}\OperatorTok{]} 
+ 
+\NormalTok{FCRenameDummyIndices}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p^{\text{\$AL}(\text{\$22})} p^{\text{\$AL}(\text{\$23})} q^{\text{\$AL}(\text{\$22})} q^{\text{\$AL}(\text{\$23})}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+p^{\text{\$AL}(\text{\$24})} p^{\text{\$AL}(\text{\$25})} q^{\text{\$AL}(\text{\$24})} q^{\text{\$AL}(\text{\$25})}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{amp }\ExtensionTok{=} \SpecialCharTok{{-}}\NormalTok{(Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{k1}\OperatorTok{],}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_mu"}\OperatorTok{],} \DecValTok{1}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\NormalTok{Lor1}\OperatorTok{]}\NormalTok{ . Spinor}\OperatorTok{[}\SpecialCharTok{{-}}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{k2}\OperatorTok{],} 
+\NormalTok{         SMP}\OperatorTok{[}\StringTok{"m\_mu"}\OperatorTok{],} \DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\NormalTok{Spinor}\OperatorTok{[}\SpecialCharTok{{-}}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_e"}\OperatorTok{],} \DecValTok{1}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\NormalTok{Lor1}\OperatorTok{]}\NormalTok{ . Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],} 
+\NormalTok{         SMP}\OperatorTok{[}\StringTok{"m\_e"}\OperatorTok{],} \DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\NormalTok{FAD}\OperatorTok{[}\NormalTok{k1 }\SpecialCharTok{+}\NormalTok{ k2}\OperatorTok{,}\NormalTok{ Dimension }\OtherTok{{-}\textgreater{}} \DecValTok{4}\OperatorTok{]}\SpecialCharTok{*}\NormalTok{SMP}\OperatorTok{[}\StringTok{"e"}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{); }
+ 
+\NormalTok{amp }\SpecialCharTok{//}\NormalTok{ FCRenameDummyIndices}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{\text{e}^2 \left(\varphi (-\overline{\text{p2}},m_e)\right).\bar{\gamma }^{\text{\$AL}(\text{\$26})}.\left(\varphi (\overline{\text{p1}},m_e)\right) \left(\varphi (\overline{\text{k1}},m_{\mu })\right).\bar{\gamma }^{\text{\$AL}(\text{\$26})}.\left(\varphi (-\overline{\text{k2}},m_{\mu })\right)}{(\overline{\text{k1}}+\overline{\text{k2}})^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]}\NormalTok{ CVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ CVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}\NormalTok{ CVD}\OperatorTok{[}\FunctionTok{r}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ FCRenameDummyIndices}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p^i q^i+p^j r^j
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+p^{\text{\$AL}(\text{\$27})} q^{\text{\$AL}(\text{\$27})}+p^{\text{\$AL}(\text{\$28})} r^{\text{\$AL}(\text{\$28})}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{a}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ SUNT}\OperatorTok{[}\FunctionTok{c}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ FCRenameDummyIndices}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+T^a.T^b.T^a+T^c.T^b.T^c
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+T^{\text{\$AL}(\text{\$29})}.T^b.T^{\text{\$AL}(\text{\$29})}+T^{\text{\$AL}(\text{\$30})}.T^b.T^{\text{\$AL}(\text{\$30})}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DCHN}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\NormalTok{mu}\OperatorTok{],} \FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}\NormalTok{ DCHN}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\NormalTok{nu}\OperatorTok{],} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ FCRenameDummyIndices}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }^{\text{mu}}\right){}_{ij} \left(\bar{\gamma }^{\text{nu}}\right){}_{jk}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }^{\text{mu}}\right){}_{i\text{\$AL}(\text{\$31})} \left(\bar{\gamma }^{\text{nu}}\right){}_{\text{\$AL}(\text{\$31})k}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PCHN}\OperatorTok{[}\NormalTok{CSI}\OperatorTok{[}\FunctionTok{a}\OperatorTok{],} \FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}\NormalTok{ PCHN}\OperatorTok{[}\NormalTok{CSI}\OperatorTok{[}\FunctionTok{b}\OperatorTok{],} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ FCRenameDummyIndices}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\overline{\sigma }^a\right){}_{ij} \left(\overline{\sigma }^b\right){}_{jk}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left(\overline{\sigma }^a\right){}_{i\text{\$AL}(\text{\$32})} \left(\overline{\sigma }^b\right){}_{\text{\$AL}(\text{\$32})k}
+\end{dmath*}
+\end{document}

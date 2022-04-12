@@ -1,0 +1,84 @@
+% !TeX program = pdflatex
+% !TeX root = DiracGammaCombine.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{diracgammacombine}{%
+\section{DiracGammaCombine}\label{diracgammacombine}}
+
+\texttt{DiracGammaCombine[\allowbreak{}exp]} is (nearly) the inverse
+operation to \texttt{DiracGammaExpand}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{diracgamma}{DiracGamma},
+\hyperlink{diracgammaexpand}{DiracGammaExpand},
+\hyperlink{diracsimplify}{DiracSimplify},
+\hyperlink{diractrick}{DiracTrick}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ GS}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]} 
+ 
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ DiracGammaCombine}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }\cdot \overline{p}+\bar{\gamma }\cdot \overline{q}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }\cdot \left(\overline{p}+\overline{q}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*DiracGamma[Momentum[p + q]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2}\NormalTok{ GSD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{{-}} \DecValTok{3}\NormalTok{ GSD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]} 
+ 
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ DiracGammaCombine}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+2 \gamma \cdot p-3 \gamma \cdot q
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\gamma \cdot (2 p-3 q)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*DiracGamma[Momentum[2 p {-} 3 q, D], D]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracGammaCombine}\OperatorTok{[}\DecValTok{2}\NormalTok{ GSD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{{-}} \DecValTok{3}\NormalTok{ GSD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]]} 
+ 
+\NormalTok{DiracGammaExpand}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\gamma \cdot (2 p-3 q)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+2 \gamma \cdot p-3 \gamma \cdot q
+\end{dmath*}
+\end{document}

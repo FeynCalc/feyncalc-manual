@@ -1,0 +1,68 @@
+% !TeX program = pdflatex
+% !TeX root = FCFADiracChainJoin.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcfadiracchainjoin}{%
+\section{FCFADiracChainJoin}\label{fcfadiracchainjoin}}
+
+\texttt{FCFADiracChainJoin[\allowbreak{}exp]} processes the output of
+FeynArts (after \texttt{FCFAConvert}) with explicit Dirac indices and
+joins matrices and spinors into closed chains. This is necessary e. g.
+for models with 4-fermion operators, where FeynArts cannot determine the
+correct relative signs. When two matrices have a common index but the
+positions do not match, as in \(A_{ij} B_{ik}\), it is assumed that we
+can take the charge conjugate transposed of either matrix to obtain,
+e.g.~\(\left(C A^T C^{-1}\right)_{ji} B_{ik}\) or
+\(\left(C B^TC^{-1}\right)_{ki} A_{ij}\).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{diracchain}{DiracChain},
+\hyperlink{dchn}{DCHN}, \hyperlink{diracindex}{DiracIndex},
+\hyperlink{diracindexdelta}{DiracIndexDelta},
+\hyperlink{didelta}{DIDelta},
+\hyperlink{diracchaincombine}{DiracChainCombine},
+\hyperlink{diracchainexpand}{DiracChainExpand},
+\hyperlink{diracchainfactor}{DiracChainFactor},
+\hyperlink{diracchainjoin}{DiracChainJoin}, \hyperlink{fccct}{FCCCT}.
+
+\subsection{Examples}
+
+Create a closed chain for the 1-loop electron self-energy
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{{-}}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\DecValTok{16} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Pi}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{4}\NormalTok{)) }\FunctionTok{I}\NormalTok{ el}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ DCHN}\OperatorTok{[}\NormalTok{Spinor}\OperatorTok{[}\SpecialCharTok{{-}}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],}\NormalTok{ me}\OperatorTok{,} \DecValTok{1}\OperatorTok{],}\NormalTok{ Dir1}\OperatorTok{]}\SpecialCharTok{*}
+\NormalTok{   DCHN}\OperatorTok{[}\NormalTok{Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],}\NormalTok{ me}\OperatorTok{,} \DecValTok{1}\OperatorTok{],}\NormalTok{ Dir2}\OperatorTok{]}\NormalTok{ DCHN}\OperatorTok{[}\NormalTok{GAD}\OperatorTok{[}\NormalTok{Lor1}\OperatorTok{],}\NormalTok{ Dir1}\OperatorTok{,}\NormalTok{ Dir3}\OperatorTok{]}\SpecialCharTok{*}
+\NormalTok{   DCHN}\OperatorTok{[}\NormalTok{GAD}\OperatorTok{[}\NormalTok{Lor2}\OperatorTok{],}\NormalTok{ Dir2}\OperatorTok{,}\NormalTok{ Dir4}\OperatorTok{]}\NormalTok{ DCHN}\OperatorTok{[}\NormalTok{me }\SpecialCharTok{{-}}\NormalTok{ GSD}\OperatorTok{[}\FunctionTok{k}\OperatorTok{],}\NormalTok{ Dir3}\OperatorTok{,}\NormalTok{ Dir4}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{k}\OperatorTok{,}\NormalTok{ me}\OperatorTok{\},} \FunctionTok{k} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{]}\NormalTok{ MTD}\OperatorTok{[}\NormalTok{Lor1}\OperatorTok{,}\NormalTok{ Lor2}\OperatorTok{]} 
+ 
+\NormalTok{res }\ExtensionTok{=}\NormalTok{ FCFADiracChainJoin}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{i \;\text{el}^2 g^{\text{Lor1}\;\text{Lor2}} \left(\gamma ^{\text{Lor1}}\right){}_{\text{Dir1}\;\text{Dir3}} \left(\gamma ^{\text{Lor2}}\right){}_{\text{Dir2}\;\text{Dir4}} (\text{me}-\gamma \cdot k)_{\text{Dir3}\;\text{Dir4}} (\varphi (-p,\text{me}))_{\text{Dir1}} (\varphi (q,\text{me}))_{\text{Dir2}}}{16 \pi ^4 \left(k^2-\text{me}^2\right).(k-q)^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-\frac{i \;\text{el}^2 g^{\text{Lor1}\;\text{Lor2}} (\varphi (q,\text{me})).\gamma ^{\text{Lor2}}.\left(-(\gamma \cdot k+\text{me}).\gamma ^{\text{Lor1}}\right).(\varphi (p,\text{me}))}{16 \pi ^4 \left(k^2-\text{me}^2\right).(k-q)^2}
+\end{dmath*}
+
+Sometimes the ordering of the spinors is not the one wants to have.
+However, we can always transpose the chains to reorder the spinors as we
+like, which doesn't change the final result
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpinorChainTranspose}\OperatorTok{[}\NormalTok{res}\OperatorTok{,} \FunctionTok{Select} \OtherTok{{-}\textgreater{}} \OperatorTok{\{\{}\NormalTok{Spinor}\OperatorTok{[}\AttributeTok{\_\_}\OperatorTok{],}\NormalTok{ Spinor}\OperatorTok{[}\AttributeTok{\_\_}\OperatorTok{]\}\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{i \;\text{el}^2 g^{\text{Lor1}\;\text{Lor2}} (\varphi (-p,\text{me})).\gamma ^{\text{Lor1}}.(\text{me}-\gamma \cdot k).\gamma ^{\text{Lor2}}.(\varphi (-q,\text{me}))}{16 \pi ^4 \left(k^2-\text{me}^2\right).(k-q)^2}
+\end{dmath*}
+
+Using patterns in the \texttt{Select} option one can create very
+fine-grained criteria for transposing the chains.
+\end{document}

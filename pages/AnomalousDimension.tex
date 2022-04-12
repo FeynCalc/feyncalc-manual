@@ -1,0 +1,164 @@
+% !TeX program = pdflatex
+% !TeX root = AnomalousDimension.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{anomalousdimension}{%
+\section{AnomalousDimension}\label{anomalousdimension}}
+
+\texttt{AnomalousDimension[\allowbreak{}name]} is a database of
+anomalous dimensions of twist 2 operators.
+
+\texttt{AnomalousDimension[\allowbreak{}"gnsqg0"]} yields the
+non-singlet one-loop contribution to the anomalous dimension
+\(\gamma_{S,qg}^{(0),m}\) in the MS-bar scheme etc.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{splittingfunction}{SplittingFunction},
+\hyperlink{sums}{SumS}, \hyperlink{sumt}{SumT}.
+
+\subsection{Examples}
+
+Polarized case:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{SetOptions}\OperatorTok{[}\NormalTok{AnomalousDimension}\OperatorTok{,}\NormalTok{ Polarization }\OtherTok{{-}\textgreater{}} \DecValTok{1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{\text{Polarization}\to 1,\text{Simplify}\to \;\text{FullSimplify}\}
+\end{dmath*}
+
+\(\gamma _{NS,qq }^{(0) }\) polarized:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{AnomalousDimension}\OperatorTok{[}\NormalTok{gnsqq0}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+C_F \left(8 S_1(m-1)+\frac{4}{m}+\frac{4}{m+1}-6\right)
+\end{dmath*}
+
+\(\gamma _{S,qg }^{(0)}\) polarized:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{AnomalousDimension}\OperatorTok{[}\NormalTok{gsqg0}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\frac{8}{m}-\frac{16}{m+1}\right) T_f
+\end{dmath*}
+
+\(\gamma _{S,gq }^{(0)}\)polarized:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{AnomalousDimension}\OperatorTok{[}\NormalTok{gsgq0}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\frac{4}{m+1}-\frac{8}{m}\right) C_F
+\end{dmath*}
+
+\(\gamma _{S,gg}^{(0)}\) polarized:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{AnomalousDimension}\OperatorTok{[}\NormalTok{gsgg0}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+C_A \left(8 S_1(m-1)-\frac{8}{m}+\frac{16}{m+1}-\frac{22}{3}\right)+\frac{8 T_f}{3}
+\end{dmath*}
+
+\(\gamma _{PS,qq}^{(0)}\) polarized:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{AnomalousDimension}\OperatorTok{[}\NormalTok{gpsqq1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+16 \left(\frac{2}{m^3}-\frac{1}{m^2}+\frac{1}{m+1}+\frac{3}{(m+1)^2}+\frac{2}{(m+1)^3}-\frac{1}{m}\right) C_F T_f
+\end{dmath*}
+
+\(\gamma _{NS,qq }^{(1)}\) polarized:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{AnomalousDimension}\OperatorTok{[}\NormalTok{gnsqq1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-C_A C_F \left(-\frac{16 \tilde{S}_2(m-1)}{m}-\frac{16 \tilde{S}_2(m-1)}{m+1}+16 \tilde{S}_3(m-1)-32 \tilde{S}_{12}(m-1)+\frac{44}{3 m^2}-\frac{536}{9} S_1(m-1)+\frac{88}{3} S_2(m-1)-16 S_3(m-1)+\frac{212}{9 m}-\frac{748}{9 (m+1)}-\frac{4}{3 (m+1)^2}-\frac{16}{(m+1)^3}+\frac{17}{3}\right)-\left(C_F^2 \left(\frac{32 \tilde{S}_2(m-1)}{m}+\frac{32 \tilde{S}_2(m-1)}{m+1}-32 \tilde{S}_3(m-1)+64 \tilde{S}_{12}(m-1)+\frac{8}{m^3}+\frac{16 S_1(m-1)}{m^2}+\frac{16 S_1(m-1)}{(m+1)^2}+\frac{16 S_2(m-1)}{m}+\frac{16 S_2(m-1)}{m+1}-24 S_2(m-1)+32 S_{12}(m-1)+32 S_{21}(m-1)-\frac{40}{m}+\frac{40}{m+1}+\frac{16}{(m+1)^2}+\frac{40}{(m+1)^3}+3\right)\right)-C_F N_f \left(-\frac{8}{3 m^2}+\frac{80}{9} S_1(m-1)-\frac{16}{3} S_2(m-1)-\frac{8}{9 m}+\frac{88}{9 (m+1)}-\frac{8}{3 (m+1)^2}-\frac{2}{3}\right)
+\end{dmath*}
+
+\(\gamma _{S,qg }^{(1)}\) polarized:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{AnomalousDimension}\OperatorTok{[}\NormalTok{gsqg1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+16 C_A T_f \left(-\frac{2 \tilde{S}_2(m-1)}{m}+\frac{4 \tilde{S}_2(m-1)}{m+1}+\frac{2}{m^3}-\frac{2 S_1(m-1)}{m^2}-\frac{3}{m^2}-\frac{S_1^2(m-1)}{m}+\frac{2 S_1^2(m-1)}{m+1}+\frac{4 S_1(m-1)}{(m+1)^2}-\frac{S_2(m-1)}{m}+\frac{2 S_2(m-1)}{m+1}-\frac{4}{m}+\frac{3}{m+1}+\frac{8}{(m+1)^2}+\frac{12}{(m+1)^3}\right)+8 C_F T_f \left(-\frac{2}{m^3}-\frac{1}{m^2}+\frac{2 S_1^2(m-1)}{m}-\frac{4 S_1^2(m-1)}{m+1}-\frac{2 S_2(m-1)}{m}+\frac{4 S_2(m-1)}{m+1}+\frac{14}{m}-\frac{19}{m+1}-\frac{8}{(m+1)^2}+\frac{4}{(m+1)^3}\right)
+\end{dmath*}
+
+\(\gamma _{S,gq }^{(1)}\) polarized:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{AnomalousDimension}\OperatorTok{[}\NormalTok{gsgq1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+8 C_A C_F \left(\frac{4 \tilde{S}_2(m-1)}{m}-\frac{2 \tilde{S}_2(m-1)}{m+1}-\frac{4}{m^3}+\frac{28}{3 m^2}-\frac{2 S_1^2(m-1)}{m}+\frac{S_1^2(m-1)}{m+1}+\frac{16 S_1(m-1)}{3 m}-\frac{5 S_1(m-1)}{3 (m+1)}+\frac{2 S_2(m-1)}{m}-\frac{S_2(m-1)}{m+1}-\frac{56}{9 m}-\frac{20}{9 (m+1)}-\frac{38}{3 (m+1)^2}-\frac{6}{(m+1)^3}\right)+32 C_F T_f \left(-\frac{2}{3 m^2}-\frac{2 S_1(m-1)}{3 m}+\frac{S_1(m-1)}{3 (m+1)}+\frac{7}{9 m}-\frac{2}{9 (m+1)}+\frac{1}{3 (m+1)^2}\right)+4 C_F^2 \left(\frac{4}{m^3}+\frac{8 S_1(m-1)}{m^2}-\frac{12}{m^2}+\frac{4 S_1^2(m-1)}{m}-\frac{2 S_1^2(m-1)}{m+1}-\frac{8 S_1(m-1)}{m}+\frac{2 S_1(m-1)}{m+1}-\frac{4 S_1(m-1)}{(m+1)^2}+\frac{4 S_2(m-1)}{m}-\frac{2 S_2(m-1)}{m+1}+\frac{15}{m}-\frac{6}{m+1}+\frac{3}{(m+1)^2}-\frac{2}{(m+1)^3}\right)
+\end{dmath*}
+
+\(\gamma _{S,gg }^{(1)}\) polarized:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v1 }\ExtensionTok{=}\NormalTok{ AnomalousDimension}\OperatorTok{[}\NormalTok{gsgg1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+4 C_A^2 \left(\frac{8 \tilde{S}_2(m-1)}{m}-\frac{16 \tilde{S}_2(m-1)}{m+1}+4 \tilde{S}_3(m-1)-8 \tilde{S}_{12}(m-1)-\frac{8}{m^3}+\frac{8 S_1(m-1)}{m^2}+\frac{58}{3 m^2}-\frac{16 S_1(m-1)}{(m+1)^2}+\frac{134}{9} S_1(m-1)+\frac{8 S_2(m-1)}{m}-\frac{16 S_2(m-1)}{m+1}+4 S_3(m-1)-8 S_{12}(m-1)-8 S_{21}(m-1)-\frac{107}{9 m}+\frac{241}{9 (m+1)}-\frac{86}{3 (m+1)^2}-\frac{48}{(m+1)^3}-\frac{16}{3}\right)+32 C_A T_f \left(-\frac{1}{3 m^2}-\frac{5}{9} S_1(m-1)+\frac{14}{9 m}-\frac{19}{9 (m+1)}-\frac{1}{3 (m+1)^2}+\frac{1}{3}\right)+8 \left(\frac{4}{m^3}-\frac{10}{m^2}-\frac{10}{m+1}+\frac{2}{(m+1)^2}+\frac{4}{(m+1)^3}+\frac{10}{m}+1\right) C_F T_f
+\end{dmath*}
+
+\(\gamma _{S,gg }^{(1)}\) polarized (different representation):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v2 }\ExtensionTok{=}\NormalTok{ AnomalousDimension}\OperatorTok{[}\NormalTok{GSGG1}\OperatorTok{]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+Check that all odd moments give the same for the two representations of
+\(\gamma _{S,gg }^{(1)}\):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Table}\OperatorTok{[}\NormalTok{v1 }\SpecialCharTok{{-}}\NormalTok{ v2 }\OtherTok{/.}\NormalTok{ OPEm }\OtherTok{{-}\textgreater{}}\NormalTok{ ij}\OperatorTok{,} \OperatorTok{\{}\NormalTok{ij}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{17}\OperatorTok{,} \DecValTok{2}\OperatorTok{\}]} \SpecialCharTok{//} \FunctionTok{Simplify}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{0,0,0,0,0,0,0,0,0\}
+\end{dmath*}
+\end{document}

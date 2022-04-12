@@ -1,0 +1,34 @@
+% !TeX program = pdflatex
+% !TeX root = CommutatorOrder.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{commutatororder}{%
+\section{CommutatorOrder}\label{commutatororder}}
+
+\texttt{CommutatorOrder[\allowbreak{}exp]} orders any
+\texttt{Commutator} and \texttt{AntiCommutator} lexicographically.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{commutator}{Commutator},
+\hyperlink{anticommutator}{AntiCommutator}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Commutator}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ Commutator}\OperatorTok{[}\FunctionTok{b}\OperatorTok{,} \FunctionTok{a}\OperatorTok{]} 
+ 
+\NormalTok{CommutatorOrder}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+[a,b]+[b,a]
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+\end{document}

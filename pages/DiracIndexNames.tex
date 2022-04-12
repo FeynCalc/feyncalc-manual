@@ -1,0 +1,53 @@
+% !TeX program = pdflatex
+% !TeX root = DiracIndexNames.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{diracindexnames}{%
+\section{DiracIndexNames}\label{diracindexnames}}
+
+\texttt{DiracIndexNames} is an option for \texttt{FCFAConvert},
+\texttt{FCCanonicalizeDummyIndices} and other functions. It renames the
+generic dummy Dirac indices to the indices in the supplied list.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fcfaconvert}{FCFAConvert},
+\hyperlink{fccanonicalizedummyindices}{FCCanonicalizeDummyIndices},
+\hyperlink{pauliindexnames}{PauliIndexNames},
+\hyperlink{lorentzindexnames}{LorentzIndexNames}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DCHN}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\NormalTok{mu}\OperatorTok{],} \FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}\NormalTok{ DCHN}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\NormalTok{nu}\OperatorTok{],} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]} 
+ 
+\NormalTok{FCCanonicalizeDummyIndices}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }^{\text{mu}}\right){}_{ij} \left(\bar{\gamma }^{\text{nu}}\right){}_{jk}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }^{\text{mu}}\right){}_{i\text{FCGV}(\text{di241})} \left(\bar{\gamma }^{\text{nu}}\right){}_{\text{FCGV}(\text{di241})k}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DCHN}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\NormalTok{mu}\OperatorTok{],} \FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}\NormalTok{ DCHN}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\NormalTok{nu}\OperatorTok{],} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]} 
+ 
+\NormalTok{FCCanonicalizeDummyIndices}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ DiracIndexNames }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{a}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }^{\text{mu}}\right){}_{ij} \left(\bar{\gamma }^{\text{nu}}\right){}_{jk}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }^{\text{mu}}\right){}_{ia} \left(\bar{\gamma }^{\text{nu}}\right){}_{ak}
+\end{dmath*}
+\end{document}

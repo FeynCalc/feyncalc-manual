@@ -1,0 +1,190 @@
+% !TeX program = pdflatex
+% !TeX root = FCMatrixProduct.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcmatrixproduct}{%
+\section{FCMatrixProduct}\label{fcmatrixproduct}}
+
+\texttt{FCMatrixProduct[\allowbreak{}mat1,\ \allowbreak{}mat2,\ \allowbreak{}...]}
+can be used to obtain products of matrices with entries containing
+noncommutative symbols. Using the usual \texttt{Dot} on such matrices
+would otherwise destroy the original ordering.
+
+The resulting expression can be then further simplified using
+\texttt{DotSimplify}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{datatype}{DataType},
+\hyperlink{declarenoncommutative}{DeclareNonCommutative},
+\hyperlink{undeclarenoncommutative}{UnDeclareNonCommutative}.
+
+\subsection{Examples}
+
+\hypertarget{generic-matrices}{%
+\subsubsection{Generic matrices}\label{generic-matrices}}
+
+Consider two generic \(2 \times 2\)-matrices containing noncommutative
+heads
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DeclareNonCommutative}\OperatorTok{[}\NormalTok{opA}\OperatorTok{,}\NormalTok{ opB}\OperatorTok{,}\NormalTok{ opC}\OperatorTok{,}\NormalTok{ opD}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mat}\OperatorTok{[}\DecValTok{1}\OperatorTok{]} \ExtensionTok{=} \OperatorTok{\{\{}\NormalTok{opA}\OperatorTok{[}\DecValTok{1}\OperatorTok{],}\NormalTok{ opB}\OperatorTok{[}\DecValTok{1}\OperatorTok{]\},} \OperatorTok{\{}\NormalTok{opC}\OperatorTok{[}\DecValTok{1}\OperatorTok{],}\NormalTok{ opD}\OperatorTok{[}\DecValTok{1}\OperatorTok{]\}\}} 
+ 
+\NormalTok{mat}\OperatorTok{[}\DecValTok{2}\OperatorTok{]} \ExtensionTok{=} \OperatorTok{\{\{}\NormalTok{opA}\OperatorTok{[}\DecValTok{2}\OperatorTok{],}\NormalTok{ opB}\OperatorTok{[}\DecValTok{2}\OperatorTok{]\},} \OperatorTok{\{}\NormalTok{opC}\OperatorTok{[}\DecValTok{2}\OperatorTok{],}\NormalTok{ opD}\OperatorTok{[}\DecValTok{2}\OperatorTok{]\}\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{cc}
+ \;\text{opA}(1) & \;\text{opB}(1) \\
+ \;\text{opC}(1) & \;\text{opD}(1) \\
+\end{array}
+\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{cc}
+ \;\text{opA}(2) & \;\text{opB}(2) \\
+ \;\text{opC}(2) & \;\text{opD}(2) \\
+\end{array}
+\right)
+\end{dmath*}
+
+Using the usual \texttt{Dot} product the elements of the resulting
+matrix are now multiplied with each other commutatively. Hence, the
+result is incorrect.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mat}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\NormalTok{ . mat}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{cc}
+ \;\text{opA}(1) \;\text{opA}(2)+\text{opB}(1) \;\text{opC}(2) & \;\text{opA}(1) \;\text{opB}(2)+\text{opB}(1) \;\text{opD}(2) \\
+ \;\text{opA}(2) \;\text{opC}(1)+\text{opC}(2) \;\text{opD}(1) & \;\text{opB}(2) \;\text{opC}(1)+\text{opD}(1) \;\text{opD}(2) \\
+\end{array}
+\right)
+\end{dmath*}
+
+With \texttt{FCMatrixProduct} the proper ordering is preserved
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCMatrixProduct}\OperatorTok{[}\NormalTok{mat}\OperatorTok{[}\DecValTok{1}\OperatorTok{],}\NormalTok{ mat}\OperatorTok{[}\DecValTok{2}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{cc}
+ \;\text{opA}(1).\text{opA}(2)+\text{opB}(1).\text{opC}(2) & \;\text{opA}(1).\text{opB}(2)+\text{opB}(1).\text{opD}(2) \\
+ \;\text{opC}(1).\text{opA}(2)+\text{opD}(1).\text{opC}(2) & \;\text{opC}(1).\text{opB}(2)+\text{opD}(1).\text{opD}(2) \\
+\end{array}
+\right)
+\end{dmath*}
+
+We can also multiply more than two matrices at once
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mat}\OperatorTok{[}\DecValTok{3}\OperatorTok{]} \ExtensionTok{=} \OperatorTok{\{\{}\NormalTok{opA}\OperatorTok{[}\DecValTok{3}\OperatorTok{],}\NormalTok{ opB}\OperatorTok{[}\DecValTok{3}\OperatorTok{]\},} \OperatorTok{\{}\NormalTok{opC}\OperatorTok{[}\DecValTok{3}\OperatorTok{],}\NormalTok{ opD}\OperatorTok{[}\DecValTok{3}\OperatorTok{]\}\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{cc}
+ \;\text{opA}(3) & \;\text{opB}(3) \\
+ \;\text{opC}(3) & \;\text{opD}(3) \\
+\end{array}
+\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{out} \ExtensionTok{=}\NormalTok{ FCMatrixProduct}\OperatorTok{[}\NormalTok{mat}\OperatorTok{[}\DecValTok{1}\OperatorTok{],}\NormalTok{ mat}\OperatorTok{[}\DecValTok{2}\OperatorTok{],}\NormalTok{ mat}\OperatorTok{[}\DecValTok{3}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{cc}
+ \;\text{opB}(1).(\text{opC}(2).\text{opA}(3)+\text{opD}(2).\text{opC}(3))+\text{opA}(1).(\text{opA}(2).\text{opA}(3)+\text{opB}(2).\text{opC}(3)) & \;\text{opA}(1).(\text{opA}(2).\text{opB}(3)+\text{opB}(2).\text{opD}(3))+\text{opB}(1).(\text{opC}(2).\text{opB}(3)+\text{opD}(2).\text{opD}(3)) \\
+ \;\text{opC}(1).(\text{opA}(2).\text{opA}(3)+\text{opB}(2).\text{opC}(3))+\text{opD}(1).(\text{opC}(2).\text{opA}(3)+\text{opD}(2).\text{opC}(3)) & \;\text{opC}(1).(\text{opA}(2).\text{opB}(3)+\text{opB}(2).\text{opD}(3))+\text{opD}(1).(\text{opC}(2).\text{opB}(3)+\text{opD}(2).\text{opD}(3)) \\
+\end{array}
+\right)
+\end{dmath*}
+
+Now use \texttt{DotSimplify} to expand noncommutative products
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DotSimplify}\OperatorTok{[}\FunctionTok{out}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{cc}
+ \;\text{opA}(1).\text{opB}(2).\text{opC}(3)+\text{opB}(1).\text{opC}(2).\text{opA}(3)+\text{opA}(1).\text{opA}(2).\text{opA}(3)+\text{opB}(1).\text{opD}(2).\text{opC}(3) & \;\text{opA}(1).\text{opB}(2).\text{opD}(3)+\text{opA}(1).\text{opA}(2).\text{opB}(3)+\text{opB}(1).\text{opC}(2).\text{opB}(3)+\text{opB}(1).\text{opD}(2).\text{opD}(3) \\
+ \;\text{opD}(1).\text{opC}(2).\text{opA}(3)+\text{opC}(1).\text{opA}(2).\text{opA}(3)+\text{opC}(1).\text{opB}(2).\text{opC}(3)+\text{opD}(1).\text{opD}(2).\text{opC}(3) & \;\text{opC}(1).\text{opA}(2).\text{opB}(3)+\text{opC}(1).\text{opB}(2).\text{opD}(3)+\text{opD}(1).\text{opC}(2).\text{opB}(3)+\text{opD}(1).\text{opD}(2).\text{opD}(3) \\
+\end{array}
+\right)
+\end{dmath*}
+
+\hypertarget{dirac-matrices-in-terms-of-pauli-matrices}{%
+\subsubsection{Dirac matrices in terms of Pauli
+matrices}\label{dirac-matrices-in-terms-of-pauli-matrices}}
+
+Let us define Dirac matrices in the Dirac basis in terms of Pauli
+matrices
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{gamma}\OperatorTok{[}\DecValTok{0}\OperatorTok{]} \ExtensionTok{=} \OperatorTok{\{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\}\}}\NormalTok{; }
+ 
+\FunctionTok{gamma}\OperatorTok{[}\AttributeTok{i\_}\OperatorTok{]} \ExtensionTok{:=} \OperatorTok{\{\{}\DecValTok{0}\OperatorTok{,}\NormalTok{ CSI}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]\},} \OperatorTok{\{}\SpecialCharTok{{-}}\NormalTok{CSI}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],} \DecValTok{0}\OperatorTok{\}\}}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+and express \(\gamma^i \gamma^j \gamma^i\) as a \(2 \times 2\)-matrix
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCMatrixProduct}\OperatorTok{[}\FunctionTok{gamma}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],} \FunctionTok{gamma}\OperatorTok{[}\FunctionTok{j}\OperatorTok{],} \FunctionTok{gamma}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]]} 
+ 
+\NormalTok{DotSimplify}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{cc}
+ 0.\left(\overline{\sigma }^j.\left(-\overline{\sigma }^i\right)+0.0\right)+\overline{\sigma }^i.\left(0.\left(-\overline{\sigma }^i\right)+\left(-\overline{\sigma }^j\right).0\right) & 0.\left(0.\overline{\sigma }^i+\overline{\sigma }^j.0\right)+\overline{\sigma }^i.\left(\left(-\overline{\sigma }^j\right).\overline{\sigma }^i+0.0\right) \\
+ 0.\left(0.\left(-\overline{\sigma }^i\right)+\left(-\overline{\sigma }^j\right).0\right)+\left(-\overline{\sigma }^i\right).\left(\overline{\sigma }^j.\left(-\overline{\sigma }^i\right)+0.0\right) & 0.\left(\left(-\overline{\sigma }^j\right).\overline{\sigma }^i+0.0\right)+\left(-\overline{\sigma }^i\right).\left(0.\overline{\sigma }^i+\overline{\sigma }^j.0\right) \\
+\end{array}
+\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{cc}
+ 0 & -\overline{\sigma }^i.\overline{\sigma }^j.\overline{\sigma }^i \\
+ \overline{\sigma }^i.\overline{\sigma }^j.\overline{\sigma }^i & 0 \\
+\end{array}
+\right)
+\end{dmath*}
+\end{document}

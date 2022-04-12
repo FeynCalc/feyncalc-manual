@@ -1,0 +1,40 @@
+% !TeX program = pdflatex
+% !TeX root = Epsilon.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{epsilon}{%
+\section{Epsilon}\label{epsilon}}
+
+Epsilon is \((n-4)\), where \(n\) is the space-time dimension.
+
+\texttt{Epsilon} stands for a small positive number.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{series2}{Series2}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Epsilon}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\varepsilon
+\end{dmath*}
+
+Epsilon has no functional properties, but some upvalues are changed:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\{}\FunctionTok{Re}\OperatorTok{[}\NormalTok{Epsilon}\OperatorTok{]}\NormalTok{ \textgreater{} }\SpecialCharTok{{-}}\DecValTok{4}\OperatorTok{,} \FunctionTok{Re}\OperatorTok{[}\NormalTok{Epsilon}\OperatorTok{]}\NormalTok{ \textgreater{} }\SpecialCharTok{{-}}\DecValTok{3}\OperatorTok{,} \FunctionTok{Re}\OperatorTok{[}\NormalTok{Epsilon}\OperatorTok{]}\NormalTok{ \textgreater{} }\SpecialCharTok{{-}}\DecValTok{2}\OperatorTok{,} \FunctionTok{Re}\OperatorTok{[}\NormalTok{Epsilon}\OperatorTok{]}\NormalTok{ \textgreater{} }\SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{,} \FunctionTok{Re}\OperatorTok{[}\NormalTok{Epsilon}\OperatorTok{]}\NormalTok{ \textgreater{} }\DecValTok{0}\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{\text{True},\text{True},\text{True},\text{True},\text{True}\}
+\end{dmath*}
+\end{document}

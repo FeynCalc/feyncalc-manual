@@ -1,0 +1,45 @@
+% !TeX program = pdflatex
+% !TeX root = FC.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fc}{%
+\section{FC}\label{fc}}
+
+\texttt{FC} changes the output format to \texttt{FeynCalcForm}. To
+change to \texttt{InputForm} use \texttt{FI}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{feyncalcform}{FeynCalcForm},
+\hyperlink{fi}{FI}, \hyperlink{feyncalcexternal}{FeynCalcExternal},
+\hyperlink{feyncalcinternal}{FeynCalcInternal}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FI }
+ 
+\OperatorTok{\{}\NormalTok{DiracGamma}\OperatorTok{[}\DecValTok{5}\OperatorTok{],}\NormalTok{ DiracGamma}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\{}\NormalTok{DiracGamma}\OperatorTok{[}\DecValTok{5}\OperatorTok{],}\NormalTok{ DiracGamma}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FC }
+ 
+\OperatorTok{\{}\NormalTok{DiracGamma}\OperatorTok{[}\DecValTok{5}\OperatorTok{],}\NormalTok{ DiracGamma}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\bar{\gamma }^5,\bar{\gamma }\cdot \overline{p}\right\}
+\end{dmath*}
+\end{document}

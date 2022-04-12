@@ -1,0 +1,38 @@
+% !TeX program = pdflatex
+% !TeX root = FCGramDeterminant.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcgramdeterminant}{%
+\section{FCGramDeterminant}\label{fcgramdeterminant}}
+
+\texttt{FCGramDeterminant[\allowbreak{}\{\allowbreak{}p1,\ \allowbreak{}p2,\ \allowbreak{}...\}]}
+computes the determinant of the Gram matrix created from the given list
+of momenta.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fcgrammatrix}{FCGramMatrix}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCGramDeterminant}\OperatorTok{[\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-8 \;\text{p3}^2 (\text{p1}\cdot \;\text{p2})^2-8 \;\text{p1}^2 (\text{p2}\cdot \;\text{p3})^2-8 \;\text{p2}^2 (\text{p1}\cdot \;\text{p3})^2+8 \;\text{p1}^2 \;\text{p2}^2 \;\text{p3}^2+16 (\text{p1}\cdot \;\text{p2}) (\text{p1}\cdot \;\text{p3}) (\text{p2}\cdot \;\text{p3})
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCGramDeterminant}\OperatorTok{[\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{\},} \FunctionTok{Head} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{CartesianPair}\OperatorTok{,}\NormalTok{ CartesianMomentum}\OperatorTok{\},}\NormalTok{ Dimension }\OtherTok{{-}\textgreater{}} \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-8 \;\text{p3}^2 (\text{p1}\cdot \;\text{p2})^2-8 \;\text{p1}^2 (\text{p2}\cdot \;\text{p3})^2-8 \;\text{p2}^2 (\text{p1}\cdot \;\text{p3})^2+8 \;\text{p1}^2 \;\text{p2}^2 \;\text{p3}^2+16 (\text{p1}\cdot \;\text{p2}) (\text{p1}\cdot \;\text{p3}) (\text{p2}\cdot \;\text{p3})
+\end{dmath*}
+\end{document}

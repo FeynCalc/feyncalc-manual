@@ -1,0 +1,66 @@
+% !TeX program = pdflatex
+% !TeX root = SUNIndex.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{sunindex}{%
+\section{SUNIndex}\label{sunindex}}
+
+\texttt{SUNIndex[\allowbreak{}a]} is an \(SU(N)\) index in the adjoint
+representation. If the argument is an integer,
+\texttt{SUNIndex[\allowbreak{}a]} turns into
+\texttt{ExplicitSUNIndex[\allowbreak{}a]}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{explicitsunindex}{ExplicitSUNIndex},
+\hyperlink{sundelta}{SUNDelta}, \hyperlink{sunf}{SUNF}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SUNIndex[i]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNIndex}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNIndex}\OperatorTok{[}\DecValTok{2}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*ExplicitSUNIndex[2]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNDelta}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SUNDelta[SUNIndex[i], SUNIndex[j]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

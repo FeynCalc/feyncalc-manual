@@ -1,0 +1,58 @@
+% !TeX program = pdflatex
+% !TeX root = ScalarProductCancel.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{scalarproductcancel}{%
+\section{ScalarProductCancel}\label{scalarproductcancel}}
+
+\texttt{ScalarProductCancel[\allowbreak{}exp,\ \allowbreak{}q1,\ \allowbreak{}q2,\ \allowbreak{}...]}
+cancels scalar products with propagators.
+
+\texttt{ScalarProductCancel[\allowbreak{}exp]} cancels simple cases.
+
+\texttt{ScalarProductCancel} is deprecated, please use the more powerful
+\texttt{ApartFF} instead.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{apartff}{ApartFF},
+\hyperlink{fcclearscalarproducts}{FCClearScalarProducts},
+\hyperlink{expandscalarproduct}{ExpandScalarProduct},
+\hyperlink{pair}{Pair}, \hyperlink{sp}{SP}, \hyperlink{spc}{SPC},
+\hyperlink{spd}{SPD}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}]} 
+ 
+\NormalTok{ScalarProductCancel}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{p\cdot q}{\left(q^2-m^2\right).(q-p)^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{m^2+p^2}{2 q^2.\left((q-p)^2-m^2\right)}-\frac{1}{2 \left(q^2-m^2\right)}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPD}\OperatorTok{[}\NormalTok{q2}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{q1}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{q1}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q2}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},}\NormalTok{ q1 }\SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{,}\NormalTok{ q2 }\SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{,}\NormalTok{ q2 }\SpecialCharTok{{-}}\NormalTok{ q1}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{FCI }
+ 
+\NormalTok{SPC}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{,}\NormalTok{ FDS }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{(p\cdot \;\text{q1}) (p\cdot \;\text{q2})}{\left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-p)^2.(\text{q2}-p)^2.(\text{q2}-\text{q1})^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{\left(m^2+p^2\right)^2}{4 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-p)^2.(\text{q1}-\text{q2})^2.(\text{q2}-p)^2}+\frac{m^2+p^2}{2 \;\text{q1}^2.\text{q2}^2.\left((\text{q1}-p)^2-m^2\right).(\text{q1}-\text{q2})^2}-\frac{m^2+p^2}{2 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-p)^2.(\text{q1}-\text{q2})^2}-\frac{1}{2 \left(\text{q1}^2-m^2\right).(\text{q1}-\text{q2})^2.(\text{q2}-p)^2}+\frac{1}{4 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-\text{q2})^2}
+\end{dmath*}
+\end{document}

@@ -1,0 +1,52 @@
+% !TeX program = pdflatex
+% !TeX root = C0.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{c0}{%
+\section{C0}\label{c0}}
+
+\texttt{C0[\allowbreak{}p10,\ \allowbreak{}p12,\ \allowbreak{}p20,\ \allowbreak{}m1^2,\ \allowbreak{}m2^2,\ \allowbreak{}m3^2]}
+is the scalar Passarino-Veltman \(C_0\) function. The convention for the
+arguments is that if the denominator of the integrand has the form
+\(([q^2-m1^2] [(q+p1)^2-m2^2] [(q+p2)^2-m3^2])\), the first three
+arguments of C0 are the scalar products \(p10 = p1^2\),
+\(p12 = (p1-p2).(p1-p2)\), \(p20 = p2^2\).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{b0}{B0}, \hyperlink{d0}{D0},
+\hyperlink{pave}{PaVe}, \hyperlink{paveorder}{PaVeOrder}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{C0}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,}\NormalTok{ m12}\OperatorTok{,}\NormalTok{ m22}\OperatorTok{,}\NormalTok{ m32}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{C}_0(a,b,c,\text{m12},\text{m22},\text{m32})
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{C0}\OperatorTok{[}\FunctionTok{b}\OperatorTok{,} \FunctionTok{a}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,}\NormalTok{ m32}\OperatorTok{,}\NormalTok{ m22}\OperatorTok{,}\NormalTok{ m12}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ PaVeOrder}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{C}_0(a,b,c,\text{m12},\text{m22},\text{m32})
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PaVeOrder}\OperatorTok{[}\NormalTok{C0}\OperatorTok{[}\FunctionTok{b}\OperatorTok{,} \FunctionTok{a}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,}\NormalTok{ m32}\OperatorTok{,}\NormalTok{ m22}\OperatorTok{,}\NormalTok{ m12}\OperatorTok{],}\NormalTok{ PaVeOrderList }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{c}\OperatorTok{,} \FunctionTok{a}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{C}_0(c,a,b,\text{m32},\text{m12},\text{m22})
+\end{dmath*}
+\end{document}

@@ -1,0 +1,68 @@
+% !TeX program = pdflatex
+% !TeX root = CGAE.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{cgae}{%
+\section{CGAE}\label{cgae}}
+
+\texttt{CGAE[\allowbreak{}i]} can be used as input for \(\gamma ^i\) in
+\(D-4\) dimensions, where \texttt{i} is a Cartesian index, and is
+transformed into
+\texttt{DiracGamma[\allowbreak{}CartesianIndex[\allowbreak{}i,\ \allowbreak{}D-4],\ \allowbreak{}D-4]}
+by \texttt{FeynCalcInternal}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{gae}{GAE},
+\hyperlink{diracgamma}{DiracGamma}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CGAE}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\hat{\gamma }^i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CGAE}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]} \SpecialCharTok{{-}}\NormalTok{ CGAE}\OperatorTok{[}\FunctionTok{j}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\hat{\gamma }^i.\hat{\gamma }^j-\hat{\gamma }^j.\hat{\gamma }^i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{StandardForm}\OperatorTok{[}\NormalTok{FCI}\OperatorTok{[}\NormalTok{CGAE}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]]]}
+
+\CommentTok{(*DiracGamma[CartesianIndex[i, {-}4 + D], {-}4 + D]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CGAE}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{,} \FunctionTok{l}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\hat{\gamma }^i.\hat{\gamma }^j.\hat{\gamma }^k.\hat{\gamma }^l
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{StandardForm}\OperatorTok{[}\NormalTok{CGAE}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{,} \FunctionTok{l}\OperatorTok{]]}
+
+\CommentTok{(*CGAE[i] . CGAE[j] . CGAE[k] . CGAE[l]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

@@ -1,0 +1,100 @@
+% !TeX program = pdflatex
+% !TeX root = MetricTensor.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{metrictensor}{%
+\section{MetricTensor}\label{metrictensor}}
+
+\texttt{MetricTensor[\allowbreak{}mu,\ \allowbreak{}nu]} is the metric
+tensor. The default dimension is \(4\).
+
+The shortcut \texttt{MetricTensor} is deprecated, please use \texttt{MT}
+instead!
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fci}{FCI}, \hyperlink{mt}{MT},
+\hyperlink{mtd}{MTD}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MetricTensor}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{]]} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%} \SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{g}^{\alpha \beta }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+4
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MetricTensor}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],}\NormalTok{ Dimension }\OtherTok{{-}\textgreater{}} \FunctionTok{D}\OperatorTok{]} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%} \SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+g^{\alpha \beta }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+D
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{StandardForm}\OperatorTok{[}\NormalTok{MetricTensor}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]]}
+
+\CommentTok{(*Pair[LorentzIndex[a], LorentzIndex[b]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{MetricTensor} is scheduled for removal in the future versions of
+FeynCalc. The safe alternative is to use \texttt{MT}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MT}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{g}^{\mu \nu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MTD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+g^{\mu \nu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{MT}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]]} \ExtensionTok{===}\NormalTok{ MetricTensor}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} 
+ 
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{MTD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]]} \ExtensionTok{===}\NormalTok{ MetricTensor}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],}\NormalTok{ Dimension }\OtherTok{{-}\textgreater{}} \FunctionTok{D}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+\end{document}

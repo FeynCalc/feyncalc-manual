@@ -1,0 +1,23 @@
+% !TeX program = pdflatex
+% !TeX root = ExceptHeads.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{exceptheads}{%
+\section{ExceptHeads}\label{exceptheads}}
+
+\texttt{ExceptHeads} is an option of \texttt{FCLoopIsolate},
+\texttt{FCDiracIsolate} and other functions. It takes a list of heads
+that are not allowed to appear inside isolated expression.
+
+For example, \texttt{ExceptHeads -> \{\allowbreak{}DiracGamma\}} in
+\texttt{FCLoopIsolate} blocks loop integrals where loop momenta are
+contracted with \texttt{Dirac matrices}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fcloopisolate}{FCLoopIsolate},
+\hyperlink{fcdiracisolate}{FCDiracIsolate}.
+
+\subsection{Examples}
+\end{document}

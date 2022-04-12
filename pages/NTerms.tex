@@ -1,0 +1,58 @@
+% !TeX program = pdflatex
+% !TeX root = NTerms.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{nterms}{%
+\section{NTerms}\label{nterms}}
+
+\texttt{NTerms[\allowbreak{}x]} is equivalent to \texttt{Length} if
+\texttt{x} is a sum; otherwise \texttt{NTerms[\allowbreak{}x]} returns
+\texttt{1}, except \texttt{NTerms[\allowbreak{}0] -> 0}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NTerms}\OperatorTok{[}\FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{b}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NTerms}\OperatorTok{[}\FunctionTok{a} \FunctionTok{b} \FunctionTok{c}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+1
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NTerms}\OperatorTok{[}\DecValTok{9}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+1
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NTerms}\OperatorTok{[}\DecValTok{0}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+\end{document}

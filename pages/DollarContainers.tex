@@ -1,0 +1,29 @@
+% !TeX program = pdflatex
+% !TeX root = DollarContainers.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{containers}{%
+\section{\$Containers}\label{containers}}
+
+\texttt{\$Containers} is a set of heads over which
+\texttt{FieldDerivative} should distribute, in the following sense: Let
+\texttt{c} be a member of \texttt{\$Containers}. Then
+\texttt{FieldDerivative[\allowbreak{}c[\allowbreak{}f,\ \allowbreak{}g,\ \allowbreak{}h][\allowbreak{}x],\ \allowbreak{}x,\ \allowbreak{}\{\allowbreak{}mu\}] -> c[\allowbreak{}FieldDerivative[\allowbreak{}f[\allowbreak{}x],\ \allowbreak{}x,\ \allowbreak{}\{\allowbreak{}mu\}],\ \allowbreak{}FieldDerivative[\allowbreak{}f[\allowbreak{}x],\ \allowbreak{}x,\ \allowbreak{}\{\allowbreak{}mu\}],\ \allowbreak{}FieldDerivative[\allowbreak{}f[\allowbreak{}x],\ \allowbreak{}x,\ \allowbreak{}\{\allowbreak{}mu\}]]}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fccheckversion}{FCCheckVersion}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$Containers}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{\}
+\end{dmath*}
+\end{document}

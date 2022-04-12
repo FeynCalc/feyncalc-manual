@@ -1,0 +1,50 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopBasisSplit.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopbasissplit}{%
+\section{FCLoopBasisSplit}\label{fcloopbasissplit}}
+
+\texttt{FCLoopBasisSplit[\allowbreak{}int,\ \allowbreak{}\{\allowbreak{}q1,\ \allowbreak{}q2,\ \allowbreak{}...\}]}
+checks if the given loop integral factorizes and if so splits it into
+independent integrals.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI@FAD}\OperatorTok{[\{}\NormalTok{q1}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q2}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}]} 
+ 
+\NormalTok{FCLoopBasisSplit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\},} \FunctionTok{Head} \OtherTok{{-}\textgreater{}}\NormalTok{ loopInt}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{p1}-\text{p2})^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{loopInt}\left(\frac{1}{\text{q1}^2-m^2},\{\text{q1}\}\right),\text{loopInt}\left(\frac{1}{\text{q2}^2-m^2},\{\text{q2}\}\right),\text{loopInt}\left(\frac{1}{(\text{p1}-\text{p2})^2},0\right)\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{SFAD}\OperatorTok{[}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q1 }\SpecialCharTok{{-}}\NormalTok{ q2}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q3}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]]} 
+ 
+\NormalTok{FCLoopBasisSplit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{,}\NormalTok{ q3}\OperatorTok{\},} \FunctionTok{Head} \OtherTok{{-}\textgreater{}}\NormalTok{ loop}\OperatorTok{,}\NormalTok{ FCE }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(\text{q1}^2+i \eta ).((\text{q1}-\text{q2})^2+i \eta ).(\text{q2}^2+i \eta ).(\text{q3}^2-m^2+i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{loop}\left(\frac{1}{(\text{q3}^2-m^2+i \eta )},\{\text{q3}\}\right),\text{loop}\left(\frac{1}{(\text{q1}^2+i \eta ).(\text{q2}^2+i \eta ).((\text{q1}-\text{q2})^2+i \eta )},\{\text{q1},\text{q2}\}\right)\right\}
+\end{dmath*}
+\end{document}

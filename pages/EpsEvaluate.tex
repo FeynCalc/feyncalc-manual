@@ -1,0 +1,44 @@
+% !TeX program = pdflatex
+% !TeX root = EpsEvaluate.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{epsevaluate}{%
+\section{EpsEvaluate}\label{epsevaluate}}
+
+\texttt{EpsEvaluate[\allowbreak{}expr]} applies total antisymmetry and
+linearity (w.r.t. momenta) to all Levi-Civita tensors (\texttt{Eps}) in
+expr.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{contract}{Contract},
+\hyperlink{eps}{Eps}, \hyperlink{lc}{LC}, \hyperlink{trick}{Trick}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Contract}\OperatorTok{[}\NormalTok{LC}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{+} \FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]]} \SpecialCharTok{//}\NormalTok{ MomentumCombine }
+ 
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ EpsEvaluate}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\mu \nu \rho \overline{p}+\overline{q}}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\mu \nu \rho \overline{p}}+\bar{\epsilon }^{\mu \nu \rho \overline{q}}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*Eps[LorentzIndex[\textbackslash{}[Mu]], LorentzIndex[\textbackslash{}[Nu]], LorentzIndex[\textbackslash{}[Rho]], Momentum[p]] + Eps[LorentzIndex[\textbackslash{}[Mu]], LorentzIndex[\textbackslash{}[Nu]], LorentzIndex[\textbackslash{}[Rho]], Momentum[q]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

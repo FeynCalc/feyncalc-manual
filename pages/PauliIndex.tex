@@ -1,0 +1,80 @@
+% !TeX program = pdflatex
+% !TeX root = PauliIndex.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{pauliindex}{%
+\section{PauliIndex}\label{pauliindex}}
+
+\texttt{PauliIndex} is the head of Pauli indices. The internal
+representation of a two-dimensional spinorial index \texttt{i} is
+\texttt{PauliIndex[\allowbreak{}i]}.
+
+If the first argument is an integer, \texttt{PauliIndex[\allowbreak{}i]}
+turns into \texttt{ExplicitPauliIndex[\allowbreak{}i]}.
+
+Pauli indices are the indices that denote the components of Pauli
+matrices or spinors. They should not be confused with the Cartesian
+indices attached to the Pauli matrices. For example in the case of
+\(\sigma_{ij}^{k}\), \(k\) is a Lorentz index, while \(i\) and \(j\) are
+Pauli (spinorial) indices.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{paulichain}{PauliChain},
+\hyperlink{pchn}{PCHN},
+\hyperlink{explicitpauliindex}{ExplicitPauliIndex},
+\hyperlink{pauliindexdelta}{PauliIndexDelta},
+\hyperlink{didelta}{DIDelta},
+\hyperlink{paulichainjoin}{PauliChainJoin},
+\hyperlink{paulichaincombine}{PauliChainCombine},
+\hyperlink{paulichainexpand}{PauliChainExpand},
+\hyperlink{paulichainfactor}{PauliChainFactor}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*PauliIndex[i]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliIndex}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliIndex}\OperatorTok{[}\DecValTok{2}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*ExplicitPauliIndex[2]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PIDelta}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*PauliIndexDelta[PauliIndex[i], PauliIndex[j]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

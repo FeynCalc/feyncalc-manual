@@ -1,0 +1,70 @@
+% !TeX program = pdflatex
+% !TeX root = CLC.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{clc}{%
+\section{CLC}\label{clc}}
+
+\texttt{CLC[\allowbreak{}m,\ \allowbreak{}n,\ \allowbreak{}r]} evaluates
+to
+\texttt{Eps[\allowbreak{}CartesianIndex[\allowbreak{}m],\ \allowbreak{}CartesianIndex[\allowbreak{}n],\ \allowbreak{}CartesianIndex[\allowbreak{}r]]}
+applying \texttt{FeynCalcInternal}.
+
+\texttt{CLC[\allowbreak{}m,\ \allowbreak{}...][\allowbreak{}p,\ \allowbreak{}...]}
+evaluates to
+\texttt{Eps[\allowbreak{}CartesianIndex[\allowbreak{}m],\ \allowbreak{}...,\ \allowbreak{}CartesianMomentum[\allowbreak{}p],\ \allowbreak{}...]}
+applying \texttt{FeynCalcInternal}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{lc}{LC}, \hyperlink{eps}{Eps}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CLC}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{ijk}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CLC}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*Eps[CartesianIndex[i], CartesianIndex[j], CartesianIndex[k]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CLC}\OperatorTok{[}\FunctionTok{i}\OperatorTok{][}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{i\overline{p}\overline{q}}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CLC}\OperatorTok{[}\FunctionTok{i}\OperatorTok{][}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*Eps[CartesianIndex[i], CartesianMomentum[p], CartesianMomentum[q]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Contract}\OperatorTok{[}\NormalTok{CLC}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]}\NormalTok{ CLC}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{l}\OperatorTok{,} \FunctionTok{m}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\delta }^{jl} \bar{\delta }^{km}-\bar{\delta }^{jm} \bar{\delta }^{kl}
+\end{dmath*}
+\end{document}

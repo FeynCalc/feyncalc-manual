@@ -1,0 +1,52 @@
+% !TeX program = pdflatex
+% !TeX root = LorentzIndexNames.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{lorentzindexnames}{%
+\section{LorentzIndexNames}\label{lorentzindexnames}}
+
+\texttt{LorentzIndexNames} is an option for \texttt{FCFAConvert},
+\texttt{FCCanonicalizeDummyIndices} and other functions. It renames the
+generic dummy Lorentz indices to the indices in the supplied list.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fcfaconvert}{FCFAConvert},
+\hyperlink{fccanonicalizedummyindices}{FCCanonicalizeDummyIndices},
+\hyperlink{cartesianindexnames}{CartesianIndexNames}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LC}\OperatorTok{[}\NormalTok{i1}\OperatorTok{,}\NormalTok{ i2}\OperatorTok{,}\NormalTok{ i3}\OperatorTok{,}\NormalTok{ i4}\OperatorTok{]}\NormalTok{ GA}\OperatorTok{[}\NormalTok{i1}\OperatorTok{,}\NormalTok{ i2}\OperatorTok{,}\NormalTok{ i3}\OperatorTok{,}\NormalTok{ i4}\OperatorTok{]} 
+ 
+\NormalTok{FCCanonicalizeDummyIndices}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\text{i1}}.\bar{\gamma }^{\text{i2}}.\bar{\gamma }^{\text{i3}}.\bar{\gamma }^{\text{i4}} \bar{\epsilon }^{\text{i1}\;\text{i2}\;\text{i3}\;\text{i4}}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\text{FCGV}(\text{li191})}.\bar{\gamma }^{\text{FCGV}(\text{li192})}.\bar{\gamma }^{\text{FCGV}(\text{li193})}.\bar{\gamma }^{\text{FCGV}(\text{li194})} \bar{\epsilon }^{\text{FCGV}(\text{li191})\text{FCGV}(\text{li192})\text{FCGV}(\text{li193})\text{FCGV}(\text{li194})}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LC}\OperatorTok{[}\NormalTok{i1}\OperatorTok{,}\NormalTok{ i2}\OperatorTok{,}\NormalTok{ i3}\OperatorTok{,}\NormalTok{ i4}\OperatorTok{]}\NormalTok{ GA}\OperatorTok{[}\NormalTok{i1}\OperatorTok{,}\NormalTok{ i2}\OperatorTok{,}\NormalTok{ i3}\OperatorTok{,}\NormalTok{ i4}\OperatorTok{]} 
+ 
+\NormalTok{FCCanonicalizeDummyIndices}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ LorentzIndexNames }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{mu}\OperatorTok{,}\NormalTok{ nu}\OperatorTok{,}\NormalTok{ rho}\OperatorTok{,}\NormalTok{ si}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\text{i1}}.\bar{\gamma }^{\text{i2}}.\bar{\gamma }^{\text{i3}}.\bar{\gamma }^{\text{i4}} \bar{\epsilon }^{\text{i1}\;\text{i2}\;\text{i3}\;\text{i4}}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\text{mu}}.\bar{\gamma }^{\text{nu}}.\bar{\gamma }^{\text{rho}}.\bar{\gamma }^{\text{si}} \bar{\epsilon }^{\text{mu}\;\text{nu}\;\text{rho}\;\text{si}}
+\end{dmath*}
+\end{document}

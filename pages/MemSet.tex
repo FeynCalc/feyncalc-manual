@@ -1,0 +1,24 @@
+% !TeX program = pdflatex
+% !TeX root = MemSet.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{memset}{%
+\section{MemSet}\label{memset}}
+
+\texttt{MemSet[\allowbreak{}f[\allowbreak{}x_],\ \allowbreak{}body]} is
+like \texttt{f[\allowbreak{}x_] := f[\allowbreak{}x] = body}, but
+depending on the value of the setting of
+\texttt{FCMemoryAvailable -> memorycut} (\texttt{memorycut} -
+\texttt{MemoryInUse[\allowbreak{}]/10^6})
+
+\texttt{MemSet[\allowbreak{}f[\allowbreak{}x_],\ \allowbreak{}body]} may
+evaluate as \texttt{f[\allowbreak{}x_] := body}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcmemoryavailable}{FCMemoryAvailable}.
+
+\subsection{Examples}
+\end{document}

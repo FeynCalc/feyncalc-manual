@@ -1,0 +1,31 @@
+% !TeX program = pdflatex
+% !TeX root = FCUseCache.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcusecache}{%
+\section{FCUseCache}\label{fcusecache}}
+
+\texttt{FCUseCache[\allowbreak{}func,\ \allowbreak{}\{\allowbreak{}arg1,\ \allowbreak{}...\},\ \allowbreak{}\{\allowbreak{}opt1...\}]}
+evaluates
+\texttt{func[\allowbreak{}arg1,\ \allowbreak{}...,\ \allowbreak{}opt1,\ \allowbreak{}...]}
+and caches the result such that the next evaluation of same expressions
+occurs almost immediately. This caching also takes into account
+\texttt{DownValues} and global variables that enter into evaluation of
+func.
+
+For example, \texttt{ExpandScalarProduct} can't be naively cached,
+because its result depends on the \texttt{DownValues} of \texttt{Pair}
+and \texttt{ScalarProduct}, which may be changed multiple times during
+the session by setting and erasing values of scalar products. With
+\texttt{FCUseCache}, however, caching will work properly, as
+\texttt{FCUseCache} knows the dependence on \texttt{ExpandScalarProduct}
+on those DownValues. For all this to work, a function should be
+explicitly white-listed in FCUseCache.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fcshowcache}{FCShowCache}.
+
+\subsection{Examples}
+\end{document}

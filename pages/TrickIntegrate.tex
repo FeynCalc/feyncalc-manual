@@ -1,0 +1,45 @@
+% !TeX program = pdflatex
+% !TeX root = TrickIntegrate.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{trickintegrate}{%
+\section{TrickIntegrate}\label{trickintegrate}}
+
+\texttt{TrickIntegrate[\allowbreak{}(1 - t)^(a * Epsilon - 1) g[\allowbreak{}t],\ \allowbreak{}t]}
+does an integration trick for the definite integral of
+(\((1-t)^{a \;\text{Epsilon}-1}\) g{[}t{]}) from \texttt{0} to
+\texttt{1}, yielding
+\texttt{g[\allowbreak{}1]/a/Epsilon + Hold[\allowbreak{}Integrate][\allowbreak{}(1-t)^\{\allowbreak{}a Epsilon-1\} (g[\allowbreak{}t]-g[\allowbreak{}1]),\ \allowbreak{}\{\allowbreak{}t,\ \allowbreak{}0,\ \allowbreak{}1\}]}
+
+\texttt{TrickIntegrate[\allowbreak{}t^(a Epsilon-1) g[\allowbreak{}t],\ \allowbreak{}t]}
+gives \(\frac{g[0]}{a \;\text{Epsilon}}\)+
+Hold{[}Integrate{]}{[}\(t^{a \;\text{Epsilon}-1}\)
+(g{[}t{]}-g{[}0{]}),\{t,0,1\}{]}, provided g{[}1{]} and g{[}0{]} exist.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{epsilon}{Epsilon}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TrickIntegrate}\OperatorTok{[}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{t}\NormalTok{)}\SpecialCharTok{\^{}}\NormalTok{(}\FunctionTok{a}\NormalTok{ Epsilon }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) }\FunctionTok{g}\OperatorTok{[}\FunctionTok{t}\OperatorTok{],} \FunctionTok{t}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{Hold}[\text{Integrate}]\left[g(t) (1-t)^{a \varepsilon -1},\{t,0,1\}\right]
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TrickIntegrate}\OperatorTok{[}\FunctionTok{t}\SpecialCharTok{\^{}}\NormalTok{(}\FunctionTok{a}\NormalTok{ Epsilon }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) }\FunctionTok{g}\OperatorTok{[}\FunctionTok{t}\OperatorTok{],} \FunctionTok{t}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{Hold}[\text{Integrate}]\left[g(t) t^{a \varepsilon -1},\{t,0,1\}\right]
+\end{dmath*}
+\end{document}

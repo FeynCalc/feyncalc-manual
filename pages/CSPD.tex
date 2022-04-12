@@ -1,0 +1,98 @@
+% !TeX program = pdflatex
+% !TeX root = CSPD.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{cspd}{%
+\section{CSPD}\label{cspd}}
+
+\texttt{CSPD[\allowbreak{}p,\ \allowbreak{}q]} is the
+\(D-1\)-dimensional scalar product of \texttt{p} with \texttt{q} and is
+transformed into
+\texttt{CartesianPair[\allowbreak{}CartesianMomentum[\allowbreak{}p,\ \allowbreak{}D-1],\ \allowbreak{}CartesianMomentum[\allowbreak{}q,\ \allowbreak{}D-1]]}
+by \texttt{FeynCalcInternal}.
+
+\texttt{CSPD[\allowbreak{}p]} is the same as
+\texttt{CSPD[\allowbreak{}p,\ \allowbreak{}p]} (\(=p^2\)).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{spd}{SPD},
+\hyperlink{scalarproduct}{ScalarProduct},
+\hyperlink{cartesianscalarproduct}{CartesianScalarProduct}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CSPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ CSPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p\cdot q+q^2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CSPD}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \FunctionTok{q} \SpecialCharTok{+} \DecValTok{2} \FunctionTok{p}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(p-q)\cdot (2 p+q)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Calc}\OperatorTok{[}\NormalTok{ CSPD}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \FunctionTok{q} \SpecialCharTok{+} \DecValTok{2} \FunctionTok{p}\OperatorTok{]} \OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-p\cdot q+2 p^2-q^2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ExpandScalarProduct}\OperatorTok{[}\NormalTok{CSPD}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-2 (p\cdot q)+p^2+q^2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CSPD}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*CSPD[a, b]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CSPD}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*CartesianPair[CartesianMomentum[a, {-}1 + D], CartesianMomentum[b, {-}1 + D]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CSPD}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//}\NormalTok{ FCE }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*CSPD[a, b]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCE}\OperatorTok{[}\NormalTok{ChangeDimension}\OperatorTok{[}\NormalTok{CSP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{],} \FunctionTok{D}\OperatorTok{]]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*CSPD[p, q]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

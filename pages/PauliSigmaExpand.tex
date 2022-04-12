@@ -1,0 +1,58 @@
+% !TeX program = pdflatex
+% !TeX root = PauliSigmaExpand.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{paulisigmaexpand}{%
+\section{PauliSigmaExpand}\label{paulisigmaexpand}}
+
+\texttt{PauliSigmaExpand[\allowbreak{}exp]} expands all
+\texttt{PauliSigma[\allowbreak{}Momentum[\allowbreak{}a+b+..]]} in
+\texttt{exp} into
+\texttt{(PauliSigma[\allowbreak{}Momentum[\allowbreak{}a]] + PauliSigma[\allowbreak{}Momentum[\allowbreak{}b]] + ...)}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{paulisigmacombine}{PauliSigmaCombine}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SIS}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]}\NormalTok{ . SIS}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{]} 
+ 
+\NormalTok{PauliSigmaExpand}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\sigma }\cdot \overline{q}\right).\left(\bar{\sigma }\cdot \left(\overline{p}-\overline{q}\right)\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\sigma }\cdot \overline{q}\right).\left(\bar{\sigma }\cdot \overline{p}-\bar{\sigma }\cdot \overline{q}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SIS}\OperatorTok{[}\FunctionTok{a} \SpecialCharTok{+} \FunctionTok{b}\OperatorTok{]}\NormalTok{ . SIS}\OperatorTok{[}\FunctionTok{c} \SpecialCharTok{+} \FunctionTok{d}\OperatorTok{]} 
+ 
+\NormalTok{PauliSigmaExpand}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ Momentum }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{a}\OperatorTok{\}]} 
+ 
+\NormalTok{PauliSigmaExpand}\OperatorTok{[}\SpecialCharTok{\%\%}\OperatorTok{,}\NormalTok{ Momentum }\OtherTok{{-}\textgreater{}} \ConstantTok{All}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\sigma }\cdot \left(\overline{a}+\overline{b}\right)\right).\left(\bar{\sigma }\cdot \left(\overline{c}+\overline{d}\right)\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\sigma }\cdot \overline{a}+\bar{\sigma }\cdot \overline{b}\right).\left(\bar{\sigma }\cdot \left(\overline{c}+\overline{d}\right)\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\sigma }\cdot \overline{a}+\bar{\sigma }\cdot \overline{b}\right).\left(\bar{\sigma }\cdot \overline{c}+\bar{\sigma }\cdot \overline{d}\right)
+\end{dmath*}
+\end{document}

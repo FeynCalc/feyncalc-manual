@@ -1,0 +1,186 @@
+% !TeX program = pdflatex
+% !TeX root = DataType.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{datatype}{%
+\section{DataType}\label{datatype}}
+
+\texttt{DataType[\allowbreak{}exp,\ \allowbreak{}type] = True} defines
+the object \texttt{exp} to have data-type \texttt{type}.
+
+\texttt{DataType[\allowbreak{}exp1,\ \allowbreak{}exp2,\ \allowbreak{}...,\ \allowbreak{}type]}
+defines the objects \texttt{exp1,\ \allowbreak{}exp2,\ \allowbreak{}...}
+to have data-type \texttt{type}.
+
+The default setting is
+\texttt{DataType[\allowbreak{}__,\ \allowbreak{}_] := False}.
+
+To assign a certain data-type, do, e.g.,
+\texttt{DataType[\allowbreak{}x,\ \allowbreak{}PositiveInteger] = True}.
+Currently used \texttt{DataTypes}:
+
+\begin{itemize}
+\item
+  \texttt{NonCommutative}
+\item
+  \texttt{PositiveInteger}
+\item
+  \texttt{NegativeInteger}
+\item
+  \texttt{PositiveNumber}
+\item
+  \texttt{FreeIndex}
+\item
+  \texttt{GrassmannParity}
+\end{itemize}
+
+If loaded, PHI adds the \texttt{DataTypes}: \texttt{UMatrix},
+\texttt{UScalar}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{declarenoncommutative}{DeclareNonCommutative}.
+
+\subsection{Examples}
+
+\texttt{NonCommutative} is just a data-type.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DataType}\OperatorTok{[}\FunctionTok{f}\OperatorTok{,} \FunctionTok{g}\OperatorTok{,}\NormalTok{ NonCommutative}\OperatorTok{]} \ExtensionTok{=} \ConstantTok{True}\NormalTok{; }
+ 
+\FunctionTok{t} \ExtensionTok{=} \FunctionTok{f}\NormalTok{ . }\FunctionTok{g} \SpecialCharTok{{-}} \FunctionTok{g}\NormalTok{ . (}\DecValTok{2} \FunctionTok{a}\NormalTok{) . }\FunctionTok{f}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f.g-g.(2 a).f
+\end{dmath*}
+
+Since \texttt{f} and \texttt{g} have \texttt{DataType}
+\texttt{NonCommutative}, the function \texttt{DotSimplify} extracts only
+\texttt{a} out of the noncommutative product.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DotSimplify}\OperatorTok{[}\FunctionTok{t}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f.g-2 a g.f
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DataType}\OperatorTok{[}\FunctionTok{m}\OperatorTok{,}\NormalTok{ odd}\OperatorTok{]} \ExtensionTok{=}\NormalTok{ DataType}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,}\NormalTok{ even}\OperatorTok{]} \ExtensionTok{=} \ConstantTok{True}\NormalTok{; }
+ 
+\NormalTok{ptest1}\OperatorTok{[}\AttributeTok{x\_}\OperatorTok{]} \ExtensionTok{:=} \FunctionTok{x} \OtherTok{/.}\NormalTok{ (}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\SpecialCharTok{\^{}}\AttributeTok{n\_} \SpecialCharTok{/}\NormalTok{; DataType}\OperatorTok{[}\FunctionTok{n}\OperatorTok{,}\NormalTok{ odd}\OperatorTok{]}\NormalTok{ :\textgreater{} }\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{; }
+ 
+\NormalTok{ptest2}\OperatorTok{[}\AttributeTok{x\_}\OperatorTok{]} \ExtensionTok{:=} \FunctionTok{x} \OtherTok{/.}\NormalTok{ (}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\SpecialCharTok{\^{}}\AttributeTok{n\_} \SpecialCharTok{/}\NormalTok{; DataType}\OperatorTok{[}\FunctionTok{n}\OperatorTok{,}\NormalTok{ even}\OperatorTok{]}\NormalTok{ :\textgreater{} }\DecValTok{1}\NormalTok{; }
+ 
+\FunctionTok{t} \ExtensionTok{=}\NormalTok{ (}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\SpecialCharTok{\^{}}\FunctionTok{m} \SpecialCharTok{+}\NormalTok{ (}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\SpecialCharTok{\^{}}\FunctionTok{a} \SpecialCharTok{+}\NormalTok{ (}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\SpecialCharTok{\^{}}\FunctionTok{z}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(-1)^a+(-1)^m+(-1)^z
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ptest1}\OperatorTok{[}\FunctionTok{t}\OperatorTok{]} 
+ 
+\NormalTok{ptest2}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(-1)^a+(-1)^z-1
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+(-1)^z
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Clear}\OperatorTok{[}\NormalTok{ptest1}\OperatorTok{,}\NormalTok{ ptest2}\OperatorTok{,} \FunctionTok{t}\OperatorTok{,} \FunctionTok{a}\OperatorTok{,} \FunctionTok{m}\OperatorTok{]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DataType}\OperatorTok{[}\FunctionTok{m}\OperatorTok{,} \FunctionTok{integer}\OperatorTok{]} \ExtensionTok{=} \ConstantTok{True}\NormalTok{; }
+ 
+\FunctionTok{f}\OperatorTok{[}\AttributeTok{x\_}\OperatorTok{]} \ExtensionTok{:=} \FunctionTok{x} \OtherTok{/.} \OperatorTok{\{}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\SpecialCharTok{\^{}}\AttributeTok{p\_} \SpecialCharTok{/}\NormalTok{; DataType}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{integer}\OperatorTok{]}\NormalTok{ :\textgreater{} }\DecValTok{1}\OperatorTok{\}}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{test }\ExtensionTok{=}\NormalTok{ (}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\SpecialCharTok{\^{}}\FunctionTok{m} \SpecialCharTok{+}\NormalTok{ (}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\SpecialCharTok{\^{}}\FunctionTok{n} \FunctionTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(-1)^m+(-1)^n x
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{f}\OperatorTok{[}\NormalTok{test}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(-1)^n x+1
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Clear}\OperatorTok{[}\FunctionTok{f}\OperatorTok{,}\NormalTok{ test}\OperatorTok{]}\NormalTok{; }
+ 
+\NormalTok{DataType}\OperatorTok{[}\FunctionTok{f}\OperatorTok{,} \FunctionTok{g}\OperatorTok{,}\NormalTok{ NonCommutative}\OperatorTok{]} \ExtensionTok{=} \ConstantTok{False}\NormalTok{; }
+ 
+\NormalTok{DataType}\OperatorTok{[}\FunctionTok{m}\OperatorTok{,}\NormalTok{ odd}\OperatorTok{]} \ExtensionTok{=}\NormalTok{ DataType}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,}\NormalTok{ even}\OperatorTok{]} \ExtensionTok{=} \ConstantTok{False}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+Certain FeynCalc objects have \texttt{DataType} \texttt{PositiveInteger}
+set to \texttt{True}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DataType}\OperatorTok{[}\NormalTok{OPEm}\OperatorTok{,}\NormalTok{ PositiveInteger}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+PowerSimplify uses the DataType information.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PowerSimplify}\OperatorTok{[}\NormalTok{ (}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\SpecialCharTok{\^{}}\NormalTok{(}\DecValTok{2}\NormalTok{ OPEm)}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+1
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PowerSimplify}\OperatorTok{[}\NormalTok{ (}\SpecialCharTok{{-}}\NormalTok{ SO}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{\^{}}\NormalTok{OPEm}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(\Delta \cdot q)^m e^{2 i \pi  m \left\lfloor -\frac{\arg (\Delta \cdot q)}{2 \pi }\right\rfloor +i \pi  m}
+\end{dmath*}
+\end{document}

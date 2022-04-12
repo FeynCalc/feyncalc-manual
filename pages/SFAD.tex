@@ -1,0 +1,75 @@
+% !TeX program = pdflatex
+% !TeX root = SFAD.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{sfad}{%
+\section{SFAD}\label{sfad}}
+
+\texttt{SFAD[\allowbreak{}\{\allowbreak{}\{\allowbreak{}q1 +...,\ \allowbreak{}p1 . q2 +...,\ \allowbreak{}\} \{\allowbreak{}m^2,\ \allowbreak{}s\},\ \allowbreak{}n\},\ \allowbreak{}...]}
+denotes a Cartesian propagator given by
+\(\frac{1}{[(q_1+\ldots)^2 + p_1 \cdot q_2 ... + m^2 + s i \eta]^n}\),
+where \(q_1^2\) and \(p_1 \cdot q_2\) are Cartesian scalar products in
+\(D-1\) dimensions.
+
+For brevity one can also use shorter forms such as
+\texttt{SFAD[\allowbreak{}\{\allowbreak{}q1+ ...,\ \allowbreak{} m^2\},\ \allowbreak{}...]},
+\texttt{SFAD[\allowbreak{}\{\allowbreak{}q1+ ...,\ \allowbreak{} m^2 ,\ \allowbreak{}n\},\ \allowbreak{}...]},
+\texttt{SFAD[\allowbreak{}\{\allowbreak{}q1+ ...,\ \allowbreak{} \{\allowbreak{}m^2,\ \allowbreak{}-1\}\},\ \allowbreak{}...]},
+\texttt{SFAD[\allowbreak{}q1,\ \allowbreak{}...]} etc.
+
+If \texttt{s} is not explicitly specified, its value is determined by
+the option \texttt{EtaSign}, which has the default value \texttt{+1}.
+
+If \texttt{n} is not explicitly specified, then the default value
+\texttt{1} is assumed. Translation into FeynCalcI internal form is
+performed by \texttt{FeynCalcInternal}, where a \texttt{SFAD} is encoded
+using the special head \texttt{CartesianPropagatorDenominator}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fad}{FAD}, \hyperlink{gfad}{GFAD},
+\hyperlink{cfad}{CFAD}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SFAD}\OperatorTok{[\{\{}\FunctionTok{p}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p^2-m^2+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SFAD}\OperatorTok{[\{\{}\FunctionTok{p}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\}\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p^2-m^2-i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SFAD}\OperatorTok{[\{\{}\FunctionTok{p}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{{-}}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\}\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p^2+m^2-i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,} \FunctionTok{p}\NormalTok{ . }\FunctionTok{q}\OperatorTok{\},} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p\cdot q-m^2+i \eta )}
+\end{dmath*}
+\end{document}

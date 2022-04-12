@@ -1,0 +1,69 @@
+% !TeX program = pdflatex
+% !TeX root = Trick.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{trick}{%
+\section{Trick}\label{trick}}
+
+\texttt{Trick[\allowbreak{}exp]} performs several basic simplifications
+without expansion. \texttt{Trick[\allowbreak{}exp]} uses
+\texttt{Contract}, \texttt{DotSimplify} and \texttt{SUNDeltaContract}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{calc}{Calc},
+\hyperlink{contract}{Contract}, \hyperlink{diractrick}{DiracTrick},
+\hyperlink{dotsimplify}{DotSimplify},
+\hyperlink{diractrick}{DiracTrick}.
+
+\subsection{Examples}
+
+This calculates \(g^{\mu \nu} \gamma _{\mu }\) and \(g_{\nu }^{\nu}\) in
+\(D\) dimensions.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Trick}\OperatorTok{[\{}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ MT}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]],}\NormalTok{ MTD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\bar{\gamma }^{\nu },D\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FV}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{+} \FunctionTok{r}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ MT}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} 
+ 
+\NormalTok{Trick}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{g}^{\mu \nu } \left(\overline{q}-\overline{p}\right)^{\nu } \left(\overline{p}+\overline{r}\right)^{\mu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot \overline{q}-\overline{p}\cdot \overline{r}-\overline{p}^2+\overline{q}\cdot \overline{r}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Trick}\OperatorTok{[}\FunctionTok{c}\NormalTok{ . }\FunctionTok{b}\NormalTok{ . }\FunctionTok{a}\NormalTok{ . GA}\OperatorTok{[}\FunctionTok{d}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\FunctionTok{e}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+a b c \bar{\gamma }^d.\bar{\gamma }^e
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Trick}\OperatorTok{[}\FunctionTok{c}\NormalTok{ . }\FunctionTok{b}\NormalTok{ . }\FunctionTok{a}\NormalTok{ . GA}\OperatorTok{[}\FunctionTok{d}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\FunctionTok{e}\OperatorTok{]]} \SpecialCharTok{//}\NormalTok{ FCE }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*a b c GA[d] . GA[e]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

@@ -1,0 +1,62 @@
+% !TeX program = pdflatex
+% !TeX root = ExpandAll2.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{expandall2}{%
+\section{ExpandAll2}\label{expandall2}}
+
+\texttt{ExpandAll2[\allowbreak{}exp]} is similar to \texttt{ExpandAll},
+but much faster on simple structures.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+Benchmark against the standard ExpandAll
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{exp} \ExtensionTok{=} \FunctionTok{Sum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{i}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{100}\OperatorTok{\}]} \FunctionTok{Sum}\OperatorTok{[}\FunctionTok{q}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{i}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1000}\OperatorTok{\}]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{AbsoluteTiming}\OperatorTok{[}\NormalTok{res1 }\ExtensionTok{=} \FunctionTok{ExpandAll}\OperatorTok{[}\FunctionTok{exp}\OperatorTok{]}\NormalTok{;}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{0.679579,\text{Null}\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{AbsoluteTiming}\OperatorTok{[}\NormalTok{res2 }\ExtensionTok{=}\NormalTok{ ExpandAll2}\OperatorTok{[}\FunctionTok{exp}\OperatorTok{]}\NormalTok{;}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{0.250011,\text{Null}\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res1 }\ExtensionTok{===}\NormalTok{ res2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ClearAll}\OperatorTok{[}\FunctionTok{exp}\OperatorTok{,}\NormalTok{ res1}\OperatorTok{,}\NormalTok{ res2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

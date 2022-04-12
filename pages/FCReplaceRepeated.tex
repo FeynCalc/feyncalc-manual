@@ -1,0 +1,61 @@
+% !TeX program = pdflatex
+% !TeX root = FCReplaceRepeated.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcreplacerepeated}{%
+\section{FCReplaceRepeated}\label{fcreplacerepeated}}
+
+\texttt{FCReplaceRepeated[\allowbreak{}exp,\ \allowbreak{}ru1,\ \allowbreak{}...]}
+is like \texttt{ReplaceRepeated}, but it also allows to apply multiple
+replacement rules sequentially.
+
+Instead of doing \texttt{exp //. ru1 //. ru2 //. ru3} one can just write
+\texttt{FCReplaceRepeated[\allowbreak{}exp,\ \allowbreak{}ru1,\ \allowbreak{}ru2,\ \allowbreak{}ru3]}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fcreplaceall}{FCReplaceAll}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCReplaceRepeated}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{a} \OtherTok{{-}\textgreater{}} \FunctionTok{b}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+b
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCReplaceRepeated}\OperatorTok{[}\FunctionTok{a} \FunctionTok{c}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{a} \OtherTok{{-}\textgreater{}} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c} \OtherTok{{-}\textgreater{}} \FunctionTok{d}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+b d
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCReplaceRepeated}\OperatorTok{[}\FunctionTok{a} \FunctionTok{c}\OperatorTok{,} \FunctionTok{a} \OtherTok{{-}\textgreater{}} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c} \OtherTok{{-}\textgreater{}} \FunctionTok{d}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+b d
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCReplaceRepeated}\OperatorTok{[}\FunctionTok{a} \FunctionTok{c}\OperatorTok{,} \FunctionTok{a} \OtherTok{{-}\textgreater{}} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c} \OtherTok{{-}\textgreater{}} \FunctionTok{d}\OperatorTok{,} \FunctionTok{d} \OtherTok{{-}\textgreater{}} \FunctionTok{e}\OperatorTok{,} \FunctionTok{b} \OtherTok{{-}\textgreater{}} \FunctionTok{f}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+e f
+\end{dmath*}
+\end{document}

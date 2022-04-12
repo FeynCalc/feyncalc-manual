@@ -1,0 +1,112 @@
+% !TeX program = pdflatex
+% !TeX root = FCFeynmanRegularizeDivergence.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcfeynmanregularizedivergence}{%
+\section{FCFeynmanRegularizeDivergence}\label{fcfeynmanregularizedivergence}}
+
+\texttt{FCFeynmanRegularizeDivergence[\allowbreak{}exp,\ \allowbreak{}div]}
+regularizes the divergence \texttt{div} in the Feynman parametric
+integral \texttt{exp}. Provided that all divergences have been
+regularized in this fashion, upon expanding the integrand around
+\(\varepsilon = 0\) one can safely integrate in the Feynman parameters.
+
+This function uses the method of analytic regularization introduced by
+Erik Panzer in \href{https://arxiv.org/abs/1403.3385}{1403.3385},
+\href{https://arxiv.org/abs/1401.4361}{1401.4361} and
+\href{https://arxiv.org/abs/1506.07243}{1506.07243}.
+
+Its current implementation is very much based on the code of the
+\texttt{dimregPartial} routine from the Maple package
+\href{https://bitbucket.org/PanzerErik/hyperint/}{HyperInt} by Erik
+Panzer.
+
+Here \texttt{div} must be of the form
+\texttt{\{\allowbreak{}\{\allowbreak{}x[\allowbreak{}i],\ \allowbreak{}x[\allowbreak{}j],\ \allowbreak{}...\},\ \allowbreak{}\{\allowbreak{}x[\allowbreak{}k],\ \allowbreak{}x[\allowbreak{}l],\ \allowbreak{}...\},\ \allowbreak{}sdd\}},
+where
+\texttt{\{\allowbreak{}x[\allowbreak{}i],\ \allowbreak{}x[\allowbreak{}j],\ \allowbreak{}...\}}
+need to approach zero, while
+\texttt{\{\allowbreak{}x[\allowbreak{}k],\ \allowbreak{}x[\allowbreak{}l],\ \allowbreak{}...\}}
+must tend towards infinity to generate the superficial degree of
+divergence \texttt{sdd}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcfeynmanparametrize}{FCFeynmanParametrize},
+\hyperlink{fcfeynmanprojectivize}{FCFeynmanProjectivize},
+\hyperlink{fcfeynmanfinddivergences}{FCFeynmanFindDivergences}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{int }\ExtensionTok{=}\NormalTok{ SFAD}\OperatorTok{[}\FunctionTok{l}\OperatorTok{,} \FunctionTok{k} \SpecialCharTok{+} \FunctionTok{l}\OperatorTok{,} \OperatorTok{\{\{}\FunctionTok{k}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{2} \FunctionTok{k}\NormalTok{ . }\FunctionTok{q}\OperatorTok{\}\}]}
+\NormalTok{fpar }\ExtensionTok{=}\NormalTok{ FCFeynmanParametrize}\OperatorTok{[}\NormalTok{int}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{k}\OperatorTok{,} \FunctionTok{l}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,}\NormalTok{ FCReplaceD }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{D} \OtherTok{{-}\textgreater{}} \DecValTok{4} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ Epsilon}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(l^2+i \eta ).((k+l)^2+i \eta ).(k^2-2 (k\cdot q)+i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left\{(x(1) x(2)+x(3) x(2)+x(1) x(3))^{3 \varepsilon -3} \left(q^2 x(1)^2 (x(2)+x(3))\right)^{1-2 \varepsilon },-\Gamma (2 \varepsilon -1),\{x(1),x(2),x(3)\}\right\}
+\end{dmath*}
+
+This Feynman parametric integral integrand contains logarithmic
+divergences for \(x_1 \to \infty\) and \(x_{2,3} \to 0\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{divs }\ExtensionTok{=}\NormalTok{ FCFeynmanFindDivergences}\OperatorTok{[}\NormalTok{fpar}\OperatorTok{[[}\DecValTok{1}\OperatorTok{]],} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{cc}
+ \{\{\},\{x(1)\}\} & \varepsilon  \\
+ \{\{x(2),x(3)\},\{\}\} & \varepsilon  \\
+\end{array}
+\right)
+\end{dmath*}
+
+Regularizing the first divergence we obtain
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{intReg }\ExtensionTok{=}\NormalTok{ FCFeynmanRegularizeDivergence}\OperatorTok{[}\NormalTok{fpar}\OperatorTok{[[}\DecValTok{1}\OperatorTok{]],}\NormalTok{ divs}\OperatorTok{[[}\DecValTok{1}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{3 (\varepsilon -1) q^2 x(1)^2 x(2) x(3) (x(2)+x(3)) (x(1) x(2)+x(3) x(2)+x(1) x(3))^{3 \varepsilon -4} \left(q^2 x(1)^2 (x(2)+x(3))\right)^{-2 \varepsilon }}{\varepsilon }
+\end{dmath*}
+
+It turns out that there are no further divergences left
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanFindDivergences}\OperatorTok{[}\NormalTok{intReg}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{\}
+\end{dmath*}
+
+Now one can expand the integrand in \texttt{Epsilon} and perform the
+integration in Feynman parameters order by order in \texttt{Epsilon}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Series}\OperatorTok{[}\NormalTok{intReg}\OperatorTok{,} \OperatorTok{\{}\NormalTok{Epsilon}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}]} \SpecialCharTok{//} \FunctionTok{Normal}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{3 q^2 x(1)^2 x(2) x(3) (x(2)+x(3))}{\varepsilon  (x(1) x(2)+x(3) x(2)+x(1) x(3))^4}-\frac{3 q^2 x(1)^2 x(2) x(3) (x(2)+x(3)) \left(2 \log \left(q^2 x(1)^2 (x(2)+x(3))\right)-3 \log (x(1) x(2)+x(3) x(2)+x(1) x(3))+1\right)}{(x(1) x(2)+x(3) x(2)+x(1) x(3))^4}
+\end{dmath*}
+\end{document}

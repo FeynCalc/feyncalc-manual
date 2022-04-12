@@ -1,0 +1,162 @@
+% !TeX program = pdflatex
+% !TeX root = FeynmanIntegralPrefactor.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{feynmanintegralprefactor}{%
+\section{FeynmanIntegralPrefactor}\label{feynmanintegralprefactor}}
+
+\texttt{FeynmanIntegralPrefactor} is an option for
+\texttt{FCFeynmanParametrize} and other functions. It denotes an
+implicit prefactor that has to be understood in front of a loop integral
+in the usual \texttt{FeynAmpDenominator}-notation. The prefactor is the
+quantity that multiplies the loop integral measure
+\(d^D q_1 \ldots d^D q_n\) and plays an important role e.g.~when
+deriving the Feynman parameter representation of the given integral.
+Apart from specifying an explicit value, the user may also choose from
+the following predefined conventions:
+
+\begin{itemize}
+\tightlist
+\item
+  ``Unity'' - 1 for each loop
+\item
+  ``Textbook'' - \(\frac{1}{(2\pi)^D}\) for each loop.
+\item
+  ``Multiloop1'' - \(\frac{1}{i \pi^{D/2}}\) for each loop if the
+  integral is Minkowskian, \(\frac{1}{i \pi^{D/2}}\) or
+  \(\frac{1}{i \pi^{(D-1)/2}}\) for each loop if the integral is
+  Euclidean or Cartesian respectively.
+\item
+  ``Multiloop2'' - like ``Multiloop1'' but with an extra
+  \(e^{\frac{(4-D)}{2} \gamma_E}\) for each loop
+\end{itemize}
+
+The standard value is ``Multiloop1''.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcfeynmanparametrize}{FCFeynmanParametrize}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanParametrize}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{p}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,}\NormalTok{ FCReplaceD }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{D} \OtherTok{{-}\textgreater{}} \DecValTok{4} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ Epsilon}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{(x(1)+x(2))^{2 \varepsilon -2} \left(-q^2 x(1) x(2)\right)^{-\varepsilon },\Gamma (\varepsilon ),\{x(1),x(2)\}\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanParametrize}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{p}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,}\NormalTok{ FCReplaceD }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{D} \OtherTok{{-}\textgreater{}} \DecValTok{4} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ Epsilon}\OperatorTok{\}]} 
+ 
+\FunctionTok{Times}\NormalTok{ @@ }\FunctionTok{Most}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{(x(1)+x(2))^{2 \varepsilon -2} \left(-q^2 x(1) x(2)\right)^{-\varepsilon },\Gamma (\varepsilon ),\{x(1),x(2)\}\right\}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\Gamma (\varepsilon ) (x(1)+x(2))^{2 \varepsilon -2} \left(-q^2 x(1) x(2)\right)^{-\varepsilon }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanParametrize}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{p}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,}\NormalTok{ FCReplaceD }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{D} \OtherTok{{-}\textgreater{}} \DecValTok{4} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ Epsilon}\OperatorTok{\},} 
+\NormalTok{   FeynmanIntegralPrefactor }\OtherTok{{-}\textgreater{}} \StringTok{"Multiloop1"}\OperatorTok{]} 
+ 
+\FunctionTok{Times}\NormalTok{ @@ }\FunctionTok{Most}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{(x(1)+x(2))^{2 \varepsilon -2} \left(-q^2 x(1) x(2)\right)^{-\varepsilon },\Gamma (\varepsilon ),\{x(1),x(2)\}\right\}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\Gamma (\varepsilon ) (x(1)+x(2))^{2 \varepsilon -2} \left(-q^2 x(1) x(2)\right)^{-\varepsilon }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanParametrize}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{p}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,}\NormalTok{ FCReplaceD }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{D} \OtherTok{{-}\textgreater{}} \DecValTok{4} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ Epsilon}\OperatorTok{\},} 
+\NormalTok{   FeynmanIntegralPrefactor }\OtherTok{{-}\textgreater{}} \StringTok{"Unity"}\OperatorTok{]} 
+ 
+\FunctionTok{Times}\NormalTok{ @@ }\FunctionTok{Most}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{(x(1)+x(2))^{2 \varepsilon -2} \left(-q^2 x(1) x(2)\right)^{-\varepsilon },i \pi ^{2-\varepsilon } \Gamma (\varepsilon ),\{x(1),x(2)\}\right\}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+i \pi ^{2-\varepsilon } \Gamma (\varepsilon ) (x(1)+x(2))^{2 \varepsilon -2} \left(-q^2 x(1) x(2)\right)^{-\varepsilon }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanParametrize}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{p}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,}\NormalTok{ FCReplaceD }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{D} \OtherTok{{-}\textgreater{}} \DecValTok{4} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ Epsilon}\OperatorTok{\},} 
+\NormalTok{   FeynmanIntegralPrefactor }\OtherTok{{-}\textgreater{}} \StringTok{"Textbook"}\OperatorTok{]} 
+ 
+\FunctionTok{Times}\NormalTok{ @@ }\FunctionTok{Most}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{(x(1)+x(2))^{2 \varepsilon -2} \left(-q^2 x(1) x(2)\right)^{-\varepsilon },i 2^{2 \varepsilon -4} \pi ^{\varepsilon -2} \Gamma (\varepsilon ),\{x(1),x(2)\}\right\}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+i 2^{2 \varepsilon -4} \pi ^{\varepsilon -2} \Gamma (\varepsilon ) (x(1)+x(2))^{2 \varepsilon -2} \left(-q^2 x(1) x(2)\right)^{-\varepsilon }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanParametrize}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{p}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,}\NormalTok{ FCReplaceD }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{D} \OtherTok{{-}\textgreater{}} \DecValTok{4} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ Epsilon}\OperatorTok{\},} 
+\NormalTok{   FeynmanIntegralPrefactor }\OtherTok{{-}\textgreater{}} \StringTok{"Multiloop2"}\OperatorTok{]} 
+ 
+\FunctionTok{Times}\NormalTok{ @@ }\FunctionTok{Most}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{(x(1)+x(2))^{2 \varepsilon -2} \left(-q^2 x(1) x(2)\right)^{-\varepsilon },e^{\gamma  \varepsilon } \Gamma (\varepsilon ),\{x(1),x(2)\}\right\}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+e^{\gamma  \varepsilon } \Gamma (\varepsilon ) (x(1)+x(2))^{2 \varepsilon -2} \left(-q^2 x(1) x(2)\right)^{-\varepsilon }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanParametrize}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}],} \OperatorTok{\{}\FunctionTok{p}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,}\NormalTok{ FCReplaceD }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{D} \OtherTok{{-}\textgreater{}} \DecValTok{4} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ Epsilon}\OperatorTok{\},} 
+\NormalTok{   FeynmanIntegralPrefactor }\OtherTok{{-}\textgreater{}} \StringTok{"Multiloop2"}\OperatorTok{]} 
+ 
+\FunctionTok{Times}\NormalTok{ @@ }\FunctionTok{Most}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]} 
+ 
+\FunctionTok{Series}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{Epsilon}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]} \SpecialCharTok{//} \FunctionTok{Normal} \SpecialCharTok{//} \FunctionTok{FunctionExpand} 
+  
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{1,-e^{\gamma  \varepsilon } \Gamma (\varepsilon -1) \left(m^2\right)^{1-\varepsilon },\{\}\right\}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-e^{\gamma  \varepsilon } \Gamma (\varepsilon -1) \left(m^2\right)^{1-\varepsilon }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{m^2}{\varepsilon }+\frac{1}{12} \varepsilon  \left(\pi ^2 m^2+12 m^2+6 m^2 \log ^2\left(m^2\right)-12 m^2 \log \left(m^2\right)\right)+m^2+m^2 \left(-\log \left(m^2\right)\right)
+\end{dmath*}
+\end{document}

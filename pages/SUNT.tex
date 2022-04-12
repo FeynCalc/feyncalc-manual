@@ -1,0 +1,145 @@
+% !TeX program = pdflatex
+% !TeX root = SUNT.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{sunt}{%
+\section{SUNT}\label{sunt}}
+
+\texttt{SUNT[\allowbreak{}a]} is the \(SU(N)\) \(T^a\) generator in the
+fundamental representation. The fundamental indices are implicit.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{ca}{CA}, \hyperlink{cf}{CF},
+\hyperlink{sund}{SUND}, \hyperlink{sundelta}{SUNDelta},
+\hyperlink{sunf}{SUNF}, \hyperlink{sunsimplify}{SUNSimplify}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+T^a
+\end{dmath*}
+
+Since \(T^a\) is a noncommutative object, products have to separated by
+a \texttt{Dot} (\texttt{.}).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{]}\NormalTok{ . SUNT}\OperatorTok{[}\FunctionTok{b}\OperatorTok{]}\NormalTok{ . SUNT}\OperatorTok{[}\FunctionTok{c}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+T^a.T^b.T^c
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{d}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+T^a.T^b.T^c.T^d
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNSimplify}\OperatorTok{[}\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{a}\OperatorTok{],}\NormalTok{ SUNNToCACF }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{T^b}{2 N}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNSimplify}\OperatorTok{[}\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{a}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+C_F^2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNSimplify}\OperatorTok{[}\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{a}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{1}{2} T^b \left(C_A-2 C_F\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNSimplify}\OperatorTok{[}\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{a}\OperatorTok{],}\NormalTok{ SUNNToCACF }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{T^b}{2 N}
+\end{dmath*}
+
+The normalization of the generators is chosen in the standard way,
+therefore \(\textrm{Tr}(T^aT^b) = \frac{1}{2} \delta _{ab}\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNTrace}\OperatorTok{[}\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\delta ^{ab}}{2}
+\end{dmath*}
+
+In case you want \(T_f\), you need to include a factor
+\texttt{2*Tf}inside the trace.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNTrace}\OperatorTok{[}\DecValTok{2}\NormalTok{ Tf SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+T_f \delta ^{ab}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNTrace}\OperatorTok{[}\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} \;\text{SUNDelta}[\text{SUNIndex}[a],\text{SUNIndex}[b]]
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SUNT[SUNIndex[a]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//}\NormalTok{ FCE }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SUNT[a]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

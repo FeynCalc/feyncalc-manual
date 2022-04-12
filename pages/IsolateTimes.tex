@@ -1,0 +1,43 @@
+% !TeX program = pdflatex
+% !TeX root = IsolateTimes.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{isolatetimes}{%
+\section{IsolateTimes}\label{isolatetimes}}
+
+\texttt{IsolateTimes} is an option for \texttt{Isolate} and other
+functions using \texttt{Isolate}. If it is set to \texttt{True}, Isolate
+will be applied also to pure products.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{isolate}{Isolate},
+\hyperlink{collect2}{Collect2}.
+
+\subsection{Examples}
+
+By default, this expression does not become abbreviated
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Isolate}\OperatorTok{[}\FunctionTok{a}\SpecialCharTok{*}\FunctionTok{b}\SpecialCharTok{*}\FunctionTok{c}\SpecialCharTok{*}\FunctionTok{d}\OperatorTok{,} \FunctionTok{a}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+a b c d
+\end{dmath*}
+
+Now an abbreviation is introduced
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ Isolate}\OperatorTok{[}\FunctionTok{a}\SpecialCharTok{*}\FunctionTok{b}\SpecialCharTok{*}\FunctionTok{c}\SpecialCharTok{*}\FunctionTok{d}\OperatorTok{,} \FunctionTok{a}\OperatorTok{,}\NormalTok{ IsolateTimes }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+a \;\text{KK}(19)
+\end{dmath*}
+\end{document}

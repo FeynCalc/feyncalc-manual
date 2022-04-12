@@ -1,0 +1,226 @@
+% !TeX program = pdflatex
+% !TeX root = FCCanonicalizeDummyIndices.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fccanonicalizedummyindices}{%
+\section{FCCanonicalizeDummyIndices}\label{fccanonicalizedummyindices}}
+
+\texttt{FCCanonicalizeDummyIndices[\allowbreak{}expr]} canonicalizes
+dummy indices in the expression.
+
+Following index types are supported: \texttt{LorentzIndex},
+\texttt{CartesianIndex}, \texttt{SUNIndex}, \texttt{SUNFIndex},
+\texttt{DiracIndex}, \texttt{PauliIndex}
+
+In the case of Lorentz indices the option \texttt{Momentum} provides a
+possibility to limit the canonicalization only to particular
+\texttt{Momenta}. The option \texttt{LorentzIndexNames} can be used to
+assign specific names to the canonicalized indices, to have say \(\mu\),
+\(\nu\), \(\rho\) etc. instead of some random names.
+
+For other index types the corresponding options are called
+\texttt{CartesianIndexNames}, \texttt{SUNIndexNames},
+\texttt{SUNFIndexNames}, \texttt{DiracIndexNames} and
+\texttt{PauliIndexNames}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcrenamedummyindices}{FCRenameDummyIndices}.
+
+\subsection{Examples}
+
+Canonicalization of Lorentz indices
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,}\NormalTok{ mu}\OperatorTok{]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,}\NormalTok{ mu}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,}\NormalTok{ nu}\OperatorTok{]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,}\NormalTok{ nu}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,}\NormalTok{ si}\OperatorTok{]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{r}\OperatorTok{,}\NormalTok{ si}\OperatorTok{]} 
+ 
+\NormalTok{FCCanonicalizeDummyIndices}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ Factor2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p^{\text{mu}} q^{\text{mu}}+p^{\text{nu}} q^{\text{nu}}+q^{\text{si}} r^{\text{si}}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+q^{\text{FCGV}(\text{li191})} \left(2 p^{\text{FCGV}(\text{li191})}+r^{\text{FCGV}(\text{li191})}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Uncontract}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,} \FunctionTok{p}\OperatorTok{,}\NormalTok{ Pair }\OtherTok{{-}\textgreater{}} \ConstantTok{All}\OperatorTok{]} 
+ 
+\NormalTok{FCCanonicalizeDummyIndices}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ LorentzIndexNames }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p^{\text{\$AL}(\text{\$28})} p^{\text{\$AL}(\text{\$29})} q^{\text{\$AL}(\text{\$28})} q^{\text{\$AL}(\text{\$29})}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+p^{\mu } p^{\nu } q^{\mu } q^{\nu }
+\end{dmath*}
+
+Canonicalization of Cartesian indices
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]}\NormalTok{ CVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ CVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}\NormalTok{ CVD}\OperatorTok{[}\FunctionTok{r}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]} 
+ 
+\NormalTok{FCCanonicalizeDummyIndices}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ Factor2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p^i q^i+p^j r^j
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+p^{\text{FCGV}(\text{ci391})} \left(q^{\text{FCGV}(\text{ci391})}+r^{\text{FCGV}(\text{ci391})}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]}\NormalTok{ CVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ CVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}\NormalTok{ CVD}\OperatorTok{[}\FunctionTok{r}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]} 
+ 
+\NormalTok{FCCanonicalizeDummyIndices}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ CartesianIndexNames }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{a}\OperatorTok{\}]} \SpecialCharTok{//}\NormalTok{ Factor2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p^i q^i+p^j r^j
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+p^a \left(q^a+r^a\right)
+\end{dmath*}
+
+Canonicalization of color indices
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{a}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ SUNT}\OperatorTok{[}\FunctionTok{c}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]} 
+ 
+\NormalTok{FCCanonicalizeDummyIndices}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+T^a.T^b.T^a+T^c.T^b.T^c
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+2 T^{\text{FCGV}(\text{sun601})}.T^b.T^{\text{FCGV}(\text{sun601})}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{a}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ SUNT}\OperatorTok{[}\FunctionTok{c}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]} 
+ 
+\NormalTok{FCCanonicalizeDummyIndices}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ SUNIndexNames }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{u}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+T^a.T^b.T^a+T^c.T^b.T^c
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+2 T^u.T^b.T^u
+\end{dmath*}
+
+Canonicalization of Dirac indices
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DCHN}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\NormalTok{mu}\OperatorTok{],} \FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}\NormalTok{ DCHN}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\NormalTok{nu}\OperatorTok{],} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]} 
+ 
+\NormalTok{FCCanonicalizeDummyIndices}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }^{\text{mu}}\right){}_{ij} \left(\bar{\gamma }^{\text{nu}}\right){}_{jk}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }^{\text{mu}}\right){}_{i\text{FCGV}(\text{di771})} \left(\bar{\gamma }^{\text{nu}}\right){}_{\text{FCGV}(\text{di771})k}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DCHN}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\NormalTok{mu}\OperatorTok{],} \FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}\NormalTok{ DCHN}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\NormalTok{nu}\OperatorTok{],} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]} 
+ 
+\NormalTok{FCCanonicalizeDummyIndices}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ DiracIndexNames }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{a}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }^{\text{mu}}\right){}_{ij} \left(\bar{\gamma }^{\text{nu}}\right){}_{jk}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }^{\text{mu}}\right){}_{ia} \left(\bar{\gamma }^{\text{nu}}\right){}_{ak}
+\end{dmath*}
+
+Canonicalization of Pauli indices
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PCHN}\OperatorTok{[}\NormalTok{CSI}\OperatorTok{[}\FunctionTok{a}\OperatorTok{],} \FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}\NormalTok{ PCHN}\OperatorTok{[}\NormalTok{CSI}\OperatorTok{[}\FunctionTok{b}\OperatorTok{],} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]} 
+ 
+\NormalTok{FCCanonicalizeDummyIndices}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\overline{\sigma }^a\right){}_{ij} \left(\overline{\sigma }^b\right){}_{jk}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left(\overline{\sigma }^a\right){}_{i\text{FCGV}(\text{pi921})} \left(\overline{\sigma }^b\right){}_{\text{FCGV}(\text{pi921})k}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PCHN}\OperatorTok{[}\NormalTok{CSI}\OperatorTok{[}\FunctionTok{a}\OperatorTok{],} \FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}\NormalTok{ PCHN}\OperatorTok{[}\NormalTok{CSI}\OperatorTok{[}\FunctionTok{b}\OperatorTok{],} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]} 
+ 
+\NormalTok{FCCanonicalizeDummyIndices}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ PauliIndexNames }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{l}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\overline{\sigma }^a\right){}_{ij} \left(\overline{\sigma }^b\right){}_{jk}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left(\overline{\sigma }^a\right){}_{il} \left(\overline{\sigma }^b\right){}_{lk}
+\end{dmath*}
+
+Using the option \texttt{Head} one can specify which index heads should
+be canonicalized, while the rest will be ignored.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(QuantumField}\OperatorTok{[}\FunctionTok{Superscript}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Phi}\OperatorTok{],} \StringTok{"+"}\OperatorTok{],}\NormalTok{ PauliIndex}\OperatorTok{[}\NormalTok{k1}\OperatorTok{],}\NormalTok{ PauliIndex}\OperatorTok{[}\NormalTok{k2}\OperatorTok{],} 
+     \FunctionTok{R}\OperatorTok{,} \FunctionTok{r}\OperatorTok{]}\NormalTok{ . QuantumField}\OperatorTok{[}\NormalTok{FCPartialD}\OperatorTok{[\{}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],} \FunctionTok{r}\OperatorTok{\}],} 
+\NormalTok{     FCPartialD}\OperatorTok{[\{}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],} \FunctionTok{r}\OperatorTok{\}],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Phi}\OperatorTok{],}\NormalTok{ PauliIndex}\OperatorTok{[}\NormalTok{k2}\OperatorTok{],}\NormalTok{ PauliIndex}\OperatorTok{[}\NormalTok{k1}\OperatorTok{],} \FunctionTok{R}\OperatorTok{,} \FunctionTok{r}\OperatorTok{]}\NormalTok{) }
+ 
+\NormalTok{FCCanonicalizeDummyIndices}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ CartesianIndexNames }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{j}\OperatorTok{\},} \FunctionTok{Head} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{CartesianIndex}\OperatorTok{\}]} 
+  
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\phi ^{+\text{k1}\;\text{k2}Rr}.\left(\partial _{\{i,r\}}\partial _{\{i,r\}}\phi ^{\text{k2}\;\text{k1}Rr}\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\phi ^{+\text{k1}\;\text{k2}Rr}.\left(\partial _{\{j,r\}}\partial _{\{j,r\}}\phi ^{\text{k2}\;\text{k1}Rr}\right)
+\end{dmath*}
+\end{document}

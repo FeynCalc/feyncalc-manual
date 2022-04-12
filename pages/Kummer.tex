@@ -1,0 +1,382 @@
+% !TeX program = pdflatex
+% !TeX root = Kummer.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{kummer}{%
+\section{Kummer}\label{kummer}}
+
+\texttt{Kummer[\allowbreak{}i][\allowbreak{}exp]} applies Kummer
+relation number \texttt{i} (\(i =1, ... 24, 94, 95, 96\)) to all
+\texttt{Hypergeometric2F1} in exp.
+
+\(i = 94\) corresponds to Eq. 9.131.2, \(i = 95\) to Eq. 9.132.1 and
+\(i = 96\) to Eq. 9.132.2 in Gradshteyn \& Ryzhik.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{hypergeometricac}{HypergeometricAC}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{2}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1(a,b;c;z)=(1-z)^{-a-b+c} \, _2F_1(c-a,c-b;c;z)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{3}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1(a,b;c;z)=(1-z)^{-a} \, _2F_1\left(a,c-b;c;-\frac{z}{1-z}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{4}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1(a,b;c;z)=(1-z)^{-b} \, _2F_1\left(b,c-a;c;-\frac{z}{1-z}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{z}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{6}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{z}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1(a,b;c;1-z)=z^{-a-b+c} \, _2F_1(c-a,c-b;c;1-z)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{a} \SpecialCharTok{+} \FunctionTok{b} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{z}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{6}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{a} \SpecialCharTok{+} \FunctionTok{b} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{z}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1(a,b;a+b-c+1;1-z)=z^{1-c} \, _2F_1(a-c+1,b-c+1;a+b-c+1;1-z)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{z}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{7}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{z}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1(a,b;c;1-z)=z^{-a} \, _2F_1\left(a,c-b;c;-\frac{1-z}{z}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{a} \SpecialCharTok{+} \FunctionTok{b} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{z}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{7}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{a} \SpecialCharTok{+} \FunctionTok{b} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{z}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1(a,b;a+b-c+1;1-z)=z^{-a} \, _2F_1\left(a,a-c+1;a+b-c+1;-\frac{1-z}{z}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{z}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{8}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{z}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1(a,b;c;1-z)=z^{-b} \, _2F_1\left(b,c-a;c;-\frac{1-z}{z}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{a} \SpecialCharTok{+} \FunctionTok{b} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{z}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{8}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{a} \SpecialCharTok{+} \FunctionTok{b} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{z}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1(a,b;a+b-c+1;1-z)=z^{-b} \, _2F_1\left(b,b-c+1;a+b-c+1;-\frac{1-z}{z}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{10}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1\left(a,b;c;\frac{1}{z}\right)=(1-z)^{-a-b+c} (-z)^{a+b-c} \, _2F_1\left(c-a,c-b;c;\frac{1}{z}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{a} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \FunctionTok{a} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{b}\OperatorTok{,} \FunctionTok{z}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{10}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{a} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \FunctionTok{a} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{b}\OperatorTok{,} \FunctionTok{z}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1\left(a,a-c+1;a-b+1;\frac{1}{z}\right)=(1-z)^{-a-b+c} (-z)^{a+b-c} \, _2F_1\left(1-b,c-b;a-b+1;\frac{1}{z}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{11}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1\left(a,b;c;\frac{1}{z}\right)=\left(-\frac{1-z}{z}\right)^{-a} (-z)^a \, _2F_1\left(a,c-b;c;\frac{1}{1-z}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{a} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \FunctionTok{a} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{b}\OperatorTok{,} \FunctionTok{z}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{11}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{a} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \FunctionTok{a} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{b}\OperatorTok{,} \FunctionTok{z}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1\left(a,a-c+1;a-b+1;\frac{1}{z}\right)=\left(-\frac{1-z}{z}\right)^{-a} (-z)^a \, _2F_1\left(a,c-b;a-b+1;\frac{1}{1-z}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{12}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1\left(a,b;c;\frac{1}{z}\right)=(1-z)^{-b} (-z)^{b-a} \, _2F_1\left(b,c-a;c;\frac{1}{1-z}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{a} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \FunctionTok{a} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{b}\OperatorTok{,} \FunctionTok{z}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{12}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{a} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \FunctionTok{a} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{b}\OperatorTok{,} \FunctionTok{z}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1\left(a,a-c+1;a-b+1;\frac{1}{z}\right)=(-z)^{1-c} (1-z)^{-a+c-1} \, _2F_1\left(1-b,a-c+1;a-b+1;\frac{1}{1-z}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{14}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1\left(a,b;c;\frac{1}{z}\right)=(1-z)^{-a-b+c} (-z)^{a+b-c} \, _2F_1\left(c-a,c-b;c;\frac{1}{z}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{b} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{b} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{a}\OperatorTok{,} \FunctionTok{z}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{14}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{b} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{b} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{a}\OperatorTok{,} \FunctionTok{z}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1\left(b,b-c+1;-a+b+1;\frac{1}{z}\right)=(1-z)^{-a-b+c} (-z)^{a+b-c} \, _2F_1\left(1-a,c-a;-a+b+1;\frac{1}{z}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{15}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1\left(a,b;c;\frac{1}{z}\right)=(1-z)^{-b} (-z)^b \, _2F_1\left(b,c-a;c;\frac{1}{1-z}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{b} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{b} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{a}\OperatorTok{,} \FunctionTok{z}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{15}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{b} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{b} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{a}\OperatorTok{,} \FunctionTok{z}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1\left(b,b-c+1;-a+b+1;\frac{1}{z}\right)=(1-z)^{-b+c-1} (-z)^{b-c+1} \, _2F_1\left(1-a,b-c+1;-a+b+1;\frac{1}{1-z}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{16}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1\left(a,b;c;\frac{1}{z}\right)=(1-z)^{-a} (-z)^a \, _2F_1\left(a,c-b;c;\frac{1}{1-z}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{b} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{b} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{a}\OperatorTok{,} \FunctionTok{z}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{16}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{b} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{b} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{a}\OperatorTok{,} \FunctionTok{z}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1\left(b,b-c+1;-a+b+1;\frac{1}{z}\right)=(1-z)^{-b} (-z)^b \, _2F_1\left(b,c-a;-a+b+1;\frac{1}{1-z}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \FunctionTok{b} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \DecValTok{2} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{18}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \FunctionTok{b} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \DecValTok{2} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1(a-c+1,b-c+1;2-c;z)=(1-z)^{-a-b+c} \, _2F_1(1-a,1-b;2-c;z)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{18}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1(a,b;c;z)=(1-z)^{-a-b+c} \, _2F_1(c-a,c-b;c;z)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \FunctionTok{b} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \DecValTok{2} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{19}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \FunctionTok{b} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \DecValTok{2} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1(a-c+1,b-c+1;2-c;z)=(1-z)^{-a+c-1} \, _2F_1\left(1-b,a-c+1;2-c;\frac{z}{z-1}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{19}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1(a,b;c;z)=(1-z)^{-a} \, _2F_1\left(a,c-b;c;\frac{z}{z-1}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \FunctionTok{b} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \DecValTok{2} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{20}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \FunctionTok{b} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \DecValTok{2} \SpecialCharTok{{-}} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1(a-c+1,b-c+1;2-c;z)=(1-z)^{-b+c-1} \, _2F_1\left(1-a,b-c+1;2-c;\frac{z}{z-1}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{20}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1(a,b;c;z)=(1-z)^{-b} \, _2F_1\left(b,c-a;c;\frac{z}{z-1}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{c} \SpecialCharTok{{-}} \FunctionTok{a}\OperatorTok{,} \FunctionTok{c} \SpecialCharTok{{-}} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{b}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{z}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{22}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{c} \SpecialCharTok{{-}} \FunctionTok{a}\OperatorTok{,} \FunctionTok{c} \SpecialCharTok{{-}} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{b}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{z}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1(c-a,c-b;-a-b+c+1;1-z)=z^{1-c} \, _2F_1(1-a,1-b;-a-b+c+1;1-z)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{z}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{22}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{z}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1(a,b;c;1-z)=z^{-a-b+c} \, _2F_1(c-a,c-b;c;1-z)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{c} \SpecialCharTok{{-}} \FunctionTok{a}\OperatorTok{,} \FunctionTok{c} \SpecialCharTok{{-}} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{b}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{z}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{23}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{c} \SpecialCharTok{{-}} \FunctionTok{a}\OperatorTok{,} \FunctionTok{c} \SpecialCharTok{{-}} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{b}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{z}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1(c-a,c-b;-a-b+c+1;1-z)=(1-z)^{a-c} \, _2F_1\left(1-a,c-a;-a-b+c+1;1-\frac{1}{1-z}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{z}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{23}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{z}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1(a,b;c;1-z)=(1-z)^{-a} \, _2F_1\left(a,c-b;c;1-\frac{1}{1-z}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{c} \SpecialCharTok{{-}} \FunctionTok{a}\OperatorTok{,} \FunctionTok{c} \SpecialCharTok{{-}} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{b}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{z}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{24}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{c} \SpecialCharTok{{-}} \FunctionTok{a}\OperatorTok{,} \FunctionTok{c} \SpecialCharTok{{-}} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c} \SpecialCharTok{+} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{b}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{z}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1(c-a,c-b;-a-b+c+1;1-z)=z^{b-c} \, _2F_1\left(1-b,c-b;-a-b+c+1;-\frac{1-z}{z}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{z}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{24}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{z}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1(a,b;c;1-z)=z^{-b} \, _2F_1\left(b,c-a;c;-\frac{1-z}{z}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{94}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1(a,b;c;z)=\frac{\Gamma (c) (1-z)^{-a-b+c} \Gamma (a+b-c) \, _2F_1(c-a,c-b;-a-b+c+1;1-z)}{\Gamma (a) \Gamma (b)}+\frac{\Gamma (c) \Gamma (-a-b+c) \, _2F_1(a,b;a+b-c+1;1-z)}{\Gamma (c-a) \Gamma (c-b)}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{95}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1(a,b;c;z)=\frac{(1-z)^{-a} \Gamma (c) \Gamma (b-a) \, _2F_1\left(a,c-b;a-b+1;\frac{1}{1-z}\right)}{\Gamma (b) \Gamma (c-a)}+\frac{(1-z)^{-b} \Gamma (c) \Gamma (a-b) \, _2F_1\left(b,c-a;-a+b+1;\frac{1}{1-z}\right)}{\Gamma (a) \Gamma (c-b)}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]} \ExtensionTok{==}\NormalTok{ Kummer}\OperatorTok{[}\DecValTok{96}\OperatorTok{][}\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1(a,b;c;z)=\frac{(-1)^a z^{-a} \Gamma (c) \Gamma (b-a) \, _2F_1\left(a,a-c+1;a-b+1;\frac{1}{z}\right)}{\Gamma (b) \Gamma (c-a)}+\frac{(-1)^b z^{-b} \Gamma (c) \Gamma (a-b) \, _2F_1\left(b,b-c+1;-a+b+1;\frac{1}{z}\right)}{\Gamma (a) \Gamma (c-b)}
+\end{dmath*}
+\end{document}

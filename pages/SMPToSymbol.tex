@@ -1,0 +1,41 @@
+% !TeX program = pdflatex
+% !TeX root = SMPToSymbol.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{smptosymbol}{%
+\section{SMPToSymbol}\label{smptosymbol}}
+
+\texttt{SMPToSymbol[\allowbreak{}exp]} converts objects of type
+\texttt{SMP[\allowbreak{}"sth"]} in \texttt{exp} to symbols using
+\texttt{ToExpression[\allowbreak{}"sth"]}.
+
+The option \texttt{StringReplace} can be used to specify string
+replacement rules that will take care of special characters
+(e.g.~\texttt{^} or \texttt{_}) that cannot appear in valid Mathematica
+expressions. \texttt{SMPToSymbol} is useful when exporting FeynCalc
+expressions to other tools, e.g.~FORM.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{smp}{SMP},
+\hyperlink{fcgvtosymbol}{FCGVToSymbol}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{{-}}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_e"}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2} 
+ 
+\NormalTok{SMPToSymbol}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^2-m_e^2
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^2-\text{me}^2
+\end{dmath*}
+\end{document}

@@ -1,0 +1,221 @@
+% !TeX program = pdflatex
+% !TeX root = PolarizationVector.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{polarizationvector}{%
+\section{PolarizationVector}\label{polarizationvector}}
+
+\texttt{PolarizationVector[\allowbreak{}p,\ \allowbreak{}mu]} denotes a
+4-dimensional ingoing polarization vector \(\varepsilon^\mu(p)\).
+
+For the outgoing polarization vector \(\varepsilon^{\ast \mu}(p)\) use
+\texttt{ComplexConjugate[\allowbreak{}PolarizationVector[\allowbreak{}p,\ \allowbreak{}mu]]}
+
+To obtain a \(D\)-dimensional polarization vector, just use
+\texttt{ChangeDimension[\allowbreak{}vec,\ \allowbreak{}D]}
+
+In the internal representation following conventions are used
+
+\begin{itemize}
+\item
+  \texttt{Pair[\allowbreak{}Momentum[\allowbreak{}k],\ \allowbreak{}Momentum[\allowbreak{}Polarization[\allowbreak{}k,\ \allowbreak{}I]]]}
+  corresponds to \(\varepsilon^{\mu}(k)\), i.e.~an ingoing polarization
+  vector
+\item
+  \texttt{Pair[\allowbreak{}Momentum[\allowbreak{}k],\ \allowbreak{}Momentum[\allowbreak{}Polarization[\allowbreak{}k,\ \allowbreak{}-I]]]}
+  corresponds to \(\varepsilon^{\ast \mu}(k)\), i.e.~an outgoing
+  polarization vector
+\end{itemize}
+
+Warning: The first argument of \texttt{PolarizationVector} should always
+be a standalone symbol denoting a momentum (e.g.~\texttt{p},
+\texttt{k1}, \texttt{q2} etc.). Never use symbols multiplied by \(-1\)
+or other numbers as well as products of symbols (e.g.~\texttt{-p},
+\texttt{2*k}, \texttt{x*p} etc.). Doing so will inevitably lead to wrong
+results.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fv}{FV}, \hyperlink{pair}{Pair},
+\hyperlink{polarization}{Polarization},
+\hyperlink{polarizationsum}{PolarizationSum},
+\hyperlink{dopolarizationsums}{DoPolarizationSums}.
+
+\subsection{Examples}
+
+A polarization vector \(\varepsilon^{\mu }(k)\) is a special
+\(4\)-vector.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PolarizationVector}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\varepsilon }^{\mu }(k)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PolarizationVector}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*Pair[LorentzIndex[\textbackslash{}[Mu]], Momentum[Polarization[k, I]]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Conjugate}\OperatorTok{[}\NormalTok{PolarizationVector}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\varepsilon }^{*\mu }(k)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Conjugate}\OperatorTok{[}\NormalTok{PolarizationVector}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*Pair[LorentzIndex[\textbackslash{}[Mu]], Momentum[Polarization[k, {-}I]]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+The transversality property is not automatic and must be explicitly
+activated using the option \texttt{Transversality}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PolarizationVector}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{k}^{\mu } \bar{\varepsilon }^{\mu }(k)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{k}\cdot \bar{\varepsilon }(k)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PolarizationVector}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],}\NormalTok{ Transversality }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{k}^{\mu } \bar{\varepsilon }^{\mu }(k)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+Suppose that you are using unphysical polarization vectors for massless
+gauge bosons and intend to remove the unphysical degrees of freedom at a
+later stage using ghosts. In this case you must not use
+\texttt{Transversality->True}, since your polarization vectors are not
+transverse. Otherwise the result will be inconsistent.
+
+Here everything is correct, we can use the gauge trick with unphysical
+polarization vectors.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClearScalarProducts}\OperatorTok{[]}\NormalTok{; }
+ 
+\NormalTok{SP}\OperatorTok{[}\NormalTok{k1}\OperatorTok{]} \ExtensionTok{=} \DecValTok{0}\NormalTok{; }
+ 
+\NormalTok{SP}\OperatorTok{[}\NormalTok{k2}\OperatorTok{]} \ExtensionTok{=} \DecValTok{0}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex1 }\ExtensionTok{=}\NormalTok{ SP}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,}\NormalTok{ Polarization}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,} \FunctionTok{I}\OperatorTok{]]}\NormalTok{ SP}\OperatorTok{[}\NormalTok{k2}\OperatorTok{,}\NormalTok{ Polarization}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{]]}\NormalTok{ SP}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,}\NormalTok{ Polarization}\OperatorTok{[}\NormalTok{k2}\OperatorTok{,} \FunctionTok{I}\OperatorTok{]]}\SpecialCharTok{*}
+\NormalTok{   SP}\OperatorTok{[}\NormalTok{k2}\OperatorTok{,}\NormalTok{ Polarization}\OperatorTok{[}\NormalTok{k2}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\overline{\text{k1}}\cdot \bar{\varepsilon }(\text{k1})\right) \left(\overline{\text{k2}}\cdot \bar{\varepsilon }^*(\text{k2})\right) \left(\overline{\text{k1}}\cdot \bar{\varepsilon }(\text{k2})\right) \left(\overline{\text{k2}}\cdot \bar{\varepsilon }^*(\text{k1})\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex1 }\SpecialCharTok{//}\NormalTok{ DoPolarizationSums}\OperatorTok{[}\NormalTok{\#}\OperatorTok{,}\NormalTok{ k1}\OperatorTok{,} \DecValTok{0}\OperatorTok{]}\NormalTok{ \& }\SpecialCharTok{//}\NormalTok{ DoPolarizationSums}\OperatorTok{[}\NormalTok{\#}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{,} \DecValTok{0}\OperatorTok{]}\NormalTok{ \&}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(\overline{\text{k1}}\cdot \overline{\text{k2}})^2
+\end{dmath*}
+
+Here we erroneously set \texttt{Transversality->True} and consequently
+obtain a wrong result. In pure QED the full result (physical amplitude
+squared) would still come out right owing to the Ward identities, but
+e.g.~in QCD this would not be the case.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex2 }\ExtensionTok{=}\NormalTok{ SP}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,}\NormalTok{ Polarization}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,} \FunctionTok{I}\OperatorTok{,}\NormalTok{ Transversality }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]]}\NormalTok{ SP}\OperatorTok{[}\NormalTok{k2}\OperatorTok{,}\NormalTok{ Polarization}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{,} 
+\NormalTok{      Transversality }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]]}\NormalTok{ SP}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,}\NormalTok{ Polarization}\OperatorTok{[}\NormalTok{k2}\OperatorTok{,} \FunctionTok{I}\OperatorTok{,}\NormalTok{ Transversality }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]]}\NormalTok{ SP}\OperatorTok{[}\NormalTok{k2}\OperatorTok{,} 
+\NormalTok{     Polarization}\OperatorTok{[}\NormalTok{k2}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{,}\NormalTok{ Transversality }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]]} \SpecialCharTok{//}\NormalTok{ FCI}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex2 }\SpecialCharTok{//}\NormalTok{ DoPolarizationSums}\OperatorTok{[}\NormalTok{\#}\OperatorTok{,}\NormalTok{ k1}\OperatorTok{,} \DecValTok{0}\OperatorTok{]}\NormalTok{ \& }\SpecialCharTok{//}\NormalTok{ DoPolarizationSums}\OperatorTok{[}\NormalTok{\#}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{,} \DecValTok{0}\OperatorTok{]}\NormalTok{ \&}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClearScalarProducts}\OperatorTok{[]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{PolarizationVector} is a shortcut for \(4\)-dimensional
+polarization vectors. Although \(D\)-dimensional polarization vectors
+are fully supported by FeynCalc, as of now there is no shortcut for
+entering such quantities. You can either use \texttt{ChangeDimension}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ChangeDimension}\OperatorTok{[}\NormalTok{PolarizationVector}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],} \FunctionTok{D}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\varepsilon ^{\mu }(q)
+\end{dmath*}
+
+or enter such quantities directly using the
+\texttt{FeynCalcInternal}-notation
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{Polarization}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{I}\OperatorTok{],} \FunctionTok{D}\OperatorTok{],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{D}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\varepsilon ^{\mu }(q)
+\end{dmath*}
+\end{document}

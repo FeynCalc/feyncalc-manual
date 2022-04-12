@@ -1,0 +1,53 @@
+% !TeX program = pdflatex
+% !TeX root = SMVertex.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{smvertex}{%
+\section{SMVertex}\label{smvertex}}
+
+\texttt{SMVertex} is a library of SM vertices. Currently it implements
+only few vertices and is not really useful.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{smp}{SMP}.
+
+\subsection{Examples}
+
+This is the \(\gamma W W\) vertex (all momenta ingoing)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SMVertex}\OperatorTok{[}\StringTok{"AWW"}\OperatorTok{,} \FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{k}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-i \;\text{e} \left(\bar{g}^{\mu \rho } \left(\overline{p}-\overline{k}\right)^{\nu }+\bar{g}^{\nu \rho } \left(\overline{k}-\overline{q}\right)^{\mu }+\bar{g}^{\mu \nu } \left(\overline{q}-\overline{p}\right)^{\rho }\right)
+\end{dmath*}
+
+This is the \(HHH\)-coupling
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SMVertex}\OperatorTok{[}\StringTok{"HHH"}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{3 i \;\text{e} m_H^2}{2 m_W \left(\left.\sin (\theta _W\right)\right)}
+\end{dmath*}
+
+This is the \(H e\)-coupling
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SMVertex}\OperatorTok{[}\StringTok{"eeH"}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{i \;\text{e} m_e}{2 m_W \left(\left.\sin (\theta _W\right)\right)}
+\end{dmath*}
+\end{document}

@@ -1,0 +1,40 @@
+% !TeX program = pdflatex
+% !TeX root = CartesianPairContract.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{cartesianpaircontract}{%
+\section{CartesianPairContract}\label{cartesianpaircontract}}
+
+\texttt{CartesianPairContract} is like \texttt{CartesianPair}, but with
+(local) contraction properties.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{cartesianpair}{CartesianPair},
+\hyperlink{contract}{Contract}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CartesianPair}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],}\NormalTok{ CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}\NormalTok{ CartesianPair}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],}\NormalTok{ CartesianMomentum}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]]} 
+ 
+\SpecialCharTok{\%} \OtherTok{/.}\NormalTok{ CartesianPair }\OtherTok{{-}\textgreater{}}\NormalTok{ CartesianPairContract }
+ 
+\SpecialCharTok{\%} \OtherTok{/.}\NormalTok{ CartesianPairContract }\OtherTok{{-}\textgreater{}}\NormalTok{ CartesianPair}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^i \overline{q}^i
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{CartesianPairContract}\left(\overline{p},\overline{q}\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot \overline{q}
+\end{dmath*}
+\end{document}

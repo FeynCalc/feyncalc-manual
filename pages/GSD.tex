@@ -1,0 +1,69 @@
+% !TeX program = pdflatex
+% !TeX root = GSD.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{gsd}{%
+\section{GSD}\label{gsd}}
+
+GSD{[}p{]} can be used as input for a \(D\)-dimensional
+\(p^\mu \gamma_\mu\) and is transformed into
+\texttt{DiracGamma[\allowbreak{}Momentum[\allowbreak{}p,\ \allowbreak{}D],\ \allowbreak{}D]}
+by \texttt{FeynCalcInternal} (=\texttt{FCI}).
+
+\texttt{GSD[\allowbreak{}p,\ \allowbreak{}q,\ \allowbreak{}...]} is a
+short form for \texttt{GSD[\allowbreak{}p].GSD[\allowbreak{}q]}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{diracgamma}{DiracGamma},
+\hyperlink{ga}{GA}, \hyperlink{gad}{GAD}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GSD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\gamma \cdot p
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GSD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*DiracGamma[Momentum[p, D], D]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GSD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,} \FunctionTok{r}\OperatorTok{,} \FunctionTok{s}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(\gamma \cdot p).(\gamma \cdot q).(\gamma \cdot r).(\gamma \cdot s)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GSD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,} \FunctionTok{r}\OperatorTok{,} \FunctionTok{s}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*GSD[p] . GSD[q] . GSD[r] . GSD[s]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GSD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]}\NormalTok{ . (GSD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{m}\NormalTok{) . GSD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(\gamma \cdot q).(m+\gamma \cdot p).(\gamma \cdot q)
+\end{dmath*}
+\end{document}

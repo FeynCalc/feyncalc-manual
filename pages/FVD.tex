@@ -1,0 +1,75 @@
+% !TeX program = pdflatex
+% !TeX root = FVD.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fvd}{%
+\section{FVD}\label{fvd}}
+
+\texttt{FVD[\allowbreak{}p,\ \allowbreak{}mu]} is the \(D\)-dimensional
+vector \(p\) with Lorentz index \texttt{mu}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fce}{FCE}, \hyperlink{fci}{FCI},
+\hyperlink{fv}{FV}, \hyperlink{pair}{Pair}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p^{\mu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FVD}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(p-q)^{\mu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*FVD[p, \textbackslash{}[Mu]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{FVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*Pair[LorentzIndex[\textbackslash{}[Mu], D], Momentum[p, D]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+There is no special function to expand momenta in \texttt{FVD}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ ExpandScalarProduct}\OperatorTok{[}\NormalTok{FVD}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p^{\mu }-q^{\mu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*Pair[LorentzIndex[\textbackslash{}[Mu], D], Momentum[p, D]] {-} Pair[LorentzIndex[\textbackslash{}[Mu], D], Momentum[q, D]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

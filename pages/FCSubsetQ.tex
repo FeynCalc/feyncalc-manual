@@ -1,0 +1,42 @@
+% !TeX program = pdflatex
+% !TeX root = FCSubsetQ.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcsubsetq}{%
+\section{FCSubsetQ}\label{fcsubsetq}}
+
+\texttt{FCSubsetQ[\allowbreak{}list1,\ \allowbreak{}list2]} yields
+\texttt{True} if \texttt{list2} is a subset of \texttt{list1} and
+\texttt{False} otherwise. It returns the same results as the standard
+\texttt{SubsetQ}. The only reason for introducing \texttt{FCSubsetQ} is
+that \texttt{SubsetQ} is not available in Mathematica 8 and 9, which are
+still supported by FeynCalc.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcduplicatefreeq}{FCDuplicateFreeQ}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCSubsetQ}\OperatorTok{[\{}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{d}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{a}\OperatorTok{,} \FunctionTok{d}\OperatorTok{,} \FunctionTok{e}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCSubsetQ}\OperatorTok{[\{}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{d}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{a}\OperatorTok{,} \FunctionTok{d}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+\end{document}

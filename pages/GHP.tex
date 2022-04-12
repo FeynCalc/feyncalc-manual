@@ -1,0 +1,60 @@
+% !TeX program = pdflatex
+% !TeX root = GHP.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{ghp}{%
+\section{GHP}\label{ghp}}
+
+\texttt{GHP[\allowbreak{}p,\ \allowbreak{}a,\ \allowbreak{}b]} gives the
+ghost propagator where \texttt{a} and \texttt{b} are the color indices.
+
+\texttt{GHP[\allowbreak{}p]} omits the \(\delta _{ab}\).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{ghostpropagator}{GhostPropagator},
+\hyperlink{gluonpropagator}{GluonPropagator},
+\hyperlink{gluonghostvertex}{GluonGhostVertex}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GHP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\Pi _{ab}(p)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GHP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ Explicit}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{i}{p^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GHP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,}\NormalTok{ c1}\OperatorTok{,}\NormalTok{ c2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\Pi _{\text{c1}\;\text{c2}}(p)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{StandardForm}\OperatorTok{[}\NormalTok{FCE}\OperatorTok{[}\NormalTok{GHP}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{k}\OperatorTok{,}\NormalTok{ c3}\OperatorTok{,}\NormalTok{ c4}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ Explicit}\OperatorTok{]]}
+
+\CommentTok{(*I FAD[k] SD[c3, c4]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

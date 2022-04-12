@@ -1,0 +1,60 @@
+% !TeX program = pdflatex
+% !TeX root = DotExpand.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{dotexpand}{%
+\section{DotExpand}\label{dotexpand}}
+
+\texttt{DotExpand[\allowbreak{}exp]} expands dot products in
+\texttt{exp}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{dot}{DOT},
+\hyperlink{dotsimplify}{DotSimplify},
+\hyperlink{declarenoncommutative}{DeclareNonCommutative},
+\hyperlink{undeclarenoncommutative}{UnDeclareNonCommutative}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{DOT}\OperatorTok{[}\FunctionTok{a} \FunctionTok{x} \SpecialCharTok{+} \FunctionTok{b} \FunctionTok{y} \SpecialCharTok{+} \FunctionTok{c} \FunctionTok{z}\OperatorTok{,} \FunctionTok{d} \SpecialCharTok{+} \FunctionTok{e} \SpecialCharTok{+} \FunctionTok{f}\OperatorTok{]} 
+ 
+\NormalTok{DotExpand}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(a x+b y+c z).(d+e+f)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+a d x+a e x+a f x+b d y+b e y+b f y+c d z+c e z+c f z
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DeclareNonCommutative }\SpecialCharTok{/}\NormalTok{@ }\OperatorTok{\{}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{d}\OperatorTok{,} \FunctionTok{e}\OperatorTok{,} \FunctionTok{f}\OperatorTok{\}}\NormalTok{; }
+ 
+\NormalTok{DotExpand}\OperatorTok{[}\FunctionTok{DOT}\OperatorTok{[}\FunctionTok{a} \FunctionTok{x} \SpecialCharTok{+} \FunctionTok{b} \FunctionTok{y} \SpecialCharTok{+} \FunctionTok{c} \FunctionTok{z}\OperatorTok{,} \FunctionTok{d} \SpecialCharTok{+} \FunctionTok{e} \SpecialCharTok{+} \FunctionTok{f}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+x a.d+x a.e+x a.f+y b.d+y b.e+y b.f+z c.d+z c.e+z c.f
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{UnDeclareNonCommutative }\SpecialCharTok{/}\NormalTok{@ }\OperatorTok{\{}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{d}\OperatorTok{,} \FunctionTok{e}\OperatorTok{,} \FunctionTok{f}\OperatorTok{\}}\NormalTok{; }
+ 
+\NormalTok{DotExpand}\OperatorTok{[}\FunctionTok{DOT}\OperatorTok{[}\FunctionTok{a} \FunctionTok{x} \SpecialCharTok{+} \FunctionTok{b} \FunctionTok{y} \SpecialCharTok{+} \FunctionTok{c} \FunctionTok{z}\OperatorTok{,} \FunctionTok{d} \SpecialCharTok{+} \FunctionTok{e} \SpecialCharTok{+} \FunctionTok{f}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+a d x+a e x+a f x+b d y+b e y+b f y+c d z+c e z+c f z
+\end{dmath*}
+\end{document}

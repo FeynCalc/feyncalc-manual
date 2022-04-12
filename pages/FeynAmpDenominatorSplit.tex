@@ -1,0 +1,76 @@
+% !TeX program = pdflatex
+% !TeX root = FeynAmpDenominatorSplit.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{feynampdenominatorsplit}{%
+\section{FeynAmpDenominatorSplit}\label{feynampdenominatorsplit}}
+
+\texttt{FeynAmpDenominatorSplit[\allowbreak{}expr]} splits all
+\texttt{FeynAmpDenominator[\allowbreak{}a,\ \allowbreak{}b,\ \allowbreak{}...]}
+in \texttt{expr} into
+\texttt{FeynAmpDenominator[\allowbreak{}a]*FeynAmpDenominator[\allowbreak{}b]*...}
+.
+\texttt{FeynAmpDenominatorSplit[\allowbreak{}expr,\ \allowbreak{} Momentum ->q1]}
+splits all \texttt{FeynAmpDenominator} in expr into two products, one
+containing \texttt{q1} and other momenta, the second being free of
+\texttt{q1}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{feynampdenominatorcombine}{FeynAmpDenominatorCombine}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAD}\OperatorTok{[}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q1 }\SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{,}\NormalTok{ q1 }\SpecialCharTok{{-}}\NormalTok{ q2}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{,}\NormalTok{ q2 }\SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{]} 
+ 
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ FeynAmpDenominatorSplit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\text{q1}^2.(\text{q1}-p)^2.(\text{q1}-\text{q2})^2.\text{q2}^2.(\text{q2}-p)^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\text{q1}^2 \;\text{q2}^2 (\text{q1}-p)^2 (\text{q2}-p)^2 (\text{q1}-\text{q2})^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//}\NormalTok{ FCE }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*FAD[q1] FAD[{-}p + q1] FAD[q1 {-} q2] FAD[q2] FAD[{-}p + q2]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ FeynAmpDenominatorSplit}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q1 }\SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{,}\NormalTok{ q1 }\SpecialCharTok{{-}}\NormalTok{ q2}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{,}\NormalTok{ q2 }\SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{],}\NormalTok{ Momentum }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\text{q2}^2.(\text{q2}-p)^2 \;\text{q1}^2.(\text{q1}-p)^2.(\text{q1}-\text{q2})^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//}\NormalTok{ FCE }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*FAD[q2, {-}p + q2] FAD[q1, {-}p + q1, q1 {-} q2]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominatorCombine}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCE }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*FAD[q1, q2, q1 {-} q2, {-}p + q1, {-}p + q2]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

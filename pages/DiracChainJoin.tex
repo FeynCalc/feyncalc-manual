@@ -1,0 +1,44 @@
+% !TeX program = pdflatex
+% !TeX root = DiracChainJoin.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{diracchainjoin}{%
+\section{DiracChainJoin}\label{diracchainjoin}}
+
+\texttt{DiracChainJoin[\allowbreak{}exp]} joins chains of Dirac matrices
+with explicit Dirac indices wrapped with a head \texttt{DiracChain}.
+Notice that \texttt{DiracChainJoin} is not suitable for creating closed
+Dirac chains out of the FeynArts output with explicit Dirac indices,
+e.g.~when the model contains 4-fermion operators. Use
+\texttt{FCFADiracChainJoin} for that.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{diracchain}{DiracChain},
+\hyperlink{dchn}{DCHN}, \hyperlink{diracindex}{DiracIndex},
+\hyperlink{diracindexdelta}{DiracIndexDelta},
+\hyperlink{didelta}{DIDelta},
+\hyperlink{diracchaincombine}{DiracChainCombine},
+\hyperlink{diracchainexpand}{DiracChainExpand},
+\hyperlink{diracchainfactor}{DiracChainFactor},
+\hyperlink{fcfadiracchainjoin}{FCFADiracChainJoin}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DCHN}\OperatorTok{[}\NormalTok{SpinorUBar}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{],} \FunctionTok{i}\OperatorTok{]}\NormalTok{ DCHN}\OperatorTok{[}\NormalTok{GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]],} \FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}\NormalTok{ DCHN}\OperatorTok{[}\FunctionTok{j}\OperatorTok{,}\NormalTok{ SpinorV}\OperatorTok{[}\NormalTok{p2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{]]} 
+ 
+\NormalTok{DiracChainJoin}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(v(\text{p2},\text{m2}))_j \left(\gamma ^{\mu }.\gamma ^{\nu }\right){}_{ij} \left(\bar{u}(\text{p1},\text{m1})\right)_i
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left(\varphi (\overline{\text{p1}},\text{m1})\right).\gamma ^{\mu }.\gamma ^{\nu }.\left(\varphi (-\overline{\text{p2}},\text{m2})\right)
+\end{dmath*}
+\end{document}

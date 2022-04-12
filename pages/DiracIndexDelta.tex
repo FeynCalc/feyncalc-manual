@@ -1,0 +1,124 @@
+% !TeX program = pdflatex
+% !TeX root = DiracIndexDelta.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{diracindexdelta}{%
+\section{DiracIndexDelta}\label{diracindexdelta}}
+
+\texttt{DiracIndexDelta[\allowbreak{}DiracIndex[\allowbreak{}i],\ \allowbreak{}DiracIndex[\allowbreak{}j]]}
+is the Kronecker-delta in the Dirac space with two explicit Dirac
+indices \texttt{i} and \texttt{j}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{diracchain}{DiracChain},
+\hyperlink{dchn}{DCHN}, \hyperlink{diracindex}{DiracIndex},
+\hyperlink{didelta}{DIDelta},
+\hyperlink{diracchainjoin}{DiracChainJoin},
+\hyperlink{diracchaincombine}{DiracChainCombine},
+\hyperlink{diracchainexpand}{DiracChainExpand},
+\hyperlink{diracchainfactor}{DiracChainFactor}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracIndexDelta}\OperatorTok{[}\NormalTok{DiracIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],}\NormalTok{ DiracIndex}\OperatorTok{[}\FunctionTok{j}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\delta _{ij}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ DiracIndexDelta}\OperatorTok{[}\NormalTok{DiracIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],}\NormalTok{ DiracIndex}\OperatorTok{[}\FunctionTok{j}\OperatorTok{]]}\SpecialCharTok{\^{}}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\delta _{ij}^2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracChainJoin}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+4
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracChainJoin}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,}\NormalTok{ TraceOfOne }\OtherTok{{-}\textgreater{}} \FunctionTok{D}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+D
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ DiracIndexDelta}\OperatorTok{[}\NormalTok{DiracIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],}\NormalTok{ DiracIndex}\OperatorTok{[}\FunctionTok{j}\OperatorTok{]]}\NormalTok{ DiracIndexDelta}\OperatorTok{[}\NormalTok{DiracIndex}\OperatorTok{[}\FunctionTok{j}\OperatorTok{],}\NormalTok{ DiracIndex}\OperatorTok{[}\FunctionTok{k}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\delta _{ij} \delta _{jk}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracChainJoin}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\delta _{ik}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ DiracIndexDelta}\OperatorTok{[}\NormalTok{DiracIndex}\OperatorTok{[}\NormalTok{i2}\OperatorTok{],}\NormalTok{ DiracIndex}\OperatorTok{[}\NormalTok{i3}\OperatorTok{]]}\NormalTok{ DiracIndexDelta}\OperatorTok{[}\NormalTok{DiracIndex}\OperatorTok{[}\NormalTok{i4}\OperatorTok{],}\NormalTok{ DiracIndex}\OperatorTok{[}\NormalTok{i5}\OperatorTok{]]}\NormalTok{ DiracChain}\OperatorTok{[}\NormalTok{DiracIndex}\OperatorTok{[}\NormalTok{i7}\OperatorTok{],}\NormalTok{ Spinor}\OperatorTok{[}\SpecialCharTok{{-}}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{q}\OperatorTok{],} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{]]}\NormalTok{ DiracChain}\OperatorTok{[}\NormalTok{Spinor}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],} \FunctionTok{m}\OperatorTok{,} \DecValTok{1}\OperatorTok{],}\NormalTok{ DiracIndex}\OperatorTok{[}\NormalTok{i0}\OperatorTok{]]}\NormalTok{ DiracChain}\OperatorTok{[}\NormalTok{DiracGamma}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]],}\NormalTok{ DiracIndex}\OperatorTok{[}\NormalTok{i1}\OperatorTok{],}\NormalTok{ DiracIndex}\OperatorTok{[}\NormalTok{i2}\OperatorTok{]]}\NormalTok{ DiracChain}\OperatorTok{[}\NormalTok{DiracGamma}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]],}\NormalTok{ DiracIndex}\OperatorTok{[}\NormalTok{i5}\OperatorTok{],}\NormalTok{ DiracIndex}\OperatorTok{[}\NormalTok{i6}\OperatorTok{]]}\NormalTok{ DiracChain}\OperatorTok{[}\FunctionTok{m} \SpecialCharTok{+}\NormalTok{ DiracGamma}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]],}\NormalTok{ DiracIndex}\OperatorTok{[}\NormalTok{i3}\OperatorTok{],}\NormalTok{ DiracIndex}\OperatorTok{[}\NormalTok{i4}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\delta _{\text{i2}\;\text{i3}} \delta _{\text{i4}\;\text{i5}} \left(\bar{\gamma }^{\mu }\right){}_{\text{i1}\;\text{i2}} \left(\bar{\gamma }^{\nu }\right){}_{\text{i5}\;\text{i6}} \left(\varphi (-\overline{q})\right)_{\text{i7}} \left(\bar{\gamma }\cdot \overline{p}+m\right)_{\text{i3}\;\text{i4}} \left(\varphi (\overline{p},m)\right)_{\text{i0}}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracChainJoin}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\varphi (-\overline{q})\right)_{\text{i7}} \left(\varphi (\overline{p},m)\right)_{\text{i0}} \left(\bar{\gamma }^{\mu }.\left(\bar{\gamma }\cdot \overline{p}+m\right).\bar{\gamma }^{\nu }\right){}_{\text{i1}\;\text{i6}}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracChainJoin}\OperatorTok{[}\NormalTok{ex DIDelta}\OperatorTok{[}\NormalTok{i0}\OperatorTok{,}\NormalTok{ i1}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\varphi (-\overline{q})\right)_{\text{i7}} \left(\varphi (\overline{p},m).\bar{\gamma }^{\mu }.\left(\bar{\gamma }\cdot \overline{p}+m\right).\bar{\gamma }^{\nu }\right){}_{\text{i6}}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracChainJoin}\OperatorTok{[}\NormalTok{ex DIDelta}\OperatorTok{[}\NormalTok{i7}\OperatorTok{,}\NormalTok{ i6}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\varphi (\overline{p},m)\right)_{\text{i0}} \left(\bar{\gamma }^{\mu }.\left(\bar{\gamma }\cdot \overline{p}+m\right).\bar{\gamma }^{\nu }.\varphi (-\overline{q})\right){}_{\text{i1}}
+\end{dmath*}
+\end{document}

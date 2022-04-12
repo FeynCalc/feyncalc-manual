@@ -1,0 +1,87 @@
+% !TeX program = pdflatex
+% !TeX root = SpinorChainEvaluate.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{spinorchainevaluate}{%
+\section{SpinorChainEvaluate}\label{spinorchainevaluate}}
+
+\texttt{SpinorChainEvaluate[\allowbreak{}exp]} explicitly evaluates
+suitable spinor chains, i.e.~it replaces a
+\texttt{DOT[\allowbreak{}Spinor[\allowbreak{}...],\ \allowbreak{}...,\ \allowbreak{}Spinor[\allowbreak{}...]]}
+with a scalar quantity without a DOT.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ SpinorUBar}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{]}\NormalTok{ . SpinorU}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{]} 
+ 
+\NormalTok{SpinorChainEvaluate}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{u}(p,m).u(p,m)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+2 m
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpinorChainEvaluate}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,}\NormalTok{ DiracSpinorNormalization }\OtherTok{{-}\textgreater{}} \StringTok{"Nonrelativistic"}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{m}{p^0}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpinorChainEvaluate}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,}\NormalTok{ DiracSpinorNormalization }\OtherTok{{-}\textgreater{}} \StringTok{"Rest"}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+1
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ SpinorUBarD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\DecValTok{5}\OperatorTok{]}\NormalTok{ . SpinorUD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{]} 
+ 
+\NormalTok{SpinorChainEvaluate}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{u}(p,m).\bar{\gamma }^5.u(p,m)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCSetDiracGammaScheme}\OperatorTok{[}\StringTok{"BMHV"}\OperatorTok{]} 
+ 
+\NormalTok{SpinorChainEvaluate}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{BMHV}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+(\varphi (p,m)).\bar{\gamma }^5.(\varphi (p,m))
+\end{dmath*}
+\end{document}

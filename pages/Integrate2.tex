@@ -1,0 +1,361 @@
+% !TeX program = pdflatex
+% !TeX root = Integrate2.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{integrate2}{%
+\section{Integrate2}\label{integrate2}}
+
+\texttt{Integrate2} is like \texttt{Integrate}, but
+\texttt{Integrate2[\allowbreak{}a_Plus,\ \allowbreak{}b__] := Map[\allowbreak{}Integrate2[\allowbreak{}\#{}\allowbreak{},\ \allowbreak{}b]\&{}\allowbreak{},\ \allowbreak{}a]}
+( more linear algebra and partial fraction decomposition is done)
+
+\texttt{Integrate2[\allowbreak{}f[\allowbreak{}x] DeltaFunction[\allowbreak{}x],\ \allowbreak{}x] -> f[\allowbreak{}0]}
+
+\texttt{Integrate2[\allowbreak{}f[\allowbreak{}x] DeltaFunction[\allowbreak{}x0-x],\ \allowbreak{}x] -> f[\allowbreak{}x0]}
+
+\texttt{Integrate2[\allowbreak{}f[\allowbreak{}x] DeltaFunction[\allowbreak{}a + b x],\ \allowbreak{}x] -> Integrate[\allowbreak{}f[\allowbreak{}x] (1/Abs[\allowbreak{}b]) DeltaFunction[\allowbreak{}a/b + x],\ \allowbreak{}x]},
+where \texttt{Abs[\allowbreak{}b] -> b}, if \texttt{b} is a symbol, and
+if \texttt{b = -c}, then \texttt{Abs[\allowbreak{}-c] -> c}, i.e., the
+variable contained in \texttt{b} is supposed to be positive.
+
+\(\pi ^2\) is replaced by \texttt{6 Zeta2}.
+
+\texttt{Integrate2[\allowbreak{}1/(1-y),\ \allowbreak{}\{\allowbreak{}y,\ \allowbreak{}x,\ \allowbreak{}1\}]}
+is interpreted as distribution, i.e.~as
+\texttt{Integrate2[\allowbreak{}-1/(1-y)],\ \allowbreak{}\{\allowbreak{}y,\ \allowbreak{}0,\ \allowbreak{}x\}] -> Log[\allowbreak{}1-y]}.
+
+\texttt{Integrate2[\allowbreak{}1/(1-x),\ \allowbreak{}\{\allowbreak{}x,\ \allowbreak{}0,\ \allowbreak{}1\}] -> 0}
+
+Since \texttt{Integrate2} does do a reordering and partial fraction
+decomposition before calling the integral table of \texttt{Integrate3},
+it will in general be slower compared to Integrate3 for sums of
+integrals. I.e., if the integrand has already an expanded form and if
+partial fraction decomposition is not necessary it is more effective to
+use \texttt{Integrate3}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{deltafunction}{DeltaFunction},
+\hyperlink{integrate3}{Integrate3}, \hyperlink{integrate5}{Integrate5},
+\hyperlink{sums}{SumS}, \hyperlink{sumt}{SumT}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\FunctionTok{Log}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{]} \FunctionTok{Log}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]} \SpecialCharTok{//} \FunctionTok{Timing}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{0.057955,\zeta (3)-\frac{3}{2} \zeta (2) \log (2)\right\}
+\end{dmath*}
+
+Since \texttt{Integrate2} uses table-look-up methods it is much faster
+than Mathematica's Integrate.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\FunctionTok{PolyLog}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \FunctionTok{x}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\zeta (2)-4+4 \log (2)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\FunctionTok{PolyLog}\OperatorTok{[}\DecValTok{3}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{x}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\zeta (2)}{2}-\frac{3 \zeta (3)}{4}+1-2 \log (2)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\FunctionTok{PolyLog}\OperatorTok{[}\DecValTok{3}\OperatorTok{,} \DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{x}\NormalTok{)}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\zeta (2) (-\log (2))+\frac{3 \zeta (3)}{4}+\frac{\log ^3(2)}{3}-\log ^2(2)+2 \log (2)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\NormalTok{DeltaFunction}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]} \FunctionTok{f}\OperatorTok{[}\FunctionTok{x}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f(1)
+\end{dmath*}
+
+\texttt{Integrate2} does integration in a Hadamard sense, i.e.,
+\(\int _0^1 \, f(x) \, d x\) means actually expanding the result of
+\(\int _{\delta }^{1-\delta} \, f(x) \, dx\) up to
+\(\mathcal{O}(\delta )\) and neglecting all \(\delta\)-dependent terms.
+E.g.
+\(\int_{\delta }^{1-\delta} \frac{1}{1-x} \, d x = - \log (1-x) \biggl |_{\delta }^{1-\delta } = -\log (\delta )+log (1) \Rightarrow 0\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+In the physics literature sometimes the ``+'' notation is used. In
+FeynCalc the \(\left(frac{1}{1-x} \right)_{+}\) is represented by
+\texttt{PlusDistribution\}[\allowbreak{}1/(1-x)]} or just
+\texttt{1/(1-x)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\NormalTok{PlusDistribution}\OperatorTok{[}\DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\FunctionTok{PolyLog}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+2-\zeta (2)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\NormalTok{(}\FunctionTok{Log}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]} \FunctionTok{Log}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{x}\NormalTok{)}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{\zeta (3)}{8}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\FunctionTok{Log}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+2 \zeta (3)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\FunctionTok{PolyLog}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{x}\OperatorTok{]}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{x}\NormalTok{)}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\zeta (3)}{4}-\frac{1}{2} \zeta (2) \log (2)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\FunctionTok{Log}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]} \FunctionTok{PolyLog}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \FunctionTok{x}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+3-2 \zeta (2)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\FunctionTok{x} \FunctionTok{PolyLog}\OperatorTok{[}\DecValTok{3}\OperatorTok{,} \FunctionTok{x}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{\zeta (2)}{4}+\frac{\zeta (3)}{2}+\frac{3}{16}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\NormalTok{(}\FunctionTok{Log}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2} \FunctionTok{Log}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{x}\NormalTok{)}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\zeta (4)+\zeta (2) \log ^2(2)-4 \;\text{Li}_4\left(\frac{1}{2}\right)-\frac{\log ^4(2)}{6}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\FunctionTok{PolyLog}\OperatorTok{[}\DecValTok{2}\OperatorTok{,}\NormalTok{ ((}\FunctionTok{x}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{z}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{z}\NormalTok{) (}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x} \SpecialCharTok{+} \FunctionTok{x} \FunctionTok{z}\NormalTok{))}\SpecialCharTok{/}\FunctionTok{z}\OperatorTok{]}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x} \SpecialCharTok{+} \FunctionTok{x} \FunctionTok{z}\NormalTok{)}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{2 i \pi  \;\text{Li}_2(-z)}{1-z}-\frac{4 \;\text{Li}_3\left(\frac{1-z}{2}\right)}{1-z}+\frac{4 \;\text{Li}_3(1-z)}{1-z}+\frac{2 \;\text{Li}_3(-z)}{1-z}+\frac{4 \;\text{Li}_3\left(\frac{1}{z+1}\right)}{1-z}-\frac{4 \;\text{Li}_3\left(\frac{1-z}{z+1}\right)}{1-z}-\frac{4 \;\text{Li}_3\left(\frac{z+1}{2}\right)}{1-z}-\frac{2 \;\text{Li}_2(1-z) \log (z)}{1-z}-\frac{2 \;\text{Li}_2(-z) \log (z)}{1-z}+\frac{4 \;\text{Li}_2(-z) \log (1-z)}{1-z}-\frac{2 S_{12}(1-z)}{1-z}+\frac{i \pi  \zeta (2)}{1-z}-\frac{\zeta (2) \log (z)}{1-z}+\frac{2 \zeta (2) \log (1-z)}{1-z}+\frac{6 \zeta (2) \log (z+1)}{1-z}-\frac{4 \zeta (2) \log (2)}{1-z}+\frac{2 \zeta (3)}{1-z}+\frac{\log ^3(z)}{6 (1-z)}+\frac{4 \log ^3(2)}{3 (1-z)}-\frac{\log (1-z) \log ^2(z)}{1-z}-\frac{\log (z+1) \log ^2(z)}{1-z}-\frac{i \pi  \log ^2(z)}{2 (1-z)}-\frac{2 \log (1-z) \log ^2(z+1)}{1-z}-\frac{2 \log ^2(2) \log (1-z)}{1-z}-\frac{2 \log ^2(2) \log (z+1)}{1-z}+\frac{4 \log (1-z) \log (z+1) \log (z)}{1-z}+\frac{2 i \pi  \log (z+1) \log (z)}{1-z}+\frac{4 \log (2) \log (1-z) \log (z+1)}{1-z}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Apart}\OperatorTok{[}\NormalTok{Integrate2}\OperatorTok{[}\FunctionTok{x}\SpecialCharTok{\^{}}\NormalTok{(OPEm }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) }\FunctionTok{PolyLog}\OperatorTok{[}\DecValTok{3}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ OPEm}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{\zeta (2)}{m^2}-\frac{\zeta (2)}{m-1}+\frac{\zeta (2)+\zeta (2) \left(-S_1(m-2)\right)+S_{12}(m)+\zeta (3)}{m}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\FunctionTok{x}\SpecialCharTok{\^{}}\NormalTok{(OPEm }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) }\FunctionTok{Log}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]} \FunctionTok{Log}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]} \FunctionTok{Log}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{]}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{x}\NormalTok{)}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]} \SpecialCharTok{//} \FunctionTok{Simplify} 
+ 
+\SpecialCharTok{\%} \OtherTok{/.}\NormalTok{ OPEm }\OtherTok{{-}\textgreater{}} \DecValTok{2} 
+ 
+\FunctionTok{N}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{24} (-1)^m \left(48 \zeta (4)+30 \zeta (2) \log ^2(2)+6 \zeta (2) S_{-1}^2(m-1)+18 \zeta (2) S_2(m-1)-24 \zeta (2) S_{1-1}(m-1)-12 S_{-2}(m-1) \left(\zeta (2)-\log (4) S_{-1}(m-1)-\log ^2(2)\right)-36 \zeta (2) \log (2) S_1(m-1)+12 S_{-1}(m-1) (\zeta (2) \log (8)-2 \zeta (3))+39 \zeta (3) S_1(m-1)+24 S_{-2-1-1}(m-1)+24 S_{-1-2-1}(m-1)+24 S_{-1-1-2}(m-1)+24 S_{1-21}(m-1)+24 S_{1-12}(m-1)+24 S_{2-11}(m-1)-12 \log ^2(2) S_2(m-1)+24 \log (2) S_3(m-1)-24 \log (2) S_{-21}(m-1)-24 \log (2) S_{-12}(m-1)-48 \;\text{Li}_4\left(\frac{1}{2}\right)-63 \zeta (3) \log (2)-2 \log ^4(2)\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{24} \left(48 \zeta (2)+48 \zeta (4)+30 \zeta (2) \log ^2(2)+12 \left(\zeta (2)-\log ^2(2)+\log (4)\right)-36 \zeta (2) \log (2)-48 \;\text{Li}_4\left(\frac{1}{2}\right)-12 (\zeta (2) \log (8)-2 \zeta (3))+39 \zeta (3)-63 \zeta (3) \log (2)-144-2 \log ^4(2)-12 \log ^2(2)+72 \log (2)\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+0.0505138
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\FunctionTok{x}\SpecialCharTok{\^{}}\NormalTok{(OPEm }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) (}\FunctionTok{PolyLog}\OperatorTok{[}\DecValTok{3}\OperatorTok{,}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{x}\NormalTok{)}\OperatorTok{]} \SpecialCharTok{{-}} \FunctionTok{PolyLog}\OperatorTok{[}\DecValTok{3}\OperatorTok{,} \SpecialCharTok{{-}}\NormalTok{((}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{x}\NormalTok{))}\OperatorTok{]}\NormalTok{)}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{3 \zeta (2) (-1)^m \log (2)}{2 m}-\frac{3 \zeta (2) \log (2)}{2 m}+\frac{\zeta (2) (-1)^m S_{-1}(m)}{m}-\frac{\zeta (2) S_{-1}(m)}{2 m}+\frac{\zeta (2) (-1)^m S_1(m)}{2 m}-\frac{\zeta (2) S_1(m)}{m}+\frac{(-1)^m S_{-3}(m)}{m}+\frac{(-1)^m S_{-2}(m) S_1(m)}{m}+\frac{S_1(m) S_2(m)}{m}+\frac{S_3(m)}{m}-\frac{(-1)^m S_{-21}(m)}{m}-\frac{S_{-1-2}(m)}{m}-\frac{(-1)^m S_{-12}(m)}{m}-\frac{S_{21}(m)}{m}-\frac{7 (-1)^m \zeta (3)}{8 m}+\frac{21 \zeta (3)}{8 m}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DataType}\OperatorTok{[}\NormalTok{OPEm}\OperatorTok{,}\NormalTok{ PositiveInteger}\OperatorTok{]} 
+ 
+\NormalTok{Integrate2}\OperatorTok{[}\FunctionTok{x}\SpecialCharTok{\^{}}\NormalTok{(OPEm }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) DeltaFunction}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+1
+\end{dmath*}
+
+This is the polarized non-singlet spin splitting function whose first
+moment vanishes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t} \ExtensionTok{=}\NormalTok{ SplittingFunction}\OperatorTok{[}\NormalTok{PQQNS}\OperatorTok{]} \OtherTok{/.}\NormalTok{ FCGV}\OperatorTok{[}\AttributeTok{z\_}\OperatorTok{]}\NormalTok{ :\textgreater{} }\FunctionTok{ToExpression}\OperatorTok{[}\FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-8 C_F \left(C_F-\frac{C_A}{2}\right) \left(\frac{\left(x^2+1\right) \left(-2 \zeta (2)-4 \;\text{Li}_2(-x)+\log ^2(x)-4 \log (x+1) \log (x)\right)}{x+1}+4 (1-x)+2 (x+1) \log (x)\right)+C_A C_F \left(\frac{4 \left(x^2+1\right) \log ^2(x)}{1-x}+8 \zeta (2) (x+1)+\left(\frac{536}{9}-16 \zeta (2)\right) \left(\frac{1}{1-x}\right)_++\delta (1-x) \left(\frac{88 \zeta (2)}{3}-24 \zeta (3)+\frac{17}{3}\right)+\frac{4}{9} (53-187 x)-\frac{4}{3} \left(5 x-\frac{22}{1-x}+5\right) \log (x)\right)+C_F N_f \left(-\frac{8 \left(x^2+1\right) \log (x)}{3 (1-x)}+\left(-\frac{16 \zeta (2)}{3}-\frac{2}{3}\right) \delta (1-x)+\frac{88 x}{9}-\frac{80}{9} \left(\frac{1}{1-x}\right)_+-\frac{8}{9}\right)+C_F^2 \left(-\frac{16 \left(x^2+1\right) \log (1-x) \log (x)}{1-x}+\delta (1-x) (-24 \zeta (2)+48 \zeta (3)+3)-40 (1-x)-4 (x+1) \log ^2(x)-8 \left(2 x+\frac{3}{1-x}\right) \log (x)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t} \SpecialCharTok{//} \FunctionTok{Expand}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+8 \zeta (2) C_A C_F-\frac{16 x^2 C_A C_F \;\text{Li}_2(-x)}{x+1}-\frac{16 C_A C_F \;\text{Li}_2(-x)}{x+1}-\frac{8 \zeta (2) x^2 C_A C_F}{x+1}+\frac{4 x^2 C_A C_F \log ^2(x)}{1-x}+\frac{4 x^2 C_A C_F \log ^2(x)}{x+1}-\frac{16 x^2 C_A C_F \log (x) \log (x+1)}{x+1}+\frac{88}{3} \zeta (2) C_A C_F \delta (1-x)+\frac{17}{3} C_A C_F \delta (1-x)+8 \zeta (2) x C_A C_F-\frac{8 \zeta (2) C_A C_F}{x+1}-16 \zeta (2) \left(\frac{1}{1-x}\right)_+ C_A C_F-24 \zeta (3) C_A C_F \delta (1-x)-\frac{892}{9} x C_A C_F+\frac{536}{9} \left(\frac{1}{1-x}\right)_+ C_A C_F+\frac{4 C_A C_F \log ^2(x)}{1-x}+\frac{4 C_A C_F \log ^2(x)}{x+1}+\frac{4}{3} C_A C_F \log (x)+\frac{4}{3} x C_A C_F \log (x)+\frac{88 C_A C_F \log (x)}{3 (1-x)}-\frac{16 C_A C_F \log (x) \log (x+1)}{x+1}+\frac{356 C_A C_F}{9}-\frac{8 x^2 C_F N_f \log (x)}{3 (1-x)}-\frac{16}{3} \zeta (2) C_F N_f \delta (1-x)-\frac{2}{3} C_F N_f \delta (1-x)+\frac{88}{9} x C_F N_f-\frac{80}{9} \left(\frac{1}{1-x}\right)_+ C_F N_f-\frac{8 C_F N_f \log (x)}{3 (1-x)}-\frac{8 C_F N_f}{9}+\frac{32 x^2 C_F^2 \;\text{Li}_2(-x)}{x+1}+\frac{32 C_F^2 \;\text{Li}_2(-x)}{x+1}+\frac{16 \zeta (2) x^2 C_F^2}{x+1}-\frac{8 x^2 C_F^2 \log ^2(x)}{x+1}-\frac{16 x^2 C_F^2 \log (1-x) \log (x)}{1-x}+\frac{32 x^2 C_F^2 \log (x) \log (x+1)}{x+1}-24 \zeta (2) C_F^2 \delta (1-x)+3 C_F^2 \delta (1-x)+\frac{16 \zeta (2) C_F^2}{x+1}+48 \zeta (3) C_F^2 \delta (1-x)+72 x C_F^2-4 x C_F^2 \log ^2(x)-\frac{8 C_F^2 \log ^2(x)}{x+1}-4 C_F^2 \log ^2(x)-32 x C_F^2 \log (x)-\frac{16 C_F^2 \log (1-x) \log (x)}{1-x}-\frac{24 C_F^2 \log (x)}{1-x}-16 C_F^2 \log (x)+\frac{32 C_F^2 \log (x) \log (x+1)}{x+1}-72 C_F^2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\FunctionTok{t}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]} \SpecialCharTok{//} \FunctionTok{Timing}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{0.040008,0\}
+\end{dmath*}
+
+Expanding \texttt{t} with respect to \texttt{x} yields a form already
+suitable for \texttt{Integrate3} and therefore the following is faster:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate3}\OperatorTok{[}\FunctionTok{Expand}\OperatorTok{[}\FunctionTok{t}\OperatorTok{,} \FunctionTok{x}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]} \SpecialCharTok{//} \FunctionTok{Expand} \SpecialCharTok{//} \FunctionTok{Timing}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{0.018181,0\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Clear}\OperatorTok{[}\FunctionTok{t}\OperatorTok{]}\NormalTok{; }
+ 
+\NormalTok{Integrate2}\OperatorTok{[}\NormalTok{DeltaFunction}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]} \FunctionTok{f}\OperatorTok{[}\FunctionTok{x}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f(1)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\FunctionTok{x}\SpecialCharTok{\^{}}\DecValTok{5} \FunctionTok{Log}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]} 
+ 
+\FunctionTok{N}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{46 \log (2)}{45}-\frac{6959}{10800}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+0.0641986
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{NIntegrate}\OperatorTok{[}\FunctionTok{x}\SpecialCharTok{\^{}}\DecValTok{5} \FunctionTok{Log}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0.0641986
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Integrate2}\OperatorTok{[}\FunctionTok{x}\SpecialCharTok{\^{}}\NormalTok{(OPEm }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) }\FunctionTok{Log}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{2 (-1)^m S_1^2(m)}{m}+\frac{(-1)^m S_1\left(\frac{m-1}{2}\right) S_1(m)}{m}-\frac{S_1\left(\frac{m-1}{2}\right) S_1(m)}{m}+\frac{(-1)^m S_1\left(\frac{m}{2}\right) S_1(m)}{m}+\frac{S_1\left(\frac{m}{2}\right) S_1(m)}{m}+\frac{(-1)^m S_2\left(\frac{m-1}{2}\right)}{2 m}-\frac{S_2\left(\frac{m-1}{2}\right)}{2 m}+\frac{(-1)^m S_2\left(\frac{m}{2}\right)}{2 m}+\frac{S_2\left(\frac{m}{2}\right)}{2 m}-\frac{2 (-1)^m S_2(m)}{m}-\frac{2 (-1)^m S_{-11}(m)}{m}+\frac{4 (-1)^m \log (2) S_1(m)}{m}-\frac{(-1)^m \log (2) S_1\left(\frac{m-1}{2}\right)}{m}+\frac{\log (2) S_1\left(\frac{m-1}{2}\right)}{m}-\frac{(-1)^m \log (2) S_1\left(\frac{m}{2}\right)}{m}-\frac{\log (2) S_1\left(\frac{m}{2}\right)}{m}-\frac{(-1)^m \log ^2(2)}{m}+\frac{\log ^2(2)}{m}
+\end{dmath*}
+\end{document}

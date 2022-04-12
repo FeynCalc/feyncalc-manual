@@ -1,0 +1,58 @@
+% !TeX program = pdflatex
+% !TeX root = PauliTrace.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{paulitrace}{%
+\section{PauliTrace}\label{paulitrace}}
+
+\texttt{PauliTrace[\allowbreak{}exp]} is the head of Pauli traces. By
+default the trace is not evaluated. The evaluation occurs only when the
+option \texttt{PauliTraceEvaluate} is set to \texttt{True}. It is
+recommended to use \texttt{PauliSimplify}, which will automatically
+evaluate all Pauli traces in the input expression.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{paulisimplify}{PauliSimplify}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliTrace}\OperatorTok{[}\NormalTok{CSI}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{,} \FunctionTok{l}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{tr}\left(\overline{\sigma }^i.\overline{\sigma }^j.\overline{\sigma }^k.\overline{\sigma }^l\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliTrace}\OperatorTok{[}\NormalTok{CSI}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{,} \FunctionTok{l}\OperatorTok{],}\NormalTok{ PauliTraceEvaluate }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+2 \left(\bar{\delta }^{il} \bar{\delta }^{jk}-\bar{\delta }^{ik} \bar{\delta }^{jl}+\bar{\delta }^{ij} \bar{\delta }^{kl}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliTrace}\OperatorTok{[}\NormalTok{CSI}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{,} \FunctionTok{l}\OperatorTok{]]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ PauliSimplify }
+  
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{tr}\left(\overline{\sigma }^i.\overline{\sigma }^j.\overline{\sigma }^k.\overline{\sigma }^l\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+2 \bar{\delta }^{il} \bar{\delta }^{jk}-2 \bar{\delta }^{ik} \bar{\delta }^{jl}+2 \bar{\delta }^{ij} \bar{\delta }^{kl}
+\end{dmath*}
+\end{document}

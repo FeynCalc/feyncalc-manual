@@ -1,0 +1,147 @@
+% !TeX program = pdflatex
+% !TeX root = DiracOrder.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{diracorder}{%
+\section{DiracOrder}\label{diracorder}}
+
+\texttt{DiracOrder[\allowbreak{}exp]} orders the Dirac matrices in
+\texttt{exp} lexicographically.
+\texttt{DiracOrder[\allowbreak{}exp,\ \allowbreak{}orderlist]} orders
+the Dirac matrices in \texttt{exp} according to \texttt{orderlist}.
+\texttt{DiracOrder} is also an option of \texttt{DiracSimplify} and some
+other functions dealing with Dirac algebra. If set to \texttt{True}, the
+function \texttt{DiracOrder} will be applied to the intermediate result
+to reorder the Dirac matrices lexicographically.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{diracsimplify}{DiracSimplify},
+\hyperlink{diractrick}{DiracTrick}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{]]} 
+ 
+\NormalTok{DiracOrder}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\beta }.\bar{\gamma }^{\alpha }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+2 \bar{g}^{\alpha \beta }-\bar{\gamma }^{\alpha }.\bar{\gamma }^{\beta }
+\end{dmath*}
+
+\texttt{DiracOrder} also works with Dirac matrices in \(D\)-dimensions.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} 
+ 
+\NormalTok{DiracOrder}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\gamma ^{\rho }.\gamma ^{\nu }.\gamma ^{\mu }.\gamma ^{\nu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+(D-2) \gamma ^{\mu }.\gamma ^{\rho }+2 (2-D) g^{\mu \rho }
+\end{dmath*}
+
+By default \(\gamma^5\) is moved to the right.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\DecValTok{5}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} 
+ 
+\NormalTok{DiracOrder}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^5.\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^5
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\DecValTok{6}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \DecValTok{7}\OperatorTok{]} 
+ 
+\NormalTok{DiracOrder}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^6.\bar{\gamma }^{\mu }.\bar{\gamma }^7
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }.\bar{\gamma }^7
+\end{dmath*}
+
+\texttt{orderlist} comes into play when we need an ordering that is not
+lexicographic
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Delta}\OperatorTok{]]} 
+ 
+\NormalTok{DiracOrder}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\alpha }.\bar{\gamma }^{\beta }.\bar{\gamma }^{\delta }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\alpha }.\bar{\gamma }^{\beta }.\bar{\gamma }^{\delta }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracOrder}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Delta}\OperatorTok{]],} \OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Delta}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{]\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\bar{\gamma }^{\delta }.\bar{\gamma }^{\beta }.\bar{\gamma }^{\alpha }+2 \bar{\gamma }^{\delta } \bar{g}^{\alpha \beta }-2 \bar{\gamma }^{\beta } \bar{g}^{\alpha \delta }+2 \bar{\gamma }^{\alpha } \bar{g}^{\beta \delta }
+\end{dmath*}
+
+Reordering of Dirac matrices in long chains is expensive, so that
+\texttt{DiracSimplify} does not do it by default.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracSimplify}\OperatorTok{[}\NormalTok{GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} \SpecialCharTok{+}\NormalTok{ GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\gamma ^{\mu }.\gamma ^{\nu }+\gamma ^{\nu }.\gamma ^{\mu }
+\end{dmath*}
+
+However, if you know that it can lead to simpler expressions, you can
+activate the reordering via the option \texttt{DiracOrder}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracSimplify}\OperatorTok{[}\NormalTok{GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} \SpecialCharTok{+}\NormalTok{ GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],}\NormalTok{ DiracOrder }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+2 g^{\mu \nu }
+\end{dmath*}
+\end{document}

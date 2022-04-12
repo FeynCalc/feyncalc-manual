@@ -1,0 +1,66 @@
+% !TeX program = pdflatex
+% !TeX root = FCHideEpsilon.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fchideepsilon}{%
+\section{FCHideEpsilon}\label{fchideepsilon}}
+
+\texttt{FCHideEpsilon[\allowbreak{}expr]} substitutes
+\texttt{1/Epsilon - EulerGamma + Log[\allowbreak{}4 Pi]} with
+\texttt{SMP[\allowbreak{}"Delta"]}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fcshowepsilon}{FCShowEpsilon}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1}\SpecialCharTok{/}\NormalTok{Epsilon }\SpecialCharTok{+} \FunctionTok{Log}\OperatorTok{[}\DecValTok{4} \FunctionTok{Pi}\OperatorTok{]} \SpecialCharTok{{-}} \FunctionTok{EulerGamma} 
+ 
+\NormalTok{FCHideEpsilon}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\varepsilon }-\gamma +\log (4 \pi )
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\Delta
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1}\SpecialCharTok{/}\NormalTok{EpsilonUV }\SpecialCharTok{+} \FunctionTok{Log}\OperatorTok{[}\DecValTok{4} \FunctionTok{Pi}\OperatorTok{]} \SpecialCharTok{{-}} \FunctionTok{EulerGamma} 
+ 
+\NormalTok{FCHideEpsilon}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\varepsilon _{\text{UV}}}-\gamma +\log (4 \pi )
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\Delta _{\text{UV}}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1}\SpecialCharTok{/}\NormalTok{EpsilonIR }\SpecialCharTok{+} \FunctionTok{Log}\OperatorTok{[}\DecValTok{4} \FunctionTok{Pi}\OperatorTok{]} \SpecialCharTok{{-}} \FunctionTok{EulerGamma} 
+ 
+\NormalTok{FCHideEpsilon}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\varepsilon _{\text{IR}}}-\gamma +\log (4 \pi )
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\Delta _{\text{IR}}
+\end{dmath*}
+\end{document}

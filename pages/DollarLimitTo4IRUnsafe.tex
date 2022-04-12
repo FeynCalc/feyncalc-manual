@@ -1,0 +1,38 @@
+% !TeX program = pdflatex
+% !TeX root = DollarLimitTo4IRUnsafe.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{limitto4irunsafe}{%
+\section{\$LimitTo4IRUnsafe}\label{limitto4irunsafe}}
+
+\texttt{\$LimitTo4IRUnsafe} is a global variable that determines whether
+the simplifications described in \texttt{\$LimitTo4} are applied also to
+\(C\) and \(D\) Passarino-Veltman functions. In this case it is assumed
+that such functions are either IR finite, or the IR divergences are
+regulated without using dimensional regularization (i.e.~by introducing
+fictitious masses). Otherwise the results will be inconsistent. If this
+option is activated, it is the task of the user to ensure that IR
+divergences are properly regulated, such that no mixing of
+\(\varepsilon\) from IR and UV can occur. The default value is
+\texttt{False}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{pave}{PaVe},
+\hyperlink{pavereduce}{PaVeReduce}, \hyperlink{oneloop}{OneLoop},
+\hyperlink{limitto4}{\$LimitTo4},
+\hyperlink{pavelimitto4}{PaVeLimitTo4}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$LimitTo4IRUnsafe}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+\end{document}

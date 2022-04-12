@@ -1,0 +1,26 @@
+% !TeX program = pdflatex
+% !TeX root = OPEIntegrateDelta.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{opeintegratedelta}{%
+\section{OPEIntegrateDelta}\label{opeintegratedelta}}
+
+\texttt{OPEIntegrateDelta[\allowbreak{}expr,\ \allowbreak{}x,\ \allowbreak{}m]}
+introduces the \(\delta(1-x)\)
+(\texttt{DeltaFunction[\allowbreak{}1-x]}).
+
+The Mathematica \texttt{Integrate} function is called and each
+integration (from \(0\) to \(1\)) is recorded for reference (and
+bug-checking) in the list \texttt{\$MIntegrate}.
+
+Notice that the dimension specified by the option should also be the
+dimension used in \texttt{expr}. It is replaced in OPEIntegrateDelta by
+(\texttt{4+Epsilon}).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}.
+
+\subsection{Examples}
+\end{document}

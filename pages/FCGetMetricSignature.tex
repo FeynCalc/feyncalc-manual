@@ -1,0 +1,34 @@
+% !TeX program = pdflatex
+% !TeX root = FCGetMetricSignature.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcgetmetricsignature}{%
+\section{FCGetMetricSignature}\label{fcgetmetricsignature}}
+
+\texttt{FCGetMetricSignature[\allowbreak{}]} returns the signature of
+the Minkowski metric used when working with Cartesian objects, such as
+\texttt{CartesianPair}, \texttt{CartesianIndex},
+\texttt{CartesianMomentum} etc.
+
+\texttt{\{\allowbreak{}1,\ \allowbreak{}-1\}} corresponds to
+\((1,-1,-1,-1)\) and \texttt{\{\allowbreak{}-1,\ \allowbreak{}1\}} means
+\((-1, 1, 1, 1)\).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcsetmetricsignature}{FCSetMetricSignature}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCGetMetricSignature}\OperatorTok{[]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{1,-1\}
+\end{dmath*}
+\end{document}

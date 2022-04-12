@@ -1,0 +1,40 @@
+% !TeX program = pdflatex
+% !TeX root = Complement1.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{complement1}{%
+\section{Complement1}\label{complement1}}
+
+\texttt{Complement1[\allowbreak{}l1,\ \allowbreak{}l2]} where
+\texttt{l1} and \texttt{l2} are lists returns a list of elements from
+\texttt{l1} not in\texttt{l2}. Multiple occurrences of an element in
+\texttt{l1} are kept and multiple occurrences of an element in
+\texttt{l2} are dropped if present in \texttt{l1}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Complement}\OperatorTok{[\{}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{d}\OperatorTok{,} \FunctionTok{e}\OperatorTok{,} \FunctionTok{f}\OperatorTok{,} \FunctionTok{e}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{d}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{e,f\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Complement1}\OperatorTok{[\{}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{d}\OperatorTok{,} \FunctionTok{e}\OperatorTok{,} \FunctionTok{f}\OperatorTok{,} \FunctionTok{e}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{d}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{e,f,e\}
+\end{dmath*}
+\end{document}

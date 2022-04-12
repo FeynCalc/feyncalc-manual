@@ -1,0 +1,88 @@
+% !TeX program = pdflatex
+% !TeX root = FCFeynmanFindDivergences.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcfeynmanfinddivergences}{%
+\section{FCFeynmanFindDivergences}\label{fcfeynmanfinddivergences}}
+
+\texttt{FCFeynmanFindDivergences[\allowbreak{}exp,\ \allowbreak{}vars]}
+identifies UV and IR divergences of the given Feynman parametric
+integral that arise when different parametric variables approach zero or
+infinity.
+
+This function employs the analytic regularization algorithm introduced
+by Erik Panzer in \href{https://arxiv.org/abs/1403.3385}{1403.3385},
+\href{https://arxiv.org/abs/1401.4361}{1401.4361} and
+\href{https://arxiv.org/abs/1506.07243}{1506.07243}. Its current
+implementation is very much based on the code of the
+\texttt{findDivergences} routine from the Maple package
+\href{https://bitbucket.org/PanzerErik/hyperint/}{HyperInt} by Erik
+Panzer.
+
+The function returns a list of lists of the form
+\texttt{\{\allowbreak{}\{\allowbreak{}\{\allowbreak{}x[\allowbreak{}i],\ \allowbreak{}x[\allowbreak{}j],\ \allowbreak{}...\},\ \allowbreak{}\{\allowbreak{}x[\allowbreak{}k],\ \allowbreak{}x[\allowbreak{}l],\ \allowbreak{}...\},\ \allowbreak{}sdd\},\ \allowbreak{}...\}},
+where
+\texttt{\{\allowbreak{}x[\allowbreak{}i],\ \allowbreak{}x[\allowbreak{}j],\ \allowbreak{}...\}}
+need to approach zero, while
+\texttt{\{\allowbreak{}x[\allowbreak{}k],\ \allowbreak{}x[\allowbreak{}l],\ \allowbreak{}...\}}
+must tend towards infinity to generate the superficial degree of
+divergence \texttt{sdd}.
+
+It is important to apply the function directly to the Feynman parametric
+integrand obtained e.g.~from \texttt{FCFeynmanParametrize}. If the
+integrand has already been modified using variable transformations or
+the Cheng-Wu theorem, the algorithm may not work properly.
+
+Furthermore, divergences that arise inside the integration domain cannot
+be identified using this method.
+
+The identified divergences can be regularized using the function
+\texttt{FCFeynmanRegularizeDivergence}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcfeynmanparametrize}{FCFeynmanParametrize},
+\hyperlink{fcfeynmanprojectivize}{FCFeynmanProjectivize},
+\hyperlink{fcfeynmanregularizedivergence}{FCFeynmanRegularizeDivergence}.
+
+\subsection{Examples}
+
+\hypertarget{feynman-representation}{%
+\subsubsection{Feynman representation}\label{feynman-representation}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{int }\ExtensionTok{=}\NormalTok{ SFAD}\OperatorTok{[}\FunctionTok{l}\OperatorTok{,} \FunctionTok{k} \SpecialCharTok{+} \FunctionTok{l}\OperatorTok{,} \OperatorTok{\{\{}\FunctionTok{k}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{2} \FunctionTok{k}\NormalTok{ . }\FunctionTok{q}\OperatorTok{\}\}]} 
+ 
+\NormalTok{fpar }\ExtensionTok{=}\NormalTok{ FCFeynmanParametrize}\OperatorTok{[}\NormalTok{int}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{k}\OperatorTok{,} \FunctionTok{l}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,}\NormalTok{ FCReplaceD }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{D} \OtherTok{{-}\textgreater{}} \DecValTok{4} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ Epsilon}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(l^2+i \eta ).((k+l)^2+i \eta ).(k^2-2 (k\cdot q)+i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left\{(x(1) x(2)+x(3) x(2)+x(1) x(3))^{3 \varepsilon -3} \left(q^2 x(1)^2 (x(2)+x(3))\right)^{1-2 \varepsilon },-\Gamma (2 \varepsilon -1),\{x(1),x(2),x(3)\}\right\}
+\end{dmath*}
+
+This Feynman parametric integral integrand contains logarithmic
+divergences for \(x_1 \to \infty\) and \(x_{2,3} \to 0\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanFindDivergences}\OperatorTok{[}\NormalTok{fpar}\OperatorTok{[[}\DecValTok{1}\OperatorTok{]],} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{cc}
+ \{\{\},\{x(1)\}\} & \varepsilon  \\
+ \{\{x(2),x(3)\},\{\}\} & \varepsilon  \\
+\end{array}
+\right)
+\end{dmath*}
+\end{document}

@@ -1,0 +1,70 @@
+% !TeX program = pdflatex
+% !TeX root = FCJoinDOTs.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcjoindots}{%
+\section{FCJoinDOTs}\label{fcjoindots}}
+
+\texttt{FCJoinDOTs} is an option for \texttt{DotSimplify} and other
+functions that use \texttt{DotSimplify} internally. When set to
+\texttt{True}, \texttt{DotSimplify} will try to rewrite expressions like
+\texttt{A.X.B + A.Y.B} as \texttt{A.(X+Y).B}.
+
+Notice that although the default value of \texttt{FCJoinDOTs} is
+\texttt{True}, the corresponding transformations will occur only if the
+option \texttt{Expanding} is set to \texttt{False} (default:
+\texttt{True})
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{dotsimplify}{DotSimplify}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DeclareNonCommutative}\OperatorTok{[}\FunctionTok{A}\OperatorTok{,} \FunctionTok{B}\OperatorTok{,} \FunctionTok{X}\OperatorTok{,} \FunctionTok{Y}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DotSimplify}\OperatorTok{[}\FunctionTok{A}\NormalTok{ . }\FunctionTok{X}\NormalTok{ . }\FunctionTok{B} \SpecialCharTok{+} \FunctionTok{A}\NormalTok{ . }\FunctionTok{Y}\NormalTok{ . }\FunctionTok{B}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+A.X.B+A.Y.B
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DotSimplify}\OperatorTok{[}\FunctionTok{A}\NormalTok{ . }\FunctionTok{X}\NormalTok{ . }\FunctionTok{B} \SpecialCharTok{+} \FunctionTok{A}\NormalTok{ . }\FunctionTok{Y}\NormalTok{ . }\FunctionTok{B}\OperatorTok{,}\NormalTok{ FCJoinDOTs }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+A.X.B+A.Y.B
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DotSimplify}\OperatorTok{[}\FunctionTok{A}\NormalTok{ . }\FunctionTok{X}\NormalTok{ . }\FunctionTok{B} \SpecialCharTok{+} \FunctionTok{A}\NormalTok{ . }\FunctionTok{Y}\NormalTok{ . }\FunctionTok{B}\OperatorTok{,}\NormalTok{ FCJoinDOTs }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,}\NormalTok{ Expanding }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+A.(X+Y).B
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DotSimplify}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\NormalTok{mu}\OperatorTok{,} \DecValTok{6}\OperatorTok{,}\NormalTok{ nu}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ GA}\OperatorTok{[}\NormalTok{mu}\OperatorTok{,} \DecValTok{7}\OperatorTok{,}\NormalTok{ nu}\OperatorTok{],}\NormalTok{ FCJoinDOTs }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,}\NormalTok{ Expanding }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\text{mu}}.\left(\bar{\gamma }^6+\bar{\gamma }^7\right).\bar{\gamma }^{\text{nu}}
+\end{dmath*}
+\end{document}

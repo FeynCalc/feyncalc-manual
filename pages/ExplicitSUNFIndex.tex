@@ -1,0 +1,48 @@
+% !TeX program = pdflatex
+% !TeX root = ExplicitSUNFIndex.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{explicitsunfindex}{%
+\section{ExplicitSUNFIndex}\label{explicitsunfindex}}
+
+\texttt{ExplicitSUNFIndex[\allowbreak{}ind]} is a specific \(SU(N)\)
+index in the fundamental representation, i.e.~\texttt{ind} is an
+integer.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{sunindex}{SUNIndex},
+\hyperlink{sunfindex}{SUNFIndex}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ExplicitSUNFIndex}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+1
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNTF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+T_{12}^a
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNTF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{2}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SUNTF[\{SUNIndex[a]\}, ExplicitSUNFIndex[1], ExplicitSUNFIndex[2]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

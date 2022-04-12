@@ -1,0 +1,43 @@
+% !TeX program = pdflatex
+% !TeX root = BReduce.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{breduce}{%
+\section{BReduce}\label{breduce}}
+
+\texttt{BReduce} is an option for \texttt{B0}, \texttt{B00},
+\texttt{B1}, \texttt{B11} determining whether reductions to \texttt{A0}
+and \texttt{B0} will be done.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{a0}{A0}, \hyperlink{b0}{B0},
+\hyperlink{b00}{B00}, \hyperlink{b1}{B1}, \hyperlink{b11}{B11}.
+
+\subsection{Examples}
+
+By default \(B_0\) is not expressed in terms of \(A_0\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B0}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \FunctionTok{s}\OperatorTok{,} \FunctionTok{s}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{B}_0(0,s,s)
+\end{dmath*}
+
+With \texttt{BReduce -> True}, transformation is done.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B0}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \FunctionTok{s}\OperatorTok{,} \FunctionTok{s}\OperatorTok{,}\NormalTok{ BReduce }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{(2-D) \;\text{A}_0(s)}{2 s}
+\end{dmath*}
+\end{document}

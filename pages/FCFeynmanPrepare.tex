@@ -1,0 +1,381 @@
+% !TeX program = pdflatex
+% !TeX root = FCFeynmanPrepare.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcfeynmanprepare}{%
+\section{FCFeynmanPrepare}\label{fcfeynmanprepare}}
+
+\texttt{FCFeynmanPrepare[\allowbreak{}int,\ \allowbreak{}\{\allowbreak{}q1,\ \allowbreak{}q2,\ \allowbreak{}...\}]}
+is an auxiliary function that returns all necessary building for writing
+down a Feynman parametrization of the given tensor or scalar multi-loop
+integral. The integral int can be Lorentzian or Cartesian.
+
+The output of the function is a list given by
+\texttt{\{\allowbreak{}U,\ \allowbreak{}F,\ \allowbreak{}pows,\ \allowbreak{}M,\ \allowbreak{}Q,\ \allowbreak{}J,\ \allowbreak{}N,\ \allowbreak{}r\}},
+where \texttt{U} and \texttt{F} are the Symanzik polynomials, with
+\(U = det M\), while \texttt{pows} contains the powers of the occurring
+propagators. The vector \texttt{Q} and the function \texttt{J} are the
+usual quantities appearing in the definition of the F`` polynomial.
+
+If the integral has free indices, then \texttt{N} encodes its tensor
+structure, while \texttt{r} gives its tensor rank. For scalar integrals
+\texttt{N} is always \texttt{1} and r is \texttt{0}. In \texttt{N} the
+\texttt{F}-polynomial is not substituted but left as
+\texttt{FCGV[\allowbreak{}"F"]}.
+
+To ensure a certain correspondence between propagators and Feynman
+parameters, it is also possible to enter the integral as a list of
+propagators,
+e.g.~\texttt{FCFeynmanPrepare[\allowbreak{}\{\allowbreak{}FAD[\allowbreak{}\{\allowbreak{}q,\ \allowbreak{}m1\}],\ \allowbreak{}FAD[\allowbreak{}\{\allowbreak{}q-p,\ \allowbreak{}m2\}],\ \allowbreak{}SPD[\allowbreak{}p,\ \allowbreak{}q]\},\ \allowbreak{}\{\allowbreak{}q\}]}.
+In this case the tensor part of the integral should be the very last
+element of the list.
+
+It is also possible to invoke the function as
+\texttt{FCFeynmanPrepare[\allowbreak{}GLI[\allowbreak{}...],\ \allowbreak{}FCTopology[\allowbreak{}...]]}
+or \texttt{FCFeynmanPrepare[\allowbreak{}FCTopology[\allowbreak{}...]]}.
+Notice that in this case the value of the option
+\texttt{FinalSubstitutions} is ignored, as replacement rules will be
+extracted directly from the definition of the topology.
+
+The definitions of \texttt{M}, \texttt{Q}, \texttt{J} and \texttt{N}
+follow from Eq. 4.17 in the
+\href{http://mediatum.ub.tum.de/?id=1524691}{PhD Thesis of Stefan Jahn}
+and \href{https://arxiv.org/abs/1010.1667}{arXiv:1010.1667}.The
+algorithm for deriving the UF-parametrization of a loop integral was
+adopted from the UF generator available in multiple codes of Alexander
+Smirnov, such as FIESTA
+(\href{https://arxiv.org/abs/1511.03614}{arXiv:1511.03614}) and FIRE
+(\href{https://arxiv.org/abs/1901.07808}{arXiv:1901.07808}). The code
+UF.m is also mentioned in the book ``Analytic Tools for Feynman
+Integrals'' by Vladimir Smirnov, Chapter 2.3.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcfeynmanparametrize}{FCFeynmanParametrize},
+\hyperlink{fcfeynmanprojectivize}{FCFeynmanProjectivize},
+\hyperlink{fcloopvalidtopologyq}{FCLoopValidTopologyQ}.
+
+\subsection{Examples}
+
+One of the simplest examples is the 1-loop tadpole
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanPrepare}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\}],} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{FCGV}(\text{x})(1),\text{m1}^2 (\text{FCGV}(\text{x})(1))^2,\left(
+\begin{array}{ccc}
+ \;\text{FCGV}(\text{x})(1) & \frac{1}{q^2-\text{m1}^2} & 1 \\
+\end{array}
+\right),\left(
+\begin{array}{c}
+ \;\text{FCGV}(\text{x})(1) \\
+\end{array}
+\right),\{0\},-\text{m1}^2 \;\text{FCGV}(\text{x})(1),1,0\right\}
+\end{dmath*}
+
+Use the option \texttt{Names} to have specific symbols denoting Feynman
+parameters
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanPrepare}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\}],} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{x(1),\text{m1}^2 x(1)^2,\left(
+\begin{array}{ccc}
+ x(1) & \frac{1}{q^2-\text{m1}^2} & 1 \\
+\end{array}
+\right),\left(
+\begin{array}{c}
+ x(1) \\
+\end{array}
+\right),\{0\},-\text{m1}^2 x(1),1,0\right\}
+\end{dmath*}
+
+It is also possible to obtain
+e.g.~\texttt{x1,\ \allowbreak{}x2,\ \allowbreak{}x3,\ \allowbreak{}...}
+instead of
+\texttt{x[\allowbreak{}1],\ \allowbreak{}x[\allowbreak{}2],\ \allowbreak{}x[\allowbreak{}3],\ \allowbreak{}...}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanPrepare}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\}],} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,}\NormalTok{ Indexed }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{x1},\text{m1}^2 \;\text{x1}^2,\left(
+\begin{array}{ccc}
+ \;\text{x1} & \frac{1}{q^2-\text{m1}^2} & 1 \\
+\end{array}
+\right),\left(
+\begin{array}{c}
+ \;\text{x1} \\
+\end{array}
+\right),\{0\},-\text{m1}^2 \;\text{x1},1,0\right\}
+\end{dmath*}
+
+To fix the correspondence between Feynman parameters and propagators,
+the latter should be entered as a list
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanPrepare}\OperatorTok{[\{}\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{\}],}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]]\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{x(1)+x(2),m^2 x(1)^2+m^2 x(1) x(2)+\text{m2}^2 x(2)^2+\text{m2}^2 x(1) x(2)-p^2 x(1) x(2),\left(
+\begin{array}{ccc}
+ x(1) & \frac{1}{q^2-m^2} & 1 \\
+ x(2) & \frac{1}{(p-q)^2-\text{m2}^2} & 1 \\
+\end{array}
+\right),\left(
+\begin{array}{c}
+ x(1)+x(2) \\
+\end{array}
+\right),\left\{x(2) p^{\text{FCGV}(\text{mu})}\right\},m^2 (-x(1))-\text{m2}^2 x(2)+p^2 x(2),-\frac{1}{2} x(2) \Gamma \left(1-\frac{D}{2}\right) \;\text{FCGV}(\text{F}) p^{\mu } g^{\nu \rho }-\frac{1}{2} x(2) \Gamma \left(1-\frac{D}{2}\right) \;\text{FCGV}(\text{F}) p^{\nu } g^{\mu \rho }-\frac{1}{2} x(2) \Gamma \left(1-\frac{D}{2}\right) \;\text{FCGV}(\text{F}) p^{\rho } g^{\mu \nu }+x(2)^3 \Gamma \left(2-\frac{D}{2}\right) p^{\mu } p^{\nu } p^{\rho },3\right\}
+\end{dmath*}
+
+Massless 2-loop self-energy
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanPrepare}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,} \FunctionTok{Q} \SpecialCharTok{{-}}\NormalTok{ p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{,} \FunctionTok{Q} \SpecialCharTok{{-}}\NormalTok{ p1}\OperatorTok{,} \FunctionTok{Q} \SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{],} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{x(1) x(2)+x(3) x(2)+x(5) x(2)+x(1) x(4)+x(3) x(4)+x(1) x(5)+x(3) x(5)+x(4) x(5),-Q^2 (x(1) x(2) x(3)+x(1) x(4) x(3)+x(2) x(4) x(3)+x(1) x(5) x(3)+x(4) x(5) x(3)+x(1) x(2) x(4)+x(1) x(2) x(5)+x(2) x(4) x(5)),\left(
+\begin{array}{ccc}
+ x(1) & \frac{1}{\text{p1}^2} & 1 \\
+ x(2) & \frac{1}{\text{p2}^2} & 1 \\
+ x(3) & \frac{1}{(\text{p1}-Q)^2} & 1 \\
+ x(4) & \frac{1}{(\text{p2}-Q)^2} & 1 \\
+ x(5) & \frac{1}{(\text{p1}+\text{p2}-Q)^2} & 1 \\
+\end{array}
+\right),\left(
+\begin{array}{cc}
+ x(1)+x(3)+x(5) & x(5) \\
+ x(5) & x(2)+x(4)+x(5) \\
+\end{array}
+\right),\left\{(x(3)+x(5)) Q^{\text{FCGV}(\text{mu})},(x(4)+x(5)) Q^{\text{FCGV}(\text{mu})}\right\},Q^2 (x(3)+x(4)+x(5)),1,0\right\}
+\end{dmath*}
+
+Factorizing integrals also work
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanPrepare}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{p2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{\},} \FunctionTok{Q} \SpecialCharTok{{-}}\NormalTok{ p1}\OperatorTok{,} \FunctionTok{Q} \SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{],} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{(x(1)+x(3)) (x(2)+x(4)),\text{m1}^2 x(1)^2 x(2)+\text{m1}^2 x(1) x(2) x(3)+\text{m1}^2 x(1)^2 x(4)+\text{m1}^2 x(1) x(3) x(4)+\text{m2}^2 x(1) x(2)^2+\text{m2}^2 x(2)^2 x(3)+\text{m2}^2 x(1) x(2) x(4)+\text{m2}^2 x(2) x(3) x(4)-Q^2 x(1) x(2) x(3)-Q^2 x(1) x(2) x(4)-Q^2 x(1) x(3) x(4)-Q^2 x(2) x(3) x(4),\left(
+\begin{array}{ccc}
+ x(1) & \frac{1}{\text{p1}^2-\text{m1}^2} & 1 \\
+ x(2) & \frac{1}{\text{p2}^2-\text{m2}^2} & 1 \\
+ x(3) & \frac{1}{(\text{p1}-Q)^2} & 1 \\
+ x(4) & \frac{1}{(\text{p2}-Q)^2} & 1 \\
+\end{array}
+\right),\left(
+\begin{array}{cc}
+ x(1)+x(3) & 0 \\
+ 0 & x(2)+x(4) \\
+\end{array}
+\right),\left\{x(3) Q^{\text{FCGV}(\text{mu})},x(4) Q^{\text{FCGV}(\text{mu})}\right\},\text{m1}^2 (-x(1))-\text{m2}^2 x(2)+Q^2 x(3)+Q^2 x(4),1,0\right\}
+\end{dmath*}
+
+Cartesian propagators are equally supported
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanPrepare}\OperatorTok{[}\NormalTok{CSPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]}\NormalTok{ CFAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{\}],} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{x(1)+x(2),\frac{1}{4} \left(4 m x(1)^2+4 m x(2) x(1)+4 \;\text{m2} x(2) x(1)+4 \;\text{m2} x(2)^2+4 p^2 x(2) x(1)-p^2 x(3)^2+4 p^2 x(2) x(3)\right),\left(
+\begin{array}{ccc}
+ x(1) & \frac{1}{(q^2+m-i \eta )} & 1 \\
+ x(2) & \frac{1}{((p-q)^2+\text{m2}-i \eta )} & 1 \\
+ x(3) & p\cdot q & -1 \\
+\end{array}
+\right),\left(
+\begin{array}{c}
+ x(1)+x(2) \\
+\end{array}
+\right),\left\{\frac{1}{2} (2 x(2)-x(3)) p^{\text{FCGV}(\text{i})}\right\},m x(1)+\text{m2} x(2)+p^2 x(2),1,0\right\}
+\end{dmath*}
+
+\texttt{FCFeynmanPrepare} also works with \texttt{FCTopology} and
+\texttt{GLI} objects
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{topo1 }\ExtensionTok{=}\NormalTok{ FCTopology}\OperatorTok{[}\StringTok{"prop2Lv1"}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ m1}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{}\NormalTok{p2}\OperatorTok{,}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],} 
+\NormalTok{     SFAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p2 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[\{}\NormalTok{p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ m3}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{Q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]} 
+ 
+\NormalTok{topo2 }\ExtensionTok{=}\NormalTok{ FCTopology}\OperatorTok{[}\StringTok{"prop2Lv2"}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ m1}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{}\NormalTok{p2}\OperatorTok{,}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],} 
+\NormalTok{    SFAD}\OperatorTok{[\{}\NormalTok{p1 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \FunctionTok{M}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{}\NormalTok{p2 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \FunctionTok{M}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{Q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCTopology}\left(\text{prop2Lv1},\left\{\frac{1}{(\text{p1}^2-\text{m1}^2+i \eta )},\frac{1}{(\text{p2}^2-\text{m2}^2+i \eta )},\frac{1}{((\text{p1}-q)^2+i \eta )},\frac{1}{((\text{p2}-q)^2+i \eta )},\frac{1}{((\text{p1}-\text{p2})^2-\text{m3}^2+i \eta )}\right\},\{\text{p1},\text{p2}\},\{Q\},\{\},\{\}\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCTopology}\left(\text{prop2Lv2},\left\{\frac{1}{(\text{p1}^2-\text{m1}^2+i \eta )},\frac{1}{(\text{p2}^2-\text{m2}^2+i \eta )},\frac{1}{((\text{p1}-q)^2-M^2+i \eta )},\frac{1}{((\text{p2}-q)^2-M^2+i \eta )},\frac{1}{((\text{p1}-\text{p2})^2+i \eta )}\right\},\{\text{p1},\text{p2}\},\{Q\},\{\},\{\}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanPrepare}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{x(1) x(2)+x(3) x(2)+x(5) x(2)+x(1) x(4)+x(3) x(4)+x(1) x(5)+x(3) x(5)+x(4) x(5),\text{m1}^2 x(1)^2 x(2)+\text{m1}^2 x(1) x(2) x(3)+\text{m1}^2 x(1)^2 x(4)+\text{m1}^2 x(1) x(3) x(4)+\text{m1}^2 x(1)^2 x(5)+\text{m1}^2 x(1) x(2) x(5)+\text{m1}^2 x(1) x(3) x(5)+\text{m1}^2 x(1) x(4) x(5)+\text{m2}^2 x(1) x(2)^2+\text{m2}^2 x(2)^2 x(3)+\text{m2}^2 x(1) x(2) x(4)+\text{m2}^2 x(2) x(3) x(4)+\text{m2}^2 x(2)^2 x(5)+\text{m2}^2 x(1) x(2) x(5)+\text{m2}^2 x(2) x(3) x(5)+\text{m2}^2 x(2) x(4) x(5)+\text{m3}^2 x(1) x(5)^2+\text{m3}^2 x(2) x(5)^2+\text{m3}^2 x(3) x(5)^2+\text{m3}^2 x(4) x(5)^2+\text{m3}^2 x(1) x(2) x(5)+\text{m3}^2 x(2) x(3) x(5)+\text{m3}^2 x(1) x(4) x(5)+\text{m3}^2 x(3) x(4) x(5)-q^2 x(1) x(2) x(3)-q^2 x(1) x(2) x(4)-q^2 x(1) x(3) x(4)-q^2 x(2) x(3) x(4)-q^2 x(1) x(3) x(5)-q^2 x(2) x(3) x(5)-q^2 x(1) x(4) x(5)-q^2 x(2) x(4) x(5),\left(
+\begin{array}{ccc}
+ x(1) & \frac{1}{(\text{p1}^2-\text{m1}^2+i \eta )} & 1 \\
+ x(2) & \frac{1}{(\text{p2}^2-\text{m2}^2+i \eta )} & 1 \\
+ x(3) & \frac{1}{((\text{p1}-q)^2+i \eta )} & 1 \\
+ x(4) & \frac{1}{((\text{p2}-q)^2+i \eta )} & 1 \\
+ x(5) & \frac{1}{((\text{p1}-\text{p2})^2-\text{m3}^2+i \eta )} & 1 \\
+\end{array}
+\right),\left(
+\begin{array}{cc}
+ x(1)+x(3)+x(5) & -x(5) \\
+ -x(5) & x(2)+x(4)+x(5) \\
+\end{array}
+\right),\left\{x(3) q^{\text{FCGV}(\text{mu})},x(4) q^{\text{FCGV}(\text{mu})}\right\},\text{m1}^2 (-x(1))-\text{m2}^2 x(2)-\text{m3}^2 x(5)+q^2 x(3)+q^2 x(4),1,0\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanPrepare}\OperatorTok{[\{}\NormalTok{topo1}\OperatorTok{,}\NormalTok{ topo2}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{cccccccc}
+ x(1) x(2)+x(3) x(2)+x(5) x(2)+x(1) x(4)+x(3) x(4)+x(1) x(5)+x(3) x(5)+x(4) x(5) & \;\text{m1}^2 x(1)^2 x(2)+\text{m1}^2 x(1) x(2) x(3)+\text{m1}^2 x(1)^2 x(4)+\text{m1}^2 x(1) x(3) x(4)+\text{m1}^2 x(1)^2 x(5)+\text{m1}^2 x(1) x(2) x(5)+\text{m1}^2 x(1) x(3) x(5)+\text{m1}^2 x(1) x(4) x(5)+\text{m2}^2 x(1) x(2)^2+\text{m2}^2 x(2)^2 x(3)+\text{m2}^2 x(1) x(2) x(4)+\text{m2}^2 x(2) x(3) x(4)+\text{m2}^2 x(2)^2 x(5)+\text{m2}^2 x(1) x(2) x(5)+\text{m2}^2 x(2) x(3) x(5)+\text{m2}^2 x(2) x(4) x(5)+\text{m3}^2 x(1) x(5)^2+\text{m3}^2 x(2) x(5)^2+\text{m3}^2 x(3) x(5)^2+\text{m3}^2 x(4) x(5)^2+\text{m3}^2 x(1) x(2) x(5)+\text{m3}^2 x(2) x(3) x(5)+\text{m3}^2 x(1) x(4) x(5)+\text{m3}^2 x(3) x(4) x(5)-q^2 x(1) x(2) x(3)-q^2 x(1) x(2) x(4)-q^2 x(1) x(3) x(4)-q^2 x(2) x(3) x(4)-q^2 x(1) x(3) x(5)-q^2 x(2) x(3) x(5)-q^2 x(1) x(4) x(5)-q^2 x(2) x(4) x(5) & \left(
+\begin{array}{ccc}
+ x(1) & \frac{1}{(\text{p1}^2-\text{m1}^2+i \eta )} & 1 \\
+ x(2) & \frac{1}{(\text{p2}^2-\text{m2}^2+i \eta )} & 1 \\
+ x(3) & \frac{1}{((\text{p1}-q)^2+i \eta )} & 1 \\
+ x(4) & \frac{1}{((\text{p2}-q)^2+i \eta )} & 1 \\
+ x(5) & \frac{1}{((\text{p1}-\text{p2})^2-\text{m3}^2+i \eta )} & 1 \\
+\end{array}
+\right) & \left(
+\begin{array}{cc}
+ x(1)+x(3)+x(5) & -x(5) \\
+ -x(5) & x(2)+x(4)+x(5) \\
+\end{array}
+\right) & \left\{x(3) q^{\text{FCGV}(\text{mu})},x(4) q^{\text{FCGV}(\text{mu})}\right\} & \;\text{m1}^2 (-x(1))-\text{m2}^2 x(2)-\text{m3}^2 x(5)+q^2 x(3)+q^2 x(4) & 1 & 0 \\
+ x(1) x(2)+x(3) x(2)+x(5) x(2)+x(1) x(4)+x(3) x(4)+x(1) x(5)+x(3) x(5)+x(4) x(5) & M^2 x(2) x(3)^2+M^2 x(1) x(4)^2+M^2 x(3) x(4)^2+M^2 x(1) x(2) x(3)+M^2 x(3)^2 x(4)+M^2 x(1) x(2) x(4)+M^2 x(1) x(3) x(4)+M^2 x(2) x(3) x(4)+M^2 x(3)^2 x(5)+M^2 x(4)^2 x(5)+M^2 x(1) x(3) x(5)+M^2 x(2) x(3) x(5)+M^2 x(1) x(4) x(5)+M^2 x(2) x(4) x(5)+2 M^2 x(3) x(4) x(5)+\text{m1}^2 x(1)^2 x(2)+\text{m1}^2 x(1) x(2) x(3)+\text{m1}^2 x(1)^2 x(4)+\text{m1}^2 x(1) x(3) x(4)+\text{m1}^2 x(1)^2 x(5)+\text{m1}^2 x(1) x(2) x(5)+\text{m1}^2 x(1) x(3) x(5)+\text{m1}^2 x(1) x(4) x(5)+\text{m2}^2 x(1) x(2)^2+\text{m2}^2 x(2)^2 x(3)+\text{m2}^2 x(1) x(2) x(4)+\text{m2}^2 x(2) x(3) x(4)+\text{m2}^2 x(2)^2 x(5)+\text{m2}^2 x(1) x(2) x(5)+\text{m2}^2 x(2) x(3) x(5)+\text{m2}^2 x(2) x(4) x(5)-q^2 x(1) x(2) x(3)-q^2 x(1) x(2) x(4)-q^2 x(1) x(3) x(4)-q^2 x(2) x(3) x(4)-q^2 x(1) x(3) x(5)-q^2 x(2) x(3) x(5)-q^2 x(1) x(4) x(5)-q^2 x(2) x(4) x(5) & \left(
+\begin{array}{ccc}
+ x(1) & \frac{1}{(\text{p1}^2-\text{m1}^2+i \eta )} & 1 \\
+ x(2) & \frac{1}{(\text{p2}^2-\text{m2}^2+i \eta )} & 1 \\
+ x(3) & \frac{1}{((\text{p1}-q)^2-M^2+i \eta )} & 1 \\
+ x(4) & \frac{1}{((\text{p2}-q)^2-M^2+i \eta )} & 1 \\
+ x(5) & \frac{1}{((\text{p1}-\text{p2})^2+i \eta )} & 1 \\
+\end{array}
+\right) & \left(
+\begin{array}{cc}
+ x(1)+x(3)+x(5) & -x(5) \\
+ -x(5) & x(2)+x(4)+x(5) \\
+\end{array}
+\right) & \left\{x(3) q^{\text{FCGV}(\text{mu})},x(4) q^{\text{FCGV}(\text{mu})}\right\} & M^2 (-x(3))-M^2 x(4)-\text{m1}^2 x(1)-\text{m2}^2 x(2)+q^2 x(3)+q^2 x(4) & 1 & 0 \\
+\end{array}
+\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanPrepare}\OperatorTok{[\{}\NormalTok{GLI}\OperatorTok{[}\StringTok{"prop2Lv1"}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}],}\NormalTok{ GLI}\OperatorTok{[}\StringTok{"prop2Lv2"}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]\},} 
+  \OperatorTok{\{}\NormalTok{topo1}\OperatorTok{,}\NormalTok{ topo2}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{cccccccc}
+ (x(1)+x(3)) (x(2)+x(4)) & \;\text{m1}^2 x(1)^2 x(2)+\text{m1}^2 x(1) x(2) x(3)+\text{m1}^2 x(1)^2 x(4)+\text{m1}^2 x(1) x(3) x(4)+\text{m2}^2 x(1) x(2)^2+\text{m2}^2 x(2)^2 x(3)+\text{m2}^2 x(1) x(2) x(4)+\text{m2}^2 x(2) x(3) x(4)-q^2 x(1) x(2) x(3)-q^2 x(1) x(2) x(4)-q^2 x(1) x(3) x(4)-q^2 x(2) x(3) x(4) & \left(
+\begin{array}{ccc}
+ x(1) & \frac{1}{(\text{p1}^2-\text{m1}^2+i \eta )} & 1 \\
+ x(2) & \frac{1}{(\text{p2}^2-\text{m2}^2+i \eta )} & 1 \\
+ x(3) & \frac{1}{((\text{p1}-q)^2+i \eta )} & 1 \\
+ x(4) & \frac{1}{((\text{p2}-q)^2+i \eta )} & 1 \\
+\end{array}
+\right) & \left(
+\begin{array}{cc}
+ x(1)+x(3) & 0 \\
+ 0 & x(2)+x(4) \\
+\end{array}
+\right) & \left\{x(3) q^{\text{FCGV}(\text{mu})},x(4) q^{\text{FCGV}(\text{mu})}\right\} & \;\text{m1}^2 (-x(1))-\text{m2}^2 x(2)+q^2 x(3)+q^2 x(4) & 1 & 0 \\
+ x(1) x(2)+x(3) x(2)+x(1) x(3) & (x(1) x(2)+x(3) x(2)+x(1) x(3)) \left(\text{m1}^2 x(1)+\text{m2}^2 x(3)\right) & \left(
+\begin{array}{ccc}
+ x(1) & \frac{1}{(\text{p1}^2-\text{m1}^2+i \eta )} & 1 \\
+ x(2) & \frac{1}{((\text{p1}-\text{p2})^2+i \eta )} & 1 \\
+ x(3) & \frac{1}{(\text{p2}^2-\text{m2}^2+i \eta )} & 1 \\
+\end{array}
+\right) & \left(
+\begin{array}{cc}
+ x(1)+x(2) & -x(2) \\
+ -x(2) & x(2)+x(3) \\
+\end{array}
+\right) & \{0,0\} & \;\text{m1}^2 (-x(1))-\text{m2}^2 x(3) & 1 & 0 \\
+\end{array}
+\right)
+\end{dmath*}
+
+\texttt{FCFeynmanPrepare} can also handle products of \texttt{GLI}s. In
+this case it will automatically introduce dummy names for the loop
+momenta (the name generation is controlled by the \texttt{LoopMomentum}
+option).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{topo }\ExtensionTok{=}\NormalTok{ FCTopology}\OperatorTok{[}
+\NormalTok{   prop2Ltopo13311}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{\{}\FunctionTok{I}\SpecialCharTok{*}\NormalTok{p1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{{-}}\NormalTok{m1}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\FunctionTok{I}\SpecialCharTok{*}\NormalTok{(p1 }\SpecialCharTok{+}\NormalTok{ q1)}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{{-}}
+\NormalTok{        m3}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\FunctionTok{I}\SpecialCharTok{*}\NormalTok{p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{{-}}\NormalTok{m3}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\FunctionTok{I}\SpecialCharTok{*}\NormalTok{(p3 }\SpecialCharTok{+}\NormalTok{ q1)}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{{-}}\NormalTok{m1}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} 
+       \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\FunctionTok{I}\SpecialCharTok{*}\NormalTok{(p1 }\SpecialCharTok{{-}}\NormalTok{ p3)}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{{-}}\NormalTok{m1}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q1}\OperatorTok{]} \OtherTok{{-}\textgreater{}}\NormalTok{ m1}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\},} \OperatorTok{\{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCTopology}\left(\text{prop2Ltopo13311},\left\{\frac{1}{(-\text{p1}^2+\text{m1}^2-i \eta )},\frac{1}{(-(\text{p1}+\text{q1})^2+\text{m3}^2-i \eta )},\frac{1}{(-\text{p3}^2+\text{m3}^2-i \eta )},\frac{1}{(-(\text{p3}+\text{q1})^2+\text{m1}^2-i \eta )},\frac{1}{(-(\text{p1}-\text{p3})^2+\text{m1}^2-i \eta )}\right\},\{\text{p1},\text{p3}\},\{\text{q1}\},\left\{\text{q1}^2\to \;\text{m1}^2\right\},\{\}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanPrepare}\OperatorTok{[}\NormalTok{GLI}\OperatorTok{[}\NormalTok{prop2Ltopo13311}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}]}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ topo}\OperatorTok{,} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,}\NormalTok{ FCE }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,} 
+\NormalTok{  LoopMomenta }\OtherTok{{-}\textgreater{}} \FunctionTok{Function}\OperatorTok{[\{}\FunctionTok{x}\OperatorTok{,} \FunctionTok{y}\OperatorTok{\},}\NormalTok{ lmom}\OperatorTok{[}\FunctionTok{x}\OperatorTok{,} \FunctionTok{y}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{x(1) x(2),-\text{m1}^2 x(1) x(2) (x(1)+x(2)),\left(
+\begin{array}{ccc}
+ x(1) & \frac{1}{(-\text{lmom}(1,1)^2+\text{m1}^2-i \eta )} & 1 \\
+ x(2) & \frac{1}{(-\text{lmom}(2,1)^2+\text{m1}^2-i \eta )} & 1 \\
+\end{array}
+\right),\left(
+\begin{array}{cc}
+ -x(1) & 0 \\
+ 0 & -x(2) \\
+\end{array}
+\right),\{0,0\},\text{m1}^2 (x(1)+x(2)),1,0\right\}
+\end{dmath*}
+\end{document}

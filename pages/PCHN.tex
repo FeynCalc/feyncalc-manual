@@ -1,0 +1,144 @@
+% !TeX program = pdflatex
+% !TeX root = PCHN.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{pchn}{%
+\section{PCHN}\label{pchn}}
+
+\texttt{PCHN[\allowbreak{}x,\ \allowbreak{}i,\ \allowbreak{}j]} is a
+chain of Pauli matrices \texttt{x} and is transformed into
+\texttt{PauliChain[\allowbreak{}FCI[\allowbreak{}x],\ \allowbreak{}PauliIndex[\allowbreak{}i],\ \allowbreak{}PauliIndex[\allowbreak{}j]]}
+by \texttt{FeynCalcInternal}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{paulichain}{PauliChain},
+\hyperlink{pauliindex}{PauliIndex},
+\hyperlink{pauliindexdelta}{PauliIndexDelta},
+\hyperlink{paulichainjoin}{PauliChainJoin},
+\hyperlink{paulichainexpand}{PauliChainExpand},
+\hyperlink{paulichainfactor}{PauliChainFactor}.
+
+\subsection{Examples}
+
+A standalone Pauli matrix with open Pauli indices
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PCHN}\OperatorTok{[}\NormalTok{CSID}\OperatorTok{[}\FunctionTok{a}\OperatorTok{],} \FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\sigma ^a\right){}_{ij}
+\end{dmath*}
+
+A chain of Pauli matrices with open Pauli indices
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PCHN}\OperatorTok{[}\NormalTok{CSID}\OperatorTok{[}\FunctionTok{a}\OperatorTok{]}\NormalTok{ . CSID}\OperatorTok{[}\FunctionTok{b}\OperatorTok{],} \FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\sigma ^a.\sigma ^b\right){}_{ij}
+\end{dmath*}
+
+A single \(\xi ^{\dagger}\) spinor with an open Pauli index
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PCHN}\OperatorTok{[}\NormalTok{PauliXi}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{],} \FunctionTok{i}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\xi ^{\dagger }\right){}_i
+\end{dmath*}
+
+A single \(\eta ^{\dagger}\) spinor with an open Pauli index
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PCHN}\OperatorTok{[}\NormalTok{PauliEta}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{],} \FunctionTok{i}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\eta ^{\dagger }\right){}_i
+\end{dmath*}
+
+A single \(\xi\) spinor with an open Pauli index
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PCHN}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,}\NormalTok{ PauliXi}\OperatorTok{[}\FunctionTok{I}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(\xi )_i
+\end{dmath*}
+
+A single \(\eta\) spinor with an open Pauli index
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PCHN}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,}\NormalTok{ PauliEta}\OperatorTok{[}\FunctionTok{I}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(\eta )_i
+\end{dmath*}
+
+\(\xi ^{\dagger}\) spinor contracted with a chain of Pauli matrices
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PCHN}\OperatorTok{[}\NormalTok{CSID}\OperatorTok{[}\FunctionTok{a}\OperatorTok{]}\NormalTok{ . CSID}\OperatorTok{[}\FunctionTok{b}\OperatorTok{],}\NormalTok{ PauliXi}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{],} \FunctionTok{j}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\xi ^{\dagger }.\sigma ^a.\sigma ^b\right){}_j
+\end{dmath*}
+
+\(\eta ^{\dagger}\) spinor contracted with a chain of Pauli matrices
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PCHN}\OperatorTok{[}\NormalTok{CSID}\OperatorTok{[}\FunctionTok{a}\OperatorTok{]}\NormalTok{ . CSID}\OperatorTok{[}\FunctionTok{b}\OperatorTok{],}\NormalTok{ PauliEta}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{],} \FunctionTok{j}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\eta ^{\dagger }.\sigma ^a.\sigma ^b\right){}_j
+\end{dmath*}
+
+\(\xi\) spinor contracted with a chain of Pauli matrices
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PCHN}\OperatorTok{[}\NormalTok{CSID}\OperatorTok{[}\FunctionTok{a}\OperatorTok{]}\NormalTok{ . CSID}\OperatorTok{[}\FunctionTok{b}\OperatorTok{],} \FunctionTok{i}\OperatorTok{,}\NormalTok{ PauliXi}\OperatorTok{[}\FunctionTok{I}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\sigma ^a.\sigma ^b.\xi \right){}_i
+\end{dmath*}
+
+\(\eta\) spinor contracted with a chain of Pauli matrices
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PCHN}\OperatorTok{[}\NormalTok{CSID}\OperatorTok{[}\FunctionTok{a}\OperatorTok{]}\NormalTok{ . CSID}\OperatorTok{[}\FunctionTok{b}\OperatorTok{],} \FunctionTok{i}\OperatorTok{,}\NormalTok{ PauliEta}\OperatorTok{[}\FunctionTok{I}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\sigma ^a.\sigma ^b.\eta \right){}_i
+\end{dmath*}
+\end{document}

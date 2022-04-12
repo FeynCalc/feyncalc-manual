@@ -1,0 +1,62 @@
+% !TeX program = pdflatex
+% !TeX root = FCCheckSyntax.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcchecksyntax}{%
+\section{FCCheckSyntax}\label{fcchecksyntax}}
+
+\texttt{FCCheckSyntax[\allowbreak{}exp]} attempts to detect mistakes and
+inconsistencies in the user input. The function returns the original
+expression but will abort the evaluation if it thinks that the input is
+incorrect. Notice that false positives are possible and it is not
+guaranteed that the input which passes \texttt{FCCheckSyntax} is indeed
+fully correct.
+
+\texttt{FCCheckSyntax} is also an option for several FeynCalc routines.
+If set to \texttt{True}, those functions will try to check the syntax of
+the input expressions to detect possible inconsistencies. However, on
+large expressions such checks may cost a lot of performance, which is
+why this option is set to \texttt{False} by default.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+Typical mistake, using \texttt{Times} instead of \texttt{Dot} in
+noncommutative products
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCCheckSyntax}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\NormalTok{mu}\OperatorTok{]}\SpecialCharTok{*}\NormalTok{GA}\OperatorTok{[}\NormalTok{nu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.6\linewidth]{img/10x7yb8v4z8tt.pdf}
+\end{figure}
+
+\begin{dmath*}\breakingcomma
+\text{\$Aborted}
+\end{dmath*}
+
+Another common mistake, Einstein summation convention is violated
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCCheckSyntax}\OperatorTok{[}\NormalTok{FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{r}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.6\linewidth]{img/1pck0pnu8c08i.pdf}
+\end{figure}
+
+\begin{dmath*}\breakingcomma
+\text{\$Aborted}
+\end{dmath*}
+\end{document}

@@ -1,0 +1,80 @@
+% !TeX program = pdflatex
+% !TeX root = DiracIndex.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{diracindex}{%
+\section{DiracIndex}\label{diracindex}}
+
+\texttt{DiracIndex} is the head of Dirac indices. The internal
+representation of a four-dimensional spinorial index \texttt{i} is
+\texttt{DiracIndex[\allowbreak{}i]}.
+
+If the first argument is an integer, \texttt{DiracIndex[\allowbreak{}i]}
+turns into \texttt{ExplicitDiracIndex[\allowbreak{}i]}.
+
+Dirac indices are the indices that denote the components of Dirac
+matrices or spinors. They should not be confused with the Lorentz
+indices attached to the Dirac matrices. For example in the case of
+\(\gamma_{ij}^{\mu}\), \(\mu\) is a Lorentz index, while \(i\) and \(j\)
+are Dirac (spinorial) indices.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{diracchain}{DiracChain},
+\hyperlink{dchn}{DCHN},
+\hyperlink{explicitdiracindex}{ExplicitDiracIndex},
+\hyperlink{diracindexdelta}{DiracIndexDelta},
+\hyperlink{didelta}{DIDelta},
+\hyperlink{diracchainjoin}{DiracChainJoin},
+\hyperlink{diracchaincombine}{DiracChainCombine},
+\hyperlink{diracchainexpand}{DiracChainExpand},
+\hyperlink{diracchainfactor}{DiracChainFactor}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*DiracIndex[i]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracIndex}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracIndex}\OperatorTok{[}\DecValTok{2}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*ExplicitDiracIndex[2]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DIDelta}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*DiracIndexDelta[DiracIndex[i], DiracIndex[j]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

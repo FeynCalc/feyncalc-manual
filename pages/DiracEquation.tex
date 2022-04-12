@@ -1,0 +1,100 @@
+% !TeX program = pdflatex
+% !TeX root = DiracEquation.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{diracequation}{%
+\section{DiracEquation}\label{diracequation}}
+
+\texttt{DiracEquation[\allowbreak{}exp]} applies the Dirac equation
+without expanding exp. If expansions are necessary, use
+\texttt{DiracSimplify}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]}\NormalTok{ . SpinorU}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{]} 
+ 
+\NormalTok{DiracSimplify}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }\cdot \overline{p}\right).u(p,m)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+m \left(\varphi (\overline{p},m)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]}\NormalTok{ . SpinorU}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{]} 
+ 
+\NormalTok{DiracEquation}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }\cdot \overline{p}\right).u(p,m)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+m \left(\varphi (\overline{p},m)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]}\NormalTok{ . SpinorV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{]} 
+ 
+\NormalTok{DiracEquation}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }\cdot \overline{p}\right).v(p,m)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-m \left(\varphi (-\overline{p},m)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpinorUBar}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{0}\OperatorTok{]}\NormalTok{ . GS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} 
+ 
+\NormalTok{DiracEquation}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{u}(p).\left(\bar{\gamma }\cdot \overline{p}\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+\texttt{DiracEquation} also works in \(D\)-dimensions
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpinorVBarD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\OperatorTok{]}\NormalTok{ . GSD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} 
+ 
+\NormalTok{DiracEquation}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{v}(p,m).(\gamma \cdot p)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-m (\varphi (-p,m))
+\end{dmath*}
+\end{document}

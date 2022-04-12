@@ -1,0 +1,77 @@
+% !TeX program = pdflatex
+% !TeX root = SplitSymbolicPowers.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{splitsymbolicpowers}{%
+\section{SplitSymbolicPowers}\label{splitsymbolicpowers}}
+
+\texttt{SplitSymbolicPowers} is an option for
+\texttt{FCFeynmanParametrize} and other functions. When set to
+\texttt{True}, propagator powers containing symbols will be split into a
+nonnegative integer piece and the remaining piece. This leads to a
+somewhat different form of the resulting parametric integral, although
+the final result remains the same. The default value is \texttt{False}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcfeynmanparametrize}{FCFeynmanParametrize}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SFAD}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \FunctionTok{r} \SpecialCharTok{+} \DecValTok{2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(p^2-m^2+i \eta )^{-r-2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v1 }\ExtensionTok{=}\NormalTok{ FCFeynmanParametrize}\OperatorTok{[}\NormalTok{SFAD}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \FunctionTok{r} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{\}],} \OperatorTok{\{}\FunctionTok{p}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,}\NormalTok{ FCReplaceD }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{D} \OtherTok{{-}\textgreater{}} \DecValTok{4} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ Epsilon}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{1,\frac{m^6 (-1)^{r-1} \left(m^2\right)^{-\varepsilon -r} \Gamma (\varepsilon +r-3)}{\Gamma (r-1)},\{\}\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v2 }\ExtensionTok{=}\NormalTok{ FCFeynmanParametrize}\OperatorTok{[}\NormalTok{SFAD}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \FunctionTok{r} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{\}],} \OperatorTok{\{}\FunctionTok{p}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,}\NormalTok{ FCReplaceD }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{D} \OtherTok{{-}\textgreater{}} \DecValTok{4} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ Epsilon}\OperatorTok{\},} 
+\NormalTok{   SplitSymbolicPowers }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{1,\frac{m^6 (-1)^{r-1} (r-1) \left(m^2\right)^{-\varepsilon -r} \Gamma (\varepsilon +r-3)}{\Gamma (r)},\{\}\right\}
+\end{dmath*}
+
+Both parametrizations lead to the same results (as expected)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Series}\OperatorTok{[}\NormalTok{v1}\OperatorTok{[[}\DecValTok{2}\OperatorTok{]],} \OperatorTok{\{}\NormalTok{Epsilon}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]} \SpecialCharTok{//} \FunctionTok{Normal} 
+ 
+\FunctionTok{Series}\OperatorTok{[}\NormalTok{v2}\OperatorTok{[[}\DecValTok{2}\OperatorTok{]],} \OperatorTok{\{}\NormalTok{Epsilon}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]} \SpecialCharTok{//} \FunctionTok{Normal} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{{-}} \SpecialCharTok{\%\%} \SpecialCharTok{//} \FunctionTok{Simplify} \SpecialCharTok{//} \FunctionTok{FunctionExpand}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\varepsilon  m^6 (-1)^r \left(m^2\right)^{-r} \Gamma (r-3) \left(\log \left(m^2\right)-\psi ^{(0)}(r-3)\right)}{\Gamma (r-1)}-\frac{m^6 (-1)^r \left(m^2\right)^{-r} \Gamma (r-3)}{\Gamma (r-1)}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{\varepsilon  m^6 (-1)^r (r-1) \left(m^2\right)^{-r} \Gamma (r-3) \left(\log \left(m^2\right)-\psi ^{(0)}(r-3)\right)}{\Gamma (r)}-\frac{m^6 (-1)^r (r-1) \left(m^2\right)^{-r} \Gamma (r-3)}{\Gamma (r)}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+\end{document}

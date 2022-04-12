@@ -1,0 +1,109 @@
+% !TeX program = pdflatex
+% !TeX root = FCTraceExpand.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fctraceexpand}{%
+\section{FCTraceExpand}\label{fctraceexpand}}
+
+\texttt{FCTraceExpand[\allowbreak{}exp]} expands traces of Dirac and
+\(SU(N)\) matrices using linearity of the trace. The traces themselves
+are not evaluated.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{diractrace}{DiracTrace},
+\hyperlink{suntrace}{SUNTrace}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ DiracTrace}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . (GS}\OperatorTok{[}\NormalTok{p1}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ m1) . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ . (GS}\OperatorTok{[}\NormalTok{p2}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ m2) . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]]} \SpecialCharTok{+}\FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{tr}\left(\bar{\gamma }^{\mu }.\left(\bar{\gamma }\cdot \overline{\text{p1}}+\text{m1}\right).\bar{\gamma }^{\nu }.\left(\bar{\gamma }\cdot \overline{\text{p2}}+\text{m2}\right).\bar{\gamma }^{\rho }+x\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCTraceExpand}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{m1} \;\text{m2} \;\text{tr}\left(\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^{\rho }\right)+\text{m1} \;\text{tr}\left(\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\left(\bar{\gamma }\cdot \overline{\text{p2}}\right).\bar{\gamma }^{\rho }\right)+\text{m2} \;\text{tr}\left(\bar{\gamma }^{\mu }.\left(\bar{\gamma }\cdot \overline{\text{p1}}\right).\bar{\gamma }^{\nu }.\bar{\gamma }^{\rho }\right)+\text{tr}\left(\bar{\gamma }^{\mu }.\left(\bar{\gamma }\cdot \overline{\text{p1}}\right).\bar{\gamma }^{\nu }.\left(\bar{\gamma }\cdot \overline{\text{p2}}\right).\bar{\gamma }^{\rho }\right)+\text{tr}(1) x
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCTraceExpand}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,}\NormalTok{ DotSimplify }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{tr}\left(\bar{\gamma }^{\mu }.\left(\bar{\gamma }\cdot \overline{\text{p1}}+\text{m1}\right).\bar{\gamma }^{\nu }.\left(\bar{\gamma }\cdot \overline{\text{p2}}+\text{m2}\right).\bar{\gamma }^{\rho }\right)+\text{tr}(1) x
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCTraceExpand}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,}\NormalTok{ DiracTrace }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{tr}\left(\bar{\gamma }^{\mu }.\left(\bar{\gamma }\cdot \overline{\text{p1}}+\text{m1}\right).\bar{\gamma }^{\nu }.\left(\bar{\gamma }\cdot \overline{\text{p2}}+\text{m2}\right).\bar{\gamma }^{\rho }+x\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{a}\SpecialCharTok{*}\NormalTok{DiracTrace}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . (GS}\OperatorTok{[}\NormalTok{p1}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ m1) . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]]} \SpecialCharTok{+} \FunctionTok{b}\SpecialCharTok{*}\NormalTok{DiracTrace}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . (GS}\OperatorTok{[}\NormalTok{p2}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ m2) . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]]} 
+ 
+\NormalTok{FCTraceExpand}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ Momentum }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+a \;\text{tr}\left(\bar{\gamma }^{\mu }.\left(\bar{\gamma }\cdot \overline{\text{p1}}+\text{m1}\right).\bar{\gamma }^{\nu }\right)+b \;\text{tr}\left(\bar{\gamma }^{\mu }.\left(\bar{\gamma }\cdot \overline{\text{p2}}+\text{m2}\right).\bar{\gamma }^{\nu }\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+a \left(\text{m1} \;\text{tr}\left(\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }\right)+\text{tr}\left(\bar{\gamma }^{\mu }.\left(\bar{\gamma }\cdot \overline{\text{p1}}\right).\bar{\gamma }^{\nu }\right)\right)+b \;\text{tr}\left(\bar{\gamma }^{\mu }.\left(\bar{\gamma }\cdot \overline{\text{p2}}+\text{m2}\right).\bar{\gamma }^{\nu }\right)
+\end{dmath*}
+
+At the moment \texttt{SUNTrace} automatically expands its content, so
+here \texttt{FCTraceExpand} is not needed. However, this may change in
+future.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ SUNTrace}\OperatorTok{[}\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ SUNT}\OperatorTok{[}\FunctionTok{l}\OperatorTok{,} \FunctionTok{m}\OperatorTok{,} \FunctionTok{n}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{tr}(T^i.T^j.T^k)+\text{tr}(T^l.T^m.T^n)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCTraceExpand}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{tr}(T^i.T^j.T^k)+\text{tr}(T^l.T^m.T^n)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCTraceExpand}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,}\NormalTok{ SUNTrace }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{tr}(T^i.T^j.T^k)+\text{tr}(T^l.T^m.T^n)
+\end{dmath*}
+\end{document}

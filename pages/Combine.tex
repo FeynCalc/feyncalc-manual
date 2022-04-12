@@ -1,0 +1,57 @@
+% !TeX program = pdflatex
+% !TeX root = Combine.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{combine}{%
+\section{Combine}\label{combine}}
+
+\texttt{Combine[\allowbreak{}expr]} puts terms in a sum over a common
+denominator and cancels factors in the result. \texttt{Combine} is
+similar to \texttt{Together}, but accepts the option \texttt{Expanding}
+and works usually better than \texttt{Together} for polynomials
+involving rationals with sums in the denominator.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{factor2}{Factor2}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Combine}\OperatorTok{[}\NormalTok{((}\FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{b}\NormalTok{) (}\FunctionTok{c} \SpecialCharTok{{-}} \FunctionTok{d}\NormalTok{))}\SpecialCharTok{/}\FunctionTok{e} \SpecialCharTok{+} \FunctionTok{g}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{(a-b) (c-d)+e g}{e}
+\end{dmath*}
+
+Here the result from \texttt{Together} where the numerator is
+automatically expanded.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Together}\OperatorTok{[}\NormalTok{((}\FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{b}\NormalTok{) (}\FunctionTok{c} \SpecialCharTok{{-}} \FunctionTok{d}\NormalTok{))}\SpecialCharTok{/}\FunctionTok{e} \SpecialCharTok{+} \FunctionTok{g}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{a c-a d-b c+b d+e g}{e}
+\end{dmath*}
+
+If the option \texttt{Expanding} is set to \texttt{True}, the result of
+\texttt{Combine} is the same as \texttt{Together}, but uses a slightly
+different algorithm.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Combine}\OperatorTok{[}\NormalTok{((}\FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{b}\NormalTok{) (}\FunctionTok{c} \SpecialCharTok{{-}} \FunctionTok{d}\NormalTok{))}\SpecialCharTok{/}\FunctionTok{e} \SpecialCharTok{+} \FunctionTok{g}\OperatorTok{,}\NormalTok{ Expanding }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{a c-a d-b c+b d+e g}{e}
+\end{dmath*}
+\end{document}

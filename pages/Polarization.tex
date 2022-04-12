@@ -1,0 +1,102 @@
+% !TeX program = pdflatex
+% !TeX root = Polarization.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{polarization}{%
+\section{Polarization}\label{polarization}}
+
+\texttt{Polarization[\allowbreak{}k]} is the head of a polarization
+momentum with momentum \texttt{k}.
+
+A slashed polarization vector (\(\varepsilon_{\mu}(k) \gamma^\mu)\) has
+to be entered as \texttt{GS[\allowbreak{}Polarization[\allowbreak{}k]]}.
+
+Unless the option \texttt{Transversality} is set to \texttt{True}, all
+polarization vectors are not transverse by default.
+
+The internal representation for a polarization vector corresponding to a
+boson with four momentum \(k\) is:
+\texttt{Momentum[\allowbreak{}Polarization[\allowbreak{}k,\ \allowbreak{}I ]]}.
+
+\texttt{Polarization[\allowbreak{}k,\ \allowbreak{}-I]} denotes the
+complex conjugate polarization.
+
+Polarization is also an option of various functions related to the
+operator product expansion. The setting \texttt{0} denotes the
+unpolarized and \texttt{1} the polarized case.
+
+\texttt{Polarization} may appear only inside \texttt{Momentum}. Outside
+of \texttt{Momentum} it is meaningless in FeynCalc.
+
+The imaginary unit in the second argument of \texttt{Polarization} is
+used to distinguish between incoming and outgoing polarization vectors.
+
+\begin{itemize}
+\item
+  \texttt{Pair[\allowbreak{}Momentum[\allowbreak{}k],\ \allowbreak{}Momentum[\allowbreak{}Polarization[\allowbreak{}k,\ \allowbreak{}I]]]}
+  corresponds to \(\varepsilon^{\mu}(k)\), i.e.~an ingoing polarization
+  vector
+\item
+  \texttt{Pair[\allowbreak{}Momentum[\allowbreak{}k],\ \allowbreak{}Momentum[\allowbreak{}Polarization[\allowbreak{}k,\ \allowbreak{}-I]]]}
+  corresponds to \(\varepsilon^{\ast \mu}(k)\), i.e.~an outgoing
+  polarization vector
+\end{itemize}
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{polarizationvector}{PolarizationVector},
+\hyperlink{polarizationsum}{PolarizationSum},
+\hyperlink{dopolarizationsums}{DoPolarizationSums}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Polarization}\OperatorTok{[}\FunctionTok{k}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{Polarization}(k)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Polarization}\OperatorTok{[}\FunctionTok{k}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ ComplexConjugate}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{Polarization}(k)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GS}\OperatorTok{[}\NormalTok{Polarization}\OperatorTok{[}\FunctionTok{k}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }\cdot \overline{\text{Polarization}(k)}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GS}\OperatorTok{[}\NormalTok{Polarization}\OperatorTok{[}\FunctionTok{k}\OperatorTok{]]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*GS[Polarization[k]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{k}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\NormalTok{Polarization}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \FunctionTok{I}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{k}\cdot \bar{\varepsilon }(k)
+\end{dmath*}
+\end{document}

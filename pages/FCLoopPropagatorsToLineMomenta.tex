@@ -1,0 +1,107 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopPropagatorsToLineMomenta.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fclooppropagatorstolinemomenta}{%
+\section{FCLoopPropagatorsToLineMomenta}\label{fclooppropagatorstolinemomenta}}
+
+\texttt{FCLoopPropagatorsToLineMomenta[\allowbreak{}\{\allowbreak{}prop1,\ \allowbreak{}prop2,\ \allowbreak{}...\}]}
+is an auxiliary function that extracts line momenta flowing through the
+given list of propagators.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcloopintegraltograph}{FCLoopIntegralToGraph},
+\hyperlink{auxiliarymomenta}{AuxiliaryMomenta}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopPropagatorsToLineMomenta}\OperatorTok{[\{}\NormalTok{SFAD}\OperatorTok{[\{}\FunctionTok{q} \SpecialCharTok{+} \FunctionTok{l}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]\},}\NormalTok{ FCE }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{cc}
+ l+q & p \\
+ -m^2 & m^2 \\
+ \frac{1}{((l+q)^2-m^2+i \eta )} & \frac{1}{(p^2+m^2+i \eta )} \\
+\end{array}
+\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopPropagatorsToLineMomenta}\OperatorTok{[\{}\NormalTok{CFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{2} \FunctionTok{v}\NormalTok{ . (}\FunctionTok{q} \SpecialCharTok{+} \FunctionTok{r}\NormalTok{)}\OperatorTok{\},} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]\},}\NormalTok{ FCE }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,} 
+\NormalTok{  AuxiliaryMomenta }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{v}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{c}
+ q+r \\
+ m^2 \\
+ \frac{1}{(2 ((q+r)\cdot v)+m^2-i \eta )} \\
+\end{array}
+\right)
+\end{dmath*}
+
+Reversed signs are also supported
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{}\FunctionTok{I}\NormalTok{ (}\FunctionTok{q} \SpecialCharTok{+} \FunctionTok{l}\NormalTok{)}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{}\FunctionTok{I} \FunctionTok{p}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]\}} 
+ 
+\NormalTok{FCLoopPropagatorsToLineMomenta}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ FCE }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\frac{1}{(-(l+q)^2+m^2+i \eta )},\frac{1}{(-p^2+m^2+i \eta )}\right\}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{cc}
+ l+q & p \\
+ m^2 & m^2 \\
+ \frac{1}{(-(l+q)^2+m^2+i \eta )} & \frac{1}{(-p^2+m^2+i \eta )} \\
+\end{array}
+\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopPropagatorsToLineMomenta}\OperatorTok{[\{}\NormalTok{SFAD}\OperatorTok{[\{}\FunctionTok{I}\NormalTok{ (}\FunctionTok{q} \SpecialCharTok{+} \FunctionTok{l}\NormalTok{)}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{}\FunctionTok{I} \FunctionTok{p}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]\},} 
+\NormalTok{   FCE }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{InputForm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\{\{}\FunctionTok{l} \SpecialCharTok{+} \FunctionTok{q}\OperatorTok{,} \FunctionTok{p}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{\{}\FunctionTok{I}\SpecialCharTok{*}\NormalTok{(}\FunctionTok{l} \SpecialCharTok{+} \FunctionTok{q}\NormalTok{)}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{{-}}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{  SFAD}\OperatorTok{[\{\{}\FunctionTok{I}\SpecialCharTok{*}\FunctionTok{p}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{{-}}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]\}\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopPropagatorsToLineMomenta}\OperatorTok{[\{}\NormalTok{SFAD}\OperatorTok{[\{\{}\FunctionTok{I}\NormalTok{ p1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{2}\NormalTok{ p1 . }\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]\},}\NormalTok{FCE }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{c}
+ \;\text{p1}+q \\
+ 0 \\
+ \frac{1}{(-\text{p1}^2-2 (\text{p1}\cdot q)+i \eta )} \\
+\end{array}
+\right)
+\end{dmath*}
+\end{document}

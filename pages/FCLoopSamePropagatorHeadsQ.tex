@@ -1,0 +1,53 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopSamePropagatorHeadsQ.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopsamepropagatorheadsq}{%
+\section{FCLoopSamePropagatorHeadsQ}\label{fcloopsamepropagatorheadsq}}
+
+\texttt{FCLoopSamePropagatorHeadsQ[\allowbreak{}exp]} returns
+\texttt{True} if the \texttt{FeynAmpDenominator} of \texttt{exp}
+contains only propagator denominators of the same type (e.g.~only
+\texttt{StandardPropagatorDenominator} or only
+\texttt{CartesianPropagatorDenominator}).
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{feynampdenominator}{FeynAmpDenominator}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI@SFAD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{]} 
+ 
+\NormalTok{FCLoopSamePropagatorHeadsQ}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(q^2+i \eta ).((q-p)^2+i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominatorCombine}\OperatorTok{[}\NormalTok{CFAD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{]}\NormalTok{ SFAD}\OperatorTok{[}\FunctionTok{l}\OperatorTok{,} \FunctionTok{l} \SpecialCharTok{+} \FunctionTok{k}\OperatorTok{]]} 
+ 
+\NormalTok{FCLoopSamePropagatorHeadsQ}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(q^2-i \eta ).((q-p)^2-i \eta ).(l^2+i \eta ).((k+l)^2+i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+\end{document}

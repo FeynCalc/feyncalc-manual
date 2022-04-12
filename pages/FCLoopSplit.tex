@@ -1,0 +1,65 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopSplit.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopsplit}{%
+\section{FCLoopSplit}\label{fcloopsplit}}
+
+\texttt{FCLoopSplit[\allowbreak{}exp,\ \allowbreak{}\{\allowbreak{}q1,\ \allowbreak{}q2,\ \allowbreak{}...\}]}
+separates \texttt{exp} into the following four pieces:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  terms that are free of loop integrals
+\item
+  terms with scalar loop integrals
+\item
+  terms with tensor loop integrals, where all loop momenta are
+  contracted
+\item
+  terms with tensor loop integrals, where at least some loop momenta
+  have free indices
+\end{enumerate}
+
+The result is returned as a list with the 4 above elements.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]} 
+ 
+\NormalTok{FCLoopSplit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{q^{\mu }}{q^2-m^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left\{0,0,0,\frac{q^{\mu }}{q^2-m^2}\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{x} \SpecialCharTok{+}\NormalTok{ GSD}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{+} \FunctionTok{q}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]} 
+ 
+\NormalTok{FCLoopSplit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\gamma \cdot (p+q)}{q^2-m^2}+x
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left\{x,\frac{\gamma \cdot p}{q^2-m^2},0,\frac{\gamma \cdot q}{q^2-m^2}\right\}
+\end{dmath*}
+\end{document}

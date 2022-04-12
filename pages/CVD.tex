@@ -1,0 +1,60 @@
+% !TeX program = pdflatex
+% !TeX root = CVD.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{cvd}{%
+\section{CVD}\label{cvd}}
+
+\texttt{CVD[\allowbreak{}p,\ \allowbreak{}i]} is a \(D-1\)-dimensional
+Cartesian vector and is transformed into
+\texttt{CartesianPair[\allowbreak{}CartesianMomentum[\allowbreak{}p,\ \allowbreak{}D],\ \allowbreak{}CartesianIndex[\allowbreak{}i,\ \allowbreak{}D]]}
+by \texttt{FeynCalcInternal}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fvd}{FVD}, \hyperlink{pair}{Pair},
+\hyperlink{cartesianpair}{CartesianPair}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p^i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CVD}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(p-q)^i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{CVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*CartesianPair[CartesianIndex[i, {-}1 + D], CartesianMomentum[p, {-}1 + D]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{ExpandScalarProduct} is used to expand momenta in \texttt{CVD}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ExpandScalarProduct}\OperatorTok{[}\NormalTok{CVD}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p^i-q^i
+\end{dmath*}
+\end{document}

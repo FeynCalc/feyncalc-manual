@@ -1,0 +1,54 @@
+% !TeX program = pdflatex
+% !TeX root = DiracSubstitute5.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{diracsubstitute5}{%
+\section{DiracSubstitute5}\label{diracsubstitute5}}
+
+DiracSubstitute5{[}exp{]} rewrites \(\gamma^5\) in terms of the
+chirality projectors \(\gamma^6\) and \(\gamma^7\).
+\texttt{DiracSubstitute5} is also an option of various FeynCalc
+functions that handle Dirac algebra.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{diracsubstitute67}{DiracSubstitute67},
+\hyperlink{diracgamma}{DiracGamma},
+\hyperlink{todiracgamma67}{ToDiracGamma67}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\DecValTok{5}\OperatorTok{]} 
+ 
+\NormalTok{DiracSubstitute5}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^5
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^6-\bar{\gamma }^7
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpinorUBar}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{1}\OperatorTok{]]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . GA}\OperatorTok{[}\DecValTok{5}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ . SpinorU}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{2}\OperatorTok{]]} 
+ 
+\NormalTok{DiracSubstitute5}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{u}\left(p_1\right).\bar{\gamma }^{\mu }.\bar{\gamma }^5.\bar{\gamma }^{\nu }.u\left(p_2\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left(\varphi (\overline{p}_1)\right).\bar{\gamma }^{\mu }.\left(\bar{\gamma }^6-\bar{\gamma }^7\right).\bar{\gamma }^{\nu }.\left(\varphi (\overline{p}_2)\right)
+\end{dmath*}
+\end{document}

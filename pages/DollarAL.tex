@@ -1,0 +1,48 @@
+% !TeX program = pdflatex
+% !TeX root = DollarAL.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{al}{%
+\section{\$AL}\label{al}}
+
+\texttt{\$AL} is the head for dummy indices which may be introduced by
+\texttt{Amputate} and \texttt{Uncontract}. By default it is unset, but
+may be set to anything.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{amputate}{Amputate},
+\hyperlink{uncontract}{Uncontract}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Uncontract}\OperatorTok{[}\NormalTok{ScalarProduct}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{],} \FunctionTok{q}\OperatorTok{,}\NormalTok{ Pair }\OtherTok{{-}\textgreater{}} \ConstantTok{All}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\text{\$AL}(\text{\$19})} \overline{q}^{\text{\$AL}(\text{\$19})}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$AL }\ExtensionTok{=} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]}\NormalTok{; }
+ 
+\NormalTok{Uncontract}\OperatorTok{[}\NormalTok{ScalarProduct}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{],} \FunctionTok{q}\OperatorTok{,}\NormalTok{ Pair }\OtherTok{{-}\textgreater{}} \ConstantTok{All}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\mu (\text{\$20})} \overline{q}^{\mu (\text{\$20})}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$AL }\ExtensionTok{=}\NormalTok{.;}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

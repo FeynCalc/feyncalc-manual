@@ -1,0 +1,39 @@
+% !TeX program = pdflatex
+% !TeX root = SUNDeltaContract.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{sundeltacontract}{%
+\section{SUNDeltaContract}\label{sundeltacontract}}
+
+\texttt{SUNDeltaContract[\allowbreak{}exp]} substitutes for all
+\texttt{SUNDelta} in \texttt{exp} \texttt{SUNDeltaContract}, contracts
+the adjoint \(\text{SU}(N)\) indices and resubstitutes
+\texttt{SUNDelta}.
+\texttt{SUNDeltaContract[\allowbreak{}i,\ \allowbreak{}j]} is the
+Kronecker-delta for \(\text{SU}(N)\) in the adjoint representation with
+contraction properties. It wraps the head SUNIndex around its arguments.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{sundelta}{SUNDelta},
+\hyperlink{sunindex}{SUNIndex}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNDelta}\OperatorTok{[}\NormalTok{SUNIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{],}\NormalTok{ SUNIndex}\OperatorTok{[}\FunctionTok{b}\OperatorTok{]]}\SpecialCharTok{\^{}}\DecValTok{2} 
+ 
+\NormalTok{SUNDeltaContract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\delta ^{ab}\right)^2
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+N^2-1
+\end{dmath*}
+\end{document}

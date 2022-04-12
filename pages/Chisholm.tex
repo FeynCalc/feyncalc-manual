@@ -1,0 +1,200 @@
+% !TeX program = pdflatex
+% !TeX root = Chisholm.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{chisholm}{%
+\section{Chisholm}\label{chisholm}}
+
+\texttt{Chisholm[\allowbreak{}exp]} substitutes products of three Dirac
+matrices or slashes by the Chisholm identity.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]]} 
+ 
+\NormalTok{EpsChisholm}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^{\rho }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^{\rho }
+\end{dmath*}
+
+Notice that the output contains dummy indices.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} 
+ 
+\NormalTok{Chisholm}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\alpha }.\bar{\gamma }^{\beta }.\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+i \bar{\gamma }^{\alpha }.\bar{\gamma }^{\text{\$MU}(\text{\$22})}.\bar{\gamma }^5 \bar{\epsilon }^{\beta \mu \nu \;\text{\$MU}(\text{\$22})}+\bar{\gamma }^{\alpha }.\bar{\gamma }^{\nu } \bar{g}^{\beta \mu }-\bar{\gamma }^{\alpha }.\bar{\gamma }^{\mu } \bar{g}^{\beta \nu }+\bar{\gamma }^{\alpha }.\bar{\gamma }^{\beta } \bar{g}^{\mu \nu }
+\end{dmath*}
+
+Dummy Lorentz indices may also appear as FCGV.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpinorVBar}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ . SpinorU}\OperatorTok{[}\NormalTok{p2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{]} 
+ 
+\NormalTok{Chisholm}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{v}(\text{p1},\text{m1}).\bar{\gamma }^{\alpha }.\bar{\gamma }^{\beta }.\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.u(\text{p2},\text{m2})
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+i \bar{\epsilon }^{\beta \mu \nu \;\text{\$MU}(\text{\$31})} \left(\varphi (-\overline{\text{p1}},\text{m1})\right).\bar{\gamma }^{\alpha }.\bar{\gamma }^{\text{\$MU}(\text{\$31})}.\bar{\gamma }^5.\left(\varphi (\overline{\text{p2}},\text{m2})\right)+\bar{g}^{\beta \mu } \left(\varphi (-\overline{\text{p1}},\text{m1})\right).\bar{\gamma }^{\alpha }.\bar{\gamma }^{\nu }.\left(\varphi (\overline{\text{p2}},\text{m2})\right)-\bar{g}^{\beta \nu } \left(\varphi (-\overline{\text{p1}},\text{m1})\right).\bar{\gamma }^{\alpha }.\bar{\gamma }^{\mu }.\left(\varphi (\overline{\text{p2}},\text{m2})\right)+\bar{g}^{\mu \nu } \left(\varphi (-\overline{\text{p1}},\text{m1})\right).\bar{\gamma }^{\alpha }.\bar{\gamma }^{\beta }.\left(\varphi (\overline{\text{p2}},\text{m2})\right)
+\end{dmath*}
+
+Chisholm only works with Dirac matrices in \(4\) dimensions,
+\(D\)-dimensional objects are ignored.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Chisholm}\OperatorTok{[}\NormalTok{GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\gamma ^{\mu }.\gamma ^{\nu }.\gamma ^{\rho }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Chisholm}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]}\NormalTok{ . Chisholm}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]} 
+ 
+\NormalTok{DiracSimplify}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(i \bar{\gamma }^{\text{\$MU}(\text{\$58})}.\bar{\gamma }^5 \bar{\epsilon }^{\alpha \beta \mu \;\text{\$MU}(\text{\$58})}+\bar{\gamma }^{\mu } \bar{g}^{\alpha \beta }-\bar{\gamma }^{\beta } \bar{g}^{\alpha \mu }+\bar{\gamma }^{\alpha } \bar{g}^{\beta \mu }\right).\left(i \bar{\gamma }^{\text{\$MU}(\text{\$67})}.\bar{\gamma }^5 \bar{\epsilon }^{\alpha \beta \mu \;\text{\$MU}(\text{\$67})}+\bar{\gamma }^{\mu } \bar{g}^{\alpha \beta }-\bar{\gamma }^{\beta } \bar{g}^{\alpha \mu }+\bar{\gamma }^{\alpha } \bar{g}^{\beta \mu }\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+16
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Chisholm}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]]}\NormalTok{ . Chisholm}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]]} 
+ 
+\NormalTok{DiracSimplify}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(i \bar{\gamma }^{\alpha }.\bar{\gamma }^{\text{\$MU}(\text{\$81})}.\bar{\gamma }^5 \bar{\epsilon }^{\beta \mu \nu \;\text{\$MU}(\text{\$81})}+\bar{\gamma }^{\alpha }.\bar{\gamma }^{\nu } \bar{g}^{\beta \mu }-\bar{\gamma }^{\alpha }.\bar{\gamma }^{\mu } \bar{g}^{\beta \nu }+\bar{\gamma }^{\alpha }.\bar{\gamma }^{\beta } \bar{g}^{\mu \nu }\right).\left(i \bar{\gamma }^{\alpha }.\bar{\gamma }^{\text{\$MU}(\text{\$90})}.\bar{\gamma }^5 \bar{\epsilon }^{\beta \mu \nu \;\text{\$MU}(\text{\$90})}+\bar{\gamma }^{\alpha }.\bar{\gamma }^{\nu } \bar{g}^{\beta \mu }-\bar{\gamma }^{\alpha }.\bar{\gamma }^{\mu } \bar{g}^{\beta \nu }+\bar{\gamma }^{\alpha }.\bar{\gamma }^{\beta } \bar{g}^{\mu \nu }\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-128
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,} \FunctionTok{r}\OperatorTok{]} 
+ 
+\NormalTok{Chisholm}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }\cdot \overline{p}\right).\left(\bar{\gamma }\cdot \overline{q}\right).\left(\bar{\gamma }\cdot \overline{r}\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-i \bar{\gamma }^{\text{\$MU}(\text{\$116})}.\bar{\gamma }^5 \bar{\epsilon }^{\text{\$MU}(\text{\$116})\overline{p}\overline{q}\overline{r}}+\left(\overline{p}\cdot \overline{q}\right) \bar{\gamma }\cdot \overline{r}-\left(\overline{p}\cdot \overline{r}\right) \bar{\gamma }\cdot \overline{q}+\bar{\gamma }\cdot \overline{p} \left(\overline{q}\cdot \overline{r}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Tau}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Kappa}\OperatorTok{]]} 
+ 
+\NormalTok{Chisholm}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^{\rho }.\bar{\gamma }^{\sigma }.\bar{\gamma }^{\tau }.\bar{\gamma }^{\kappa }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+i \bar{g}^{\nu \rho } \bar{\gamma }^{\mu }.\bar{\gamma }^{\text{\$MU}(\text{\$125})}.\bar{\gamma }^5 \bar{\epsilon }^{\kappa \sigma \tau \;\text{\$MU}(\text{\$125})}-i \bar{g}^{\kappa \sigma } \bar{\gamma }^{\mu }.\bar{\gamma }^{\text{\$MU}(\text{\$127})}.\bar{\gamma }^5 \bar{\epsilon }^{\nu \rho \tau \;\text{\$MU}(\text{\$127})}+i \bar{g}^{\kappa \tau } \bar{\gamma }^{\mu }.\bar{\gamma }^{\text{\$MU}(\text{\$128})}.\bar{\gamma }^5 \bar{\epsilon }^{\nu \rho \sigma \;\text{\$MU}(\text{\$128})}+i \bar{g}^{\sigma \tau } \bar{\gamma }^{\mu }.\bar{\gamma }^{\text{\$MU}(\text{\$129})}.\bar{\gamma }^5 \bar{\epsilon }^{\kappa \nu \rho \;\text{\$MU}(\text{\$129})}-i \bar{\gamma }^{\mu }.\bar{\gamma }^{\rho }.\bar{\gamma }^5 \bar{\epsilon }^{\kappa \nu \sigma \tau }+i \bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^5 \bar{\epsilon }^{\kappa \rho \sigma \tau }-\bar{\gamma }^{\mu }.\bar{\gamma }^{\tau } \bar{g}^{\kappa \sigma } \bar{g}^{\nu \rho }+\bar{\gamma }^{\mu }.\bar{\gamma }^{\sigma } \bar{g}^{\kappa \tau } \bar{g}^{\nu \rho }+\bar{\gamma }^{\mu }.\bar{\gamma }^{\tau } \bar{g}^{\kappa \rho } \bar{g}^{\nu \sigma }-\bar{\gamma }^{\mu }.\bar{\gamma }^{\rho } \bar{g}^{\kappa \tau } \bar{g}^{\nu \sigma }-\bar{\gamma }^{\mu }.\bar{\gamma }^{\sigma } \bar{g}^{\kappa \rho } \bar{g}^{\nu \tau }+\bar{\gamma }^{\mu }.\bar{\gamma }^{\rho } \bar{g}^{\kappa \sigma } \bar{g}^{\nu \tau }-\bar{\gamma }^{\mu }.\bar{\gamma }^{\tau } \bar{g}^{\kappa \nu } \bar{g}^{\rho \sigma }+\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu } \bar{g}^{\kappa \tau } \bar{g}^{\rho \sigma }+\bar{\gamma }^{\mu }.\bar{\gamma }^{\kappa } \bar{g}^{\nu \tau } \bar{g}^{\rho \sigma }+\bar{\gamma }^{\mu }.\bar{\gamma }^{\sigma } \bar{g}^{\kappa \nu } \bar{g}^{\rho \tau }-\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu } \bar{g}^{\kappa \sigma } \bar{g}^{\rho \tau }-\bar{\gamma }^{\mu }.\bar{\gamma }^{\kappa } \bar{g}^{\nu \sigma } \bar{g}^{\rho \tau }-\bar{\gamma }^{\mu }.\bar{\gamma }^{\rho } \bar{g}^{\kappa \nu } \bar{g}^{\sigma \tau }+\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu } \bar{g}^{\kappa \rho } \bar{g}^{\sigma \tau }+\bar{\gamma }^{\mu }.\bar{\gamma }^{\kappa } \bar{g}^{\nu \rho } \bar{g}^{\sigma \tau }
+\end{dmath*}
+
+Check the equality of the expressions before and after applying
+\texttt{Chisholm}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracSimplify}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Tau}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Kappa}\OperatorTok{]]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Tau}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Kappa}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-2048
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracSimplify}\OperatorTok{[}\NormalTok{Chisholm}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Tau}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Kappa}\OperatorTok{]]]}\NormalTok{ . Chisholm}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Tau}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Kappa}\OperatorTok{]]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-2048
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracReduce}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Tau}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Kappa}\OperatorTok{]]}\NormalTok{ . Chisholm}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Tau}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Kappa}\OperatorTok{]]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-2048
+\end{dmath*}
+
+Older FeynCalc versions had a function called \texttt{Chisholm2} that
+acted on expressions like \(\gamma^{\mu} \gamma^{\nu} \gamma^5\). This
+functionality is now part of \texttt{Chisholm} and can be activated by
+setting the option \texttt{Mode} to \texttt{2}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \DecValTok{5}\OperatorTok{]} 
+ 
+\NormalTok{Chisholm}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ Mode }\OtherTok{{-}\textgreater{}} \DecValTok{2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^5
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} \sigma ^{\text{\$MU}(\text{\$1022})\text{\$MU}(\text{\$1023})} \bar{\epsilon }^{\mu \nu \;\text{\$MU}(\text{\$1022})\text{\$MU}(\text{\$1023})}+\bar{\gamma }^5 \bar{g}^{\mu \nu }
+\end{dmath*}
+\end{document}

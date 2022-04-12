@@ -1,0 +1,82 @@
+% !TeX program = pdflatex
+% !TeX root = FeynCalcInternal.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{feyncalcinternal}{%
+\section{FeynCalcInternal}\label{feyncalcinternal}}
+
+\texttt{FeynCalcInternal[\allowbreak{}exp]} translates \texttt{exp} into
+the internal FeynCalc (abstract data-type) representation.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{feyncalcexternal}{FeynCalcExternal}, \hyperlink{fci}{FCI},
+\hyperlink{fce}{FCE}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=} \OperatorTok{\{}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],}\NormalTok{ GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]],}\NormalTok{ GS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],}\NormalTok{ SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{],}\NormalTok{ MT}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{]],}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\bar{\gamma }^{\mu },\gamma ^{\rho },\bar{\gamma }\cdot \overline{p},\overline{p}\cdot \overline{q},\bar{g}^{\alpha \beta },\overline{p}^{\mu }\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*\{GA[\textbackslash{}[Mu]], GAD[\textbackslash{}[Rho]], GS[p], SP[p, q], MT[\textbackslash{}[Alpha], \textbackslash{}[Beta]], FV[p, \textbackslash{}[Mu]]\}*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//}\NormalTok{ FeynCalcInternal}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\bar{\gamma }^{\mu },\gamma ^{\rho },\bar{\gamma }\cdot \overline{p},\overline{p}\cdot \overline{q},\bar{g}^{\alpha \beta },\overline{p}^{\mu }\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*\{GA[\textbackslash{}[Mu]], GAD[\textbackslash{}[Rho]], GS[p], SP[p, q], MT[\textbackslash{}[Alpha], \textbackslash{}[Beta]], FV[p, \textbackslash{}[Mu]]\}*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynCalcExternal}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*\{GA[\textbackslash{}[Mu]], GAD[\textbackslash{}[Rho]], GS[p], SP[p, q], MT[\textbackslash{}[Alpha], \textbackslash{}[Beta]], FV[p, \textbackslash{}[Mu]]\}*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ FCI}\OperatorTok{[\{}\NormalTok{SD}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{],}\NormalTok{ SUND}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{],}\NormalTok{ SUNF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{],}\NormalTok{ FAD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{],}\NormalTok{ LC}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\delta ^{ab},d^{abc},f^{abc},\frac{1}{q^2},\bar{\epsilon }^{\mu \nu \rho \sigma }\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*\{SUNDelta[SUNIndex[a], SUNIndex[b]], SUND[SUNIndex[a], SUNIndex[b], SUNIndex[c]], SUNF[SUNIndex[a], SUNIndex[b], SUNIndex[c]], FeynAmpDenominator[PropagatorDenominator[Momentum[q, D], 0]], Eps[LorentzIndex[\textbackslash{}[Mu]], LorentzIndex[\textbackslash{}[Nu]], LorentzIndex[\textbackslash{}[Rho]], LorentzIndex[\textbackslash{}[Sigma]]]\}*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

@@ -1,0 +1,44 @@
+% !TeX program = pdflatex
+% !TeX root = FeynAmpDenominatorExplicit.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{feynampdenominatorexplicit}{%
+\section{FeynAmpDenominatorExplicit}\label{feynampdenominatorexplicit}}
+
+\texttt{FeynAmpDenominatorExplicit[\allowbreak{}exp]} changes each
+occurence of
+\texttt{PropagatorDenominator[\allowbreak{}a,\ \allowbreak{}b]} in exp
+into \texttt{1/(SPD[\allowbreak{}a,\ \allowbreak{}a]-b^2)} and replaces
+\texttt{FeynAmpDenominator} by \texttt{Identity}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{feynampdenominator}{FeynAmpDenominator},
+\hyperlink{propagatordenominator}{PropagatorDenominator}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}]} 
+ 
+\NormalTok{FeynAmpDenominatorExplicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ FCE }\SpecialCharTok{//} \FunctionTok{StandardForm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\left(q^2-m^2\right).(q-p)^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\left(q^2-m^2\right) \left(-2 (p\cdot q)+p^2+q^2\right)}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\left(-m^2+\text{SPD}[q,q]\right) (\text{SPD}[p,p]-2 \;\text{SPD}[p,q]+\text{SPD}[q,q])}
+\end{dmath*}
+\end{document}

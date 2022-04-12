@@ -1,0 +1,45 @@
+% !TeX program = pdflatex
+% !TeX root = Li2.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{li2}{%
+\section{Li2}\label{li2}}
+
+\texttt{Li2} is an abbreviation for the dilogarithm function,
+i.e.~\texttt{Li2 = PolyLog[\allowbreak{}2,\ \allowbreak{}\#{}\allowbreak{}]\&{}\allowbreak{}}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{li3}{Li3}, \hyperlink{li4}{Li4}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Li2}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{Li}_2(x)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Li2 }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*PolyLog[2, \#1] \&*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Integrate}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{Log}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]}\SpecialCharTok{/}\FunctionTok{x}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{Li}_2(x)
+\end{dmath*}
+\end{document}

@@ -1,0 +1,27 @@
+% !TeX program = pdflatex
+% !TeX root = MLimit.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{mlimit}{%
+\section{MLimit}\label{mlimit}}
+
+\texttt{MLimit[\allowbreak{}expr,\ \allowbreak{}lims]} takes multiple
+limits of \texttt{expr} using the limits \texttt{lims}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MLimit}\OperatorTok{[}\FunctionTok{y} \FunctionTok{Log}\OperatorTok{[}\FunctionTok{y}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{Sin}\OperatorTok{[}\FunctionTok{x} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{]}\SpecialCharTok{/}\NormalTok{(}\FunctionTok{x} \SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{x} \OtherTok{{-}\textgreater{}} \DecValTok{1}\OperatorTok{,} \FunctionTok{y} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+1
+\end{dmath*}
+\end{document}

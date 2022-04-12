@@ -1,0 +1,149 @@
+% !TeX program = pdflatex
+% !TeX root = Write2.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{write2}{%
+\section{Write2}\label{write2}}
+
+\texttt{Write2[\allowbreak{}file,\ \allowbreak{}val1 = expr1,\ \allowbreak{}val2 = expr2,\ \allowbreak{}...]}
+writes the settings \texttt{val1 = expr1,\ \allowbreak{}val2 = expr2} in
+sequence followed by a newline, to the specified output file. Setting
+the option \texttt{FormatType} of \texttt{Write2} to
+\texttt{FortranForm} results in Fortran syntax output.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{isolate}{Isolate},
+\hyperlink{pavereduce}{PaVeReduce}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{FullForm}\OperatorTok{[}\NormalTok{$FortranContinuationCharacter}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\&
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t} \ExtensionTok{=} \FunctionTok{Collect}\OperatorTok{[}\NormalTok{((}\FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{c}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ (}\FunctionTok{a} \SpecialCharTok{{-}} \FunctionTok{b}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \FunctionTok{a}\OperatorTok{,} \FunctionTok{Factor}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+4 a^4-8 a^3 (b+c)+8 a^2 \left(b^2+b c+c^2\right)-4 a (b+c) \left(b^2+c^2\right)+\left(b^2+c^2\right)^2
+\end{dmath*}
+
+This writes the assignment r=t to a file.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tempfilename }\ExtensionTok{=} \FunctionTok{ToString}\OperatorTok{[}\VariableTok{$SessionID}\OperatorTok{]}\NormalTok{ \textless{}\textgreater{} }\StringTok{".s"}\NormalTok{; }
+ 
+\NormalTok{Write2}\OperatorTok{[}\NormalTok{tempfilename}\OperatorTok{,} \FunctionTok{r} \ExtensionTok{=} \FunctionTok{t}\OperatorTok{]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+This shows the contents of the file.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{TableForm}\OperatorTok{[}\FunctionTok{ReadList}\OperatorTok{[}\FunctionTok{If}\OperatorTok{[}\VariableTok{$OperatingSystem} \ExtensionTok{===} \StringTok{"MacOS"}\OperatorTok{,} \StringTok{":"}\OperatorTok{,} \StringTok{""}\OperatorTok{]}\NormalTok{ \textless{}\textgreater{} tempfilename}\OperatorTok{,} \FunctionTok{String}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\begin{array}{l}
+ \;\text{r = ( 4*a${}^{\wedge}$4 - 8*a${}^{\wedge}$3*(b + c) - 4*a*(b + c)*(b${}^{\wedge}$2 + c${}^{\wedge}$2) + } \\
+ \;\text{ (b${}^{\wedge}$2 + c${}^{\wedge}$2)${}^{\wedge}$2 + 8*a${}^{\wedge}$2*(b${}^{\wedge}$2 + b*c + c${}^{\wedge}$2)} \\
+ \;\text{       );} \\
+\end{array}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{DeleteFile}\OperatorTok{[}\FunctionTok{If}\OperatorTok{[}\VariableTok{$OperatingSystem} \ExtensionTok{===} \StringTok{"MacOS"}\OperatorTok{,} \StringTok{":"}\OperatorTok{,} \StringTok{""}\OperatorTok{]}\NormalTok{ \textless{}\textgreater{} tempfilename}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{t2 }\ExtensionTok{=} \FunctionTok{x} \SpecialCharTok{+}\NormalTok{ Isolate}\OperatorTok{[}\FunctionTok{t}\OperatorTok{,} \FunctionTok{a}\OperatorTok{,}\NormalTok{ IsolateNames }\OtherTok{{-}\textgreater{}} \FunctionTok{w}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+4 a^4-8 a^3 w(19)+8 a^2 w(21)-4 a w(19) w(20)+w(20)^2+x
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Write2}\OperatorTok{[}\NormalTok{tempfilename}\OperatorTok{,} \FunctionTok{r} \ExtensionTok{=}\NormalTok{ t2}\OperatorTok{]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{TableForm}\OperatorTok{[}\FunctionTok{ReadList}\OperatorTok{[}\FunctionTok{If}\OperatorTok{[}\VariableTok{$OperatingSystem} \ExtensionTok{===} \StringTok{"MacOS"}\OperatorTok{,} \StringTok{":"}\OperatorTok{,} \StringTok{""}\OperatorTok{]}\NormalTok{ \textless{}\textgreater{} tempfilename}\OperatorTok{,} \FunctionTok{String}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\begin{array}{l}
+ \;\text{w[19] = (b + c} \\
+ \;\text{       );} \\
+ \;\text{w[20] = (b${}^{\wedge}$2 + c${}^{\wedge}$2} \\
+ \;\text{       );} \\
+ \;\text{w[21] = (b${}^{\wedge}$2 + b*c + c${}^{\wedge}$2} \\
+ \;\text{       );} \\
+ \;\text{r = ( 4*a${}^{\wedge}$4 + x - 8*a${}^{\wedge}$3*HoldForm[w[19]] - 4*a*HoldForm[w[19]]*} \\
+ \;\text{  HoldForm[w[20]] + HoldForm[w[20]]${}^{\wedge}$2 + 8*a${}^{\wedge}$2*HoldForm[w[21]]} \\
+ \;\text{       );} \\
+\end{array}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{DeleteFile}\OperatorTok{[}\FunctionTok{If}\OperatorTok{[}\VariableTok{$OperatingSystem} \ExtensionTok{===} \StringTok{"MacOS"}\OperatorTok{,} \StringTok{":"}\OperatorTok{,} \StringTok{""}\OperatorTok{]}\NormalTok{ \textless{}\textgreater{} tempfilename}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+This is how to write out the expression \texttt{t2} in Fortran format.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Write2}\OperatorTok{[}\NormalTok{tempfilename}\OperatorTok{,} \FunctionTok{r} \ExtensionTok{=}\NormalTok{ t2}\OperatorTok{,} \FunctionTok{FormatType} \OtherTok{{-}\textgreater{}} \FunctionTok{FortranForm}\OperatorTok{]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{TableForm}\OperatorTok{[}\FunctionTok{ReadList}\OperatorTok{[}\FunctionTok{If}\OperatorTok{[}\VariableTok{$OperatingSystem} \ExtensionTok{===} \StringTok{"MacOS"}\OperatorTok{,} \StringTok{":"}\OperatorTok{,} \StringTok{""}\OperatorTok{]}\NormalTok{ \textless{}\textgreater{} tempfilename}\OperatorTok{,} \FunctionTok{String}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\begin{array}{l}
+ \;\text{        w(19)= b + c} \\
+ \;\text{        w(20)= b**2 + c**2} \\
+ \;\text{        w(21)= b**2 + b*c + c**2} \\
+ \;\text{        r = x + a**4*4D0 - a**3*8D0*w(19) - a*4D0*w(19)*w(20) + } \\
+ \;\text{     $\&$  w(20)**2 + a**2*8D0*w(21)} \\
+ \;\text{                  } \\
+\end{array}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{DeleteFile}\OperatorTok{[}\FunctionTok{If}\OperatorTok{[}\VariableTok{$OperatingSystem} \ExtensionTok{===} \StringTok{"MacOS"}\OperatorTok{,} \StringTok{":"}\OperatorTok{,} \StringTok{""}\OperatorTok{]}\NormalTok{ \textless{}\textgreater{} tempfilename}\OperatorTok{]}\NormalTok{; }
+ 
+\FunctionTok{Clear}\OperatorTok{[}\FunctionTok{w}\OperatorTok{,} \FunctionTok{t}\OperatorTok{,}\NormalTok{ t2}\OperatorTok{,} \FunctionTok{r}\OperatorTok{,}\NormalTok{ tempfilename}\OperatorTok{]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

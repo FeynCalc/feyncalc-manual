@@ -1,0 +1,62 @@
+% !TeX program = pdflatex
+% !TeX root = PauliOrder.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{pauliorder}{%
+\section{PauliOrder}\label{pauliorder}}
+
+\texttt{PauliOrder[\allowbreak{}exp]} orders the Pauli matrices in
+\texttt{expr} alphabetically.
+
+\texttt{PauliOrder[\allowbreak{}exp,\ \allowbreak{}orderlist]} orders
+the Pauli matrices in expr according to \texttt{orderlist}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CSI}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]} 
+ 
+\NormalTok{PauliOrder}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{\sigma }^k.\overline{\sigma }^j.\overline{\sigma }^i
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+2 \overline{\sigma }^i \bar{\delta }^{jk}-2 \overline{\sigma }^j \bar{\delta }^{ik}+2 \overline{\sigma }^k \bar{\delta }^{ij}-\overline{\sigma }^i.\overline{\sigma }^j.\overline{\sigma }^k
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CSID}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]} 
+ 
+\NormalTok{PauliOrder}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\sigma ^i.\sigma ^j.\sigma ^k
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\sigma ^i.\sigma ^j.\sigma ^k
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliOrder}\OperatorTok{[}\SpecialCharTok{\%\%}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{j}\OperatorTok{,} \FunctionTok{i}\OperatorTok{,} \FunctionTok{k}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+2 \sigma ^k \delta ^{ij}-\sigma ^j.\sigma ^i.\sigma ^k
+\end{dmath*}
+\end{document}

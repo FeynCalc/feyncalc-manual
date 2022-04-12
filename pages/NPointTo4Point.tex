@@ -1,0 +1,52 @@
+% !TeX program = pdflatex
+% !TeX root = NPointTo4Point.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{npointto4point}{%
+\section{NPointTo4Point}\label{npointto4point}}
+
+\texttt{NPointTo4Point[\allowbreak{}expr,\ \allowbreak{}q]} reduces
+scalar IR finite 5-point functions to scalar 4-point functions according
+to Eq. 4.52 in \href{https://arxiv.org/abs/0709.1075}{arXiv:0709.1075}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{pavereduce}{PaVeReduce}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClearScalarProducts}\OperatorTok{[]} 
+ 
+\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{]} \ExtensionTok{=} \DecValTok{0}\NormalTok{; }
+ 
+\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p4}\OperatorTok{]} \ExtensionTok{=} \DecValTok{0}\NormalTok{; }
+ 
+\NormalTok{SPD}\OperatorTok{[}\NormalTok{p3}\OperatorTok{,}\NormalTok{ p4}\OperatorTok{]} \ExtensionTok{=} \DecValTok{0}\NormalTok{; }
+ 
+\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{]} \ExtensionTok{=} \DecValTok{0}\NormalTok{; }
+ 
+\NormalTok{SPD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{,}\NormalTok{ p4}\OperatorTok{]} \ExtensionTok{=} \DecValTok{0}\NormalTok{; }
+ 
+\NormalTok{int }\ExtensionTok{=}\NormalTok{ FCI}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,}\NormalTok{ m0}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{+}\NormalTok{ p1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{+}\NormalTok{ p2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{+}\NormalTok{ p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{+}\NormalTok{ p4}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\left(q^2-\text{m0}^2\right).(\text{p1}+q)^2.(\text{p2}+q)^2.(\text{p3}+q)^2.(\text{p4}+q)^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{NPointTo4Point}\OperatorTok{[}\NormalTok{int}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,}\NormalTok{ FCE }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,}\NormalTok{ FCVerbose }\OtherTok{{-}\textgreater{}} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{]} 
+ 
+\NormalTok{FCClearScalarProducts}\OperatorTok{[]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\frac{8 \;\text{m0}^2 \;\text{p2}^2 \;\text{p4}^2 (\text{p1}\cdot \;\text{p3})}{\left(q^2-\text{m0}^2\right).(\text{p1}+q)^2.(\text{p2}+q)^2.(\text{p4}+q)^2}+\frac{8 \;\text{p4}^2 (\text{p1}\cdot \;\text{p3}) \left(\text{m0}^2 (\text{p1}\cdot \;\text{p3})-\text{m0}^2 (\text{p2}\cdot \;\text{p3})+\text{p2}^2 (\text{p1}\cdot \;\text{p3})\right)}{\left(q^2-\text{m0}^2\right).(\text{p1}+q)^2.(\text{p3}+q)^2.(\text{p4}+q)^2}+\frac{8 \;\text{p4}^2 \left(\text{m0}^2 \;\text{p2}^2 (\text{p1}\cdot \;\text{p3})-\text{m0}^2 (\text{p1}\cdot \;\text{p3}) (\text{p2}\cdot \;\text{p3})-\text{m0}^2 \;\text{p2}^2 \;\text{p3}^2+\text{m0}^2 (\text{p2}\cdot \;\text{p3})^2-\text{p2}^2 (\text{p1}\cdot \;\text{p3}) (\text{p2}\cdot \;\text{p3})+\text{p2}^2 \;\text{p3}^2 (\text{p1}\cdot \;\text{p3})\right)}{\left(q^2-\text{m0}^2\right).(\text{p2}+q)^2.(\text{p3}+q)^2.(\text{p4}+q)^2}+\frac{8 \;\text{p2}^2 \left(\text{m0}^2+\text{p4}^2\right) (\text{p1}\cdot \;\text{p3})^2}{\left(q^2-\text{m0}^2\right).(\text{p1}+q)^2.(\text{p2}+q)^2.(\text{p3}+q)^2}-\left(8 \left(2 \;\text{m0}^2 \;\text{p2}^2 \;\text{p4}^2 (\text{p1}\cdot \;\text{p3})-2 \;\text{m0}^2 \;\text{p4}^2 (\text{p1}\cdot \;\text{p3}) (\text{p2}\cdot \;\text{p3})+\text{m0}^2 \;\text{p2}^2 (\text{p1}\cdot \;\text{p3})^2+\text{m0}^2 \;\text{p4}^2 (\text{p1}\cdot \;\text{p3})^2-\text{m0}^2 \;\text{p2}^2 \;\text{p3}^2 \;\text{p4}^2+\text{m0}^2 \;\text{p4}^2 (\text{p2}\cdot \;\text{p3})^2-\text{p2}^2 \;\text{p4}^2 (\text{p1}\cdot \;\text{p3}) (\text{p2}\cdot \;\text{p3})+\text{p2}^2 \;\text{p3}^2 \;\text{p4}^2 (\text{p1}\cdot \;\text{p3})\right)\right)/(\text{p1}+q)^2.(\text{p2}+q)^2.(\text{p3}+q)^2.(\text{p4}+q)^2\right)/\left(16 \;\text{m0}^4 \;\text{p2}^2 \;\text{p4}^2 (\text{p1}\cdot \;\text{p3})-16 \;\text{m0}^4 \;\text{p4}^2 (\text{p1}\cdot \;\text{p3}) (\text{p2}\cdot \;\text{p3})+8 \;\text{m0}^4 \;\text{p2}^2 (\text{p1}\cdot \;\text{p3})^2+8 \;\text{m0}^4 \;\text{p4}^2 (\text{p1}\cdot \;\text{p3})^2-8 \;\text{m0}^4 \;\text{p2}^2 \;\text{p3}^2 \;\text{p4}^2+8 \;\text{m0}^4 \;\text{p4}^2 (\text{p2}\cdot \;\text{p3})^2-16 \;\text{m0}^2 \;\text{p2}^2 \;\text{p4}^2 (\text{p1}\cdot \;\text{p3}) (\text{p2}\cdot \;\text{p3})+16 \;\text{m0}^2 \;\text{p2}^2 \;\text{p3}^2 \;\text{p4}^2 (\text{p1}\cdot \;\text{p3})+8 \;\text{p2}^2 \;\text{p4}^4 (\text{p1}\cdot \;\text{p3})^2+8 \;\text{p2}^4 \;\text{p4}^2 (\text{p1}\cdot \;\text{p3})^2\right)
+\end{dmath*}
+\end{document}

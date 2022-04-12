@@ -1,0 +1,127 @@
+% !TeX program = pdflatex
+% !TeX root = FORM2FeynCalc.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{form2feyncalc}{%
+\section{FORM2FeynCalc}\label{form2feyncalc}}
+
+\texttt{FORM2FeynCalc[\allowbreak{}exp]} translates the FORM expression
+\texttt{exp} into FeynCalc notation.
+
+\texttt{FORM2FeynCalc[\allowbreak{}file]} translates the FORM
+expressions in \texttt{file} into FeynCalc notation.
+
+\texttt{FORM2FeynCalc[\allowbreak{}file,\ \allowbreak{}x1,\ \allowbreak{}x2,\ \allowbreak{}...]}
+reads in a file in FORM-format and translates the assignments for the
+variables \(a, b, \ldots\) into FeynCalc syntax.
+
+If the option \texttt{Set} is \texttt{True}, the variables \texttt{x1},
+\texttt{x2} are assigned to the right hand sides defined in the
+FORM-file.The capabilities of this function are very limited, so that
+you should not expect it to easily handle large and complicated
+expressions.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{feyncalc2form}{FeynCalc2FORM}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FORM2FeynCalc}\OperatorTok{[}\StringTok{"p.q + 2*x m\^{}2"}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot \overline{q}+2 m^2.x
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FORM2FeynCalc}\OperatorTok{[}\StringTok{"p.q + 2*x m\^{}2"}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*2 x . m\^{}2 + SP[p, q]*)}
+\end{Highlighting}
+\end{Shaded}
+
+Functions are automatically converted in a proper way, but bracketed
+expressions need to be substituted explicitly.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FORM2FeynCalc}\OperatorTok{[}\StringTok{"x +f(z)+ log(x)\^{}2+[li2(1{-}x)]"}\OperatorTok{,} \FunctionTok{Replace} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\StringTok{"[li2(1{-}x)]"} \OtherTok{{-}\textgreater{}} \StringTok{"PolyLog[2,1{-}x]"}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f(z)+\text{Li}_2(1-x)+x+\log ^2(x)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FORM2FeynCalc}\OperatorTok{[}\StringTok{"x +f(z)+ log(x)\^{}2+[li2(1{-}x)]"}\OperatorTok{,} \FunctionTok{Replace} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\StringTok{"[li2(1{-}x)]"} \OtherTok{{-}\textgreater{}} \StringTok{"PolyLog[2,1{-}x]"}\OperatorTok{\}]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*x + f[z] + Log[x]\^{}2 + PolyLog[2, 1 {-} x]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FORM2FeynCalc}\OperatorTok{[}\StringTok{"x + [(1)]*y {-}[({-}1)\^{}m]"}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\text{Hold}\left[(-1)^m\right]+\text{Hold}[1].y+x
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ReleaseHold}\OperatorTok{[}\NormalTok{FORM2FeynCalc}\OperatorTok{[}\StringTok{"x + [(1)]*y {-}[({-}1)\^{}m]"}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-(-1)^m+x+1.y
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FORM2FeynCalc}\OperatorTok{[}\StringTok{"p(mu)*q(nu)+d\_(mu,nu)"}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{g}^{\text{mu}\;\text{nu}}+p(\text{mu}).q(\text{nu})
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FORM2FeynCalc}\OperatorTok{[}\StringTok{"p(mu)*q(nu)+d\_(mu,nu)"}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*p[mu] . q[nu] + MT[mu, nu]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FORM2FeynCalc}\OperatorTok{[}\StringTok{"p(mu)*q(nu)+d\_(mu,nu)"}\OperatorTok{,} \FunctionTok{Replace} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{mu }\OtherTok{{-}\textgreater{}} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],}\NormalTok{ nu }\OtherTok{{-}\textgreater{}} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{g}^{\mu \nu }+p(\mu ).q(\nu )
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FORM2FeynCalc}\OperatorTok{[}\StringTok{"i\_*az*bz*aM\^{}2*D1*[(1)]*b\_G1 * ( 4*eperp(mu,nu)*avec.bvec*blam )"}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(4 i).\text{az}.\text{bz}.\text{aM}^2.\text{D1}.\text{Hold}[1].\text{b\$G1}.\text{eperp}(\text{mu},\text{nu}).\left(\overline{\text{avec}}\cdot \overline{\text{bvec}}\right).\text{blam}
+\end{dmath*}
+\end{document}

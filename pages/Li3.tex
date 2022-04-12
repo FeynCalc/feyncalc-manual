@@ -1,0 +1,55 @@
+% !TeX program = pdflatex
+% !TeX root = Li3.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{li3}{%
+\section{Li3}\label{li3}}
+
+\texttt{Li3} is an abbreviation for the trilogarithm function,
+i.e.~\texttt{Li3 = PolyLog[\allowbreak{}3,\ \allowbreak{}\#{}\allowbreak{}]\&{}\allowbreak{}}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{li2}{Li2}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Li3}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{Li}_3(x)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Li3 }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*PolyLog[3, \#1] \&*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{D}\OperatorTok{[}\NormalTok{Li3}\OperatorTok{[}\FunctionTok{x}\OperatorTok{],} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\text{Li}_2(x)}{x}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Integrate}\OperatorTok{[}\NormalTok{Li3}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]}\SpecialCharTok{/}\FunctionTok{x}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{Li}_4(x)
+\end{dmath*}
+\end{document}

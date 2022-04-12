@@ -1,0 +1,103 @@
+% !TeX program = pdflatex
+% !TeX root = CompleteSquare.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{completesquare}{%
+\section{CompleteSquare}\label{completesquare}}
+
+\texttt{CompleteSquarep[\allowbreak{}exp,\ \allowbreak{}x]} completes
+the square of a second order polynomial in the momentum x.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{expandscalarproduct}{ExpandScalarProduct}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CompleteSquare}\OperatorTok{[}\DecValTok{4}\NormalTok{ SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ SP}\OperatorTok{[}\FunctionTok{b}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{c}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+4 (\frac{\overline{b}}{8}+\overline{p})^2-\frac{\overline{b}^2}{16}+c
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CompleteSquare}\OperatorTok{[}\DecValTok{4}\NormalTok{ SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ SP}\OperatorTok{[}\FunctionTok{b}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{c}\OperatorTok{,} \FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{-\frac{\overline{b}^2}{16}+4 \overline{q}^2+c,\overline{q}\to \frac{\overline{b}}{8}+\overline{p}\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex1 }\ExtensionTok{=} \DecValTok{5}\NormalTok{ SP}\OperatorTok{[}\DecValTok{2} \FunctionTok{p} \SpecialCharTok{+} \DecValTok{3} \FunctionTok{r}\OperatorTok{,} \FunctionTok{p} \SpecialCharTok{+} \FunctionTok{r}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+5 \left((\overline{p}+\overline{r})\cdot (2 \overline{p}+3 \overline{r})\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex2 }\ExtensionTok{=}\NormalTok{ CompleteSquare}\OperatorTok{[}\NormalTok{ex1}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+10 (\overline{p}+\frac{5 \overline{r}}{4})^2-\frac{5 \overline{r}^2}{8}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex1 }\SpecialCharTok{{-}}\NormalTok{ ex2 }\SpecialCharTok{//}\NormalTok{ ScalarProductExpand }\SpecialCharTok{//} \FunctionTok{Expand}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CompleteSquare}\OperatorTok{[}\DecValTok{5}\NormalTok{ SP}\OperatorTok{[}\DecValTok{2} \FunctionTok{p} \SpecialCharTok{+} \DecValTok{3} \FunctionTok{r}\OperatorTok{,} \FunctionTok{p} \SpecialCharTok{+} \FunctionTok{r}\OperatorTok{],} \FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{10 \overline{q}^2-\frac{5 \overline{r}^2}{8},\overline{q}\to \overline{p}+\frac{5 \overline{r}}{4}\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{a}\OperatorTok{]} \SpecialCharTok{+} \DecValTok{2}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]} 
+ 
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ CompleteSquare}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{a}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+2 (a\cdot b)+a^2
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+(a+b)^2-b^2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*{-}Pair[Momentum[b, D], Momentum[b, D]] + Pair[Momentum[a, D] + Momentum[b, D], Momentum[a, D] + Momentum[b, D]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

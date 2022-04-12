@@ -1,0 +1,70 @@
+% !TeX program = pdflatex
+% !TeX root = FeynCalcForm.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{feyncalcform}{%
+\section{FeynCalcForm}\label{feyncalcform}}
+
+\texttt{FeynCalcForm[\allowbreak{}expr]} changes the printed output to a
+an easy-to-read form. It allows a readable output also when running a
+terminal based Mathematica session. Whether the result of
+\texttt{FeynCalcForm[\allowbreak{}expr]} is displayed or not, depends on
+the setting of \texttt{\$PrePrint}.
+
+\texttt{\$PrePrint = FeynCalcForm} forces displaying everything after
+applying \texttt{FeynCalcForm}. In order to change to the normal
+(internal) Mathematica OutputForm, do: \texttt{\$PrePrint=.}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fc}{FC},
+\hyperlink{feyncalcexternal}{FeynCalcExternal},
+\hyperlink{feyncalcinternal}{FeynCalcInternal}.
+
+\subsection{Examples}
+
+This is the normal notebook display:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNTrace}\OperatorTok{[}\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{]}\NormalTok{ . SUNT}\OperatorTok{[}\FunctionTok{b}\OperatorTok{]}\NormalTok{ . SUNT}\OperatorTok{[}\FunctionTok{c}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{tr}(T^a.T^b.T^c)
+\end{dmath*}
+
+This is the shorthand (terminal) display (easy-to-read form):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\VariableTok{$PrePrint} \ExtensionTok{=}\NormalTok{ FeynCalcForm; }
+ 
+\FunctionTok{SetOptions}\OperatorTok{[}\VariableTok{$FrontEndSession}\OperatorTok{,} \FunctionTok{Evaluate}\OperatorTok{[}\NormalTok{(}\FunctionTok{Options}\OperatorTok{[}\VariableTok{$FrontEndSession}\OperatorTok{,} \StringTok{"CommonDefaultFormatTypes"}\OperatorTok{]} \OtherTok{/.}\NormalTok{ (}\StringTok{"Output"} \OtherTok{{-}\textgreater{}}\NormalTok{ \_) }\OtherTok{{-}\textgreater{}}\NormalTok{ (}\StringTok{"Output"} \OtherTok{{-}\textgreater{}}\FunctionTok{OutputForm}\NormalTok{))}\OperatorTok{[[}\DecValTok{1}\OperatorTok{]]]]}\NormalTok{; }
+ 
+\NormalTok{SUNTrace}\OperatorTok{[}\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{]}\NormalTok{ . SUNT}\OperatorTok{[}\FunctionTok{b}\OperatorTok{]}\NormalTok{ . SUNT}\OperatorTok{[}\FunctionTok{c}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{tr}(T^a.T^b.T^c)
+\end{dmath*}
+
+Reset to normal notebook display:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\VariableTok{$PrePrint} \ExtensionTok{=}\NormalTok{.; }
+ 
+\FunctionTok{SetOptions}\OperatorTok{[}\VariableTok{$FrontEndSession}\OperatorTok{,} \FunctionTok{Evaluate}\OperatorTok{[}\NormalTok{(}\FunctionTok{Options}\OperatorTok{[}\VariableTok{$FrontEndSession}\OperatorTok{,} \StringTok{"CommonDefaultFormatTypes"}\OperatorTok{]} \OtherTok{/.}\NormalTok{ (}\StringTok{"Output"} \OtherTok{{-}\textgreater{}}\NormalTok{ \_) }\OtherTok{{-}\textgreater{}}\NormalTok{ (}\StringTok{"Output"} \OtherTok{{-}\textgreater{}}\FunctionTok{TraditionalForm}\NormalTok{))}\OperatorTok{[[}\DecValTok{1}\OperatorTok{]]]]}\NormalTok{; }
+ 
+\NormalTok{SUNTrace}\OperatorTok{[}\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{]}\NormalTok{ . SUNT}\OperatorTok{[}\FunctionTok{b}\OperatorTok{]}\NormalTok{ . SUNT}\OperatorTok{[}\FunctionTok{c}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{tr}(T^a.T^b.T^c)
+\end{dmath*}
+\end{document}

@@ -1,0 +1,45 @@
+% !TeX program = pdflatex
+% !TeX root = Twist3QuarkOperator.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{twist3quarkoperator}{%
+\section{Twist3QuarkOperator}\label{twist3quarkoperator}}
+
+\texttt{Twist3QuarkOperator[\allowbreak{}p]} or
+\texttt{Twist3QuarkOperator[\allowbreak{}p,\ \allowbreak{}_,\ \allowbreak{}_]}
+yields the 2-quark operator (\texttt{p} is momentum in the direction of
+the fermion number flow).
+
+\texttt{Twist3QuarkOperator[\allowbreak{}\{\allowbreak{}p1,\ \allowbreak{}___\},\ \allowbreak{}\{\allowbreak{}p2,\ \allowbreak{}___\},\ \allowbreak{}\{\allowbreak{}p3,\ \allowbreak{}mu,\ \allowbreak{}a\}]}
+or
+\texttt{Twist3QuarkOperator[\allowbreak{}p1,\ \allowbreak{}_,\ \allowbreak{}_,\ \allowbreak{} p2,\ \allowbreak{}_,\ \allowbreak{}_,\ \allowbreak{} p3,\ \allowbreak{}mu,\ \allowbreak{}a]}
+yields the Quark-Quark-Gluon-operator, where \texttt{p1} is the incoming
+quark, \texttt{p2} the incoming antiquark and \texttt{p3} denotes the
+(incoming) gluon momentum.
+
+\texttt{Twist3QuarkOperator[\allowbreak{}\{\allowbreak{}p1,\ \allowbreak{}___\},\ \allowbreak{}\{\allowbreak{}p2,\ \allowbreak{}___\},\ \allowbreak{}\{\allowbreak{}p3,\ \allowbreak{}mu,\ \allowbreak{}a\},\ \allowbreak{}\{\allowbreak{}p4,\ \allowbreak{}nu,\ \allowbreak{}b\}]}
+or
+\texttt{Twist3QuarkOperator[\allowbreak{}p1,\ \allowbreak{}_,\ \allowbreak{}_,\ \allowbreak{} p2,\ \allowbreak{}_,\ \allowbreak{}_,\ \allowbreak{} p3,\ \allowbreak{}mu,\ \allowbreak{}a,\ \allowbreak{}p4,\ \allowbreak{}nu,\ \allowbreak{}b]}
+gives the Quark-Quark-Gluon-Gluon-operator. The setting of the option
+\texttt{Polarization} (unpolarized: \texttt{0}; polarized: \texttt{1})
+determines whether the unpolarized or polarized operator is returned.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{twist2quarkoperator}{Twist2QuarkOperator},
+\hyperlink{twist2gluonoperator}{Twist2GluonOperator}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Twist3QuarkOperator}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(-1)^m (\gamma \cdot \Delta ).\bar{\gamma }^5 (\Delta \cdot p)^{m-1}
+\end{dmath*}
+\end{document}

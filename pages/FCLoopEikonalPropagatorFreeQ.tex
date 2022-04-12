@@ -1,0 +1,88 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopEikonalPropagatorFreeQ.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopeikonalpropagatorfreeq}{%
+\section{FCLoopEikonalPropagatorFreeQ}\label{fcloopeikonalpropagatorfreeq}}
+
+\texttt{FCLoopEikonalPropagatorFreeQ[\allowbreak{}exp]} checks if the
+integral is free of eikonal propagators \(\frac{1}{p \cdot q+x}\). If
+the option \texttt{First} is set to \texttt{False}, propagators that
+have both a quadratic and linear piece,
+e.g.~\(\frac{1}{p^2 + p \cdot q+x}\) will also count as eikonal
+propagators. The option \texttt{Momentum} can be used to check for the
+presence of eikonal propagators only with respect to particular momenta.
+The check is performed only for \texttt{StandardPropagatorDenominator}
+and \texttt{CartesianPropagatorDenominator}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI@SFAD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{]} 
+ 
+\NormalTok{FCLoopEikonalPropagatorFreeQ}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p^2+i \eta ).((p-q)^2+i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI@SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,} \FunctionTok{p}\NormalTok{ . }\FunctionTok{q}\OperatorTok{\}\}]} 
+ 
+\NormalTok{FCLoopEikonalPropagatorFreeQ}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p\cdot q+i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI@CFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,} \FunctionTok{p}\NormalTok{ . }\FunctionTok{q}\OperatorTok{\}\}]} 
+ 
+\NormalTok{FCLoopEikonalPropagatorFreeQ}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ Momentum }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p\cdot q-i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI@SFAD}\OperatorTok{[\{\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q}\NormalTok{ . }\FunctionTok{p}\OperatorTok{\}\}]} 
+ 
+\NormalTok{FCLoopEikonalPropagatorFreeQ}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{First} \OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(q^2+p\cdot q+i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+\end{document}

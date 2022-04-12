@@ -1,0 +1,51 @@
+% !TeX program = pdflatex
+% !TeX root = DollarFCMemoryAvailable.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcmemoryavailable}{%
+\section{\$FCMemoryAvailable}\label{fcmemoryavailable}}
+
+\texttt{\$FCMemoryAvailable} is a global variable which is set to an
+integer \texttt{n}, where \texttt{n} is the available amount of main
+memory in MB. The default is \texttt{1/4} of \texttt{\$SystemMemory}. It
+should be increased if possible. The higher \$FCMemoryAvailable can be,
+the more intermediate steps do not have to be repeated by FeynCalc.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{memset}{MemSet},
+\hyperlink{fcmemoryavailable}{FCMemoryAvailable}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$SystemMemory}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+32898408448
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Floor}\OperatorTok{[}\NormalTok{$SystemMemory}\SpecialCharTok{/}\DecValTok{10}\SpecialCharTok{\^{}}\DecValTok{6}\SpecialCharTok{/}\DecValTok{4}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+8224
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$FCMemoryAvailable}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+8224
+\end{dmath*}
+\end{document}

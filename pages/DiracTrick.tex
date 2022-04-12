@@ -1,0 +1,117 @@
+% !TeX program = pdflatex
+% !TeX root = DiracTrick.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{diractrick}{%
+\section{DiracTrick}\label{diractrick}}
+
+\texttt{DiracTrick[\allowbreak{}exp]} contracts Dirac matrices with each
+other and performs several simplifications but no expansions.There are
+not many cases when a user will need to call this function directly. Use
+\texttt{DiracSimplify} to achieve maximal simplification of Dirac matrix
+chains. Regarding the treatment of \(\gamma^5\) in \(D\)-dimensional
+expressions or the evaluation of expressions with tensors living in
+different dimensions, see the explanations on the help pages for
+\texttt{DiracSimplify} and \texttt{DiracTrace}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{contract}{Contract},
+\hyperlink{diracequation}{DiracEquation},
+\hyperlink{diracgamma}{DiracGamma},
+\hyperlink{diracgammaexpand}{DiracGammaExpand},
+\hyperlink{diractrick}{DiracTrick},
+\hyperlink{sirlinsimplify}{SirlinSimplify},
+\hyperlink{spinorchaintrick}{SpinorChainTrick}.
+
+\subsection{Examples}
+
+When applied to chains of Dirac matrices that do not require
+noncommutative expansions, contractions with other tensors,
+simplifications of spinor chains or evaluations of Dirac traces,
+\texttt{DiracTrick} will produce results similar to those of
+\texttt{DiracSimplify}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]} 
+ 
+\NormalTok{DiracTrick}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^{\mu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-2 \bar{\gamma }^{\nu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]}\NormalTok{ . GS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} 
+ 
+\NormalTok{DiracTrick}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }\cdot \overline{p}\right).\left(\bar{\gamma }\cdot \overline{p}\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\DecValTok{5}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} 
+ 
+\NormalTok{DiracTrick}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^5.\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^5
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\DecValTok{2} \SpecialCharTok{{-}}\NormalTok{ GA}\OperatorTok{[}\DecValTok{5}\OperatorTok{]}\SpecialCharTok{/}\DecValTok{2}\NormalTok{) . (}\SpecialCharTok{{-}}\NormalTok{((}\FunctionTok{a} \SpecialCharTok{+}\NormalTok{ GS}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{+} \FunctionTok{q}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{/}\FunctionTok{b}\NormalTok{)) . (}\DecValTok{1}\SpecialCharTok{/}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ GA}\OperatorTok{[}\DecValTok{5}\OperatorTok{]}\SpecialCharTok{/}\DecValTok{2}\NormalTok{) }
+ 
+\NormalTok{DiracTrick}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\frac{1}{2}-\frac{\bar{\gamma }^5}{2}\right).\left(-\frac{\bar{\gamma }\cdot \left(\overline{p}+\overline{q}\right)+a}{b}\right).\left(\frac{\bar{\gamma }^5}{2}+\frac{1}{2}\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-\frac{\left(\bar{\gamma }\cdot \left(\overline{p}+\overline{q}\right)\right).\bar{\gamma }^6}{b}
+\end{dmath*}
+
+Dirac traces are not evaluated by \texttt{DiracTrick}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracTrace}\OperatorTok{[}\NormalTok{GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]]} 
+ 
+\NormalTok{DiracTrick}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{tr}\left(\gamma ^{\mu }.\gamma ^{\nu }\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{tr}\left(\gamma ^{\mu }.\gamma ^{\nu }\right)
+\end{dmath*}
+\end{document}

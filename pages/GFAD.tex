@@ -1,0 +1,53 @@
+% !TeX program = pdflatex
+% !TeX root = GFAD.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{gfad}{%
+\section{GFAD}\label{gfad}}
+
+\texttt{GFAD[\allowbreak{}\{\allowbreak{}\{\allowbreak{}\{\allowbreak{}x,\ \allowbreak{}s\},\ \allowbreak{}n\},\ \allowbreak{}...]}
+denotes a generic propagator given by \(\frac{1}{[x + s i \eta]^n}\),
+where \texttt{x} can be an arbitrary expression. For brevity one can
+also use shorter forms such as
+\texttt{GFAD[\allowbreak{}\{\allowbreak{}x,\ \allowbreak{}n\},\ \allowbreak{}...]},
+\texttt{GFAD[\allowbreak{}\{\allowbreak{}x\},\ \allowbreak{}...]} or
+\texttt{GFAD[\allowbreak{}x,\ \allowbreak{}...]}.
+
+If s is not explicitly specified, then its value is determined by the
+option \texttt{EtaSign}, which has the default value \texttt{+1}.
+
+If \texttt{n} is not explicitly specified, then the default value
+\texttt{1} is assumed. Translation into FeynCalc internal form is
+performed by \texttt{FeynCalcInternal}, where a \texttt{GFAD} is encoded
+using the special head \texttt{GenericPropagatorDenominator}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fad}{FAD}, \hyperlink{sfad}{SFAD},
+\hyperlink{cfad}{CFAD}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GFAD}\OperatorTok{[}\DecValTok{2} \FunctionTok{z}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{x}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{]]} 
+ 
+\NormalTok{FeynAmpDenominatorExplicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ FCE }\SpecialCharTok{//} \FunctionTok{StandardForm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(x (\text{p1}\cdot \;\text{p2})+2 z (\text{p1}\cdot q) (\text{p2}\cdot q)+i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2 z (\text{p1}\cdot q) (\text{p2}\cdot q)+x (\text{p1}\cdot \;\text{p2})}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{x \;\text{SPD}[\text{p1},\text{p2}]+2 z \;\text{SPD}[\text{p1},q] \;\text{SPD}[\text{p2},q]}
+\end{dmath*}
+\end{document}

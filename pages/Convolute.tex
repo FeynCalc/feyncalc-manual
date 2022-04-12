@@ -1,0 +1,278 @@
+% !TeX program = pdflatex
+% !TeX root = Convolute.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{convolute}{%
+\section{Convolute}\label{convolute}}
+
+\texttt{Convolute[\allowbreak{}f,\ \allowbreak{}g,\ \allowbreak{}x]}
+convolutes \(f(x)\) and \(g(x)\), i.e.,
+\(\int _0^1 dx_1 \int _0^1 dx_2 \delta \left(x - x_1 x_2\right) f (x_1) g(x_2)\).
+
+\texttt{Convolute[\allowbreak{}f,\ \allowbreak{}g]} is equivalent to
+\texttt{Convolute[\allowbreak{}f,\ \allowbreak{}g,\ \allowbreak{}x]}.
+
+\texttt{Convolute[\allowbreak{}exp,\ \allowbreak{}\{\allowbreak{}x1,\ \allowbreak{}x2\}]}
+assumes that \texttt{exp} is polynomial in \texttt{x1} and \texttt{x2}.
+Convolute uses table-look-up and does not do any integral calculations,
+only linear algebra.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{plusdistribution}{PlusDistribution},
+\hyperlink{convolutetable}{ConvoluteTable}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Convolute}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{]} \OtherTok{/.}\NormalTok{ FCGV}\OperatorTok{[}\AttributeTok{z\_}\OperatorTok{]}\NormalTok{ :\textgreater{} }\FunctionTok{ToExpression}\OperatorTok{[}\FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\log (x)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Convolute}\OperatorTok{[}\FunctionTok{x}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]} \OtherTok{/.}\NormalTok{ FCGV}\OperatorTok{[}\AttributeTok{z\_}\OperatorTok{]}\NormalTok{ :\textgreater{} }\FunctionTok{ToExpression}\OperatorTok{[}\FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-x^2 \log (x)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Convolute}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]} \OtherTok{/.}\NormalTok{ FCGV}\OperatorTok{[}\AttributeTok{z\_}\OperatorTok{]}\NormalTok{ :\textgreater{} }\FunctionTok{ToExpression}\OperatorTok{[}\FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-x \log (x)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Convolute}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{]} \OtherTok{/.}\NormalTok{ FCGV}\OperatorTok{[}\AttributeTok{z\_}\OperatorTok{]}\NormalTok{ :\textgreater{} }\FunctionTok{ToExpression}\OperatorTok{[}\FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\log (x)}{x-1}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Convolute}\OperatorTok{[}\DecValTok{1}\OperatorTok{,}\NormalTok{ PlusDistribution}\OperatorTok{[}\DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{]]} \OtherTok{/.}\NormalTok{ FCGV}\OperatorTok{[}\AttributeTok{z\_}\OperatorTok{]}\NormalTok{ :\textgreater{} }\FunctionTok{ToExpression}\OperatorTok{[}\FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\log (x)}{x-1}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Convolute}\OperatorTok{[}\DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]} \OtherTok{/.}\NormalTok{ FCGV}\OperatorTok{[}\AttributeTok{z\_}\OperatorTok{]}\NormalTok{ :\textgreater{} }\FunctionTok{ToExpression}\OperatorTok{[}\FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{x \log (x)}{x-1}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Convolute}\OperatorTok{[}\DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{,} \DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{]} \OtherTok{/.}\NormalTok{ FCGV}\OperatorTok{[}\AttributeTok{z\_}\OperatorTok{]}\NormalTok{ :\textgreater{} }\FunctionTok{ToExpression}\OperatorTok{[}\FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{\log (x)}{(x-1)^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Convolute}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \FunctionTok{Log}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]]} \OtherTok{/.}\NormalTok{ FCGV}\OperatorTok{[}\AttributeTok{z\_}\OperatorTok{]}\NormalTok{ :\textgreater{} }\FunctionTok{ToExpression}\OperatorTok{[}\FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\log (1-x) \log (x)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Convolute}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \FunctionTok{x} \FunctionTok{Log}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]]} \OtherTok{/.}\NormalTok{ FCGV}\OperatorTok{[}\AttributeTok{z\_}\OperatorTok{]}\NormalTok{ :\textgreater{} }\FunctionTok{ToExpression}\OperatorTok{[}\FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-x \log (1-x) \log (x)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Convolute}\OperatorTok{[}\DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{,} \FunctionTok{Log}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]]} \OtherTok{/.}\NormalTok{ FCGV}\OperatorTok{[}\AttributeTok{z\_}\OperatorTok{]}\NormalTok{ :\textgreater{} }\FunctionTok{ToExpression}\OperatorTok{[}\FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\log (1-x) \log (x)}{x-1}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Convolute}\OperatorTok{[}\DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{,} \FunctionTok{x} \FunctionTok{Log}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]]} \OtherTok{/.}\NormalTok{ FCGV}\OperatorTok{[}\AttributeTok{z\_}\OperatorTok{]}\NormalTok{ :\textgreater{} }\FunctionTok{ToExpression}\OperatorTok{[}\FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{x \log (1-x) \log (x)}{x-1}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Convolute}\OperatorTok{[}\FunctionTok{Log}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]} \OtherTok{/.}\NormalTok{ FCGV}\OperatorTok{[}\AttributeTok{z\_}\OperatorTok{]}\NormalTok{ :\textgreater{} }\FunctionTok{ToExpression}\OperatorTok{[}\FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{x \log (1-x) \log (x)}{x-1}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Convolute}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \FunctionTok{x} \FunctionTok{Log}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]]} \OtherTok{/.}\NormalTok{ FCGV}\OperatorTok{[}\AttributeTok{z\_}\OperatorTok{]}\NormalTok{ :\textgreater{} }\FunctionTok{ToExpression}\OperatorTok{[}\FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-x \log ^2(x)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Convolute}\OperatorTok{[}\FunctionTok{Log}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{],} \FunctionTok{x}\OperatorTok{]} \OtherTok{/.}\NormalTok{ FCGV}\OperatorTok{[}\AttributeTok{z\_}\OperatorTok{]}\NormalTok{ :\textgreater{} }\FunctionTok{ToExpression}\OperatorTok{[}\FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-x \log (1-x) \log (x)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Convolute}\OperatorTok{[}\DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{,} \FunctionTok{Log}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{]} \OtherTok{/.}\NormalTok{ FCGV}\OperatorTok{[}\AttributeTok{z\_}\OperatorTok{]}\NormalTok{ :\textgreater{} }\FunctionTok{ToExpression}\OperatorTok{[}\FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{\log ^2(x)}{(x-1)^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Convolute}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \FunctionTok{Log}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]]} \OtherTok{/.}\NormalTok{ FCGV}\OperatorTok{[}\AttributeTok{z\_}\OperatorTok{]}\NormalTok{ :\textgreater{} }\FunctionTok{ToExpression}\OperatorTok{[}\FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\log ^2(x)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Convolute}\OperatorTok{[}\FunctionTok{x}\OperatorTok{,} \FunctionTok{x} \FunctionTok{Log}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]]} \OtherTok{/.}\NormalTok{ FCGV}\OperatorTok{[}\AttributeTok{z\_}\OperatorTok{]}\NormalTok{ :\textgreater{} }\FunctionTok{ToExpression}\OperatorTok{[}\FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-x^2 \log ^2(x)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Convolute}\OperatorTok{[}\DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{,} \FunctionTok{Log}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]]} \OtherTok{/.}\NormalTok{ FCGV}\OperatorTok{[}\AttributeTok{z\_}\OperatorTok{]}\NormalTok{ :\textgreater{} }\FunctionTok{ToExpression}\OperatorTok{[}\FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\log ^2(x)}{x-1}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Convolute}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \FunctionTok{Log}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{]} \OtherTok{/.}\NormalTok{ FCGV}\OperatorTok{[}\AttributeTok{z\_}\OperatorTok{]}\NormalTok{ :\textgreater{} }\FunctionTok{ToExpression}\OperatorTok{[}\FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\log ^2(x)}{x-1}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Convolute}\OperatorTok{[}\DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{,} \FunctionTok{x} \FunctionTok{Log}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]]} \OtherTok{/.}\NormalTok{ FCGV}\OperatorTok{[}\AttributeTok{z\_}\OperatorTok{]}\NormalTok{ :\textgreater{} }\FunctionTok{ToExpression}\OperatorTok{[}\FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{x \log ^2(x)}{x-1}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Convolute}\OperatorTok{[}\FunctionTok{Log}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]} \OtherTok{/.}\NormalTok{ FCGV}\OperatorTok{[}\AttributeTok{z\_}\OperatorTok{]}\NormalTok{ :\textgreater{} }\FunctionTok{ToExpression}\OperatorTok{[}\FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{x \log ^2(x)}{x-1}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Convolute}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \FunctionTok{x} \FunctionTok{Log}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]]} \OtherTok{/.}\NormalTok{ FCGV}\OperatorTok{[}\AttributeTok{z\_}\OperatorTok{]}\NormalTok{ :\textgreater{} }\FunctionTok{ToExpression}\OperatorTok{[}\FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-x \log ^2(x)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Convolute}\OperatorTok{[}\FunctionTok{Log}\OperatorTok{[}\FunctionTok{x}\OperatorTok{],} \FunctionTok{x}\OperatorTok{]} \OtherTok{/.}\NormalTok{ FCGV}\OperatorTok{[}\AttributeTok{z\_}\OperatorTok{]}\NormalTok{ :\textgreater{} }\FunctionTok{ToExpression}\OperatorTok{[}\FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-x \log ^2(x)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Convolute}\OperatorTok{[}\DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{,} \FunctionTok{Log}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{]} \OtherTok{/.}\NormalTok{ FCGV}\OperatorTok{[}\AttributeTok{z\_}\OperatorTok{]}\NormalTok{ :\textgreater{} }\FunctionTok{ToExpression}\OperatorTok{[}\FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{\log (1-x) \log (x)}{(x-1)^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Convolute}\OperatorTok{[}\FunctionTok{Log}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\OperatorTok{,} \FunctionTok{Log}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\OperatorTok{]]} \OtherTok{/.}\NormalTok{ FCGV}\OperatorTok{[}\AttributeTok{z\_}\OperatorTok{]}\NormalTok{ :\textgreater{} }\FunctionTok{ToExpression}\OperatorTok{[}\FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\log ^2(1-x) \log (x)}{x-1}
+\end{dmath*}
+\end{document}

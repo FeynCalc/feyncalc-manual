@@ -1,0 +1,155 @@
+% !TeX program = pdflatex
+% !TeX root = FCCompareNumbers.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fccomparenumbers}{%
+\section{FCCompareNumbers}\label{fccomparenumbers}}
+
+\texttt{FCCompareNumbers[\allowbreak{}x,\ \allowbreak{}y]} compares two
+purely numerical or semi-numerical expressions \texttt{x} and \texttt{y}
+and returns the number of agreeing significant digits calculated from
+the relative differences.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+These two numbers disagree in their 6th significant digit
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCCompareNumbers}\OperatorTok{[}\FloatTok{5.123542342} \SpecialCharTok{+} \FloatTok{1.23145} \FunctionTok{I}\OperatorTok{,} \FloatTok{5.123542324} \SpecialCharTok{+} \FloatTok{1.23146} \FunctionTok{I}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCCompareNumbers: Minimal number of significant digits to agree in: }6
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCCompareNumbers: Chop is set to }\;\text{1.$\grave{ }$*${}^{\wedge}$-10}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCCompareNumbers: No number is set to 0. by Chop at this stage. }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCGV}(\text{I}) \;\text{FCGV}(\text{CommonDigits})(5.09042)
+\end{dmath*}
+
+Requiring agreement only in the first 5 significant digits returns 0
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCCompareNumbers}\OperatorTok{[}\FloatTok{5.123542342} \SpecialCharTok{+} \FloatTok{1.23145} \FunctionTok{I}\OperatorTok{,} \FloatTok{5.123542324} \SpecialCharTok{+} \FloatTok{1.23146} \FunctionTok{I}\OperatorTok{,} \FunctionTok{DigitCount} \OtherTok{{-}\textgreater{}} \DecValTok{5}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCCompareNumbers: Minimal number of significant digits to agree in: }5
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCCompareNumbers: Chop is set to }\;\text{1.$\grave{ }$*${}^{\wedge}$-10}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCCompareNumbers: No number is set to 0. by Chop at this stage. }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+Here even the first significant digit doesn't agree (obviously)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCCompareNumbers}\OperatorTok{[}\DecValTok{5}\OperatorTok{,} \DecValTok{6}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCCompareNumbers: Minimal number of significant digits to agree in: }6
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCCompareNumbers: Chop is set to }\;\text{1.$\grave{ }$*${}^{\wedge}$-10}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCCompareNumbers: No number is set to 0. by Chop at this stage. }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCGV}(\text{CommonDigits})(0.778151)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lhs }\ExtensionTok{=}\NormalTok{ (}\FloatTok{0.} \SpecialCharTok{+} \FloatTok{0.}\SpecialCharTok{*}\FunctionTok{I}\NormalTok{) }\SpecialCharTok{{-}}\NormalTok{ (}\FloatTok{0.20132103165327941} \SpecialCharTok{{-}} \FloatTok{0.00043434443313399246}\SpecialCharTok{*}\FunctionTok{I}\NormalTok{)}\SpecialCharTok{*}\NormalTok{coeffO}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{parX}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ (}\FloatTok{0.047227066764317975}\NormalTok{)}\SpecialCharTok{*}\NormalTok{coeffO}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{parX}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{parY }\SpecialCharTok{{-}}\NormalTok{ (}\FloatTok{0.00005403882927314103}\NormalTok{)}\SpecialCharTok{*}\NormalTok{coeffO}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{parX}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{parY}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ (}\FloatTok{1.4588597782189382}\SpecialCharTok{*\^{}{-}}\DecValTok{6} \SpecialCharTok{{-}} \FloatTok{4.06569606476957}\SpecialCharTok{*\^{}{-}}\DecValTok{13}\SpecialCharTok{*}\FunctionTok{I}\NormalTok{)}\SpecialCharTok{*}\NormalTok{coeffO}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{parX}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{parY}\SpecialCharTok{\^{}}\DecValTok{3} \SpecialCharTok{+}\NormalTok{ (}\FloatTok{0.03841797609570242} \SpecialCharTok{+} \FloatTok{0.000028403733516153446}\SpecialCharTok{*}\FunctionTok{I}\NormalTok{)}\SpecialCharTok{*}\NormalTok{coeffO}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{parX}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{parZ}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(0.038418\, +0.0000284037 i) \;\text{coeffO}^2 \;\text{parX}^2 \;\text{parZ}-(0.201321\, -0.000434344 i) \;\text{coeffO}^2 \;\text{parX}^2+(0.\, +0. i)+(\text{1.4588597782189382$\grave{ }$*${}^{\wedge}$-6}-\text{4.06569606476957$\grave{ }$*${}^{\wedge}$-13} i) \;\text{coeffO}^2 \;\text{parX}^2 \;\text{parY}^3-0.0000540388 \;\text{coeffO}^2 \;\text{parX}^2 \;\text{parY}^2+0.0472271 \;\text{coeffO}^2 \;\text{parX}^2 \;\text{parY}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rhs }\ExtensionTok{=}\NormalTok{ (}\SpecialCharTok{{-}}\FloatTok{0.20132103165327922} \SpecialCharTok{+} \FloatTok{0.0004343444331339952}\SpecialCharTok{*}\FunctionTok{I}\NormalTok{)}\SpecialCharTok{*}\NormalTok{coeffO}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{parX}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ (}\FloatTok{0.0472270672349811}\NormalTok{)}\SpecialCharTok{*}\NormalTok{coeffO}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{parX}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{parY }\SpecialCharTok{{-}}\NormalTok{ (}\FloatTok{0.00005403887000187252}\NormalTok{)}\SpecialCharTok{*}\NormalTok{coeffO}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{parX}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{parY}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+} \FloatTok{1.4588601127764193}\SpecialCharTok{*\^{}{-}}\DecValTok{6}\SpecialCharTok{*}\NormalTok{coeffO}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{parX}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{parY}\SpecialCharTok{\^{}}\DecValTok{3} \SpecialCharTok{+}\NormalTok{ (}\FloatTok{0.038417976095702376} \SpecialCharTok{+} \FloatTok{0.000028403733516153537}\SpecialCharTok{*}\FunctionTok{I}\NormalTok{)}\SpecialCharTok{*}\NormalTok{coeffO}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{parX}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{parZ}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(0.038418\, +0.0000284037 i) \;\text{coeffO}^2 \;\text{parX}^2 \;\text{parZ}-(0.201321\, -0.000434344 i) \;\text{coeffO}^2 \;\text{parX}^2+\text{1.4588601127764193$\grave{ }$*${}^{\wedge}$-6} \;\text{coeffO}^2 \;\text{parX}^2 \;\text{parY}^3-0.0000540389 \;\text{coeffO}^2 \;\text{parX}^2 \;\text{parY}^2+0.0472271 \;\text{coeffO}^2 \;\text{parX}^2 \;\text{parY}
+\end{dmath*}
+
+Here the two above expressions agree in their first 6 significant
+digits. Notice that the number of the size \(10^{-13}\) is treated as a
+numerical fluctuation and consequently removed by \texttt{Chop}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCCompareNumbers}\OperatorTok{[}\NormalTok{lhs}\OperatorTok{,}\NormalTok{ rhs}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCCompareNumbers: Minimal number of significant digits to agree in: }6
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCCompareNumbers: Chop is set to }\;\text{1.$\grave{ }$*${}^{\wedge}$-10}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCCompareNumbers: Following numbers on the l.h.s. are set to 0. by Chop: }\{-\text{4.06569606476957$\grave{ }$*${}^{\wedge}$-13}\}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+The application of \texttt{Chop} can be of course disabled
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCCompareNumbers}\OperatorTok{[}\NormalTok{lhs}\OperatorTok{,}\NormalTok{ rhs}\OperatorTok{,} \FunctionTok{Chop} \OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]} 
+  
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCCompareNumbers: Minimal number of significant digits to agree in: }6
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{coeffO}^2 \;\text{parX}^2 \;\text{parY}^3 \;\text{FCGV}(\text{I}) \;\text{FCGV}(\text{Unmatched})(-\text{4.06569606476957$\grave{ }$*${}^{\wedge}$-13})
+\end{dmath*}
+\end{document}

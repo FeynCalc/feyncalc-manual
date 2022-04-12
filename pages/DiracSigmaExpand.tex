@@ -1,0 +1,93 @@
+% !TeX program = pdflatex
+% !TeX root = DiracSigmaExpand.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{diracsigmaexpand}{%
+\section{DiracSigmaExpand}\label{diracsigmaexpand}}
+
+\texttt{DiracSigmaExpand[\allowbreak{}exp]} applies linearity to the
+arguments of \texttt{DiracSigma}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{diracgamma}{DiracGamma},
+\hyperlink{diracsigma}{DiracSigma}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracSigma}\OperatorTok{[}\NormalTok{GSD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ GSD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{],}\NormalTok{ GSD}\OperatorTok{[}\FunctionTok{r}\OperatorTok{]]} 
+ 
+\NormalTok{ex }\ExtensionTok{=} \SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ DiracSigmaExpand}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSigma}(\gamma \cdot p+\gamma \cdot q,\gamma \cdot r)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\sigma ^{pr}+\sigma ^{qr}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//}\NormalTok{ FCE }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*DiracSigma[GSD[p], GSD[r]] + DiracSigma[GSD[q], GSD[r]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+Notice that DiracSigmaExpand does not expand Dirac matrices contracted
+to linear combinations of \(4\)-vectors by default.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracSigma}\OperatorTok{[}\NormalTok{GSD}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{+} \FunctionTok{q}\OperatorTok{],}\NormalTok{ GSD}\OperatorTok{[}\FunctionTok{r}\OperatorTok{]]} 
+ 
+\NormalTok{DiracSigmaExpand}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\sigma ^{p+qr}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\sigma ^{p+qr}
+\end{dmath*}
+
+If such expansions are required, use the option
+\texttt{DiracGammaExpand}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracSigmaExpand}\OperatorTok{[}\NormalTok{DiracSigma}\OperatorTok{[}\NormalTok{GSD}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{+} \FunctionTok{q}\OperatorTok{],}\NormalTok{ GSD}\OperatorTok{[}\FunctionTok{r}\OperatorTok{]],}\NormalTok{ DiracGammaExpand }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\sigma ^{pr}+\sigma ^{qr}
+\end{dmath*}
+
+The option Momentum allows us to perform more fine-grained expansions of
+\texttt{DiracSigma}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracSigma}\OperatorTok{[}\NormalTok{GSD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],}\NormalTok{ GSD}\OperatorTok{[}\FunctionTok{r}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ GSD}\OperatorTok{[}\FunctionTok{t}\OperatorTok{]]} \SpecialCharTok{+}\NormalTok{ DiracSigma}\OperatorTok{[}\NormalTok{GSD}\OperatorTok{[}\FunctionTok{l}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ GSD}\OperatorTok{[}\FunctionTok{n}\OperatorTok{],}\NormalTok{ GSD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]} 
+ 
+\NormalTok{DiracSigmaExpand}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ Momentum }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{r}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSigma}(\gamma \cdot l+\gamma \cdot n,\gamma \cdot p)+\text{DiracSigma}(\gamma \cdot p,\gamma \cdot r+\gamma \cdot t)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{DiracSigma}(\gamma \cdot l+\gamma \cdot n,\gamma \cdot p)+\sigma ^{pr}+\sigma ^{pt}
+\end{dmath*}
+\end{document}

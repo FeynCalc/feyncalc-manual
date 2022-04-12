@@ -1,0 +1,103 @@
+% !TeX program = pdflatex
+% !TeX root = EpsChisholm.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{epschisholm}{%
+\section{EpsChisholm}\label{epschisholm}}
+
+\texttt{EpsChisholm[\allowbreak{}exp]} applies the Chisholm identity to
+a Dirac matrix contracted with a Levi-Civita tensor.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{chisholm}{Chisholm},
+\hyperlink{eps}{Eps}, \hyperlink{diracgamma}{DiracGamma}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LC}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]}\NormalTok{ GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{],} \DecValTok{5}\OperatorTok{]} 
+ 
+\NormalTok{EpsChisholm}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\sigma }.\bar{\gamma }^5 \bar{\epsilon }^{\mu \nu \rho \sigma }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-i \bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^{\rho }+i \bar{\gamma }^{\rho } \bar{g}^{\mu \nu }-i \bar{\gamma }^{\nu } \bar{g}^{\mu \rho }+i \bar{\gamma }^{\mu } \bar{g}^{\nu \rho }
+\end{dmath*}
+
+This reproduces the identities given in the Appendix A of
+\href{https://arxiv.org/abs/2111.05153}{arXiv:2111.05153}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LC}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{1}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{]]}\NormalTok{ SpinorUBar}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{2}\OperatorTok{],}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_s"}\OperatorTok{]]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \DecValTok{7}\OperatorTok{]}\NormalTok{ . SpinorV}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{1}\OperatorTok{],}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_d"}\OperatorTok{]]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ EpsChisholm }\SpecialCharTok{//}\NormalTok{ DiracSimplify }\SpecialCharTok{//}\NormalTok{ Contract}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}_1{}^{\beta } \bar{\epsilon }^{\alpha \nu \beta \rho } \bar{u}\left(p_2,m_s\right).\bar{\gamma }^{\alpha }.\bar{\gamma }^7.v\left(p_1,m_d\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+i m_d \bar{g}^{\nu \rho } \left(\varphi (\overline{p}_2,m_s)\right).\bar{\gamma }^6.\left(\varphi (-\overline{p}_1,m_d)\right)+i \overline{p}_1{}^{\nu } \left(\varphi (\overline{p}_2,m_s)\right).\bar{\gamma }^{\rho }.\bar{\gamma }^7.\left(\varphi (-\overline{p}_1,m_d)\right)-i \overline{p}_1{}^{\rho } \left(\varphi (\overline{p}_2,m_s)\right).\bar{\gamma }^{\nu }.\bar{\gamma }^7.\left(\varphi (-\overline{p}_1,m_d)\right)-i m_d \left(\varphi (\overline{p}_2,m_s)\right).\bar{\gamma }^{\nu }.\bar{\gamma }^{\rho }.\bar{\gamma }^6.\left(\varphi (-\overline{p}_1,m_d)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LC}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{2}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{]]}\NormalTok{ SpinorUBar}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{2}\OperatorTok{],}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_s"}\OperatorTok{]]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \DecValTok{7}\OperatorTok{]}\NormalTok{ . SpinorV}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{1}\OperatorTok{],}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_d"}\OperatorTok{]]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ EpsChisholm }\SpecialCharTok{//}\NormalTok{ DiracSimplify }\SpecialCharTok{//}\NormalTok{ Contract}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}_2{}^{\beta } \bar{\epsilon }^{\alpha \nu \beta \rho } \bar{u}\left(p_2,m_s\right).\bar{\gamma }^{\alpha }.\bar{\gamma }^7.v\left(p_1,m_d\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-i m_s \bar{g}^{\nu \rho } \left(\varphi (\overline{p}_2,m_s)\right).\bar{\gamma }^7.\left(\varphi (-\overline{p}_1,m_d)\right)-i \overline{p}_2{}^{\nu } \left(\varphi (\overline{p}_2,m_s)\right).\bar{\gamma }^{\rho }.\bar{\gamma }^7.\left(\varphi (-\overline{p}_1,m_d)\right)+i \overline{p}_2{}^{\rho } \left(\varphi (\overline{p}_2,m_s)\right).\bar{\gamma }^{\nu }.\bar{\gamma }^7.\left(\varphi (-\overline{p}_1,m_d)\right)+i m_s \left(\varphi (\overline{p}_2,m_s)\right).\bar{\gamma }^{\nu }.\bar{\gamma }^{\rho }.\bar{\gamma }^7.\left(\varphi (-\overline{p}_1,m_d)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LC}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Gamma}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{3}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Gamma}\OperatorTok{]]}\NormalTok{ SpinorUBar}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{3}\OperatorTok{],}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_s"}\OperatorTok{]]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \DecValTok{7}\OperatorTok{]}\NormalTok{ . SpinorV}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{4}\OperatorTok{],}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_d"}\OperatorTok{]]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ EpsChisholm }\SpecialCharTok{//}\NormalTok{ DiracSimplify }\SpecialCharTok{//}\NormalTok{ Contract}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}_3{}^{\gamma } \bar{\epsilon }^{\alpha \nu \gamma \rho } \bar{u}\left(p_3,m_s\right).\bar{\gamma }^{\nu }.\bar{\gamma }^7.v\left(p_4,m_d\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+i m_s \bar{g}^{\alpha \rho } \left(\varphi (\overline{p}_3,m_s)\right).\bar{\gamma }^7.\left(\varphi (-\overline{p}_4,m_d)\right)+i \overline{p}_3{}^{\alpha } \left(\varphi (\overline{p}_3,m_s)\right).\bar{\gamma }^{\rho }.\bar{\gamma }^7.\left(\varphi (-\overline{p}_4,m_d)\right)-i \overline{p}_3{}^{\rho } \left(\varphi (\overline{p}_3,m_s)\right).\bar{\gamma }^{\alpha }.\bar{\gamma }^7.\left(\varphi (-\overline{p}_4,m_d)\right)-i m_s \left(\varphi (\overline{p}_3,m_s)\right).\bar{\gamma }^{\alpha }.\bar{\gamma }^{\rho }.\bar{\gamma }^7.\left(\varphi (-\overline{p}_4,m_d)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LC}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Gamma}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{2}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Gamma}\OperatorTok{]]}\NormalTok{ SpinorUBar}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{3}\OperatorTok{],}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_s"}\OperatorTok{]]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \DecValTok{7}\OperatorTok{]}\NormalTok{ . SpinorV}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{4}\OperatorTok{],}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"m\_d"}\OperatorTok{]]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ EpsChisholm }\SpecialCharTok{//}\NormalTok{ DiracSimplify }\SpecialCharTok{//}\NormalTok{ Contract }
+  
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}_2{}^{\gamma } \bar{\epsilon }^{\beta \gamma \mu \nu } \bar{u}\left(p_3,m_s\right).\bar{\gamma }^{\beta }.\bar{\gamma }^7.v\left(p_4,m_d\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+i \bar{g}^{\mu \nu } \left(\varphi (\overline{p}_3,m_s)\right).\left(\bar{\gamma }\cdot \overline{p}_2\right).\bar{\gamma }^7.\left(\varphi (-\overline{p}_4,m_d)\right)+i \overline{p}_2{}^{\mu } \left(\varphi (\overline{p}_3,m_s)\right).\bar{\gamma }^{\nu }.\bar{\gamma }^7.\left(\varphi (-\overline{p}_4,m_d)\right)-i \overline{p}_2{}^{\nu } \left(\varphi (\overline{p}_3,m_s)\right).\bar{\gamma }^{\mu }.\bar{\gamma }^7.\left(\varphi (-\overline{p}_4,m_d)\right)-i \left(\varphi (\overline{p}_3,m_s)\right).\left(\bar{\gamma }\cdot \overline{p}_2\right).\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^7.\left(\varphi (-\overline{p}_4,m_d)\right)
+\end{dmath*}
+\end{document}

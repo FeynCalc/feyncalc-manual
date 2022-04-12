@@ -1,0 +1,271 @@
+% !TeX program = pdflatex
+% !TeX root = ApartFF.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{apartff}{%
+\section{ApartFF}\label{apartff}}
+
+\texttt{ApartFF[\allowbreak{}amp,\ \allowbreak{}\{\allowbreak{}q1,\ \allowbreak{}q2,\ \allowbreak{}...\}]}
+partial fractions loop integrals by decomposing them into simpler
+integrals that contain only linearly independent propagators. It uses
+\texttt{FCApart} as a backend and is equally suitable for 1-loop and
+multi-loop integrals.
+
+\texttt{FCApart} implements an algorithm based on
+\href{https://arxiv.org/abs/1204.2314}{arXiv:1204.2314} by F. Feng that
+seems to employ a variety Leinartas's algorithm
+(cf.~\href{https://arxiv.org/abs/1206.4740}{arXiv:1206.4740}). Unlike
+Feng's \href{https://github.com/F-Feng/APart}{\$Apart} that is
+applicable to general multivariate polynomials, \texttt{FCApart} is
+tailored to work only with FeynCalc's \texttt{FeynAmpDenominator},
+\texttt{Pair} and \texttt{CartesianPair} symbols, i.e.~it is less
+general in this respect.
+
+\texttt{ApartFF[\allowbreak{}amp * extraPiece1,\ \allowbreak{}extraPiece2,\ \allowbreak{}\{\allowbreak{}q1,\ \allowbreak{}q2,\ \allowbreak{}...\}]}
+is a special working mode of \texttt{ApartFF}, where the final result of
+partial fractioning \texttt{amp*extraPiece1} is multiplied by
+\texttt{extraPiece2}. It is understood, that
+\texttt{extraPiece1*extraPiece2} should be unity, e. g. when
+\texttt{extraPiece1} is an \texttt{FAD}, while extraPiece is an
+\texttt{SPD} inverse to it. This mode should be useful for nonstandard
+integrals where the desired partial fraction decomposition can be
+performed only after multiplying \texttt{amp} with \texttt{extraPiece1}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fcapart}{FCApart},
+\hyperlink{feynampdenominatorsimplify}{FeynAmpDenominatorSimplify}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClearScalarProducts}\OperatorTok{[]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]} 
+ 
+\NormalTok{ApartFF}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{q^2}{q^2-m^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{m^2}{q^2-m^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{r}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{r}\OperatorTok{\}]} 
+ 
+\NormalTok{ApartFF}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{(p\cdot q) (q\cdot r)}{q^2.(q-p)^2.(q-r)^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{p^2 r^2}{4 q^2.(q-r)^2.(q-p)^2}+\frac{p^2+2 (q\cdot r)+2 r^2}{4 q^2.(-p+q+r)^2}+-\frac{p^2}{4 q^2.(q-p)^2}-\frac{r^2}{4 q^2.(q-r)^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{+} \FunctionTok{p}\OperatorTok{\}]} 
+ 
+\NormalTok{ApartFF}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{q^2.(q-p)^2.(p+q)^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{p^2 q^2.(q-p)^2}-\frac{1}{p^2 q^2.(q-2 p)^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,}\NormalTok{ q1}\OperatorTok{]}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{q1}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q2}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},}\NormalTok{ q1 }\SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{,}\NormalTok{ q2 }\SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{,}\NormalTok{ q1 }\SpecialCharTok{{-}}\NormalTok{ q2}\OperatorTok{]} 
+ 
+\NormalTok{ApartFF}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{(p\cdot \;\text{q1}) (p\cdot \;\text{q2})^2}{\left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-p)^2.(\text{q2}-p)^2.(\text{q1}-\text{q2})^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{\left(m^2+p^2\right)^3}{8 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q2}-p)^2.(\text{q1}-\text{q2})^2.(\text{q1}-p)^2}-\frac{\left(m^2+p^2\right)^2}{4 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-\text{q2})^2.(\text{q1}-p)^2}+\frac{\left(m^2+p^2\right) \left(m^2+2 p^2\right)}{4 \;\text{q2}^2.\text{q1}^2.\left((\text{q1}-p)^2-m^2\right).(\text{q1}-\text{q2})^2}-\frac{\left(m^2+p^2\right) (p\cdot \;\text{q1})}{4 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q2}-p)^2.(\text{q1}-\text{q2})^2}-\frac{\left(m^2+p^2\right) (p\cdot \;\text{q1})}{4 \;\text{q2}^2.\text{q1}^2.(\text{q1}-\text{q2})^2.\left((\text{q2}-p)^2-m^2\right)}-\frac{p\cdot \;\text{q1}}{4 \left(\text{q2}^2-m^2\right).(\text{q1}-\text{q2})^2.(\text{q1}-p)^2}-\frac{m^2+p\cdot \;\text{q1}+p^2}{4 \left(\text{q1}^2-m^2\right).(\text{q2}-p)^2.(\text{q1}-\text{q2})^2}+\frac{m^2+2 (p\cdot \;\text{q1})+p^2}{8 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-\text{q2})^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}]} 
+ 
+\NormalTok{ApartFF}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{p\cdot q}{\left(q^2-m^2\right).(q-p)^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{m^2+p^2}{2 q^2.\left((q-p)^2-m^2\right)}-\frac{1}{2 \left(q^2-m^2\right)}
+\end{dmath*}
+
+If the propagators should not be altered via momentum shifts
+(e.g.~because they belong to a previously identified topology), use the
+option \texttt{FDS->False}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{int }\ExtensionTok{=}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{q2}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{q1}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{q1}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q2}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},}\NormalTok{ q1 }\SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{,}\NormalTok{ q2 }\SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{,}\NormalTok{ q2 }\SpecialCharTok{{-}}\NormalTok{ q1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{(p\cdot \;\text{q1}) (p\cdot \;\text{q2})}{\left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-p)^2.(\text{q2}-p)^2.(\text{q2}-\text{q1})^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ApartFF}\OperatorTok{[}\NormalTok{int}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\left(m^2+p^2\right)^2}{4 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q2}-p)^2.(\text{q1}-\text{q2})^2.(\text{q1}-p)^2}-\frac{m^2+p^2}{2 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-\text{q2})^2.(\text{q1}-p)^2}+\frac{m^2+p^2}{2 \;\text{q2}^2.\text{q1}^2.\left((\text{q1}-p)^2-m^2\right).(\text{q1}-\text{q2})^2}-\frac{1}{2 \left(\text{q1}^2-m^2\right).(\text{q2}-p)^2.(\text{q1}-\text{q2})^2}+\frac{1}{4 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-\text{q2})^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ApartFF}\OperatorTok{[}\NormalTok{int}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\},}\NormalTok{ FDS }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\left(m^2+p^2\right)^2}{4 \left(\text{q2}^2-m^2\right).(\text{q2}-p)^2.(\text{q2}-\text{q1})^2.\left(\text{q1}^2-m^2\right).(\text{q1}-p)^2}-\frac{m^2+p^2}{4 \left(\text{q1}^2-m^2\right).(\text{q1}-p)^2.\left(\text{q2}^2-m^2\right).(\text{q2}-\text{q1})^2}+\frac{m^2+p^2}{4 \left(\text{q1}^2-m^2\right).(\text{q1}-p)^2.(\text{q2}-p)^2.(\text{q2}-\text{q1})^2}-\frac{m^2+p^2}{4 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q2}-p)^2.(\text{q2}-\text{q1})^2}+\frac{m^2+p^2}{4 (\text{q1}-p)^2.\left(\text{q2}^2-m^2\right).(\text{q2}-p)^2.(\text{q2}-\text{q1})^2}-\frac{1}{4 (\text{q2}-\text{q1})^2.\left(\text{q1}^2-m^2\right).(\text{q2}-p)^2}-\frac{1}{4 (\text{q2}-\text{q1})^2.(\text{q1}-p)^2.\left(\text{q2}^2-m^2\right)}+\frac{1}{4 (\text{q2}-\text{q1})^2.\left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right)}+\frac{1}{4 (\text{q2}-\text{q1})^2.(\text{q1}-p)^2.(\text{q2}-p)^2}
+\end{dmath*}
+
+If the partial fractioning should be performed only w. r. t. the
+denominators but not numerators, use the option
+\texttt{Numerator->False}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{int }\ExtensionTok{=}\NormalTok{ FAD}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{k}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{k}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{k\cdot p}{k^2.(p-k)^2.\left(k^2-m^2\right)}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ApartFF}\OperatorTok{[}\NormalTok{int}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{k}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{m^2+p^2}{2 m^2 k^2.\left((k-p)^2-m^2\right)}+-\frac{1}{2 m^2 \left(k^2-m^2\right)}-\frac{p^2}{2 m^2 k^2.(k-p)^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ApartFF}\OperatorTok{[}\NormalTok{int}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{k}\OperatorTok{\},} \FunctionTok{Numerator} \OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{k\cdot p}{m^2 k^2.\left((k-p)^2-m^2\right)}-\frac{k\cdot p}{m^2 k^2.(k-p)^2}
+\end{dmath*}
+
+Using the option \texttt{FeynAmpDenominator ->False} we can specify that
+integrals without numerators should not be partial fractioned
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{int }\ExtensionTok{=}\NormalTok{ FAD}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{k}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{k}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]}\NormalTok{ (SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{k\cdot p+q^2}{k^2.(p-k)^2.\left(k^2-m^2\right)}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ApartFF}\OperatorTok{[}\NormalTok{int}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{k}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{m^2+p^2+2 q^2}{2 m^2 k^2.\left((k-p)^2-m^2\right)}+-\frac{1}{2 m^2 \left(k^2-m^2\right)}-\frac{p^2+2 q^2}{2 m^2 k^2.(k-p)^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ApartFF}\OperatorTok{[}\NormalTok{int}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{k}\OperatorTok{\},}\NormalTok{ FeynAmpDenominator }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{q^2}{k^2.(p-k)^2.\left(k^2-m^2\right)}+\frac{m^2+p^2}{2 m^2 k^2.\left((k-p)^2-m^2\right)}+-\frac{1}{2 m^2 \left(k^2-m^2\right)}-\frac{p^2}{2 m^2 k^2.(k-p)^2}
+\end{dmath*}
+
+The \texttt{extraPiece}-trick is useful for cases where a direct partial
+fractioning is not possible
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{int }\ExtensionTok{=}\NormalTok{ (SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,} \FunctionTok{k}\NormalTok{ . }\FunctionTok{l}\OperatorTok{\}\},} \FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{k}\OperatorTok{]}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{k\cdot p}{(k\cdot l+i \eta ).((p-k)^2+i \eta )}
+\end{dmath*}
+
+Here \texttt{ApartFF} cannot do anything
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ApartFF}\OperatorTok{[}\NormalTok{int}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{k}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{k\cdot p}{(k\cdot l+i \eta ).((p-k)^2+i \eta )}
+\end{dmath*}
+
+Multiplying the integral with unity
+\texttt{FAD[\allowbreak{}k]*SPD[\allowbreak{}k]} we can cast into a more
+desirable form
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ApartFF}\OperatorTok{[}\NormalTok{int FAD}\OperatorTok{[}\FunctionTok{k}\OperatorTok{],}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{k}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{k}\OperatorTok{\}]} \SpecialCharTok{//}\NormalTok{ ApartFF}\OperatorTok{[}\NormalTok{\#}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{k}\OperatorTok{\}]}\NormalTok{ \&}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{k^2}{2 (k\cdot l+i \eta ).((p-k)^2+i \eta )}+\frac{p^2}{2 (k\cdot l+i \eta ).((k-p)^2+i \eta )}
+\end{dmath*}
+
+Here we need a second call to \texttt{ApartFF} since the first execution
+doesn't drop scaleless integrals or perform any shifts in the
+denominators.
+\end{document}

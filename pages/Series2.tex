@@ -1,0 +1,126 @@
+% !TeX program = pdflatex
+% !TeX root = Series2.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{series2}{%
+\section{Series2}\label{series2}}
+
+\texttt{Series2} performs a series expansion around \texttt{0}.
+\texttt{Series2} is (up to the \texttt{Gamma}-bug in Mathematica
+versions smaller than 5.0) equivalent to \texttt{Series}, except that it
+applies \texttt{Normal} on the result and has an option
+\texttt{FinalSubstitutions}.
+
+\texttt{Series2[\allowbreak{}f,\ \allowbreak{}e,\ \allowbreak{}n]} is
+equivalent to
+\texttt{Series2[\allowbreak{}f,\ \allowbreak{}\{\allowbreak{}e,\ \allowbreak{}0,\ \allowbreak{}n\}]}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{series3}{Series3}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Series2}\OperatorTok{[}\NormalTok{(}\FunctionTok{x}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{))}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Delta}\OperatorTok{]}\SpecialCharTok{/}\DecValTok{2}\NormalTok{)}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Delta}\OperatorTok{],} \DecValTok{1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} \delta  \log (1-x)+\frac{1}{2} \delta  \log (x)+1
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Series2}\OperatorTok{[}\FunctionTok{Gamma}\OperatorTok{[}\FunctionTok{x}\OperatorTok{],} \FunctionTok{x}\OperatorTok{,} \DecValTok{1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} \zeta (2) x+\frac{1}{x}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Series}\OperatorTok{[}\FunctionTok{Gamma}\OperatorTok{[}\FunctionTok{x}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{x}-\gamma +\frac{1}{12} \left(6 \gamma ^2+\pi ^2\right) x+O\left(x^2\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Series2}\OperatorTok{[}\FunctionTok{Gamma}\OperatorTok{[}\FunctionTok{x}\OperatorTok{],} \FunctionTok{x}\OperatorTok{,} \DecValTok{2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{x^2 \zeta (3)}{3}+\frac{1}{2} \zeta (2) x+\frac{1}{x}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Series2}\OperatorTok{[}\FunctionTok{Gamma}\OperatorTok{[}\FunctionTok{x}\OperatorTok{],} \FunctionTok{x}\OperatorTok{,} \DecValTok{2}\OperatorTok{,}\NormalTok{ FinalSubstitutions }\OtherTok{{-}\textgreater{}} \OperatorTok{\{\}]} \SpecialCharTok{//} \FunctionTok{FullSimplify}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{6} \left(-3 \gamma  \left(\zeta (2) x^2+2\right)-2 x^2 \zeta (3)-\gamma ^3 x^2+3 \zeta (2) x+3 \gamma ^2 x+\frac{6}{x}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Series}\OperatorTok{[}\FunctionTok{Gamma}\OperatorTok{[}\FunctionTok{x}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \FunctionTok{If}\OperatorTok{[}\VariableTok{$VersionNumber}\NormalTok{ \textless{} }\DecValTok{5}\OperatorTok{,} \DecValTok{4}\OperatorTok{,} \DecValTok{2}\OperatorTok{]\}]} \SpecialCharTok{//} \FunctionTok{Normal} \SpecialCharTok{//} \FunctionTok{Expand} \SpecialCharTok{//} \FunctionTok{FullSimplify}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{12} \left(-2 \gamma ^3 x^2-\gamma  \left(\pi ^2 x^2+12\right)+x \left(\pi ^2-4 x \zeta (3)\right)+6 \gamma ^2 x+\frac{12}{x}\right)
+\end{dmath*}
+
+There is a table of expansions of special hypergeometric functions.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Series2}\OperatorTok{[}\FunctionTok{HypergeometricPFQ}\OperatorTok{[\{}\DecValTok{1}\OperatorTok{,}\NormalTok{ OPEm }\SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{,}\NormalTok{ Epsilon}\SpecialCharTok{/}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ OPEm}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{OPEm}\OperatorTok{,}\NormalTok{ OPEm }\SpecialCharTok{+}\NormalTok{ Epsilon}\OperatorTok{\},} \DecValTok{1}\OperatorTok{],}\NormalTok{ Epsilon}\OperatorTok{,} \DecValTok{1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{2}{\varepsilon }+\frac{2 m}{\varepsilon }+\frac{1}{2} \varepsilon  m \psi ^{(1)}(m)-\frac{\varepsilon  \psi ^{(1)}(m)}{2}+1
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Series2}\OperatorTok{[}\FunctionTok{HypergeometricPFQ}\OperatorTok{[\{}\DecValTok{1}\OperatorTok{,}\NormalTok{ OPEm}\OperatorTok{,}\NormalTok{ Epsilon}\SpecialCharTok{/}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ OPEm}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ OPEm}\OperatorTok{,}\NormalTok{ Epsilon }\SpecialCharTok{+}\NormalTok{ OPEm}\OperatorTok{\},}  \DecValTok{1}\OperatorTok{],}\NormalTok{ Epsilon}\OperatorTok{,} \DecValTok{1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{4} \varepsilon  \zeta (2) m+\frac{2 m}{\varepsilon }+\frac{1}{4} \varepsilon  m \psi ^{(0)}(m)^2+\frac{3}{4} \varepsilon  m \psi ^{(1)}(m)-\frac{1}{2} \varepsilon  m S_{11}(m-1)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Hypergeometric2F1}\OperatorTok{[}\DecValTok{1}\OperatorTok{,}\NormalTok{ Epsilon}\OperatorTok{,} \DecValTok{1} \SpecialCharTok{+} \DecValTok{2}\NormalTok{ Epsilon}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]} 
+ 
+\NormalTok{Series2}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ Epsilon}\OperatorTok{,} \DecValTok{3}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\, _2F_1(1,\varepsilon ;2 \varepsilon +1;x)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-2 \varepsilon ^2 \zeta (2)+2 \varepsilon ^3 \;\text{Li}_3(1-x)+2 \varepsilon ^2 \;\text{Li}_2(1-x)-4 \varepsilon ^3 \;\text{Li}_2(1-x) \log (x)-4 \varepsilon ^3 S_{12}(1-x)-2 \varepsilon ^3 \zeta (2) \log (1-x)+4 \varepsilon ^3 \zeta (2) \log (x)-\frac{1}{6} \varepsilon ^3 \log ^3(1-x)-2 \varepsilon ^3 \log (1-x) \log ^2(x)+\varepsilon ^3 \log ^2(1-x) \log (x)-\frac{1}{2} \varepsilon ^2 \log ^2(1-x)+2 \varepsilon ^2 \log (1-x) \log (x)-\varepsilon  \log (1-x)+2 \varepsilon ^3 \zeta (3)+1
+\end{dmath*}
+
+There are over 100 more special expansions of \({}_2 F_1\) tabulated in
+\texttt{Series2.m}. The interested user can consult the source code
+(search for HYPERLIST).
+\end{document}

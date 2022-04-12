@@ -1,0 +1,46 @@
+% !TeX program = pdflatex
+% !TeX root = GluonGhostVertex.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{gluonghostvertex}{%
+\section{GluonGhostVertex}\label{gluonghostvertex}}
+
+\texttt{GluonGhostVertex[\allowbreak{}\{\allowbreak{}p,\ \allowbreak{}mu,\ \allowbreak{}a\},\ \allowbreak{}\{\allowbreak{}q,\ \allowbreak{}nu,\ \allowbreak{}b\},\ \allowbreak{}\{\allowbreak{}k,\ \allowbreak{}rho,\ \allowbreak{}c\}]}
+or
+\texttt{GluonGhostVertex[\allowbreak{} p,\ \allowbreak{}mu,\ \allowbreak{}a ,\ \allowbreak{}q,\ \allowbreak{}nu,\ \allowbreak{}b ,\ \allowbreak{}k,\ \allowbreak{}rho,\ \allowbreak{}c]}
+yields the Gluon-Ghost vertex. The first argument represents the gluon
+and the third argument the outgoing ghost field (but incoming
+4-momentum).
+
+\texttt{GGV} can be used as an abbreviation of
+\texttt{GluonGhostVertex}.The dimension and the name of the coupling
+constant are determined by the options \texttt{Dimension} and
+\texttt{CouplingConstant}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{gluonpropagator}{GluonPropagator},
+\hyperlink{gluonselfenergy}{GluonSelfEnergy},
+\hyperlink{gluonvertex}{GluonVertex},
+\hyperlink{qcdfeynmanruleconvention}{QCDFeynmanRuleConvention},
+\hyperlink{ghostpropagator}{GhostPropagator}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GluonGhostVertex}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{b}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{k}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \FunctionTok{c}\OperatorTok{\}]} 
+ 
+\NormalTok{Explicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\tilde{\Lambda }^{\mu }(k) f^{abc}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+g_s \left(-k^{\mu }\right) f^{abc}
+\end{dmath*}
+\end{document}

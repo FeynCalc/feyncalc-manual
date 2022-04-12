@@ -1,0 +1,65 @@
+% !TeX program = pdflatex
+% !TeX root = FCSchoutenBruteForce.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcschoutenbruteforce}{%
+\section{FCSchoutenBruteForce}\label{fcschoutenbruteforce}}
+
+\texttt{FCSchoutenBruteForce[\allowbreak{}exp,\ \allowbreak{}\{\allowbreak{}\},\ \allowbreak{}\{\allowbreak{}\}]}
+can be used to show that certain terms are zero by repeatedly applying,
+Schouten's identity in a brute force way.
+
+The algorithm tries to find replacements which follow from the
+Schouten's identity and make the length of the given expression shorter.
+
+It is not guaranteed to terminate and in general can often get stuck.
+Still, with some luck it is often possible to show that certain terms
+vanish by a sequence of transformations that would be otherwise very
+difficult to find.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{schouten}{Schouten}.
+
+\subsection{Examples}
+
+One may not recognize it easily, but the following expression is zero by
+Schouten's identity
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClearScalarProducts}\OperatorTok{[]} 
+ 
+\FunctionTok{exp} \ExtensionTok{=}\NormalTok{ LC}\OperatorTok{[][}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{,}\NormalTok{ p4}\OperatorTok{]}\NormalTok{ SP}\OperatorTok{[}\NormalTok{p5}\OperatorTok{,}\NormalTok{ p6}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ LC}\OperatorTok{[][}\NormalTok{p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{,}\NormalTok{ p4}\OperatorTok{,}\NormalTok{ p5}\OperatorTok{]}\NormalTok{ SP}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p6}\OperatorTok{]} \SpecialCharTok{+} 
+\NormalTok{   LC}\OperatorTok{[][}\NormalTok{p3}\OperatorTok{,}\NormalTok{ p4}\OperatorTok{,}\NormalTok{ p5}\OperatorTok{,}\NormalTok{ p1}\OperatorTok{]}\NormalTok{ SP}\OperatorTok{[}\NormalTok{p2}\OperatorTok{,}\NormalTok{ p6}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ LC}\OperatorTok{[][}\NormalTok{p4}\OperatorTok{,}\NormalTok{ p5}\OperatorTok{,}\NormalTok{ p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{]}\NormalTok{ SP}\OperatorTok{[}\NormalTok{p3}\OperatorTok{,}\NormalTok{ p6}\OperatorTok{]} \SpecialCharTok{{-}}
+\NormalTok{   LC}\OperatorTok{[][}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{,}\NormalTok{ p5}\OperatorTok{]}\NormalTok{ SP}\OperatorTok{[}\NormalTok{p4}\OperatorTok{,}\NormalTok{ p6}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\overline{\text{p5}}\cdot \overline{\text{p6}}\right) \bar{\epsilon }^{\overline{\text{p1}}\;\overline{\text{p2}}\;\overline{\text{p3}}\;\overline{\text{p4}}}-\left(\overline{\text{p4}}\cdot \overline{\text{p6}}\right) \bar{\epsilon }^{\overline{\text{p1}}\;\overline{\text{p2}}\;\overline{\text{p3}}\;\overline{\text{p5}}}+\left(\overline{\text{p1}}\cdot \overline{\text{p6}}\right) \bar{\epsilon }^{\overline{\text{p2}}\;\overline{\text{p3}}\;\overline{\text{p4}}\;\overline{\text{p5}}}+\left(\overline{\text{p2}}\cdot \overline{\text{p6}}\right) \bar{\epsilon }^{\overline{\text{p3}}\;\overline{\text{p4}}\;\overline{\text{p5}}\;\overline{\text{p1}}}+\left(\overline{\text{p3}}\cdot \overline{\text{p6}}\right) \bar{\epsilon }^{\overline{\text{p4}}\;\overline{\text{p5}}\;\overline{\text{p1}}\;\overline{\text{p2}}}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCSchoutenBruteForce}\OperatorTok{[}\FunctionTok{exp}\OperatorTok{,} \OperatorTok{\{\},} \OperatorTok{\{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCSchoutenBruteForce: The following rule was applied: }\bar{\epsilon }^{\overline{\text{p2}}\;\overline{\text{p3}}\;\overline{\text{p4}}\;\overline{\text{p5}}} \left(\overline{\text{p1}}\cdot \overline{\text{p6}}\right):\to \bar{\epsilon }^{\overline{\text{p1}}\;\overline{\text{p3}}\;\overline{\text{p4}}\;\overline{\text{p5}}} \left(\overline{\text{p2}}\cdot \overline{\text{p6}}\right)-\bar{\epsilon }^{\overline{\text{p1}}\;\overline{\text{p2}}\;\overline{\text{p4}}\;\overline{\text{p5}}} \left(\overline{\text{p3}}\cdot \overline{\text{p6}}\right)+\bar{\epsilon }^{\overline{\text{p1}}\;\overline{\text{p2}}\;\overline{\text{p3}}\;\overline{\text{p5}}} \left(\overline{\text{p4}}\cdot \overline{\text{p6}}\right)-\bar{\epsilon }^{\overline{\text{p1}}\;\overline{\text{p2}}\;\overline{\text{p3}}\;\overline{\text{p4}}} \left(\overline{\text{p5}}\cdot \overline{\text{p6}}\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCSchoutenBruteForce: The numbers of terms in the expression decreased by: }5
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCSchoutenBruteForce: Current length of the expression: }0
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+\end{document}

@@ -1,0 +1,67 @@
+% !TeX program = pdflatex
+% !TeX root = CSI.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{csi}{%
+\section{CSI}\label{csi}}
+
+\texttt{CSI[\allowbreak{}i]} can be used as input for 3-dimensional
+\(\sigma ^i\) with 3-dimensional Cartesian index \texttt{i} and is
+transformed into
+\texttt{PauliSigma[\allowbreak{}CartesianIndex[\allowbreak{}i]]} by
+\texttt{FeynCalcInternal}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{paulisigma}{PauliSigma}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CSI}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{\sigma }^i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CSI}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]} \SpecialCharTok{{-}}\NormalTok{ CSI}\OperatorTok{[}\FunctionTok{j}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{\sigma }^i.\overline{\sigma }^j-\overline{\sigma }^j.\overline{\sigma }^i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{StandardForm}\OperatorTok{[}\NormalTok{FCI}\OperatorTok{[}\NormalTok{CSI}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]]]}
+
+\CommentTok{(*PauliSigma[CartesianIndex[i]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CSI}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{,} \FunctionTok{l}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{\sigma }^i.\overline{\sigma }^j.\overline{\sigma }^k.\overline{\sigma }^l
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{StandardForm}\OperatorTok{[}\NormalTok{CSI}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{,} \FunctionTok{l}\OperatorTok{]]}
+
+\CommentTok{(*CSI[i] . CSI[j] . CSI[k] . CSI[l]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

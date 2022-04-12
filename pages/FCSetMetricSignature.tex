@@ -1,0 +1,46 @@
+% !TeX program = pdflatex
+% !TeX root = FCSetMetricSignature.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcsetmetricsignature}{%
+\section{FCSetMetricSignature}\label{fcsetmetricsignature}}
+
+\texttt{FCSetMetricSignature} sets the signature of the Minkowski metric
+used when working with Cartesian objects, like \texttt{CartesianPair},
+\texttt{CartesianIndex}, \texttt{CartesianMomentum} etc.
+
+The default choice is \((1,-1,-1,-1)\) which corresponds to
+\texttt{FCSetMetricSignature[\allowbreak{}\{\allowbreak{}1,\ \allowbreak{}-1\}]}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcgetmetricsignature}{FCGetMetricSignature}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCSetMetricSignature}\OperatorTok{[\{}\SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]} 
+ 
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ LorentzToCartesian}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p\cdot q-p^0 q^0
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCSetMetricSignature}\OperatorTok{[\{}\DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\}]} 
+ 
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ LorentzToCartesian}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p^0 q^0-p\cdot q
+\end{dmath*}
+\end{document}

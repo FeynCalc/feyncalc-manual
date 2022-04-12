@@ -1,0 +1,36 @@
+% !TeX program = pdflatex
+% !TeX root = Rename.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{rename}{%
+\section{Rename}\label{rename}}
+
+\texttt{Rename} is an option for \texttt{Contract}. If set to
+\texttt{True}, dummy indices in \texttt{Eps} are renamed, using
+\texttt{\$MU[\allowbreak{}i]}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{contract}{Contract}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LC}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]}\NormalTok{ LC}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ EpsContract }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{,}\NormalTok{ Rename }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]} 
+  
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\alpha \nu \rho \sigma } \bar{\epsilon }^{\mu \nu \rho \sigma }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\alpha \;\text{\$MU}(4)\text{\$MU}(5)\text{\$MU}(6)} \bar{\epsilon }^{\mu \;\text{\$MU}(4)\text{\$MU}(5)\text{\$MU}(6)}
+\end{dmath*}
+\end{document}

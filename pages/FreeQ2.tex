@@ -1,0 +1,63 @@
+% !TeX program = pdflatex
+% !TeX root = FreeQ2.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{freeq2}{%
+\section{FreeQ2}\label{freeq2}}
+
+\texttt{FreeQ2[\allowbreak{}expr,\ \allowbreak{}\{\allowbreak{}form1,\ \allowbreak{}form2,\ \allowbreak{}...\}]}
+yields \texttt{True} if \texttt{expr} does not contain any occurrence of
+\texttt{form1,\ \allowbreak{}form2,\ \allowbreak{}...} and
+\texttt{False} otherwise.
+
+\texttt{FreeQ2[\allowbreak{}expr,\ \allowbreak{}form]} is the same as
+\texttt{FreeQ[\allowbreak{}expr,\ \allowbreak{}form]}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{selectfree}{SelectFree},
+\hyperlink{selectnotfree}{SelectNotFree}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FreeQ2}\OperatorTok{[}\FunctionTok{x} \SpecialCharTok{+} \FunctionTok{f}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{y}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{a}\OperatorTok{,} \FunctionTok{x}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FreeQ2}\OperatorTok{[}\FunctionTok{x} \SpecialCharTok{+} \FunctionTok{f}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{y}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FreeQ2}\OperatorTok{[}\FunctionTok{x}\OperatorTok{,} \FunctionTok{y}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FreeQ2}\OperatorTok{[}\FunctionTok{f}\OperatorTok{[}\FunctionTok{x}\OperatorTok{],} \FunctionTok{f}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+\end{document}

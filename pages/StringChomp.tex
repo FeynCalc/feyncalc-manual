@@ -1,0 +1,36 @@
+% !TeX program = pdflatex
+% !TeX root = StringChomp.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{stringchomp}{%
+\section{StringChomp}\label{stringchomp}}
+
+\texttt{StringChomp[\allowbreak{}str]} chops initial and final white
+space of the string \texttt{str}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{write2}{Write2}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{StringChomp}\OperatorTok{[}\StringTok{" abc "}\OperatorTok{]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//} \FunctionTok{InputForm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{abc}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"abc"}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

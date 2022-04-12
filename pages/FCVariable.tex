@@ -1,0 +1,128 @@
+% !TeX program = pdflatex
+% !TeX root = FCVariable.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcvariable}{%
+\section{FCVariable}\label{fcvariable}}
+
+\texttt{FCVariable} is a data type. E.g.
+\texttt{DataType[\allowbreak{}z,\ \allowbreak{}FCVariable] = True}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{expandscalarproduct}{ExpandScalarProduct},
+\hyperlink{datatype}{DataType}.
+
+\subsection{Examples}
+
+If we want to introduce constants \texttt{c1} and \texttt{c2}, the naive
+way doesn't lead to the desired result
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPD}\OperatorTok{[}\NormalTok{c1 p1 }\SpecialCharTok{+}\NormalTok{ c2 p2}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ ExpandScalarProduct}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{c1} \;\text{p1}\cdot q+\text{c2} \;\text{p2}\cdot q
+\end{dmath*}
+
+The solution is to declare \texttt{c1} and \texttt{c2} as
+\texttt{FCVariable} so that FeynCalc can distinguish them from the
+4-momenta
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DataType}\OperatorTok{[}\NormalTok{c1}\OperatorTok{,}\NormalTok{ FCVariable}\OperatorTok{]} \ExtensionTok{=} \ConstantTok{True}\NormalTok{; }
+ 
+\NormalTok{DataType}\OperatorTok{[}\NormalTok{c2}\OperatorTok{,}\NormalTok{ FCVariable}\OperatorTok{]} \ExtensionTok{=} \ConstantTok{True}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPD}\OperatorTok{[}\NormalTok{c1 p1 }\SpecialCharTok{+}\NormalTok{ c2 p2}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ ExpandScalarProduct}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{c1} (\text{p1}\cdot q)+\text{c2} (\text{p2}\cdot q)
+\end{dmath*}
+
+This works also for propagator denominators and matrices
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{SFAD}\OperatorTok{[\{}\FunctionTok{q} \SpecialCharTok{+}\NormalTok{ c1 p1}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{((\text{c1} \;\text{p1}+q)^2-m+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{SFAD}\OperatorTok{[\{}\FunctionTok{q} \SpecialCharTok{+}\NormalTok{ c1 p1}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*FeynAmpDenominator[StandardPropagatorDenominator[c1 Momentum[p1, D] + Momentum[q, D], 0, {-}m, \{1, 1\}]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . (GSD}\OperatorTok{[}\NormalTok{c1 }\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{m}\NormalTok{) . GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} \SpecialCharTok{//}\NormalTok{ FCI}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\gamma ^{\mu }.(\text{c1} \gamma \cdot p+m).\gamma ^{\nu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . (GSD}\OperatorTok{[}\NormalTok{c1 }\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{m}\NormalTok{) . GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*DiracGamma[LorentzIndex[\textbackslash{}[Mu], D], D] . (m + c1 DiracGamma[Momentum[p, D], D]) . DiracGamma[LorentzIndex[\textbackslash{}[Nu], D], D]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CSI}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]}\NormalTok{ . CSIS}\OperatorTok{[}\NormalTok{c1 }\FunctionTok{p}\OperatorTok{]}\NormalTok{ . CSI}\OperatorTok{[}\FunctionTok{j}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{\sigma }^i.\left(\text{c1} \overline{\sigma }\cdot \overline{p}\right).\overline{\sigma }^j
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CSI}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]}\NormalTok{ . CSIS}\OperatorTok{[}\NormalTok{c1 }\FunctionTok{p}\OperatorTok{]}\NormalTok{ . CSI}\OperatorTok{[}\FunctionTok{j}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*PauliSigma[CartesianIndex[i]] . (c1 PauliSigma[CartesianMomentum[p]]) . PauliSigma[CartesianIndex[j]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+To undo the declarations use
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DataType}\OperatorTok{[}\NormalTok{c1}\OperatorTok{,}\NormalTok{ FCVariable}\OperatorTok{]} \ExtensionTok{=} \ConstantTok{False} 
+ 
+\NormalTok{DataType}\OperatorTok{[}\NormalTok{c2}\OperatorTok{,}\NormalTok{ FCVariable}\OperatorTok{]} \ExtensionTok{=} \ConstantTok{False}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+\end{document}

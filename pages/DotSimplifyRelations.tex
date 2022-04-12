@@ -1,0 +1,25 @@
+% !TeX program = pdflatex
+% !TeX root = DotSimplifyRelations.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{dotsimplifyrelations}{%
+\section{DotSimplifyRelations}\label{dotsimplifyrelations}}
+
+\texttt{DotSimplifyRelations} is an option for \texttt{DotSimplify}. Its
+setting may be a list of substitution rules of the form
+\texttt{DotSimplifyRelations -> \{\allowbreak{}a.b -> c,\ \allowbreak{}b^2 -> 0,\ \allowbreak{}...\}}.
+
+In the rules, \texttt{Condition} should not be used and patterns should
+be avoided on the right-hand sides.
+
+Notice that the performance of \texttt{DotSimplify} scales very badly
+with the complexity of \texttt{DotSimplifyRelations} and the number of
+terms of the expression.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{dotsimplify}{DotSimplify}.
+
+\subsection{Examples}
+\end{document}

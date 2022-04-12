@@ -1,0 +1,43 @@
+% !TeX program = pdflatex
+% !TeX root = B0Real.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{b0real}{%
+\section{B0Real}\label{b0real}}
+
+\texttt{B0Real} is an option of \texttt{B0} (default \texttt{False}). If
+set to \texttt{True}, \texttt{B0} is assumed to be real and the relation
+\texttt{B0[\allowbreak{}a,\ \allowbreak{}0,\ \allowbreak{}a] = 2 + B0[\allowbreak{}0,\ \allowbreak{}a,\ \allowbreak{}a]}
+is applied.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{b0}{B0}.
+
+\subsection{Examples}
+
+By default the arguments are not assumed real.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B0}\OperatorTok{[}\FunctionTok{s}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \FunctionTok{s}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{B}_0(s,0,s)
+\end{dmath*}
+
+With \texttt{B0Real->True}, transformation is done.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B0}\OperatorTok{[}\FunctionTok{s}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \FunctionTok{s}\OperatorTok{,}\NormalTok{ B0Real }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,}\NormalTok{ B0Unique }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{B}_0(0,s,s)+2
+\end{dmath*}
+\end{document}

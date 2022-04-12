@@ -1,0 +1,45 @@
+% !TeX program = pdflatex
+% !TeX root = FCEnableTraditionalFormOutput.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcenabletraditionalformoutput}{%
+\section{FCEnableTraditionalFormOutput}\label{fcenabletraditionalformoutput}}
+
+\texttt{FCEnableTraditionalFormOutput[\allowbreak{}]} sets the output
+format of the current FrontEnd to \texttt{TraditionalForm}. The setting
+is not persistent, such that it does not influence any subsequent
+Mathematica FrontEnd sessions.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fctraditionalformoutput}{\$FCTraditionalFormOutput},
+\hyperlink{fcdisabletraditionalformoutput}{FCDisableTraditionalFormOutput}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCDisableTraditionalFormOutput}\OperatorTok{[]} 
+ 
+\NormalTok{FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\mu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCEnableTraditionalFormOutput}\OperatorTok{[]} 
+ 
+\NormalTok{FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\mu }
+\end{dmath*}
+\end{document}

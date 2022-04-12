@@ -1,0 +1,87 @@
+% !TeX program = pdflatex
+% !TeX root = PaVeLimitTo4.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{pavelimitto4}{%
+\section{PaVeLimitTo4}\label{pavelimitto4}}
+
+\texttt{PaVeLimitTo4[\allowbreak{}expr]} simplifies products of
+Passarino-Veltman functions and \(D\)-dependent prefactors by evaluating
+the prefactors at \(D=4\) and adding an extra term from the product of
+\((D-4)\) and the UV pole of the Passarino-Veltman function.
+
+This is possible because the UV poles of arbitrary Passarino-Veltman
+functions can be determined via \texttt{PaVeUVPart}. The result is valid
+up to 0th order in Epsilon, i.e.~it is sufficient for 1-loop
+calculations.
+
+Warning! This simplification always ignores possible IR poles of
+Passarino-Veltman functions. Therefore, it can be used only if all IR
+poles are regulated without using dimensional regularization (e.g.~by
+assigning gluons or photons a fake mass) or if it is known in advance
+that the given expression is free of IR singularities.
+
+The application of \texttt{PaVeLimitTo4} is equivalent to using the old
+\texttt{OneLoop} routine with the flags \texttt{\$LimitTo4} and
+\texttt{\$LimitTo4IRUnsafe} set to \texttt{True}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{limitto4}{\$LimitTo4}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ (}\FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(}\FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{3}\NormalTok{) A0}\OperatorTok{[}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{]} 
+ 
+\NormalTok{PaVeLimitTo4}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{(D-2) \;\text{A}_0\left(m^2\right)}{D-3}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+2 \;\text{A}_0\left(m^2\right)+2 m^2
+\end{dmath*}
+
+Simplify the 1-loop amplitude for \(H \to g g\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ (}\SpecialCharTok{{-}}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{((}\SpecialCharTok{{-}}\DecValTok{2} \SpecialCharTok{+} \FunctionTok{D}\NormalTok{) mH}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ mW sinW)) }\DecValTok{2} \FunctionTok{I}\NormalTok{ (}\SpecialCharTok{{-}}\DecValTok{4} \SpecialCharTok{+} \FunctionTok{D}\NormalTok{) }\FunctionTok{e}\NormalTok{ gs}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ mt}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Pi}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ B0}\OperatorTok{[}\NormalTok{mH}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ mt}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ mt}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{]} 
+\NormalTok{     SD}\OperatorTok{[}\NormalTok{Glu2}\OperatorTok{,}\NormalTok{ Glu3}\OperatorTok{]}\NormalTok{ (}\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,}\NormalTok{ Polarization}\OperatorTok{[}\NormalTok{k2}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{,}\NormalTok{ Transversality }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]]} 
+\NormalTok{        SPD}\OperatorTok{[}\NormalTok{k2}\OperatorTok{,}\NormalTok{ Polarization}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{,}\NormalTok{ Transversality }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]]} \SpecialCharTok{+} 
+\NormalTok{       mH}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{Polarization}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{,}\NormalTok{ Transversality }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{],} 
+\NormalTok{         Polarization}\OperatorTok{[}\NormalTok{k2}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{,}\NormalTok{ Transversality }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]]}\NormalTok{) }\SpecialCharTok{{-}} \DecValTok{1}\SpecialCharTok{/}\NormalTok{((}\SpecialCharTok{{-}}\DecValTok{2} \SpecialCharTok{+} 
+          \FunctionTok{D}\NormalTok{) mH}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ mW sinW) }\FunctionTok{I} \FunctionTok{e}\NormalTok{ gs}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ mt}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ (}\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{ mH}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+} \FunctionTok{D}\NormalTok{ mH}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{{-}} 
+       \DecValTok{8}\NormalTok{ mt}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{) }\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Pi}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ C0}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,}\NormalTok{ mH}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ mt}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ mt}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ mt}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{]}\NormalTok{ SD}\OperatorTok{[}\NormalTok{Glu2}\OperatorTok{,}\NormalTok{ Glu3}\OperatorTok{]}\NormalTok{ (}\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,} 
+\NormalTok{         Polarization}\OperatorTok{[}\NormalTok{k2}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{,}\NormalTok{ Transversality }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]]}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{k2}\OperatorTok{,}\NormalTok{ Polarization}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,} 
+          \SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{,}\NormalTok{ Transversality }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]]} \SpecialCharTok{+}\NormalTok{ mH}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{Polarization}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{,} 
+\NormalTok{          Transversality }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{],}\NormalTok{ Polarization}\OperatorTok{[}\NormalTok{k2}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{I}\OperatorTok{,}\NormalTok{ Transversality }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]]}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{2 i \pi ^2 (D-4) e \;\text{gs}^2 \;\text{mt}^2 \delta ^{\text{Glu2}\;\text{Glu3}} \;\text{B}_0\left(\text{mH}^2,\text{mt}^2,\text{mt}^2\right) \left(\text{mH}^2 \left(\varepsilon ^*(\text{k1})\cdot \varepsilon ^*(\text{k2})\right)-2 \left(\text{k1}\cdot \varepsilon ^*(\text{k2})\right) \left(\text{k2}\cdot \varepsilon ^*(\text{k1})\right)\right)}{(D-2) \;\text{mH}^2 \;\text{mW} \;\text{sinW}}-\frac{i \pi ^2 e \;\text{gs}^2 \;\text{mt}^2 \left(D \;\text{mH}^2-2 \;\text{mH}^2-8 \;\text{mt}^2\right) \delta ^{\text{Glu2}\;\text{Glu3}} \;\text{C}_0\left(0,0,\text{mH}^2,\text{mt}^2,\text{mt}^2,\text{mt}^2\right) \left(\text{mH}^2 \left(\varepsilon ^*(\text{k1})\cdot \varepsilon ^*(\text{k2})\right)-2 \left(\text{k1}\cdot \varepsilon ^*(\text{k2})\right) \left(\text{k2}\cdot \varepsilon ^*(\text{k1})\right)\right)}{(D-2) \;\text{mH}^2 \;\text{mW} \;\text{sinW}}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PaVeLimitTo4}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{i \pi ^2 e \;\text{gs}^2 \;\text{mt}^2 \left(\text{mH}^2-4 \;\text{mt}^2\right) \delta ^{\text{Glu2}\;\text{Glu3}} \;\text{C}_0\left(0,0,\text{mH}^2,\text{mt}^2,\text{mt}^2,\text{mt}^2\right) \left(2 \left(\overline{\text{k1}}\cdot \bar{\varepsilon }^*(\text{k2})\right) \left(\overline{\text{k2}}\cdot \bar{\varepsilon }^*(\text{k1})\right)-\text{mH}^2 \left(\bar{\varepsilon }^*(\text{k1})\cdot \bar{\varepsilon }^*(\text{k2})\right)\right)}{\text{mH}^2 \;\text{mW} \;\text{sinW}}-\frac{2 i \pi ^2 e \;\text{gs}^2 \;\text{mt}^2 \delta ^{\text{Glu2}\;\text{Glu3}} \left(2 \left(\overline{\text{k1}}\cdot \bar{\varepsilon }^*(\text{k2})\right) \left(\overline{\text{k2}}\cdot \bar{\varepsilon }^*(\text{k1})\right)-\text{mH}^2 \left(\bar{\varepsilon }^*(\text{k1})\cdot \bar{\varepsilon }^*(\text{k2})\right)\right)}{\text{mH}^2 \;\text{mW} \;\text{sinW}}
+\end{dmath*}
+\end{document}

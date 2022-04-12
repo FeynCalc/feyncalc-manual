@@ -1,0 +1,40 @@
+% !TeX program = pdflatex
+% !TeX root = DropScaleless.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{dropscaleless}{%
+\section{DropScaleless}\label{dropscaleless}}
+
+\texttt{DropScaleless} is an option for \texttt{FCLoopIsolate},
+\texttt{ApartFF}, \texttt{FourDivergence} and other functions. When set
+to \texttt{True}, all loop integrals that do not contain a
+\texttt{FeynAmpDenominator}, i.e.~consist of only scalar products but no
+denominators, are set to zero.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fcloopisolate}{FCLoopIsolate}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopIsolate}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{l}\OperatorTok{,} \FunctionTok{q}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCGV}(\text{LoopInt})(l\cdot q)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopIsolate}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{l}\OperatorTok{,} \FunctionTok{q}\OperatorTok{],} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},}\NormalTok{ DropScaleless }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+\end{document}

@@ -1,0 +1,77 @@
+% !TeX program = pdflatex
+% !TeX root = FieldStrength.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fieldstrength}{%
+\section{FieldStrength}\label{fieldstrength}}
+
+\texttt{FieldStrength[\allowbreak{}mu,\ \allowbreak{}nu,\ \allowbreak{}a]}
+is the field strength tensor
+\(\partial _{\mu } A_{\nu }^a - \partial _{\nu } A_{\mu }^a + g_s A_{\mu }^b A_{\nu }^c f^{abc}\).
+
+\texttt{FieldStrength[\allowbreak{}mu,\ \allowbreak{}nu]} is the field
+strength tensor \((\partial _{\mu } A_{\nu}- \partial_{\nu } A_{\mu})\).
+
+The name of the field (\(A\)) and the coupling constant (\(g\)) can be
+set through the options or by additional arguments. The first two
+indices are interpreted as type \texttt{LorentzIndex}, except
+\texttt{OPEDelta}, which is converted to
+\texttt{Momentum[\allowbreak{}OPEDelta]}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FieldStrength}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+F_{\mu \nu }^{}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FieldStrength}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+F_{\mu \nu }^a
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FieldStrength}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],}\NormalTok{ Explicit }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left.(\partial _{\mu }A_{\nu }\right)-\left.(\partial _{\nu }A_{\mu }\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FieldStrength}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{,}\NormalTok{ Explicit }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+g_s f^{a\text{b19}\;\text{c20}} A_{\mu }^{\text{b19}}.A_{\nu }^{\text{c20}}+\left.(\partial _{\mu }A_{\nu }^a\right)-\left.(\partial _{\nu }A_{\mu }^a\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FieldStrength}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{,}\NormalTok{ CouplingConstant }\OtherTok{{-}\textgreater{}} \SpecialCharTok{{-}}\NormalTok{SMP}\OperatorTok{[}\StringTok{"g\_s"}\OperatorTok{],}\NormalTok{ Explicit }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-g_s f^{a\text{b21}\;\text{c22}} A_{\mu }^{\text{b21}}.A_{\nu }^{\text{c22}}+\left.(\partial _{\mu }A_{\nu }^a\right)-\left.(\partial _{\nu }A_{\mu }^a\right)
+\end{dmath*}
+\end{document}

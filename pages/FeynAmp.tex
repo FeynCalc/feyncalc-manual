@@ -1,0 +1,48 @@
+% !TeX program = pdflatex
+% !TeX root = FeynAmp.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{feynamp}{%
+\section{FeynAmp}\label{feynamp}}
+
+\texttt{FeynAmp[\allowbreak{}q,\ \allowbreak{}amp]} is the head of a
+Feynman amplitude, where amp denotes the analytical expression for the
+amplitude and q is the integration variable.
+\texttt{FeynAmp[\allowbreak{}q1,\ \allowbreak{}q2,\ \allowbreak{}amp]}
+denotes a two-loop amplitude. \texttt{FeynAmp} has no functional
+properties and serves just as a head. There are however special
+typesetting rules attached.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{amplitude}{Amplitude}.
+
+\subsection{Examples}
+
+This is a 1-loop gluon self-energy amplitude (ignoring factors of
+\(2 \pi\)).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmp}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,}\NormalTok{ GV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{,} \FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \FunctionTok{c}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \FunctionTok{e}\OperatorTok{]}\NormalTok{ GP}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \FunctionTok{c}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \FunctionTok{d}\OperatorTok{]}\NormalTok{ GV}\OperatorTok{[}\SpecialCharTok{{-}}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{b}\OperatorTok{,} \FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \FunctionTok{d}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{],} \FunctionTok{f}\OperatorTok{]} \SpecialCharTok{*}
+\NormalTok{   GP}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \FunctionTok{e}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{],} \FunctionTok{f}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\int d^Dq\left(f^{bdf} f^{ace} \Pi _{ef}^{\beta \sigma }(q) V^{\mu \alpha \beta }(p\text{, }q-p\text{, }-q) V^{\nu \rho \sigma }(-p\text{, }p-q\text{, }q) \Pi _{cd}^{\alpha \rho }(p-q)\right)
+\end{dmath*}
+
+This is a generic 2-loop amplitude.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmp}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \DecValTok{1}\OperatorTok{],} \FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \DecValTok{2}\OperatorTok{],}\NormalTok{ anyexpression}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FeynAmp}\left(q_1,q_2,\text{anyexpression}\right)
+\end{dmath*}
+\end{document}

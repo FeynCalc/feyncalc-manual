@@ -1,0 +1,154 @@
+% !TeX program = pdflatex
+% !TeX root = ExpandPartialD.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{expandpartiald}{%
+\section{ExpandPartialD}\label{expandpartiald}}
+
+\texttt{ExpandPartialD[\allowbreak{}exp]} expands noncommutative
+products of \texttt{QuantumField\}}s and partial differentiation
+operators in \texttt{exp} and applies the Leibniz rule.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{explicitpartiald}{ExplicitPartialD},
+\hyperlink{leftpartiald}{LeftPartialD},
+\hyperlink{leftrightpartiald}{LeftRightPartialD},
+\hyperlink{partialdrelations}{PartialDRelations},
+\hyperlink{rightpartiald}{RightPartialD}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{RightPartialD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . QuantumField}\OperatorTok{[}\FunctionTok{A}\OperatorTok{,}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]}\NormalTok{ . QuantumField}\OperatorTok{[}\FunctionTok{A}\OperatorTok{,}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]]} 
+ 
+\NormalTok{ExpandPartialD}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\vec{\partial }_{\mu }.A_{\mu }.A_{\nu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+A_{\mu }.\left(\left.(\partial _{\mu }A_{\nu }\right)\right)+\left(\left.(\partial _{\mu }A_{\mu }\right)\right).A_{\nu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LeftRightPartialD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . QuantumField}\OperatorTok{[}\FunctionTok{A}\OperatorTok{,}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]]} 
+ 
+\NormalTok{ExpandPartialD}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overleftrightarrow{\partial }_{\mu }.A_{\nu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} \left(\left.(\partial _{\mu }A_{\nu }\right)-\overleftarrow{\partial }_{\mu }.A_{\nu }\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QuantumField}\OperatorTok{[}\FunctionTok{A}\OperatorTok{,}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]}\NormalTok{ . (LeftRightPartialD}\OperatorTok{[}\NormalTok{OPEDelta}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{) . QuantumField}\OperatorTok{[}\FunctionTok{A}\OperatorTok{,} 
+\NormalTok{    LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]]]} 
+ 
+\NormalTok{ExpandPartialD}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+A_{\mu }.\overleftrightarrow{\partial }_{\Delta }^2.A_{\rho }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{4} \left(-2 \left(\left.(\partial _{\Delta }A_{\mu }\right)\right).\left(\left.(\partial _{\Delta }A_{\rho }\right)\right)+A_{\mu }.\left(\partial _{\Delta }\partial _{\Delta }A_{\rho }\right)+\left(\partial _{\Delta }\partial _{\Delta }A_{\mu }\right).A_{\rho }\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{8}\NormalTok{ LeftRightPartialD}\OperatorTok{[}\NormalTok{OPEDelta}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+8 \overleftrightarrow{\partial }_{\Delta }^3
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ExplicitPartialD}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\vec{\partial }_{\Delta }-\overleftarrow{\partial }_{\Delta }\right){}^3
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ExpandPartialD}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\overleftarrow{\partial }_{\Delta }.\overleftarrow{\partial }_{\Delta }.\overleftarrow{\partial }_{\Delta }+3 \overleftarrow{\partial }_{\Delta }.\overleftarrow{\partial }_{\Delta }.\vec{\partial }_{\Delta }-3 \overleftarrow{\partial }_{\Delta }.\vec{\partial }_{\Delta }.\vec{\partial }_{\Delta }+\vec{\partial }_{\Delta }.\vec{\partial }_{\Delta }.\vec{\partial }_{\Delta }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LC}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Tau}\OperatorTok{]]}\NormalTok{ RightPartialD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\mu \nu \rho \tau } \vec{\partial }_{\alpha }.\vec{\partial }_{\mu }.\vec{\partial }_{\beta }.\vec{\partial }_{\nu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ExpandPartialD}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{RightPartialD}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]]}\NormalTok{ . QuantumField}\OperatorTok{[}\FunctionTok{S}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ ExpandPartialD}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\vec{\partial }_i.S^x
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left.(\partial _iS^x\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{RightPartialD}\OperatorTok{[\{}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],} \FunctionTok{x}\OperatorTok{\}]}\NormalTok{ . QuantumField}\OperatorTok{[}\FunctionTok{S}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ ExpandPartialD}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\vec{\partial }_{\{i,x\}}.S^x
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left.(\partial _{\{i,x\}}S^x\right)
+\end{dmath*}
+\end{document}

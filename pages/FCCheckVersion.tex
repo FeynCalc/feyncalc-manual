@@ -1,0 +1,38 @@
+% !TeX program = pdflatex
+% !TeX root = FCCheckVersion.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fccheckversion}{%
+\section{FCCheckVersion}\label{fccheckversion}}
+
+\texttt{FCCheckVersion[\allowbreak{}major,\ \allowbreak{}minor,\ \allowbreak{}build]}
+checks if the current version of FeynCalc is larger or equal than
+\texttt{marjor.minor.build}. For example,
+\texttt{FCCheckVersion[\allowbreak{}9,\ \allowbreak{}3,\ \allowbreak{}0]}
+will generate a warning (when running with the frontend) or quit kernel
+(when running without the frontend) if the loaded FeynCalc version is
+older than 9.3.0.
+
+Notice that this function is available only since FeynCalc 9.3.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{feyncalcversion}{\$FeynCalcVersion}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCCheckVersion}\OperatorTok{[}\DecValTok{8}\OperatorTok{,} \DecValTok{2}\OperatorTok{,} \DecValTok{0}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{(*FCCheckVersion[15,2,0]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

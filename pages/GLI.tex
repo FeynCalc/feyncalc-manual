@@ -1,0 +1,28 @@
+% !TeX program = pdflatex
+% !TeX root = GLI.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{gli}{%
+\section{GLI}\label{gli}}
+
+\texttt{GLI[\allowbreak{}id,\ \allowbreak{}\{\allowbreak{}indices\}]} is
+a generic loop integral, where the indices denote powers of propagators
+in the propagator basis (\texttt{FCTopology}) named \texttt{id}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fctopology}{FCTopology}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GLI}\OperatorTok{[}\StringTok{"topo1"}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+G^{\text{topo1}}(1,0,0,1,1)
+\end{dmath*}
+\end{document}

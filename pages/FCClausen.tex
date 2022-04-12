@@ -1,0 +1,76 @@
+% !TeX program = pdflatex
+% !TeX root = FCClausen.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcclausen}{%
+\section{FCClausen}\label{fcclausen}}
+
+\texttt{FCClausen[\allowbreak{}x,\ \allowbreak{}y]} gives the Clausen
+function with arguments \texttt{x} and \texttt{y}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClausen}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{Cl}_2(x)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClausen}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ Explicit}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} i \left(\text{Li}_2\left(e^{-i x}\right)-\text{Li}_2\left(e^{i x}\right)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClausen}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \FloatTok{1.3}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{Cl}_2(1.3)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClausen}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \FloatTok{1.3}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{N}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0.989703\, +0. i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClausen}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \FunctionTok{Pi}\SpecialCharTok{/}\DecValTok{2}\OperatorTok{,}\NormalTok{ Explicit }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+C
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClausen}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \FunctionTok{Pi}\SpecialCharTok{/}\DecValTok{2}\OperatorTok{,}\NormalTok{ Explicit }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*Catalan*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}
