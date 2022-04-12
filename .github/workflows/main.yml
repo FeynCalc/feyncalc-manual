@@ -1,0 +1,22 @@
+name: Build LaTeX document
+on: [push, workflow_dispatch]
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    needs: base-image-build
+    container:
+      image: ghcr.io/vsht/feyncalc/latex-docker
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.CR_PAT }}
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      - name: Compile LaTeX document
+        run: |
+          pdflatex FeynCalcManual.tex
+      - name: Upload the resulting PDF
+        uses: actions/upload-artifact@v2
+        with:
+          name: PDF
+          path: FeynCalcManual.pdf
