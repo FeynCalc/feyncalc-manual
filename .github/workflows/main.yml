@@ -1,0 +1,22 @@
+name: Build LaTeX document
+on: [push, workflow_dispatch]
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest    
+    container:
+      image: ghcr.io/vsht/feyncalc/latex-docker:latest
+      credentials:
+        username: ${{ secrets.GHCR_USERNAME }}
+        password: ${{ secrets.GHCR_TOKEN }}
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      - name: Compile LaTeX document
+        run: |
+          arara FeynCalcManual.tex
+      - name: Upload the resulting PDF
+        uses: ncipollo/release-action@v1
+        with:
+          tag: "dev-manual"
+          allowUpdates: true
+          artifacts: "FeynCalcManual.pdf"
