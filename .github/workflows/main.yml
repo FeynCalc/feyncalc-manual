@@ -17,4 +17,6 @@ jobs:
       - name: Upload the resulting PDF
         uses: ncipollo/release-action@v1
         with:
+          tag: "dev-manual"
+          allowUpdates: true
           artifacts: "FeynCalcManual.pdf"
