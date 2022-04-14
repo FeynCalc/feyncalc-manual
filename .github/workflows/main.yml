@@ -1,5 +1,6 @@
 name: Build LaTeX document
 on: [push, workflow_dispatch]
+
 jobs:
   build_latex:
     runs-on: ubuntu-latest    
@@ -13,10 +14,14 @@ jobs:
         uses: actions/checkout@v2
       - name: Compile LaTeX document
         run: |
-          arara FeynCalcManual.tex
+          latexmk -pdf FeynCalcManual.tex
+          echo "DATE_TIME=$(date "+%F %T %Z")" >> $GITHUB_ENV
+          echo  "FeynCalc manual (development version). Last update: $(date "+%F %T %Z")" > body.md
       - name: Upload the resulting PDF
         uses: ncipollo/release-action@v1
         with:
           tag: "dev-manual"
+          name: "FeynCalc manual (updated on ${{ env.DATE_TIME }})"
+          bodyFile: "body.md"
           allowUpdates: true
-          artifacts: "FeynCalcManual.pdf"
+          artifacts: "FeynCalcManual.pdf,*.aux,*.log"
