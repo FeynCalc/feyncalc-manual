@@ -53,7 +53,7 @@ parskip=half, % half a line vertical space between paragraphs
 
 %\usepackage[htt]{hyphenat}
 
-
+\usepackage{orcidlink}
 
 \usepackage{hyperref}
 
@@ -65,10 +65,7 @@ parskip=half, % half a line vertical space between paragraphs
 	linkcolor=teal,
 	urlcolor=teal
 }
-
-%\hypersetup{
-%	hidelinks,
-%	pdfcreator={LaTeX via pandoc}}
+\usepackage{bookmark}
 \urlstyle{same} % disable monospaced font for URLs
 %\usepackage{color}
 
@@ -170,12 +167,16 @@ parskip=half, % half a line vertical space between paragraphs
 
 \begin{document}
 
-\title{Guide to FeynCalc \\
-\centering\includegraphics[width=6cm]{figures/logo.png}}
-\subtitle{A \textsc{Mathematica} package \\ for Quantum Field Theory practitioners}
-\author{V.~Shtabovenko, R.~Mertig and F.~Orellana}
+\title{\Huge Guide to FeynCalc \\
+\centering\includegraphics[width=8cm]{figures/logo.png}}
+\subtitle{\LARGE A \textsc{Mathematica} package \\ for Quantum Field Theory practitioners}
+
+
+\author{Vladyslav Shtabovenko\,\orcidlink{0000-0002-2782-3694}, \\Rolf Mertig\,\orcidlink{0000-0003-0276-1412} and  Frederik Orellana\,\orcidlink{0000-0001-7614-3882}}
 \date{\today}
 \maketitle
+
+This documentation snapshot was generated on \texttt{DATE_TIME} from the commit \texttt{GITHUB_SHA_SHORT}
 
 % Here comes the TOC!
 {\hypersetup{hidelinks}
