@@ -14,9 +14,13 @@ jobs:
         uses: actions/checkout@v2
       - name: Compile LaTeX document
         run: |
-          latexmk -pdf FeynCalcManual.tex
+          DATE_TIME=$(date "+%F %T %Z")
           echo "DATE_TIME=$(date "+%F %T %Z")" >> $GITHUB_ENV
-          echo  "FeynCalc manual (development version). Last update: $(date "+%F %T %Z")" > body.md
+          GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)
+          sed -i -e "s|DATE_TIME|$DATE_TIME|g" FeynCalcManual.tex
+          sed -i -e "s|GITHUB_SHA_SHORT|$GITHUB_SHA_SHORT|g" FeynCalcManual.tex
+          echo  "FeynCalc manual (development version). Last update: $DATE_TIME" > body.md
+          latexmk -pdf FeynCalcManual.tex
       - name: Upload the resulting PDF
         uses: ncipollo/release-action@v1
         with:
