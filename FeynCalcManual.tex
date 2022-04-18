@@ -66,6 +66,7 @@ parskip=half, % half a line vertical space between paragraphs
 	urlcolor=teal
 }
 \usepackage{bookmark}
+\usepackage{makeidx}
 \urlstyle{same} % disable monospaced font for URLs
 %\usepackage{color}
 
@@ -145,6 +146,8 @@ parskip=half, % half a line vertical space between paragraphs
 % allow page breaks 
 \allowdisplaybreaks
 
+% active index generation
+\makeindex
 
 %%%%%%%%%%%%%%%%%%% TOC CUSTOMIZATION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \addtocontents{toc}{\protect\hypertarget{toc}{}} % Add a link target to the TOC itself
@@ -186,5 +189,7 @@ This documentation snapshot was generated on \texttt{DATE_TIME} from the commit 
 %\subfile{pages/DollarTypesettingDim4.tex}
 %\subfile{pages/DiracSimplify.tex}
 %\subfile{pages/DiracEquation.tex}
+
+\printindex
 
 \end{document}

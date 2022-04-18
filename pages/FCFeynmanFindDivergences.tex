@@ -3,8 +3,8 @@
 
 \documentclass[../FeynCalcManual.tex]{subfiles}
 \begin{document}
-\hypertarget{fcfeynmanfinddivergences}{%
-\section{FCFeynmanFindDivergences}\label{fcfeynmanfinddivergences}}
+\hypertarget{fcfeynmanfinddivergences}{
+\section{FCFeynmanFindDivergences}\label{fcfeynmanfinddivergences}\index{FCFeynmanFindDivergences}}
 
 \texttt{FCFeynmanFindDivergences[\allowbreak{}exp,\ \allowbreak{}vars]}
 identifies UV and IR divergences of the given Feynman parametric
@@ -49,9 +49,6 @@ The identified divergences can be regularized using the function
 
 \subsection{Examples}
 
-\hypertarget{feynman-representation}{%
-\subsubsection{Feynman representation}\label{feynman-representation}}
-
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{int }\ExtensionTok{=}\NormalTok{ SFAD}\OperatorTok{[}\FunctionTok{l}\OperatorTok{,} \FunctionTok{k} \SpecialCharTok{+} \FunctionTok{l}\OperatorTok{,} \OperatorTok{\{\{}\FunctionTok{k}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{2} \FunctionTok{k}\NormalTok{ . }\FunctionTok{q}\OperatorTok{\}\}]} 
@@ -68,8 +65,8 @@ The identified divergences can be regularized using the function
 \left\{(x(1) x(2)+x(3) x(2)+x(1) x(3))^{3 \varepsilon -3} \left(q^2 x(1)^2 (x(2)+x(3))\right)^{1-2 \varepsilon },-\Gamma (2 \varepsilon -1),\{x(1),x(2),x(3)\}\right\}
 \end{dmath*}
 
-This Feynman parametric integral integrand contains logarithmic
-divergences for \(x_1 \to \infty\) and \(x_{2,3} \to 0\)
+This Feynman parametric integral contains logarithmic divergences for
+\(x_1 \to \infty\) and \(x_{2,3} \to 0\)
 
 \begin{Shaded}
 \begin{Highlighting}[]

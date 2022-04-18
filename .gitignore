@@ -10,4 +10,7 @@ FeynCalcManual.pdf
 *.blg
 *.cfg
 *.fls
+*.idx
+*.ilg
+*.ind
 .nfs*
