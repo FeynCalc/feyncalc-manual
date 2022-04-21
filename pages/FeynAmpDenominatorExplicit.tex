@@ -7,7 +7,7 @@
 \section{FeynAmpDenominatorExplicit}\label{feynampdenominatorexplicit}\index{FeynAmpDenominatorExplicit}}
 
 \texttt{FeynAmpDenominatorExplicit[\allowbreak{}exp]} changes each
-occurence of
+occurrence of
 \texttt{PropagatorDenominator[\allowbreak{}a,\ \allowbreak{}b]} in exp
 into \texttt{1/(SPD[\allowbreak{}a,\ \allowbreak{}a]-b^2)} and replaces
 \texttt{FeynAmpDenominator} by \texttt{Identity}.
@@ -40,5 +40,31 @@ into \texttt{1/(SPD[\allowbreak{}a,\ \allowbreak{}a]-b^2)} and replaces
 
 \begin{dmath*}\breakingcomma
 \frac{1}{\left(-m^2+\text{SPD}[q,q]\right) (\text{SPD}[p,p]-2 \;\text{SPD}[p,q]+\text{SPD}[q,q])}
+\end{dmath*}
+
+Notice that you should never apply \texttt{FeynAmpDenominatorExplicit}
+to loop integrals. Denominators in a proper loop integral should be
+written as \texttt{FeynAmpDenominator}s. Otherwise, the given integral
+is assumed to have no denominators and consequently set to zero as being
+scaleless.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TID}\OperatorTok{[}\NormalTok{FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,}\NormalTok{ mu}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}],} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\left(m^2+p^2\right) p^{\text{mu}}}{2 p^2 q^2.\left((q-p)^2-m^2\right)}-\frac{p^{\text{mu}}}{2 p^2 \left(q^2-m^2\right)}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TID}\OperatorTok{[}\NormalTok{FeynAmpDenominatorExplicit}\OperatorTok{[}\NormalTok{FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,}\NormalTok{ mu}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}]],} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
 \end{dmath*}
 \end{document}
