@@ -219,4 +219,32 @@ result is valid up to 0th order in \texttt{Epsilon}, i.e.~sufficient for
 \begin{dmath*}\breakingcomma
 \frac{1}{2} i \pi ^2 \;\text{B}_0\left(\overline{q}^2,0,0\right) \left(4 \overline{q}^{\text{mu}} \overline{q}^{\text{nu}}-\overline{q}^2 \bar{g}^{\text{mu}\;\text{nu}}\right)+\frac{1}{2} i \pi ^2 \left(2 \overline{q}^{\text{mu}} \overline{q}^{\text{nu}}-\overline{q}^2 \bar{g}^{\text{mu}\;\text{nu}}\right)
 \end{dmath*}
+
+Sometimes one would like to have external momenta multiplied by symbolic
+parameters in the propagators. In this case one should first declare the
+corresponding variables to be of \texttt{FCVariable} type
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DataType}\OperatorTok{[}\FunctionTok{z}\OperatorTok{,}\NormalTok{ FCVariable}\OperatorTok{]} \ExtensionTok{=} \ConstantTok{True}\NormalTok{;}
+\NormalTok{DataType}\OperatorTok{[}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{z}\NormalTok{)}\OperatorTok{,}\NormalTok{ FCVariable}\OperatorTok{]} \ExtensionTok{=} \ConstantTok{True}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,}\NormalTok{ mu}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q} \SpecialCharTok{+} \FunctionTok{z} \FunctionTok{p}\OperatorTok{,} \FunctionTok{q} \SpecialCharTok{+}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{z}\NormalTok{) }\FunctionTok{p}\OperatorTok{]}
+\NormalTok{TID}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]} 
+  
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{q^{\text{mu}}}{q^2.(z p+q)^2.(-z p+p+q)^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{\left(2 z^2-(z-1)^2-4 z+2\right) p^{\text{mu}}}{2 p^2 (1-2 z) (1-z) z q^2.(z p-p+q)^2}-\frac{\left(4 z^2-6 z-(2 z-1)^2+2\right) p^{\text{mu}}}{2 p^2 (1-2 z) (1-z) z q^2.(2 z p-p+q)^2}+-\frac{z p^{\text{mu}}}{2 p^2 (1-2 z) (1-z) q^2.(q-z p)^2}
+\end{dmath*}
 \end{document}
