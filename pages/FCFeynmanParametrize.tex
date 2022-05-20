@@ -40,6 +40,13 @@ available
   ``Textbook'' - \(\frac{1}{(2 \pi)^D}\) per loop
 \item
   ``Unity'' - no extra prefactor multiplying the integral measure
+\item
+  ``LoopTools'' - overall prefactor
+  \(\frac{1}{i (\pi)^{D/2} r_{\Gamma}}\) with
+  \(r_{\Gamma} = \frac{\Gamma(3-D/2) \Gamma^2 (D/2-1)}{\Gamma(D-3)}\) at
+  1 loop. This matches the the normalization of 1-loop integrals in
+  LoopTools. For 2 loops and above an extra \(\frac{1}{i \pi^{D/2}}\) is
+  added per loop.
 \end{itemize}
 
 The calculation of \(D\)-dimensional Minkowski integrals and
@@ -485,6 +492,98 @@ product of the integral and its prefactor remains the same
 
 \begin{dmath*}\breakingcomma
 -\frac{4 i}{15}
+\end{dmath*}
+
+Calculate the simplest divergent triangle integral from
+(https://qcdloop.fnal.gov/tridiv1.pdf)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClearScalarProducts}\OperatorTok{[]}\NormalTok{;}
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{r}\OperatorTok{]} \ExtensionTok{=} \DecValTok{0}\NormalTok{;}
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{s}\OperatorTok{]} \ExtensionTok{=} \DecValTok{0}\NormalTok{;}
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{r}\OperatorTok{,} \FunctionTok{s}\OperatorTok{]} \ExtensionTok{=} \SpecialCharTok{{-}}\DecValTok{1}\SpecialCharTok{/}\DecValTok{2}\NormalTok{;}
+\NormalTok{int }\ExtensionTok{=}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{r}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{s}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{q^2.(q-r)^2.(q-s)^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToPaVe}\OperatorTok{[}\NormalTok{int}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+i \pi ^2 \;\text{C}_0(0,0,1,0,0,0)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fp }\ExtensionTok{=}\NormalTok{ FCFeynmanParametrize}\OperatorTok{[}\NormalTok{int}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,}\NormalTok{ FCReplaceD }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{D} \OtherTok{{-}\textgreater{}} \DecValTok{4} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ ep}\OperatorTok{\},}\NormalTok{ FeynmanIntegralPrefactor }\OtherTok{{-}\textgreater{}} \StringTok{"LoopTools"}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{(-x(2) x(3))^{-\text{ep}-1} (x(1)+x(2)+x(3))^{2 \;\text{ep}-1},-\frac{\Gamma (1-2 \;\text{ep})}{\Gamma (1-\text{ep})^2},\{x(1),x(2),x(3)\}\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{intRaw }\ExtensionTok{=} \FunctionTok{Integrate}\OperatorTok{[}\NormalTok{fp}\OperatorTok{[[}\DecValTok{1}\OperatorTok{]]} \OtherTok{/.} \FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{1}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{],} \DecValTok{0}\OperatorTok{,} \FunctionTok{Infinity}\OperatorTok{\},} \FunctionTok{Assumptions} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{ep \textless{} }\DecValTok{0}\OperatorTok{,} \FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\NormalTok{ \textgreater{}}\ExtensionTok{=} \DecValTok{0}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{(-x(3))^{-\text{ep}-1} (x(3)+1)^{2 \;\text{ep}}}{2 \;\text{ep}}
+\end{dmath*}
+
+Reintroduce the correct \(i \eta\)-prescription to get the imaginary
+part right
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{intRes }\ExtensionTok{=} \FunctionTok{Integrate}\OperatorTok{[}\NormalTok{intRaw}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{],} \DecValTok{0}\OperatorTok{,} \FunctionTok{Infinity}\OperatorTok{\},} \FunctionTok{Assumptions} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{ep \textless{} }\DecValTok{0}\OperatorTok{\}]} \OtherTok{/.}\NormalTok{ (}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{ep) }\OtherTok{{-}\textgreater{}}\NormalTok{ (}\SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{I}\NormalTok{ eta)}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{ep)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{(-1-i \;\text{eta})^{-\text{ep}} \Gamma (-\text{ep})^2}{2 \;\text{ep} \Gamma (-2 \;\text{ep})}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res }\ExtensionTok{=}\NormalTok{ (}\FunctionTok{Series}\OperatorTok{[}\NormalTok{fp}\OperatorTok{[[}\DecValTok{2}\OperatorTok{]]}\NormalTok{ intRes}\OperatorTok{,} \OperatorTok{\{}\NormalTok{ep}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}]} \SpecialCharTok{//} \FunctionTok{Normal}\NormalTok{) }\OtherTok{/.} \FunctionTok{Log}\OperatorTok{[}\SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{I}\NormalTok{ eta}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \FunctionTok{Log}\OperatorTok{[}\DecValTok{1}\OperatorTok{]} \SpecialCharTok{{-}} \FunctionTok{I} \FunctionTok{Pi}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\text{ep}^2}+\frac{i \pi }{\text{ep}}-\frac{\pi ^2}{2}
+\end{dmath*}
+
+Compare to the known result
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{resLit }\ExtensionTok{=} \FunctionTok{Series}\OperatorTok{[}\NormalTok{ScaleMu}\SpecialCharTok{\^{}}\NormalTok{(}\DecValTok{2}\NormalTok{ ep)}\SpecialCharTok{/}\NormalTok{ep}\SpecialCharTok{\^{}}\DecValTok{2} \DecValTok{1}\SpecialCharTok{/}\NormalTok{pp}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ (}\SpecialCharTok{{-}}\NormalTok{pp }\SpecialCharTok{{-}} \FunctionTok{I}\NormalTok{ eta)}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{ep)}\OperatorTok{,} \OperatorTok{\{}\NormalTok{ep}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}]} \OtherTok{/.} \FunctionTok{Log}\OperatorTok{[}\SpecialCharTok{{-}}\NormalTok{pp }\SpecialCharTok{{-}} \FunctionTok{I}\NormalTok{ eta}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \FunctionTok{Log}\OperatorTok{[}\NormalTok{pp}\OperatorTok{]} \SpecialCharTok{{-}} \FunctionTok{I} \FunctionTok{Pi} \SpecialCharTok{//} \FunctionTok{Normal}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\text{ep}^2 \;\text{pp}^2}+\frac{2 \log (\mu )-\log (\text{pp})+i \pi }{\text{ep} \;\text{pp}^2}+\frac{4 \log ^2(\mu )-4 \log (\mu ) (\log (\text{pp})-i \pi )+(\log (\text{pp})-i \pi )^2}{2 \;\text{pp}^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(res }\SpecialCharTok{{-}}\NormalTok{ resLit) }\OtherTok{/.}\NormalTok{ pp }\SpecialCharTok{|}\NormalTok{ ScaleMu }\OtherTok{{-}\textgreater{}} \DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
 \end{dmath*}
 
 \hypertarget{lee-pomeransky-representation}{%
