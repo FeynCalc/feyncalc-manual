@@ -65,4 +65,42 @@ raised to an integer power.
 \end{Highlighting}
 \end{Shaded}
 
+The function automatically employs \texttt{FeynAmpDenominatorCombine}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{int }\ExtensionTok{=}\NormalTok{ SFAD}\OperatorTok{[\{\{}\SpecialCharTok{{-}}\NormalTok{k1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{mc}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]}\NormalTok{  SFAD}\OperatorTok{[\{\{}\SpecialCharTok{{-}}\NormalTok{k1 }\SpecialCharTok{{-}}\NormalTok{ k2 }\SpecialCharTok{+}\NormalTok{ k3 }\SpecialCharTok{+}\NormalTok{ p1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]}\NormalTok{ SFAD}\OperatorTok{[\{\{}\SpecialCharTok{{-}}\NormalTok{k1 }\SpecialCharTok{{-}}\NormalTok{ k2 }\SpecialCharTok{+}\NormalTok{ k3 }\SpecialCharTok{+}\NormalTok{ p1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(\text{k1}^2-\text{mc}^2+i \eta ) ((-\text{k1}-\text{k2}+\text{k3}+\text{p1})^2+i \eta )^3}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{int }\SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*FeynAmpDenominator[StandardPropagatorDenominator[{-}Momentum[k1, D], 0, {-}mc\^{}2, \{1, 1\}]] FeynAmpDenominator[StandardPropagatorDenominator[{-}Momentum[k1, D] {-} Momentum[k2, D] + Momentum[k3, D] + Momentum[p1, D], 0, 0, \{1, 1\}]] FeynAmpDenominator[StandardPropagatorDenominator[{-}Momentum[k1, D] {-} Momentum[k2, D] + Momentum[k3, D] + Momentum[p1, D], 0, 0, \{2, 1\}]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res }\ExtensionTok{=}\NormalTok{ FCLoopPropagatorPowersCombine}\OperatorTok{[}\NormalTok{int}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(\text{k1}^2-\text{mc}^2+i \eta ).((-\text{k1}-\text{k2}+\text{k3}+\text{p1})^2+i \eta )^3}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res }\SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*FeynAmpDenominator[StandardPropagatorDenominator[{-}Momentum[k1, D], 0, {-}mc\^{}2, \{1, 1\}], StandardPropagatorDenominator[{-}Momentum[k1, D] {-} Momentum[k2, D] + Momentum[k3, D] + Momentum[p1, D], 0, 0, \{3, 1\}]]*)}
+\end{Highlighting}
+\end{Shaded}
+
 \end{document}

@@ -14,3 +14,4 @@ FeynCalcManual.pdf
 *.ilg
 *.ind
 .nfs*
+pages/*.pdf
