@@ -1,0 +1,130 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopIntegralToPropagators.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopintegraltopropagators}{
+\section{FCLoopIntegralToPropagators}\label{fcloopintegraltopropagators}\index{FCLoopIntegralToPropagators}}
+
+\texttt{FCLoopIntegralToPropagators[\allowbreak{}int,\ \allowbreak{}\{\allowbreak{}q1,\ \allowbreak{}q2,\ \allowbreak{}...\}]}
+is an auxiliary function that converts the loop integral \texttt{int}
+that depends on the loop momenta
+\texttt{q1,\ \allowbreak{}q2,\ \allowbreak{}...} to a list of
+propagators and scalar products.
+
+All propagators and scalar products that do not depend on the loop
+momenta are discarded, unless the \texttt{Rest} option is set to
+\texttt{True}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fclooppropagatorstotopology}{FCLoopPropagatorsToTopology}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SFAD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{]} 
+ 
+\NormalTok{FCLoopIntegralToPropagators}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(\text{p1}^2+i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left\{\frac{1}{(\text{p1}^2+i \eta )}\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SFAD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{]} 
+ 
+\NormalTok{FCLoopIntegralToPropagators}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(\text{p1}^2+i \eta ).(\text{p2}^2+i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\left\{\frac{1}{(\text{p1}^2+i \eta )},\frac{1}{(\text{p2}^2+i \eta )}\right\}
+\end{dmath*}
+
+If the integral contains propagators raised to integer powers, only one
+propagator will appear in the output.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{int }\ExtensionTok{=}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]}\NormalTok{ SFAD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{,} \FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{p\cdot q}{(q^2+i \eta ).((q-p)^2+i \eta )^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopIntegralToPropagators}\OperatorTok{[}\NormalTok{int}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{(p\cdot q+i \eta ),\frac{1}{(q^2+i \eta )},\frac{1}{((q-p)^2+i \eta )}\right\}
+\end{dmath*}
+
+However, setting the option \texttt{Tally} to \texttt{True} will count
+the powers of the appearing propagators.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopIntegralToPropagators}\OperatorTok{[}\NormalTok{int}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \FunctionTok{Tally} \OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{cc}
+ \frac{1}{(q^2+i \eta )} & 1 \\
+ (p\cdot q+i \eta ) & 1 \\
+ \frac{1}{((q-p)^2+i \eta )} & 2 \\
+\end{array}
+\right)
+\end{dmath*}
+
+Here is a more realistic 3-loop example
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{int }\ExtensionTok{=}\NormalTok{ SFAD}\OperatorTok{[\{\{}\SpecialCharTok{{-}}\NormalTok{k1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{mc}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]}\NormalTok{ SFAD}\OperatorTok{[\{\{}\SpecialCharTok{{-}}\NormalTok{k1 }\SpecialCharTok{{-}}\NormalTok{ k2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{mc}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]}\NormalTok{ SFAD}\OperatorTok{[\{\{}\SpecialCharTok{{-}}\NormalTok{k2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]}\NormalTok{ SFAD}\OperatorTok{[\{\{}\SpecialCharTok{{-}}\NormalTok{k2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{2}\OperatorTok{\}]}\NormalTok{ SFAD}\OperatorTok{[\{\{}\SpecialCharTok{{-}}\NormalTok{k3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{mc}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]} \SpecialCharTok{*}\NormalTok{SFAD}\OperatorTok{[\{\{}\NormalTok{k1 }\SpecialCharTok{{-}}\NormalTok{ k3 }\SpecialCharTok{{-}}\NormalTok{ p1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]}\NormalTok{ SFAD}\OperatorTok{[\{\{}\SpecialCharTok{{-}}\NormalTok{k1 }\SpecialCharTok{{-}}\NormalTok{ k2 }\SpecialCharTok{+}\NormalTok{ k3 }\SpecialCharTok{+}\NormalTok{ p1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]}\NormalTok{ SFAD}\OperatorTok{[\{\{}\SpecialCharTok{{-}}\NormalTok{k1 }\SpecialCharTok{{-}}\NormalTok{ k2 }\SpecialCharTok{+}\NormalTok{ k3 }\SpecialCharTok{+}\NormalTok{ p1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(\text{k2}^2+i \eta )^3 (\text{k1}^2-\text{mc}^2+i \eta ) (\text{k3}^2-\text{mc}^2+i \eta ) ((-\text{k1}-\text{k2})^2-\text{mc}^2+i \eta ) ((\text{k1}-\text{k3}-\text{p1})^2+i \eta ) ((-\text{k1}-\text{k2}+\text{k3}+\text{p1})^2+i \eta )^3}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopIntegralToPropagators}\OperatorTok{[}\NormalTok{int}\OperatorTok{,} \OperatorTok{\{}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{,}\NormalTok{ k3}\OperatorTok{\},} \FunctionTok{Tally} \OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{cc}
+ \frac{1}{(\text{k2}^2+i \eta )} & 3 \\
+ \frac{1}{(\text{k3}^2-\text{mc}^2+i \eta )} & 1 \\
+ \frac{1}{(\text{k1}^2-\text{mc}^2+i \eta )} & 1 \\
+ \frac{1}{((\text{k1}-\text{k3}-\text{p1})^2+i \eta )} & 1 \\
+ \frac{1}{((-\text{k1}-\text{k2}+\text{k3}+\text{p1})^2+i \eta )} & 3 \\
+ \frac{1}{((-\text{k1}-\text{k2})^2-\text{mc}^2+i \eta )} & 1 \\
+\end{array}
+\right)
+\end{dmath*}
+\end{document}

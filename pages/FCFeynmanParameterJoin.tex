@@ -15,6 +15,24 @@ where \texttt{fpInt} is the piece of the integral that contains a single
 the \texttt{res}. The introduced Feynman parameters are listed in vars.
 The overall Dirac delta is omitted.
 
+Notice that each inner list must contain exactly thee elements, the
+first two being propagators (or products of propagators) and the last
+one denoting the head of Feynman parameter variables used to join those
+propagators. For example,
+\texttt{\{\allowbreak{}FAD[\allowbreak{}\{\allowbreak{}p1,\ \allowbreak{}m1\}],\ \allowbreak{}FAD[\allowbreak{}\{\allowbreak{}p2,\ \allowbreak{}m2\}],\ \allowbreak{}x\}},
+but also
+\texttt{\{\allowbreak{}FAD[\allowbreak{}\{\allowbreak{}p1,\ \allowbreak{}m1\}],\ \allowbreak{}FAD[\allowbreak{}\{\allowbreak{}p2,\ \allowbreak{}m2\}]FAD[\allowbreak{}\{\allowbreak{}p3,\ \allowbreak{}m3\}],\ \allowbreak{}x\}}
+or even
+\texttt{\{\allowbreak{}FAD[\allowbreak{}\{\allowbreak{}p1,\ \allowbreak{}m1\}]FAD[\allowbreak{}\{\allowbreak{}p2,\ \allowbreak{}m2\}],\ \allowbreak{}FAD[\allowbreak{}\{\allowbreak{}p3,\ \allowbreak{}m3\}]FAD[\allowbreak{}\{\allowbreak{}p4,\ \allowbreak{}m4\}],\ \allowbreak{}x\}}
+represent valid examples of such lists, while something like
+\texttt{\{\allowbreak{}FAD[\allowbreak{}\{\allowbreak{}p1,\ \allowbreak{}m1\}],\ \allowbreak{}FAD[\allowbreak{}\{\allowbreak{}p2,\ \allowbreak{}m2\}],\ \allowbreak{}FAD[\allowbreak{}\{\allowbreak{}p3,\ \allowbreak{}m3\}],\ \allowbreak{}x\}}
+(4 instead of 3 list elements) is invalid and will not work.
+
+Having obtained an output of \texttt{FCFeynmanParameterJoin}
+(e.g.~called \texttt{intT}), you should use the following syntax to pass
+this to \texttt{FCFeynmanParametrize}:
+\texttt{FCFeynmanParametrize[\allowbreak{}intT[\allowbreak{}[\allowbreak{}1]],\ \allowbreak{}intT[\allowbreak{}[\allowbreak{}2]],\ \allowbreak{}\{\allowbreak{}lmom1,\ \allowbreak{}lmom2,\ \allowbreak{}...\},\ \allowbreak{}Variables->intT[\allowbreak{}[\allowbreak{}3]]]}
+
 \subsection{See also}
 
 \hyperlink{toc}{Overview},

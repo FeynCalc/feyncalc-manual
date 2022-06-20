@@ -12,6 +12,9 @@ integral \texttt{exp}. Provided that all divergences have been
 regularized in this fashion, upon expanding the integrand around
 \(\varepsilon = 0\) one can safely integrate in the Feynman parameters.
 
+Notice that \texttt{div} can be also a list made of divergences found by
+\texttt{FCFeynmanFindDivergences}.
+
 This function uses the method of analytic regularization introduced by
 Erik Panzer in \href{https://arxiv.org/abs/1403.3385}{1403.3385},
 \href{https://arxiv.org/abs/1401.4361}{1401.4361} and
@@ -108,5 +111,18 @@ integration in Feynman parameters order by order in \texttt{Epsilon}
 
 \begin{dmath*}\breakingcomma
 \frac{3 q^2 x(1)^2 x(2) x(3) (x(2)+x(3))}{\varepsilon  (x(1) x(2)+x(3) x(2)+x(1) x(3))^4}-\frac{3 q^2 x(1)^2 x(2) x(3) (x(2)+x(3)) \left(2 \log \left(q^2 x(1)^2 (x(2)+x(3))\right)-3 \log (x(1) x(2)+x(3) x(2)+x(1) x(3))+1\right)}{(x(1) x(2)+x(3) x(2)+x(1) x(3))^4}
+\end{dmath*}
+
+Here is an example of regularizing two divergences at a time
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanRegularizeDivergence}\OperatorTok{[}\NormalTok{(}\FunctionTok{y}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{*}\NormalTok{(}\FunctionTok{y}\OperatorTok{[}\DecValTok{1}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{y}\OperatorTok{[}\DecValTok{2}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{y}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{\^{}}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\NormalTok{ep)}\SpecialCharTok{*}\NormalTok{(}\FunctionTok{y}\OperatorTok{[}\DecValTok{1}\OperatorTok{]}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{{-}} \DecValTok{4}\SpecialCharTok{*}\FunctionTok{y}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{y}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{2} \SpecialCharTok{{-}} 
+\NormalTok{        ep))}\SpecialCharTok{/}\NormalTok{(}\FunctionTok{x}\OperatorTok{[}\DecValTok{1}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{\{\{\{}\FunctionTok{y}\OperatorTok{[}\DecValTok{2}\OperatorTok{]\},} \OperatorTok{\{}\FunctionTok{y}\OperatorTok{[}\DecValTok{3}\OperatorTok{]\}\},} \SpecialCharTok{{-}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{ep}\OperatorTok{\},} \OperatorTok{\{\{\{}\FunctionTok{y}\OperatorTok{[}\DecValTok{3}\OperatorTok{]\},} \OperatorTok{\{}\FunctionTok{y}\OperatorTok{[}\DecValTok{2}\OperatorTok{]\}\},} \SpecialCharTok{{-}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{ep}\OperatorTok{\}\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2 \;\text{ep} (x(1)+x(2))^2}y(1) (y(1)+y(2)+y(3))^{2 (\text{ep}-1)} \left(y(1)^2-4 y(2) y(3)\right)^{-\text{ep}-2} \left(2 \;\text{ep} y(1)^2+4 \;\text{ep} y(2) y(1)+4 \;\text{ep} y(3) y(1)+8 \;\text{ep} y(2) y(3)-y(2) y(1)-y(3) y(1)-4 y(2) y(3)\right)
 \end{dmath*}
 \end{document}
