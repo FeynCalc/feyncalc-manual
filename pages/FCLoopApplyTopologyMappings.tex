@@ -6,10 +6,23 @@
 \hypertarget{fcloopapplytopologymappings}{
 \section{FCLoopApplyTopologyMappings}\label{fcloopapplytopologymappings}\index{FCLoopApplyTopologyMappings}}
 
-\texttt{FCLoopApplyTopologyMappings[\allowbreak{}expr,\ \allowbreak{}mappings]}
+\texttt{FCLoopApplyTopologyMappings[\allowbreak{}expr,\ \allowbreak{}\{\allowbreak{}mappings,\ \allowbreak{}topos\}]}
 applies mappings between topologies obtained using
 \texttt{FCLoopFindTopologyMappings} to the output of
-\texttt{FCLoopFindTopologies} denoted as \texttt{expr}.
+\texttt{FCLoopFindTopologies} denoted as \texttt{expr}. The argument
+\texttt{topos} denotes the final set of topologies present in the
+expression.
+
+Instead of \texttt{\{\allowbreak{}mappings,\ \allowbreak{}topos\}} one
+can directly use the output \texttt{FCLoopFindTopologyMappings}.
+
+By default the function will attempt to rewrite all the occurring loop
+integrals as \texttt{GLI}s. If you just want to apply the mappings
+without touching the remaining scalar products, set the option
+\texttt{FCLoopCreateRulesToGLI} to \texttt{False}. Even when all scalar
+products depending on loop momenta are rewritten as \texttt{GLI}s, you
+can still suppress the step of multiplying out products of \texttt{GLI}s
+by setting the option \texttt{GLIMultiply} to \texttt{False}.
 
 \subsection{See also}
 
@@ -97,7 +110,19 @@ expression creating an output that is ready to be processed further
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{res }\ExtensionTok{=}\NormalTok{ FCLoopApplyTopologyMappings}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,}\NormalTok{ mappings}\OperatorTok{,} \FunctionTok{Head} \OtherTok{{-}\textgreater{}}\NormalTok{ gliProduct}\OperatorTok{]}
+\NormalTok{FCLoopApplyTopologyMappings}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,} \OperatorTok{\{}\NormalTok{mappings}\OperatorTok{,}\NormalTok{ finalTopos}\OperatorTok{\},} \FunctionTok{Head} \OtherTok{{-}\textgreater{}}\NormalTok{ gliProduct}\OperatorTok{,}\NormalTok{ FCVerbose }\OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} G^{\text{fctopology1}}(1,1,1,1,1,1,1,1,1) \left(\text{cc1} Q^2+\text{cc4} Q^2+2 \;\text{cc6}\right)+\frac{1}{2} (\text{cc1}-\text{cc4}) G^{\text{fctopology1}}(1,1,0,1,1,1,1,1,1)-\frac{1}{2} (\text{cc1}-\text{cc4}) G^{\text{fctopology1}}(1,1,1,1,1,0,1,1,1)+\frac{1}{2} Q^2 (\text{cc2}+\text{cc5}) G^{\text{fctopology2}}(1,1,1,1,1,1,1,1,1)-\frac{1}{2} (\text{cc2}+\text{cc5}) G^{\text{fctopology2}}(1,1,1,1,1,0,1,1,1)-\frac{1}{2} \;\text{cc2} G^{\text{fctopology2}}(1,1,1,1,0,1,1,1,1)+\frac{1}{2} \;\text{cc2} G^{\text{fctopology2}}(1,1,1,1,1,1,1,0,1)+\text{cc3} G^{\text{fctopology1}}(1,1,1,1,1,1,0,1,1)+\frac{1}{2} \;\text{cc4} G^{\text{fctopology1}}(0,1,1,1,1,1,1,1,1)-\frac{1}{2} \;\text{cc4} G^{\text{fctopology1}}(1,1,1,0,1,1,1,1,1)-\frac{1}{2} \;\text{cc4} G^{\text{fctopology1}}(1,1,1,1,1,1,1,0,1)+\frac{1}{2} \;\text{cc4} G^{\text{fctopology1}}(1,1,1,1,1,1,1,1,0)+\frac{1}{2} \;\text{cc5} G^{\text{fctopology2}}(1,1,0,1,1,1,1,1,1)
+\end{dmath*}
+
+This just applies the mappings without any further simplifications
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopApplyTopologyMappings}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,} \OperatorTok{\{}\NormalTok{mappings}\OperatorTok{,}\NormalTok{ finalTopos}\OperatorTok{\},} \FunctionTok{Head} \OtherTok{{-}\textgreater{}}\NormalTok{ gliProduct}\OperatorTok{,}\NormalTok{ FCLoopCreateRulesToGLI }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
 \end{Highlighting}
 \end{Shaded}
 
@@ -105,38 +130,16 @@ expression creating an output that is ready to be processed further
 \text{gliProduct}\left(\text{cc3} (-\text{p2}-\text{p3}+Q)^2,G^{\text{fctopology1}}(1,1,1,1,1,1,1,1,1)\right)+\text{gliProduct}\left(\text{cc4} ((Q-\text{p1})\cdot (Q-\text{p2})),G^{\text{fctopology1}}(1,1,1,1,1,1,1,1,1)\right)+\text{gliProduct}\left(\text{cc1} (\text{p1}\cdot Q),G^{\text{fctopology1}}(1,1,1,1,1,1,1,1,1)\right)+\text{gliProduct}\left(\text{cc2} (\text{p1}\cdot \;\text{p2}),G^{\text{fctopology2}}(1,1,1,1,1,1,1,1,1)\right)+\text{gliProduct}\left(\text{cc5} (\text{p1}\cdot Q),G^{\text{fctopology2}}(1,1,1,1,1,1,1,1,1)\right)+\text{gliProduct}\left(\text{cc6} \;\text{p1}^2,G^{\text{fctopology1}}(1,1,2,1,1,1,1,1,1)\right)
 \end{dmath*}
 
-Using \texttt{FCLoopCreateRulesToGLI} we obtain rules for rewriting
-scalar products as inverse \texttt{GLI}s
+This applies the mappings and eliminates the numerators but still keeps
+products of \texttt{GLI}s in the expression
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{spToGliRules }\ExtensionTok{=}\NormalTok{ FCLoopCreateRulesToGLI}\OperatorTok{[}\NormalTok{finalTopos}\OperatorTok{]}
+\NormalTok{FCLoopApplyTopologyMappings}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,} \OperatorTok{\{}\NormalTok{mappings}\OperatorTok{,}\NormalTok{ finalTopos}\OperatorTok{\},} \FunctionTok{Head} \OtherTok{{-}\textgreater{}}\NormalTok{ gliProduct}\OperatorTok{,}\NormalTok{ FCLoopCreateRulesToGLI }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,}\NormalTok{ GLIMultiply }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-\left\{\left\{\text{p1}^2\to G^{\text{fctopology1}}(0,0,-1,0,0,0,0,0,0),\text{p2}^2\to G^{\text{fctopology1}}(0,-1,0,0,0,0,0,0,0),\text{p3}^2\to G^{\text{fctopology1}}(-1,0,0,0,0,0,0,0,0),\text{p1}\cdot \;\text{p2}\to \frac{1}{2} \left(G^{\text{fctopology1}}(-1,0,0,0,0,0,0,0,0)+G^{\text{fctopology1}}(0,-1,0,0,0,0,0,0,0)-G^{\text{fctopology1}}(0,0,0,-1,0,0,0,0,0)-G^{\text{fctopology1}}(0,0,0,0,-1,0,0,0,0)-G^{\text{fctopology1}}(0,0,0,0,0,0,0,-1,0)+G^{\text{fctopology1}}(0,0,0,0,0,0,0,0,-1)+Q^2\right),\text{p1}\cdot \;\text{p3}\to \frac{1}{2} \left(-G^{\text{fctopology1}}(-1,0,0,0,0,0,0,0,0)-G^{\text{fctopology1}}(0,-1,0,0,0,0,0,0,0)+G^{\text{fctopology1}}(0,0,0,-1,0,0,0,0,0)+G^{\text{fctopology1}}(0,0,0,0,-1,0,0,0,0)-G^{\text{fctopology1}}(0,0,0,0,0,-1,0,0,0)-G^{\text{fctopology1}}(0,0,0,0,0,0,-1,0,0)+G^{\text{fctopology1}}(0,0,0,0,0,0,0,-1,0)\right),\text{p2}\cdot \;\text{p3}\to \frac{1}{2} \left(-G^{\text{fctopology1}}(-1,0,0,0,0,0,0,0,0)-G^{\text{fctopology1}}(0,-1,0,0,0,0,0,0,0)+G^{\text{fctopology1}}(0,0,0,-1,0,0,0,0,0)\right),\text{p1}\cdot Q\to \frac{1}{2} \left(G^{\text{fctopology1}}(0,0,-1,0,0,0,0,0,0)-G^{\text{fctopology1}}(0,0,0,0,0,-1,0,0,0)+Q^2\right),\text{p2}\cdot Q\to \frac{1}{2} \left(G^{\text{fctopology1}}(0,-1,0,0,0,0,0,0,0)-G^{\text{fctopology1}}(0,0,0,0,-1,0,0,0,0)+Q^2\right),\text{p3}\cdot Q\to \frac{1}{2} \left(-G^{\text{fctopology1}}(0,-1,0,0,0,0,0,0,0)+G^{\text{fctopology1}}(0,0,0,-1,0,0,0,0,0)+G^{\text{fctopology1}}(0,0,0,0,-1,0,0,0,0)-G^{\text{fctopology1}}(0,0,0,0,0,0,-1,0,0)\right)\right\},\left\{\text{p1}^2\to G^{\text{fctopology2}}(0,0,-1,0,0,0,0,0,0),\text{p2}^2\to G^{\text{fctopology2}}(0,-1,0,0,0,0,0,0,0),\text{p3}^2\to G^{\text{fctopology2}}(-1,0,0,0,0,0,0,0,0),\text{p1}\cdot \;\text{p2}\to \frac{1}{2} \left(-G^{\text{fctopology2}}(0,0,0,0,-1,0,0,0,0)-G^{\text{fctopology2}}(0,0,0,0,0,-1,0,0,0)+G^{\text{fctopology2}}(0,0,0,0,0,0,0,-1,0)+Q^2\right),\text{p1}\cdot \;\text{p3}\to \frac{1}{2} \left(G^{\text{fctopology2}}(0,0,0,0,-1,0,0,0,0)-G^{\text{fctopology2}}(0,0,0,0,0,0,-1,0,0)-G^{\text{fctopology2}}(0,0,0,0,0,0,0,-1,0)+G^{\text{fctopology2}}(0,0,0,0,0,0,0,0,-1)\right),\text{p2}\cdot \;\text{p3}\to \frac{1}{2} \left(-G^{\text{fctopology2}}(-1,0,0,0,0,0,0,0,0)-G^{\text{fctopology2}}(0,-1,0,0,0,0,0,0,0)+G^{\text{fctopology2}}(0,0,0,-1,0,0,0,0,0)\right),\text{p1}\cdot Q\to \frac{1}{2} \left(G^{\text{fctopology2}}(0,0,-1,0,0,0,0,0,0)-G^{\text{fctopology2}}(0,0,0,0,0,-1,0,0,0)+Q^2\right),\text{p2}\cdot Q\to \frac{1}{2} \left(G^{\text{fctopology2}}(0,-1,0,0,0,0,0,0,0)-G^{\text{fctopology2}}(0,0,0,0,-1,0,0,0,0)+Q^2\right),\text{p3}\cdot Q\to \frac{1}{2} \left(-G^{\text{fctopology2}}(0,-1,0,0,0,0,0,0,0)+G^{\text{fctopology2}}(0,0,0,-1,0,0,0,0,0)+G^{\text{fctopology2}}(0,0,0,0,-1,0,0,0,0)-G^{\text{fctopology2}}(0,0,0,0,0,0,-1,0,0)\right)\right\}\right\}
-\end{dmath*}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{aux }\ExtensionTok{=}\NormalTok{ res }\OtherTok{/.}\NormalTok{ gliProduct}\OperatorTok{[}\AttributeTok{x\_}\OperatorTok{,} \FunctionTok{y}\NormalTok{ : GLI}\OperatorTok{[}\AttributeTok{idd\_}\OperatorTok{,} \AttributeTok{inds\_}\NormalTok{List}\OperatorTok{]]} \SpecialCharTok{/}\NormalTok{; (! }\FunctionTok{FreeQ}\OperatorTok{[}\NormalTok{spToGliRules}\OperatorTok{,}\NormalTok{ idd}\OperatorTok{]}\NormalTok{) :\textgreater{} gliProduct2}\OperatorTok{[}\NormalTok{ExpandScalarProduct}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]} \OtherTok{/.}\NormalTok{ SelectNotFree}\OperatorTok{[}\NormalTok{spToGliRules}\OperatorTok{,}\NormalTok{ idd}\OperatorTok{][[}\DecValTok{1}\OperatorTok{]],} \FunctionTok{y}\OperatorTok{]} \OtherTok{/.}\NormalTok{ gliProduct2}\OperatorTok{[}\AttributeTok{x\_}\OperatorTok{,} \AttributeTok{y\_}\OperatorTok{]} \SpecialCharTok{/}\NormalTok{; }\FunctionTok{FreeQ}\OperatorTok{[}\FunctionTok{x}\OperatorTok{,}\NormalTok{ Pair}\OperatorTok{]}\NormalTok{ :\textgreater{} }\FunctionTok{x} \FunctionTok{y}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{dmath*}\breakingcomma
-\text{gliProduct2}\left(\frac{1}{2} \;\text{cc1} \left(G^{\text{fctopology1}}(0,0,-1,0,0,0,0,0,0)-G^{\text{fctopology1}}(0,0,0,0,0,-1,0,0,0)+Q^2\right),G^{\text{fctopology1}}(1,1,1,1,1,1,1,1,1)\right)+\text{gliProduct2}\left(\frac{1}{2} \;\text{cc2} \left(-G^{\text{fctopology2}}(0,0,0,0,-1,0,0,0,0)-G^{\text{fctopology2}}(0,0,0,0,0,-1,0,0,0)+G^{\text{fctopology2}}(0,0,0,0,0,0,0,-1,0)+Q^2\right),G^{\text{fctopology2}}(1,1,1,1,1,1,1,1,1)\right)+\text{gliProduct2}\left(\text{cc4} \left(\frac{1}{2} \left(-G^{\text{fctopology1}}(0,-1,0,0,0,0,0,0,0)+G^{\text{fctopology1}}(0,0,0,0,-1,0,0,0,0)-Q^2\right)+\frac{1}{2} \left(-G^{\text{fctopology1}}(0,0,-1,0,0,0,0,0,0)+G^{\text{fctopology1}}(0,0,0,0,0,-1,0,0,0)-Q^2\right)+\frac{1}{2} \left(G^{\text{fctopology1}}(-1,0,0,0,0,0,0,0,0)+G^{\text{fctopology1}}(0,-1,0,0,0,0,0,0,0)-G^{\text{fctopology1}}(0,0,0,-1,0,0,0,0,0)-G^{\text{fctopology1}}(0,0,0,0,-1,0,0,0,0)-G^{\text{fctopology1}}(0,0,0,0,0,0,0,-1,0)+G^{\text{fctopology1}}(0,0,0,0,0,0,0,0,-1)+Q^2\right)+Q^2\right),G^{\text{fctopology1}}(1,1,1,1,1,1,1,1,1)\right)+\text{gliProduct2}\left(\frac{1}{2} \;\text{cc5} \left(G^{\text{fctopology2}}(0,0,-1,0,0,0,0,0,0)-G^{\text{fctopology2}}(0,0,0,0,0,-1,0,0,0)+Q^2\right),G^{\text{fctopology2}}(1,1,1,1,1,1,1,1,1)\right)+\text{cc3} G^{\text{fctopology1}}(0,0,0,0,0,0,-1,0,0) G^{\text{fctopology1}}(1,1,1,1,1,1,1,1,1)+\text{cc6} G^{\text{fctopology1}}(0,0,-1,0,0,0,0,0,0) G^{\text{fctopology1}}(1,1,2,1,1,1,1,1,1)
-\end{dmath*}
-
-And here is our final expression written only in terms \texttt{GLI}s
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{resFinal }\ExtensionTok{=}\NormalTok{ Collect2}\OperatorTok{[}\NormalTok{aux }\OtherTok{/.}\NormalTok{ gliProduct2 }\OtherTok{{-}\textgreater{}} \FunctionTok{Times}\OperatorTok{,}\NormalTok{ GLI}\OperatorTok{]} \OtherTok{/.}\NormalTok{ GLI }\OtherTok{{-}\textgreater{}}\NormalTok{ GLIMultiply }\OtherTok{/.}\NormalTok{ GLIMultiply }\OtherTok{{-}\textgreater{}}\NormalTok{ GLI}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{dmath*}\breakingcomma
-\frac{1}{2} Q^2 (\text{cc1}+\text{cc4}) G^{\text{fctopology1}}(1,1,1,1,1,1,1,1,1)+\frac{1}{2} (\text{cc1}-\text{cc4}) G^{\text{fctopology1}}(1,1,0,1,1,1,1,1,1)-\frac{1}{2} (\text{cc1}-\text{cc4}) G^{\text{fctopology1}}(1,1,1,1,1,0,1,1,1)+\frac{1}{2} Q^2 (\text{cc2}+\text{cc5}) G^{\text{fctopology2}}(1,1,1,1,1,1,1,1,1)-\frac{1}{2} (\text{cc2}+\text{cc5}) G^{\text{fctopology2}}(1,1,1,1,1,0,1,1,1)-\frac{1}{2} \;\text{cc2} G^{\text{fctopology2}}(1,1,1,1,0,1,1,1,1)+\frac{1}{2} \;\text{cc2} G^{\text{fctopology2}}(1,1,1,1,1,1,1,0,1)+\text{cc3} G^{\text{fctopology1}}(1,1,1,1,1,1,0,1,1)+\frac{1}{2} \;\text{cc4} G^{\text{fctopology1}}(0,1,1,1,1,1,1,1,1)-\frac{1}{2} \;\text{cc4} G^{\text{fctopology1}}(1,1,1,0,1,1,1,1,1)-\frac{1}{2} \;\text{cc4} G^{\text{fctopology1}}(1,1,1,1,1,1,1,0,1)+\frac{1}{2} \;\text{cc4} G^{\text{fctopology1}}(1,1,1,1,1,1,1,1,0)+\frac{1}{2} \;\text{cc5} G^{\text{fctopology2}}(1,1,0,1,1,1,1,1,1)+\text{cc6} G^{\text{fctopology1}}(1,1,1,1,1,1,1,1,1)
+\text{gliProduct}\left(\frac{1}{2} \;\text{cc1} \left(G^{\text{fctopology1}}(0,0,-1,0,0,0,0,0,0)-G^{\text{fctopology1}}(0,0,0,0,0,-1,0,0,0)+Q^2\right),G^{\text{fctopology1}}(1,1,1,1,1,1,1,1,1)\right)+\text{gliProduct}\left(\frac{1}{2} \;\text{cc2} \left(-G^{\text{fctopology2}}(0,0,0,0,-1,0,0,0,0)-G^{\text{fctopology2}}(0,0,0,0,0,-1,0,0,0)+G^{\text{fctopology2}}(0,0,0,0,0,0,0,-1,0)+Q^2\right),G^{\text{fctopology2}}(1,1,1,1,1,1,1,1,1)\right)+\text{gliProduct}\left(\text{cc3} G^{\text{fctopology1}}(0,0,0,0,0,0,-1,0,0),G^{\text{fctopology1}}(1,1,1,1,1,1,1,1,1)\right)+\text{gliProduct}\left(\text{cc4} \left(\frac{1}{2} \left(-G^{\text{fctopology1}}(0,-1,0,0,0,0,0,0,0)+G^{\text{fctopology1}}(0,0,0,0,-1,0,0,0,0)-Q^2\right)+\frac{1}{2} \left(-G^{\text{fctopology1}}(0,0,-1,0,0,0,0,0,0)+G^{\text{fctopology1}}(0,0,0,0,0,-1,0,0,0)-Q^2\right)+\frac{1}{2} \left(G^{\text{fctopology1}}(-1,0,0,0,0,0,0,0,0)+G^{\text{fctopology1}}(0,-1,0,0,0,0,0,0,0)-G^{\text{fctopology1}}(0,0,0,-1,0,0,0,0,0)-G^{\text{fctopology1}}(0,0,0,0,-1,0,0,0,0)-G^{\text{fctopology1}}(0,0,0,0,0,0,0,-1,0)+G^{\text{fctopology1}}(0,0,0,0,0,0,0,0,-1)+Q^2\right)+Q^2\right),G^{\text{fctopology1}}(1,1,1,1,1,1,1,1,1)\right)+\text{gliProduct}\left(\frac{1}{2} \;\text{cc5} \left(G^{\text{fctopology2}}(0,0,-1,0,0,0,0,0,0)-G^{\text{fctopology2}}(0,0,0,0,0,-1,0,0,0)+Q^2\right),G^{\text{fctopology2}}(1,1,1,1,1,1,1,1,1)\right)+\text{gliProduct}\left(\text{cc6} G^{\text{fctopology1}}(0,0,-1,0,0,0,0,0,0),G^{\text{fctopology1}}(1,1,2,1,1,1,1,1,1)\right)
 \end{dmath*}
 \end{document}

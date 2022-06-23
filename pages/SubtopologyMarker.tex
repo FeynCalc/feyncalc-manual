@@ -1,0 +1,31 @@
+% !TeX program = pdflatex
+% !TeX root = SubtopologyMarker.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\texttt{SubtopologyMarker} is an option for
+\texttt{FCLoopFindTopologies}, \texttt{FCLoopFindTopologyMappings} and
+other topology related functions. It denotes the symbol that is used to
+specify that the given topology is a subtopology of another topology and
+has been obtained by removing some of the original propagators
+(i.e.~there are no momenta shifts involved)
+
+This information must be put into the very last list of the FCTopology
+object describing the corresponding subtopology. The syntax is
+\texttt{marker->topoID} where \texttt{topoID} is the ID of the larger
+topology.
+
+Setting \texttt{SubtopologyMarker} to \texttt{False} means that the
+information about subtopologies will not be added when generating
+subtopologies and will be ignored by routines related to topology
+mappings.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcloopfindtopologies}{FCLoopFindTopologies},
+\hyperlink{fcloopfindtopologymappings}{FCLoopFindTopologyMappings},
+\hyperlink{fcloopfindsubtopologies}{FCLoopFindSubtopologies}.
+
+\subsection{Examples}
+\end{document}

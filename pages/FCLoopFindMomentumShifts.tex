@@ -19,6 +19,16 @@ such lists.
 It is also possible to invoke the function as
 \texttt{FCLoopFindMomentumShifts[\allowbreak{}\{\allowbreak{}FCTopology[\allowbreak{}...],\ \allowbreak{}FCTopology[\allowbreak{}...]\},\ \allowbreak{}FCTopology[\allowbreak{}...]]}.
 
+For topologies involving kinematic constraints some mappings may require
+shifts not only in the loop but also in the external momenta. Such
+shifts are disabled by default but can be activated by setting the
+option \texttt{Momentum} to \texttt{All}.
+
+Normally, \texttt{FCLoopFindMomentumShifts} will abort the evaluation if
+it fails to find any suitable shifts. Setting the option \texttt{Abort}
+to \texttt{False} will force the function to merely return an empty list
+in such situations.
+
 \subsection{See also}
 
 \hyperlink{toc}{Overview}, \hyperlink{fclooptopakform}{FCLoopToPakForm},
@@ -79,7 +89,7 @@ It is also possible to invoke the function as
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{source }\ExtensionTok{=} \OperatorTok{\{}\NormalTok{FCTopology}\OperatorTok{[}
+\NormalTok{source1 }\ExtensionTok{=} \OperatorTok{\{}\NormalTok{FCTopology}\OperatorTok{[}
 \NormalTok{    fctopology3}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{\{}\NormalTok{p1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
 \NormalTok{        SFAD}\OperatorTok{[\{\{}\NormalTok{p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
 \NormalTok{        SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p2 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
@@ -105,7 +115,7 @@ It is also possible to invoke the function as
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{target }\ExtensionTok{=}\NormalTok{ FCTopology}\OperatorTok{[}
+\NormalTok{target1 }\ExtensionTok{=}\NormalTok{ FCTopology}\OperatorTok{[}
 \NormalTok{   fctopology1}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
 \NormalTok{    SFAD}\OperatorTok{[\{\{}\NormalTok{p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
 \NormalTok{    SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p2 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
@@ -122,11 +132,68 @@ It is also possible to invoke the function as
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{FCLoopFindMomentumShifts}\OperatorTok{[}\NormalTok{source}\OperatorTok{,}\NormalTok{ target}\OperatorTok{]}
+\NormalTok{FCLoopFindMomentumShifts}\OperatorTok{[}\NormalTok{source1}\OperatorTok{,}\NormalTok{ target1}\OperatorTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
 \{\{\text{p1}\to -\text{p1}-\text{p3}+Q,\text{p2}\to -\text{p2}-\text{p3}+Q,\text{p3}\to \;\text{p3}\},\{\text{p1}\to Q-\text{p2},\text{p2}\to Q-\text{p1},\text{p3}\to -\text{p3}\}\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{source2 }\ExtensionTok{=} \OperatorTok{\{}\NormalTok{FCTopology}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,} \OperatorTok{\{}
+\NormalTok{     SFAD}\OperatorTok{[\{\{}\NormalTok{l1 }\SpecialCharTok{+}\NormalTok{ q1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{     SFAD}\OperatorTok{[\{\{}\NormalTok{l1 }\SpecialCharTok{{-}}\NormalTok{ l2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{     SFAD}\OperatorTok{[\{\{}\NormalTok{l2 }\SpecialCharTok{+}\NormalTok{ q1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{     SFAD}\OperatorTok{[\{\{}\NormalTok{l2 }\SpecialCharTok{{-}}\NormalTok{ q2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{     SFAD}\OperatorTok{[\{\{}\NormalTok{l2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{l1}\OperatorTok{,}\NormalTok{ l2}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\},} 
+    \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q1}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{q2}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \FunctionTok{s}\SpecialCharTok{/}\DecValTok{2}\OperatorTok{\},} \OperatorTok{\{\}]\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{FCTopology}\left(\text{topo1},\left\{\frac{1}{((\text{l1}+\text{q1})^2-m^2+i \eta )},\frac{1}{((\text{l1}-\text{l2})^2+i \eta )},\frac{1}{((\text{l2}+\text{q1})^2-m^2+i \eta )},\frac{1}{((\text{l2}-\text{q2})^2-m^2+i \eta )},\frac{1}{(\text{l2}^2+i \eta )}\right\},\{\text{l1},\text{l2}\},\{\text{q1},\text{q2}\},\left\{\text{q1}^2\to 0,\text{q2}^2\to 0,\text{q1}\cdot \;\text{q2}\to \frac{s}{2}\right\},\{\}\right)\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{target2 }\ExtensionTok{=}\NormalTok{ FCTopology}\OperatorTok{[}\NormalTok{topo2}\OperatorTok{,} \OperatorTok{\{}
+\NormalTok{    SFAD}\OperatorTok{[\{\{}\NormalTok{l1 }\SpecialCharTok{{-}}\NormalTok{ l2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{    SFAD}\OperatorTok{[\{\{}\NormalTok{l1 }\SpecialCharTok{{-}}\NormalTok{ q2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{    SFAD}\OperatorTok{[\{\{}\NormalTok{l2 }\SpecialCharTok{{-}}\NormalTok{ q2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{    SFAD}\OperatorTok{[\{\{}\NormalTok{l2 }\SpecialCharTok{+}\NormalTok{ q1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{    SFAD}\OperatorTok{[\{\{}\NormalTok{l2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{l1}\OperatorTok{,}\NormalTok{ l2}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\},} 
+   \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q1}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{q2}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \FunctionTok{s}\SpecialCharTok{/}\DecValTok{2}\OperatorTok{\},} \OperatorTok{\{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCTopology}\left(\text{topo2},\left\{\frac{1}{((\text{l1}-\text{l2})^2-m^2+i \eta )},\frac{1}{((\text{l1}-\text{q2})^2+i \eta )},\frac{1}{((\text{l2}-\text{q2})^2-m^2+i \eta )},\frac{1}{((\text{l2}+\text{q1})^2-m^2+i \eta )},\frac{1}{(\text{l2}^2+i \eta )}\right\},\{\text{l1},\text{l2}\},\{\text{q1},\text{q2}\},\left\{\text{q1}^2\to 0,\text{q2}^2\to 0,\text{q1}\cdot \;\text{q2}\to \frac{s}{2}\right\},\{\}\right)
+\end{dmath*}
+
+Mapping these two topologies onto each other requires shifts in the
+external momenta
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Quiet}\OperatorTok{[}\NormalTok{FCLoopFindMomentumShifts}\OperatorTok{[}\NormalTok{source2}\OperatorTok{,}\NormalTok{ target2}\OperatorTok{,} \FunctionTok{Abort} \OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{\{\}\}
+\end{dmath*}
+
+Once we allow such shifts, everything works as expected
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopFindMomentumShifts}\OperatorTok{[}\NormalTok{source2}\OperatorTok{,}\NormalTok{ target2}\OperatorTok{,}\NormalTok{ Momentum }\OtherTok{{-}\textgreater{}} \ConstantTok{All}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{\{\text{l1}\to \;\text{l1}-\text{l2}-\text{q2},\text{l2}\to -\text{l2},\text{q1}\to \;\text{q2},\text{q2}\to \;\text{q1}\}\}
 \end{dmath*}
 \end{document}
