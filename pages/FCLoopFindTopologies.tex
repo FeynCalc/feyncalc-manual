@@ -12,10 +12,14 @@ attempts to identify the loop integral topologies present in
 the loop momenta \texttt{q1,\ \allowbreak{}q2,\ \allowbreak{}...} . It
 returns a list of two entries, where the first one is the original
 expression with the denominators rewritten as \texttt{GLI}s, and the
-second one is the set of the identified topologies. Each of the
-identified topologies must contain linearly independent propagators
-(unless the option \texttt{FCLoopBasisOverdeterminedQ} is set to True),
-but may lack propagators needed to form a complete basis.
+second one is the set of the identified topologies.
+
+Each of the identified topologies must contain linearly independent
+propagators (unless the option \texttt{FCLoopBasisOverdeterminedQ} is
+set to True), but may lack propagators needed to form a complete basis.
+
+Scaleless topologies are automatically removed, but this can be disabled
+by setting the option \texttt{FCLoopScalelessQ} to \texttt{True}.
 
 \subsection{See also}
 
