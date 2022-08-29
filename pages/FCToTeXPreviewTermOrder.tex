@@ -1,0 +1,48 @@
+% !TeX program = pdflatex
+% !TeX root = FCToTeXPreviewTermOrder.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fctotexpreviewtermorder}{
+\section{FCToTeXPreviewTermOrder}\label{fctotexpreviewtermorder}\index{FCToTeXPreviewTermOrder}}
+
+\texttt{FCToTeXPreviewTermOrder[\allowbreak{}exp]} displays the output
+of \texttt{FCToTeXReorder} using the built-in Plus and Times but
+preserving the original ordering.
+
+Use \texttt{ReleaseHold} or \texttt{FRH} to allow Mathematica return to
+its original ordering.
+
+Notice that the output of \texttt{FCToTeXPreviewTermOrder} is not
+suitable for algebraic manipulations but should be understood as an
+intermediate expression form created to serve as an input for
+\texttt{TeXForm}
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fctotexreorder}{FCToTeXReorder}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=} \OperatorTok{\{}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{z}\SpecialCharTok{*}\NormalTok{(}\DecValTok{11050} \SpecialCharTok{+} \DecValTok{3438}\SpecialCharTok{*}\NormalTok{L1 }\SpecialCharTok{+} \DecValTok{108}\SpecialCharTok{*}\NormalTok{L2 }\SpecialCharTok{+} \DecValTok{75}\SpecialCharTok{*}\NormalTok{NL }\SpecialCharTok{+} \DecValTok{150}\SpecialCharTok{*}\NormalTok{NV }\SpecialCharTok{+} \DecValTok{12}\SpecialCharTok{*}\FunctionTok{Pi}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+} \DecValTok{432}\SpecialCharTok{*}\FunctionTok{Log}\OperatorTok{[}\FunctionTok{z}\OperatorTok{]}\NormalTok{))}\SpecialCharTok{/}\DecValTok{27}\OperatorTok{,} 
+\NormalTok{   (}\SpecialCharTok{{-}}\DecValTok{13629} \SpecialCharTok{{-}} \DecValTok{4452}\SpecialCharTok{*}\NormalTok{L1 }\SpecialCharTok{+} \DecValTok{24}\SpecialCharTok{*}\NormalTok{L2 }\SpecialCharTok{+} \DecValTok{380}\SpecialCharTok{*}\NormalTok{NH }\SpecialCharTok{+} \DecValTok{75}\SpecialCharTok{*}\NormalTok{L1}\SpecialCharTok{*}\NormalTok{NH }\SpecialCharTok{+} \DecValTok{130}\SpecialCharTok{*}\NormalTok{NL }\SpecialCharTok{+} \DecValTok{150}\SpecialCharTok{*}\NormalTok{L1}\SpecialCharTok{*}\NormalTok{NL }\SpecialCharTok{+} \DecValTok{130}\SpecialCharTok{*}\NormalTok{NV }\SpecialCharTok{+} 
+      \DecValTok{150}\SpecialCharTok{*}\NormalTok{L1}\SpecialCharTok{*}\NormalTok{NV }\SpecialCharTok{+} \DecValTok{20}\SpecialCharTok{*}\FunctionTok{Sqrt}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\SpecialCharTok{*}\FunctionTok{Pi} \SpecialCharTok{{-}} \DecValTok{75}\SpecialCharTok{*}\FunctionTok{Sqrt}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\SpecialCharTok{*}\NormalTok{NH}\SpecialCharTok{*}\FunctionTok{Pi} \SpecialCharTok{+} \DecValTok{360}\SpecialCharTok{*}\FunctionTok{Pi}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\SpecialCharTok{/}\DecValTok{81}\OperatorTok{,} \FunctionTok{Plus}\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\frac{2}{27} z \left(3438 \;\text{L1}+108 \;\text{L2}+75 \;\text{NL}+150 \;\text{NV}+432 \log (z)+12 \pi ^2+11050\right),\frac{1}{81} \left(75 \;\text{L1} \;\text{NH}+150 \;\text{L1} \;\text{NL}+150 \;\text{L1} \;\text{NV}-4452 \;\text{L1}+24 \;\text{L2}+380 \;\text{NH}-75 \sqrt{3} \pi  \;\text{NH}+130 \;\text{NL}+130 \;\text{NV}+360 \pi ^2+20 \sqrt{3} \pi -13629\right),\text{Plus}\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCToTeXPreviewTermOrder}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{2}{27} z \left(11050+3438 \;\text{L1}+108 \;\text{L2}+75 \;\text{NL}+150 \;\text{NV}+12 \pi ^2+432 \log (z)\right)+\frac{1}{81} \left(-13629-4452 \;\text{L1}+24 \;\text{L2}+380 \;\text{NH}+75 \;\text{L1} \;\text{NH}+130 \;\text{NL}+150 \;\text{L1} \;\text{NL}+130 \;\text{NV}+150 \;\text{L1} \;\text{NV}+20 \sqrt{3} \pi -75 \sqrt{3} \;\text{NH} \pi +360 \pi ^2\right)
+\end{dmath*}
+\end{document}

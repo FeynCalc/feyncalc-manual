@@ -7,7 +7,12 @@
 \section{CartesianPairContract}\label{cartesianpaircontract}\index{CartesianPairContract}}
 
 \texttt{CartesianPairContract} is like \texttt{CartesianPair}, but with
-(local) contraction properties.
+(local) contraction properties. The function fully supports the BMHV
+algebra and will not expand momenta inside scalar products.
+
+\texttt{CartesianPairContract} is an auxiliary function used in higher
+level FeynCalc functions that require fast contractions between multiple
+expressions, where \texttt{Contract} would be too slow.
 
 \subsection{See also}
 
@@ -36,5 +41,51 @@
 
 \begin{dmath*}\breakingcomma
 \overline{p}\cdot \overline{q}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CartesianPair}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],}\NormalTok{ CartesianMomentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}\NormalTok{ CartesianPair}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{j}\OperatorTok{],}\NormalTok{ CartesianMomentum}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]]}\NormalTok{ CartesianPair}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],}\NormalTok{ CartesianIndex}\OperatorTok{[}\FunctionTok{j}\OperatorTok{]]} 
+ 
+\SpecialCharTok{\%} \OtherTok{/.}\NormalTok{ CartesianPair }\OtherTok{{-}\textgreater{}}\NormalTok{ CartesianPairContract }
+ 
+\SpecialCharTok{\%} \OtherTok{/.}\NormalTok{ CartesianPairContract }\OtherTok{{-}\textgreater{}}\NormalTok{ CartesianPair}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^i \overline{q}^j \bar{\delta }^{ij}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{CartesianPairContract}\left(\overline{p},\overline{q}\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot \overline{q}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CartesianPair}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],}\NormalTok{ CartesianMomentum}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{+} \FunctionTok{q}\OperatorTok{]]}\NormalTok{ CartesianPair}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],}\NormalTok{ CartesianMomentum}\OperatorTok{[}\FunctionTok{r} \SpecialCharTok{+} \FunctionTok{s}\OperatorTok{]]} 
+ 
+\SpecialCharTok{\%} \OtherTok{/.}\NormalTok{ CartesianPair }\OtherTok{{-}\textgreater{}}\NormalTok{ CartesianPairContract }
+ 
+\SpecialCharTok{\%} \OtherTok{/.}\NormalTok{ CartesianPairContract }\OtherTok{{-}\textgreater{}}\NormalTok{ CartesianPair }
+  
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\overline{p}+\overline{q}\right)^i \left(\overline{r}+\overline{s}\right)^i
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{CartesianPairContract}\left(\overline{p}+\overline{q},\overline{r}+\overline{s}\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+(\overline{p}+\overline{q})\cdot (\overline{r}+\overline{s})
 \end{dmath*}
 \end{document}

@@ -7,12 +7,70 @@
 \section{PairContract3}\label{paircontract3}\index{PairContract3}}
 
 \texttt{PairContract3} is like \texttt{Pair}, but with local contraction
-properties among \texttt{PairContract3}s.
+properties among \texttt{PairContract3}s. The function fully supports
+the BMHV algebra and, unlike \texttt{PairContract} or
+\texttt{PairContract2} will always expand momenta inside scalar
+products.
+
+\texttt{PairContract3} is an auxiliary function used in higher level
+FeynCalc functions that require fast contractions between multiple
+expressions, where \texttt{Contract} would be too slow.
 
 \subsection{See also}
 
-\hyperlink{toc}{Overview}, \hyperlink{pair}{Pair},
-\hyperlink{contract}{Contract}, \hyperlink{paircontract}{PairContract}.
+\hyperlink{toc}{Overview}, \hyperlink{contract}{Contract},
+\hyperlink{paircontract}{PairContract},
+\hyperlink{paircontract2}{PairContract2}.
 
 \subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pair}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}\NormalTok{ Pair}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]]} 
+ 
+\SpecialCharTok{\%} \OtherTok{/.}\NormalTok{ Pair }\OtherTok{{-}\textgreater{}}\NormalTok{ PairContract3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\mu } \overline{q}^{\mu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot \overline{q}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pair}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}\NormalTok{ Pair}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]]}\NormalTok{ Pair}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]]} 
+ 
+\SpecialCharTok{\%} \OtherTok{/.}\NormalTok{ Pair }\OtherTok{{-}\textgreater{}}\NormalTok{ PairContract3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\mu } \overline{q}^{\nu } \bar{g}^{\mu \nu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot \overline{q}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pair}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{+} \FunctionTok{q}\OperatorTok{]]}\NormalTok{ Pair}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{r} \SpecialCharTok{+} \FunctionTok{s}\OperatorTok{]]} 
+ 
+\SpecialCharTok{\%} \OtherTok{/.}\NormalTok{ Pair }\OtherTok{{-}\textgreater{}}\NormalTok{ PairContract3 }
+  
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\overline{p}+\overline{q}\right)^{\mu } \left(\overline{r}+\overline{s}\right)^{\mu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot \overline{r}+\overline{p}\cdot \overline{s}+\overline{q}\cdot \overline{r}+\overline{q}\cdot \overline{s}
+\end{dmath*}
 \end{document}
