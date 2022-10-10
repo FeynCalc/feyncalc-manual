@@ -36,7 +36,7 @@ Mathematica Package FeynRules (not related to FeynCalc).
 \FloatBarrier
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=0.6\linewidth]{img/1q4w0yoqha2oe.pdf}
+\includegraphics[width=0.6\linewidth]{img/036itccnlyi3l.pdf}
 \end{figure}
 \FloatBarrier
 
@@ -98,11 +98,11 @@ i T^a g_s \bar{\gamma }^{\mu }
 \end{dmath*}
 
 \begin{dmath*}\breakingcomma
-i g_s^2 f^{ad\text{FCGV}(\text{si46})} f^{bc\text{FCGV}(\text{si46})} \left(\bar{g}^{\mu \rho } \bar{g}^{\nu \sigma }-\bar{g}^{\mu \nu } \bar{g}^{\rho \sigma }\right)+i g_s^2 f^{ac\text{FCGV}(\text{si46})} f^{bd\text{FCGV}(\text{si46})} \left(\bar{g}^{\mu \sigma } \bar{g}^{\nu \rho }-\bar{g}^{\mu \nu } \bar{g}^{\rho \sigma }\right)+i g_s^2 f^{ab\text{FCGV}(\text{si46})} f^{cd\text{FCGV}(\text{si46})} \left(\bar{g}^{\mu \sigma } \bar{g}^{\nu \rho }-\bar{g}^{\mu \rho } \bar{g}^{\nu \sigma }\right)
+i g_s^2 f^{ad\text{FCGV}(\text{si49})} f^{bc\text{FCGV}(\text{si49})} \left(\bar{g}^{\mu \rho } \bar{g}^{\nu \sigma }-\bar{g}^{\mu \nu } \bar{g}^{\rho \sigma }\right)+i g_s^2 f^{ac\text{FCGV}(\text{si49})} f^{bd\text{FCGV}(\text{si49})} \left(\bar{g}^{\mu \sigma } \bar{g}^{\nu \rho }-\bar{g}^{\mu \nu } \bar{g}^{\rho \sigma }\right)+i g_s^2 f^{ab\text{FCGV}(\text{si49})} f^{cd\text{FCGV}(\text{si49})} \left(\bar{g}^{\mu \sigma } \bar{g}^{\nu \rho }-\bar{g}^{\mu \rho } \bar{g}^{\nu \sigma }\right)
 \end{dmath*}
 
 \begin{dmath*}\breakingcomma
--i g_s^2 \left(f^{ad\text{FCGV}(\text{u53})} f^{bc\text{FCGV}(\text{u53})} \left(\bar{g}^{\mu \nu } \bar{g}^{\rho \sigma }-\bar{g}^{\mu \rho } \bar{g}^{\nu \sigma }\right)+f^{ac\text{FCGV}(\text{u53})} f^{bd\text{FCGV}(\text{u53})} \left(\bar{g}^{\mu \nu } \bar{g}^{\rho \sigma }-\bar{g}^{\mu \sigma } \bar{g}^{\nu \rho }\right)+f^{ab\text{FCGV}(\text{u53})} f^{cd\text{FCGV}(\text{u53})} \left(\bar{g}^{\mu \rho } \bar{g}^{\nu \sigma }-\bar{g}^{\mu \sigma } \bar{g}^{\nu \rho }\right)\right)
+-i g_s^2 \left(f^{ad\text{FCGV}(\text{u56})} f^{bc\text{FCGV}(\text{u56})} \left(\bar{g}^{\mu \nu } \bar{g}^{\rho \sigma }-\bar{g}^{\mu \rho } \bar{g}^{\nu \sigma }\right)+f^{ac\text{FCGV}(\text{u56})} f^{bd\text{FCGV}(\text{u56})} \left(\bar{g}^{\mu \nu } \bar{g}^{\rho \sigma }-\bar{g}^{\mu \sigma } \bar{g}^{\nu \rho }\right)+f^{ab\text{FCGV}(\text{u56})} f^{cd\text{FCGV}(\text{u56})} \left(\bar{g}^{\mu \rho } \bar{g}^{\nu \sigma }-\bar{g}^{\mu \sigma } \bar{g}^{\nu \rho }\right)\right)
 \end{dmath*}
 
 \begin{dmath*}\breakingcomma
@@ -196,6 +196,89 @@ i \;\text{CH} g_s^2 \left(f^{ade} f^{bce} \left(\bar{g}^{ik} \bar{g}^{jl}-\bar{g
 
 Some OPE-related examples:
 
+2-quark Feynman rules (unpolarized).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Lagrangian}\OperatorTok{[}\StringTok{"oqu"}\OperatorTok{]}
+\NormalTok{FeynRule}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{QuantumField}\OperatorTok{[}\NormalTok{QuarkField}\OperatorTok{][}\FunctionTok{p}\OperatorTok{],}\NormalTok{ QuantumField}\OperatorTok{[}\NormalTok{AntiQuarkField}\OperatorTok{][}\FunctionTok{q}\OperatorTok{]\},} 
+\NormalTok{   ZeroMomentumInsertion }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{Factor}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+i^m \bar{\psi }.\left(\bar{\gamma }\cdot \Delta \right).D_{\Delta }{}^{m-1}.\psi
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-i i^m \left(\bar{\gamma }\cdot \Delta \right).\left(\vec{\partial }_{\Delta }\right){}^{m-1}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?ZeroMomentumInsertion}
+\end{Highlighting}
+\end{Shaded}
+
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.6\linewidth]{img/1cklte43ogg8m.pdf}
+\end{figure}
+\FloatBarrier
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ExpandPartialD}\OperatorTok{[}\NormalTok{Lagrangian}\OperatorTok{[}\StringTok{"oqu"}\OperatorTok{]} \OtherTok{/.}\NormalTok{ OPEm }\OtherTok{{-}\textgreater{}} \DecValTok{3}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+i g_s^2 T^{\text{c152}}.T^{\text{c153}}.\left(\bar{\gamma }\cdot \Delta \right).\bar{\psi }.A_{\Delta }^{\text{c152}}.A_{\Delta }^{\text{c153}}.\psi -g_s T^{\text{c152}}.\left(\bar{\gamma }\cdot \Delta \right).\bar{\psi }.A_{\Delta }^{\text{c152}}.\left(\partial _{\Delta }\psi \right)-g_s T^{\text{c153}}.\left(\bar{\gamma }\cdot \Delta \right).\bar{\psi }.A_{\Delta }^{\text{c153}}.\left(\partial _{\Delta }\psi \right)-g_s T^{\text{c153}}.\left(\bar{\gamma }\cdot \Delta \right).\bar{\psi }.\left(\partial _{\Delta }A_{\Delta }^{\text{c153}}\right).\psi -i \left(\bar{\gamma }\cdot \Delta \right).\bar{\psi }.\left(\partial _{\Delta }\partial _{\Delta }\psi \right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Lagrangian}\OperatorTok{[}\StringTok{"oqu"}\OperatorTok{]}
+\NormalTok{FeynRule}\OperatorTok{[}\SpecialCharTok{\%} \OtherTok{/.}\NormalTok{ OPEm }\OtherTok{{-}\textgreater{}} \DecValTok{3}\OperatorTok{,} \OperatorTok{\{}\NormalTok{QuantumField}\OperatorTok{[}\NormalTok{QuarkField}\OperatorTok{][}\FunctionTok{p}\OperatorTok{],}\NormalTok{ QuantumField}\OperatorTok{[}\NormalTok{AntiQuarkField}\OperatorTok{][}\FunctionTok{q}\OperatorTok{],} 
+\NormalTok{   QuantumField}\OperatorTok{[}\NormalTok{GaugeField}\OperatorTok{,} \OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]\},} \OperatorTok{\{}\FunctionTok{a}\OperatorTok{\}][}\FunctionTok{r}\OperatorTok{]\},}\NormalTok{ ZeroMomentumInsertion }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\NormalTok{FCReplaceMomenta}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{r} \OtherTok{{-}\textgreater{}} \SpecialCharTok{{-}}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{\}]} \SpecialCharTok{//}\NormalTok{ ExpandScalarProduct }\SpecialCharTok{//} \FunctionTok{Expand}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+i^m \bar{\psi }.\left(\bar{\gamma }\cdot \Delta \right).D_{\Delta }{}^{m-1}.\psi
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+T^a \Delta ^{\mu } g_s \left(-\left(\bar{\gamma }\cdot \Delta \right)\right) \left(2 \left(\Delta \cdot \overline{q}\right)+\Delta \cdot \overline{r}\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+T^a \Delta ^{\mu } g_s \bar{\gamma }\cdot \Delta  \left(\Delta \cdot \overline{p}\right)-T^a \Delta ^{\mu } g_s \bar{\gamma }\cdot \Delta  \left(\Delta \cdot \overline{q}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Lagrangian}\OperatorTok{[}\StringTok{"oqu"}\OperatorTok{]}
+\NormalTok{FeynRule}\OperatorTok{[}\SpecialCharTok{\%} \OtherTok{/.}\NormalTok{ OPEm }\OtherTok{{-}\textgreater{}} \DecValTok{4}\OperatorTok{,} \OperatorTok{\{}\NormalTok{QuantumField}\OperatorTok{[}\NormalTok{QuarkField}\OperatorTok{][}\FunctionTok{p}\OperatorTok{],}\NormalTok{ QuantumField}\OperatorTok{[}\NormalTok{AntiQuarkField}\OperatorTok{][}\FunctionTok{q}\OperatorTok{],} 
+\NormalTok{   QuantumField}\OperatorTok{[}\NormalTok{GaugeField}\OperatorTok{,} \OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]\},} \OperatorTok{\{}\FunctionTok{a}\OperatorTok{\}][}\FunctionTok{r}\OperatorTok{]\},}\NormalTok{ ZeroMomentumInsertion }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\NormalTok{FCReplaceMomenta}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{r} \OtherTok{{-}\textgreater{}} \SpecialCharTok{{-}}\FunctionTok{p} \SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{\}]} \SpecialCharTok{//}\NormalTok{ ExpandScalarProduct }\SpecialCharTok{//} \FunctionTok{Expand}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+i^m \bar{\psi }.\left(\bar{\gamma }\cdot \Delta \right).D_{\Delta }{}^{m-1}.\psi
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+T^a \Delta ^{\mu } g_s \bar{\gamma }\cdot \Delta  \left(3 (\Delta \cdot \overline{q})^2+(\Delta \cdot \overline{r})^2+3 \left(\Delta \cdot \overline{q}\right) \left(\Delta \cdot \overline{r}\right)\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+T^a \Delta ^{\mu } g_s \bar{\gamma }\cdot \Delta  (\Delta \cdot \overline{p})^2+T^a \Delta ^{\mu } g_s \bar{\gamma }\cdot \Delta  (\Delta \cdot \overline{q})^2-T^a \Delta ^{\mu } g_s \bar{\gamma }\cdot \Delta  \left(\Delta \cdot \overline{p}\right) \left(\Delta \cdot \overline{q}\right)
+\end{dmath*}
+
 2-gluon Feynman rules (unpolarized).
 
 \begin{Shaded}
@@ -231,7 +314,7 @@ Some OPE-related examples:
 \end{dmath*}
 
 \begin{dmath*}\breakingcomma
-0
+i^{m+1} \delta ^{ab} \left(\vec{\partial }_{\Delta }\right){}^{m-2} \left(\Delta ^{\mu } \bar{\epsilon }^{\nu \Delta \overline{p}\overline{q}}-\Delta ^{\nu } \bar{\epsilon }^{\mu \Delta \overline{p}\overline{q}}-\left(\Delta \cdot \overline{p}\right) \bar{\epsilon }^{\mu \nu \Delta \overline{q}}+\left(\Delta \cdot \overline{q}\right) \bar{\epsilon }^{\mu \nu \Delta \overline{p}}\right)
 \end{dmath*}
 
 \begin{dmath*}\breakingcomma
@@ -266,6 +349,17 @@ quark-quark -gluon-gluon Feynman rule (unpolarized).
 i^m \bar{\psi }.\left(\bar{\gamma }\cdot \Delta \right).D_{\Delta }{}^{m-1}.\psi
 \end{dmath*}
 
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.6\linewidth]{img/1utkt5lswqq9j.pdf}
+\end{figure}
+\FloatBarrier
+
+\begin{dmath*}\breakingcomma
+\text{\$Aborted}
+\end{dmath*}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{LeafCount}\OperatorTok{[}\NormalTok{frule}\OperatorTok{]}
@@ -273,7 +367,7 @@ i^m \bar{\psi }.\left(\bar{\gamma }\cdot \Delta \right).D_{\Delta }{}^{m-1}.\psi
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-39364
+1
 \end{dmath*}
 
 \begin{Shaded}

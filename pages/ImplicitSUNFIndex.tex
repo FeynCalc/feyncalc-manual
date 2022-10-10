@@ -1,0 +1,91 @@
+% !TeX program = pdflatex
+% !TeX root = ImplicitSUNFIndex.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{implicitsunfindex}{
+\section{ImplicitSUNFIndex}\label{implicitsunfindex}\index{ImplicitSUNFIndex}}
+
+\texttt{ImplicitSUNFIndex} is a data type. It mainly applies to names of
+quantum fields specifying that the corresponding field carries an
+implicit \(SU(N)\) index in the fundamental representation.
+
+This information can be supplied e.g.~via
+\texttt{DataType[\allowbreak{}QuarkField,\ \allowbreak{}ImplicitSUNFIndex] = True},
+where \texttt{QuarkField} is a possible name of the relevant field.
+
+The \texttt{ImplicitSUNFIndex} property becomes relevant when
+simplifying noncommutative products involving \texttt{QuantumField}s via
+\texttt{ExpandPartialD}, \texttt{DotSimplify}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{datatype}{DataType},
+\hyperlink{implicitdiracindex}{ImplicitDiracIndex},
+\hyperlink{implicitpauliindex}{ImplicitPauliIndex}
+
+\subsection{Examples}
+
+Default (possibly unwanted) behavior
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ QuantumField}\OperatorTok{[}\NormalTok{AntiQuarkField}\OperatorTok{]}\NormalTok{ . SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{]}\NormalTok{ . QuantumField}\OperatorTok{[}\NormalTok{QuarkField}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\psi }.T^a.\psi
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DotSimplify}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\psi }.\psi  T^a
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ExpandPartialD}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\psi }.\psi  T^a
+\end{dmath*}
+
+Now we let FeynCalc know that \texttt{AntiQuarkField} and
+\texttt{QuarkField} carry an implicit color index that connects them to
+the color matrix.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DataType}\OperatorTok{[}\NormalTok{QuarkField}\OperatorTok{,}\NormalTok{ ImplicitSUNFIndex}\OperatorTok{]} \ExtensionTok{=} \ConstantTok{True}\NormalTok{;}
+\NormalTok{DataType}\OperatorTok{[}\NormalTok{AntiQuarkField}\OperatorTok{,}\NormalTok{ ImplicitSUNFIndex}\OperatorTok{]} \ExtensionTok{=} \ConstantTok{True}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DotSimplify}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\psi }.T^a.\psi
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ExpandPartialD}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\psi }.T^a.\psi
+\end{dmath*}
+\end{document}

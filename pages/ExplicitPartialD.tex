@@ -7,13 +7,19 @@
 \section{ExplicitPartialD}\label{explicitpartiald}\index{ExplicitPartialD}}
 
 \texttt{ExplicitPartialD[\allowbreak{}exp]} inserts the definitions for
-\texttt{LeftRightPartialD} and \texttt{LeftRightPartialD2}.
+\texttt{LeftRightPartialD}, \texttt{LeftRightPartialD2},
+\texttt{LeftRightNablaD}, \texttt{LeftRightNablaD2}, \texttt{LeftNablaD}
+and \texttt{RightNablaD}
 
 \subsection{See also}
 
 \hyperlink{toc}{Overview}, \hyperlink{expandpartiald}{ExpandPartialD},
 \hyperlink{leftrightpartiald}{LeftRightPartialD},
-\hyperlink{leftrightpartiald2}{LeftRightPartialD2}.
+\hyperlink{leftrightpartiald2}{LeftRightPartialD2},
+\hyperlink{leftrightnablald}{LeftRightNablalD},
+\hyperlink{leftrightnablald2}{LeftRightNablalD2},
+\hyperlink{leftnablald}{LeftNablalD},
+\hyperlink{rightnablald}{RightNablalD}.
 
 \subsection{Examples}
 
@@ -79,5 +85,74 @@
 
 \begin{dmath*}\breakingcomma
 \left(\vec{\partial }_{\Delta }-\overleftarrow{\partial }_{\Delta }\right){}^4
+\end{dmath*}
+
+Notice that by definition \(\nabla^i = \partial_i = - \partial^i\),
+where the last equality depends on the metric signature.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LeftNablaD}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]} 
+ 
+\NormalTok{ExplicitPartialD}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overleftarrow{\nabla }^i
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-\overleftarrow{\partial }_i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{RightNablaD}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]} 
+ 
+\NormalTok{ExplicitPartialD}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\vec{\nabla }^i
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-\vec{\partial }_i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LeftRightNablaD}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]} 
+ 
+\NormalTok{ExplicitPartialD}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overleftrightarrow{\nabla }_i
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} \overleftarrow{\partial }_i-\vec{\partial }_i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LeftRightNablaD2}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]} 
+ 
+\NormalTok{ExplicitPartialD}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]} 
+  
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overleftrightarrow{\nabla }_{\mu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-\overleftarrow{\partial }_{\mu }-\vec{\partial }_{\mu }
 \end{dmath*}
 \end{document}

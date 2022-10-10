@@ -1,0 +1,71 @@
+% !TeX program = pdflatex
+% !TeX root = ImplicitPauliIndex.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{implicitpauliindex}{
+\section{ImplicitPauliIndex}\label{implicitpauliindex}\index{ImplicitPauliIndex}}
+
+\texttt{ImplicitPauliIndex} is a data type. It mainly applies to names
+of quantum fields specifying that the corresponding field carries an
+implicit Pauli index.
+
+This information can be supplied e.g.~via
+\texttt{DataType[\allowbreak{}QuarkFieldChi,\ \allowbreak{}ImplicitPauliIndex] = True},
+where \texttt{QuarkFieldChi} is a possible name of the relevant field.
+
+The \texttt{ImplicitDiracIndex} property becomes relevant when
+simplifying noncommutative products involving \texttt{QuantumField}s via
+\texttt{ExpandPartialD}, \texttt{DotSimplify}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{datatype}{DataType},
+\hyperlink{implicitsunfindex}{ImplicitSUNFIndex},
+\hyperlink{implicitdiracindex}{ImplicitDiracIndex}
+
+\subsection{Examples}
+
+Default (possibly unwanted) behavior
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ QuantumField}\OperatorTok{[}\NormalTok{QuarkFieldChiDagger}\OperatorTok{]}\NormalTok{ . CSI}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]}\NormalTok{ . QuantumField}\OperatorTok{[}\NormalTok{QuarkFieldChi}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\chi ^{\dagger }.\overline{\sigma }^i.\chi
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ExpandPartialD}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{\sigma }^i.\chi ^{\dagger }.\chi
+\end{dmath*}
+
+Now we let FeynCalc know that \texttt{QuarkFieldChiDagger} and
+\texttt{QuarkFieldChi} carry an implicit Pauli index that connects them
+to the Pauli matrix.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DataType}\OperatorTok{[}\NormalTok{QuarkFieldChi}\OperatorTok{,}\NormalTok{ ImplicitPauliIndex}\OperatorTok{]} \ExtensionTok{=} \ConstantTok{True}\NormalTok{;}
+\NormalTok{DataType}\OperatorTok{[}\NormalTok{QuarkFieldChiDagger}\OperatorTok{,}\NormalTok{ ImplicitPauliIndex}\OperatorTok{]} \ExtensionTok{=} \ConstantTok{True}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ExpandPartialD}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\chi ^{\dagger }.\overline{\sigma }^i.\chi
+\end{dmath*}
+\end{document}

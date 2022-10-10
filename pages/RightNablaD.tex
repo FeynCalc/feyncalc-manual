@@ -1,0 +1,61 @@
+% !TeX program = pdflatex
+% !TeX root = RightNablaD.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{rightnablad}{
+\section{RightNablaD}\label{rightnablad}\index{RightNablaD}}
+
+\texttt{RightNablaD[\allowbreak{}i]} denotes \(\nabla _{i}\), acting to
+the right.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{expandpartiald}{ExpandPartialD},
+\hyperlink{fcpartiald}{FCPartialD}, \hyperlink{leftnablad}{LeftNablaD}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{RightNablaD}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\vec{\nabla }^i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{RightNablaD}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]}\NormalTok{ . QuantumField}\OperatorTok{[}\FunctionTok{A}\OperatorTok{,}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]} 
+ 
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ ExpandPartialD}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\vec{\nabla }^i.A_{\mu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-\left(\partial _iA_{\mu }\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*{-}QuantumField[FCPartialD[CartesianIndex[i]], A, LorentzIndex[\textbackslash{}[Mu]]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{RightNablaD}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*RightNablaD[CartesianIndex[i]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

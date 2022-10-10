@@ -1,0 +1,71 @@
+% !TeX program = pdflatex
+% !TeX root = ImplicitDiracIndex.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{implicitdiracindex}{
+\section{ImplicitDiracIndex}\label{implicitdiracindex}\index{ImplicitDiracIndex}}
+
+\texttt{ImplicitDiracIndex} is a data type. It mainly applies to names
+of quantum fields specifying that the corresponding field carries an
+implicit Dirac index.
+
+This information can be supplied e.g.~via
+\texttt{DataType[\allowbreak{}QuarkField,\ \allowbreak{}ImplicitDiracIndex] = True},
+where \texttt{QuarkField} is a possible name of the relevant field.
+
+The \texttt{ImplicitDiracIndex} property becomes relevant when
+simplifying noncommutative products involving \texttt{QuantumField}s via
+\texttt{ExpandPartialD}, \texttt{DotSimplify}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{datatype}{DataType},
+\hyperlink{implicitsunfindex}{ImplicitSUNFIndex},
+\hyperlink{implicitpauliindex}{ImplicitPauliIndex}
+
+\subsection{Examples}
+
+Default (possibly unwanted) behavior
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ QuantumField}\OperatorTok{[}\NormalTok{AntiQuarkField}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . QuantumField}\OperatorTok{[}\NormalTok{QuarkField}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\psi }.\bar{\gamma }^{\mu }.\psi
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ExpandPartialD}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }.\bar{\psi }.\psi
+\end{dmath*}
+
+Now we let FeynCalc know that \texttt{AntiQuarkField} and
+\texttt{QuarkField} carry an implicit Dirac index that connects them to
+the Dirac matrix.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DataType}\OperatorTok{[}\NormalTok{QuarkField}\OperatorTok{,}\NormalTok{ ImplicitDiracIndex}\OperatorTok{]} \ExtensionTok{=} \ConstantTok{True}\NormalTok{;}
+\NormalTok{DataType}\OperatorTok{[}\NormalTok{AntiQuarkField}\OperatorTok{,}\NormalTok{ ImplicitDiracIndex}\OperatorTok{]} \ExtensionTok{=} \ConstantTok{True}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ExpandPartialD}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\psi }.\bar{\gamma }^{\mu }.\psi
+\end{dmath*}
+\end{document}

@@ -144,4 +144,18 @@ activate the reordering via the option \texttt{DiracOrder}.
 \begin{dmath*}\breakingcomma
 2 g^{\mu \nu }
 \end{dmath*}
+
+Reproduce Eq. 18.128 from
+\href{https://doi.org/10.1201/9780429503559}{An Introduction to Quantum
+Field Theory} by M. Peskin and D. Schroeder.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracSimplify}\OperatorTok{[}\DecValTok{1}\SpecialCharTok{/}\DecValTok{2}\NormalTok{ (GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} \SpecialCharTok{+}\NormalTok{ GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{)}\OperatorTok{,}\NormalTok{ DiracOrder }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\gamma ^{\nu } g^{\alpha \mu }+\gamma ^{\mu } g^{\alpha \nu }-\gamma ^{\alpha } g^{\mu \nu }
+\end{dmath*}
 \end{document}

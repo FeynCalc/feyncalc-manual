@@ -48,7 +48,7 @@ A_{\mu }.\overleftarrow{\partial }_{\nu }
 \end{dmath*}
 
 \begin{dmath*}\breakingcomma
-\left.(\partial _{\nu }A_{\mu }\right)
+\left(\partial _{\nu }A_{\mu }\right)
 \end{dmath*}
 
 \begin{Shaded}
@@ -72,7 +72,7 @@ A_{\mu }.\overleftarrow{\partial }_{\nu }
 \end{dmath*}
 
 \begin{dmath*}\breakingcomma
-\left.(\partial _{\{i,x\}}S^x\right)
+\left(\partial _{\{i,x\}}S^x\right)
 \end{dmath*}
 
 \begin{Shaded}
@@ -83,4 +83,16 @@ A_{\mu }.\overleftarrow{\partial }_{\nu }
 \end{Highlighting}
 \end{Shaded}
 
+\texttt{FCPartialD} also accepts \texttt{FCGV} symbols as arguments,
+which can be sometimes useful to make the final expression look nicer.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{QuantumField}\OperatorTok{[}\NormalTok{FCPartialD}\OperatorTok{[}\NormalTok{FCGV}\OperatorTok{[}\StringTok{"}\SpecialCharTok{\textbackslash{}[}\StringTok{Del]"}\OperatorTok{]],} \FunctionTok{S}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\nabla S^x\right)
+\end{dmath*}
 \end{document}
