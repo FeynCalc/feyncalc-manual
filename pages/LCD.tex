@@ -15,6 +15,14 @@ evaluates to \(D\)-dimensional
 \(\epsilon ^{m \ldots \mu \ldots}p_{\mu \ldots}\) applying
 \texttt{FeynCalcInternal}.
 
+When some indices of a Levi-Civita-tensor are contracted with 4-vectors,
+FeynCalc suppresses explicit dummy indices by putting those vectors into
+the corresponding index slots. For example,
+\(\varepsilon^{p_1 p_2 p_3 p_4}\) (accessible via
+\texttt{LCD[\allowbreak{}][\allowbreak{}p1,\ \allowbreak{}p2,\ \allowbreak{}p3,\ \allowbreak{}p4]})
+correspond to
+\(\varepsilon_{\mu \nu \rho \sigma} p_1^\mu p_2^\nu p_3^\rho p_4^\sigma\).
+
 \subsection{See also}
 
 \hyperlink{toc}{Overview}, \hyperlink{eps}{Eps}, \hyperlink{lc}{LC}.
@@ -65,5 +73,23 @@ evaluates to \(D\)-dimensional
 
 \begin{dmath*}\breakingcomma
 (1-D) (2-D) (3-D) (p\cdot q)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LCD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{1}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{2}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{3}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{4}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]} 
+  
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p_1{}^{\mu } p_2{}^{\nu } p_3{}^{\rho } p_4{}^{\sigma } \overset{\text{}}{\epsilon }^{\mu \nu \rho \sigma }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overset{\text{}}{\epsilon }^{p_1p_2p_3p_4}
 \end{dmath*}
 \end{document}

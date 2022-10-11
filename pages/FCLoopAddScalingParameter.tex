@@ -1,0 +1,67 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopAddScalingParameter.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopaddscalingparameter}{
+\section{FCLoopAddScalingParameter}\label{fcloopaddscalingparameter}\index{FCLoopAddScalingParameter}}
+
+\texttt{FCLoopAddScalingParameter[\allowbreak{}topo,\ \allowbreak{}la,\ \allowbreak{}rules]}
+multiplies masses and momenta in the propagators of the topology
+\texttt{topo} by the scaling parameter \texttt{la} according to the
+scaling rules in \texttt{rules}. The \texttt{id} of the topology remains
+unchanged. This is useful e.g.~for asymptotic expansions of the
+corresponding loop integrals given as GLIs.
+
+The scaling variable should be declared as \texttt{FCVariable} via the
+\texttt{DataType} mechanism.
+
+Notice that if all terms in a propagator have the same scaling, the
+scaling variable in the respective propagator will be set to unity.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fctopology}{FCTopology},
+\hyperlink{gli}{GLI}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DataType}\OperatorTok{[}\NormalTok{la}\OperatorTok{,}\NormalTok{ FCVariable}\OperatorTok{]} \ExtensionTok{=} \ConstantTok{True}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+We declare the external 4-momentum \texttt{q} as our hard scale, while
+the mass \texttt{mc} is soft
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{topoScaled }\ExtensionTok{=}\NormalTok{ FCLoopAddScalingParameter}\OperatorTok{[}\NormalTok{FCTopology}\OperatorTok{[}\NormalTok{prop1LtopoC11}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{\{}\FunctionTok{I}\NormalTok{ p1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{{-}}\NormalTok{mc}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{     SFAD}\OperatorTok{[\{\{}\FunctionTok{I}\NormalTok{ (p1 }\SpecialCharTok{{-}} \FunctionTok{q}\NormalTok{)}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{{-}}\NormalTok{mc}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]} \OtherTok{{-}\textgreater{}}\NormalTok{mb}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\},} \OperatorTok{\{\}],}\NormalTok{ la}\OperatorTok{,} 
+   \OperatorTok{\{}\FunctionTok{q} \OtherTok{{-}\textgreater{}}\NormalTok{ la}\SpecialCharTok{\^{}}\DecValTok{0} \FunctionTok{q}\OperatorTok{,}\NormalTok{ mc }\OtherTok{{-}\textgreater{}}\NormalTok{ la}\SpecialCharTok{\^{}}\DecValTok{1}\NormalTok{ mc}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{Scalings of momenta and masses in the propagators of }\;\text{prop1LtopoC11}\;\text{ : }\left\{\text{mb}\to \;\text{la}^0 \;\text{mb},\text{mc}\to \;\text{la} \;\text{mc},\text{p1}\to \;\text{la}^0 \;\text{p1},q\to \;\text{la}^0 q\right\}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCTopology}\left(\text{prop1LtopoC11},\left\{\frac{1}{(\text{la}^2 \;\text{mc}^2-\text{p1}^2-i \eta )},\frac{1}{(-\text{mb}^2+\text{la}^2 \;\text{mc}^2-\text{p1}^2+2 (\text{p1}\cdot q)-i \eta )}\right\},\{\text{p1}\},\{q\},\left\{q^2\to \;\text{mb}^2\right\},\{\}\right)
+\end{dmath*}
+
+Having set up the scaling we can now use \texttt{FCLoopGLIExpand} to
+expand the loop integrals belonging to this topology up to the desired
+order in \texttt{la}. Here we choose \(\mathcal{O}(\lambda^4)\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopGLIExpand}\OperatorTok{[}\NormalTok{GLI}\OperatorTok{[}\NormalTok{prop1LtopoC11}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}],} \OperatorTok{\{}\NormalTok{topoScaled}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{la}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{4}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{la}^4 \;\text{mc}^4 G^{\text{prop1LtopoC11}}(1,3)+\text{la}^4 \;\text{mc}^4 G^{\text{prop1LtopoC11}}(2,2)+\text{la}^4 \;\text{mc}^4 G^{\text{prop1LtopoC11}}(3,1)-\text{la}^2 \;\text{mc}^2 G^{\text{prop1LtopoC11}}(1,2)-\text{la}^2 \;\text{mc}^2 G^{\text{prop1LtopoC11}}(2,1)+G^{\text{prop1LtopoC11}}(1,1),\left\{\text{FCTopology}\left(\text{prop1LtopoC11},\left\{\frac{1}{(-\text{p1}^2-i \eta )},\frac{1}{(-\text{mb}^2-\text{p1}^2+2 (\text{p1}\cdot q)-i \eta )}\right\},\{\text{p1}\},\{q\},\left\{q^2\to \;\text{mb}^2\right\},\{\}\right)\right\}\right\}
+\end{dmath*}
+\end{document}

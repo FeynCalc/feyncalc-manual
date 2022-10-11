@@ -1,0 +1,55 @@
+% !TeX program = pdflatex
+% !TeX root = ShiftPartialD.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{shiftpartiald}{
+\section{ShiftPartialD}\label{shiftpartiald}\index{ShiftPartialD}}
+
+\texttt{ShiftPartialD[\allowbreak{}exp,\ \allowbreak{}\{\allowbreak{}derivs\},\ \allowbreak{}field]}
+uses integration-by-parts identities to shift the derivatives of
+\texttt{QuantumField}s such, that a term containing \texttt{derivs}
+acting on \texttt{field} is eliminated from the final expression.
+
+The function always assumes that the surface term vanishes
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{explicitpartiald}{ExplicitPartialD},
+\hyperlink{expandpartiald}{ExpandPartialD},
+\hyperlink{quantumfield}{QuantumField}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{exp} \ExtensionTok{=}\NormalTok{ QuantumField}\OperatorTok{[}\NormalTok{QuarkFieldPsiDagger}\OperatorTok{,}\NormalTok{ PauliIndex}\OperatorTok{[}\NormalTok{di1}\OperatorTok{]]}\NormalTok{ . RightPartialD}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i} 
+    \OperatorTok{]]}\NormalTok{ . QuantumField}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Phi}\OperatorTok{]]}\NormalTok{ . RightPartialD}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{j}\OperatorTok{]]}\NormalTok{ . QuantumField}\OperatorTok{[}\NormalTok{QuarkFieldPsi}\OperatorTok{,}\NormalTok{ PauliIndex}\OperatorTok{[}\NormalTok{di2}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\psi ^{\dagger \text{di1}}.\vec{\partial }_i.\phi .\vec{\partial }_j.\psi ^{\text{di2}}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{exp} \SpecialCharTok{//}\NormalTok{ ExpandPartialD}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\psi ^{\dagger \text{di1}}.\phi .\left(\partial _i\partial _j\psi ^{\text{di2}}\right)+\psi ^{\dagger \text{di1}}.\left(\partial _i\phi \right).\left(\partial _j\psi ^{\text{di2}}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ShiftPartialD}\OperatorTok{[}\FunctionTok{exp}\OperatorTok{,} \OperatorTok{\{}\NormalTok{FCPartialD}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]]\},}\NormalTok{ QuarkFieldPsi}\OperatorTok{,}\NormalTok{ FCVerbose }\OtherTok{{-}\textgreater{}} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\left(\partial _i\psi ^{\dagger \text{di1}}\right).\phi .\left(\partial _j\psi ^{\text{di2}}\right)
+\end{dmath*}
+\end{document}

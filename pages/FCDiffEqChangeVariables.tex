@@ -1,0 +1,112 @@
+% !TeX program = pdflatex
+% !TeX root = FCDiffEqChangeVariables.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcdiffeqchangevariables}{
+\section{FCDiffEqChangeVariables}\label{fcdiffeqchangevariables}\index{FCDiffEqChangeVariables}}
+
+\texttt{FCDiffEqChangeVariables[\allowbreak{}mat,\ \allowbreak{}x,\ \allowbreak{}y,\ \allowbreak{}rule,\ \allowbreak{}yOfX]}
+applies a variable transformation from \texttt{x} to \texttt{y}described
+by \texttt{rule}, where \texttt{yOfX} denotes \(y(x)\). Here
+\texttt{mat} is a matrix in the context of differential equations,
+i.e.~it can be either the matrix \(\mathcal{A}\) or \(\mathcal{B}\) from
+the pre-canonical \(F' = \mathcal{A} F\) or canonical
+\(G' = \varepsilon \mathcal{B} G\) form, or the transformation matrix
+\(\mathcal{T}\) with \(F = \mathcal{T} G\) .
+
+By default, the transformation also includes the prefactor \(1/f'(y)\).
+This is correct for \(\mathcal{A}\) or \(\mathcal{B}\) but not for
+\(\mathcal{T}\) matrices. The inclusion of the prefactor can be disabled
+by setting the option \texttt{Prefactor} to \texttt{False}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mat }\ExtensionTok{=} \OperatorTok{\{\{}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ eps))}\SpecialCharTok{/}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ eps)}\SpecialCharTok{/}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,}\NormalTok{ (}\SpecialCharTok{{-}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ eps))}\SpecialCharTok{/}\NormalTok{(}\FunctionTok{x}\SpecialCharTok{*}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+} \DecValTok{4}\SpecialCharTok{*}\FunctionTok{x}\NormalTok{))}\OperatorTok{,} 
+\NormalTok{    (}\SpecialCharTok{{-}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+} \DecValTok{2}\SpecialCharTok{*}\NormalTok{eps))}\SpecialCharTok{/}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+} \DecValTok{4}\SpecialCharTok{*}\FunctionTok{x}\NormalTok{)}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},}  \OperatorTok{\{}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ eps))}\SpecialCharTok{/}\NormalTok{(}\FunctionTok{x}\SpecialCharTok{*}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+} \DecValTok{4}\SpecialCharTok{*}\FunctionTok{x}\NormalTok{))}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} 
+\NormalTok{    (}\SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ eps }\SpecialCharTok{+} \DecValTok{6}\SpecialCharTok{*}\FunctionTok{x} \SpecialCharTok{{-}} \DecValTok{8}\SpecialCharTok{*}\NormalTok{eps}\SpecialCharTok{*}\FunctionTok{x}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(}\FunctionTok{x}\SpecialCharTok{*}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+} \DecValTok{4}\SpecialCharTok{*}\FunctionTok{x}\NormalTok{))}\OperatorTok{\}\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{cccc}
+ -\frac{2 (\text{eps}-1)}{x} & 0 & 0 & 0 \\
+ 0 & \frac{1-\text{eps}}{x} & 0 & 0 \\
+ 0 & -\frac{2 (\text{eps}-1)}{x (4 x-1)} & -\frac{2 (2 \;\text{eps}-1)}{4 x-1} & 0 \\
+ -\frac{2 (\text{eps}-1)}{x (4 x-1)} & 0 & 0 & \frac{-8 \;\text{eps} x+\text{eps}+6 x-1}{x (4 x-1)} \\
+\end{array}
+\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{matNew }\ExtensionTok{=}\NormalTok{ FCDiffEqChangeVariables}\OperatorTok{[}\NormalTok{mat}\OperatorTok{,} \FunctionTok{x}\OperatorTok{,} \FunctionTok{y}\OperatorTok{,} \FunctionTok{x} \OtherTok{{-}\textgreater{}}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{y}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\SpecialCharTok{/}\DecValTok{4}\OperatorTok{,} \FunctionTok{Sqrt}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \DecValTok{4}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{],} \FunctionTok{Assumptions} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{y}\NormalTok{ \textgreater{} }\DecValTok{0}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{cccc}
+ -\frac{4 (\text{eps}-1) y}{y^2-1} & 0 & 0 & 0 \\
+ 0 & -\frac{2 (\text{eps}-1) y}{y^2-1} & 0 & 0 \\
+ 0 & \frac{4-4 \;\text{eps}}{y-y^3} & \frac{1-2 \;\text{eps}}{y} & 0 \\
+ \frac{4-4 \;\text{eps}}{y-y^3} & 0 & 0 & \frac{4 \;\text{eps} y^2-2 \;\text{eps}-3 y^2+1}{y-y^3} \\
+\end{array}
+\right)
+\end{dmath*}
+
+Setting the option \texttt{Reverse} to \texttt{True} allows to undo the
+transformation.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{matCheck }\ExtensionTok{=}\NormalTok{ FCDiffEqChangeVariables}\OperatorTok{[}\NormalTok{matNew}\OperatorTok{,} \FunctionTok{x}\OperatorTok{,} \FunctionTok{y}\OperatorTok{,} \FunctionTok{x} \OtherTok{{-}\textgreater{}}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{y}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\SpecialCharTok{/}\DecValTok{4}\OperatorTok{,} \FunctionTok{Sqrt}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \DecValTok{4}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{],} \FunctionTok{Reverse} \OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{cccc}
+ \frac{2-2 \;\text{eps}}{x} & 0 & 0 & 0 \\
+ 0 & \frac{1-\text{eps}}{x} & 0 & 0 \\
+ 0 & -\frac{2-2 \;\text{eps}}{x-4 x^2} & \frac{2-4 \;\text{eps}}{4 x-1} & 0 \\
+ -\frac{2-2 \;\text{eps}}{x-4 x^2} & 0 & 0 & \frac{8 \;\text{eps} x-\text{eps}-6 x+1}{x-4 x^2} \\
+\end{array}
+\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Simplify}\OperatorTok{[}\NormalTok{matCheck }\SpecialCharTok{{-}}\NormalTok{ mat}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{Flatten} \SpecialCharTok{//} \FunctionTok{Union}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{0\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCDiffEqChangeVariables}\OperatorTok{[}\NormalTok{mat}\OperatorTok{,} \FunctionTok{x}\OperatorTok{,} \FunctionTok{y}\OperatorTok{,} \FunctionTok{x} \OtherTok{{-}\textgreater{}}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{y}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\SpecialCharTok{/}\DecValTok{4}\OperatorTok{,} \FunctionTok{Sqrt}\OperatorTok{[}\DecValTok{1} \SpecialCharTok{{-}} \DecValTok{4}\SpecialCharTok{*}\FunctionTok{x}\OperatorTok{],} \FunctionTok{Assumptions} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{y}\NormalTok{ \textgreater{} }\DecValTok{0}\OperatorTok{\},} 
+\NormalTok{  Prefactor }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{cccc}
+ \frac{8 (\text{eps}-1)}{y^2-1} & 0 & 0 & 0 \\
+ 0 & \frac{4 (\text{eps}-1)}{y^2-1} & 0 & 0 \\
+ 0 & -\frac{8 (\text{eps}-1)}{y^2 \left(y^2-1\right)} & \frac{4 \;\text{eps}-2}{y^2} & 0 \\
+ -\frac{8 (\text{eps}-1)}{y^2 \left(y^2-1\right)} & 0 & 0 & \frac{\text{eps} \left(8 y^2-4\right)-6 y^2+2}{y^2 \left(y^2-1\right)} \\
+\end{array}
+\right)
+\end{dmath*}
+\end{document}

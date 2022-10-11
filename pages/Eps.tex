@@ -11,6 +11,14 @@ is the head of the totally antisymmetric \(\epsilon\) (Levi-Civita)
 tensor. The \texttt{a,\ \allowbreak{}b,\ \allowbreak{}...} may have head
 \texttt{LorentzIndex} or \texttt{Momentum}.
 
+When some indices of a Levi-Civita-tensor are contracted with 4-vectors,
+FeynCalc suppresses explicit dummy indices by putting those vectors into
+the corresponding index slots. For example,
+\(\varepsilon^{p_1 p_2 p_3 p_4}\) (accessible via
+\texttt{LC[\allowbreak{}][\allowbreak{}p1,\ \allowbreak{}p2,\ \allowbreak{}p3,\ \allowbreak{}p4]})
+correspond to
+\(\varepsilon_{\mu \nu \rho \sigma} p_1^\mu p_2^\nu p_3^\rho p_4^\sigma\).
+
 \subsection{See also}
 
 \hyperlink{toc}{Overview}, \hyperlink{epscontract}{EpsContract},
@@ -56,6 +64,24 @@ tensor. The \texttt{a,\ \allowbreak{}b,\ \allowbreak{}...} may have head
 
 \begin{dmath*}\breakingcomma
 \bar{\epsilon }^{0123}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Eps}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]]} \SpecialCharTok{*}
+\NormalTok{   Pair}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{1}\OperatorTok{]]]}\NormalTok{ Pair}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{2}\OperatorTok{]]]}\SpecialCharTok{*}
+\NormalTok{   Pair}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{3}\OperatorTok{]]]}\NormalTok{ Pair}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{4}\OperatorTok{]]]} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]} 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}_1{}^{\mu } \overline{p}_2{}^{\nu } \overline{p}_3{}^{\rho } \overline{p}_4{}^{\sigma } \bar{\epsilon }^{\mu \nu \rho \sigma }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\overline{p}_1\overline{p}_2\overline{p}_3\overline{p}_4}
 \end{dmath*}
 
 \begin{Shaded}

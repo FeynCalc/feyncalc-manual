@@ -16,6 +16,13 @@ evaluates to
 \texttt{Eps[\allowbreak{}CartesianIndex[\allowbreak{}m],\ \allowbreak{}...,\ \allowbreak{}CartesianMomentum[\allowbreak{}p],\ \allowbreak{}...]}
 applying \texttt{FeynCalcInternal}.
 
+When some indices of a Levi-Civita-tensor are contracted with 3-vectors,
+FeynCalc suppresses explicit dummy indices by putting those vectors into
+the corresponding index slots. For example,
+\(\varepsilon^{p_1 p_2 p_3}\) (accessible via
+\texttt{CLC[\allowbreak{}][\allowbreak{}p1,\ \allowbreak{}p2,\ \allowbreak{}p3]})
+correspond to \(\varepsilon^{i j k} p_1^i p_2^j p_3^k\).
+
 \subsection{See also}
 
 \hyperlink{toc}{Overview}, \hyperlink{lc}{LC}, \hyperlink{eps}{Eps}.
@@ -66,5 +73,23 @@ applying \texttt{FeynCalcInternal}.
 
 \begin{dmath*}\breakingcomma
 \bar{\delta }^{jl} \bar{\delta }^{km}-\bar{\delta }^{jm} \bar{\delta }^{kl}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CLC}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]}\NormalTok{ CV}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{1}\OperatorTok{],} \FunctionTok{i}\OperatorTok{]}\NormalTok{ CV}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{2}\OperatorTok{],} \FunctionTok{j}\OperatorTok{]}\NormalTok{ CV}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{3}\OperatorTok{],} \FunctionTok{k}\OperatorTok{]} 
+ 
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]} 
+  
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}_1{}^i \overline{p}_2{}^j \overline{p}_3{}^k \bar{\epsilon }^{ijk}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\overline{p}_1\overline{p}_2\overline{p}_3}
 \end{dmath*}
 \end{document}
