@@ -1,0 +1,92 @@
+% !TeX program = pdflatex
+% !TeX root = FCGetDummyIndices.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcgetdummyindices}{
+\section{FCGetDummyIndices}\label{fcgetdummyindices}\index{FCGetDummyIndices}}
+
+\texttt{FCGetDummyIndices[\allowbreak{}exp,\ \allowbreak{}\{\allowbreak{}head1,\ \allowbreak{}head2,\ \allowbreak{}...\}]}
+returns the list of dummy indices from heads \texttt{head1},
+\texttt{head2}, \ldots{}
+
+As always in FeynCalc, Einstein summation convention is implicitly
+assumed.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcrenamedummyindices}{FCRenameDummyIndices},
+\hyperlink{contract}{Contract},
+\hyperlink{dummyindexfreeq}{DummyIndexFreeQ},
+\hyperlink{fcgetfreeindices}{FCGetFreeIndices},
+\hyperlink{freeindexfreeq}{FreeIndexFreeQ}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]]} 
+ 
+\NormalTok{FCGetDummyIndices}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{LorentzIndex}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\mu } \overline{q}^{\nu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\{\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]} 
+ 
+\NormalTok{FCGetDummyIndices}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{LorentzIndex}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\mu } \overline{q}^{\mu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\{\mu \}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]]} 
+ 
+\NormalTok{FCGetDummyIndices}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SUNIndex}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+T^a.T^b
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\{\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{a}\OperatorTok{]]} 
+ 
+\NormalTok{FCGetDummyIndices}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SUNIndex}\OperatorTok{\}]} 
+  
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+T^a.T^a
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\{a\}
+\end{dmath*}
+\end{document}

@@ -12,6 +12,9 @@ is like Coefficient, but it also allows to extracts coefficients of
 specify the power in \texttt{formi}, write it as
 \texttt{\{\allowbreak{}var,\ \allowbreak{}pow\}}.
 
+To keep the prefactor whose coefficient you extracted you need to set
+the option \texttt{Prefactor} to \texttt{True}.
+
 \subsection{See also}
 
 \hyperlink{toc}{Overview}, \hyperlink{cases2}{Cases2}.
@@ -70,6 +73,26 @@ specify the power in \texttt{formi}, write it as
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\NormalTok{Coefficient2}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,} \OperatorTok{\{}\NormalTok{a4}\OperatorTok{,} \DecValTok{2}\OperatorTok{\},}\NormalTok{ ep}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{x4}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Coefficient2}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,}\NormalTok{ a4}\OperatorTok{,} \DecValTok{2}\OperatorTok{,}\NormalTok{ ep}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{x4}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{Coefficient2}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,} \OperatorTok{\{}\NormalTok{a4}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{ep}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}]}
 \end{Highlighting}
 \end{Shaded}
@@ -86,5 +109,15 @@ specify the power in \texttt{formi}, write it as
 
 \begin{dmath*}\breakingcomma
 \text{x3}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Coefficient2}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,} \OperatorTok{\{}\NormalTok{a4}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{ep}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},}\NormalTok{ Prefactor }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{a4} \;\text{x2}
 \end{dmath*}
 \end{document}

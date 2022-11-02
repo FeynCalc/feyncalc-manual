@@ -7,8 +7,13 @@
 \section{ExpandPartialD}\label{expandpartiald}\index{ExpandPartialD}}
 
 \texttt{ExpandPartialD[\allowbreak{}exp]} expands noncommutative
-products of \texttt{QuantumField\}}s and partial differentiation
-operators in \texttt{exp} and applies the Leibniz rule.
+products of \texttt{QuantumField}s and partial differentiation operators
+in \texttt{exp} and applies the Leibniz rule.
+
+By default the function assumes that there are no expressions outside of
+\texttt{exp} on which the derivatives inside \texttt{exp} could act. If
+this is not the case, please set the options \texttt{LeftPartialD} or
+\texttt{RIghtPartialD} to \texttt{True}.
 
 \subsection{See also}
 
@@ -188,9 +193,7 @@ A_{\mu }.\overleftrightarrow{\partial }_{\Delta }^2.A_{\rho }
 \begin{Highlighting}[]
 \NormalTok{RightPartialD}\OperatorTok{[\{}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],} \FunctionTok{x}\OperatorTok{\}]}\NormalTok{ . QuantumField}\OperatorTok{[}\FunctionTok{S}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]} 
  
-\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ ExpandPartialD }
-  
- 
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ ExpandPartialD}
 \end{Highlighting}
 \end{Shaded}
 
@@ -200,5 +203,51 @@ A_{\mu }.\overleftrightarrow{\partial }_{\Delta }^2.A_{\rho }
 
 \begin{dmath*}\breakingcomma
 \left(\partial _{\{i,x\}}S^x\right)
+\end{dmath*}
+
+By default the derivative won't act on anything outside of the input
+expression. But it can be made to by setting the option
+\texttt{RightPartialD} to \texttt{True}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ExpandPartialD}\OperatorTok{[}\NormalTok{RightPartialD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . QuantumField}\OperatorTok{[}\FunctionTok{A}\OperatorTok{,}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]}\NormalTok{ . QuantumField}\OperatorTok{[}\FunctionTok{A}\OperatorTok{,}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+A_{\mu }.\left(\partial _{\mu }A_{\nu }\right)+\left(\partial _{\mu }A_{\mu }\right).A_{\nu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ExpandPartialD}\OperatorTok{[}\NormalTok{RightPartialD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . QuantumField}\OperatorTok{[}\FunctionTok{A}\OperatorTok{,}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]}\NormalTok{ . QuantumField}\OperatorTok{[}\FunctionTok{A}\OperatorTok{,}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]],}\NormalTok{ RightPartialD }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+A_{\mu }.\left(\partial _{\mu }A_{\nu }\right)+\left(\partial _{\mu }A_{\mu }\right).A_{\nu }+A_{\mu }.A_{\nu }.\vec{\partial }_{\mu }
+\end{dmath*}
+
+The same applies also to \texttt{LeftPartialD}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ExpandPartialD}\OperatorTok{[}\NormalTok{QuantumField}\OperatorTok{[}\FunctionTok{A}\OperatorTok{,}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]]}\NormalTok{ . LeftNablaD}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\left(\partial _iA_{\nu }\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ExpandPartialD}\OperatorTok{[}\NormalTok{QuantumField}\OperatorTok{[}\FunctionTok{A}\OperatorTok{,}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]]}\NormalTok{ . LeftNablaD}\OperatorTok{[}\FunctionTok{i}\OperatorTok{],}\NormalTok{ LeftPartialD }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\left(\partial _iA_{\nu }\right)-\overleftarrow{\partial }_i.A_{\nu }
 \end{dmath*}
 \end{document}

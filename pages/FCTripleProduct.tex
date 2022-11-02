@@ -1,0 +1,85 @@
+% !TeX program = pdflatex
+% !TeX root = FCTripleProduct.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fctripleproduct}{
+\section{FCTripleProduct}\label{fctripleproduct}\index{FCTripleProduct}}
+
+\texttt{FCTripleProduct[\allowbreak{}a,\ \allowbreak{}b,\ \allowbreak{}c]}
+returns the triple product \(a \cdot (b \times c)\). By default
+\texttt{a},\texttt{b} and \texttt{c} are assumed to be Cartesian
+vectors. Wrapping the arguments with \texttt{CartesianIndex} will create
+an expression with open indices.
+
+If any of the arguments is noncommutative, \texttt{DOT} will be used
+instead of \texttt{Times} and the function will introduce dummy indices.
+To give those indices some specific names, use the option
+\texttt{CartesianIndexNames}.
+
+If the arguments already contain free CartesianIndices, the first such
+index will be used for the contraction.
+
+To obtain an explicit expression you need to set the option
+\texttt{Explicit} to \texttt{True} or apply the function
+\texttt{Explicit}
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{eps}{Eps}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCTP}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//} \FunctionTok{StandardForm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{a}\cdot \left(\overline{b}\times \overline{c}\right)
+\end{dmath*}
+
+\begin{verbatim}
+(*FCTripleProduct[a, b, c]*)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCTP}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,}\NormalTok{ Explicit }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]} 
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//} \FunctionTok{StandardForm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\overline{a}\overline{b}\overline{c}}
+\end{dmath*}
+
+\begin{verbatim}
+(*Eps[CartesianMomentum[a], CartesianMomentum[b], CartesianMomentum[c]]*)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCTP}\OperatorTok{[}\NormalTok{QuantumField}\OperatorTok{[}\FunctionTok{A}\OperatorTok{,}\NormalTok{ CartesianIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]],}\NormalTok{ QuantumField}\OperatorTok{[}\FunctionTok{B}\OperatorTok{,}\NormalTok{ CartesianIndex}\OperatorTok{[}\FunctionTok{j}\OperatorTok{]],} 
+\NormalTok{  QuantumField}\OperatorTok{[}\FunctionTok{C}\OperatorTok{,}\NormalTok{ CartesianIndex}\OperatorTok{[}\FunctionTok{k}\OperatorTok{]],}\NormalTok{ Explicit }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{ijk} A^i.B^j.C^k
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCTP}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,}\NormalTok{ Explicit }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,}\NormalTok{ NonCommutative }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,}\NormalTok{ CartesianIndexNames }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{ijk} \overline{a}^i.\overline{b}^j.\overline{c}^k
+\end{dmath*}
+\end{document}

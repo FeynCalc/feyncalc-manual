@@ -6,13 +6,21 @@
 \hypertarget{explicit}{
 \section{Explicit}\label{explicit}\index{Explicit}}
 
-\texttt{Explicit} is an option for \texttt{FieldStrength},
-\texttt{GluonVertex}, \texttt{SUNF}, and \texttt{Twist2GluonOperator}.
-If set to \texttt{True} the full form of the operator is inserted.
-
 \texttt{Explicit[\allowbreak{}exp]} inserts explicit expressions of
-\texttt{GluonVertex}, \texttt{Twist2GluonOperator} etc. in \texttt{exp}.
-\texttt{SUNF}s are replaced by \texttt{SUNTrace} objects.
+\texttt{GluonVertex}, \texttt{Twist2GluonOperator}, \texttt{SUNF} etc.
+in \texttt{exp}.
+
+To rewrite the \(SU(N)\) structure constants in terms of traces, please
+set the corresponding options \texttt{SUNF} or \texttt{SUND} to
+\texttt{True}.
+
+The color traces are left untouched unless the option \texttt{SUNTrace}
+is set to \texttt{True}. In this case they will be rewritten in terms of
+structure constants.
+
+\texttt{Explicit} is also an option for \texttt{FieldStrength},
+\texttt{GluonVertex}, \texttt{SUNF}, \texttt{Twist2GluonOperator} etc.
+If set to \texttt{True} the full form of the operator is inserted.
 
 \subsection{See also}
 
@@ -23,9 +31,7 @@ If set to \texttt{True} the full form of the operator is inserted.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{GluonVertex}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{b}\OperatorTok{,} \FunctionTok{r}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \FunctionTok{c}\OperatorTok{]} 
- 
-\NormalTok{Explicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\NormalTok{gv }\ExtensionTok{=}\NormalTok{ GluonVertex}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{b}\OperatorTok{,} \FunctionTok{r}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \FunctionTok{c}\OperatorTok{]}
 \end{Highlighting}
 \end{Shaded}
 
@@ -33,8 +39,24 @@ If set to \texttt{True} the full form of the operator is inserted.
 f^{abc} V^{\mu \nu \rho }(p\text{, }q\text{, }r)
 \end{dmath*}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Explicit}\OperatorTok{[}\NormalTok{gv}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{dmath*}\breakingcomma
 g_s f^{abc} \left(g^{\mu \nu } \left(p^{\rho }-q^{\rho }\right)+g^{\mu \rho } \left(r^{\nu }-p^{\nu }\right)+g^{\nu \rho } \left(q^{\mu }-r^{\mu }\right)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Explicit}\OperatorTok{[}\NormalTok{gv}\OperatorTok{,}\NormalTok{ SUNF }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+2 i g_s \left(\text{tr}(T^a.T^c.T^b)-\text{tr}(T^a.T^b.T^c)\right) \left(g^{\mu \nu } \left(p^{\rho }-q^{\rho }\right)+g^{\mu \rho } \left(r^{\nu }-p^{\nu }\right)+g^{\nu \rho } \left(q^{\mu }-r^{\mu }\right)\right)
 \end{dmath*}
 
 \begin{Shaded}
@@ -57,9 +79,7 @@ g_s f^{abc} \left(g^{\mu \nu } \left(p^{\rho }-q^{\rho }\right)+g^{\mu \rho } \l
 \begin{Highlighting}[]
 \NormalTok{FieldStrength}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{a}\OperatorTok{]} 
  
-\NormalTok{Explicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]} 
-  
- 
+\NormalTok{Explicit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
 \end{Highlighting}
 \end{Shaded}
 
@@ -68,6 +88,66 @@ F_{\mu \nu }^a
 \end{dmath*}
 
 \begin{dmath*}\breakingcomma
-g_s f^{a\text{b19}\;\text{c20}} A_{\mu }^{\text{b19}}.A_{\nu }^{\text{c20}}+\left.(\partial _{\mu }A_{\nu }^a\right)-\left.(\partial _{\nu }A_{\mu }^a\right)
+g_s f^{a\text{b19}\;\text{c20}} A_{\mu }^{\text{b19}}.A_{\nu }^{\text{c20}}+\left(\partial _{\mu }A_{\nu }^a\right)-\left(\partial _{\nu }A_{\mu }^a\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Explicit}\OperatorTok{[}\NormalTok{SUNF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f^{abc}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Explicit}\OperatorTok{[}\NormalTok{SUNF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{],}\NormalTok{ SUNF }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+2 i \left(\text{tr}(T^a.T^c.T^b)-\text{tr}(T^a.T^b.T^c)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Explicit}\OperatorTok{[}\NormalTok{SUND}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+d^{abc}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Explicit}\OperatorTok{[}\NormalTok{SUND}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{],}\NormalTok{ SUND }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+2 \left(\text{tr}(T^a.T^b.T^c)\right)+2 \left(\text{tr}(T^b.T^a.T^c)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Explicit}\OperatorTok{[}\NormalTok{SUNTrace}\OperatorTok{[}\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{tr}(T^a.T^b.T^c)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Explicit}\OperatorTok{[}\NormalTok{SUNTrace}\OperatorTok{[}\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]],}\NormalTok{ SUNTrace }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{d^{abc}}{4}+\frac{1}{4} i f^{abc}
 \end{dmath*}
 \end{document}
