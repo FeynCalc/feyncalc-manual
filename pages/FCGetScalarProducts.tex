@@ -1,0 +1,65 @@
+% !TeX program = pdflatex
+% !TeX root = FCGetScalarProducts.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcgetscalarproducts}{
+\section{FCGetScalarProducts}\label{fcgetscalarproducts}\index{FCGetScalarProducts}}
+
+\texttt{FCGetScalarProducts[\allowbreak{}\{\allowbreak{}p1,\ \allowbreak{}p2,\ \allowbreak{}...\}]}
+returns all scalar products involving external momenta
+\texttt{p1,\ \allowbreak{}p2,\ \allowbreak{}...} that were set using
+down values.
+
+Using the option \texttt{SetDimensions} one can specify the dimensions
+of scalar products one is interested in.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{scalarproduct}{ScalarProduct},
+\hyperlink{pair}{Pair}, \hyperlink{sp}{SP}, \hyperlink{spd}{SPD}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClearScalarProducts}\OperatorTok{[]}\NormalTok{;}
+\NormalTok{SP}\OperatorTok{[}\NormalTok{p1}\OperatorTok{]} \ExtensionTok{=}\NormalTok{ m1}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{;}
+\NormalTok{SP}\OperatorTok{[}\NormalTok{p1}\OperatorTok{]} \ExtensionTok{=}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{;}
+\NormalTok{SP}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{]} \ExtensionTok{=} \FunctionTok{s}\NormalTok{;}
+\NormalTok{SPD}\OperatorTok{[}\NormalTok{q1}\OperatorTok{]} \ExtensionTok{=}\NormalTok{ M1}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{;}
+\NormalTok{SPD}\OperatorTok{[}\NormalTok{q2}\OperatorTok{]} \ExtensionTok{=}\NormalTok{ M2}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{;}
+\NormalTok{SPD}\OperatorTok{[}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{]} \ExtensionTok{=} \FunctionTok{t}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCGetScalarProducts}\OperatorTok{[\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{Hold}[\text{Pair}]\left[\overline{\text{p1}},\overline{\text{p1}}\right]\to \;\text{m2}^2,\text{Hold}[\text{Pair}]\left[\overline{\text{p1}},\overline{\text{p2}}\right]\to s,\text{Hold}[\text{Pair}][\text{q1},\text{q1}]\to \;\text{M1}^2,\text{Hold}[\text{Pair}][\text{q2},\text{q2}]\to \;\text{M2}^2,\text{Hold}[\text{Pair}][\text{q1},\text{q2}]\to t\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCGetScalarProducts}\OperatorTok{[\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\},}\NormalTok{ SetDimensions }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\DecValTok{4}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{Hold}[\text{Pair}]\left[\overline{\text{p1}},\overline{\text{p1}}\right]\to \;\text{m2}^2,\text{Hold}[\text{Pair}]\left[\overline{\text{p1}},\overline{\text{p2}}\right]\to s\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCGetScalarProducts}\OperatorTok{[\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\},}\NormalTok{ SetDimensions }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{D}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{Hold}[\text{Pair}][\text{q1},\text{q1}]\to \;\text{M1}^2,\text{Hold}[\text{Pair}][\text{q2},\text{q2}]\to \;\text{M2}^2,\text{Hold}[\text{Pair}][\text{q1},\text{q2}]\to t\right\}
+\end{dmath*}
+\end{document}

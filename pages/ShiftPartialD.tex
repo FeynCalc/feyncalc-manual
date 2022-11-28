@@ -6,12 +6,21 @@
 \hypertarget{shiftpartiald}{
 \section{ShiftPartialD}\label{shiftpartiald}\index{ShiftPartialD}}
 
-\texttt{ShiftPartialD[\allowbreak{}exp,\ \allowbreak{}\{\allowbreak{}derivs\},\ \allowbreak{}field]}
+\texttt{ShiftPartialD[\allowbreak{}exp,\ \allowbreak{}\{\allowbreak{}FCPartialD[\allowbreak{}i1],\ \allowbreak{}FCPartialD[\allowbreak{}i2],\ \allowbreak{}...\},\ \allowbreak{}field]}
 uses integration-by-parts identities to shift the derivatives of
-\texttt{QuantumField}s such, that a term containing \texttt{derivs}
-acting on \texttt{field} is eliminated from the final expression.
+\texttt{QuantumField}s such, that a term containing derivatives with
+indices \texttt{i1,\ \allowbreak{}i2,\ \allowbreak{}...} acting on
+\texttt{field} is eliminated from the final expression.
 
-The function always assumes that the surface term vanishes
+Notice that one must explicitly specify the type of the indices, e.g.~by
+writing \texttt{FCPartialD[\allowbreak{}LorentzIndex[\allowbreak{}mu]]}
+or \texttt{FCPartialD[\allowbreak{}CartesianIndex[\allowbreak{}i]]}.
+Furthermore, the function always assumes that the surface term vanishes.
+
+Often, when dealing with large expressions one would to integrate by
+parts only certain terms but not every term containing given fields and
+derivatives. In such situation one can specify a filter function via the
+option \texttt{Select}.
 
 \subsection{See also}
 
@@ -24,32 +33,89 @@ The function always assumes that the surface term vanishes
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{exp} \ExtensionTok{=}\NormalTok{ QuantumField}\OperatorTok{[}\NormalTok{QuarkFieldPsiDagger}\OperatorTok{,}\NormalTok{ PauliIndex}\OperatorTok{[}\NormalTok{di1}\OperatorTok{]]}\NormalTok{ . RightPartialD}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i} 
+\NormalTok{exp1 }\ExtensionTok{=}\NormalTok{ QuantumField}\OperatorTok{[}\NormalTok{QuarkFieldPsiDagger}\OperatorTok{,}\NormalTok{ PauliIndex}\OperatorTok{[}\NormalTok{di1}\OperatorTok{]]}\NormalTok{ . RightPartialD}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i} 
     \OperatorTok{]]}\NormalTok{ . QuantumField}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Phi}\OperatorTok{]]}\NormalTok{ . RightPartialD}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{j}\OperatorTok{]]}\NormalTok{ . QuantumField}\OperatorTok{[}\NormalTok{QuarkFieldPsi}\OperatorTok{,}\NormalTok{ PauliIndex}\OperatorTok{[}\NormalTok{di2}\OperatorTok{]]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-\psi ^{\dagger \;\text{di1}}.\vec{\partial }_i.\phi .\vec{\partial }_j.\psi ^{\text{di2}}
+\psi ^{\dagger \text{di1}}.\vec{\partial }_i.\phi .\vec{\partial }_j.\psi ^{\text{di2}}
 \end{dmath*}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{exp} \SpecialCharTok{//}\NormalTok{ ExpandPartialD}
+\NormalTok{exp1 }\SpecialCharTok{//}\NormalTok{ ExpandPartialD}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-\psi ^{\dagger \;\text{di1}}.\phi .\left(\partial _i\partial _j\psi ^{\text{di2}}\right)+\psi ^{\dagger \;\text{di1}}.\left(\partial _i\phi \right).\left(\partial _j\psi ^{\text{di2}}\right)
+\psi ^{\dagger \text{di1}}.\phi .\left(\partial _i\partial _j\psi ^{\text{di2}}\right)+\psi ^{\dagger \text{di1}}.\left(\partial _i\phi \right).\left(\partial _j\psi ^{\text{di2}}\right)
 \end{dmath*}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{ShiftPartialD}\OperatorTok{[}\FunctionTok{exp}\OperatorTok{,} \OperatorTok{\{}\NormalTok{FCPartialD}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]]\},}\NormalTok{ QuarkFieldPsi}\OperatorTok{,}\NormalTok{ FCVerbose }\OtherTok{{-}\textgreater{}} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{]}
+\NormalTok{ShiftPartialD}\OperatorTok{[}\NormalTok{exp1}\OperatorTok{,} \OperatorTok{\{}\NormalTok{FCPartialD}\OperatorTok{[}\NormalTok{CartesianIndex}\OperatorTok{[}\FunctionTok{i}\OperatorTok{]]\},}\NormalTok{ QuarkFieldPsi}\OperatorTok{,}\NormalTok{ FCVerbose }\OtherTok{{-}\textgreater{}} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
--\left(\partial _i\psi ^{\dagger \;\text{di1}}\right).\phi .\left(\partial _j\psi ^{\text{di2}}\right)
+-\left(\partial _i\psi ^{\dagger \text{di1}}\right).\phi .\left(\partial _j\psi ^{\text{di2}}\right)
+\end{dmath*}
+
+This expression vanishes if one integrates by parts the term containing
+\(\partial_\mu A_\nu\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{exp2 }\ExtensionTok{=}\NormalTok{ QuantumField}\OperatorTok{[}\NormalTok{GaugeField}\OperatorTok{,}\NormalTok{ LorentzIndex}\OperatorTok{[}\NormalTok{nu}\OperatorTok{]]}\NormalTok{ . QuantumField}\OperatorTok{[}\NormalTok{FCPartialD}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\NormalTok{mu}\OperatorTok{]],}\NormalTok{ FCPartialD}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\NormalTok{mu}\OperatorTok{]],} 
+\NormalTok{     FCPartialD}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\NormalTok{rho}\OperatorTok{]],}\NormalTok{ FCPartialD}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\NormalTok{rho}\OperatorTok{]],}\NormalTok{ FCPartialD}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\NormalTok{nu}\OperatorTok{]],}\NormalTok{ FCPartialD}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\NormalTok{tau}\OperatorTok{]],} 
+\NormalTok{     GaugeField}\OperatorTok{,}\NormalTok{ LorentzIndex}\OperatorTok{[}\NormalTok{tau}\OperatorTok{]]} \SpecialCharTok{+}\NormalTok{ QuantumField}\OperatorTok{[}\NormalTok{FCPartialD}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\NormalTok{mu}\OperatorTok{]],}\NormalTok{ GaugeField}\OperatorTok{,}\NormalTok{ LorentzIndex}\OperatorTok{[}\NormalTok{nu}\OperatorTok{]]}\NormalTok{ . QuantumField}\OperatorTok{[}\NormalTok{FCPartialD}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\NormalTok{rho}\OperatorTok{]],} 
+\NormalTok{     FCPartialD}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\NormalTok{rho}\OperatorTok{]],}\NormalTok{ FCPartialD}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\NormalTok{mu}\OperatorTok{]],}\NormalTok{ FCPartialD}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\NormalTok{nu}\OperatorTok{]],}\NormalTok{ FCPartialD}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\NormalTok{tau}\OperatorTok{]],}\NormalTok{ GaugeField}\OperatorTok{,}\NormalTok{ LorentzIndex}\OperatorTok{[}\NormalTok{tau}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+A_{\text{nu}}.\left(\partial _{\text{mu}}\partial _{\text{mu}}\partial _{\text{rho}}\partial _{\text{rho}}\partial _{\text{nu}}\partial _{\text{tau}}A_{\text{tau}}\right)+\left(\partial _{\text{mu}}A_{\text{nu}}\right).\left(\partial _{\text{rho}}\partial _{\text{rho}}\partial _{\text{mu}}\partial _{\text{nu}}\partial _{\text{tau}}A_{\text{tau}}\right)
+\end{dmath*}
+
+By default \texttt{ShiftPartialD} will also apply IBPs to the other
+term, which is not useful here
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ShiftPartialD}\OperatorTok{[}\NormalTok{exp2}\OperatorTok{,} \OperatorTok{\{}\NormalTok{FCPartialD}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\NormalTok{mu}\OperatorTok{]]\},}\NormalTok{ GaugeField}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{Applying the following IBP relation: }\left\{\left(\partial _{\text{mu}}A_{\text{nu}}\right).\left(\partial _{\text{rho}}\partial _{\text{rho}}\partial _{\text{mu}}\partial _{\text{nu}}\partial _{\text{tau}}A_{\text{tau}}\right)\to -A_{\text{nu}}.\left(\partial _{\text{mu}}\partial _{\text{mu}}\partial _{\text{rho}}\partial _{\text{rho}}\partial _{\text{nu}}\partial _{\text{tau}}A_{\text{tau}}\right)\right\}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{Applying the following IBP relation: }\left\{A_{\text{nu}}.\left(\partial _{\text{mu}}\partial _{\text{mu}}\partial _{\text{rho}}\partial _{\text{rho}}\partial _{\text{nu}}\partial _{\text{tau}}A_{\text{tau}}\right)\to -2 \left(\partial _{\text{mu}}A_{\text{nu}}\right).\left(\partial _{\text{rho}}\partial _{\text{rho}}\partial _{\text{mu}}\partial _{\text{nu}}\partial _{\text{tau}}A_{\text{tau}}\right)-\left(\partial _{\text{mu}}\partial _{\text{mu}}A_{\text{nu}}\right).\left(\partial _{\text{rho}}\partial _{\text{rho}}\partial _{\text{nu}}\partial _{\text{tau}}A_{\text{tau}}\right)\right\}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-A_{\text{nu}}.\left(\partial _{\text{mu}}\partial _{\text{mu}}\partial _{\text{rho}}\partial _{\text{rho}}\partial _{\text{nu}}\partial _{\text{tau}}A_{\text{tau}}\right)-2 \left(\partial _{\text{mu}}A_{\text{nu}}\right).\left(\partial _{\text{rho}}\partial _{\text{rho}}\partial _{\text{mu}}\partial _{\text{nu}}\partial _{\text{tau}}A_{\text{tau}}\right)-\left(\partial _{\text{mu}}\partial _{\text{mu}}A_{\text{nu}}\right).\left(\partial _{\text{rho}}\partial _{\text{rho}}\partial _{\text{nu}}\partial _{\text{tau}}A_{\text{tau}}\right)
+\end{dmath*}
+
+Using a suitable filter function we can readily achieve the desired
+result
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ShiftPartialD}\OperatorTok{[}\NormalTok{exp2}\OperatorTok{,} \OperatorTok{\{}\NormalTok{FCPartialD}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\NormalTok{mu}\OperatorTok{]]\},}\NormalTok{ GaugeField}\OperatorTok{,} \FunctionTok{Select} \OtherTok{{-}\textgreater{}} 
+     \FunctionTok{Function}\OperatorTok{[}\FunctionTok{x}\OperatorTok{,} \FunctionTok{FreeQ}\OperatorTok{[}\FunctionTok{x}\OperatorTok{,}\NormalTok{ QuantumField}\OperatorTok{[}\NormalTok{GaugeField}\OperatorTok{,}\NormalTok{ LorentzIndex}\OperatorTok{[}\NormalTok{nu}\OperatorTok{]]]]]} 
+  
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{Applying the following IBP relation: }\left\{\left(\partial _{\text{mu}}A_{\text{nu}}\right).\left(\partial _{\text{rho}}\partial _{\text{rho}}\partial _{\text{mu}}\partial _{\text{nu}}\partial _{\text{tau}}A_{\text{tau}}\right)\to -A_{\text{nu}}.\left(\partial _{\text{mu}}\partial _{\text{mu}}\partial _{\text{rho}}\partial _{\text{rho}}\partial _{\text{nu}}\partial _{\text{tau}}A_{\text{tau}}\right)\right\}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+0
 \end{dmath*}
 \end{document}

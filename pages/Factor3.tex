@@ -1,0 +1,85 @@
+% !TeX program = pdflatex
+% !TeX root = Factor3.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{factor3}{
+\section{Factor3}\label{factor3}\index{Factor3}}
+
+\texttt{Factor3[\allowbreak{}exp]} factors a rational function
+\texttt{exp} over the field of complex numbers.
+
+\texttt{Factor3} is primarily meant to be used on matrices from
+differential equations and Feynman parametric representations of loop
+integrals. Its main goal is to rewrite all denominators such, that they
+can be integrated in terms of HPLs or GPLs (when possible).
+
+To avoid performance bottlenecks, in the case of ration functions only
+the denominator will be factored by default. This can be changed by
+setting the option \texttt{Numerator} to \texttt{True}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcintegratepolylogs}{FCIntegratePolyLogs}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Factor3}\OperatorTok{[}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \DecValTok{4} \FunctionTok{x}\NormalTok{) (}\DecValTok{1} \SpecialCharTok{+} \DecValTok{3} \FunctionTok{y}\NormalTok{)}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-12 \left(x-\frac{1}{4}\right) \left(y+\frac{1}{3}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Factor3}\OperatorTok{[}\DecValTok{16}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \DecValTok{2}\SpecialCharTok{*}\NormalTok{eps)}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+64 \left(\text{eps}-\frac{1}{2}\right)^2 x^2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Factor3}\OperatorTok{[}\DecValTok{2}\SpecialCharTok{*}\NormalTok{(}\DecValTok{32904490323} \SpecialCharTok{+} \DecValTok{164521613783}\SpecialCharTok{*}\NormalTok{eps }\SpecialCharTok{+} \DecValTok{1256744}\SpecialCharTok{*}\NormalTok{eps}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(}\DecValTok{11} \SpecialCharTok{{-}} \DecValTok{5}\SpecialCharTok{*}\NormalTok{eps }\SpecialCharTok{{-}} \DecValTok{47}\SpecialCharTok{*}\NormalTok{eps}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+} \DecValTok{44}\SpecialCharTok{*}\NormalTok{eps}\SpecialCharTok{\^{}}\DecValTok{3}\NormalTok{)}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+110593472 \left(\text{eps}+\frac{1}{264} \left(1-i \sqrt{3}\right) \sqrt[3]{-137143+198 i \sqrt{122615}}+\frac{2869 \left(1+i \sqrt{3}\right)}{264 \sqrt[3]{-137143+198 i \sqrt{122615}}}-\frac{47}{132}\right) \left(\text{eps}+\frac{1}{264} \left(1+i \sqrt{3}\right) \sqrt[3]{-137143+198 i \sqrt{122615}}+\frac{2869 \left(1-i \sqrt{3}\right)}{264 \sqrt[3]{-137143+198 i \sqrt{122615}}}-\frac{47}{132}\right) \left(\text{eps}-\frac{628374}{-1570927-\sqrt{2467796558401}}\right) \left(\text{eps}-\frac{104729 \left(-1570927-\sqrt{2467796558401}\right)}{2513488}\right) \left(\text{eps}+\frac{1}{132} \left(-47-\frac{2869}{\sqrt[3]{-137143+198 i \sqrt{122615}}}-\sqrt[3]{-137143+198 i \sqrt{122615}}\right)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mat }\ExtensionTok{=} \OperatorTok{\{\{}\NormalTok{(}\DecValTok{2} \SpecialCharTok{{-}} \DecValTok{2}\SpecialCharTok{*}\NormalTok{eps)}\SpecialCharTok{/}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,}\NormalTok{ (}\DecValTok{2} \SpecialCharTok{{-}} \DecValTok{2}\SpecialCharTok{*}\NormalTok{eps)}\SpecialCharTok{/}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\NormalTok{)}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} 
+    \OperatorTok{\{}\DecValTok{0}\OperatorTok{,}\NormalTok{ (}\SpecialCharTok{{-}}\DecValTok{2} \SpecialCharTok{+} \DecValTok{2}\SpecialCharTok{*}\NormalTok{eps)}\SpecialCharTok{/}\NormalTok{(}\FunctionTok{x} \SpecialCharTok{{-}} \DecValTok{4}\SpecialCharTok{*}\FunctionTok{x}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\OperatorTok{,}\NormalTok{ (}\DecValTok{6} \SpecialCharTok{{-}} \DecValTok{2}\SpecialCharTok{*}\NormalTok{(}\DecValTok{4} \SpecialCharTok{{-}} \DecValTok{2}\SpecialCharTok{*}\NormalTok{eps))}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \DecValTok{4}\SpecialCharTok{*}\FunctionTok{x}\NormalTok{)}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} 
+    \OperatorTok{\{}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{2} \SpecialCharTok{+} \DecValTok{2}\SpecialCharTok{*}\NormalTok{eps)}\SpecialCharTok{/}\NormalTok{(}\FunctionTok{x} \SpecialCharTok{{-}} \DecValTok{4}\SpecialCharTok{*}\FunctionTok{x}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,}\NormalTok{ (}\DecValTok{2} \SpecialCharTok{{-}} \DecValTok{2}\SpecialCharTok{*}\NormalTok{eps }\SpecialCharTok{+} \DecValTok{4}\SpecialCharTok{*}\NormalTok{(}\DecValTok{5} \SpecialCharTok{{-}} \DecValTok{2}\SpecialCharTok{*}\NormalTok{(}\DecValTok{4} \SpecialCharTok{{-}} \DecValTok{2}\SpecialCharTok{*}\NormalTok{eps))}\SpecialCharTok{*}\FunctionTok{x}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} 
+          \DecValTok{4}\SpecialCharTok{*}\FunctionTok{x}\NormalTok{)}\SpecialCharTok{*}\FunctionTok{x}\NormalTok{)}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},}  \OperatorTok{\{}\NormalTok{(}\DecValTok{2} \SpecialCharTok{{-}} \DecValTok{2}\SpecialCharTok{*}\NormalTok{eps)}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}\NormalTok{(}\DecValTok{16}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\SpecialCharTok{*}\FunctionTok{x}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\SpecialCharTok{/}\DecValTok{8}\SpecialCharTok{*}\NormalTok{(}\DecValTok{2} \SpecialCharTok{{-}} \DecValTok{2}\SpecialCharTok{*}\NormalTok{eps)}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}\NormalTok{((}\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{x}\NormalTok{)}\SpecialCharTok{*}\FunctionTok{x}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}\OperatorTok{,} 
+     \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \SpecialCharTok{{-}}\NormalTok{((}\DecValTok{7} \SpecialCharTok{{-}} \DecValTok{2}\SpecialCharTok{*}\NormalTok{(}\DecValTok{4} \SpecialCharTok{{-}} \DecValTok{2}\SpecialCharTok{*}\NormalTok{eps) }\SpecialCharTok{{-}} \DecValTok{13}\SpecialCharTok{*}\FunctionTok{x} \SpecialCharTok{+} \DecValTok{4}\SpecialCharTok{*}\NormalTok{(}\DecValTok{4} \SpecialCharTok{{-}} \DecValTok{2}\SpecialCharTok{*}\NormalTok{eps)}\SpecialCharTok{*}\FunctionTok{x}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\FunctionTok{x} \SpecialCharTok{{-}} \DecValTok{2}\SpecialCharTok{*}\FunctionTok{x}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}\OperatorTok{\}\}}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Factor3}\OperatorTok{[}\NormalTok{mat}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{ccccc}
+ \frac{2-2 \;\text{eps}}{x} & 0 & 0 & 0 & 0 \\
+ 0 & \frac{2-2 \;\text{eps}}{2 x} & 0 & 0 & 0 \\
+ 0 & -\frac{2 \;\text{eps}-2}{4 \left(x-\frac{1}{4}\right) x} & -\frac{6-2 (4-2 \;\text{eps})}{4 \left(x-\frac{1}{4}\right)} & 0 & 0 \\
+ -\frac{2 \;\text{eps}-2}{4 \left(x-\frac{1}{4}\right) x} & 0 & 0 & -\frac{4 (5-2 (4-2 \;\text{eps})) x-2 \;\text{eps}+2}{8 \left(x-\frac{1}{4}\right) x} & 0 \\
+ -\frac{(2-2 \;\text{eps})^2}{16 (x-1) x^2} & \frac{(2-2 \;\text{eps})^2}{8 (x-1) x^2} & 0 & 0 & -\frac{-4 (4-2 \;\text{eps}) x+2 (4-2 \;\text{eps})+13 x-7}{2 (x-1) x} \\
+\end{array}
+\right)
+\end{dmath*}
+\end{document}
