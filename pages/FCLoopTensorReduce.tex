@@ -14,8 +14,20 @@ been written as
 \texttt{fun[\allowbreak{}num,\ \allowbreak{}GLI[\allowbreak{}...]]} with
 \texttt{num} being the numerator to be acted upon.
 
+The reduction is done only for loop momenta contracted with Dirac
+matrices, polarization vectors or Levi-Civita tensors. Scalar products
+with external momenta are left untouched. The goal is to rewrite
+everything in terms of scalar products involving only loop momenta and
+external momenta appearing in the given topology. These quantities can
+be then rewritten in terms of inverse propagators (\texttt{GLI}s with
+negative indices), so that the complete dependence on loop momenta will
+go into the \texttt{GLI}s.
+
 Unlike \texttt{FCMultiLoopTID}, this function does not perform any
 partial fractioning or shifts in the loop momenta.
+
+The default value for \texttt{fun} is FCGV{[}``GLIProduct''{]} set by
+the option \texttt{Head}
 
 \subsection{See also}
 
@@ -24,19 +36,91 @@ partial fractioning or shifts in the loop momenta.
 
 \subsection{Examples}
 
+1-loop tadpole topology
+
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{FCI}\OperatorTok{[}\NormalTok{FVD}\OperatorTok{[}\NormalTok{q1}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FVD}\OperatorTok{[}\NormalTok{q2}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ FAD}\OperatorTok{[}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1 }\SpecialCharTok{{-}}\NormalTok{ p1}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q2 }\SpecialCharTok{{-}}\NormalTok{ p1}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{q1 }\SpecialCharTok{{-}}\NormalTok{ q2}\OperatorTok{\}]]} 
- 
-\NormalTok{FCMultiLoopTID}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\}]}
+\NormalTok{topo1 }\ExtensionTok{=}\NormalTok{ FCTopology}\OperatorTok{[}\StringTok{"tad1l"}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-\frac{\text{q1}^{\mu } \;\text{q2}^{\nu }}{\text{q1}^2.\text{q2}^2.(\text{q1}-\text{p1})^2.(\text{q2}-\text{p1})^2.(\text{q1}-\text{q2})^2}
+\text{FCTopology}\left(\text{tad1l},\left\{\frac{1}{(q^2-m^2+i \eta )}\right\},\{q\},\{\},\{\},\{\}\right)
 \end{dmath*}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{amp1 }\ExtensionTok{=}\NormalTok{ FCGV}\OperatorTok{[}\StringTok{"GLIProduct"}\OperatorTok{][}\NormalTok{GSD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]}\NormalTok{ . GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . GSD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{],}\NormalTok{ GLI}\OperatorTok{[}\StringTok{"tad1l"}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{dmath*}\breakingcomma
-\frac{\text{p1}^{\mu } \;\text{p1}^{\nu }-\text{p1}^2 g^{\mu \nu }}{(1-D) \;\text{p1}^2 \;\text{q1}^2.\text{q2}^2.(\text{q1}-\text{p1})^2.(\text{q1}-\text{q2})^2}-\frac{\text{p1}^{\mu } \;\text{p1}^{\nu }-\text{p1}^2 g^{\mu \nu }}{2 (1-D) \;\text{p1}^2 \;\text{q1}^2.\text{q2}^2.(\text{q1}-\text{p1})^2.(\text{q2}-\text{p1})^2}-\frac{D \;\text{p1}^{\mu } \;\text{p1}^{\nu }-\text{p1}^2 g^{\mu \nu }}{4 (1-D) \;\text{q1}^2.\text{q2}^2.(\text{q1}-\text{p1})^2.(\text{q1}-\text{q2})^2.(\text{q2}-\text{p1})^2}+\frac{D \;\text{p1}^{\mu } \;\text{p1}^{\nu }-\text{p1}^2 g^{\mu \nu }}{2 (1-D) \;\text{p1}^4 \;\text{q1}^2.(\text{q1}-\text{q2})^2.(\text{q2}-\text{p1})^2}
+\text{FCGV}(\text{GLIProduct})\left((\gamma \cdot q).\gamma ^{\mu }.(\gamma \cdot q),G^{\text{tad1l}}(1)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{amp1Red }\ExtensionTok{=}\NormalTok{ FCLoopTensorReduce}\OperatorTok{[}\NormalTok{amp1}\OperatorTok{,} \OperatorTok{\{}\NormalTok{topo1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCGV}(\text{GLIProduct})\left(\frac{(2-D) q^2 \gamma ^{\mu }}{D},G^{\text{tad1l}}(1)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{topo2 }\ExtensionTok{=}\NormalTok{ FCTopology}\OperatorTok{[}\NormalTok{prop1l}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{p}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCTopology}\left(\text{prop1l},\left\{\frac{1}{(q^2-m^2+i \eta ).((q-p)^2-m^2+i \eta )}\right\},\{q\},\{p\},\{\},\{\}\right)
+\end{dmath*}
+
+1-loop self-energy topology
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{amp2 }\ExtensionTok{=}\NormalTok{ gliProduct}\OperatorTok{[}\NormalTok{GSD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]}\NormalTok{ . GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . GSD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{],}\NormalTok{ GLI}\OperatorTok{[}\NormalTok{prop1l}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{2}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{gliProduct}\left((\gamma \cdot q).\gamma ^{\mu }.(\gamma \cdot q),G^{\text{prop1l}}(1,2)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{amp2Red }\ExtensionTok{=}\NormalTok{ FCLoopTensorReduce}\OperatorTok{[}\NormalTok{amp2}\OperatorTok{,} \OperatorTok{\{}\NormalTok{topo2}\OperatorTok{\},} \FunctionTok{Head} \OtherTok{{-}\textgreater{}}\NormalTok{ gliProduct}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{gliProduct}\left(-\frac{2 D p^{\mu } \gamma \cdot p (p\cdot q)^2-2 p^2 \gamma ^{\mu } (p\cdot q)^2-D p^4 q^2 \gamma ^{\mu }+3 p^4 q^2 \gamma ^{\mu }-2 p^2 q^2 p^{\mu } \gamma \cdot p}{(1-D) p^4},G^{\text{prop1l}}(1,2)\right)
+\end{dmath*}
+
+If the loop momenta are contracted with some external momenta that do
+not appear in the given integral topologies, they should be listed via
+the option \texttt{Uncontract}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{amp3 }\ExtensionTok{=}\NormalTok{ gliProduct}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{x}\OperatorTok{],}\NormalTok{ GLI}\OperatorTok{[}\NormalTok{prop1l}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{2}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{gliProduct}\left(q\cdot x,G^{\text{prop1l}}(1,2)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopTensorReduce}\OperatorTok{[}\NormalTok{amp3}\OperatorTok{,} \OperatorTok{\{}\NormalTok{topo2}\OperatorTok{\},}\NormalTok{ Uncontract }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{x}\OperatorTok{\},} \FunctionTok{Head} \OtherTok{{-}\textgreater{}}\NormalTok{ gliProduct}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{gliProduct}\left(\frac{(p\cdot q) (p\cdot x)}{p^2},G^{\text{prop1l}}(1,2)\right)
 \end{dmath*}
 \end{document}
