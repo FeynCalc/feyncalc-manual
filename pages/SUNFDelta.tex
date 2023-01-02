@@ -84,12 +84,11 @@ C_A
 
 The arguments of \texttt{SUNFDelta} may also represent explicit integer
 indices via the head \texttt{ExplictiSUNFIndex}. The difference is that
-\texttt{SUNSimplify} and \texttt{SUNFSimplify} will only sum over
-symbolic indices.
+\texttt{SUNSimplify} will only sum over symbolic indices.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{ex }\ExtensionTok{=}\NormalTok{ SUNFDelta}\OperatorTok{[}\NormalTok{SUNFIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{],}\NormalTok{ ExplicitSUNFIndex}\OperatorTok{[}\DecValTok{2}\OperatorTok{]]}\NormalTok{ SUNFDelta}\OperatorTok{[}\NormalTok{SUNFIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{],}\NormalTok{ SUNFIndex}\OperatorTok{[}\FunctionTok{b}\OperatorTok{]]}\NormalTok{ SUNFDelta}\OperatorTok{[}\NormalTok{SUNFIndex}\OperatorTok{[}\FunctionTok{c}\OperatorTok{],}\NormalTok{ ExplicitSUNFIndex}\OperatorTok{[}\DecValTok{2}\OperatorTok{]]} \SpecialCharTok{//}\NormalTok{ SUNFSimplify}
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ SUNFDelta}\OperatorTok{[}\NormalTok{SUNFIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{],}\NormalTok{ ExplicitSUNFIndex}\OperatorTok{[}\DecValTok{2}\OperatorTok{]]}\NormalTok{ SUNFDelta}\OperatorTok{[}\NormalTok{SUNFIndex}\OperatorTok{[}\FunctionTok{a}\OperatorTok{],}\NormalTok{ SUNFIndex}\OperatorTok{[}\FunctionTok{b}\OperatorTok{]]}\NormalTok{ SUNFDelta}\OperatorTok{[}\NormalTok{SUNFIndex}\OperatorTok{[}\FunctionTok{c}\OperatorTok{],}\NormalTok{ ExplicitSUNFIndex}\OperatorTok{[}\DecValTok{2}\OperatorTok{]]} \SpecialCharTok{//}\NormalTok{ SUNSimplify}
 \end{Highlighting}
 \end{Shaded}
 

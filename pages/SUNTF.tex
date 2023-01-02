@@ -52,7 +52,7 @@ do not require a dot
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{SUNTF}\OperatorTok{[\{}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{\},} \FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}\NormalTok{ SUNTF}\OperatorTok{[\{}\FunctionTok{c}\OperatorTok{,} \FunctionTok{d}\OperatorTok{\},} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ SUNFSimplify}
+\NormalTok{SUNTF}\OperatorTok{[\{}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{\},} \FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}\NormalTok{ SUNTF}\OperatorTok{[\{}\FunctionTok{c}\OperatorTok{,} \FunctionTok{d}\OperatorTok{\},} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ SUNSimplify}
 \end{Highlighting}
 \end{Shaded}
 
@@ -64,17 +64,13 @@ A chain with closed indices is automatically converted into a trace
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{SUNTF}\OperatorTok{[\{}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{\},} \FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}\NormalTok{ SUNTF}\OperatorTok{[\{}\FunctionTok{c}\OperatorTok{,} \FunctionTok{d}\OperatorTok{\},} \FunctionTok{j}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ SUNFSimplify}
+\NormalTok{SUNTF}\OperatorTok{[\{}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{\},} \FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}\NormalTok{ SUNTF}\OperatorTok{[\{}\FunctionTok{c}\OperatorTok{,} \FunctionTok{d}\OperatorTok{\},} \FunctionTok{j}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ SUNSimplify}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-\text{tr}(T^a.T^b.T^c.T^d)
+\text{tr}\left(T^a.T^b.T^c.T^d\right)
 \end{dmath*}
-
-\texttt{SUNFSimplify} is a dedicated function to deal with
-\texttt{SUNTF}s. However, \texttt{SUNSimplify} will also call
-\texttt{SUNFSimplify} when it detects \texttt{SUNTF}objects in the input
 
 \begin{Shaded}
 \begin{Highlighting}[]

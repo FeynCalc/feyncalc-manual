@@ -14,10 +14,6 @@ To rewrite the \(SU(N)\) structure constants in terms of traces, please
 set the corresponding options \texttt{SUNF} or \texttt{SUND} to
 \texttt{True}.
 
-The color traces are left untouched unless the option \texttt{SUNTrace}
-is set to \texttt{True}. In this case they will be rewritten in terms of
-structure constants.
-
 \texttt{Explicit} is also an option for \texttt{FieldStrength},
 \texttt{GluonVertex}, \texttt{SUNF}, \texttt{Twist2GluonOperator} etc.
 If set to \texttt{True} the full form of the operator is inserted.
@@ -56,7 +52,7 @@ g_s f^{abc} \left(g^{\mu \nu } \left(p^{\rho }-q^{\rho }\right)+g^{\mu \rho } \l
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-2 i g_s \left(\text{tr}(T^a.T^c.T^b)-\text{tr}(T^a.T^b.T^c)\right) \left(g^{\mu \nu } \left(p^{\rho }-q^{\rho }\right)+g^{\mu \rho } \left(r^{\nu }-p^{\nu }\right)+g^{\nu \rho } \left(q^{\mu }-r^{\mu }\right)\right)
+2 i g_s \left(\text{tr}\left(T^a.T^c.T^b\right)-\text{tr}\left(T^a.T^b.T^c\right)\right) \left(g^{\mu \nu } \left(p^{\rho }-q^{\rho }\right)+g^{\mu \rho } \left(r^{\nu }-p^{\nu }\right)+g^{\nu \rho } \left(q^{\mu }-r^{\mu }\right)\right)
 \end{dmath*}
 
 \begin{Shaded}
@@ -108,7 +104,7 @@ f^{abc}
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-2 i \left(\text{tr}(T^a.T^c.T^b)-\text{tr}(T^a.T^b.T^c)\right)
+2 i \left(\text{tr}\left(T^a.T^c.T^b\right)-\text{tr}\left(T^a.T^b.T^c\right)\right)
 \end{dmath*}
 
 \begin{Shaded}
@@ -128,26 +124,6 @@ d^{abc}
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-2 \left(\text{tr}(T^a.T^b.T^c)\right)+2 \left(\text{tr}(T^b.T^a.T^c)\right)
-\end{dmath*}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{Explicit}\OperatorTok{[}\NormalTok{SUNTrace}\OperatorTok{[}\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]]]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{dmath*}\breakingcomma
-\text{tr}(T^a.T^b.T^c)
-\end{dmath*}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{Explicit}\OperatorTok{[}\NormalTok{SUNTrace}\OperatorTok{[}\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]],}\NormalTok{ SUNTrace }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{dmath*}\breakingcomma
-\frac{d^{abc}}{4}+\frac{1}{4} i f^{abc}
+2 \;\text{tr}\left(T^a.T^b.T^c\right)+2 \;\text{tr}\left(T^b.T^a.T^c\right)
 \end{dmath*}
 \end{document}
