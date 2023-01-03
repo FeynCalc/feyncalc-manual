@@ -6,14 +6,26 @@
 \hypertarget{sunsimplify}{
 \section{SUNSimplify}\label{sunsimplify}\index{SUNSimplify}}
 
-\texttt{SUNSimplify[\allowbreak{}exp]} simplifies products of
-\texttt{SUNT} and \texttt{SUNTF} matrices in the expression.
+\texttt{SUNSimplify[\allowbreak{}exp]} simplifies color algebraic
+expressions involving color matrices with implicit (\texttt{SUNT}) or
+explicit fundamental indices (\texttt{SUNTF}) as well as structure
+constants (\texttt{SUND}, \texttt{SUNF}) and Kronecker deltas
+(\texttt{SD}, \texttt{SDF}).
+
+If the option \texttt{Explicit} is set to \texttt{True} (default is
+\texttt{False}), the structure constants will be rewritten in terms of
+traces. However, since traces with 2 or 3 color matrices are by default
+converted back into structure constants, you must also set the option
+\texttt{SUNTraceEvaluate} to \texttt{False} (default is
+\texttt{Automatic}) in order to have unevaluated color traces in the
+output.
 
 \subsection{See also}
 
 \hyperlink{toc}{Overview}, \hyperlink{suntrace}{SUNTrace},
 \hyperlink{sunt}{SUNT}, \hyperlink{suntf}{SUNTF},
-\hyperlink{sunf}{SUNF}, \hyperlink{sund}{SUND}.
+\hyperlink{sunf}{SUNF}, \hyperlink{sund}{SUND},
+\hyperlink{suntraceevaluate}{SUNTraceEvaluate}.
 
 \subsection{Examples}
 
@@ -146,7 +158,7 @@ d^{bcd} f^{abc}
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-\frac{\left(N^2-4\right) \delta ^{ae}}{N}
+\frac{(N-2) (N+2) \delta ^{ae}}{N}
 \end{dmath*}
 
 \begin{Shaded}
@@ -156,7 +168,17 @@ d^{bcd} f^{abc}
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
--2 i \left(\text{tr}(T^a.T^b.T^c)-\text{tr}(T^b.T^a.T^c)\right)
+f^{abc}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNSimplify}\OperatorTok{[}\NormalTok{SUNF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{],}\NormalTok{ Explicit }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,}\NormalTok{ SUNTraceEvaluate }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+2 i \;\text{tr}\left(T^a.T^c.T^b\right)-2 i \;\text{tr}\left(T^a.T^b.T^c\right)
 \end{dmath*}
 
 \begin{Shaded}
@@ -166,7 +188,17 @@ d^{bcd} f^{abc}
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-2 \left(\text{tr}(T^a.T^b.T^c)+\text{tr}(T^b.T^a.T^c)\right)
+d^{abc}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNSimplify}\OperatorTok{[}\NormalTok{SUND}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{],}\NormalTok{ Explicit }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,}\NormalTok{ SUNTraceEvaluate }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+2 \;\text{tr}\left(T^a.T^b.T^c\right)+2 \;\text{tr}\left(T^a.T^c.T^b\right)
 \end{dmath*}
 
 \begin{Shaded}
@@ -189,9 +221,7 @@ f^{abc} T^c.T^b.T^a
 \begin{Highlighting}[]
 \NormalTok{SUNF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{e}\OperatorTok{]}\NormalTok{ SUNF}\OperatorTok{[}\FunctionTok{c}\OperatorTok{,} \FunctionTok{d}\OperatorTok{,} \FunctionTok{e}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ SUNF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]}\NormalTok{ SUNF}\OperatorTok{[}\FunctionTok{c}\OperatorTok{,} \FunctionTok{d}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]} 
  
-\NormalTok{SUNSimplify}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ Explicit }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]} 
- 
-\NormalTok{SUNSimplify}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ Explicit }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{,}\NormalTok{ SUNIndexRename }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\NormalTok{SUNSimplify}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ SUNIndexNames }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{j}\OperatorTok{\}]}
 \end{Highlighting}
 \end{Shaded}
 
@@ -200,11 +230,7 @@ f^{abe} f^{cde}+f^{abz} f^{cdz}
 \end{dmath*}
 
 \begin{dmath*}\breakingcomma
-2 f^{abe} f^{cde}
-\end{dmath*}
-
-\begin{dmath*}\breakingcomma
-2 f^{abe} f^{cde}
+2 f^{abj} f^{cdj}
 \end{dmath*}
 
 \begin{Shaded}
@@ -255,5 +281,15 @@ f^{abe} f^{cde}+f^{abz} f^{cdz}
 
 \begin{dmath*}\breakingcomma
 -\left(\left(4-C_A^2\right) \delta ^{ad} \left(C_A-2 C_F\right)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNSimplify}\OperatorTok{[}\NormalTok{SUNTrace}\OperatorTok{[}\NormalTok{SUNT}\OperatorTok{[}\NormalTok{i1}\OperatorTok{,}\NormalTok{ i2}\OperatorTok{,}\NormalTok{ i1}\OperatorTok{,}\NormalTok{ i2}\OperatorTok{]],}\NormalTok{ FCE }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{C_F}{2}
 \end{dmath*}
 \end{document}
