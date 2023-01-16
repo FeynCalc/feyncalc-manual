@@ -1,0 +1,98 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopFindSectors.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{fcloopfindsectors}{
+\section{FCLoopFindSectors}\label{fcloopfindsectors}\index{FCLoopFindSectors}}
+
+\texttt{FCLoopFindSectors[\allowbreak{}\{\allowbreak{}GLI[\allowbreak{}...],\ \allowbreak{}...\}]}
+analyzes the indices of the GLI integrals in the given list and
+identifies sectors to which they belong. Notice that only \texttt{GLI}s
+with integer indices are supported.
+
+If the option \texttt{GatherBy} is set to \texttt{True} (default), the
+output will be a list of two lists, where the former contains the
+original integrals sorted w.r.t the identified sectors, while the latter
+is a list of all available sectors.
+
+For \texttt{GatherBy->False}, the output is a list containing all
+identified sectors without the original integrals.
+
+Setting the option \texttt{Last} to \texttt{True}will return only the
+top sector.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ints }\ExtensionTok{=} \OperatorTok{\{}
+\NormalTok{    GLI}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{    GLI}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,} \OperatorTok{\{}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{    GLI}\OperatorTok{[}\NormalTok{topo2}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{    GLI}\OperatorTok{[}\NormalTok{topo3}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\}]} 
+   \OperatorTok{\}}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopFindSectors}\OperatorTok{[}\NormalTok{ints}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{ccc}
+ \left\{\{1,0,1,0\},\left\{G^{\text{topo3}}(1,0,1,-1)\right\}\right\} & \left\{\{1,0,1,1\},\left\{G^{\text{topo2}}(1,0,1,1)\right\}\right\} & \left\{\{1,1,1,1\},\left\{G^{\text{topo1}}(1,1,1,1),G^{\text{topo1}}(2,1,2,1)\right\}\right\} \\
+ \{1,0,1,0\} & \{1,0,1,1\} & \{1,1,1,1\} \\
+\end{array}
+\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopFindSectors}\OperatorTok{[}\NormalTok{ints}\OperatorTok{,} \FunctionTok{Last} \OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\{1,1,1,1\},\left\{G^{\text{topo1}}(1,1,1,1),G^{\text{topo1}}(2,1,2,1)\right\}\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopFindSectors}\OperatorTok{[}\NormalTok{ints}\OperatorTok{,} \FunctionTok{GatherBy} \OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{cccc}
+ 1 & 0 & 1 & 0 \\
+ 1 & 0 & 1 & 1 \\
+ 1 & 1 & 1 & 1 \\
+\end{array}
+\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopFindSectors}\OperatorTok{[}\NormalTok{ints}\OperatorTok{,} \FunctionTok{GatherBy} \OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{,} \FunctionTok{Last} \OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{1,1,1,1\}
+\end{dmath*}
+\end{document}
