@@ -3,6 +3,12 @@
 
 \documentclass[../FeynCalcManual.tex]{subfiles}
 \begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{fctopology}{
 \section{FCTopology}\label{fctopology}\index{FCTopology}}
 
@@ -22,7 +28,7 @@ The last argument (an empty list) is reserved for future improvements.
 
 \subsection{See also}
 
-\hyperlink{toc}{Overview},
+\hyperlink{toc}{Overview}, \hyperlink{fcloopfromgli}{FCLoopFromGLI},
 \hyperlink{fcloopvalidtopologyq}{FCLoopValidTopologyQ},
 \hyperlink{gli}{GLI}.
 
@@ -32,12 +38,13 @@ A 2-loop topology with one external momentum \texttt{Q}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{FCTopology}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\FunctionTok{Q} \SpecialCharTok{{-}}\NormalTok{ p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\FunctionTok{Q} \SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\FunctionTok{Q} \SpecialCharTok{{-}}\NormalTok{ p1}\OperatorTok{]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{Q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]}
+\NormalTok{FCTopology}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\FunctionTok{Q} \SpecialCharTok{{-}}\NormalTok{ p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\FunctionTok{Q} \SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\FunctionTok{Q} \SpecialCharTok{{-}}\NormalTok{ p1}\OperatorTok{]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{Q}\OperatorTok{\},} \OperatorTok{\{}
+   \FunctionTok{Hold}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{Q}\OperatorTok{]]} \OtherTok{{-}\textgreater{}}\NormalTok{ qq}\OperatorTok{\},} \OperatorTok{\{\}]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-\text{FCTopology}\left(\text{topo1},\left\{\frac{1}{(\text{p1}^2+i \eta )},\frac{1}{(\text{p2}^2+i \eta )},\frac{1}{((-\text{p1}-\text{p2}+Q)^2+i \eta )},\frac{1}{((Q-\text{p2})^2+i \eta )},\frac{1}{((Q-\text{p1})^2+i \eta )}\right\},\{\text{p1},\text{p2}\},\{Q\},\{\},\{\}\right)
+\text{FCTopology}\left(\text{topo1},\left\{\frac{1}{(\text{p1}^2+i \eta )},\frac{1}{(\text{p2}^2+i \eta )},\frac{1}{((-\text{p1}-\text{p2}+Q)^2+i \eta )},\frac{1}{((Q-\text{p2})^2+i \eta )},\frac{1}{((Q-\text{p1})^2+i \eta )}\right\},\{\text{p1},\text{p2}\},\{Q\},\{\text{Hold}[\text{SPD}(Q)]\to \;\text{qq}\},\{\}\right)
 \end{dmath*}
 
 A 3-loop topology with one external momentum \texttt{Q}
@@ -64,5 +71,31 @@ topology is correct.
 
 \begin{dmath*}\breakingcomma
 \text{True}
+\end{dmath*}
+
+The list of propagators in the topology essentially defines the
+propagator representation of a \texttt{GLI}. Notice that propagators are
+allowed to have symbolical or numerical prefactors, as long as those do
+not depend on loop or external momenta
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{topo2 }\ExtensionTok{=}\NormalTok{ FCTopology}\OperatorTok{[}\NormalTok{topoTest}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{a}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],} \FunctionTok{b}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],} \FunctionTok{c}\NormalTok{ SFAD}\OperatorTok{[}\FunctionTok{Q} \SpecialCharTok{{-}}\NormalTok{ p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{],} \FunctionTok{d}\NormalTok{ SFAD}\OperatorTok{[}\FunctionTok{Q} \SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{],} 
+    \FunctionTok{e}\NormalTok{ SFAD}\OperatorTok{[}\FunctionTok{Q} \SpecialCharTok{{-}}\NormalTok{ p1}\OperatorTok{]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{Q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCTopology}\left(\text{topoTest},\left\{\frac{a}{(\text{p1}^2+i \eta )},\frac{b}{(\text{p2}^2+i \eta )},\frac{c}{((-\text{p1}-\text{p2}+Q)^2+i \eta )},\frac{d}{((Q-\text{p2})^2+i \eta )},\frac{e}{((Q-\text{p1})^2+i \eta )}\right\},\{\text{p1},\text{p2}\},\{Q\},\{\},\{\}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopFromGLI}\OperatorTok{[}\NormalTok{GLI}\OperatorTok{[}\NormalTok{topoTest}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ topo2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{a b c d e}{(\text{p1}^2+i \eta ) (\text{p2}^2+i \eta ) ((Q-\text{p1})^2+i \eta ) ((Q-\text{p2})^2+i \eta ) ((-\text{p1}-\text{p2}+Q)^2+i \eta )}
 \end{dmath*}
 \end{document}

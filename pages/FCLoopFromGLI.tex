@@ -3,6 +3,9 @@
 
 \documentclass[../FeynCalcManual.tex]{subfiles}
 \begin{document}
+\hypertarget{fcloopfromgli}{
+\section{FCLoopFromGLI}\label{fcloopfromgli}\index{FCLoopFromGLI}}
+
 \texttt{FCLoopFromGLI[\allowbreak{}exp,\ \allowbreak{}topologies]}
 replaces \texttt{GLI}s in \texttt{exp} with the corresponding loop
 integrals in the \texttt{FeynAmpDenominator} notation according to the
@@ -62,7 +65,7 @@ unknown topologies
 \FloatBarrier
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=0.6\linewidth]{img/00f6ck72ejb3p.pdf}
+\includegraphics[width=0.6\linewidth]{img/047duy8jklfe9.pdf}
 \end{figure}
 \FloatBarrier
 
@@ -109,5 +112,22 @@ momentum this integral depends on.
 
 \begin{dmath*}\breakingcomma
 \frac{1}{\left(\text{p22}^2-\text{m0}^2\right) \left((\text{p11}+\text{p1})^2-\text{m1}^2\right) \left((\text{p22}+\text{p2})^2-\text{m2}^2\right) \left((\text{p11}+\text{p2})^2-\text{m3}^2\right)}
+\end{dmath*}
+
+In general, \texttt{FCLoopFromGLI} can change the ordering of
+propagators inside \texttt{FeynAmpDenominator}, as compared to the their
+ordering inside \texttt{FCTopology}. This is because by default it calls
+\texttt{FeynAmpDenominatorCombine}. Ordering may also change when
+applying \texttt{FeynAmpDenominatorSimplify}. You want the ordering to
+remain unchanged, the following should help
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopFromGLI}\OperatorTok{[}\FunctionTok{exp}\OperatorTok{,}\NormalTok{ topos}\OperatorTok{,}\NormalTok{ FeynAmpDenominatorCombine }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{,} \FunctionTok{List} \OtherTok{{-}\textgreater{}}\NormalTok{ FeynAmpDenominator}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\text{a1}}{\left(q^2-\text{m0}^2\right).\left((\text{p1}+q)^2-\text{m1}^2\right).\left((\text{p2}+q)^2-\text{m2}^2\right).\left((\text{p2}+q)^2-\text{m3}^2\right)}+\frac{\text{a2}}{\left(\text{q1}^2-\text{m1}^2\right).\left(\text{q2}^2-\text{m2}^2\right)^2.(\text{q1}-\text{q2})^4}
 \end{dmath*}
 \end{document}
