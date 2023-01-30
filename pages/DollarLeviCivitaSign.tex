@@ -3,6 +3,12 @@
 
 \documentclass[../FeynCalcManual.tex]{subfiles}
 \begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{dollarlevicivitasign}{
 \section{\$LeviCivitaSign}\label{dollarlevicivitasign}\index{\$LeviCivitaSign}}
 
@@ -10,7 +16,7 @@
 in the result of a Dirac trace of four gamma matrices and \(\gamma^5\).
 \texttt{\$LeviCivitaSign} is by default set to \texttt{-1} which
 corresponds to the convention
-\texttt{Tr[\allowbreak{}LC[\allowbreak{}a,\ \allowbreak{}b,\ \allowbreak{}c,\ \allowbreak{}d,\ \allowbreak{}5]] = -4*I*Eps[\allowbreak{}a,\ \allowbreak{}b,\ \allowbreak{}c,\ \allowbreak{}d]}.
+\texttt{TR[\allowbreak{}LC[\allowbreak{}a,\ \allowbreak{}b,\ \allowbreak{}c,\ \allowbreak{}d,\ \allowbreak{}5]] = -4*I*Eps[\allowbreak{}a,\ \allowbreak{}b,\ \allowbreak{}c,\ \allowbreak{}d]}.
 Setting \texttt{\$LeviCivitaSign=-I} will switch to the FORM-convention.
 
 \subsection{See also}
@@ -24,7 +30,7 @@ Setting \texttt{\$LeviCivitaSign=-I} will switch to the FORM-convention.
 \begin{Highlighting}[]
 \NormalTok{$LeviCivitaSign }
  
-\FunctionTok{Tr}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{],} \DecValTok{5}\OperatorTok{]]}
+\NormalTok{DiracTrace}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{],} \DecValTok{5}\OperatorTok{]]} \SpecialCharTok{//}\NormalTok{ DiracSimplify}
 \end{Highlighting}
 \end{Shaded}
 
@@ -42,7 +48,7 @@ This sets the same convention as in FORM
 \begin{Highlighting}[]
 \NormalTok{$LeviCivitaSign }\ExtensionTok{=} \SpecialCharTok{{-}}\FunctionTok{I}\NormalTok{; }
  
-\FunctionTok{Tr}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{],} \DecValTok{5}\OperatorTok{]]}
+\NormalTok{DiracTrace}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{],} \DecValTok{5}\OperatorTok{]]} \SpecialCharTok{//}\NormalTok{ DiracSimplify}
 \end{Highlighting}
 \end{Shaded}
 

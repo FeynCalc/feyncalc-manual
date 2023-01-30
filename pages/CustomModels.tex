@@ -19,6 +19,7 @@ The patching is done by using the function \texttt{FAPatch} with the
 option \texttt{PatchModelsOnly} set to \texttt{True}
 
 \begin{itemize}
+\tightlist
 \item
   If the model is located inside the \texttt{Models} directory of
   \texttt{\$FeynArtsDirectory}, it is sufficient to evaluate
@@ -26,7 +27,7 @@ option \texttt{PatchModelsOnly} set to \texttt{True}
   FeynCalc and FeynArts in the usual way.
 \item
   If the model has been placed into a separate directory, use
-  \texttt{FAPatch[\allowbreak{}PatchModelsOnly -> True,\ \allowbreak{}FAModelsDirectory ->    "fullPathToMyModelDir"]}
+  \texttt{FAPatch[\allowbreak{}PatchModelsOnly -> True,\ \allowbreak{}FAModelsDirectory -> "fullPathToMyModelDir"]}
 \end{itemize}
 
 The patching has to be done only once for each new model. However,
