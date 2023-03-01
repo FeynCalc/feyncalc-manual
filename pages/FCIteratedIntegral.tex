@@ -1,0 +1,67 @@
+% !TeX program = pdflatex
+% !TeX root = FCIteratedIntegral.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{fciteratedintegral}{
+\section{FCIteratedIntegral}\label{fciteratedintegral}\index{FCIteratedIntegral}}
+
+\texttt{FCIteratedIntegral[\allowbreak{}f,\ \allowbreak{}x,\ \allowbreak{}a,\ \allowbreak{}b]}
+is a special head indicating that the function \(f\) represents an
+iterated integral or a linear combination thereof and that it should be
+integrated in \(x\) from \(a\) to \(b\). This notation is understood by
+the function \texttt{FCIteratedIntegralEvaluate} that does the actual
+integration.
+
+Notice that before applying \texttt{FCIteratedIntegralEvaluate} all
+rational functions of \(x\) in \(f\) should be converted to the
+\texttt{FCPartialFractionForm}representation.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fciteratedintegralevaluate}{FCIteratedIntegralEvaluate},
+\hyperlink{tofcpartialfractionform}{ToFCPartialFractionForm}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fun }\ExtensionTok{=} \DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{x}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{x+1}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{int }\ExtensionTok{=}\NormalTok{ FCIteratedIntegral}\OperatorTok{[}\NormalTok{ToFCPartialFractionForm}\OperatorTok{[}\NormalTok{fun}\OperatorTok{,} \FunctionTok{x}\OperatorTok{],} \FunctionTok{x}\OperatorTok{,} \FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCIteratedIntegral}\left(\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \{x+1,-1\} & 1 \\
+\end{array}
+\right),x\right),x,a,b\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCIteratedIntegralEvaluate}\OperatorTok{[}\NormalTok{int}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+G(-1; b)-G(-1; a)
+\end{dmath*}
+\end{document}

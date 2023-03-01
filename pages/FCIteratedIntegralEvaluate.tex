@@ -1,0 +1,83 @@
+% !TeX program = pdflatex
+% !TeX root = FCIteratedIntegralEvaluate.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{fciteratedintegralevaluate}{
+\section{FCIteratedIntegralEvaluate}\label{fciteratedintegralevaluate}\index{FCIteratedIntegralEvaluate}}
+
+\texttt{FCIteratedIntegralEvaluate[\allowbreak{}ex]} evaluates iterated
+integrals in ex in terms of multiple polylogarithms.
+
+To that aim the \texttt{ex} must contain ration functions (in the
+\texttt{FCPartialFractionForm} notation) and possibly \texttt{FCGPL}s
+wrapped with \texttt{FCIteratedIntegral} heads
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fciteratedintegral}{FCIteratedIntegral},
+\hyperlink{fciteratedintegralsimplify}{FCIteratedIntegralSimplify},
+\hyperlink{fcgpl}{FCGPL}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{int }\ExtensionTok{=}\NormalTok{ FCPartialFractionForm}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \OperatorTok{\{\{\{}\SpecialCharTok{{-}}\FunctionTok{a} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{],} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\},}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{a} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{)}\OperatorTok{\},} 
+    \OperatorTok{\{\{}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{],} \SpecialCharTok{{-}}\DecValTok{2}\OperatorTok{\},} \SpecialCharTok{{-}}\NormalTok{(}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{a} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\OperatorTok{\},} \OperatorTok{\{\{}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{],} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\},} \SpecialCharTok{{-}}\NormalTok{(}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{a} \SpecialCharTok{+} \FunctionTok{x}\OperatorTok{[}\DecValTok{3}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{)}\OperatorTok{\}\},} \FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \{x(2)-a,-1\} & \frac{1}{(a+x(3)+1)^2} \\
+ \{x(2)+x(3)+1,-2\} & -\frac{1}{a+x(3)+1} \\
+ \{x(2)+x(3)+1,-1\} & -\frac{1}{(a+x(3)+1)^2} \\
+\end{array}
+\right),x(2)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCIteratedIntegralEvaluate}\OperatorTok{[}\NormalTok{FCIteratedIntegral}\OperatorTok{[}\NormalTok{int}\OperatorTok{,} \FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{],} \DecValTok{0}\OperatorTok{,} \FunctionTok{Infinity}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \{\infty ,-1\} & -\frac{1}{a+x(3)+1} \\
+\end{array}
+\right),\infty \right)+\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \{x(3)+1,-1\} & -\frac{1}{a+x(3)+1} \\
+\end{array}
+\right),0\right)-\frac{G(-x[3]-1; \infty )}{(a+x(3)+1)^2}+\frac{G(a; \infty )}{(a+x(3)+1)^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCIteratedIntegralEvaluate}\OperatorTok{[}\NormalTok{FCIteratedIntegral}\OperatorTok{[}\NormalTok{int}\OperatorTok{,} \FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{],} \DecValTok{0}\OperatorTok{,} \FunctionTok{x}\OperatorTok{[}\DecValTok{2}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \{x(3)+1,-1\} & -\frac{1}{a+x(3)+1} \\
+\end{array}
+\right),0\right)-\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \{x(2)+x(3)+1,-1\} & -\frac{1}{a+x(3)+1} \\
+\end{array}
+\right),x(2)\right)+\frac{G(a; x[2])}{(a+x(3)+1)^2}-\frac{G(-x[3]-1; x[2])}{(a+x(3)+1)^2}
+\end{dmath*}
+\end{document}

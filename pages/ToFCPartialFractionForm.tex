@@ -1,0 +1,93 @@
+% !TeX program = pdflatex
+% !TeX root = ToFCPartialFractionForm.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{tofcpartialfractionform}{
+\section{ToFCPartialFractionForm}\label{tofcpartialfractionform}\index{ToFCPartialFractionForm}}
+
+\texttt{ToFCPartialFractionForm[\allowbreak{}exp,\ \allowbreak{}x]}
+converts sums of rational functions of the form
+\(n + \frac{f_1}{[x-r_1]^p_1} + \frac{f_2}{[x-r_2]^p_2} + \ldots\) to
+\texttt{FCPartialFractionForm[\allowbreak{}n,\ \allowbreak{}\{\allowbreak{}\{\allowbreak{}f1,\ \allowbreak{}x-r1,\ \allowbreak{}p1\},\ \allowbreak{}\{\allowbreak{}f2,\ \allowbreak{}x-r2,\ \allowbreak{}p2\},\ \allowbreak{}...\},\ \allowbreak{}x]}.
+
+This facilitates the handling of iterated integrals.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcpartialfractionform}{FCPartialFractionForm},
+\hyperlink{fromfcpartialfractionform}{FromFCPartialFractionForm}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{x}\SpecialCharTok{/}\NormalTok{(}\FunctionTok{x} \SpecialCharTok{+} \DecValTok{1}\NormalTok{) }
+ 
+\NormalTok{ToFCPartialFractionForm}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{x}{x+1}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCPartialFractionForm}\left(1,\left(
+\begin{array}{cc}
+ \{x+1,-1\} & -1 \\
+\end{array}
+\right),x\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\FunctionTok{x}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+} \DecValTok{3}\NormalTok{) }
+ 
+\NormalTok{ToFCPartialFractionForm}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{x^2+3}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \left\{x-i \sqrt{3},-1\right\} & -\frac{i}{2 \sqrt{3}} \\
+ \left\{x+i \sqrt{3},-1\right\} & \frac{i}{2 \sqrt{3}} \\
+\end{array}
+\right),x\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{64}\SpecialCharTok{*}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{z}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}\SpecialCharTok{/}\NormalTok{(}\DecValTok{15}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{z}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+} \FunctionTok{z}\SpecialCharTok{\^{}}\DecValTok{4}\NormalTok{)) }
+ 
+\NormalTok{ToFCPartialFractionForm}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{64 \left(z^2-1\right)}{15 \left(z^4+z^2+1\right)}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \left\{z-\sqrt[3]{-1},-1\right\} & -\frac{32}{15} \\
+ \left\{z+\sqrt[3]{-1},-1\right\} & \frac{32}{15} \\
+ \left\{z-(-1)^{2/3},-1\right\} & \frac{32}{15} \\
+ \left\{z+(-1)^{2/3},-1\right\} & -\frac{32}{15} \\
+\end{array}
+\right),z\right)
+\end{dmath*}
+\end{document}

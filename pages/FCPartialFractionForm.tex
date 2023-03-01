@@ -1,0 +1,105 @@
+% !TeX program = pdflatex
+% !TeX root = FCPartialFractionForm.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{fcpartialfractionform}{
+\section{FCPartialFractionForm}\label{fcpartialfractionform}\index{FCPartialFractionForm}}
+
+\texttt{FCPartialFractionForm[\allowbreak{}n,\ \allowbreak{}\{\allowbreak{}\{\allowbreak{}f1,\ \allowbreak{}x-r1,\ \allowbreak{}p1\},\ \allowbreak{}\{\allowbreak{}f2,\ \allowbreak{}x-r2,\ \allowbreak{}p2\},\ \allowbreak{}...\},\ \allowbreak{}x]}
+is a special way of representing sums of rational functions of
+\texttt{x} given by
+\(n + \frac{f_1}{[x-r_1]^p_1} + \frac{f_2}{[x-r_2]^p_2} + \ldots\)
+
+It is inspired by the \texttt{parfrac}form from Maple and its usage in
+E. Panzer's HyperInt for the integration of multiple polylogarithms.
+
+Use \texttt{ToFCPartialFractionForm} to convert the given expression to
+this notation and \texttt{FromFCPartialFractionForm} to return back to
+the usual representation.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{tofcpartialfractionform}{ToFCPartialFractionForm},
+\hyperlink{fromfcpartialfractionform}{FromFCPartialFractionForm}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Apart}\OperatorTok{[}\FunctionTok{c} \SpecialCharTok{+} \FunctionTok{x}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}\NormalTok{(}\FunctionTok{x} \SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+c+x+\frac{1}{x-1}+1
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex1 }\ExtensionTok{=}\NormalTok{ ToFCPartialFractionForm}\OperatorTok{[}\FunctionTok{c} \SpecialCharTok{+} \FunctionTok{x}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}\NormalTok{(}\FunctionTok{x} \SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}\OperatorTok{,} \FunctionTok{x}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCPartialFractionForm}\left(c+x+1,\left(
+\begin{array}{cc}
+ \{x-1,-1\} & 1 \\
+\end{array}
+\right),x\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FromFCPartialFractionForm}\OperatorTok{[}\NormalTok{ex1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+c+x+\frac{1}{x-1}+1
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex2 }\ExtensionTok{=}\NormalTok{ ToFCPartialFractionForm}\OperatorTok{[}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{64}\SpecialCharTok{*}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{z}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}\SpecialCharTok{/}\NormalTok{(}\DecValTok{15}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{z}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+} \FunctionTok{z}\SpecialCharTok{\^{}}\DecValTok{4}\NormalTok{))}\OperatorTok{,} \FunctionTok{z}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \left\{z-\sqrt[3]{-1},-1\right\} & -\frac{32}{15} \\
+ \left\{z+\sqrt[3]{-1},-1\right\} & \frac{32}{15} \\
+ \left\{z-(-1)^{2/3},-1\right\} & \frac{32}{15} \\
+ \left\{z+(-1)^{2/3},-1\right\} & -\frac{32}{15} \\
+\end{array}
+\right),z\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FromFCPartialFractionForm}\OperatorTok{[}\NormalTok{ex2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{32}{15 \left(z+\sqrt[3]{-1}\right)}+\frac{32}{15 \left(z-(-1)^{2/3}\right)}-\frac{32}{15 \left(z+(-1)^{2/3}\right)}-\frac{32}{15 \left(z-\sqrt[3]{-1}\right)}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FromFCPartialFractionForm}\OperatorTok{[}\NormalTok{ex2}\OperatorTok{,}\NormalTok{ Factoring }\OtherTok{{-}\textgreater{}} \FunctionTok{Simplify}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{64 \left(z^2-1\right)}{15 \left(z^4+z^2+1\right)}
+\end{dmath*}
+\end{document}

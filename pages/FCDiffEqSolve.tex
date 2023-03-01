@@ -1,0 +1,73 @@
+% !TeX program = pdflatex
+% !TeX root = FCDiffEqSolve.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{fcdiffeqsolve}{
+\section{FCDiffEqSolve}\label{fcdiffeqsolve}\index{FCDiffEqSolve}}
+
+\texttt{FCDiffEqSolve[\allowbreak{}mat,\ \allowbreak{}var,\ \allowbreak{}eps,\ \allowbreak{}n]}
+constructs a solution for a single-variable differential equation
+\(G' = \varepsilon \mathcal{B} G\) in the canonical form, where
+\texttt{mat} is \(B\), \texttt{var} is the variable w.r.t. which \(G\)
+was differentiated and \texttt{n} is the required order in \texttt{eps}.
+
+The output consists of iterated integrals written in terms of
+\texttt{FCIteratedIntegral} objects.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fciteratedintegral}{FCIteratedIntegral},
+\hyperlink{fcdiffeqchangevariables}{FCDiffEqChangeVariables}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mat }\ExtensionTok{=} \OperatorTok{\{\{}\SpecialCharTok{{-}}\DecValTok{2}\SpecialCharTok{/}\FunctionTok{x}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{{-}}\FunctionTok{x}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\OperatorTok{,} \DecValTok{3}\SpecialCharTok{/}\FunctionTok{x}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{2}\SpecialCharTok{/}\FunctionTok{x}\OperatorTok{\}\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{ccc}
+ -\frac{2}{x} & 0 & 0 \\
+ 0 & 0 & 0 \\
+ -\frac{1}{x} & \frac{3}{x} & -\frac{2}{x} \\
+\end{array}
+\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCDiffEqSolve}\OperatorTok{[}\NormalTok{mat}\OperatorTok{,} \FunctionTok{x}\OperatorTok{,}\NormalTok{ ep}\OperatorTok{,} \DecValTok{1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{ep} \left(C[1,0] \;\text{FCIteratedIntegral}\left(\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \{x,-1\} & -2 \\
+\end{array}
+\right),x\right),x,0,x\right)+C[1,1]\right)+C[1,0],\text{ep} C[2,1]+C[2,0],\text{ep} \left(C[3,0] \;\text{FCIteratedIntegral}\left(\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \{x,-1\} & -2 \\
+\end{array}
+\right),x\right),x,0,x\right)+C[1,0] \;\text{FCIteratedIntegral}\left(\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \{x,-1\} & -1 \\
+\end{array}
+\right),x\right),x,0,x\right)+C[2,0] \;\text{FCIteratedIntegral}\left(\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \{x,-1\} & 3 \\
+\end{array}
+\right),x\right),x,0,x\right)+C[3,1]\right)+C[3,0]\right\}
+\end{dmath*}
+\end{document}

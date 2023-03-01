@@ -1,0 +1,116 @@
+% !TeX program = pdflatex
+% !TeX root = FCIteratedIntegralSimplify.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{fciteratedintegralsimplify}{
+\section{FCIteratedIntegralSimplify}\label{fciteratedintegralsimplify}\index{FCIteratedIntegralSimplify}}
+
+\texttt{FCIteratedIntegralSimplify[\allowbreak{}ex]} uses linearity to
+simplify nested products and linear combinations of
+\texttt{FCIteratedIntegral}s.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fciteratedintegral}{FCIteratedIntegral},
+\hyperlink{fciteratedintegral}{FCIteratedIntegral},
+\hyperlink{fcgpl}{FCGPL}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{int }\ExtensionTok{=} \FunctionTok{C}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ Epsilon}\SpecialCharTok{*}\NormalTok{(}\FunctionTok{C}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ FCIteratedIntegral}\OperatorTok{[}\FunctionTok{C}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{]}\SpecialCharTok{*}\NormalTok{FCPartialFractionForm}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \OperatorTok{\{\{\{}\FunctionTok{x}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\},} \SpecialCharTok{{-}}\DecValTok{2}\OperatorTok{\}\},} \FunctionTok{x}\OperatorTok{],} \FunctionTok{x}\OperatorTok{]}\NormalTok{) }\SpecialCharTok{+} 
+\NormalTok{   Epsilon}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{(}\FunctionTok{C}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{2}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ FCIteratedIntegral}\OperatorTok{[}\NormalTok{(}\FunctionTok{C}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ FCIteratedIntegral}\OperatorTok{[}\FunctionTok{C}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{]}\SpecialCharTok{*}\NormalTok{FCPartialFractionForm}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} 
+             \OperatorTok{\{\{\{}\FunctionTok{x}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\},} \SpecialCharTok{{-}}\DecValTok{2}\OperatorTok{\}\},} \FunctionTok{x}\OperatorTok{],} \FunctionTok{x}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{*}\NormalTok{FCPartialFractionForm}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \OperatorTok{\{\{\{}\FunctionTok{x}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\},} \SpecialCharTok{{-}}\DecValTok{2}\OperatorTok{\}\},} \FunctionTok{x}\OperatorTok{],} \FunctionTok{x}\OperatorTok{]}\NormalTok{) }\SpecialCharTok{+} 
+\NormalTok{   Epsilon}\SpecialCharTok{\^{}}\DecValTok{3}\SpecialCharTok{*}\NormalTok{(}\FunctionTok{C}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{3}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ FCIteratedIntegral}\OperatorTok{[}\NormalTok{(}\FunctionTok{C}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{2}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ FCIteratedIntegral}\OperatorTok{[}\NormalTok{(}\FunctionTok{C}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{]} \SpecialCharTok{+} 
+\NormalTok{              FCIteratedIntegral}\OperatorTok{[}\FunctionTok{C}\OperatorTok{[}\DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{]}\SpecialCharTok{*}\NormalTok{FCPartialFractionForm}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \OperatorTok{\{\{\{}\FunctionTok{x}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\},} \SpecialCharTok{{-}}\DecValTok{2}\OperatorTok{\}\},} \FunctionTok{x}\OperatorTok{],} \FunctionTok{x}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{*}\NormalTok{FCPartialFractionForm}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} 
+             \OperatorTok{\{\{\{}\FunctionTok{x}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\},} \SpecialCharTok{{-}}\DecValTok{2}\OperatorTok{\}\},} \FunctionTok{x}\OperatorTok{],} \FunctionTok{x}\OperatorTok{]}\NormalTok{)}\SpecialCharTok{*}\NormalTok{FCPartialFractionForm}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \OperatorTok{\{\{\{}\FunctionTok{x}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\},} \SpecialCharTok{{-}}\DecValTok{2}\OperatorTok{\}\},} \FunctionTok{x}\OperatorTok{],} \FunctionTok{x}\OperatorTok{]}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\varepsilon ^3 \left(\text{FCIteratedIntegral}\left(\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \{x,-1\} & -2 \\
+\end{array}
+\right),x\right) \left(\text{FCIteratedIntegral}\left(\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \{x,-1\} & -2 \\
+\end{array}
+\right),x\right) \left(\text{FCIteratedIntegral}\left(C[1,0] \;\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \{x,-1\} & -2 \\
+\end{array}
+\right),x\right),x\right)+C[1,1]\right),x\right)+C[1,2]\right),x\right)+C[1,3]\right)+\varepsilon ^2 \left(\text{FCIteratedIntegral}\left(\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \{x,-1\} & -2 \\
+\end{array}
+\right),x\right) \left(\text{FCIteratedIntegral}\left(C[1,0] \;\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \{x,-1\} & -2 \\
+\end{array}
+\right),x\right),x\right)+C[1,1]\right),x\right)+C[1,2]\right)+\varepsilon  \left(\text{FCIteratedIntegral}\left(C[1,0] \;\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \{x,-1\} & -2 \\
+\end{array}
+\right),x\right),x\right)+C[1,1]\right)+C[1,0]
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCIteratedIntegralSimplify}\OperatorTok{[}\NormalTok{int}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\varepsilon ^3 \left(C[1,2] \;\text{FCIteratedIntegral}\left(\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \{x,-1\} & -2 \\
+\end{array}
+\right),x\right),x\right)+C[1,1] \;\text{FCIteratedIntegral}\left(\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \{x,-1\} & -2 \\
+\end{array}
+\right),x\right) \;\text{FCIteratedIntegral}\left(\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \{x,-1\} & -2 \\
+\end{array}
+\right),x\right),x\right),x\right)+C[1,0] \;\text{FCIteratedIntegral}\left(\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \{x,-1\} & -2 \\
+\end{array}
+\right),x\right) \;\text{FCIteratedIntegral}\left(\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \{x,-1\} & -2 \\
+\end{array}
+\right),x\right) \;\text{FCIteratedIntegral}\left(\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \{x,-1\} & -2 \\
+\end{array}
+\right),x\right),x\right),x\right),x\right)+C[1,3]\right)+\varepsilon ^2 \left(C[1,1] \;\text{FCIteratedIntegral}\left(\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \{x,-1\} & -2 \\
+\end{array}
+\right),x\right),x\right)+C[1,0] \;\text{FCIteratedIntegral}\left(\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \{x,-1\} & -2 \\
+\end{array}
+\right),x\right) \;\text{FCIteratedIntegral}\left(\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \{x,-1\} & -2 \\
+\end{array}
+\right),x\right),x\right),x\right)+C[1,2]\right)+\varepsilon  \left(C[1,0] \;\text{FCIteratedIntegral}\left(\text{FCPartialFractionForm}\left(0,\left(
+\begin{array}{cc}
+ \{x,-1\} & -2 \\
+\end{array}
+\right),x\right),x\right)+C[1,1]\right)+C[1,0]
+\end{dmath*}
+\end{document}

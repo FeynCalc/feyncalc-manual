@@ -1,0 +1,48 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopGetKinematicInvariants.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{fcloopgetkinematicinvariants}{
+\section{FCLoopGetKinematicInvariants}\label{fcloopgetkinematicinvariants}\index{FCLoopGetKinematicInvariants}}
+
+\texttt{FCLoopGetKinematicInvariants[\allowbreak{}topo]} returns the
+list of kinematic invariants (masses and scalar products) present in the
+given topology \texttt{topo}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fctopology}{FCTopology}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{topo1 }\ExtensionTok{=}\NormalTok{ FCTopology}\OperatorTok{[}\NormalTok{topo2}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{\{}\FunctionTok{l} \SpecialCharTok{+} \FunctionTok{P}\SpecialCharTok{/}\DecValTok{2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{mq}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\FunctionTok{l} \SpecialCharTok{{-}} \FunctionTok{P}\SpecialCharTok{/}\DecValTok{2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{mq}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{k1 }\SpecialCharTok{+} \FunctionTok{l} \SpecialCharTok{{-}} \FunctionTok{P}\SpecialCharTok{/}\DecValTok{2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{mq}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} 
+      \DecValTok{1}\OperatorTok{\}]\},} \OperatorTok{\{}\FunctionTok{l}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{k1}\OperatorTok{,} \FunctionTok{P}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{Hold}\OperatorTok{[}\NormalTok{Pair}\OperatorTok{][}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,} \FunctionTok{D}\OperatorTok{]]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,} \FunctionTok{Hold}\OperatorTok{[}
+\NormalTok{       Pair}\OperatorTok{][}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{P}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{D}\OperatorTok{]]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,} \FunctionTok{Hold}\OperatorTok{[}\NormalTok{Pair}\OperatorTok{][}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{P}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],} 
+\NormalTok{      Momentum}\OperatorTok{[}\FunctionTok{P}\OperatorTok{,} \FunctionTok{D}\OperatorTok{]]} \OtherTok{{-}\textgreater{}} \DecValTok{4}\SpecialCharTok{*}\NormalTok{mq}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \FunctionTok{Hold}\OperatorTok{[}\NormalTok{Pair}\OperatorTok{][}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{k2}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{P}\OperatorTok{,} \FunctionTok{D}\OperatorTok{]]} \OtherTok{{-}\textgreater{}} \DecValTok{2}\SpecialCharTok{*}\NormalTok{mq}\SpecialCharTok{\^{}}
+       \DecValTok{2}\OperatorTok{,} \FunctionTok{Hold}\OperatorTok{[}\NormalTok{Pair}\OperatorTok{][}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\NormalTok{k2}\OperatorTok{,} \FunctionTok{D}\OperatorTok{]]} \OtherTok{{-}\textgreater{}} \DecValTok{2}\SpecialCharTok{*}\NormalTok{mq}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\},} \OperatorTok{\{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCTopology}\left(\text{topo2},\left\{\frac{1}{((l+\frac{P}{2})^2-\text{mq}^2+i \eta )},\frac{1}{((l-\frac{P}{2})^2-\text{mq}^2+i \eta )},\frac{1}{((\text{k1}+l-\frac{P}{2})^2-\text{mq}^2+i \eta )}\right\},\{l\},\{\text{k1},P\},\left\{\text{Hold}[\text{Pair}][\text{k1},\text{k1}]\to 0,\text{Hold}[\text{Pair}][P,q]\to 0,\text{Hold}[\text{Pair}][P,P]\to 4 \;\text{mq}^2,\text{Hold}[\text{Pair}][\text{k2},P]\to 2 \;\text{mq}^2,\text{Hold}[\text{Pair}][\text{k1},\text{k2}]\to 2 \;\text{mq}^2\right\},\{\}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopGetKinematicInvariants}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{\text{mq},\text{k1}\cdot P\}
+\end{dmath*}
+\end{document}

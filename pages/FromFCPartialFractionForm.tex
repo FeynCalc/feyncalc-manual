@@ -1,0 +1,66 @@
+% !TeX program = pdflatex
+% !TeX root = FromFCPartialFractionForm.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{fromfcpartialfractionform}{
+\section{FromFCPartialFractionForm}\label{fromfcpartialfractionform}\index{FromFCPartialFractionForm}}
+
+\texttt{FromFCPartialFractionForm[\allowbreak{}exp]} converts all
+\texttt{FCPartialFractionForm} symbols present in \texttt{exp} back into
+the standard representation.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{tofcpartialfractionform}{ToFCPartialFractionForm},
+\hyperlink{fcpartialfractionform}{FCPartialFractionForm}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FromFCPartialFractionForm}\OperatorTok{[}\NormalTok{FCPartialFractionForm}\OperatorTok{[}\FunctionTok{x}\OperatorTok{,} \OperatorTok{\{\},} \FunctionTok{x}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+x
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FromFCPartialFractionForm}\OperatorTok{[}\NormalTok{FCPartialFractionForm}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \OperatorTok{\{\{\{}\FunctionTok{x} \SpecialCharTok{{-}} \DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{2}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}\},} \FunctionTok{x}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(x-1)^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FromFCPartialFractionForm}\OperatorTok{[}\NormalTok{FCPartialFractionForm}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \OperatorTok{\{\{\{}\FunctionTok{x} \SpecialCharTok{+} \DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\},} \OperatorTok{\{\{}\FunctionTok{x} \SpecialCharTok{{-}} \FunctionTok{y}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{2}\OperatorTok{\},} \FunctionTok{c}\OperatorTok{\}\},} \FunctionTok{x}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{c}{(x-y)^2}+\frac{1}{x+1}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FromFCPartialFractionForm}\OperatorTok{[}\NormalTok{FCPartialFractionForm}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \OperatorTok{\{\{\{}\FunctionTok{x} \SpecialCharTok{+} \DecValTok{1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\},} \OperatorTok{\{\{}\FunctionTok{x} \SpecialCharTok{{-}} \FunctionTok{y}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{2}\OperatorTok{\},} \FunctionTok{c}\OperatorTok{\}\},} \FunctionTok{x}\OperatorTok{],}\NormalTok{ Factoring }\OtherTok{{-}\textgreater{}} \FunctionTok{Together}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{c x+c+x^2-2 x y+y^2}{(x+1) (x-y)^2}
+\end{dmath*}
+\end{document}
