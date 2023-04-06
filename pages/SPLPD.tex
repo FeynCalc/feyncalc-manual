@@ -1,0 +1,93 @@
+% !TeX program = pdflatex
+% !TeX root = SPLPD.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{splpd}{
+\section{SPLPD}\label{splpd}\index{SPLPD}}
+
+\texttt{SPLPD[\allowbreak{}p,\ \allowbreak{}q,\ \allowbreak{}n,\ \allowbreak{}nb]}
+denotes the positive component in the lightcone decomposition of the
+scalar product \(p \cdot q\) along the vectors \texttt{n} and
+\texttt{nb} in \(D\)-dimensions. It corresponds to
+\(\frac{1}{2} (p \cdot n) (q \cdot \bar{n})\).
+
+If one omits \texttt{n} and \texttt{nb}, the program will use default
+vectors specified via \texttt{\$FCDefaultLightconeVectorN} and
+\texttt{\$FCDefaultLightconeVectorNB}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{pair}{Pair},
+\hyperlink{fvlnd}{FVLND}, \hyperlink{fvlpd}{FVLPD},
+\hyperlink{fvlrd}{FVLRD}, \hyperlink{splnd}{SPLND},
+\hyperlink{splrd}{SPLRD}, \hyperlink{mtlpd}{MTLPD},
+\hyperlink{mtlnd}{MTLND}, \hyperlink{mtlrd}{MTLRD}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPLPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,} \FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} (n\cdot p) (\text{nb}\cdot q)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{StandardForm}\OperatorTok{[}\NormalTok{SPLPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,} \FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} \;\text{Pair}[\text{Momentum}[n,D],\text{Momentum}[p,D]] \;\text{Pair}[\text{Momentum}[\text{nb},D],\text{Momentum}[q,D]]
+\end{dmath*}
+
+Notice that the properties of \texttt{n} and \texttt{nb} vectors have to
+be set by hand before doing the actual computation
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPLPD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p2 }\SpecialCharTok{+} \FunctionTok{n}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,} \FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ ExpandScalarProduct}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} (\text{nb}\cdot q) \left(n\cdot \;\text{p1}+n\cdot \;\text{p2}+n^2\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClearScalarProducts}\OperatorTok{[]}
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{n}\OperatorTok{]} \ExtensionTok{=} \DecValTok{0}\NormalTok{;}
+\NormalTok{SPD}\OperatorTok{[}\NormalTok{nb}\OperatorTok{]} \ExtensionTok{=} \DecValTok{0}\NormalTok{;}
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]} \ExtensionTok{=} \DecValTok{2}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPLPD}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p2 }\SpecialCharTok{+} \FunctionTok{n}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,} \FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ ExpandScalarProduct}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} (\text{nb}\cdot q) (n\cdot \;\text{p1}+n\cdot \;\text{p2})
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClearScalarProducts}\OperatorTok{[]}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

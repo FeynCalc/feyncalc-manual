@@ -1,0 +1,92 @@
+% !TeX program = pdflatex
+% !TeX root = GALND.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{galnd}{
+\section{GALND}\label{galnd}\index{GALND}}
+
+\texttt{GALND[\allowbreak{}mu,\ \allowbreak{}n,\ \allowbreak{}nb]}
+denotes the negative component in the lightcone decomposition of the
+Dirac matrix \(\gamma^{\mu }\) along the vectors \texttt{n} and
+\texttt{nb} in \(D\)-dimensions. It corresponds to
+\(\frac{1}{2} n^{\mu} (\gamma \cdot \bar{n})\).
+
+If one omits \texttt{n} and \texttt{nb}, the program will use default
+vectors specified via \texttt{\$FCDefaultLightconeVectorN} and
+\texttt{\$FCDefaultLightconeVectorNB}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{diracgamma}{DiracGamma},
+\hyperlink{galpd}{GALPD}, \hyperlink{galrd}{GALRD},
+\hyperlink{gslpd}{GSLPD}, \hyperlink{gslnd}{GSLND},
+\hyperlink{gslrd}{GSLRD}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GALND}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} n^{\mu } \gamma \cdot \;\text{nb}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{StandardForm}\OperatorTok{[}\NormalTok{GALND}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} \;\text{DiracGamma}[\text{Momentum}[\text{nb},D],D] \;\text{Pair}[\text{LorentzIndex}[\mu ,D],\text{Momentum}[n,D]]
+\end{dmath*}
+
+Notice that the properties of \texttt{n} and \texttt{nb} vectors have to
+be set by hand before doing the actual computation
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GALND}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]}\NormalTok{ . GALND}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ DiracSimplify}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{4} \;\text{nb}^2 n^{\mu } n^{\nu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClearScalarProducts}\OperatorTok{[]}
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{n}\OperatorTok{]} \ExtensionTok{=} \DecValTok{0}\NormalTok{;}
+\NormalTok{SPD}\OperatorTok{[}\NormalTok{nb}\OperatorTok{]} \ExtensionTok{=} \DecValTok{0}\NormalTok{;}
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]} \ExtensionTok{=} \DecValTok{2}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GALND}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]}\NormalTok{ . GALND}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ DiracSimplify}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClearScalarProducts}\OperatorTok{[]}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

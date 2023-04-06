@@ -1,0 +1,72 @@
+% !TeX program = pdflatex
+% !TeX root = MTLRD.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{mtlrd}{
+\section{MTLRD}\label{mtlrd}\index{MTLRD}}
+
+\texttt{MTLRD[\allowbreak{}p,\ \allowbreak{}mu,\ \allowbreak{}n,\ \allowbreak{}nb]}
+denotes the perpendicular component in the lightcone decomposition of
+the metric tensor \(g^{\mu \nu}\) along the vectors \texttt{n} and
+\texttt{nb} in \(D\) dimensions. It corresponds to
+\(g^{\mu \nu}_{\perp}\).
+
+If one omits \texttt{n} and \texttt{nb}, the program will use default
+vectors specified via \texttt{\$FCDefaultLightconeVectorN} and
+\texttt{\$FCDefaultLightconeVectorNB}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{pair}{Pair},
+\hyperlink{fvlnd}{FVLND}, \hyperlink{fvlpd}{FVLPD},
+\hyperlink{splpd}{SPLPD}, \hyperlink{splnd}{SPLND},
+\hyperlink{splrd}{SPLRD}, \hyperlink{mtlpd}{MTLPD},
+\hyperlink{mtlnd}{MTLND}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MTLRD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+g^{\mu \nu }{}_{\perp }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MTLRD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*Pair[LightConePerpendicularComponent[LorentzIndex[\textbackslash{}[Mu], D], Momentum[n, D], Momentum[nb, D]], LightConePerpendicularComponent[LorentzIndex[\textbackslash{}[Nu], D], Momentum[n, D], Momentum[nb, D]]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MTLRD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]} \SpecialCharTok{//}\NormalTok{ Contract}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p^{\nu }{}_{\perp }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MTLRD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]}\NormalTok{ FVLPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ Contract}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+\end{document}

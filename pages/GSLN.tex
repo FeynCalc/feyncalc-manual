@@ -1,0 +1,91 @@
+% !TeX program = pdflatex
+% !TeX root = GSLN.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{gsln}{
+\section{GSLN}\label{gsln}\index{GSLN}}
+
+\texttt{GSLN[\allowbreak{}p,\ \allowbreak{}n,\ \allowbreak{}nb]} denotes
+the negative component in the lightcone decomposition of the slashed
+Dirac matrix \((\gamma \cdot p)\) along the vectors \texttt{n} and
+\texttt{nb}. It corresponds to
+\(\frac{1}{2} (n \cdot p) (\gamma \cdot \bar{n})\).
+
+If one omits \texttt{n} and \texttt{nb}, the program will use default
+vectors specified via \texttt{\$FCDefaultLightconeVectorN} and
+\texttt{\$FCDefaultLightconeVectorNB}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{diracgamma}{DiracGamma},
+\hyperlink{galp}{GALP}, \hyperlink{galn}{GALN}, \hyperlink{galr}{GALR},
+\hyperlink{gslp}{GSLP}, \hyperlink{gslr}{GSLR}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GSLN}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} \left(\overline{n}\cdot \overline{p}\right) \bar{\gamma }\cdot \overline{\text{nb}}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{StandardForm}\OperatorTok{[}\NormalTok{GSLN}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ FCI}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} \;\text{DiracGamma}[\text{Momentum}[\text{nb}]] \;\text{Pair}[\text{Momentum}[n],\text{Momentum}[p]]
+\end{dmath*}
+
+Notice that the properties of \texttt{n} and \texttt{nb} vectors have to
+be set by hand before doing the actual computation
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GSLN}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]}\NormalTok{ . GSLN}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ DiracSimplify}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{4} \overline{\text{nb}}^2 \left(\overline{n}\cdot \overline{p}\right) \left(\overline{n}\cdot \overline{q}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClearScalarProducts}\OperatorTok{[]}
+\NormalTok{SP}\OperatorTok{[}\FunctionTok{n}\OperatorTok{]} \ExtensionTok{=} \DecValTok{0}\NormalTok{;}
+\NormalTok{SP}\OperatorTok{[}\NormalTok{nb}\OperatorTok{]} \ExtensionTok{=} \DecValTok{0}\NormalTok{;}
+\NormalTok{SP}\OperatorTok{[}\FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]} \ExtensionTok{=} \DecValTok{2}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GSLN}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]}\NormalTok{ . GSLN}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]} \SpecialCharTok{//}\NormalTok{ DiracSimplify}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClearScalarProducts}\OperatorTok{[]}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

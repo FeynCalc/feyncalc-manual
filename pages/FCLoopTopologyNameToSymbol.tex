@@ -1,0 +1,60 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopTopologyNameToSymbol.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fclooptopologynametosymbol}{
+\section{FCLoopTopologyNameToSymbol}\label{fclooptopologynametosymbol}\index{FCLoopTopologyNameToSymbol}}
+
+\texttt{FCLoopTopologyNameToSymbol[\allowbreak{}exp]} converts topology
+names in \texttt{FCTopology}s and \texttt{GLI}s that are strings to
+expressions. This can be useful when exporting expressions generated
+with Mathematica to other software tools.
+
+Using the option \texttt{Except} one can exclude certain names from the
+conversion process.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{fctopology}{FCTopology},
+\hyperlink{gli}{GLI}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopTopologyNameToSymbol}\OperatorTok{[}\NormalTok{GLI}\OperatorTok{[}\StringTok{"a1"}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]]} \SpecialCharTok{//} \FunctionTok{InputForm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GLI}\OperatorTok{[}\NormalTok{a1}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopTopologyNameToSymbol}\OperatorTok{[}\NormalTok{FCTopology}\OperatorTok{[}\StringTok{"topo2"}\OperatorTok{,} \OperatorTok{\{}\NormalTok{FAD}\OperatorTok{[\{}\NormalTok{p1}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{p1 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]]} \SpecialCharTok{//} \FunctionTok{InputForm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GLI}\OperatorTok{[}\NormalTok{topo2}\OperatorTok{,} \OperatorTok{\{}\NormalTok{FAD}\OperatorTok{[\{}\NormalTok{p1}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{p1 }\SpecialCharTok{{-}} \FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopTopologyNameToSymbol}\OperatorTok{[}\NormalTok{GLI}\OperatorTok{[}\StringTok{"a1"}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]} \SpecialCharTok{+}\NormalTok{ GLI}\OperatorTok{[}\StringTok{"b1"}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}],} \FunctionTok{Except} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\StringTok{"a"}\OperatorTok{\}]} \SpecialCharTok{//} \FunctionTok{InputForm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GLI}\OperatorTok{[}\StringTok{"a1"}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]} \SpecialCharTok{+}\NormalTok{ GLI}\OperatorTok{[}\NormalTok{b1}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

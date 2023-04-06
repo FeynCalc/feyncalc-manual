@@ -1,0 +1,86 @@
+% !TeX program = pdflatex
+% !TeX root = LightConePerpendicularComponent.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{lightconeperpendicularcomponent}{
+\section{LightConePerpendicularComponent}\label{lightconeperpendicularcomponent}\index{LightConePerpendicularComponent}}
+
+\texttt{LightConePerpendicularComponent[\allowbreak{}LorentzIndex[\allowbreak{}mu],\ \allowbreak{}Momentum[\allowbreak{}n],\ \allowbreak{}Momentum[\allowbreak{}nb]]}
+denotes the perpendicular component of the Lorentz index \texttt{mu}
+with respect to the lightcone momenta \texttt{n} and \texttt{nb}.
+
+\texttt{LightConePerpendicularComponent[\allowbreak{}Momentum[\allowbreak{}p],\ \allowbreak{}Momentum[\allowbreak{}n],\ \allowbreak{}Momentum[\allowbreak{}nb]]}
+denotes the perpendicular component of the 4-momentum \texttt{p} with
+respect to the lightcone momenta \texttt{n} and \texttt{nb}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{lorentzindex}{LorentzIndex},
+\hyperlink{momentum}{Momentum}.
+
+\subsection{Examples}
+
+\(4\)-dimensional Lorentz vector
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pair}\OperatorTok{[}\NormalTok{LightConePerpendicularComponent}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{n}\OperatorTok{],}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{nb}\OperatorTok{]],} 
+\NormalTok{  LightConePerpendicularComponent}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{n}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\NormalTok{nb}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\mu }{}_{\perp }
+\end{dmath*}
+
+Metric tensor
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pair}\OperatorTok{[}\NormalTok{LightConePerpendicularComponent}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{n}\OperatorTok{],}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{nb}\OperatorTok{]],} 
+\NormalTok{  LightConePerpendicularComponent}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{n}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\NormalTok{nb}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{g}^{\mu \nu }{}_{\perp }
+\end{dmath*}
+
+Dirac matrix
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracGamma}\OperatorTok{[}\NormalTok{LightConePerpendicularComponent}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{n}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\NormalTok{nb}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }{}_{\perp }
+\end{dmath*}
+
+Contractions
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracGamma}\OperatorTok{[}\NormalTok{LightConePerpendicularComponent}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],} 
+\NormalTok{      Momentum}\OperatorTok{[}\FunctionTok{n}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\NormalTok{nb}\OperatorTok{]]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]} \SpecialCharTok{//}\NormalTok{ Contract }
+ 
+\SpecialCharTok{\%} \SpecialCharTok{//} \FunctionTok{StandardForm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }\cdot \overline{p}_{\perp }
+\end{dmath*}
+
+\begin{verbatim}
+(*DiracGamma[LightConePerpendicularComponent[Momentum[p], Momentum[n], Momentum[nb]]]*)
+\end{verbatim}
+\end{document}
