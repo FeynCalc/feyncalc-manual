@@ -612,6 +612,80 @@ Compare to the known result
 0
 \end{dmath*}
 
+Notice that one can also keep the \(i \eta\)-prescription explicit in
+the integrand by setting the option \texttt{EtaSign} to \texttt{True}.
+However, for integrating such representation using Mathematica's
+\texttt{Integrate} it is better to remove it
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tmp }\ExtensionTok{=}\NormalTok{ FCFeynmanParametrize}\OperatorTok{[}\NormalTok{int}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,}\NormalTok{ FCReplaceD }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{D} \OtherTok{{-}\textgreater{}} \DecValTok{4} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ ep}\OperatorTok{\},}\NormalTok{ FeynmanIntegralPrefactor }\OtherTok{{-}\textgreater{}} \StringTok{"LoopTools"}\OperatorTok{,}\NormalTok{ EtaSign }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{(x(1)+x(2)+x(3))^{2 \;\text{ep}-1} (-x(2) x(3)-i \eta )^{-\text{ep}-1},-\frac{\Gamma (1-2 \;\text{ep})}{\Gamma (1-\text{ep})^2},\{x(1),x(2),x(3)\}\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tmp }\OtherTok{/.}\NormalTok{ SMP}\OperatorTok{[}\StringTok{"Eta"}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{(-x(2) x(3))^{-\text{ep}-1} (x(1)+x(2)+x(3))^{2 \;\text{ep}-1},-\frac{\Gamma (1-2 \;\text{ep})}{\Gamma (1-\text{ep})^2},\{x(1),x(2),x(3)\}\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{int }\ExtensionTok{=}\NormalTok{ SFAD}\OperatorTok{[\{\{}\FunctionTok{k}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}\FunctionTok{Q} \FunctionTok{k}\NormalTok{ . }\FunctionTok{n} \SpecialCharTok{{-}} \FunctionTok{k}\NormalTok{ . nb }\FunctionTok{Q}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{{-}}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}\},} \OperatorTok{\{\{}\FunctionTok{k}\OperatorTok{,} \SpecialCharTok{{-}}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}\FunctionTok{Q} \FunctionTok{k}\NormalTok{ . nb }\SpecialCharTok{{-}} \FunctionTok{k}\NormalTok{ . }\FunctionTok{n} \FunctionTok{Q}\OperatorTok{\},} \OperatorTok{\{}\SpecialCharTok{{-}}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}\},} \OperatorTok{\{}\FunctionTok{k}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(k^2+-\frac{(k\cdot n) m^2}{Q}-Q (k\cdot \;\text{nb})+m^2+i \eta ).(k^2+-\frac{(k\cdot \;\text{nb}) m^2}{Q}-Q (k\cdot n)+m^2+i \eta ).(k^2-m^2+i \eta )}
+\end{dmath*}
+
+Sometimes loop integrals may require additional regulators beyond
+dimensional regularization (e.g.~in SCET). For such cases we may add
+extra propagators acting as regulators via the option
+\texttt{ExtraPropagators}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanParametrize}\OperatorTok{[}\NormalTok{int}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{k}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,}\NormalTok{ FCReplaceD }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{D} \OtherTok{{-}\textgreater{}} \DecValTok{4} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ ep}\OperatorTok{\},}\NormalTok{ FinalSubstitutions }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\NormalTok{nb}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{n}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{nb}\OperatorTok{,} \FunctionTok{n}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{2}\OperatorTok{,} \FunctionTok{Q} \OtherTok{{-}\textgreater{}} \DecValTok{1}\OperatorTok{\},} 
+\NormalTok{  ExtraPropagators }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,} \FunctionTok{n}\NormalTok{ . }\FunctionTok{k}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \SpecialCharTok{+}\DecValTok{1}\OperatorTok{\},}\NormalTok{ al}\OperatorTok{\}]\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{x(4)^{\text{al}-1} (x(1)+x(2)+x(3))^{\text{al}+2 \;\text{ep}-1} \left(m^4 x(2) x(3)+m^2 x(1)^2-2 m^2 x(2) x(3)-m^2 x(2) x(4)+x(2) x(3)-x(3) x(4)\right)^{-\text{al}-\text{ep}-1},\frac{(-1)^{\text{al}+3} \Gamma (\text{al}+\text{ep}+1)}{\Gamma (\text{al})},\{x(1),x(2),x(3),x(4)\}\right\}
+\end{dmath*}
+
+The option \texttt{FCReplaceMomenta} is useful when we want to replace
+external momenta by linear combinations of other momenta. If the
+coefficients are symbolic, please keep in mind that you need to declare
+them as being of type \texttt{FCVariable}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DataType}\OperatorTok{[}\FunctionTok{m}\OperatorTok{,}\NormalTok{ FCVariable}\OperatorTok{]} \ExtensionTok{=} \ConstantTok{True}\NormalTok{;}
+\NormalTok{DataType}\OperatorTok{[}\FunctionTok{Q}\OperatorTok{,}\NormalTok{ FCVariable}\OperatorTok{]} \ExtensionTok{=} \ConstantTok{True}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCFeynmanParametrize}\OperatorTok{[}\NormalTok{SFAD}\OperatorTok{[}\FunctionTok{k} \SpecialCharTok{{-}}\NormalTok{ pb}\OperatorTok{,} \FunctionTok{k} \SpecialCharTok{+} \FunctionTok{p}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{k}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],} \OperatorTok{\{}\FunctionTok{k}\OperatorTok{\},} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \FunctionTok{x}\OperatorTok{,}\NormalTok{ FCReplaceD }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{D} \OtherTok{{-}\textgreater{}} \DecValTok{4} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ ep}\OperatorTok{\},}\NormalTok{ FinalSubstitutions }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\NormalTok{nb}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{n}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{nb}\OperatorTok{,} \FunctionTok{n}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{2}\OperatorTok{,} \FunctionTok{Q} \OtherTok{{-}\textgreater{}} \DecValTok{1}\OperatorTok{\},} 
+\NormalTok{  ExtraPropagators }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,} \FunctionTok{n}\NormalTok{ . }\FunctionTok{k}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \SpecialCharTok{+}\DecValTok{1}\OperatorTok{\},}\NormalTok{ al}\OperatorTok{\}]\},}\NormalTok{ FCReplaceMomenta }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{p} \OtherTok{{-}\textgreater{}}\NormalTok{ (}\FunctionTok{Q} \FunctionTok{n}\SpecialCharTok{/}\DecValTok{2} \SpecialCharTok{+} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}\FunctionTok{Q}\NormalTok{ nb}\SpecialCharTok{/}\DecValTok{2}\NormalTok{)}\OperatorTok{,}\NormalTok{ pb }\OtherTok{{-}\textgreater{}}\NormalTok{ (}\FunctionTok{Q}\NormalTok{ nb}\SpecialCharTok{/}\DecValTok{2} \SpecialCharTok{+} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}\FunctionTok{Q} \FunctionTok{n}\SpecialCharTok{/}\DecValTok{2}\NormalTok{)}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{x(4)^{\text{al}-1} (x(1)+x(2)+x(3))^{\text{al}+2 \;\text{ep}-1} \left(m^4 (-x(2)) x(3)+m^2 x(1)^2-2 m^2 x(2) x(3)+m^2 x(2) x(4)-x(2) x(3)-x(3) x(4)\right)^{-\text{al}-\text{ep}-1},\frac{(-1)^{\text{al}+3} \Gamma (\text{al}+\text{ep}+1)}{\Gamma (\text{al})},\{x(1),x(2),x(3),x(4)\}\right\}
+\end{dmath*}
+
 \hypertarget{lee-pomeransky-representation}{%
 \subsubsection{Lee-Pomeransky
 representation}\label{lee-pomeransky-representation}}

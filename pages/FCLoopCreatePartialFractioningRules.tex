@@ -1,0 +1,67 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopCreatePartialFractioningRules.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{fcloopcreatepartialfractioningrules}{
+\section{FCLoopCreatePartialFractioningRules}\label{fcloopcreatepartialfractioningrules}\index{FCLoopCreatePartialFractioningRules}}
+
+`FCLoopCreatePartialFractioningRules{[}glis, topos{]} applies partial
+fraction decomposition to the given GLIs provided that the corresponding
+topologies contain linearly dependent propagators. The output is given
+as a list containing replacement rules and new topologies generated in
+the course of the decomposition.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{apartff}{ApartFF},
+\hyperlink{fctopology}{FCTopology}, \hyperlink{gli}{GLI}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{glis }\ExtensionTok{=} \OperatorTok{\{}
+\NormalTok{   GLI}\OperatorTok{[}\StringTok{"preTopoDia2"}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{   GLI}\OperatorTok{[}\StringTok{"preTopoDia1"}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{G^{\text{preTopoDia2}}(1,1,0,0,1),G^{\text{preTopoDia1}}(1,0,1,1,1)\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{topos }\ExtensionTok{=} \OperatorTok{\{}\NormalTok{FCTopology}\OperatorTok{[}\StringTok{"preTopoDia1"}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{\{}\NormalTok{k1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,}\NormalTok{ mqb}\SpecialCharTok{*}\NormalTok{k1 . nb}\OperatorTok{\},} 
+       \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{k1}\OperatorTok{,} \DecValTok{2}\SpecialCharTok{*}\NormalTok{gkin}\SpecialCharTok{*}\NormalTok{meta}\SpecialCharTok{*}\NormalTok{u0b}\SpecialCharTok{*}\NormalTok{k1 . }\FunctionTok{n}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{     SFAD}\OperatorTok{[\{\{}\NormalTok{k1}\OperatorTok{,} \DecValTok{2}\SpecialCharTok{*}\NormalTok{gkin}\SpecialCharTok{*}\NormalTok{meta}\SpecialCharTok{*}\NormalTok{k1 . }\FunctionTok{n} \SpecialCharTok{{-}}\NormalTok{ meta}\SpecialCharTok{*}\NormalTok{u0b}\SpecialCharTok{*}\NormalTok{k1 . nb}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{2}\SpecialCharTok{*}\NormalTok{gkin}\SpecialCharTok{*}\NormalTok{meta}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{u0b}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{     SFAD}\OperatorTok{[\{\{}\NormalTok{k1}\OperatorTok{,} \DecValTok{2}\SpecialCharTok{*}\NormalTok{gkin}\SpecialCharTok{*}\NormalTok{meta}\SpecialCharTok{*}\NormalTok{u0b}\SpecialCharTok{*}\NormalTok{k1 . }\FunctionTok{n} \SpecialCharTok{{-}}\NormalTok{ meta}\SpecialCharTok{*}\NormalTok{u0b}\SpecialCharTok{*}\NormalTok{k1 . nb}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{2}\SpecialCharTok{*}\NormalTok{gkin}\SpecialCharTok{*}\NormalTok{meta}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{u0b}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} 
+       \DecValTok{1}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{k1}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{Hold}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{][}\FunctionTok{n}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,} \FunctionTok{Hold}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{][}\NormalTok{nb}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,} \FunctionTok{Hold}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{][}\FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{2}\OperatorTok{\},} 
+    \OperatorTok{\{\}],}\NormalTok{ FCTopology}\OperatorTok{[}\StringTok{"preTopoDia2"}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{\{}\NormalTok{k1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,} \SpecialCharTok{{-}}\NormalTok{(mqb}\SpecialCharTok{*}\NormalTok{k1 . nb)}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{k1}\OperatorTok{,}\NormalTok{ meta}\SpecialCharTok{*}\NormalTok{u0b}\SpecialCharTok{*}\NormalTok{k1 . nb}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{k1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{gkin}\SpecialCharTok{*}\NormalTok{meta}\SpecialCharTok{*}\NormalTok{k1 . }\FunctionTok{n} \SpecialCharTok{+}\NormalTok{ meta}\SpecialCharTok{*}\NormalTok{u0b}\SpecialCharTok{*}\NormalTok{k1 . nb}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{2}\SpecialCharTok{*}\NormalTok{gkin}\SpecialCharTok{*}\NormalTok{meta}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{u0b}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{       SFAD}\OperatorTok{[\{\{}\NormalTok{k1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{gkin}\SpecialCharTok{*}\NormalTok{meta}\SpecialCharTok{*}\NormalTok{u0b}\SpecialCharTok{*}\NormalTok{k1 . }\FunctionTok{n} \SpecialCharTok{+}\NormalTok{ meta}\SpecialCharTok{*}\NormalTok{u0b}\SpecialCharTok{*}\NormalTok{k1 . nb}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{2}\SpecialCharTok{*}\NormalTok{gkin}\SpecialCharTok{*}\NormalTok{meta}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{u0b}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} 
+         \DecValTok{1}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{k1}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{Hold}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{][}\FunctionTok{n}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,} \FunctionTok{Hold}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{][}\NormalTok{nb}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,} \FunctionTok{Hold}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{][}\FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{2}\OperatorTok{\},} 
+    \OperatorTok{\{\}]\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{FCTopology}\left(\text{preTopoDia1},\left\{\frac{1}{(\text{k1}^2+i \eta )},\frac{1}{(\text{mqb} (\text{k1}\cdot \;\text{nb})+i \eta )},\frac{1}{(\text{k1}^2+2 \;\text{gkin} \;\text{meta} \;\text{u0b} (\text{k1}\cdot n)+i \eta )},\frac{1}{(\text{k1}^2+2 \;\text{gkin} \;\text{meta} (\text{k1}\cdot n)-\text{meta} \;\text{u0b} (\text{k1}\cdot \;\text{nb})-2 \;\text{gkin} \;\text{meta}^2 \;\text{u0b}+i \eta )},\frac{1}{(\text{k1}^2+2 \;\text{gkin} \;\text{meta} \;\text{u0b} (\text{k1}\cdot n)-\text{meta} \;\text{u0b} (\text{k1}\cdot \;\text{nb})-2 \;\text{gkin} \;\text{meta}^2 \;\text{u0b}^2+i \eta )}\right\},\{\text{k1}\},\{n,\text{nb}\},\{\text{Hold}[\text{SPD}][n]\to 0,\text{Hold}[\text{SPD}][\text{nb}]\to 0,\text{Hold}[\text{SPD}][n,\text{nb}]\to 2\},\{\}\right),\text{FCTopology}\left(\text{preTopoDia2},\left\{\frac{1}{(\text{k1}^2+i \eta )},\frac{1}{(-\text{mqb} (\text{k1}\cdot \;\text{nb})+i \eta )},\frac{1}{(\text{k1}^2+\text{meta} \;\text{u0b} (\text{k1}\cdot \;\text{nb})+i \eta )},\frac{1}{(\text{k1}^2+\text{meta} \;\text{u0b} (\text{k1}\cdot \;\text{nb})-2 \;\text{gkin} \;\text{meta} (\text{k1}\cdot n)-2 \;\text{gkin} \;\text{meta}^2 \;\text{u0b}+i \eta )},\frac{1}{(\text{k1}^2+\text{meta} \;\text{u0b} (\text{k1}\cdot \;\text{nb})-2 \;\text{gkin} \;\text{meta} \;\text{u0b} (\text{k1}\cdot n)-2 \;\text{gkin} \;\text{meta}^2 \;\text{u0b}^2+i \eta )}\right\},\{\text{k1}\},\{n,\text{nb}\},\{\text{Hold}[\text{SPD}][n]\to 0,\text{Hold}[\text{SPD}][\text{nb}]\to 0,\text{Hold}[\text{SPD}][n,\text{nb}]\to 2\},\{\}\right)\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopCreatePartialFractioningRules}\OperatorTok{[}\NormalTok{glis}\OperatorTok{,}\NormalTok{ topos}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\left\{G^{\text{preTopoDia1}}(1,0,1,1,1)\to -\frac{G^{\text{preTopoDia1PFR12}}(1,1,1)}{2 \;\text{gkin} \;\text{meta}^2 \;\text{u0b}^2}+\frac{G^{\text{preTopoDia1PFR23}}(1,1,1)}{2 \;\text{gkin} \;\text{meta}^2 \;\text{u0b}^2}+\frac{G^{\text{preTopoDia1PFR24}}(1,1,1)}{2 \;\text{gkin} \;\text{meta}^2 (\text{u0b}-1) \;\text{u0b}}-\frac{G^{\text{preTopoDia1PFR25}}(1,1,1)}{2 \;\text{gkin} \;\text{meta}^2 (\text{u0b}-1) \;\text{u0b}}\right\},\left\{\text{FCTopology}\left(\text{preTopoDia1PFR12},\left\{\frac{1}{(\text{k1}^2+2 \;\text{gkin} \;\text{meta} \;\text{u0b} (\text{k1}\cdot n)+i \eta )},\frac{1}{(\text{k1}^2+2 \;\text{gkin} \;\text{meta} (\text{k1}\cdot n)-\text{meta} \;\text{u0b} (\text{k1}\cdot \;\text{nb})-2 \;\text{gkin} \;\text{meta}^2 \;\text{u0b}+i \eta )},\frac{1}{(\text{k1}^2+2 \;\text{gkin} \;\text{meta} \;\text{u0b} (\text{k1}\cdot n)-\text{meta} \;\text{u0b} (\text{k1}\cdot \;\text{nb})-2 \;\text{gkin} \;\text{meta}^2 \;\text{u0b}^2+i \eta )}\right\},\{\text{k1}\},\{n,\text{nb}\},\{\text{Hold}[\text{SPD}][n]\to 0,\text{Hold}[\text{SPD}][\text{nb}]\to 0,\text{Hold}[\text{SPD}][n,\text{nb}]\to 2\},\{\}\right),\text{FCTopology}\left(\text{preTopoDia1PFR23},\left\{\frac{1}{(\text{k1}^2+i \eta )},\frac{1}{(\text{k1}^2+2 \;\text{gkin} \;\text{meta} (\text{k1}\cdot n)-\text{meta} \;\text{u0b} (\text{k1}\cdot \;\text{nb})-2 \;\text{gkin} \;\text{meta}^2 \;\text{u0b}+i \eta )},\frac{1}{(\text{k1}^2+2 \;\text{gkin} \;\text{meta} \;\text{u0b} (\text{k1}\cdot n)-\text{meta} \;\text{u0b} (\text{k1}\cdot \;\text{nb})-2 \;\text{gkin} \;\text{meta}^2 \;\text{u0b}^2+i \eta )}\right\},\{\text{k1}\},\{n,\text{nb}\},\{\text{Hold}[\text{SPD}][n]\to 0,\text{Hold}[\text{SPD}][\text{nb}]\to 0,\text{Hold}[\text{SPD}][n,\text{nb}]\to 2\},\{\}\right),\text{FCTopology}\left(\text{preTopoDia1PFR25},\left\{\frac{1}{(\text{k1}^2+i \eta )},\frac{1}{(\text{k1}^2+2 \;\text{gkin} \;\text{meta} \;\text{u0b} (\text{k1}\cdot n)+i \eta )},\frac{1}{(\text{k1}^2+2 \;\text{gkin} \;\text{meta} (\text{k1}\cdot n)-\text{meta} \;\text{u0b} (\text{k1}\cdot \;\text{nb})-2 \;\text{gkin} \;\text{meta}^2 \;\text{u0b}+i \eta )}\right\},\{\text{k1}\},\{n,\text{nb}\},\{\text{Hold}[\text{SPD}][n]\to 0,\text{Hold}[\text{SPD}][\text{nb}]\to 0,\text{Hold}[\text{SPD}][n,\text{nb}]\to 2\},\{\}\right),\text{FCTopology}\left(\text{preTopoDia1PFR24},\left\{\frac{1}{(\text{k1}^2+i \eta )},\frac{1}{(\text{k1}^2+2 \;\text{gkin} \;\text{meta} \;\text{u0b} (\text{k1}\cdot n)+i \eta )},\frac{1}{(\text{k1}^2+2 \;\text{gkin} \;\text{meta} \;\text{u0b} (\text{k1}\cdot n)-\text{meta} \;\text{u0b} (\text{k1}\cdot \;\text{nb})-2 \;\text{gkin} \;\text{meta}^2 \;\text{u0b}^2+i \eta )}\right\},\{\text{k1}\},\{n,\text{nb}\},\{\text{Hold}[\text{SPD}][n]\to 0,\text{Hold}[\text{SPD}][\text{nb}]\to 0,\text{Hold}[\text{SPD}][n,\text{nb}]\to 2\},\{\}\right)\right\}\right\}
+\end{dmath*}
+\end{document}

@@ -3,6 +3,12 @@
 
 \documentclass[../FeynCalcManual.tex]{subfiles}
 \begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{momentumcombine}{
 \section{MomentumCombine}\label{momentumcombine}\index{MomentumCombine}}
 
@@ -85,4 +91,108 @@
 \end{Highlighting}
 \end{Shaded}
 
+In some cases one might need a better control over the types of
+expressions getting combined. For example, the following expression will
+not be combined by default, since the coefficients of scalar products
+are not numbers
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DataType}\OperatorTok{[}\NormalTok{a1}\OperatorTok{,}\NormalTok{ FCVariable}\OperatorTok{]} \ExtensionTok{=} \ConstantTok{True}\NormalTok{;}
+\NormalTok{DataType}\OperatorTok{[}\NormalTok{a2}\OperatorTok{,}\NormalTok{ FCVariable}\OperatorTok{]} \ExtensionTok{=} \ConstantTok{True}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{a1 }\FunctionTok{p}\OperatorTok{,} \FunctionTok{n}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{a2 }\FunctionTok{p}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{a1} (n\cdot p)+\text{a2} (\text{nb}\cdot p)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MomentumCombine}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{a1} (n\cdot p)+\text{a2} (\text{nb}\cdot p)
+\end{dmath*}
+
+Setting the option \texttt{NumberQ} to \texttt{False} we can still
+achieve the desired form
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MomentumCombine}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,} \FunctionTok{NumberQ} \OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(\text{a1} n+\text{a2} \;\text{nb})\cdot p
+\end{dmath*}
+
+However, in the following case combing \(p^2\) with the other two scalar
+products is not useful
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{a1 }\FunctionTok{p}\OperatorTok{,} \FunctionTok{n}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{a2 }\FunctionTok{p}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{a1} (n\cdot p)+\text{a2} (\text{nb}\cdot p)+p^2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MomentumCombine}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,} \FunctionTok{NumberQ} \OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p\cdot (\text{a1} n+\text{a2} \;\text{nb}+p)
+\end{dmath*}
+
+To prevent this from happening there is a somewhat hidden option
+\texttt{"Quadratic"} that can be set to \texttt{False}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MomentumCombine}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,} \FunctionTok{NumberQ} \OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{,} \StringTok{"Quadratic"} \OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(\text{a1} n+\text{a2} \;\text{nb})\cdot p+p^2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{a1 }\FunctionTok{p}\OperatorTok{,} \FunctionTok{n}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{a2 }\FunctionTok{p}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{l}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{a1} (n\cdot p)+\text{a2} (\text{nb}\cdot p)+k\cdot p+l\cdot p+p^2
+\end{dmath*}
+
+In this case we we would like to prevent the scalar products involving
+\texttt{l} and \texttt{k} from being combined with the rest. To that end
+we need to use the option \texttt{Except}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MomentumCombine}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,} \FunctionTok{NumberQ} \OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{,} \StringTok{"Quadratic"} \OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{,} \FunctionTok{Except} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{k}\OperatorTok{,} \FunctionTok{l}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(\text{a1} n+\text{a2} \;\text{nb})\cdot p+k\cdot p+l\cdot p+p^2
+\end{dmath*}
 \end{document}

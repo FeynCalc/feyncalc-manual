@@ -3,6 +3,12 @@
 
 \documentclass[../FeynCalcManual.tex]{subfiles}
 \begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{apartff}{
 \section{ApartFF}\label{apartff}\index{ApartFF}}
 
@@ -268,4 +274,104 @@ desirable form
 Here we need a second call to \texttt{ApartFF} since the first execution
 doesn't drop scaleless integrals or perform any shifts in the
 denominators.
+
+Other examples of doing partial fraction decomposition for eikonal
+integrals (e.g.~in SCET)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{int1 }\ExtensionTok{=}\NormalTok{ SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,}\NormalTok{ nb . k2}\OperatorTok{\}\},} \OperatorTok{\{\{}\DecValTok{0}\OperatorTok{,}\NormalTok{ nb . (k1 }\SpecialCharTok{+}\NormalTok{ k2)}\OperatorTok{\}\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(\text{k2}\cdot \;\text{nb}+i \eta ).((\text{k1}+\text{k2})\cdot \;\text{nb}+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ApartFF}\OperatorTok{[}\NormalTok{int1}\OperatorTok{,} \OperatorTok{\{}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(\text{k2}\cdot \;\text{nb}+i \eta ).(\text{k1}\cdot \;\text{nb}+\text{k2}\cdot \;\text{nb}+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ApartFF}\OperatorTok{[}\NormalTok{ApartFF}\OperatorTok{[}\NormalTok{SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,}\NormalTok{ nb . k1}\OperatorTok{\}\}]}\NormalTok{ int1}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{nb}\OperatorTok{,}\NormalTok{ k1}\OperatorTok{],} \OperatorTok{\{}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{\}],} \OperatorTok{\{}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(\text{k1}\cdot \;\text{nb}+i \eta ).(\text{k2}\cdot \;\text{nb}+i \eta )}-\frac{1}{(\text{k1}\cdot \;\text{nb}+i \eta ).(\text{k1}\cdot \;\text{nb}+\text{k2}\cdot \;\text{nb}+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{int2 }\ExtensionTok{=}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{nb}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{]}\NormalTok{ SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,}\NormalTok{ nb . (k1 }\SpecialCharTok{+}\NormalTok{ k2)}\OperatorTok{\}\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\text{k2}\cdot \;\text{nb}}{((\text{k1}+\text{k2})\cdot \;\text{nb}+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ApartFF}\OperatorTok{[}\NormalTok{int2}\OperatorTok{,} \OperatorTok{\{}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\text{k2}\cdot \;\text{nb}}{(\text{k1}\cdot \;\text{nb}+\text{k2}\cdot \;\text{nb}+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ApartFF}\OperatorTok{[}\NormalTok{ApartFF}\OperatorTok{[}\NormalTok{SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,}\NormalTok{ nb . k1}\OperatorTok{\}\}]}\NormalTok{ int2}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{nb}\OperatorTok{,}\NormalTok{ k1}\OperatorTok{],} \OperatorTok{\{}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{\}],} \OperatorTok{\{}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{\text{k1}\cdot \;\text{nb}}{(\text{k1}\cdot \;\text{nb}+\text{k2}\cdot \;\text{nb}+i \eta )}
+\end{dmath*}
+
+If we are working with a subset of propagators from a full integral, one
+should better turn off loop momentum shifts and the dropping of
+scaleless integrals
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ApartFF}\OperatorTok{[}\NormalTok{ApartFF}\OperatorTok{[}\NormalTok{SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,}\NormalTok{ nb . k1}\OperatorTok{\}\}]}\NormalTok{ int2}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{nb}\OperatorTok{,}\NormalTok{ k1}\OperatorTok{],} \OperatorTok{\{}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{\}],} \OperatorTok{\{}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{\},}\NormalTok{ FDS }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{,} 
+\NormalTok{  DropScaleless }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+1-\frac{\text{k1}\cdot \;\text{nb}}{(\text{k1}\cdot \;\text{nb}+\text{k2}\cdot \;\text{nb}+i \eta )}
+\end{dmath*}
+
+ApartFF can also handle \texttt{GLI}s
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{topo }\ExtensionTok{=}\NormalTok{ FCTopology}\OperatorTok{[}\NormalTok{preTopo}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[}\NormalTok{k1}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[\{}\NormalTok{k1}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{}\NormalTok{k2}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{}\NormalTok{k1 }\SpecialCharTok{{-}}\NormalTok{ k2}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCTopology}\left(\text{preTopo},\left\{\frac{1}{(\text{k1}^2+i \eta )},\frac{1}{(\text{k1}^2-m^2+i \eta )},\frac{1}{(\text{k2}^2-m^2+i \eta )},\frac{1}{((\text{k1}-\text{k2})^2+i \eta )}\right\},\{\text{k1},\text{k2}\},\{\},\{\},\{\}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ApartFF}\OperatorTok{[}\NormalTok{GLI}\OperatorTok{[}\NormalTok{preTopo}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ topo}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCGV}(\text{GLIProduct})\left(-\frac{1}{m^2},G^{\text{preTopo}}(1,0,1,1)\right)+\text{FCGV}(\text{GLIProduct})\left(\frac{1}{m^2},G^{\text{preTopo}}(0,1,1,1)\right)
+\end{dmath*}
 \end{document}

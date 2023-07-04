@@ -1,0 +1,74 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopRemovePropagator.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{fcloopremovepropagator}{
+\section{FCLoopRemovePropagator}\label{fcloopremovepropagator}\index{FCLoopRemovePropagator}}
+
+\texttt{FCLoopRemovePropagator[\allowbreak{}input,\ \allowbreak{}\{\allowbreak{}pos1,\ \allowbreak{}pos2,\ \allowbreak{}...\}]}
+returns a new \texttt{FCTopology} or \texttt{GLI} obtained from input by
+removing propagators at positions listed in
+\texttt{\{\allowbreak{}pos1,\ \allowbreak{}pos2,\ \allowbreak{}...\}}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcloopcreatepartialfractioningrules}{FCLoopCreatePartialFractioningRules},
+\hyperlink{fctopology}{FCTopology}, \hyperlink{gli}{GLI}.
+
+\subsection{Examples}
+
+A 2-loop topology with one external momentum \texttt{Q}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{topo }\ExtensionTok{=}\NormalTok{ FCTopology}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\FunctionTok{Q} \SpecialCharTok{{-}}\NormalTok{ p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\FunctionTok{Q} \SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\FunctionTok{Q} \SpecialCharTok{{-}}\NormalTok{ p1}\OperatorTok{]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{Q}\OperatorTok{\},} \OperatorTok{\{}
+    \FunctionTok{Hold}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{Q}\OperatorTok{]]} \OtherTok{{-}\textgreater{}}\NormalTok{ qq}\OperatorTok{\},} \OperatorTok{\{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCTopology}\left(\text{topo1},\left\{\frac{1}{(\text{p1}^2+i \eta )},\frac{1}{(\text{p2}^2+i \eta )},\frac{1}{((-\text{p1}-\text{p2}+Q)^2+i \eta )},\frac{1}{((Q-\text{p2})^2+i \eta )},\frac{1}{((Q-\text{p1})^2+i \eta )}\right\},\{\text{p1},\text{p2}\},\{Q\},\{\text{Hold}[\text{SPD}(Q)]\to \;\text{qq}\},\{\}\right)
+\end{dmath*}
+
+The same topology with the 1st and 3rd propagators removed. Notice that
+the new name is created using the suffix specified via the option
+\texttt{Names}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopRemovePropagator}\OperatorTok{[}\NormalTok{topo}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{3}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCTopology}\left(\text{topo1PFR13},\left\{\frac{1}{(\text{p2}^2+i \eta )},\frac{1}{((Q-\text{p2})^2+i \eta )},\frac{1}{((Q-\text{p1})^2+i \eta )}\right\},\{\text{p1},\text{p2}\},\{Q\},\{\text{Hold}[\text{SPD}(Q)]\to \;\text{qq}\},\{\}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gli }\ExtensionTok{=}\NormalTok{ GLI}\OperatorTok{[}\NormalTok{topo2}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{2}\OperatorTok{,} \DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+G^{\text{topo2}}(1,1,1,2,0,1,1)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopRemovePropagator}\OperatorTok{[}\NormalTok{gli}\OperatorTok{,} \OperatorTok{\{}\DecValTok{2}\OperatorTok{,} \DecValTok{4}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+G^{\text{topo2PFR24}}(1,1,0,1,1)
+\end{dmath*}
+\end{document}

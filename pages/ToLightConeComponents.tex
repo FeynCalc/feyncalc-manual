@@ -1,0 +1,70 @@
+% !TeX program = pdflatex
+% !TeX root = ToLightConeComponents.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{tolightconecomponents}{
+\section{ToLightConeComponents}\label{tolightconecomponents}\index{ToLightConeComponents}}
+
+\texttt{ToLightConeComponents[\allowbreak{}expr,\ \allowbreak{}n,\ \allowbreak{}nb]}
+rewrites all Dirac matrices, scalar products, 4-vectors and metric
+tensors in terms of their component along the lightcone directions
+\texttt{n} and \texttt{nb}
+
+Using the option \texttt{NotMomentum} one can specify that quantities
+containing the listed 4-momenta should be left untouched.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{expandscalarproduct}{ExpandScalarProduct},
+\hyperlink{lightconeperpendicularcomponent}{LightConePerpendicularComponent}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToLightConeComponents}\OperatorTok{[}\NormalTok{SP}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{],} \FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} \left(\overline{a}\cdot \overline{\text{nb}}\right) \left(\overline{b}\cdot \overline{n}\right)+\frac{1}{2} \left(\overline{a}\cdot \overline{n}\right) \left(\overline{b}\cdot \overline{\text{nb}}\right)+\overline{a}\cdot \overline{b}_{\perp }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToLightConeComponents}\OperatorTok{[}\NormalTok{FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],} \FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} \overline{\text{nb}}^{\mu } \left(\overline{n}\cdot \overline{p}\right)+\frac{1}{2} \overline{n}^{\mu } \left(\overline{\text{nb}}\cdot \overline{p}\right)+\overline{p}^{\mu }{}_{\perp }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToLightConeComponents}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],} \FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }{}_{\perp }+\frac{1}{2} \overline{n}^{\mu } \bar{\gamma }\cdot \overline{\text{nb}}+\frac{1}{2} \overline{\text{nb}}^{\mu } \bar{\gamma }\cdot \overline{n}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToLightConeComponents}\OperatorTok{[}\NormalTok{GS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],} \FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} \left(\overline{n}\cdot \overline{p}\right) \bar{\gamma }\cdot \overline{\text{nb}}+\frac{1}{2} \bar{\gamma }\cdot \overline{n} \left(\overline{\text{nb}}\cdot \overline{p}\right)+\bar{\gamma }\cdot \overline{p}_{\perp }
+\end{dmath*}
+\end{document}
