@@ -1,0 +1,105 @@
+% !TeX program = pdflatex
+% !TeX root = Nonrelativistic.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{nonrelativistic calculations}{
+\section{Nonrelativistic calculations}\label{nonrelativistic calculations}\index{Nonrelativistic calculations}}
+
+Since version 9.3 FeynCalc can also deal with manifestly noncovariant
+expressions, such as 3-vectors, Kronecker deltas and Pauli matrices
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^i
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]}\NormalTok{ CV}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]}
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ Contract}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^i \overline{q}^i
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot \overline{q}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CLC}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]}\NormalTok{ CLC}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{l}\OperatorTok{]}
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ Contract}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{ijk} \bar{\epsilon }^{ijl}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+2 \bar{\delta }^{kl}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{CSI}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]}
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ PauliSimplify}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{\sigma }^i.\overline{\sigma }^j.\overline{\sigma }^i
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-\overline{\sigma }^j
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{PauliTrace}\OperatorTok{[}\NormalTok{CSI}\OperatorTok{[}\FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{,} \FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]]}
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ PauliSimplify}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{tr}\left(\overline{\sigma }^i.\overline{\sigma }^j.\overline{\sigma }^i.\overline{\sigma }^j\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-6
+\end{dmath*}
+
+The function \texttt{LorentzToCartesian} is used to break the manifest
+Lorentz covariance when doing nonrelativistic expansions
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ LorentzToCartesian}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot \overline{q}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+p^0 q^0-\overline{p}\cdot \overline{q}
+\end{dmath*}
+\end{document}

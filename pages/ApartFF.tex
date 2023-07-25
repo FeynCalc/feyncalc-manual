@@ -352,26 +352,4 @@ scaleless integrals
 \begin{dmath*}\breakingcomma
 1-\frac{\text{k1}\cdot \;\text{nb}}{(\text{k1}\cdot \;\text{nb}+\text{k2}\cdot \;\text{nb}+i \eta )}
 \end{dmath*}
-
-ApartFF can also handle \texttt{GLI}s
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{topo }\ExtensionTok{=}\NormalTok{ FCTopology}\OperatorTok{[}\NormalTok{preTopo}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[}\NormalTok{k1}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[\{}\NormalTok{k1}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{}\NormalTok{k2}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{}\NormalTok{k1 }\SpecialCharTok{{-}}\NormalTok{ k2}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{dmath*}\breakingcomma
-\text{FCTopology}\left(\text{preTopo},\left\{\frac{1}{(\text{k1}^2+i \eta )},\frac{1}{(\text{k1}^2-m^2+i \eta )},\frac{1}{(\text{k2}^2-m^2+i \eta )},\frac{1}{((\text{k1}-\text{k2})^2+i \eta )}\right\},\{\text{k1},\text{k2}\},\{\},\{\},\{\}\right)
-\end{dmath*}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{ApartFF}\OperatorTok{[}\NormalTok{GLI}\OperatorTok{[}\NormalTok{preTopo}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ topo}\OperatorTok{]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{dmath*}\breakingcomma
-\text{FCGV}(\text{GLIProduct})\left(-\frac{1}{m^2},G^{\text{preTopo}}(1,0,1,1)\right)+\text{FCGV}(\text{GLIProduct})\left(\frac{1}{m^2},G^{\text{preTopo}}(0,1,1,1)\right)
-\end{dmath*}
 \end{document}

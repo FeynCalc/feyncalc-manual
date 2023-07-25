@@ -1,0 +1,694 @@
+% !TeX program = pdflatex
+% !TeX root = Loops.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{loops}{
+\section{Loops}\label{loops}\index{Loops}}
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}.
+
+\hypertarget{propagators}{%
+\subsection{Propagators}\label{propagators}}
+
+Propagators (and products thereof) are represented via
+\texttt{FeynAmpDenominator}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominator}\OperatorTok{[}\NormalTok{PropagatorDenominator}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{D}\OperatorTok{],} \FunctionTok{m}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{q^2-m^2}
+\end{dmath*}
+
+Again, for the external input we always use a shortcut
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{q^2-m^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,}\NormalTok{ m0}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{+}\NormalTok{ p1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{+}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\left(q^2-\text{m0}^2\right).\left((\text{p1}+q)^2-\text{m1}^2\right).\left((\text{p2}+q)^2-\text{m1}^2\right)}
+\end{dmath*}
+
+The presence of \texttt{FeynAmpDenominator} in an expression does not
+automatically mean that it is a loop amplitude.
+\texttt{FeynAmpDenominator} can equally appear in tree level amplitudes,
+where it stands for the usual 4-dimensional propagator.
+
+In FeynCalc there is no explicit way to distinguish between loop
+amplitudes and tree-level amplitudes. When you use functions that
+manipulate loop integrals, you need to tell them explicitly what is your
+loop momentum.
+
+\hypertarget{manipulations-of-feynampdenominators}{%
+\subsection{Manipulations of
+FeynAmpDenominators}\label{manipulations-of-feynampdenominators}}
+
+There are several functions, that are useful both for tree- and
+loop-level amplitudes, depending on what we want to do
+
+For example, one can split one \texttt{FeynAmpDenominator} into many
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAD}\OperatorTok{[\{}\NormalTok{k1 }\SpecialCharTok{{-}}\NormalTok{ k2}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{k1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{k2 }\SpecialCharTok{+}\NormalTok{ p2}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]}
+\NormalTok{FeynAmpDenominatorSplit}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ FCE }\SpecialCharTok{//} \FunctionTok{StandardForm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(\text{k1}-\text{k2})^2.\left((\text{k1}-\text{p2})^2-m^2\right).\left((\text{k2}+\text{p2})^2-m^2\right)}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(\text{k1}-\text{k2})^2 \left((\text{k1}-\text{p2})^2-m^2\right) \left((\text{k2}+\text{p2})^2-m^2\right)}
+\end{dmath*}
+
+\begin{verbatim}
+(*FAD[k1 - k2] FAD[{k1 - p2, m}] FAD[{k2 + p2, m}]*)
+\end{verbatim}
+
+or combine several into one
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominatorCombine}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[}\NormalTok{k1 }\SpecialCharTok{{-}}\NormalTok{ k2}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{k1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{k2 }\SpecialCharTok{+}\NormalTok{ p2}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]]}
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ FCE }\SpecialCharTok{//} \FunctionTok{StandardForm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\left((\text{k2}+\text{p2})^2-m^2\right).(\text{k1}-\text{k2})^2.\left((\text{k1}-\text{p2})^2-m^2\right)}
+\end{dmath*}
+
+\begin{verbatim}
+(*FAD[{k2 + p2, m}, k1 - k2, {k1 - p2, m}]*)
+\end{verbatim}
+
+At the tree-level we often do not need the \texttt{FeynAmpDenominators}
+but rather want to express everything in terms of explicit scalar
+products, in order to exploit kinematic simplifications. This is handled
+by \texttt{FeynAmpDenominatorExplicit}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FeynAmpDenominatorExplicit}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[\{}\NormalTok{k2 }\SpecialCharTok{+}\NormalTok{ p2}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},}\NormalTok{ k1 }\SpecialCharTok{{-}}\NormalTok{ k2}\OperatorTok{,} \OperatorTok{\{}\NormalTok{k1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{\left(-2 (\text{k1}\cdot \;\text{k2})+\text{k1}^2+\text{k2}^2\right) \left(-2 (\text{k1}\cdot \;\text{p2})+\text{k1}^2-m^2+\text{p2}^2\right) \left(2 (\text{k2}\cdot \;\text{p2})+\text{k2}^2-m^2+\text{p2}^2\right)}
+\end{dmath*}
+
+\hypertarget{one-loop-tensor-reduction}{%
+\subsection{One-loop tensor reduction}\label{one-loop-tensor-reduction}}
+
+1-loop tensor reduction using Passarino-Veltman method is handled by
+\texttt{TID}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\}]}
+\NormalTok{TID}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{q^{\mu } q^{\nu }}{q^2-m^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{m^2 g^{\mu \nu }}{D \left(q^2-m^2\right)}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{int }\ExtensionTok{=}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,}\NormalTok{ m0}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{+} \FunctionTok{p}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\}]}
+\NormalTok{TID}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{q^{\mu } (p\cdot q)}{\left(q^2-\text{m0}^2\right).\left((p+q)^2-\text{m1}^2\right)}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{p^{\mu } \left(\text{m0}^2-\text{m1}^2+p^2\right)^2}{4 p^2 \left(q^2-\text{m0}^2\right).\left((q-p)^2-\text{m1}^2\right)}-\frac{p^{\mu } \left(\text{m0}^2-\text{m1}^2+p^2\right)}{4 p^2 \left(q^2-\text{m0}^2\right)}+\frac{p^{\mu } \left(\text{m0}^2-\text{m1}^2+3 p^2\right)}{4 p^2 \left(q^2-\text{m1}^2\right)}
+\end{dmath*}
+
+By default, \texttt{TID} tries to reduce everything to scalar integrals
+with unit denominators. However, if it encounters zero Gram
+determinants, it automatically switches to the coefficient functions
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClearScalarProducts}\OperatorTok{[]}
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]} \ExtensionTok{=} \DecValTok{0}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TID}\OperatorTok{[}\NormalTok{int}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{p^{\mu }}{2 \left(q^2-\text{m1}^2\right)}-\frac{1}{2} i \pi ^2 \left(\text{m0}^2-\text{m1}^2\right) p^{\mu } \;\text{B}_1\left(0,\text{m0}^2,\text{m1}^2\right)
+\end{dmath*}
+
+If we want the result to be express entirely in terms of
+Passarino-Veltman function, i. e. without \texttt{FAD}s, we can use
+\texttt{ToPaVe}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TID}\OperatorTok{[}\NormalTok{int}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,}\NormalTok{ ToPaVe }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} i \pi ^2 p^{\mu } \;\text{A}_0\left(\text{m1}^2\right)-\frac{1}{2} i \pi ^2 \left(\text{m0}^2-\text{m1}^2\right) p^{\mu } \;\text{B}_1\left(0,\text{m0}^2,\text{m1}^2\right)
+\end{dmath*}
+
+\texttt{ToPaVe} is actually also a standalone function, so it can be
+used independently of \texttt{TID}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClearScalarProducts}\OperatorTok{[]}
+\NormalTok{FAD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{+}\NormalTok{ p1}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{+}\NormalTok{ p2}\OperatorTok{\}]}
+\NormalTok{ToPaVe}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{q^2.(\text{p1}+q)^2.(\text{p2}+q)^2}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+i \pi ^2 \;\text{C}_0\left(\text{p1}^2,\text{p2}^2,\text{p1}^2-2 (\text{p1}\cdot \;\text{p2})+\text{p2}^2,0,0,0\right)
+\end{dmath*}
+
+Even if there are no Gram determinants, for some tensor integrals the
+full result in terms of scalar integrals is just too large
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{int }\ExtensionTok{=}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ FAD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{+}\NormalTok{ p1}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{+}\NormalTok{ p2}\OperatorTok{\}]}
+\NormalTok{res }\ExtensionTok{=}\NormalTok{ TID}\OperatorTok{[}\NormalTok{int}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{q^{\mu } q^{\nu }}{q^2.(\text{p1}+q)^2.(\text{p2}+q)^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res }\SpecialCharTok{//} \FunctionTok{Short}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{\langle\langle 1\rangle\rangle }{4 (2-D)\langle\langle 1\rangle\rangle \langle\langle 1\rangle\rangle ^2\langle\langle 1\rangle\rangle \langle\langle 1\rangle\rangle  \left(\langle\langle 1\rangle\rangle ^2-\langle\langle 1\rangle\rangle \right)^2}-\frac{\langle\langle 1\rangle\rangle }{\langle\langle 1\rangle\rangle }+\langle\langle 1\rangle\rangle -\frac{\langle\langle 44\rangle\rangle +\langle\langle 1\rangle\rangle }{4 \langle\langle 3\rangle\rangle  \langle\langle 1\rangle\rangle ^2}
+\end{dmath*}
+
+Of course we collect with respect to \texttt{FAD} and isolate the
+prefactors, but the full result still remains messy
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Collect2}\OperatorTok{[}\NormalTok{res}\OperatorTok{,}\NormalTok{ FeynAmpDenominator}\OperatorTok{,}\NormalTok{ IsolateNames }\OtherTok{{-}\textgreater{}}\NormalTok{ KK}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{\text{KK}(864)}{4 q^2.(-\text{p1}+\text{p2}+q)^2}+\frac{\text{KK}(868)}{4 q^2.(q-\text{p2})^2.(q-\text{p1})^2}-\frac{\text{KK}(866)}{4 q^2.(q-\text{p1})^2}+-\frac{\text{KK}(861)}{4 q^2.(q-\text{p2})^2}
+\end{dmath*}
+
+In such cases, we can get a much more compact results , if we stick to
+coefficient functions and do not demand the full reduction to scalars.
+To do so, use the option \texttt{UsePaVeBasis}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res }\ExtensionTok{=}\NormalTok{ TID}\OperatorTok{[}\NormalTok{int}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,}\NormalTok{ UsePaVeBasis }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+i \pi ^2 g^{\mu \nu } \;\text{C}_{00}\left(\text{p1}^2,\text{p2}^2,-2 (\text{p1}\cdot \;\text{p2})+\text{p1}^2+\text{p2}^2,0,0,0\right)+i \pi ^2 \;\text{p1}^{\mu } \;\text{p1}^{\nu } \;\text{C}_{11}\left(\text{p1}^2,-2 (\text{p1}\cdot \;\text{p2})+\text{p1}^2+\text{p2}^2,\text{p2}^2,0,0,0\right)+i \pi ^2 \;\text{p2}^{\mu } \;\text{p2}^{\nu } \;\text{C}_{11}\left(\text{p2}^2,-2 (\text{p1}\cdot \;\text{p2})+\text{p1}^2+\text{p2}^2,\text{p1}^2,0,0,0\right)+i \pi ^2 \left(\text{p1}^{\nu } \;\text{p2}^{\mu }+\text{p1}^{\mu } \;\text{p2}^{\nu }\right) \;\text{C}_{12}\left(\text{p1}^2,-2 (\text{p1}\cdot \;\text{p2})+\text{p1}^2+\text{p2}^2,\text{p2}^2,0,0,0\right)
+\end{dmath*}
+
+The resulting coefficient functions can be further reduced with
+\texttt{PaVeReduce}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pvRes }\ExtensionTok{=}\NormalTok{ PaVeReduce}\OperatorTok{[}\NormalTok{res}\OperatorTok{]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pvRes }\SpecialCharTok{//} \FunctionTok{Short}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\langle\langle 5\rangle\rangle +\frac{i \langle\langle 1\rangle\rangle \langle\langle 1\rangle\rangle \langle\langle 1\rangle\rangle  (\langle\langle 1\rangle\rangle )}{4 (2-D) \langle\langle 1\rangle\rangle ^2}
+\end{dmath*}
+
+\hypertarget{multi-loop-tensor-reduction}{%
+\subsection{Multi-loop tensor
+reduction}\label{multi-loop-tensor-reduction}}
+
+In the case of multi-loop integrals (but also 1-loop integrals with
+linear propagators) one should use \texttt{FCMultiLoopTID}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ SFAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\},} \OperatorTok{\{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{2} \FunctionTok{l}\NormalTok{ . }\FunctionTok{q}\OperatorTok{\}\}]}
+\NormalTok{FCMultiLoopTID}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{q^{\mu } q^{\nu }}{(q^2-m^2+i \eta ).(2 (l\cdot q)+i \eta )}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{m^2 \left(l^{\mu } l^{\nu }-l^2 g^{\mu \nu }\right)}{(1-D) l^2 (q^2-m^2+i \eta ).(2 (l\cdot q)+i \eta )}
+\end{dmath*}
+
+\hypertarget{working-with-gli-and-fctopology-symbols}{%
+\subsection{Working with GLI and FCTopology
+symbols}\label{working-with-gli-and-fctopology-symbols}}
+
+Integral families are encoded in form of
+\texttt{FCTopology[\allowbreak{}id,\ \allowbreak{}\{\allowbreak{}props\},\ \allowbreak{}\{\allowbreak{}lmoms\},\ \allowbreak{}\{\allowbreak{}extmoms\},\ \allowbreak{}kinematics,\ \allowbreak{}reserved]}
+symbols
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{topos }\ExtensionTok{=} \OperatorTok{\{}
+\NormalTok{   FCTopology}\OperatorTok{[}\StringTok{"topoBox1L"}\OperatorTok{,} \OperatorTok{\{}\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,}\NormalTok{ m0}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q} \SpecialCharTok{+}\NormalTok{ p1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q} \SpecialCharTok{+}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q} \SpecialCharTok{+}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ m3}\OperatorTok{\}]\},} 
+    \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}],} 
+\NormalTok{   FCTopology}\OperatorTok{[}\StringTok{"topoTad2L"}\OperatorTok{,} \OperatorTok{\{}\NormalTok{FAD}\OperatorTok{[\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{q2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{q1 }\SpecialCharTok{{-}}\NormalTok{ q2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{FCTopology}\left(\text{topoBox1L},\left\{\frac{1}{q^2-\text{m0}^2},\frac{1}{(\text{p1}+q)^2-\text{m1}^2},\frac{1}{(\text{p2}+q)^2-\text{m2}^2},\frac{1}{(\text{p2}+q)^2-\text{m3}^2}\right\},\{q\},\{\text{p1},\text{p2},\text{p3}\},\{\},\{\}\right),\text{FCTopology}\left(\text{topoTad2L},\left\{\frac{1}{\text{q1}^2-\text{m1}^2},\frac{1}{\text{q2}^2-\text{m2}^2},\frac{1}{(\text{q1}-\text{q2})^2}\right\},\{\text{q1},\text{q2}\},\{\},\{\},\{\}\right)\right\}
+\end{dmath*}
+
+The loop integrals belonging to these topologies are written as
+\texttt{GLI[\allowbreak{}id,\ \allowbreak{}\{\allowbreak{}powers\}]}
+symbols
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{exp} \ExtensionTok{=}\NormalTok{ a1 GLI}\OperatorTok{[}\StringTok{"topoBox1L"}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]} \SpecialCharTok{+}\NormalTok{ a2 GLI}\OperatorTok{[}\StringTok{"topoTad2L"}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{2}\OperatorTok{,} \DecValTok{2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{a1} G^{\text{topoBox1L}}(1,1,1,1)+\text{a2} G^{\text{topoTad2L}}(1,2,2)
+\end{dmath*}
+
+Using \texttt{FCLoopFromGLI} we can convert \texttt{GLI}s into explicit
+propagator notation
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopFromGLI}\OperatorTok{[}\FunctionTok{exp}\OperatorTok{,}\NormalTok{ topos}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\text{a1}}{\left(q^2-\text{m0}^2\right) \left((\text{p1}+q)^2-\text{m1}^2\right) \left((\text{p2}+q)^2-\text{m2}^2\right) \left((\text{p2}+q)^2-\text{m3}^2\right)}+\frac{\text{a2}}{\left(\text{q1}^2-\text{m1}^2\right) \left(\text{q2}^2-\text{m2}^2\right)^2 (\text{q1}-\text{q2})^4}
+\end{dmath*}
+
+\hypertarget{topology-identification}{%
+\subsection{Topology identification}\label{topology-identification}}
+
+The very first step is usually to identify the occurring topologies in
+the amplitude (without attempting to minimize their number)
+
+Find topologies occurring in the 2-loop ghost self-energy amplitude
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{amp }\ExtensionTok{=} \FunctionTok{Get}\OperatorTok{[}\FunctionTok{FileNameJoin}\OperatorTok{[\{}\NormalTok{$FeynCalcDirectory}\OperatorTok{,} \StringTok{"Documentation"}\OperatorTok{,} \StringTok{"Examples"}\OperatorTok{,} 
+      \StringTok{"Amplitudes"}\OperatorTok{,} \StringTok{"Gh{-}Gh{-}2L.m"}\OperatorTok{\}]]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res }\ExtensionTok{=}\NormalTok{ FCLoopFindTopologies}\OperatorTok{[}\NormalTok{amp}\OperatorTok{,} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\}]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCLoopFindTopologies: Number of the initial candidate topologies: }3
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCLoopFindTopologies: Number of the identified unique topologies: }3
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCLoopFindTopologies: Number of the preferred topologies among the unique topologies: }0
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCLoopFindTopologies: Number of the identified subtopologies: }0
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCLoopFindTopologies: }\;\text{Your topologies depend on the follwing kinematic invariants that are not all entirely lowercase: }\{\text{Pair[Momentum[p, D], Momentum[p, D]]}\}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCLoopFindTopologies: }\;\text{This may lead to issues if these topologies are meant to be processed using tools such as FIRE, KIRA or Fermat.}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res }\SpecialCharTok{//} \FunctionTok{Last}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{FCTopology}\left(\text{fctopology1},\left\{\frac{1}{(\text{q2}^2+i \eta )},\frac{1}{(\text{q1}^2+i \eta )},\frac{1}{((\text{q1}+\text{q2})^2+i \eta )},\frac{1}{((p+\text{q1})^2+i \eta )},\frac{1}{((p-\text{q2})^2+i \eta )}\right\},\{\text{q1},\text{q2}\},\{p\},\{\},\{\}\right),\text{FCTopology}\left(\text{fctopology2},\left\{\frac{1}{(\text{q2}^2+i \eta )},\frac{1}{(\text{q1}^2+i \eta )},\frac{1}{((p+\text{q2})^2+i \eta )},\frac{1}{((p-\text{q1})^2+i \eta )}\right\},\{\text{q1},\text{q2}\},\{p\},\{\},\{\}\right),\text{FCTopology}\left(\text{fctopology3},\left\{\frac{1}{(\text{q2}^2+i \eta )},\frac{1}{(\text{q1}^2+i \eta )},\frac{1}{((p-\text{q1})^2+i \eta )},\frac{1}{((p-\text{q1}+\text{q2})^2+i \eta )}\right\},\{\text{q1},\text{q2}\},\{p\},\{\},\{\}\right)\right\}
+\end{dmath*}
+
+The amplitude is the written as a linear combination of special
+products, where numerators with explicit loop momenta are multiplied by
+denominators written as \texttt{GLI}s
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res}\OperatorTok{[[}\DecValTok{1}\OperatorTok{]][[}\DecValTok{1}\NormalTok{ ;; }\DecValTok{5}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCGV}(\text{GLIProduct})\left(\xi  g_s^4 \;\text{q2}^{\text{Lor1}} p^{\text{Lor2}} \;\text{q2}^{\text{Lor2}} \;\text{q1}^{\text{Lor4}} g^{\text{Lor3}\;\text{Lor4}} (\text{q1}+\text{q2})^{\text{Lor1}} (\text{q2}-p)^{\text{Lor3}} f^{\text{Glu1}\;\text{Glu3}\;\text{Glu6}} f^{\text{Glu2}\;\text{Glu4}\;\text{Glu7}} f^{\text{Glu3}\;\text{Glu4}\;\text{Glu5}} f^{\text{Glu5}\;\text{Glu6}\;\text{Glu7}},G^{\text{fctopology1}}(2,1,1,1,1)\right)+\text{FCGV}(\text{GLIProduct})\left(-\frac{\xi  g_s^4 \;\text{q1}^{\text{Lor1}} p^{\text{Lor2}} p^{\text{Lor3}} \;\text{q2}^{\text{Lor4}} g^{\text{Lor3}\;\text{Lor4}} (\text{q1}-p)^{\text{Lor1}} (p-\text{q1})^{\text{Lor2}} f^{\text{Glu1}\;\text{Glu6}\;\text{Glu7}} f^{\text{Glu2}\;\text{Glu4}\;\text{Glu5}} f^{\text{Glu3}\;\text{Glu4}\;\text{Glu5}} f^{\text{Glu3}\;\text{Glu6}\;\text{Glu7}}}{p^2},G^{\text{fctopology2}}(1,1,1,2)\right)+\text{FCGV}(\text{GLIProduct})\left(-\frac{\xi  g_s^4 \;\text{q1}^{\text{Lor1}} p^{\text{Lor2}} p^{\text{Lor3}} \;\text{q2}^{\text{Lor4}} g^{\text{Lor1}\;\text{Lor2}} (p+\text{q2})^{\text{Lor3}} (-p-\text{q2})^{\text{Lor4}} f^{\text{Glu1}\;\text{Glu6}\;\text{Glu7}} f^{\text{Glu2}\;\text{Glu4}\;\text{Glu5}} f^{\text{Glu3}\;\text{Glu4}\;\text{Glu5}} f^{\text{Glu3}\;\text{Glu6}\;\text{Glu7}}}{p^2},G^{\text{fctopology2}}(1,1,2,1)\right)+\text{FCGV}(\text{GLIProduct})\left(-\frac{\xi ^2 g_s^4 \;\text{q1}^{\text{Lor1}} p^{\text{Lor2}} p^{\text{Lor3}} \;\text{q2}^{\text{Lor4}} (\text{q1}-p)^{\text{Lor1}} (p-\text{q1})^{\text{Lor2}} (p+\text{q2})^{\text{Lor3}} (-p-\text{q2})^{\text{Lor4}} f^{\text{Glu1}\;\text{Glu6}\;\text{Glu7}} f^{\text{Glu2}\;\text{Glu4}\;\text{Glu5}} f^{\text{Glu3}\;\text{Glu4}\;\text{Glu5}} f^{\text{Glu3}\;\text{Glu6}\;\text{Glu7}}}{p^2},G^{\text{fctopology2}}(1,1,2,2)\right)+\text{FCGV}(\text{GLIProduct})\left(-\frac{g_s^4 \;\text{q1}^{\text{Lor1}} p^{\text{Lor2}} p^{\text{Lor3}} \;\text{q2}^{\text{Lor4}} g^{\text{Lor1}\;\text{Lor2}} g^{\text{Lor3}\;\text{Lor4}} f^{\text{Glu1}\;\text{Glu6}\;\text{Glu7}} f^{\text{Glu2}\;\text{Glu4}\;\text{Glu5}} f^{\text{Glu3}\;\text{Glu4}\;\text{Glu5}} f^{\text{Glu3}\;\text{Glu6}\;\text{Glu7}}}{p^2},G^{\text{fctopology2}}(1,1,1,1)\right)
+\end{dmath*}
+
+\hypertarget{finding-topology-mappings}{%
+\subsection{Finding topology mappings}\label{finding-topology-mappings}}
+
+Here we have a set of 5 topologies
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{topos1 }\ExtensionTok{=} \OperatorTok{\{}
+\NormalTok{    FCTopology}\OperatorTok{[}\NormalTok{fctopology1}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{\{}\NormalTok{p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{      SFAD}\OperatorTok{[\{\{}\NormalTok{p1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p2 }\SpecialCharTok{+}\NormalTok{ p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p2 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{      SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p2 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{      SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p2 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{Q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}],} 
+\NormalTok{    FCTopology}\OperatorTok{[}\NormalTok{fctopology2}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{\{}\NormalTok{p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{      SFAD}\OperatorTok{[\{\{}\NormalTok{p2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p2 }\SpecialCharTok{+}\NormalTok{ p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{      SFAD}\OperatorTok{[\{\{}\NormalTok{p2 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{      SFAD}\OperatorTok{[\{\{}\NormalTok{p2 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p2 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{      SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p2 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{Q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}],} 
+\NormalTok{    FCTopology}\OperatorTok{[}\NormalTok{fctopology3}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{\{}\NormalTok{p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{      SFAD}\OperatorTok{[\{\{}\NormalTok{p2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{      SFAD}\OperatorTok{[\{\{}\NormalTok{p2 }\SpecialCharTok{+}\NormalTok{ p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{      SFAD}\OperatorTok{[\{\{}\NormalTok{p2 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p2 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{      SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p2 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]\},} 
+     \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{Q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}],} 
+\NormalTok{    FCTopology}\OperatorTok{[}\NormalTok{fctopology4}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{\{}\NormalTok{p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{      SFAD}\OperatorTok{[\{\{}\NormalTok{p2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{      SFAD}\OperatorTok{[\{\{}\NormalTok{p2 }\SpecialCharTok{+}\NormalTok{ p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{      SFAD}\OperatorTok{[\{\{}\NormalTok{p2 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{      SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p2 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]\},} 
+     \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{Q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}],} 
+\NormalTok{    FCTopology}\OperatorTok{[}\NormalTok{fctopology5}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{\{}\NormalTok{p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{      SFAD}\OperatorTok{[\{\{}\NormalTok{p2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{      SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p2 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}
+\NormalTok{      SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{      SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p2 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p2 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]\},} 
+     \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{Q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]\}}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+where 3 of them can be mapped to the other 2
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mappings1 }\ExtensionTok{=}\NormalTok{ FCLoopFindTopologyMappings}\OperatorTok{[}\NormalTok{topos1}\OperatorTok{]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCLoopFindTopologyMappings: }\;\text{Found }3\text{ mapping relations }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCLoopFindTopologyMappings: }\;\text{Final number of independent topologies: }2
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mappings1}\OperatorTok{[[}\DecValTok{1}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{ccc}
+ \;\text{FCTopology}\left(\text{fctopology3},\left\{\frac{1}{(\text{p3}^2+i \eta )},\frac{1}{(\text{p2}^2+i \eta )},\frac{1}{(\text{p1}^2+i \eta )},\frac{1}{((\text{p2}+\text{p3})^2+i \eta )},\frac{1}{((\text{p1}+\text{p3})^2+i \eta )},\frac{1}{((\text{p2}-Q)^2+i \eta )},\frac{1}{((\text{p2}+\text{p3}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p3}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p2}+\text{p3}-Q)^2+i \eta )}\right\},\{\text{p1},\text{p2},\text{p3}\},\{Q\},\{\},\{\}\right) & \{\text{p1}\to -\text{p1}-\text{p3}+Q,\text{p2}\to -\text{p2}-\text{p3}+Q,\text{p3}\to \;\text{p3}\} & G^{\text{fctopology3}}(\text{n1$\_$},\text{n7$\_$},\text{n8$\_$},\text{n5$\_$},\text{n6$\_$},\text{n4$\_$},\text{n2$\_$},\text{n3$\_$},\text{n9$\_$}):\to G^{\text{fctopology1}}(\text{n1},\text{n2},\text{n3},\text{n4},\text{n5},\text{n6},\text{n7},\text{n8},\text{n9}) \\
+ \;\text{FCTopology}\left(\text{fctopology4},\left\{\frac{1}{(\text{p3}^2+i \eta )},\frac{1}{(\text{p2}^2+i \eta )},\frac{1}{(\text{p1}^2+i \eta )},\frac{1}{((\text{p2}+\text{p3})^2+i \eta )},\frac{1}{((\text{p1}+\text{p3})^2+i \eta )},\frac{1}{((\text{p2}-Q)^2+i \eta )},\frac{1}{((\text{p1}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p3}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p2}+\text{p3}-Q)^2+i \eta )}\right\},\{\text{p1},\text{p2},\text{p3}\},\{Q\},\{\},\{\}\right) & \{\text{p1}\to Q-\text{p2},\text{p2}\to Q-\text{p1},\text{p3}\to -\text{p3}\} & G^{\text{fctopology4}}(\text{n1$\_$},\text{n6$\_$},\text{n5$\_$},\text{n8$\_$},\text{n7$\_$},\text{n3$\_$},\text{n2$\_$},\text{n4$\_$},\text{n9$\_$}):\to G^{\text{fctopology1}}(\text{n1},\text{n2},\text{n3},\text{n4},\text{n5},\text{n6},\text{n7},\text{n8},\text{n9}) \\
+ \;\text{FCTopology}\left(\text{fctopology5},\left\{\frac{1}{(\text{p3}^2+i \eta )},\frac{1}{(\text{p2}^2+i \eta )},\frac{1}{(\text{p1}^2+i \eta )},\frac{1}{((\text{p1}+\text{p3})^2+i \eta )},\frac{1}{((\text{p2}-Q)^2+i \eta )},\frac{1}{((\text{p1}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p3}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p2}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p2}+\text{p3}-Q)^2+i \eta )}\right\},\{\text{p1},\text{p2},\text{p3}\},\{Q\},\{\},\{\}\right) & \{\text{p1}\to \;\text{p2},\text{p2}\to \;\text{p1},\text{p3}\to \;\text{p3}\} & G^{\text{fctopology5}}(\text{n1$\_$},\text{n3$\_$},\text{n2$\_$},\text{n4$\_$},\text{n6$\_$},\text{n5$\_$},\text{n7$\_$},\text{n8$\_$},\text{n9$\_$}):\to G^{\text{fctopology2}}(\text{n1},\text{n2},\text{n3},\text{n4},\text{n5},\text{n6},\text{n7},\text{n8},\text{n9}) \\
+\end{array}
+\right)
+\end{dmath*}
+
+And these are the final topologies
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mappings1}\OperatorTok{[[}\DecValTok{2}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{FCTopology}\left(\text{fctopology1},\left\{\frac{1}{(\text{p3}^2+i \eta )},\frac{1}{(\text{p2}^2+i \eta )},\frac{1}{(\text{p1}^2+i \eta )},\frac{1}{((\text{p2}+\text{p3})^2+i \eta )},\frac{1}{((\text{p2}-Q)^2+i \eta )},\frac{1}{((\text{p1}-Q)^2+i \eta )},\frac{1}{((\text{p2}+\text{p3}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p3}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p2}+\text{p3}-Q)^2+i \eta )}\right\},\{\text{p1},\text{p2},\text{p3}\},\{Q\},\{\},\{\}\right),\text{FCTopology}\left(\text{fctopology2},\left\{\frac{1}{(\text{p3}^2+i \eta )},\frac{1}{(\text{p2}^2+i \eta )},\frac{1}{(\text{p1}^2+i \eta )},\frac{1}{((\text{p2}+\text{p3})^2+i \eta )},\frac{1}{((\text{p2}-Q)^2+i \eta )},\frac{1}{((\text{p1}-Q)^2+i \eta )},\frac{1}{((\text{p2}+\text{p3}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p2}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p2}+\text{p3}-Q)^2+i \eta )}\right\},\{\text{p1},\text{p2},\text{p3}\},\{Q\},\{\},\{\}\right)\right\}
+\end{dmath*}
+
+\hypertarget{tensor-reductions}{%
+\subsection{Tensor reductions}\label{tensor-reductions}}
+
+Tensor reduction for topologies that have already been processed with
+\texttt{FCLoopFindTopologies} can be done using
+\texttt{FCLoopTensorReduce}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{topo2 }\ExtensionTok{=}\NormalTok{ FCTopology}\OperatorTok{[}\NormalTok{prop1l}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]\},} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{p}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCTopology}\left(\text{prop1l},\left\{\frac{1}{(q^2-m^2+i \eta ).((q-p)^2-m^2+i \eta )}\right\},\{q\},\{p\},\{\},\{\}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{amp2 }\ExtensionTok{=}\NormalTok{ gliProduct}\OperatorTok{[}\NormalTok{GSD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]}\NormalTok{ . GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . GSD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{],}\NormalTok{ GLI}\OperatorTok{[}\NormalTok{prop1l}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{2}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{gliProduct}\left((\gamma \cdot q).\gamma ^{\mu }.(\gamma \cdot q),G^{\text{prop1l}}(1,2)\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{amp2Red }\ExtensionTok{=}\NormalTok{ FCLoopTensorReduce}\OperatorTok{[}\NormalTok{amp2}\OperatorTok{,} \OperatorTok{\{}\NormalTok{topo2}\OperatorTok{\},} \FunctionTok{Head} \OtherTok{{-}\textgreater{}}\NormalTok{ gliProduct}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{gliProduct}\left(-\frac{2 D p^{\mu } \gamma \cdot p (p\cdot q)^2-2 p^2 \gamma ^{\mu } (p\cdot q)^2-D p^4 q^2 \gamma ^{\mu }+3 p^4 q^2 \gamma ^{\mu }-2 p^2 q^2 p^{\mu } \gamma \cdot p}{(1-D) p^4},G^{\text{prop1l}}(1,2)\right)
+\end{dmath*}
+
+\hypertarget{applying-topology-mappings}{%
+\subsection{Applying topology
+mappings}\label{applying-topology-mappings}}
+
+This is a trial expression representing some loop amplitude that has
+already been processed using \texttt{FCFindTopologies}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ gliProduct}\OperatorTok{[}\NormalTok{cc6}\SpecialCharTok{*}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p1}\OperatorTok{],}\NormalTok{ GLI}\OperatorTok{[}\NormalTok{fctopology1}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]]} \SpecialCharTok{+} 
+\NormalTok{   gliProduct}\OperatorTok{[}\NormalTok{cc2}\SpecialCharTok{*}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{],}\NormalTok{ GLI}\OperatorTok{[}\NormalTok{fctopology2}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]]} \SpecialCharTok{+} 
+\NormalTok{   gliProduct}\OperatorTok{[}\NormalTok{cc4}\SpecialCharTok{*}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{],}\NormalTok{ GLI}\OperatorTok{[}\NormalTok{fctopology4}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]]} \SpecialCharTok{+} 
+\NormalTok{   gliProduct}\OperatorTok{[}\NormalTok{cc1}\SpecialCharTok{*}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,} \FunctionTok{Q}\OperatorTok{],}\NormalTok{ GLI}\OperatorTok{[}\NormalTok{fctopology1}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]]} \SpecialCharTok{+} 
+\NormalTok{   gliProduct}\OperatorTok{[}\NormalTok{cc3}\SpecialCharTok{*}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{],}\NormalTok{ GLI}\OperatorTok{[}\NormalTok{fctopology3}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]]} \SpecialCharTok{+} 
+\NormalTok{   gliProduct}\OperatorTok{[}\NormalTok{cc5}\SpecialCharTok{*}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{,} \FunctionTok{Q}\OperatorTok{],}\NormalTok{ GLI}\OperatorTok{[}\NormalTok{fctopology5}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{gliProduct}\left(\text{cc1} (\text{p1}\cdot Q),G^{\text{fctopology1}}(1,1,1,1,1,1,1,1,1)\right)+\text{gliProduct}\left(\text{cc2} (\text{p1}\cdot \;\text{p2}),G^{\text{fctopology2}}(1,1,1,1,1,1,1,1,1)\right)+\text{gliProduct}\left(\text{cc3} \;\text{p2}^2,G^{\text{fctopology3}}(1,1,1,1,1,1,1,1,1)\right)+\text{gliProduct}\left(\text{cc4} (\text{p1}\cdot \;\text{p2}),G^{\text{fctopology4}}(1,1,1,1,1,1,1,1,1)\right)+\text{gliProduct}\left(\text{cc5} (\text{p2}\cdot Q),G^{\text{fctopology5}}(1,1,1,1,1,1,1,1,1)\right)+\text{gliProduct}\left(\text{cc6} \;\text{p1}^2,G^{\text{fctopology1}}(1,1,2,1,1,1,1,1,1)\right)
+\end{dmath*}
+
+These mapping rules describe how the 3 topologies ``fctopology3'',
+``fctopology4'' and ``fctopology5'' are mapped to the topologies
+``fctopology1'' and ``fctopology2''
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mappings }\ExtensionTok{=} \OperatorTok{\{}
+   \OperatorTok{\{}\NormalTok{FCTopology}\OperatorTok{[}\NormalTok{fctopology3}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{\{}\NormalTok{p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{      SFAD}\OperatorTok{[\{\{}\NormalTok{p1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p2 }\SpecialCharTok{+}\NormalTok{ p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{      SFAD}\OperatorTok{[\{\{}\NormalTok{p2 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p2 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{      SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p2 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{Q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}],} \OperatorTok{\{}\NormalTok{p1 }\OtherTok{{-}\textgreater{}} \SpecialCharTok{{-}}\NormalTok{p1 }\SpecialCharTok{{-}}\NormalTok{ p3 }\SpecialCharTok{+} \FunctionTok{Q}\OperatorTok{,}\NormalTok{ p2 }\OtherTok{{-}\textgreater{}} 
+      \SpecialCharTok{{-}}\NormalTok{p2 }\SpecialCharTok{{-}}\NormalTok{ p3 }\SpecialCharTok{+} \FunctionTok{Q}\OperatorTok{,}\NormalTok{ p3 }\OtherTok{{-}\textgreater{}}\NormalTok{ p3}\OperatorTok{\},} 
+\NormalTok{    GLI}\OperatorTok{[}\NormalTok{fctopology3}\OperatorTok{,} \OperatorTok{\{}\AttributeTok{n1\_}\OperatorTok{,} \AttributeTok{n7\_}\OperatorTok{,} \AttributeTok{n8\_}\OperatorTok{,} \AttributeTok{n5\_}\OperatorTok{,} \AttributeTok{n6\_}\OperatorTok{,} \AttributeTok{n4\_}\OperatorTok{,} \AttributeTok{n2\_}\OperatorTok{,} \AttributeTok{n3\_}\OperatorTok{,} \AttributeTok{n9\_}\OperatorTok{\}]}\NormalTok{ :\textgreater{}}
+\NormalTok{     GLI}\OperatorTok{[}\NormalTok{fctopology1}\OperatorTok{,} \OperatorTok{\{}\NormalTok{n1}\OperatorTok{,}\NormalTok{ n2}\OperatorTok{,}\NormalTok{ n3}\OperatorTok{,}\NormalTok{ n4}\OperatorTok{,}\NormalTok{ n5}\OperatorTok{,}\NormalTok{ n6}\OperatorTok{,}\NormalTok{ n7}\OperatorTok{,}\NormalTok{ n8}\OperatorTok{,}\NormalTok{ n9}\OperatorTok{\}]\},} 
+   
+   \OperatorTok{\{}\NormalTok{FCTopology}\OperatorTok{[}\NormalTok{fctopology4}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{\{}\NormalTok{p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} 
+        \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{      SFAD}\OperatorTok{[\{\{}\NormalTok{p2 }\SpecialCharTok{+}\NormalTok{ p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p2 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{      SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{      SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p2 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{Q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}],} 
+    \OperatorTok{\{}\NormalTok{p1 }\OtherTok{{-}\textgreater{}} \SpecialCharTok{{-}}\NormalTok{p2 }\SpecialCharTok{+} \FunctionTok{Q}\OperatorTok{,}\NormalTok{ p2 }\OtherTok{{-}\textgreater{}} \SpecialCharTok{{-}}\NormalTok{p1 }\SpecialCharTok{+} \FunctionTok{Q}\OperatorTok{,}\NormalTok{ p3 }\OtherTok{{-}\textgreater{}} \SpecialCharTok{{-}}\NormalTok{p3}\OperatorTok{\},} 
+\NormalTok{    GLI}\OperatorTok{[}\NormalTok{fctopology4}\OperatorTok{,} \OperatorTok{\{}\AttributeTok{n1\_}\OperatorTok{,} \AttributeTok{n6\_}\OperatorTok{,} \AttributeTok{n5\_}\OperatorTok{,} \AttributeTok{n8\_}\OperatorTok{,} \AttributeTok{n7\_}\OperatorTok{,} \AttributeTok{n3\_}\OperatorTok{,} \AttributeTok{n2\_}\OperatorTok{,} \AttributeTok{n4\_}\OperatorTok{,} \AttributeTok{n9\_}\OperatorTok{\}]}\NormalTok{ :\textgreater{}}
+\NormalTok{     GLI}\OperatorTok{[}\NormalTok{fctopology1}\OperatorTok{,} \OperatorTok{\{}\NormalTok{n1}\OperatorTok{,}\NormalTok{ n2}\OperatorTok{,}\NormalTok{ n3}\OperatorTok{,}\NormalTok{ n4}\OperatorTok{,}\NormalTok{ n5}\OperatorTok{,}\NormalTok{ n6}\OperatorTok{,}\NormalTok{ n7}\OperatorTok{,}\NormalTok{ n8}\OperatorTok{,}\NormalTok{ n9}\OperatorTok{\}]\},} 
+   
+   \OperatorTok{\{}\NormalTok{FCTopology}\OperatorTok{[}\NormalTok{fctopology5}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{\{}\NormalTok{p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} 
+        \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{      SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p2 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{      SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{      SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p2 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p2 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{Q}\OperatorTok{\},} \OperatorTok{\{\},}
+     \OperatorTok{\{\}],} \OperatorTok{\{}\NormalTok{p1 }\OtherTok{{-}\textgreater{}}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p2 }\OtherTok{{-}\textgreater{}}\NormalTok{ p1}\OperatorTok{,}\NormalTok{ p3 }\OtherTok{{-}\textgreater{}}\NormalTok{ p3}\OperatorTok{\},} 
+\NormalTok{    GLI}\OperatorTok{[}\NormalTok{fctopology5}\OperatorTok{,} \OperatorTok{\{}\AttributeTok{n1\_}\OperatorTok{,} \AttributeTok{n3\_}\OperatorTok{,} \AttributeTok{n2\_}\OperatorTok{,} \AttributeTok{n4\_}\OperatorTok{,} \AttributeTok{n6\_}\OperatorTok{,} \AttributeTok{n5\_}\OperatorTok{,} \AttributeTok{n7\_}\OperatorTok{,} \AttributeTok{n8\_}\OperatorTok{,} \AttributeTok{n9\_}\OperatorTok{\}]}\NormalTok{ :\textgreater{}}
+\NormalTok{     GLI}\OperatorTok{[}\NormalTok{fctopology2}\OperatorTok{,} \OperatorTok{\{}\NormalTok{n1}\OperatorTok{,}\NormalTok{ n2}\OperatorTok{,}\NormalTok{ n3}\OperatorTok{,}\NormalTok{ n4}\OperatorTok{,}\NormalTok{ n5}\OperatorTok{,}\NormalTok{ n6}\OperatorTok{,}\NormalTok{ n7}\OperatorTok{,}\NormalTok{ n8}\OperatorTok{,}\NormalTok{ n9}\OperatorTok{\}]\}\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{ccc}
+ \;\text{FCTopology}\left(\text{fctopology3},\left\{\frac{1}{(\text{p3}^2+i \eta )},\frac{1}{(\text{p2}^2+i \eta )},\frac{1}{(\text{p1}^2+i \eta )},\frac{1}{((\text{p2}+\text{p3})^2+i \eta )},\frac{1}{((\text{p1}+\text{p3})^2+i \eta )},\frac{1}{((\text{p2}-Q)^2+i \eta )},\frac{1}{((\text{p2}+\text{p3}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p3}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p2}+\text{p3}-Q)^2+i \eta )}\right\},\{\text{p1},\text{p2},\text{p3}\},\{Q\},\{\},\{\}\right) & \{\text{p1}\to -\text{p1}-\text{p3}+Q,\text{p2}\to -\text{p2}-\text{p3}+Q,\text{p3}\to \;\text{p3}\} & G^{\text{fctopology3}}(\text{n1$\_$},\text{n7$\_$},\text{n8$\_$},\text{n5$\_$},\text{n6$\_$},\text{n4$\_$},\text{n2$\_$},\text{n3$\_$},\text{n9$\_$}):\to G^{\text{fctopology1}}(\text{n1},\text{n2},\text{n3},\text{n4},\text{n5},\text{n6},\text{n7},\text{n8},\text{n9}) \\
+ \;\text{FCTopology}\left(\text{fctopology4},\left\{\frac{1}{(\text{p3}^2+i \eta )},\frac{1}{(\text{p2}^2+i \eta )},\frac{1}{(\text{p1}^2+i \eta )},\frac{1}{((\text{p2}+\text{p3})^2+i \eta )},\frac{1}{((\text{p1}+\text{p3})^2+i \eta )},\frac{1}{((\text{p2}-Q)^2+i \eta )},\frac{1}{((\text{p1}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p3}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p2}+\text{p3}-Q)^2+i \eta )}\right\},\{\text{p1},\text{p2},\text{p3}\},\{Q\},\{\},\{\}\right) & \{\text{p1}\to Q-\text{p2},\text{p2}\to Q-\text{p1},\text{p3}\to -\text{p3}\} & G^{\text{fctopology4}}(\text{n1$\_$},\text{n6$\_$},\text{n5$\_$},\text{n8$\_$},\text{n7$\_$},\text{n3$\_$},\text{n2$\_$},\text{n4$\_$},\text{n9$\_$}):\to G^{\text{fctopology1}}(\text{n1},\text{n2},\text{n3},\text{n4},\text{n5},\text{n6},\text{n7},\text{n8},\text{n9}) \\
+ \;\text{FCTopology}\left(\text{fctopology5},\left\{\frac{1}{(\text{p3}^2+i \eta )},\frac{1}{(\text{p2}^2+i \eta )},\frac{1}{(\text{p1}^2+i \eta )},\frac{1}{((\text{p1}+\text{p3})^2+i \eta )},\frac{1}{((\text{p2}-Q)^2+i \eta )},\frac{1}{((\text{p1}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p3}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p2}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p2}+\text{p3}-Q)^2+i \eta )}\right\},\{\text{p1},\text{p2},\text{p3}\},\{Q\},\{\},\{\}\right) & \{\text{p1}\to \;\text{p2},\text{p2}\to \;\text{p1},\text{p3}\to \;\text{p3}\} & G^{\text{fctopology5}}(\text{n1$\_$},\text{n3$\_$},\text{n2$\_$},\text{n4$\_$},\text{n6$\_$},\text{n5$\_$},\text{n7$\_$},\text{n8$\_$},\text{n9$\_$}):\to G^{\text{fctopology2}}(\text{n1},\text{n2},\text{n3},\text{n4},\text{n5},\text{n6},\text{n7},\text{n8},\text{n9}) \\
+\end{array}
+\right)
+\end{dmath*}
+
+These are the two topologies onto which everything is mapped
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{finalTopos }\ExtensionTok{=} \OperatorTok{\{}
+\NormalTok{   FCTopology}\OperatorTok{[}\NormalTok{fctopology1}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{\{}\NormalTok{p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{     SFAD}\OperatorTok{[\{\{}\NormalTok{p1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p2 }\SpecialCharTok{+}\NormalTok{ p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p2 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{     SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p2 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{     SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p2 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{Q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}],} 
+\NormalTok{   FCTopology}\OperatorTok{[}\NormalTok{fctopology2}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{\{}\NormalTok{p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{     SFAD}\OperatorTok{[\{\{}\NormalTok{p1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p2 }\SpecialCharTok{+}\NormalTok{ p3}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p2 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{     SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p2 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p2 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{     SFAD}\OperatorTok{[\{\{}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p2 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{{-}} \FunctionTok{Q}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{Q}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{FCTopology}\left(\text{fctopology1},\left\{\frac{1}{(\text{p3}^2+i \eta )},\frac{1}{(\text{p2}^2+i \eta )},\frac{1}{(\text{p1}^2+i \eta )},\frac{1}{((\text{p2}+\text{p3})^2+i \eta )},\frac{1}{((\text{p2}-Q)^2+i \eta )},\frac{1}{((\text{p1}-Q)^2+i \eta )},\frac{1}{((\text{p2}+\text{p3}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p3}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p2}+\text{p3}-Q)^2+i \eta )}\right\},\{\text{p1},\text{p2},\text{p3}\},\{Q\},\{\},\{\}\right),\text{FCTopology}\left(\text{fctopology2},\left\{\frac{1}{(\text{p3}^2+i \eta )},\frac{1}{(\text{p2}^2+i \eta )},\frac{1}{(\text{p1}^2+i \eta )},\frac{1}{((\text{p2}+\text{p3})^2+i \eta )},\frac{1}{((\text{p2}-Q)^2+i \eta )},\frac{1}{((\text{p1}-Q)^2+i \eta )},\frac{1}{((\text{p2}+\text{p3}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p2}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p2}+\text{p3}-Q)^2+i \eta )}\right\},\{\text{p1},\text{p2},\text{p3}\},\{Q\},\{\},\{\}\right)\right\}
+\end{dmath*}
+
+\texttt{FCLoopApplyTopologyMappings} applies the given mappings to the
+expression creating an output that is ready to be processed further
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopApplyTopologyMappings}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,} \OperatorTok{\{}\NormalTok{mappings}\OperatorTok{,}\NormalTok{ finalTopos}\OperatorTok{\},} \FunctionTok{Head} \OtherTok{{-}\textgreater{}}\NormalTok{ gliProduct}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} G^{\text{fctopology1}}(1,1,1,1,1,1,1,1,1) \left(\text{cc1} Q^2+\text{cc4} Q^2+2 \;\text{cc6}\right)+\frac{1}{2} (\text{cc1}-\text{cc4}) G^{\text{fctopology1}}(1,1,0,1,1,1,1,1,1)-\frac{1}{2} (\text{cc1}-\text{cc4}) G^{\text{fctopology1}}(1,1,1,1,1,0,1,1,1)+\frac{1}{2} Q^2 (\text{cc2}+\text{cc5}) G^{\text{fctopology2}}(1,1,1,1,1,1,1,1,1)-\frac{1}{2} (\text{cc2}+\text{cc5}) G^{\text{fctopology2}}(1,1,1,1,1,0,1,1,1)-\frac{1}{2} \;\text{cc2} G^{\text{fctopology2}}(1,1,1,1,0,1,1,1,1)+\frac{1}{2} \;\text{cc2} G^{\text{fctopology2}}(1,1,1,1,1,1,1,0,1)+\text{cc3} G^{\text{fctopology1}}(1,1,1,1,1,1,0,1,1)+\frac{1}{2} \;\text{cc4} G^{\text{fctopology1}}(0,1,1,1,1,1,1,1,1)-\frac{1}{2} \;\text{cc4} G^{\text{fctopology1}}(1,1,1,0,1,1,1,1,1)-\frac{1}{2} \;\text{cc4} G^{\text{fctopology1}}(1,1,1,1,1,1,1,0,1)+\frac{1}{2} \;\text{cc4} G^{\text{fctopology1}}(1,1,1,1,1,1,1,1,0)+\frac{1}{2} \;\text{cc5} G^{\text{fctopology2}}(1,1,0,1,1,1,1,1,1)
+\end{dmath*}
+
+The resulting \texttt{GLI}s in the expression are loop integrals that
+can be IBP-reduced
+
+\hypertarget{mappings-between-integrals}{%
+\subsection{Mappings between
+integrals}\label{mappings-between-integrals}}
+
+To find one-to-one mappings between loop integrals use
+\texttt{FCLoopFindIntegralMappings}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClearScalarProducts}\OperatorTok{[]}
+\FunctionTok{ClearAll}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,}\NormalTok{ topo2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{topos }\ExtensionTok{=} \OperatorTok{\{}\NormalTok{FCTopology}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{}\NormalTok{p1}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{}\NormalTok{p2}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\},} \OperatorTok{\{\}],} 
+\NormalTok{   FCTopology}\OperatorTok{[}\NormalTok{topo2}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{}\NormalTok{p3}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{}\NormalTok{p4}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{p3}\OperatorTok{,}\NormalTok{ p4}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{FCTopology}\left(\text{topo1},\left\{\frac{1}{(\text{p1}^2-m^2+i \eta )},\frac{1}{(\text{p2}^2-m^2+i \eta )}\right\},\{\text{p1},\text{p2}\},\{\},\{\},\{\}\right),\text{FCTopology}\left(\text{topo2},\left\{\frac{1}{(\text{p3}^2-m^2+i \eta )},\frac{1}{(\text{p4}^2-m^2+i \eta )}\right\},\{\text{p3},\text{p4}\},\{\},\{\},\{\}\right)\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{glis }\ExtensionTok{=} \OperatorTok{\{}\NormalTok{GLI}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ GLI}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{2}\OperatorTok{\}],}\NormalTok{ GLI}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,} \OperatorTok{\{}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{   GLI}\OperatorTok{[}\NormalTok{topo2}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ GLI}\OperatorTok{[}\NormalTok{topo2}\OperatorTok{,} \OperatorTok{\{}\DecValTok{2}\OperatorTok{,} \DecValTok{2}\OperatorTok{\}]\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{G^{\text{topo1}}(1,1),G^{\text{topo1}}(1,2),G^{\text{topo1}}(2,1),G^{\text{topo2}}(1,1),G^{\text{topo2}}(2,2)\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mappings }\ExtensionTok{=}\NormalTok{ FCLoopFindIntegralMappings}\OperatorTok{[}\NormalTok{glis}\OperatorTok{,}\NormalTok{ topos}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\left\{G^{\text{topo2}}(1,1)\to G^{\text{topo1}}(1,1),G^{\text{topo1}}(2,1)\to G^{\text{topo1}}(1,2)\right\},\left\{G^{\text{topo1}}(1,1),G^{\text{topo1}}(1,2),G^{\text{topo2}}(2,2)\right\}\right\}
+\end{dmath*}
+\end{document}

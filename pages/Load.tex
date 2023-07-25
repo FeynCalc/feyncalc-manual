@@ -1,0 +1,56 @@
+% !TeX program = pdflatex
+% !TeX root = Load.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{loading the package}{
+\section{Loading the package}\label{loading the package}\index{Loading the package}}
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}.
+
+\hypertarget{getting-started}{%
+\subsection{Getting started}\label{getting-started}}
+
+To load FeynCalc 9 or newer run
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\textless{}\textless{}FeynCalc\textasciigrave{}}
+\end{Highlighting}
+\end{Shaded}
+
+in your Mathematica session. Notice that once FeynCalc has been loaded,
+it cannot be ``reloaded'' again. You need to restart the kernel first.
+
+\hypertarget{add-ons}{%
+\subsection{Add-ons}\label{add-ons}}
+
+Extensions such FeynHelpers, FeynOnium, FeynArts loader, PHI etc. are
+loaded by adding the corresponding text strings to the global variable
+\texttt{\$LoadAddOns}. This variable must be set before loading
+FeynCalc. For example
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$LoadAddOns}\ExtensionTok{=}\OperatorTok{\{}\StringTok{"FeynArts"}\OperatorTok{,}\StringTok{"FeynHelpers"}\OperatorTok{\}}\NormalTok{;}
+\NormalTok{\textless{}\textless{}FeynCalc\textasciigrave{}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{startup-messages}{%
+\subsection{Startup messages}\label{startup-messages}}
+
+To suppress the package startup messages you can set the global variable
+\texttt{\$FeynCalcStartupMessages} to \texttt{False} before loading
+FeynCalc. For example
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$FeynCalcStartupMessages}\ExtensionTok{=}\ConstantTok{False}\NormalTok{;}
+\NormalTok{\textless{}\textless{}FeynCalc\textasciigrave{}}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

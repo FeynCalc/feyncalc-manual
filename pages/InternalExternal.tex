@@ -1,0 +1,336 @@
+% !TeX program = pdflatex
+% !TeX root = InternalExternal.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{internal vs. external representations}{
+\section{Internal vs. External Representations}\label{internal vs. external representations}\index{Internal vs. External Representations}}
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}.
+
+\hypertarget{feyncalcinternal}{%
+\subsection{FeynCalcInternal}\label{feyncalcinternal}}
+
+The internal representation (\texttt{FeynCalcIntenral} or \texttt{FCI})
+is how FeynCalc internally ``sees'' the objects. For example, a
+\(4\)-dimensional \(4\)-vector is represented by
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pair}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\mu }
+\end{dmath*}
+
+Pair is one of the most basic FeynCalc objects. Depending on its
+arguments, it can represent a \(4\)-vector, a metric tensor
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pair}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{g}^{\mu \nu }
+\end{dmath*}
+
+or a scalar product of two 4-vectors
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot \overline{q}
+\end{dmath*}
+
+Another essential object is \texttt{DiracGamma} that is used to
+represent Dirac matrices. An uncontracted Dirac matrix is
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracGamma}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }
+\end{dmath*}
+
+and for a Feynman slash we use
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracGamma}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }\cdot \overline{p}
+\end{dmath*}
+
+The Levi-Civita-Tensor is
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Eps}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\mu \nu \rho \sigma }
+\end{dmath*}
+
+or, when contracted with \(4\)-momenta
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Eps}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\NormalTok{q1}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\NormalTok{q2}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\overline{\text{p1}}\;\overline{\text{p2}}\;\overline{\text{q1}}\;\overline{\text{q2}}}
+\end{dmath*}
+
+This notation (momenta in the index slots) is also used in many other
+tools (e.g.~FORM). The advantage is, that we do not need to canonicalize
+the indices of the Levi-Civita-Tensor, e.g.~to ensure that
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{diff }\ExtensionTok{=}\NormalTok{ Eps}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],}\NormalTok{ Momentum}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\NormalTok{q1}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\NormalTok{q2}\OperatorTok{]]}\NormalTok{ Pair}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],}\NormalTok{ Momentum}\OperatorTok{[}\NormalTok{p1}\OperatorTok{]]} \SpecialCharTok{{-}} 
+\NormalTok{   Eps}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]],}\NormalTok{ Momentum}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\NormalTok{q1}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\NormalTok{q2}\OperatorTok{]]}\NormalTok{ Pair}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]],}\NormalTok{ Momentum}\OperatorTok{[}\NormalTok{p1}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{\text{p1}}^{\mu } \bar{\epsilon }^{\mu \overline{\text{p2}}\;\overline{\text{q1}}\;\overline{\text{q2}}}-\overline{\text{p1}}^{\nu } \bar{\epsilon }^{\nu \overline{\text{p2}}\;\overline{\text{q1}}\;\overline{\text{q2}}}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{diff }\SpecialCharTok{//}\NormalTok{ Contract}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+is zero.
+
+\hypertarget{feyncalcexternal}{%
+\subsection{FeynCalcExternal}\label{feyncalcexternal}}
+
+The internal representation is useful for the internal programming
+FeynCalc, but obviously too cumbersome for the user input. This is why
+FeynCalc also has an external representation (\texttt{FeynCalcExternal}
+or \texttt{FCE}), that is concise and convenient.
+
+Let us start with the \(4\)-vector. In the FCE-notation it is just
+\texttt{FV} (``FourVector'')
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\mu }
+\end{dmath*}
+
+It is not hard to guess that the scalar product is \texttt{SP}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot \overline{q}
+\end{dmath*}
+
+while for the metric tensor we write \texttt{MT}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MT}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{g}^{\mu \nu }
+\end{dmath*}
+
+To input a Dirac matrix or a Feynman slash, use \texttt{GA} or
+\texttt{GS} respectively
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\gamma }\cdot \overline{p}
+\end{dmath*}
+
+The Levi-Civita tensor is \texttt{LC}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LC}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\mu \nu \rho \sigma }
+\end{dmath*}
+
+The fully contracted form is entered via
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LC}\OperatorTok{[][}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\overline{\text{p1}}\;\overline{\text{p2}}\;\overline{\text{q1}}\;\overline{\text{q2}}}
+\end{dmath*}
+
+It is also possible to enter a mixed form
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LC}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]][}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\mu \overline{\text{p1}}\;\overline{\text{p2}}\overline{q}}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LC}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]][}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\mu \nu \overline{\text{p1}}\;\overline{\text{p2}}}
+\end{dmath*}
+
+\hypertarget{switching-between-the-representations}{%
+\subsection{Switching between the
+representations}\label{switching-between-the-representations}}
+
+To convert between the two representations we use the functions
+\texttt{FCI} and \texttt{FCE}, which are shortcuts for
+\texttt{FeynCalcInternal} and \texttt{FeynCalcExternal}. One cannot
+distinguish between the notations using the typesetting, i.e.~when we
+see a typeset object in the \texttt{TraditionalForm}, we cannot really
+tell if it is in the \texttt{FCI} or \texttt{FCE} notation.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex1 }\ExtensionTok{=}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\NormalTok{ex2 }\ExtensionTok{=}\NormalTok{ Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\mu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\mu }
+\end{dmath*}
+
+However, we can always use StandardForm to see the difference
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex1 }\SpecialCharTok{//} \FunctionTok{StandardForm}
+\NormalTok{ex2 }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*FV[p, \textbackslash{}[Mu]]*)}
+
+\CommentTok{(*Pair[LorentzIndex[\textbackslash{}[Mu]], Momentum[p]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{why-it-matters}{%
+\subsection{Why it matters}\label{why-it-matters}}
+
+All FeynCalc functions that are meant for users will automatically
+convert the user input in the \texttt{FCE} notation into the
+\texttt{FCI} notation. You do not have to do it by yourself.
+
+On the other hand, virtually all FeynCalc functions produce their output
+in the \texttt{FCI} form. So when you have an expression that was
+obtained from FeynCalc and want to apply some replacement rules to it,
+we have to use the \texttt{FCI} form in the rule
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{p}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot \overline{q}
+\end{dmath*}
+
+No surprise that following does not work
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\OtherTok{/.}\NormalTok{ SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot \overline{q}
+\end{dmath*}
+
+But if we wrap the r.h.s of the rule with \texttt{FCI}, then everything
+is fine
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\OtherTok{/.}\NormalTok{ FCI}\OperatorTok{[}\NormalTok{SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]]} \OtherTok{{-}\textgreater{}} \DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+1
+\end{dmath*}
+\end{document}

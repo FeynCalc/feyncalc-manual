@@ -1,0 +1,166 @@
+% !TeX program = pdflatex
+% !TeX root = Dimensions.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{dimensions}{
+\section{Dimensions}\label{dimensions}\index{Dimensions}}
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}.
+
+\hypertarget{notation}{%
+\subsection{Notation}\label{notation}}
+
+You might have wondered why 4-vectors, scalar products and Dirac
+matrices all have a bar, like \(\bar{p}^\mu\) or
+\(\bar{p} \cdot \bar{q}\). The bar is there to specify that they are
+4-dimensional objects. Objects that live in \(D\) dimensions do not have
+a bar, cf.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p^{\mu }
+\end{dmath*}
+
+\begin{verbatim}
+(*Pair[LorentzIndex[\[Mu], D], Momentum[p, D]]*)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MTD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+g^{\mu \nu }
+\end{dmath*}
+
+\begin{verbatim}
+(*Pair[LorentzIndex[\[Mu], D], LorentzIndex[\[Nu], D]]*)
+\end{verbatim}
+
+This origin of this notation is a
+\href{https://inspirehep.net/record/124212}{publication} by
+Breitenlohner and Maison on the treatment of \(\gamma^5\) in \(D\)
+dimensions in the t'Hooft-Veltman scheme. The main idea was that we can
+decompose indexed objects into \(4\)- and \(D-4\)-dimensional pieces,
+e.g.~\(p^\mu = \bar{p}^\mu + \hat{p}^\mu\). Consequently, in FeynCalc we
+can also enter \(D-4\)-dimensional objects
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FVE}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\hat{p}^{\mu }
+\end{dmath*}
+
+\begin{verbatim}
+(*Pair[LorentzIndex[\[Mu], -4 + D], Momentum[p, -4 + D]]*)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MTE}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\hat{g}^{pq}
+\end{dmath*}
+
+\begin{verbatim}
+(*Pair[LorentzIndex[p, -4 + D], LorentzIndex[q, -4 + D]]*)
+\end{verbatim}
+
+When we contract Lorentz tensors from different dimensions, the
+contractions are resolved according to the rules from the paper of
+Breitenlohner and Maison, e. g.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p^{\mu } \overline{q}^{\mu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot \overline{q}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FVE}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\hat{q}^{\mu } \overline{p}^{\mu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+Sometimes we need to switch from one dimension to another, e.g.~to
+convert a 4-dimensional object to a \(D\)-dimensional one or vice versa.
+This is done via
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\NormalTok{ChangeDimension}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \DecValTok{4}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p^{\mu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\mu }
+\end{dmath*}
+
+The second argument of \texttt{ChangeDimension} is the new dimension .
+The most common choices are \(4\), \(D\) or \(D-4\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\NormalTok{ChangeDimension}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{D} \SpecialCharTok{{-}} \DecValTok{4}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p^{\mu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\hat{p}^{\mu }
+\end{dmath*}
+\end{document}

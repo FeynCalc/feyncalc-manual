@@ -1,0 +1,152 @@
+% !TeX program = pdflatex
+% !TeX root = Install.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{installation}{
+\section{Installation}\label{installation}\index{Installation}}
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}.
+
+The installation of FeynCalc can be done either automatically using the
+provided Mathematica script or manually by copying the code to specific
+locations on your computer.
+
+\hypertarget{automatic-installation}{%
+\subsection{Automatic installation}\label{automatic-installation}}
+
+\hypertarget{stable-version}{%
+\subsubsection{Stable version}\label{stable-version}}
+
+The stable version is the latest official release of FeynCalc. We don't
+have fixed development cycles so that the stable version is released
+just when it's ready. The code of the stable version is located in the
+\href{https://github.com/FeynCalc/feyncalc/tree/hotfix-stable}{hotfix-stable}
+branch of our main repository. Since FeynCalc 9, all the bugs that are
+discovered in the latest stable version will be fixed in that branch.
+When you install FeynCalc using the automatic installer you will
+automatically receive all the current fixes. Note that the stable branch
+will not contain any new features until the next stable release.
+
+To install the stable version run the following instruction in a Kernel
+or Notebook session of Mathematica.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Import}\OperatorTok{[}\StringTok{"https://raw.githubusercontent.com/FeynCalc/feyncalc/master/install.m"}\OperatorTok{]}
+\NormalTok{InstallFeynCalc}\OperatorTok{[]}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{development-version}{%
+\subsubsection{Development version}\label{development-version}}
+
+The development version is the content of the master branch in the
+\href{https://github.com/FeynCalc/feyncalc}{Git repository} of FeynCalc.
+It contains all the fixes and new features that were implemented since
+the last stable release. In the development process we use a growing
+number of
+\href{https://github.com/FeynCalc/feyncalc/tree/master/Tests}{unit
+tests} to ensure that the changes in the code do not break existing
+behavior or introduce new bugs. \textbf{However, despite thorough
+testing the development version may still contain bugs and incomplete or
+untested features. You can greatly help FeynCalc developers by testing
+the development version and reporting issues with it!}
+
+To install the development version run the following instruction in a
+Kernel or Notebook session of Mathematica
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Import}\OperatorTok{[}\StringTok{"https://raw.githubusercontent.com/FeynCalc/feyncalc/master/install.m"}\OperatorTok{]}
+\NormalTok{InstallFeynCalc}\OperatorTok{[}\NormalTok{InstallFeynCalcDevelopmentVersion }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{troubleshooting}{%
+\subsubsection{Troubleshooting}\label{troubleshooting}}
+
+On Linux (possibly also Windows 10 and macOS) the above code might fail
+when run with Mathematica 8, 9, 10 or 11. The error messages will look
+like \texttt{URLSave::invhttp: SSL connect error} or
+\texttt{URLSave::invhttp}. This is most likely caused by some library
+incompatibilities. A workaround for versions 10 and 11 is available
+\href{https://mathematica.stackexchange.com/questions/212453/urlsave-in-mathematica-10-and-11-on-linux}{here}.
+For versions 9 and 8 see
+\href{https://mathematica.stackexchange.com/questions/212455/ssl-errors-when-using-urlfetch-or-urlsave-in-versions-8-or-9}{here}.
+If nothing helps, you can still download the necessary files by yourself
+and run the automatic installer offline.
+
+\hypertarget{manual-installation}{%
+\subsection{Manual installation}\label{manual-installation}}
+
+Manual installation is also possible, but is slightly less convenient as
+compared to using the automatic installer.
+
+\begin{itemize}
+\item
+  Download
+  \href{https://github.com/FeynCalc/feyncalc/archive/hotfix-stable.zip}{this}
+  (for the stable version) or
+  \href{https://github.com/FeynCalc/feyncalc/archive/master.zip}{this}
+  (for the development version) zip file.
+\item
+  Copy the \emph{FeynCalc} directory from the extracted archive to the
+  \emph{Applications} directory inside \texttt{\$UserBaseDirectory}
+  (evaluate ``FileNameJoin{[}\{\$UserBaseDirectory,
+  ``Applications''\}{]}``` in Mathematica).
+\item
+  If you want to allow \texttt{FeynCalc} to activate
+  \texttt{TraditionalForm} typesetting when it is loaded, create
+  ``FCConfig.m'' inside \emph{FeynCalc} directory and add there the
+  following line
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$FCTraditionalFormOutput}\ExtensionTok{=}\ConstantTok{True}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+  this change will affect only the current \texttt{FeynCalc} session and
+  will not modify the default behavior of Mathematica.
+\end{itemize}
+
+\hypertarget{offline-automatic-installation}{%
+\subsection{Offline automatic
+installation}\label{offline-automatic-installation}}
+
+\begin{itemize}
+\item
+  Download the following 3 files:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \href{https://github.com/FeynCalc/feyncalc/archive/master.zip}{master.zip}
+    (FeynCalc)
+  \item
+    \href{https://github.com/FeynCalc/feynarts-mirror/archive/master.zip}{master.zip}
+    (FeynArts)
+  \item
+    \href{https://github.com/FeynCalc/feyncalc/raw/master/install.m}{install.m}
+  \end{itemize}
+\item
+  Put these files to the same folder. In the following I assume that it
+  is \texttt{"/home/vs/Downloads"} which will be of course different on
+  your system. Then open Mathematica and run
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{(*Change myPath accordingly! *)}
+\NormalTok{myPath }\ExtensionTok{=} \StringTok{"/home/vs/Downloads"}\NormalTok{;}
+\FunctionTok{Get}\OperatorTok{[}\FunctionTok{FileNameJoin}\OperatorTok{[\{}\NormalTok{myPath}\OperatorTok{,}\StringTok{"install.m"}\OperatorTok{\}]]}
+\NormalTok{$PathToFCArc }\ExtensionTok{=} \FunctionTok{FileNameJoin}\OperatorTok{[\{}\NormalTok{myPath}\OperatorTok{,}\StringTok{"feyncalc{-}master.zip"}\OperatorTok{\}]}\NormalTok{;}
+\NormalTok{$PathToFAArc }\ExtensionTok{=} \FunctionTok{FileNameJoin}\OperatorTok{[\{}\NormalTok{myPath}\OperatorTok{,}\StringTok{"feynarts{-}mirror{-}master.zip"}\OperatorTok{\}]}\NormalTok{;}
+\NormalTok{InstallFeynCalc}\OperatorTok{[}\NormalTok{InstallFeynCalcDevelopmentVersion }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}

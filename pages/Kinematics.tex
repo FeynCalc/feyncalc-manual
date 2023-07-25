@@ -1,0 +1,74 @@
+% !TeX program = pdflatex
+% !TeX root = Kinematics.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{kinematics}{
+\section{Kinematics}\label{kinematics}\index{Kinematics}}
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}.
+
+\hypertarget{manipulations}{%
+\subsection{Manipulations}\label{manipulations}}
+
+FeynCalc allows you to specify the values of scalar products before
+doing the calculation.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]} \ExtensionTok{=} \FunctionTok{s}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+s
+\end{dmath*}
+
+To clear the previously set values, use
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClearScalarProducts}\OperatorTok{[]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot \overline{q}
+\end{dmath*}
+
+A good habit is to always apply
+\texttt{FCClearScalarProducts[\allowbreak{}]} before setting the values,
+like in
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClearScalarProducts}\OperatorTok{[]}\NormalTok{;}
+\NormalTok{SP}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p1}\OperatorTok{]} \ExtensionTok{=}\NormalTok{ m1}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{;}
+\NormalTok{SP}\OperatorTok{[}\NormalTok{p2}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{]} \ExtensionTok{=}\NormalTok{ m2}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+Setting up the kinematics in advance improves performance of FeynCalc
+and leads to more compact results. The results with the fully arbitrary
+kinematics are the most complicated and the longest ones.
+\end{document}

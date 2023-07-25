@@ -3,31 +3,160 @@
 
 \documentclass[../FeynCalcManual.tex]{subfiles}
 \begin{document}
-\hypertarget{upper and lower indices}{
-\section{Upper and lower indices}\label{upper and lower indices}\index{Upper and lower indices}}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{handling indices}{
+\section{Handling indices}\label{handling indices}\index{Handling indices}}
 
 \subsection{See also}
 
 \hyperlink{toc}{Overview}.
 
-Here we list a set of rules that allows to reconstruct the positions of
-indices (upstairs or downstairs) appearing in FeynCalc expressions
+\hypertarget{manipulations}{%
+\subsection{Manipulations}\label{manipulations}}
 
-\begin{itemize}
-\tightlist
-\item
-  Every expression must satisfy Einsteins's summation convention, both
-  for Lorentz and Cartesian indices. Single terms containing more than
-  two identical Lorentz or Cartesian indices are illegal and will lead
-  to inconsistent results.
-\item
-  In a contraction of two Lorentz indices it is understood that one of
-  them is upstairs and the other is downstairs.
-\item
-  In a contraction of two Cartesian indices, both indices are understood
-  to be upper indices.
-\item
-  A free Lorentz or Cartesian index is always understood to be an upper
-  index
-\end{itemize}
+When you square an expression with dummy indices, you must rename them
+first. People often do this by hand, e.g.~as in
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex1 }\ExtensionTok{=}\NormalTok{ (FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]} \SpecialCharTok{+}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{) FV}\OperatorTok{[}\FunctionTok{r}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{r}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{r}^{\mu } \overline{r}^{\nu } \left(\overline{p}^{\mu }+\overline{q}^{\mu }\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex1 (ex1 }\OtherTok{/.} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]}\NormalTok{)}
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{r}^{\mu } \left(\overline{r}^{\nu }\right)^2 \overline{r}^{\rho } \left(\overline{p}^{\mu }+\overline{q}^{\mu }\right) \left(\overline{p}^{\rho }+\overline{q}^{\rho }\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{r}^2 \left(\overline{p}\cdot \overline{r}+\overline{q}\cdot \overline{r}\right)^2
+\end{dmath*}
+
+However, since FeynCalc 9 there is a function for that
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCRenameDummyIndices}\OperatorTok{[}\NormalTok{ex1}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{r}^{\nu } \overline{r}^{\text{\$AL}(\text{\$19})} \left(\overline{p}^{\text{\$AL}(\text{\$19})}+\overline{q}^{\text{\$AL}(\text{\$19})}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex1 FCRenameDummyIndices}\OperatorTok{[}\NormalTok{ex1}\OperatorTok{]}
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{r}^{\mu } \overline{r}^{\nu } \overline{r}^{\nu } \left(\overline{p}^{\mu }+\overline{q}^{\mu }\right) \overline{r}^{\text{\$AL}(\text{\$20})} \left(\overline{p}^{\text{\$AL}(\text{\$20})}+\overline{q}^{\text{\$AL}(\text{\$20})}\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{r}^2 \left(\overline{p}\cdot \overline{r}+\overline{q}\cdot \overline{r}\right)^2
+\end{dmath*}
+
+Notice that \texttt{FCRenameDummyIndices} does not canonicalize the
+indices
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} \SpecialCharTok{{-}}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\NormalTok{FCRenameDummyIndices}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\nu } \overline{q}^{\nu }-\overline{p}^{\mu } \overline{q}^{\mu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\text{\$AL}(\text{\$22})} \overline{q}^{\text{\$AL}(\text{\$22})}-\overline{p}^{\text{\$AL}(\text{\$21})} \overline{q}^{\text{\$AL}(\text{\$21})}
+\end{dmath*}
+
+But since FeynCalc 9.1 there is a function for that too
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]} \SpecialCharTok{{-}}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\NormalTok{FCCanonicalizeDummyIndices}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\nu } \overline{q}^{\nu }-\overline{p}^{\mu } \overline{q}^{\mu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+Finally, often we also need to uncontract already contracted indices.
+This is done by \texttt{Uncontract}. By default, it handles only
+contractions with Dirac matrices and Levi-Civita tensors
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LC}\OperatorTok{[][}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,} \FunctionTok{r}\OperatorTok{,} \FunctionTok{s}\OperatorTok{]}
+\NormalTok{Uncontract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]}
+\NormalTok{Uncontract}\OperatorTok{[}\SpecialCharTok{\%\%}\OperatorTok{,} \FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{\epsilon }^{\overline{p}\overline{q}\overline{r}\overline{s}}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\text{\$AL}(\text{\$31})} \bar{\epsilon }^{\text{\$AL}(\text{\$31})\overline{q}\overline{r}\overline{s}}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\text{\$AL}(\text{\$33})} \overline{q}^{\text{\$AL}(\text{\$32})} \left(-\bar{\epsilon }^{\text{\$AL}(\text{\$32})\text{\$AL}(\text{\$33})\overline{r}\overline{s}}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}
+\NormalTok{Uncontract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{p}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot \overline{q}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot \overline{q}
+\end{dmath*}
+
+To uncontract scalar products as well, use the option \texttt{Pair->All}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Uncontract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{p}\OperatorTok{,}\NormalTok{ Pair }\OtherTok{{-}\textgreater{}} \ConstantTok{All}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\text{\$AL}(\text{\$34})} \overline{q}^{\text{\$AL}(\text{\$34})}
+\end{dmath*}
 \end{document}

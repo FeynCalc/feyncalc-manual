@@ -3,6 +3,12 @@
 
 \documentclass[../FeynCalcManual.tex]{subfiles}
 \begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{dirac algebra}{
 \section{Dirac algebra}\label{dirac algebra}\index{Dirac algebra}}
 
@@ -10,280 +16,178 @@
 
 \hyperlink{toc}{Overview}.
 
-This section contains some explicit formulas used by FeynCalc when
-simpifying chains of Dirac matrices. Such relations can be found e.g. in
-\href{https:/XXX}{Veltman's Gammatrica} or rederived by hand.
+\hypertarget{simplifications}{%
+\subsection{Simplifications}\label{simplifications}}
 
-\hypertarget{bmhv-algebra}{%
-\subsection{BMHV algebra}\label{bmhv-algebra}}
+The two most relevant functions for the manipulations of Dirac matrices
+are \texttt{DiracSimplify} and \texttt{DiracTrace}.
 
-In the Breitenlohner-Maison-'t Hooft-Veltman scheme we are dealing with
-matrices in \(D\), \(4\) and \(D-4\) dimensions. Many identities of the
-BMHV algebra can be proven by by decomposing Dirac matrices into two
-pieces
+The goal of \texttt{DiracSimplify} is to eliminate all pairs of Dirac
+matrices with the equal indices or contracted with the same
+\(4\)-vectors
 
-\begin{align}
-\begin{split}
-\dim(\gamma^\mu) &= D, \\
-\dim(\bar{\gamma}^\mu) &= 4, \\
-\dim(\hat{\gamma}^\mu) &= D-4 .
-\end{split}
-\begin{split}
-\gamma^\mu &= \bar{\gamma}^\mu +\hat{\gamma}^\mu, \\
-g^{\mu \nu} &= \bar{g}^{\mu \nu} + \hat{g}^{\mu \nu}, \\
-p^\mu & = \bar{p}^\mu + \hat{p}^\mu.
-\end{split}
-\end{align}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . GS}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{+} \FunctionTok{m}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\NormalTok{DiracSimplify}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
 
-The anticommuatators between Dirac matrices in different dimensions are
-given by
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }.\left(\bar{\gamma }\cdot \left(\overline{m}+\overline{p}\right)\right).\bar{\gamma }^{\mu }
+\end{dmath*}
 
-\begin{align}
-\{ \gamma^\mu, \gamma^\nu \} &= 2 g^{\mu \nu}, \\
-\{ \bar{\gamma}^\mu, \bar{\gamma}^\nu \} &= \{ \gamma^\mu, \bar{\gamma}^\nu \} = 2 \bar{g}^{\mu \nu}, \\
-\{ \hat{\gamma}^\mu, \hat{\gamma}^\nu \} &= \{ \gamma^\mu, \hat{\gamma}^\nu \} = 2 \hat{g}^{\mu \nu}, \\
-\{ \bar{\gamma}^\mu, \hat{\gamma}^\nu \} &= 0.
-\end{align}
+\begin{dmath*}\breakingcomma
+-2 \bar{\gamma }\cdot \overline{m}-2 \bar{\gamma }\cdot \overline{p}
+\end{dmath*}
 
-Notice that while \(\gamma^5\) anticommutes with all other Dirac
-matrices in \(4\) dimensions, it commutes with them in \(D-4\)
-dimensions. However, in \(D\) dimensions the anticommutator is not zero
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . GS}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{+}\NormalTok{ m1}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ . GS}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{+}\NormalTok{ m2}\OperatorTok{]}
+\NormalTok{DiracSimplify}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
 
-\begin{align}
-\{ \bar{\gamma}^\mu, \gamma^5 \} &=[ \hat{\gamma}^\mu, \gamma^5 ] = 0 \\
-\{ \gamma^\mu, \gamma^5 \} & = \{ \hat{\gamma}^\mu, \gamma^5 \}= 2 \hat{\gamma}^\mu \gamma^5 = 2 \gamma^5 \hat{\gamma}^\mu.
-\end{align}
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }.\left(\bar{\gamma }\cdot \left(\overline{\text{m1}}+\overline{p}\right)\right).\bar{\gamma }^{\nu }.\left(\bar{\gamma }\cdot \left(\overline{\text{m2}}+\overline{p}\right)\right)
+\end{dmath*}
 
-For the chiral projectors we obtain
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }.\left(\bar{\gamma }\cdot \overline{\text{m1}}\right).\bar{\gamma }^{\nu }.\left(\bar{\gamma }\cdot \overline{\text{m2}}\right)+\bar{\gamma }^{\mu }.\left(\bar{\gamma }\cdot \overline{\text{m1}}\right).\bar{\gamma }^{\nu }.\left(\bar{\gamma }\cdot \overline{p}\right)+\bar{\gamma }^{\mu }.\left(\bar{\gamma }\cdot \overline{p}\right).\bar{\gamma }^{\nu }.\left(\bar{\gamma }\cdot \overline{\text{m2}}\right)-\overline{p}^2 \bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }+2 \overline{p}^{\nu } \bar{\gamma }^{\mu }.\left(\bar{\gamma }\cdot \overline{p}\right)
+\end{dmath*}
 
-\begin{align}
-P_{L/R} \bar{\gamma}^\mu  & = \bar{\gamma}^\mu P_{R/L} \\
-P_{L/R} \hat{\gamma}^\mu  &= \hat{\gamma}^\mu P_{L/R} \\
-P_{L/R} \gamma^\mu  & = \bar{\gamma}^\mu P_{R/L} + \hat{\gamma}^\mu P_{L/R} = \gamma^\mu P_{R/L} \mp \hat{\gamma}^\mu \gamma^5 \\
-\gamma^\mu P_{L/R}  & =  P_{R/L} \bar{\gamma}^\mu +  P_{L/R} \hat{\gamma}^\mu = P_{R/L} \gamma^\mu  \mp \gamma^5 \hat{\gamma}^\mu
-\end{align}
+\texttt{DiracTrace} is used for the evaluation of Dirac traces. The
+trace is not evaluated by default
 
-and
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracTrace}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
 
-\begin{align}
-P_{L/R} (\bar{\gamma} \cdot \bar{p} + m) &= \bar{\gamma} \cdot \bar{p} P_{R/L} + m P_{L/R} = (\bar{\gamma} \cdot \bar{p} - m) P_{R/L}  + m \\
-P_{L/R} (\bar{\gamma} \cdot \hat{p} + m) & = (\bar{\gamma} \cdot \hat{p} + m) P_{L/R} \\
-P_{L/R} (\bar{\gamma} \cdot p + m) &= (\bar{\gamma} \cdot \hat{p} + m) P_{L/R} + \bar{\gamma} \cdot \bar{p} P_{R/L} =
-(\bar{\gamma} \cdot \bar{p} - m) P_{R/L} + \bar{\gamma} \cdot \hat{p} P_{L/R} + m \\ \nonumber \\ \nonumber
-%%%%%%%%%%%%%%
- (\bar{\gamma} \cdot \bar{p} + m) P_{L/R} &= P_{R/L} \bar{\gamma} \cdot \bar{p}  + P_{L/R} m  = P_{R/L} (\bar{\gamma} \cdot \bar{p} - m)   + m \\
-(\bar{\gamma} \cdot \hat{p} + m) P_{L/R}  & = P_{L/R}  (\bar{\gamma} \cdot \hat{p} + m) \\
- (\bar{\gamma} \cdot p + m) P_{L/R} &=  P_{L/R} ( \bar{\gamma} \cdot \hat{p} + m) + P_{R/L} \bar{\gamma} \cdot \bar{p}  =
-P_{R/L} (\bar{\gamma} \cdot \bar{p} - m)  + P_{L/R} \bar{\gamma} \cdot \hat{p}  + m
-\end{align}
+\begin{dmath*}\breakingcomma
+\text{tr}\left(\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }\right)
+\end{dmath*}
 
-Notice that package \texttt{TRACER} resolves the redundancy of having
-\(\gamma^\mu = \bar{\gamma}^\mu + \hat{\gamma}^\mu\) by eliminating
-\(\bar{\gamma}^\mu\) and offering a function that reintroduces it at the
-end of the calculation.
+To obtain the result we can either use the option
+\texttt{DiracTraceEvaluate}
 
-Contractions of Dirac matrices and vectors with the metric read
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracTrace}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]],}\NormalTok{ DiracTraceEvaluate }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
 
-\begin{align}
-\begin{split}
-g^{\mu \nu} \gamma_\nu &= \gamma^\mu, \\
-\bar{g}^{\mu \nu} \bar{\gamma}_\nu &= g^{\mu \nu} \bar{\gamma}_\nu = \bar{g}^{\mu \nu} \gamma_\nu = \bar{\gamma}^\mu, \\
-\hat{g}^{\mu \nu} \hat{\gamma}_\nu &= g^{\mu \nu} \hat{\gamma}_\nu = \hat{g}^{\mu \nu} \gamma_\nu = \hat{\gamma}^\mu, \\
-\bar{g}^{\mu \nu} \hat{\gamma}_\nu &= \hat{g}^{\mu \nu} \bar{\gamma}_\nu = 0,
-\end{split} 
-\begin{split}
-g^{\mu \nu} p_\nu &= p^\mu, \\
-\bar{g}^{\mu \nu} \bar{p}_\nu &= g^{\mu \nu} \bar{p}_\nu = \bar{g}^{\mu \nu} p_\nu = \bar{p}^\mu, \\
-\hat{g}^{\mu \nu} \hat{p}_\nu &= g^{\mu \nu} \hat{p}_\nu = \hat{g}^{\mu \nu} p_\nu = \hat{p}^\mu, \\
-\bar{g}^{\mu \nu} \hat{p}_\nu &= \hat{g}^{\mu \nu} \bar{p}_\nu = 0.
-\end{split}
-\end{align}
+\begin{dmath*}\breakingcomma
+4 \bar{g}^{\mu \nu }
+\end{dmath*}
 
-Contractions of the metric with itself
+or use \texttt{DiracSimplify} instead.
 
-\begin{align}
-\begin{split}
-g^{\mu \nu} g_{\nu \rho} & = g^\mu_\rho \\
-\bar{g}^{\mu \nu} \bar{g}_{\nu \rho} & =g^{\mu \nu} \bar{g}_{\nu \rho} = \bar{g}^{\mu \nu} g_{\nu \rho} = \bar{g}^\mu_\rho \\
-\hat{g}^{\mu \nu} \hat{g}_{\nu \rho} & = g^{\mu \nu} \hat{g}_{\nu \rho} = \hat{g}^{\mu \nu} g_{\nu \rho}= \hat{g}^\mu_\rho \\
-\bar{g}^{\mu \nu} \hat{g}_{\nu \rho} &= \hat{g}^{\mu \nu} \bar{g}_{\nu \rho}  = 0,
-\end{split}
-\begin{split}
-g^{\mu \nu} g_{\mu \nu} & = d, \\
-\bar{g}^{\mu \nu} \bar{g}_{\mu \nu} & = g^{\mu \nu} \bar{g}_{\mu \nu} = \bar{g}^{\mu \nu} g_{\mu \nu} = 4, \\
-\hat{g}^{\mu \nu} \hat{g}_{\mu \nu} & = g^{\mu \nu} \hat{g}_{\mu \nu} = \hat{g}^{\mu \nu} g_{\mu \nu} = d-4, \\
-\bar{g}^{\mu \nu} \hat{g}_{\mu \nu} &= \hat{g}^{\mu \nu} \bar{g}_{\mu \nu}  = 0.
-\end{split}
-\end{align}
+By default FeynCalc refuses to compute a \(D\)-dimensional trace that
+contains \(\gamma^5\)
 
-Contractions of Dirac matrices and vectors with themselves
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracTrace}\OperatorTok{[}\NormalTok{GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{],} \DecValTok{5}\OperatorTok{]]} \SpecialCharTok{//}\NormalTok{ DiracSimplify}
+\end{Highlighting}
+\end{Shaded}
 
-\begin{align}
-\begin{split}
-\gamma^\mu \gamma_\mu  &=  D, \\
-\bar{\gamma}^\mu \bar{\gamma}_\mu  &= \gamma^\mu \bar{\gamma}_\mu  = \bar{\gamma}^\mu \gamma_\mu = 4, \\
-\hat{\gamma}^\mu \hat{\gamma}_\mu  &= \gamma^\mu \hat{\gamma}_\mu = \hat{\gamma}^\mu \gamma_\mu = D-4, \\
-\bar{\gamma}^\mu \hat{\gamma}_\mu &=  \hat{\gamma}^\mu \bar{\gamma}_\mu = 0,
-\end{split}
-\begin{split}
-p^\mu p_\mu &= p^2, \\
-\bar{p}^\mu \bar{p}_\mu &= \bar{p}^\mu p_\mu = p^\mu \bar{p}_\mu =  \bar{p}^2, \\
-\hat{p}^\mu \hat{p}_\mu &= \hat{p}^\mu p_\mu = p^\mu \hat{p}_\mu =  \hat{p}^2, \\
-\bar{p}^\mu \hat{p}_\mu &= \hat{p}^\mu \bar{p}_\mu = 0.
-\end{split}
-\end{align}
+\begin{dmath*}\breakingcomma
+\text{tr}\left(\gamma ^{\alpha }.\gamma ^{\beta }.\gamma ^{\mu }.\gamma ^{\nu }.\gamma ^{\rho }.\gamma ^{\sigma }.\bar{\gamma }^5\right)
+\end{dmath*}
 
-Dirac slashes
+This is because by default FeynCalc is using anticommuting \(\gamma^5\)
+in \(D\)-dimensions, a scheme known as Naive Dimensional Regularization
+(NDR)
 
-\begin{align}
-\begin{split}
-\gamma^\mu p_\mu &= \gamma \cdot p, \\
-\bar{\gamma}^\mu \bar{p}_\mu &= \bar{\gamma}^\mu p_\mu = \gamma^\mu \bar{p}_\mu = \bar{\gamma} \cdot \bar{p}, \\
-\hat{\gamma}^\mu p_\mu &= \hat{\gamma}^\mu p_\mu = \gamma^\mu \hat{p}_\mu = \hat{\gamma} \cdot \hat{p}, \\
-\bar{\gamma}^\mu \hat{p}_\mu &= \hat{\gamma}^\mu \bar{p}_\mu = 0. \\
-\end{split}
-\end{align}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracSimplify}\OperatorTok{[}\NormalTok{GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . GA}\OperatorTok{[}\DecValTok{5}\OperatorTok{]}\NormalTok{ . GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
 
-Index pairs with one, two, three, four or five free indices
+\begin{dmath*}\breakingcomma
+-\gamma ^{\mu }.\gamma ^{\nu }.\bar{\gamma }^5
+\end{dmath*}
 
-\begin{align}
-\begin{split}
-\gamma^\mu \gamma^\nu \gamma_\mu &= -(d-2) \gamma^\nu, \\
-\gamma^\mu \bar{\gamma}^\nu \gamma_\mu &= -(d-2) \bar{\gamma}^\nu, \\
-\gamma^\mu \hat{\gamma}^\nu \gamma_\mu &= -(d-2) \hat{\gamma}^\nu,
-\end{split} \quad \quad 
-\begin{split}
-\bar{\gamma}^\mu \bar{\gamma}^\nu \bar{\gamma}_\mu &= -2 \bar{\gamma}^\nu, \\
-\bar{\gamma}^\mu \gamma^\nu \bar{\gamma}_\mu &= -4 \gamma^\nu +2 \bar{\gamma}^\nu, \\
-\bar{\gamma}^\mu \hat{\gamma}^\nu \bar{\gamma}_\mu &= -4 \hat{\gamma}^\nu, \\
-\end{split} \quad \quad \quad \quad 
-\begin{split}
-\hat{\gamma}^\mu \hat{\gamma}^\nu \hat{\gamma}_\mu &= -(d-6) \hat{\gamma}^\nu, \\
-\hat{\gamma}^\mu \gamma^\nu \hat{\gamma}_\mu &= -(d-4) \gamma^\nu + 2\hat{\gamma}^\nu, \\
-\hat{\gamma}^\mu \bar{\gamma}^\nu \hat{\gamma}_\mu &= -(d-4) \bar{\gamma}^\nu,
-\end{split}
-\end{align}
+In general, a chiral trace is a very ambiguous object in NDR. The
+results depends on the position of \(\gamma^5\) inside the trace, so
+that we chose not to produce results that might be potentially
+inconsistent. However, FeynCalc can also be told to use the
+Breitenlohner-Maison-t'Hooft-Veltman scheme (BMHV), which is an
+algebraically consistent scheme (but has other issues, e.g.~it breaks
+Ward identities)
 
-\begin{align}
-\gamma^\mu \gamma^\nu \gamma^\rho \gamma_\mu &= (d-4) \gamma^\nu \gamma^\rho + 4 g^{\nu \rho} I, \\
-\gamma^\mu \bar{\gamma}^\nu \bar{\gamma}^\rho \gamma_\mu &= (d-4) \bar{\gamma}^\nu \bar{\gamma}^\rho + 4 \bar{g}^{\nu \rho} I, \\
-\gamma^\mu \hat{\gamma}^\nu \hat{\gamma}^\rho\gamma_\mu &= (d-4) \hat{\gamma}^\nu \hat{\gamma}^\rho + 4 \hat{g}^{\nu \rho} I, \\
-\bar{\gamma}^\mu \bar{\gamma}^\nu \bar{\gamma}^\rho \bar{\gamma}_\mu &= 4 \bar{g}^{\nu \rho}, \\
-\bar{\gamma}^\mu \gamma^\nu \gamma^\rho \bar{\gamma}_\mu &= 4 \gamma^\nu \gamma^\rho - 2 \bar{\gamma}^\nu \gamma^\rho + 2\bar{\gamma}^\rho
- \gamma^\nu, \\
-\bar{\gamma}^\mu \hat{\gamma}^\nu \hat{\gamma}^\rho \bar{\gamma}_\mu &= 4 \hat{\gamma}^\nu \hat{\gamma}^\rho, \\
-\hat{\gamma}^\mu \hat{\gamma}^\nu \hat{\gamma}^\rho \hat{\gamma}_\mu &= (d-8) \hat{\gamma}^\nu \hat{\gamma}^\rho + 4 \hat{g}^{\nu \rho} I, \\
-\hat{\gamma}^\mu \gamma^\nu \gamma^\rho \hat{\gamma}_\mu &= (d-4) \gamma^\nu \gamma^\rho - 2 \hat{\gamma}^\nu \gamma^\rho + 2\hat{\gamma}^\rho \gamma^\nu, \\
-\hat{\gamma}^\mu \bar{\gamma}^\nu \bar{\gamma}^\rho \hat{\gamma}_\mu &= (d-4) \bar{\gamma}^\nu \bar{\gamma}^\rho,
-\end{align}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCSetDiracGammaScheme}\OperatorTok{[}\StringTok{"BMHV"}\OperatorTok{]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
 
-\begin{align}
-\gamma^\mu \gamma^\nu \gamma^\rho \gamma^\sigma \gamma_\mu &= -(d-4) \gamma^\nu \gamma^\rho \gamma^\sigma -2 \gamma^\sigma \gamma^\rho \gamma^\nu \\
-\gamma^\mu \bar{\gamma}^\nu \bar{\gamma}^\rho \bar{\gamma}^\sigma \gamma_\mu &=-(d-4) \bar{\gamma}^\nu \bar{\gamma}^\rho \bar{\gamma}^\sigma -2 \bar{\gamma}^\sigma \bar{\gamma}^\rho \bar{\gamma}^\nu  \\
-\gamma^\mu \hat{\gamma}^\nu \hat{\gamma}^\rho \hat{\gamma}^\sigma \gamma_\mu &= -(d-4) \hat{\gamma}^\nu \hat{\gamma}^\rho \hat{\gamma}^\sigma -2 \hat{\gamma}^\sigma \hat{\gamma}^\rho \hat{\gamma}^\nu  \\
-\bar{\gamma}^\mu \bar{\gamma}^\nu \bar{\gamma}^\rho \bar{\gamma}^\sigma \bar{\gamma}_\mu &= -2 \bar{\gamma}^\sigma \bar{\gamma}^\rho \bar{\gamma}^\nu \\
-\bar{\gamma}^\mu \gamma^\nu \gamma^\rho  \gamma^\sigma \bar{\gamma}_\mu &= -4 \gamma^\nu \gamma^\rho \gamma^\sigma + 2 \bar{\gamma}^\nu \gamma^\rho \gamma^\sigma - 2\bar{\gamma}^\rho \gamma^\nu \gamma^\sigma + 2 \bar{\gamma}^\sigma \gamma^\nu \gamma^\rho, \\
-\bar{\gamma}^\mu \hat{\gamma}^\nu \hat{\gamma}^\rho \hat{\gamma}^\sigma \bar{\gamma}_\mu &= - 4 \hat{\gamma}^\nu \hat{\gamma}^\rho \hat{\gamma}^\sigma , \\
-\hat{\gamma}^\mu \hat{\gamma}^\nu \hat{\gamma}^\rho \hat{\gamma}^\sigma \hat{\gamma}_\mu &= -(d-8) \hat{\gamma}^\nu \hat{\gamma}^\rho \hat{\gamma}^\sigma -2  \hat{\gamma}^\sigma \hat{\gamma}^\rho \hat{\gamma}^\nu \\
-\hat{\gamma}^\mu \gamma^\nu \gamma^\rho \gamma^\sigma \hat{\gamma}_\mu &= -(d-4) \gamma^\nu \gamma^\rho \gamma^\sigma + 2 \hat{\gamma}^\nu \gamma^\rho \gamma^\sigma - 2\hat{\gamma}^\rho \gamma^\nu \gamma^\sigma + 2 \hat{\gamma}^\sigma \gamma^\nu \gamma^\rho,  \\
-\hat{\gamma}^\mu \bar{\gamma}^\nu \bar{\gamma}^\rho \bar{\gamma}^\sigma \hat{\gamma}_\mu &= -(d-4) \bar{\gamma}^\nu \bar{\gamma}^\rho \bar{\gamma}^\sigma,
-\end{align}
+Notice that now FeynCalc anticommutes \(\gamma^5\) according to the BMHV
+algebra, which leads to the appearance of \(D-4\)-dimensional Dirac
+matrices
 
-\begin{align}
-\gamma^\mu \gamma^\nu \gamma^\rho \gamma^\sigma \gamma^\tau \gamma_\mu &= (d-4) \gamma^\nu \gamma^\rho \gamma^\sigma \gamma^\tau + 2 \gamma^\sigma \gamma^\rho \gamma^\nu \gamma^\tau + 2 \gamma^\tau \gamma^\nu \gamma^\rho \gamma^\sigma \\
-\gamma^\mu \bar{\gamma}^\nu \bar{\gamma}^\rho \bar{\gamma}^\sigma \bar{\gamma}^\tau \gamma_\mu &= (d-4) \bar{\gamma}^\nu \bar{\gamma}^\rho \bar{\gamma}^\sigma \bar{\gamma}^\tau + 2 \bar{\gamma}^\sigma \bar{\gamma}^\rho \bar{\gamma}^\nu  \bar{\gamma}^\tau + 2 \bar{\gamma}^\tau \bar{\gamma}^\nu \bar{\gamma}^\rho  \bar{\gamma}^\sigma \\
-\gamma^\mu \hat{\gamma}^\nu \hat{\gamma}^\rho \hat{\gamma}^\sigma \hat{\gamma}^\tau \gamma_\mu &= (d-4) \hat{\gamma}^\nu \hat{\gamma}^\rho \hat{\gamma}^\sigma \hat{\gamma}^\tau +2 \hat{\gamma}^\sigma \hat{\gamma}^\rho \hat{\gamma}^\nu \hat{\gamma}^\tau + 2\hat{\gamma}^\tau \hat{\gamma}^\nu \hat{\gamma}^\rho \hat{\gamma}^\sigma  \\
-\bar{\gamma}^\mu \bar{\gamma}^\nu \bar{\gamma}^\rho \bar{\gamma}^\sigma \bar{\gamma}^\tau \bar{\gamma}_\mu &= 2 \bar{\gamma}^\sigma \bar{\gamma}^\rho \bar{\gamma}^\nu \bar{\gamma}^\tau + 2 \bar{\gamma}^\tau \bar{\gamma}^\nu \bar{\gamma}^\rho \bar{\gamma}^\sigma \\
-\bar{\gamma}^\mu \gamma^\nu \gamma^\rho  \gamma^\sigma \gamma^\tau \bar{\gamma}_\mu &= 4 \gamma^\nu \gamma^\rho \gamma^\sigma \gamma^\tau \\
-&- 2 \bar{\gamma}^\nu \gamma^\rho \gamma^\sigma \gamma^\tau + 2\bar{\gamma}^\rho \gamma^\nu \gamma^\sigma \gamma^\tau - 2 \bar{\gamma}^\sigma \gamma^\nu \gamma^\rho \gamma^\tau + 2 \bar{\gamma}^\tau \gamma^\nu \gamma^\rho \gamma^\sigma, \\
-\bar{\gamma}^\mu \hat{\gamma}^\nu \hat{\gamma}^\rho \hat{\gamma}^\sigma \hat{\gamma}^\tau \bar{\gamma}_\mu &= 4 \hat{\gamma}^\nu \hat{\gamma}^\rho \hat{\gamma}^\sigma \hat{\gamma}^\tau , \\
-\hat{\gamma}^\mu \hat{\gamma}^\nu \hat{\gamma}^\rho \hat{\gamma}^\sigma \hat{\gamma}^\tau \hat{\gamma}_\mu &= (d-8) \hat{\gamma}^\nu \hat{\gamma}^\rho \hat{\gamma}^\sigma \hat{\gamma}^\tau + 2  \hat{\gamma}^\sigma \hat{\gamma}^\rho \hat{\gamma}^\nu \hat{\gamma}^\tau + 2 \hat{\gamma}^\tau \hat{\gamma}^\nu \hat{\gamma}^\rho \hat{\gamma}^\sigma \\
-\hat{\gamma}^\mu \gamma^\nu \gamma^\rho \gamma^\sigma \gamma^\tau \hat{\gamma}_\mu &= (d-4) \gamma^\nu \gamma^\rho \gamma^\sigma \gamma^\tau \\
-&- 2 \hat{\gamma}^\nu \gamma^\rho \gamma^\sigma \gamma^\tau + 2\hat{\gamma}^\rho \gamma^\nu \gamma^\sigma \gamma^\tau - 2 \hat{\gamma}^\sigma \gamma^\nu \gamma^\rho \gamma^\tau + 2 \hat{\gamma}^\tau \gamma^\nu \gamma^\rho \gamma^\sigma,  \\
-\hat{\gamma}^\mu \bar{\gamma}^\nu \bar{\gamma}^\rho \bar{\gamma}^\sigma \bar{\gamma}^\tau \hat{\gamma}_\mu &= (d-4) \bar{\gamma}^\nu \bar{\gamma}^\rho \bar{\gamma}^\sigma \bar{\gamma}^\tau,
-\end{align}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracSimplify}\OperatorTok{[}\NormalTok{GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . GA}\OperatorTok{[}\DecValTok{5}\OperatorTok{]}\NormalTok{ . GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
 
-\begin{align}
-\gamma^\mu \gamma^\nu \gamma^\rho \gamma^\sigma \gamma^\tau \gamma^\kappa \gamma_\mu =& -(d-4) \gamma^\nu \gamma^\rho \gamma^\sigma \gamma^\tau \gamma^\kappa \\
-&- 2 \gamma^\sigma \gamma^\rho \gamma^\nu \gamma^\tau \gamma^\kappa - 2 \gamma^\tau \gamma^\nu \gamma^\rho \gamma^\sigma \gamma^\kappa + 2\gamma^\kappa \gamma^\nu \gamma^\rho \gamma^\sigma \gamma^\tau \\
-\gamma^\mu \bar{\gamma}^\nu \bar{\gamma}^\rho \bar{\gamma}^\sigma \bar{\gamma}^\tau \bar{\gamma}^\kappa \gamma_\mu =& -(d-4) \bar{\gamma}^\nu \bar{\gamma}^\rho \bar{\gamma}^\sigma \bar{\gamma}^\tau \bar{\gamma}^\kappa \\
-& - 2 \bar{\gamma}^\sigma \bar{\gamma}^\rho \bar{\gamma}^\nu \bar{\gamma}^\tau \bar{\gamma}^\kappa - 2 \bar{\gamma}^\tau \bar{\gamma}^\nu \bar{\gamma}^\rho \bar{\gamma}^\sigma \bar{\gamma}^\kappa + 2\bar{\gamma}^\kappa \bar{\gamma}^\nu \bar{\gamma}^\rho \bar{\gamma}^\sigma \bar{\gamma}^\tau\\
-\gamma^\mu \hat{\gamma}^\nu \hat{\gamma}^\rho \hat{\gamma}^\sigma \hat{\gamma}^\tau \hat{\gamma}^\kappa \gamma_\mu =& -(d-4) \hat{\gamma}^\nu \hat{\gamma}^\rho \hat{\gamma}^\sigma \hat{\gamma}^\tau \hat{\gamma}^\kappa \\
-& - 2 \hat{\gamma}^\sigma \hat{\gamma}^\rho \hat{\gamma}^\nu \hat{\gamma}^\tau \hat{\gamma}^\kappa - 2 \hat{\gamma}^\tau \hat{\gamma}^\nu \hat{\gamma}^\rho \hat{\gamma}^\sigma \hat{\gamma}^\kappa + 2\hat{\gamma}^\kappa \hat{\gamma}^\nu \hat{\gamma}^\rho \hat{\gamma}^\sigma \hat{\gamma}^\tau \\
-\bar{\gamma}^\mu \bar{\gamma}^\nu \bar{\gamma}^\rho \bar{\gamma}^\sigma \bar{\gamma}^\tau \bar{\gamma}^\kappa \bar{\gamma}_\mu & = 2 \bar{\gamma}^\tau \bar{\gamma}^\sigma \bar{\gamma}^\rho \bar{\gamma}^\nu \bar{\gamma}^\kappa + 2 \bar{\gamma}^\kappa \bar{\gamma}^\nu \bar{\gamma}^\rho \bar{\gamma}^\sigma \bar{\gamma}^\tau = - 2 \bar{\gamma}^\kappa \bar{\gamma}^\tau \bar{\gamma}^\sigma \bar{\gamma}^\rho \bar{\gamma}^\nu  \\
-\bar{\gamma}^\mu \gamma^\nu \gamma^\rho  \gamma^\sigma \gamma^\tau \gamma^\kappa \bar{\gamma}_\mu =& -4 \gamma^\nu \gamma^\rho \gamma^\sigma \gamma^\tau \gamma^\kappa + 2 \bar{\gamma}^\nu \gamma^\rho \gamma^\sigma \gamma^\tau \gamma^\kappa - 2\bar{\gamma}^\rho \gamma^\nu \gamma^\sigma \gamma^\tau \gamma^\kappa \\
-&+ 2 \bar{\gamma}^\sigma \gamma^\nu \gamma^\rho \gamma^\tau \gamma^\kappa - 2 \bar{\gamma}^\tau \gamma^\nu \gamma^\rho \gamma^\sigma \gamma^\kappa + 2\bar{\gamma}^\kappa \gamma^\nu \gamma^\rho \gamma^\sigma \gamma^\tau \\
-\bar{\gamma}^\mu \hat{\gamma}^\nu \hat{\gamma}^\rho \hat{\gamma}^\sigma \hat{\gamma}^\tau \hat{\gamma}^\kappa \bar{\gamma}_\mu =& -4 \hat{\gamma}^\nu \hat{\gamma}^\rho \hat{\gamma}^\sigma \hat{\gamma}^\tau \hat{\gamma}^\kappa , \\
-\hat{\gamma}^\mu \hat{\gamma}^\nu \hat{\gamma}^\rho \hat{\gamma}^\sigma \hat{\gamma}^\tau \hat{\gamma}^\kappa \hat{\gamma}_\mu =& -(d-8) \hat{\gamma}^\nu \hat{\gamma}^\rho \hat{\gamma}^\sigma \hat{\gamma}^\tau \hat{\gamma}^\kappa  \\
-&- 2  \hat{\gamma}^\sigma \hat{\gamma}^\rho \hat{\gamma}^\nu \hat{\gamma}^\tau \hat{\gamma}^\kappa - 2 \hat{\gamma}^\tau \hat{\gamma}^\nu \hat{\gamma}^\rho \hat{\gamma}^\sigma \hat{\gamma}^\kappa + 2 \hat{\gamma}^\kappa \hat{\gamma}^\nu \hat{\gamma}^\rho \hat{\gamma}^\sigma \hat{\gamma}^\tau \\
-\hat{\gamma}^\mu \gamma^\nu \gamma^\rho \gamma^\sigma \gamma^\tau \gamma^\kappa \hat{\gamma}_\mu =& -(d-4) \gamma^\nu \gamma^\rho \gamma^\sigma \gamma^\tau \gamma^\kappa +  2 \hat{\gamma}^\nu \gamma^\rho \gamma^\sigma \gamma^\tau  \gamma^\kappa - 2\hat{\gamma}^\rho \gamma^\nu \gamma^\sigma \gamma^\tau \gamma^\kappa \\
-& + 2 \hat{\gamma}^\sigma \gamma^\nu \gamma^\rho \gamma^\tau \gamma^\kappa  - 2 \hat{\gamma}^\tau \gamma^\nu \gamma^\rho \gamma^\sigma \gamma^\kappa +2 \hat{\gamma}^\kappa \gamma^\nu \gamma^\rho \gamma^\sigma \gamma^\tau,  \\
-\hat{\gamma}^\mu \bar{\gamma}^\nu \bar{\gamma}^\rho \bar{\gamma}^\sigma \bar{\gamma}^\tau \bar{\gamma}^\kappa \hat{\gamma}_\mu =& -(d-4) \bar{\gamma}^\nu \bar{\gamma}^\rho \bar{\gamma}^\sigma \bar{\gamma}^\tau \bar{\gamma}^\kappa,
-\end{align}
+\begin{dmath*}\breakingcomma
+2 \gamma ^{\mu }.\hat{\gamma }^{\nu }.\bar{\gamma }^5-\gamma ^{\mu }.\gamma ^{\nu }.\bar{\gamma }^5
+\end{dmath*}
 
-\hypertarget{index-contractions}{%
-\subsubsection{Index contractions}\label{index-contractions}}
+Also Dirac traces are not an issue now
 
-If the first and the last matrix are in different dimensions, we can
-always write them as
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracTrace}\OperatorTok{[}\NormalTok{GAD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]]}\NormalTok{ . GA}\OperatorTok{[}\DecValTok{5}\OperatorTok{]]} \SpecialCharTok{//}\NormalTok{ DiracSimplify}
+\end{Highlighting}
+\end{Shaded}
 
-\begin{align}
-\gamma^\mu \dots \bar{\gamma}_\mu & = \bar{\gamma}^\mu \dots \gamma_\mu = \bar{\gamma}^\mu \dots \bar{\gamma}_\mu, \\
-\gamma^\mu \dots \hat{\gamma}_\mu & = \hat{\gamma}^\mu \dots \gamma_\mu = \hat{\gamma}^\mu \dots \hat{\gamma}_\mu, \\
-\bar{\gamma}^\mu \dots \hat{\gamma}_\mu & = \hat{\gamma}^\mu \dots \bar{\gamma}_\mu = 0.
-\end{align}
+\begin{dmath*}\breakingcomma
+-4 i g^{\alpha \beta } \bar{\epsilon }^{\mu \nu \rho \sigma }+4 i g^{\alpha \mu } \bar{\epsilon }^{\beta \nu \rho \sigma }-4 i g^{\alpha \nu } \bar{\epsilon }^{\beta \mu \rho \sigma }+4 i g^{\alpha \rho } \bar{\epsilon }^{\beta \mu \nu \sigma }-4 i g^{\alpha \sigma } \bar{\epsilon }^{\beta \mu \nu \rho }-4 i g^{\beta \mu } \bar{\epsilon }^{\alpha \nu \rho \sigma }+4 i g^{\beta \nu } \bar{\epsilon }^{\alpha \mu \rho \sigma }-4 i g^{\beta \rho } \bar{\epsilon }^{\alpha \mu \nu \sigma }+4 i g^{\beta \sigma } \bar{\epsilon }^{\alpha \mu \nu \rho }-4 i g^{\mu \nu } \bar{\epsilon }^{\alpha \beta \rho \sigma }+4 i g^{\mu \rho } \bar{\epsilon }^{\alpha \beta \nu \sigma }-4 i g^{\mu \sigma } \bar{\epsilon }^{\alpha \beta \nu \rho }-4 i g^{\nu \rho } \bar{\epsilon }^{\alpha \beta \mu \sigma }+4 i g^{\nu \sigma } \bar{\epsilon }^{\alpha \beta \mu \rho }-4 i g^{\rho \sigma } \bar{\epsilon }^{\alpha \beta \mu \nu }
+\end{dmath*}
 
-For general index pairs we have that
+To compute chiral traces in the BMHV scheme, FeynCalc uses
+\href{https://inspirehep.net/record/31057}{West's formula}. Still, NDR
+is the default scheme in FeynCalc.
 
-\begin{align}
-\gamma^\mu \bar{\gamma}^{\nu_1} \dots \bar{\gamma}^{\nu_n} \gamma_\mu &= \bar{\gamma}^\mu \bar{\gamma}^{\nu_1} \dots \bar{\gamma}^{\nu_n} \bar{\gamma}_\mu + (-1)^n (D-4) \bar{\gamma}^{\nu_1} \dots \bar{\gamma}^{\nu_n}, \\
-\gamma^\mu \hat{\gamma}^{\nu_1} \dots \hat{\gamma}^{\nu_n} \gamma_\mu &= \hat{\gamma}^\mu \hat{\gamma}^{\nu_1} \dots \hat{\gamma}^{\nu_n} \hat{\gamma}_\mu + 4 (-1)^n  \hat{\gamma}^{\nu_1} \dots \hat{\gamma}^{\nu_n}, \\
-\bar{\gamma}^\mu \hat{\gamma}^{\nu_1} \dots \hat{\gamma}^{\nu_n} \bar{\gamma}_\mu &= 4 (-1)^n \, \hat{\gamma}^{\nu_1} \dots \hat{\gamma}^{\nu_n}, \\
-\hat{\gamma}^\mu \bar{\gamma}^{\nu_1} \dots \bar{\gamma}^{\nu_n} \hat{\gamma}_\mu &= (D-4) (-1)^n  \, \bar{\gamma}^{\nu_1} \dots \bar{\gamma}^{\nu_n},
-\end{align}
+In tree-level calculation a useful operation is the so-called
+SPVAT-decomposition of Dirac chains. This is done using
+\texttt{DiracReduce}
 
-This means that if we have a general formula for
-\(\gamma^\mu \gamma^{\nu_1} \dots \gamma^{\nu_n} \gamma_\mu\) in \(D\)
-dimensions, we can easily obtain 7 of 9 possible combinations of
-dimensions. The other two cases are special and related with each other
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{]]}\NormalTok{ . GS}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{]]}
+\NormalTok{DiracReduce}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
 
-\begin{align}
-\bar{\gamma}^\mu \gamma^{\nu_1} \dots \gamma^{\nu_n} \bar{\gamma}_\mu = \gamma^\mu \gamma^{\nu_1} \dots \gamma^{\nu_n} \gamma_\mu - \hat{\gamma}^\mu \gamma^{\nu_1} \dots \gamma^{\nu_n} \hat{\gamma}_\mu.
-\end{align}
+\begin{dmath*}\breakingcomma
+\bar{\gamma }^{\mu }.\bar{\gamma }^{\nu }.\bar{\gamma }^{\rho }.\left(\bar{\gamma }\cdot \overline{p}\right).\bar{\gamma }^{\alpha }
+\end{dmath*}
 
-If we know
-\(\bar{\gamma}^\mu \gamma^{\nu_1} \dots \gamma^{\nu_n} \bar{\gamma}_\mu\)
-we can easily compute
-\(\hat{\gamma}^\mu \gamma^{\nu_1} \dots \gamma^{\nu_n} \hat{\gamma}_\mu\)
-and vice versa.
+\begin{dmath*}\breakingcomma
+-i \bar{g}^{\mu \nu } \bar{\gamma }^{\text{\$MU}(\text{\$68})}.\bar{\gamma }^5 \bar{\epsilon }^{\alpha \rho \;\text{\$MU}(\text{\$68})\overline{p}}+i \bar{g}^{\alpha \rho } \bar{\gamma }^{\text{\$MU}(\text{\$70})}.\bar{\gamma }^5 \bar{\epsilon }^{\mu \nu \;\text{\$MU}(\text{\$70})\overline{p}}+i \overline{p}^{\alpha } \bar{\gamma }^{\text{\$MU}(\text{\$71})}.\bar{\gamma }^5 \bar{\epsilon }^{\mu \nu \rho \;\text{\$MU}(\text{\$71})}+i \overline{p}^{\rho } \bar{\gamma }^{\text{\$MU}(\text{\$72})}.\bar{\gamma }^5 \bar{\epsilon }^{\alpha \mu \nu \;\text{\$MU}(\text{\$72})}+\bar{\gamma }^{\rho } \overline{p}^{\alpha } \bar{g}^{\mu \nu }-\bar{\gamma }^{\nu } \overline{p}^{\alpha } \bar{g}^{\mu \rho }-\bar{\gamma }^{\rho } \overline{p}^{\mu } \bar{g}^{\alpha \nu }+\bar{\gamma }^{\nu } \overline{p}^{\mu } \bar{g}^{\alpha \rho }+\bar{\gamma }^{\mu } \overline{p}^{\alpha } \bar{g}^{\nu \rho }+\bar{\gamma }^{\alpha } \overline{p}^{\mu } \bar{g}^{\nu \rho }+\bar{\gamma }^{\rho } \overline{p}^{\nu } \bar{g}^{\alpha \mu }-\bar{\gamma }^{\mu } \overline{p}^{\nu } \bar{g}^{\alpha \rho }-\bar{\gamma }^{\alpha } \overline{p}^{\nu } \bar{g}^{\mu \rho }-\bar{\gamma }^{\nu } \overline{p}^{\rho } \bar{g}^{\alpha \mu }+\bar{\gamma }^{\mu } \overline{p}^{\rho } \bar{g}^{\alpha \nu }+\bar{\gamma }^{\alpha } \overline{p}^{\rho } \bar{g}^{\mu \nu }-\bar{g}^{\alpha \rho } \bar{g}^{\mu \nu } \bar{\gamma }\cdot \overline{p}+\bar{g}^{\alpha \nu } \bar{g}^{\mu \rho } \bar{\gamma }\cdot \overline{p}-\bar{g}^{\alpha \mu } \bar{g}^{\nu \rho } \bar{\gamma }\cdot \overline{p}-i \bar{\gamma }^{\nu }.\bar{\gamma }^5 \bar{\epsilon }^{\alpha \mu \rho \overline{p}}+i \bar{\gamma }^{\mu }.\bar{\gamma }^5 \bar{\epsilon }^{\alpha \nu \rho \overline{p}}
+\end{dmath*}
 
-For purely four dimensional chains it is known that if the number of the
-Dirac matrices between the index pair is odd, then
+Gordon's identities are implemented via \texttt{GordonSimplify}
 
-\begin{align}
-\bar{\gamma}^\mu \bar{\gamma}^{\nu_1} \dots \bar{\gamma}^{\nu_{2n+1}} \bar{\gamma}_\mu & = -2 \bar{\gamma}^{\nu_{2n+1}} \dots \bar{\gamma}^{\nu_1}.
-\end{align}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SpinorUBar}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{]}\NormalTok{ . GA}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ . SpinorU}\OperatorTok{[}\NormalTok{p2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{]}
+\NormalTok{GordonSimplify}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
 
-This can be trivially generalized to even chains, i.e.
+\begin{dmath*}\breakingcomma
+\bar{u}(\text{p1},\text{m1}).\bar{\gamma }^{\mu }.u(\text{p2},\text{m2})
+\end{dmath*}
 
-\begin{align}
-\bar{\gamma}^\mu \bar{\gamma}^{\nu_1} \dots \bar{\gamma}^{\nu_{2n+1}} \bar{\gamma}^\rho \bar{\gamma}_\mu & = 2 \bar{\gamma}^{\nu_{2n+1}} \dots \bar{\gamma}^{\nu_1} \bar{\gamma}^\rho + 2 \bar{\gamma}^\rho \bar{\gamma}^{\nu_1} \dots \bar{\gamma}^{\nu_{2n+1}}
-\end{align}
-
-Following formula for
-\(\gamma^\mu \gamma^{\nu_1} \dots \gamma^{\nu_n} \gamma_\mu\) in d
-dimensions and \(n\geq 3\) is given in Veltman's Gammatrica
-
-\begin{align}
-\gamma^\mu \gamma^{\nu_1} \dots \gamma^{\nu_n} \gamma_\mu &= (d-4)(-1)^n \gamma^{\nu_1} \dots \gamma^{\nu_n} + 2(-1)^n \gamma^{\nu_3} \gamma^{\nu_2} \gamma^{\nu_1} \gamma^{\nu_4}\dots \gamma^{\nu_n} \\
-& + 2 \sum_{j=4}^m (-1)^{n-j} \gamma^{\nu_j} \gamma^{\nu_1} \dots \gamma^{\nu_{j-1}} \gamma^{\nu_{j+1}} \dots \gamma^{\nu_{n}}.
-\end{align}
-
-Another useful and more compact formula for the same expression with
-\(n \geq 2\) was derived my R. Mertig
-
-\begin{align}
-\gamma^\mu \gamma^{\nu_1} \dots \gamma^{\nu_n} \gamma_\mu &= (-1)^n \biggl \{ (d-2n) \gamma^{\nu_1} \dots \gamma^{\nu_n} \\
-& -4 \sum_{i=1}^{l-1} \sum_{j=i+1}^{l} (-1)^{j-i}  \gamma^{\nu_1} \dots \gamma^{\nu_{i-1}} \gamma^{\nu_{i+1}} \dots \gamma^{\nu_{j-1}} \gamma^{\nu_{j+1}} \dots \gamma^{\nu_n} g_{{\mu_i} {\mu_j}} \biggr \}
-\end{align}
+\begin{dmath*}\breakingcomma
+\frac{\left(\overline{\text{p1}}+\overline{\text{p2}}\right)^{\mu } \left(\varphi (\overline{\text{p1}},\text{m1})\right).\left(\varphi (\overline{\text{p2}},\text{m2})\right)}{\text{m1}+\text{m2}}+\frac{i \left(\varphi (\overline{\text{p1}},\text{m1})\right).\sigma ^{\mu \overline{\text{p1}}-\overline{\text{p2}}}.\left(\varphi (\overline{\text{p2}},\text{m2})\right)}{\text{m1}+\text{m2}}
+\end{dmath*}
 \end{document}
