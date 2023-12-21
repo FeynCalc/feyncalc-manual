@@ -3,6 +3,12 @@
 
 \documentclass[../FeynCalcManual.tex]{subfiles}
 \begin{document}
+\begin{Shaded}
+\begin{Highlighting}[]
+ 
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{fcloopfindtopologymappings}{
 \section{FCLoopFindTopologyMappings}\label{fcloopfindtopologymappings}\index{FCLoopFindTopologyMappings}}
 
@@ -71,6 +77,14 @@ Here we have a set of 5 topologies
 \NormalTok{mappings1 }\ExtensionTok{=}\NormalTok{ FCLoopFindTopologyMappings}\OperatorTok{[}\NormalTok{topos1}\OperatorTok{]}\NormalTok{;}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCLoopFindTopologyMappings: }\;\text{Found }3\text{ mapping relations }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCLoopFindTopologyMappings: }\;\text{Final number of independent topologies: }2
+\end{dmath*}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -144,6 +158,14 @@ to them (if possible)
 \NormalTok{mappings2 }\ExtensionTok{=}\NormalTok{ FCLoopFindTopologyMappings}\OperatorTok{[}\NormalTok{topos2}\OperatorTok{,}\NormalTok{ PreferredTopologies }\OtherTok{{-}\textgreater{}}\NormalTok{ preferredTopos2}\OperatorTok{]}\NormalTok{;}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCLoopFindTopologyMappings: }\;\text{Found }3\text{ mapping relations }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCLoopFindTopologyMappings: }\;\text{Final number of independent topologies: }3
+\end{dmath*}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -224,6 +246,14 @@ Now we can match a smaller topology into a larger topology
 \end{Highlighting}
 \end{Shaded}
 
+\begin{dmath*}\breakingcomma
+\text{FCLoopFindTopologyMappings: }\;\text{Found }1\text{ mapping relations }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCLoopFindTopologyMappings: }\;\text{Final number of independent topologies: }1
+\end{dmath*}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{mappings3}\OperatorTok{[[}\DecValTok{1}\OperatorTok{]]}
@@ -279,6 +309,14 @@ the external momenta due to the chosen kinematic constraints.
 \end{Highlighting}
 \end{Shaded}
 
+\begin{dmath*}\breakingcomma
+\text{FCLoopFindTopologyMappings: }\;\text{Found }1\text{ mapping relations }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCLoopFindTopologyMappings: }\;\text{Final number of independent topologies: }1
+\end{dmath*}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{mappings4}\OperatorTok{[[}\DecValTok{1}\OperatorTok{]]}
@@ -302,6 +340,102 @@ Otherwise no mappings exist
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
+\text{FCLoopFindTopologyMappings: }\;\text{Found }0\text{ mapping relations }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCLoopFindTopologyMappings: }\;\text{Final number of independent topologies: }2
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
 \{\}
+\end{dmath*}
+
+Topologies containing eikonal or other nonstandard propagators may
+introduce additional challenges. Even though two such topologies can be
+recognized to be identical, the code still would not be able to work out
+the correct momentum shifts without some additional input.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{topoEik1 }\ExtensionTok{=}\NormalTok{ FCTopology}\OperatorTok{[}\NormalTok{mytopo67}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{\{}\NormalTok{k2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{k1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{     SFAD}\OperatorTok{[\{\{}\NormalTok{k1 }\SpecialCharTok{+}\NormalTok{ k2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,} \SpecialCharTok{{-}}\NormalTok{k1 . nb}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{     SFAD}\OperatorTok{[\{\{}\NormalTok{k2}\OperatorTok{,} \SpecialCharTok{{-}}\NormalTok{meta u0b k2 . nb}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{k1 }\SpecialCharTok{+}\NormalTok{ k2}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{2}\NormalTok{ gkin meta u0b (k1 }\SpecialCharTok{+}\NormalTok{ k2) . }\FunctionTok{n}\OperatorTok{\},} 
+       \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{k1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{2}\NormalTok{ gkin meta k1 . }\FunctionTok{n} \SpecialCharTok{+}\NormalTok{ meta u0b k1 . nb}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{2}\NormalTok{ gkin meta}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ u0b}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]\},} 
+    \OperatorTok{\{}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{Hold}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{][}\FunctionTok{n}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,} \FunctionTok{Hold}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{][}\NormalTok{nb}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,} \FunctionTok{Hold}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{][}\FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{2}\OperatorTok{\},} \OperatorTok{\{\}]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{topoEik2 }\ExtensionTok{=}\NormalTok{ FCTopology}\OperatorTok{[}\NormalTok{mytopo79}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{\{}\NormalTok{k2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{k1}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{     SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,}\NormalTok{ k1 . nb}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{k2}\OperatorTok{,} \SpecialCharTok{{-}}\NormalTok{meta u0b k2 . nb}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{     SFAD}\OperatorTok{[\{\{}\NormalTok{k1 }\SpecialCharTok{+}\NormalTok{ k2}\OperatorTok{,} \SpecialCharTok{{-}}\NormalTok{meta u0b (k1 }\SpecialCharTok{+}\NormalTok{ k2) . nb}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{k1}\OperatorTok{,} 
+        \DecValTok{2}\NormalTok{ gkin meta k1 . }\FunctionTok{n} \SpecialCharTok{{-}}\NormalTok{ meta u0b k1 . nb}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{2}\NormalTok{ gkin meta}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ u0b}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{     SFAD}\OperatorTok{[\{\{}\NormalTok{k1 }\SpecialCharTok{+}\NormalTok{ k2}\OperatorTok{,} \DecValTok{2}\NormalTok{ gkin meta u0b (k1 }\SpecialCharTok{+}\NormalTok{ k2) . }\FunctionTok{n} \SpecialCharTok{{-}}\NormalTok{ meta u0b (k1 }\SpecialCharTok{+}\NormalTok{ k2) . nb}\OperatorTok{\},} 
+       \OperatorTok{\{}\DecValTok{2}\NormalTok{ gkin meta}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ u0b}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{Hold}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{][}\FunctionTok{n}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,} 
+     \FunctionTok{Hold}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{][}\NormalTok{nb}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,} \FunctionTok{Hold}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{][}\FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{2}\OperatorTok{\},} \OperatorTok{\{\}]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DataType}\OperatorTok{[}\NormalTok{meta}\OperatorTok{,}\NormalTok{ FCVariable}\OperatorTok{]} \ExtensionTok{=} \ConstantTok{True}\NormalTok{;}
+\NormalTok{DataType}\OperatorTok{[}\NormalTok{u0b}\OperatorTok{,}\NormalTok{ FCVariable}\OperatorTok{]} \ExtensionTok{=} \ConstantTok{True}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+At first sight these two topologies are independent from each other
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopFindTopologyMappings}\OperatorTok{[\{}\NormalTok{topoEik1}\OperatorTok{,}\NormalTok{ topoEik2}\OperatorTok{\}]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCLoopFindTopologyMappings: }\;\text{Found }0\text{ mapping relations }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCLoopFindTopologyMappings: }\;\text{Final number of independent topologies: }2
+\end{dmath*}
+
+However, if we tell the code how some eikonal propagators can be brought
+into a quadratic form, then an explicit mapping can be found
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{eikRule }\ExtensionTok{=} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{\{}\NormalTok{k2}\OperatorTok{,} \SpecialCharTok{{-}}\NormalTok{meta u0b k2 . nb}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]} \OtherTok{{-}\textgreater{}}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{k2 }\SpecialCharTok{{-}}\NormalTok{ meta u0b}\SpecialCharTok{/}\DecValTok{2}\NormalTok{ nb}\OperatorTok{]\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\frac{1}{(\text{k2}^2-\text{meta} \;\text{u0b} (\text{k2}\cdot \;\text{nb})+i \eta )}\to \frac{1}{((\text{k2}-\frac{\text{meta} \;\text{u0b} \;\text{nb}}{2})^2+i \eta )}\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{eikMappings }\ExtensionTok{=}\NormalTok{ FCLoopFindTopologyMappings}\OperatorTok{[\{}\NormalTok{topoEik1}\OperatorTok{,}\NormalTok{ topoEik2}\OperatorTok{\},} 
+\NormalTok{    InitialSubstitutions }\OtherTok{{-}\textgreater{}}\NormalTok{ eikRule}\OperatorTok{]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCLoopFindTopologyMappings: }\;\text{Found }1\text{ mapping relations }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCLoopFindTopologyMappings: }\;\text{Final number of independent topologies: }1
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{eikMappings}\OperatorTok{[[}\DecValTok{1}\OperatorTok{]][[}\DecValTok{1}\OperatorTok{]][[}\DecValTok{2}\NormalTok{ ;;}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\left\{\text{k1}\to -\text{k1},\text{k2}\to \frac{1}{2} (\text{meta} \;\text{nb} \;\text{u0b}-2 \;\text{k2})\right\},G^{\text{mytopo79}}(\text{n5$\_$},\text{n2$\_$},\text{n4$\_$},\text{n1$\_$},\text{n3$\_$},\text{n7$\_$},\text{n6$\_$}):\to G^{\text{mytopo67}}(\text{n1},\text{n2},\text{n3},\text{n4},\text{n5},\text{n6},\text{n7})\right\}
 \end{dmath*}
 \end{document}
