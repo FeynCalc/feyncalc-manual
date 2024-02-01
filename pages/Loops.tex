@@ -3,12 +3,6 @@
 
 \documentclass[../FeynCalcManual.tex]{subfiles}
 \begin{document}
-\begin{Shaded}
-\begin{Highlighting}[]
- 
-\end{Highlighting}
-\end{Shaded}
-
 \hypertarget{loops}{
 \section{Loops}\label{loops}\index{Loops}}
 
@@ -89,9 +83,11 @@ For example, one can split one \texttt{FeynAmpDenominator} into many
 \frac{1}{(\text{k1}-\text{k2})^2 \left((\text{k1}-\text{p2})^2-m^2\right) \left((\text{k2}+\text{p2})^2-m^2\right)}
 \end{dmath*}
 
-\begin{verbatim}
-(*FAD[k1 - k2] FAD[{k1 - p2, m}] FAD[{k2 + p2, m}]*)
-\end{verbatim}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{(*FAD[k1 {-} k2] FAD[\{k1 {-} p2, m\}] FAD[\{k2 + p2, m\}]*)}
+\end{Highlighting}
+\end{Shaded}
 
 or combine several into one
 
@@ -103,12 +99,14 @@ or combine several into one
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-\frac{1}{\left((\text{k2}+\text{p2})^2-m^2\right).(\text{k1}-\text{k2})^2.\left((\text{k1}-\text{p2})^2-m^2\right)}
+\frac{1}{(\text{k1}-\text{k2})^2.\left((\text{k1}-\text{p2})^2-m^2\right).\left((\text{k2}+\text{p2})^2-m^2\right)}
 \end{dmath*}
 
-\begin{verbatim}
-(*FAD[{k2 + p2, m}, k1 - k2, {k1 - p2, m}]*)
-\end{verbatim}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{(*FAD[k1 {-} k2, \{k1 {-} p2, m\}, \{k2 + p2, m\}]*)}
+\end{Highlighting}
+\end{Shaded}
 
 At the tree-level we often do not need the \texttt{FeynAmpDenominators}
 but rather want to express everything in terms of explicit scalar
@@ -249,7 +247,7 @@ prefactors, but the full result still remains messy
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
--\frac{\text{KK}(864)}{4 q^2.(-\text{p1}+\text{p2}+q)^2}+\frac{\text{KK}(868)}{4 q^2.(q-\text{p2})^2.(q-\text{p1})^2}-\frac{\text{KK}(866)}{4 q^2.(q-\text{p1})^2}+-\frac{\text{KK}(861)}{4 q^2.(q-\text{p2})^2}
+-\frac{\text{KK}(864)}{4 q^2.(-\text{p1}+\text{p2}+q)^2}+\frac{\text{KK}(868)}{4 q^2.(q-\text{p1})^2.(q-\text{p2})^2}-\frac{\text{KK}(866)}{4 q^2.(q-\text{p1})^2}+-\frac{\text{KK}(861)}{4 q^2.(q-\text{p2})^2}
 \end{dmath*}
 
 In such cases, we can get a much more compact results , if we stick to
@@ -506,8 +504,9 @@ And these are the final topologies
 \left\{\text{FCTopology}\left(\text{fctopology1},\left\{\frac{1}{(\text{p3}^2+i \eta )},\frac{1}{(\text{p2}^2+i \eta )},\frac{1}{(\text{p1}^2+i \eta )},\frac{1}{((\text{p2}+\text{p3})^2+i \eta )},\frac{1}{((\text{p2}-Q)^2+i \eta )},\frac{1}{((\text{p1}-Q)^2+i \eta )},\frac{1}{((\text{p2}+\text{p3}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p3}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p2}+\text{p3}-Q)^2+i \eta )}\right\},\{\text{p1},\text{p2},\text{p3}\},\{Q\},\{\},\{\}\right),\text{FCTopology}\left(\text{fctopology2},\left\{\frac{1}{(\text{p3}^2+i \eta )},\frac{1}{(\text{p2}^2+i \eta )},\frac{1}{(\text{p1}^2+i \eta )},\frac{1}{((\text{p2}+\text{p3})^2+i \eta )},\frac{1}{((\text{p2}-Q)^2+i \eta )},\frac{1}{((\text{p1}-Q)^2+i \eta )},\frac{1}{((\text{p2}+\text{p3}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p2}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p2}+\text{p3}-Q)^2+i \eta )}\right\},\{\text{p1},\text{p2},\text{p3}\},\{Q\},\{\},\{\}\right)\right\}
 \end{dmath*}
 
-\hypertarget{tensor-reductions}{%
-\subsection{Tensor reductions}\label{tensor-reductions}}
+\hypertarget{tensor-reductions-with-glis}{%
+\subsection{Tensor reductions with
+GLIs}\label{tensor-reductions-with-glis}}
 
 Tensor reduction for topologies that have already been processed with
 \texttt{FCLoopFindTopologies} can be done using

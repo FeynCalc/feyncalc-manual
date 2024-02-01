@@ -3,12 +3,6 @@
 
 \documentclass[../FeynCalcManual.tex]{subfiles}
 \begin{document}
-\begin{Shaded}
-\begin{Highlighting}[]
- 
-\end{Highlighting}
-\end{Shaded}
-
 \hypertarget{light-cone formalism}{
 \section{Light-cone formalism}\label{light-cone formalism}\index{Light-cone formalism}}
 
@@ -16,14 +10,31 @@
 
 \hyperlink{toc}{Overview}.
 
-\hypertarget{notation}{%
-\subsection{Notation}\label{notation}}
+\hypertarget{notation-for-light-cone-components}{%
+\subsection{Notation for light-cone
+components}\label{notation-for-light-cone-components}}
 
 FeynCalc is equipped with special symbols that facilitate calculations
 involving light-cone vectors. The default \(n\) and \(\bar{n}\) vectors
 are defined via the global variables
 \texttt{\$FCDefaultLightconeVectorN} and
-\texttt{\$FCDefaultLightconeVectorNB}
+\texttt{\$FCDefaultLightconeVectorNB}. By default those are set to
+\texttt{FCGV[\allowbreak{}"n"]} and \texttt{FCGV[\allowbreak{}"nb"]} to
+avoid possible conflicts with user-defined variables
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\{}\NormalTok{$FCDefaultLightconeVectorN}\OperatorTok{,}\NormalTok{ $FCDefaultLightconeVectorNB}\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{\text{FCGV}(\text{n}),\text{FCGV}(\text{nb})\}
+\end{dmath*}
+
+These names can be of course changed. A particularly convenient choice
+is to use \texttt{n} and \texttt{nb}. Notice that these commands must be
+evaluated at the beginning of every FeynCalc session
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -32,8 +43,8 @@ are defined via the global variables
 \end{Highlighting}
 \end{Shaded}
 
-Notice that apart from this you must also explicitly define the values
-of the scalar products \(n^2\), \(\bar{n}^2\) and \(n \cdot \bar{n}\)
+Apart from this you must also explicitly define the values of the scalar
+products \(n^2\), \(\bar{n}^2\) and \(n \cdot \bar{n}\)
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -45,10 +56,10 @@ of the scalar products \(n^2\), \(\bar{n}^2\) and \(n \cdot \bar{n}\)
 \end{Shaded}
 
 The Plus, Minus and peRpendicular components of 4-vectors are called
-FVLP, FVLN and FVLR respectively. The plus and minus components are
-immediately rewritten into forms involving \(n\) and \(\bar{n}\). The
-perpendicular component is a separate entity that cannot be simplified
-further.
+\texttt{FVLP}, \texttt{FVLN} and \texttt{FVLR} respectively. The plus
+and minus components are immediately rewritten into forms involving
+\(n\) and \(\bar{n}\). The perpendicular component is a separate entity
+that cannot be simplified further.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -84,14 +95,17 @@ vectors thus overriding what is set via the global variables
 \overline{p}^{\text{mu}}{}_{\perp }
 \end{dmath*}
 
-\begin{verbatim}
-(*Pair[LightConePerpendicularComponent[LorentzIndex[mu], Momentum[myN], Momentum[myNB]], LightConePerpendicularComponent[Momentum[p], Momentum[myN], Momentum[myNB]]]*)
-\end{verbatim}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{(*Pair[LightConePerpendicularComponent[LorentzIndex[mu], Momentum[myN], Momentum[myNB]], LightConePerpendicularComponent[Momentum[p], Momentum[myN], Momentum[myNB]]]*)}
+\end{Highlighting}
+\end{Shaded}
 
 Internally, the perpendicular component is implemented as an extra head
-wrapped around such internal symbols as LorentzIndex or Momentum. This
-head is called \texttt{LightConePerpendicularComponent} and has 3
-arguments. The last two arguments specify the light-cone vectors.
+wrapped around such internal symbols as \texttt{LorentzIndex} or
+\texttt{Momentum}. This head is called
+\texttt{LightConePerpendicularComponent} and has 3 arguments. The last
+two arguments specify the light-cone vectors.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -102,7 +116,7 @@ arguments. The last two arguments specify the light-cone vectors.
 \FloatBarrier
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=0.6\linewidth]{img/0fojluz3gvvqo.pdf}
+\includegraphics[width=0.6\linewidth]{img/0h6kq1ltbsocf.pdf}
 \end{figure}
 \FloatBarrier
 
@@ -210,10 +224,11 @@ g^{\mu \nu } g^{\mu \nu }{}_{\perp }
 D-2
 \end{dmath*}
 
-\hypertarget{dirac-algebra}{%
-\subsection{Dirac algebra}\label{dirac-algebra}}
+\hypertarget{dirac-matrices-with-light-cone-components}{%
+\subsection{Dirac matrices with light-cone
+components}\label{dirac-matrices-with-light-cone-components}}
 
-Dirac algebra is with matrices contracted to light-cone momenta or
+Dirac algebra involving matrices contracted to light-cone momenta or
 having particular light-cone components is fully supported. The general
 strategy followed by \texttt{DiracSimplify} is to move all perpendicular
 components to the very right of the chain.
@@ -274,9 +289,11 @@ user-specified light-cone vectors
 \bar{\gamma }^{\text{mu1}}{}_{\perp }
 \end{dmath*}
 
-\begin{verbatim}
-(*DiracGamma[LightConePerpendicularComponent[LorentzIndex[mu1], Momentum[myN], Momentum[myNB]]]*)
-\end{verbatim}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{(*DiracGamma[LightConePerpendicularComponent[LorentzIndex[mu1], Momentum[myN], Momentum[myNB]]]*)}
+\end{Highlighting}
+\end{Shaded}
 
 Instead, you should put your list of indices into curly brackets
 
@@ -350,8 +367,111 @@ Instead, you should put your list of indices into curly brackets
 2 i \overline{n}^{\rho } \bar{\epsilon }^{\mu _{\perp }\nu _{\perp }\sigma _{\perp }\;\overline{\text{nb}}}+2 i \overline{\text{nb}}^{\rho } \bar{\epsilon }^{\mu _{\perp }\nu _{\perp }\sigma _{\perp }\overline{n}}-2 i \overline{n}^{\sigma } \bar{\epsilon }^{\mu _{\perp }\nu _{\perp }\rho _{\perp }\;\overline{\text{nb}}}-i \overline{n}^{\sigma } \overline{\text{nb}}^{\rho } \bar{\epsilon }^{\mu _{\perp }\nu _{\perp }\overline{n}\;\overline{\text{nb}}}-2 i \overline{\text{nb}}^{\sigma } \bar{\epsilon }^{\mu _{\perp }\nu _{\perp }\rho _{\perp }\overline{n}}+i \overline{n}^{\rho } \overline{\text{nb}}^{\sigma } \bar{\epsilon }^{\mu _{\perp }\nu _{\perp }\overline{n}\;\overline{\text{nb}}}-4 i \bar{\epsilon }^{\mu _{\perp }\nu _{\perp }\rho _{\perp }\sigma _{\perp }}
 \end{dmath*}
 
-\hypertarget{tensor-reductions}{%
-\subsection{Tensor reductions}\label{tensor-reductions}}
+\hypertarget{introducing-light-cone-components-by-hand}{%
+\subsection{Introducing light-cone components by
+hand}\label{introducing-light-cone-components-by-hand}}
+
+In some calculations one might end up with a mixture of explicit
+light-cone components and generic Lorentz tensors. If those tensors
+admit a particularly simple representation in terms of light-cone
+components, it can be enforced using the function
+\texttt{ToLightConeComponents}
+
+For example, the following expression cannot be simplified any further
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex6 }\ExtensionTok{=}\NormalTok{ GS}\OperatorTok{[}\NormalTok{nb}\OperatorTok{,}\NormalTok{ vp}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }\cdot \overline{\text{nb}}\right).\left(\bar{\gamma }\cdot \overline{\text{vp}}\right)
+\end{dmath*}
+
+Now let us suppose that \((v')^{\mu}\) can be actually written as
+\(\alpha n^\mu + \bar{n}^{\mu}/(4 \alpha)\). We can implement this as
+follows
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SP}\OperatorTok{[}\NormalTok{vp}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]} \ExtensionTok{=} \DecValTok{2}\SpecialCharTok{*}\NormalTok{alpha;}
+\NormalTok{SP}\OperatorTok{[}\NormalTok{vp}\OperatorTok{,} \FunctionTok{n}\OperatorTok{]} \ExtensionTok{=} \DecValTok{2}\SpecialCharTok{*}\DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\DecValTok{4}\NormalTok{ alpha);}
+\NormalTok{LightConePerpendicularComponent}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\NormalTok{vp}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\FunctionTok{n}\OperatorTok{],}\NormalTok{ Momentum}\OperatorTok{[}\NormalTok{nb}\OperatorTok{]]} \ExtensionTok{=} \DecValTok{0}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FV}\OperatorTok{[}\NormalTok{vp}\OperatorTok{,}\NormalTok{ mu}\OperatorTok{]}
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ ToLightConeComponents}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{\text{vp}}^{\text{mu}}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{alpha} \overline{n}^{\text{mu}}+\frac{\overline{\text{nb}}^{\text{mu}}}{4 \;\text{alpha}}
+\end{dmath*}
+
+However, this will not make FeynCalc automatically simplify the Dirac
+chain
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex6 }\SpecialCharTok{//}\NormalTok{ DiracSimplify}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }\cdot \overline{\text{nb}}\right).\left(\bar{\gamma }\cdot \overline{\text{vp}}\right)
+\end{dmath*}
+
+Using \texttt{ToLightConeComponents} we can explicitly rewrite
+\texttt{vp} in the chain in terms of the light-cone components and hence
+enforce the desired simplification. In fact, the function will also
+automatically simplify some common expressions such
+\(\gamma \cdot \bar{n} \gamma \cdot \bar{n} = \gamma \cdot n \gamma \cdot n = 0\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex6 }\SpecialCharTok{//}\NormalTok{ ToLightConeComponents}
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ DiracSimplify}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{alpha} \left(\bar{\gamma }\cdot \overline{\text{nb}}\right).\left(\bar{\gamma }\cdot \overline{n}\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+4 \;\text{alpha}-\text{alpha} \left(\bar{\gamma }\cdot \overline{n}\right).\left(\bar{\gamma }\cdot \overline{\text{nb}}\right)
+\end{dmath*}
+
+Such simplifications inside \texttt{ToLightConeComponents} can be
+disabled using the option \texttt{DotSimplify}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex6 }\SpecialCharTok{//}\NormalTok{ ToLightConeComponents}\OperatorTok{[}\NormalTok{\#}\OperatorTok{,}\NormalTok{ DotSimplify }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}\NormalTok{ \&}
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ DiracSimplify}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(\bar{\gamma }\cdot \overline{\text{nb}}\right).\left(\text{alpha} \bar{\gamma }\cdot \overline{n}+\frac{\bar{\gamma }\cdot \overline{\text{nb}}}{4 \;\text{alpha}}\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+4 \;\text{alpha}-\text{alpha} \left(\bar{\gamma }\cdot \overline{n}\right).\left(\bar{\gamma }\cdot \overline{\text{nb}}\right)
+\end{dmath*}
+
+\hypertarget{reductions-of-loop-integrals-with-numerators-involving-light-cone-components}{%
+\subsection{Reductions of loop integrals with numerators involving
+light-cone
+components}\label{reductions-of-loop-integrals-with-numerators-involving-light-cone-components}}
 
 \begin{Shaded}
 \begin{Highlighting}[]

@@ -209,9 +209,7 @@ corresponding variables to be of \texttt{FCVariable} type
 \begin{Highlighting}[]
 \NormalTok{ExpandScalarProduct}\OperatorTok{[}\NormalTok{SP}\OperatorTok{[}\FunctionTok{P}\OperatorTok{,} \FunctionTok{Q}\OperatorTok{]} \OtherTok{/.} \FunctionTok{P} \OtherTok{{-}\textgreater{}} \FunctionTok{a}\NormalTok{ P1 }\SpecialCharTok{+} \FunctionTok{b}\NormalTok{ P2}\OperatorTok{]} 
  
-\FunctionTok{StandardForm}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]} 
-  
- 
+\FunctionTok{StandardForm}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
 \end{Highlighting}
 \end{Shaded}
 
@@ -219,7 +217,10 @@ corresponding variables to be of \texttt{FCVariable} type
 a \left(\overline{\text{P1}}\cdot \overline{Q}\right)+b \left(\overline{\text{P2}}\cdot \overline{Q}\right)
 \end{dmath*}
 
-\begin{verbatim}
-(*a Pair[Momentum[P1], Momentum[Q]] + b Pair[Momentum[P2], Momentum[Q]]*)
-\end{verbatim}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{(*a Pair[Momentum[P1], Momentum[Q]] + b Pair[Momentum[P2], Momentum[Q]]*)}
+\end{Highlighting}
+\end{Shaded}
+
 \end{document}
