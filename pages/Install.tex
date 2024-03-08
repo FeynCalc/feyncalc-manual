@@ -24,11 +24,11 @@ The stable version is the latest official release of FeynCalc. We don't
 have fixed development cycles so that the stable version is released
 just when it's ready. The code of the stable version is located in the
 \href{https://github.com/FeynCalc/feyncalc/tree/hotfix-stable}{hotfix-stable}
-branch of our main repository. Since FeynCalc 9, all the bugs that are
-discovered in the latest stable version will be fixed in that branch.
-When you install FeynCalc using the automatic installer you will
-automatically receive all the current fixes. Note that the stable branch
-will not contain any new features until the next stable release.
+branch of our main repository. Bugs that are discovered in the latest
+stable version will be fixed in that branch. When you install FeynCalc
+using the automatic installer you will automatically receive all the
+current fixes. Note that the stable branch will not contain any new
+features until the next stable release.
 
 To install the stable version run the following instruction in a Kernel
 or Notebook session of Mathematica.
@@ -68,14 +68,12 @@ Kernel or Notebook session of Mathematica
 \hypertarget{troubleshooting}{%
 \subsubsection{Troubleshooting}\label{troubleshooting}}
 
-On Linux (possibly also Windows 10 and macOS) the above code might fail
-when run with Mathematica 8, 9, 10 or 11. The error messages will look
-like \texttt{URLSave::invhttp: SSL connect error} or
+On Linux (possibly also Windows and macOS) the above code might fail
+when run with Mathematica 10 or 11. The error messages will look like
+\texttt{URLSave::invhttp: SSL connect error} or
 \texttt{URLSave::invhttp}. This is most likely caused by some library
 incompatibilities. A workaround for versions 10 and 11 is available
 \href{https://mathematica.stackexchange.com/questions/212453/urlsave-in-mathematica-10-and-11-on-linux}{here}.
-For versions 9 and 8 see
-\href{https://mathematica.stackexchange.com/questions/212455/ssl-errors-when-using-urlfetch-or-urlsave-in-versions-8-or-9}{here}.
 If nothing helps, you can still download the necessary files by yourself
 and run the automatic installer offline.
 
@@ -95,8 +93,9 @@ compared to using the automatic installer.
 \item
   Copy the \emph{FeynCalc} directory from the extracted archive to the
   \emph{Applications} directory inside \texttt{\$UserBaseDirectory}
-  (evaluate ``FileNameJoin{[}\{\$UserBaseDirectory,
-  ``Applications''\}{]}``` in Mathematica).
+  (evaluate
+  \texttt{FileNameJoin[\allowbreak{}\{\allowbreak{}\$UserBaseDirectory,\ \allowbreak{}"Applications"\}]}
+  in Mathematica).
 \item
   If you want to allow \texttt{FeynCalc} to activate
   \texttt{TraditionalForm} typesetting when it is loaded, create

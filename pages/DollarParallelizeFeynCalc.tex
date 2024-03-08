@@ -1,0 +1,31 @@
+% !TeX program = pdflatex
+% !TeX root = DollarParallelizeFeynCalc.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{dollarparallelizefeyncalc}{
+\section{\$ParallelizeFeynCalc}\label{dollarparallelizefeyncalc}\index{\$ParallelizeFeynCalc}}
+
+\texttt{\$ParallelizeFeynCalc} is a global switch that enables FeynCalc
+to evaluate some subroutines on using parallel kernels. It should be
+explicitly activated by setting \texttt{\$ParallelizeFeynCalc} to
+\texttt{True}. However, before that one should evaluate
+\texttt{LaunchKernels[\allowbreak{}n]} with \texttt{n} being the number
+of parallel kernels to launch. The default value is \texttt{False}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$ParallelizeFeynCalc}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{False}
+\end{dmath*}
+\end{document}

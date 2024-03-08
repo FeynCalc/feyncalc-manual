@@ -1,0 +1,637 @@
+% !TeX program = pdflatex
+% !TeX root = FrequentlyAskedQuestions.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{frequently asked questions}{
+\section{Frequently asked questions}\label{frequently asked questions}\index{Frequently asked questions}}
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}.
+
+\hypertarget{feyncalc-is-open-source-but-it-requires-mathematica-which-is-proprietary.-why}{%
+\subsection{FeynCalc is open-source but it requires Mathematica which is
+proprietary.
+Why?}\label{feyncalc-is-open-source-but-it-requires-mathematica-which-is-proprietary.-why}}
+
+Even though Mathematica is proprietary, we consider it to be an
+exceptionally good tool for symbolic manipulations in terms of
+performance, functionality and documentation. Furthermore, as far as QFT
+computations are concerned, there are plenty of tools like FORM, GiNaC,
+GoSam, sympy etc. that are open-source and don't rely on proprietary
+software. Therefore, no one is forced to use FeynCalc and Mathematica if
+they don't want to.
+
+\hypertarget{since-feyncalc-is-open-source-why-cant-you-just-port-it-to-work-with-maxima-axiom-sympy-etc.}{%
+\subsection{Since FeynCalc is open-source, why can't you just port it to
+work with Maxima, Axiom, sympy
+etc.?}\label{since-feyncalc-is-open-source-why-cant-you-just-port-it-to-work-with-maxima-axiom-sympy-etc.}}
+
+The source code of FeynCalc strongly relies on the rule based
+programming paradigm that is common in Mathematica. Porting this amount
+of internal logic to a different system would require a lot of time and
+effort that can be better spent on improving FeynCalc and adding new
+features. However, since FeynCalc is published und GPLv3 there is
+nothing preventing a person with enough time, knowledge and motivation
+to port the source code to something tehy find more appropriate than
+Mathematica.
+
+\hypertarget{why-should-i-use-feyncalc-when-there-are-other-tools-that-can-compute-feynman-diagrams-faster-and-easier}{%
+\subsection{Why should I use FeynCalc when there are other tools that
+can compute Feynman diagrams faster and
+easier?}\label{why-should-i-use-feyncalc-when-there-are-other-tools-that-can-compute-feynman-diagrams-faster-and-easier}}
+
+It is true that some tools provide much higher automation level than
+FeynCalc, such that in some cases the user just has to specify which
+fields go in and out and then enter a couple of standard commands. This
+is especially true for Standard Model processes, where the corresponding
+models are usually already supplied by the developers.
+
+However, you must also be aware that such tools often act like a black
+box, where you can hardly understand how the computation is actually
+done without looking into the source code. This behavior can be rather
+inconvenient if the result you obtain is not what you expect and you
+would like to ``debug'' the computation.
+
+FeynCalc, on the other hand, allows you to organize your computations in
+the manner which is most convenient for you. For example, you can decide
+if the SU(N) algebra should be done before or after tensor decomposition
+of the loop integrals or whether it makes sense to simplify the Dirac
+algebra before squaring the matrix element or not. With this amount of
+flexibility you can work with FeynCalc in a similar way as you would do
+when doing a calculation with pen and paper. It also makes it easier for
+you to compare to the results of other people or perform cross checks of
+the intermediate results. Of course, to benefit from all this freedom
+you must very well understand what you are computing and what kind of
+result you expect to obtain.
+
+Last but not least, if you are familiar with Mathematica programming, it
+is quite easy to extend FeynCalc and add features that are required for
+your computation but are not available in the official version.
+
+\hypertarget{why-would-one-use-slow-mathematica-for-algebraic-manipulations-when-you-can-take-form}{%
+\subsection{Why would one use ``slow'' Mathematica for algebraic
+manipulations when you can take
+FORM?}\label{why-would-one-use-slow-mathematica-for-algebraic-manipulations-when-you-can-take-form}}
+
+When it comes to algebraic manipulations that are common in QFT
+computations, FORM is indeed a valid alternative to Mathematica, in
+particular in terms of performance. Unfortunately, FORM does not provide
+any convenient interface to interact with the user. While this is fine
+if you write code for a particular computation, a general framework
+would inevitably require some kind of wrapper that generates FORM code
+out of user's input and converts FORM output to something more readable.
+While similar approaches have been successfully employed by different
+developers, we believe that choosing Mathematica over FORM does not
+automatically make FeynCalc worse than similar software tools.
+
+\hypertarget{what-is-the-relation-between-feyncalc-and-formcalc}{%
+\subsection{What is the relation between FeynCalc and
+FormCalc?}\label{what-is-the-relation-between-feyncalc-and-formcalc}}
+
+\href{http://www.feynarts.de/formcalc/}{FormCalc} is a Mathematica
+package for calculating Feynman diagrams developed by Thomas Hahn
+(\href{http://arxiv.org/abs/hep-ph/9807565}{hep-ph/9807565}). For
+performance reasons, most of the computations are done using
+\href{http://www.nikhef.nl/~form/}{FORM}. However, the input and output
+are handled by Mathematica, so that the user doesn't really need to know
+FORM in order to use FormCalc. A nice feature of FormCalc is the
+seamless integration with FeynArts, i.e.~FormCalc can evaluate FeynArts
+diagrams out of the box. This is not surprising since both packages are
+mainly developed by the same person.
+
+Despite the similarity in the names and the fact that both tools are
+used for doing similar things, FeynCalc and FormCalc are not related to
+each other in any way. Both are independent projects developed by
+different people.
+
+\hypertarget{is-feyncalc-used-in-professional-research}{%
+\subsection{Is FeynCalc used in professional
+research?}\label{is-feyncalc-used-in-professional-research}}
+
+Yes! See the citations list of the original FeynCalc paper on
+\href{http://inspirehep.net/record/28757/citations?ln=en}{INSPIRE}.
+
+\hypertarget{what-is-the-difference-between-stable-and-development-versions-of-feyncalc}{%
+\subsection{What is the difference between stable and development
+versions of
+FeynCalc?}\label{what-is-the-difference-between-stable-and-development-versions-of-feyncalc}}
+
+In short, the stable version of FeynCalc is the last officially released
+version of the package. This version receives support until the next
+official release, in the sense that we will provide patches to fix the
+discovered issues or ensure the compatibility to the newly released
+Mathematica versions. While those patches will fix bugs, they will not
+introduce any new features.
+
+The development version of FeynCalc is the test ground for new ideas,
+features and functions. There is no guarantee that everything will work
+and some previously introduced symbols may be renamed or removed without
+further notice. When the development version is considered to be robust
+enough, it gets released as the new stable version.
+
+Both versions are publicly available in the official FeynCalc
+repository.
+
+\begin{itemize}
+\tightlist
+\item
+  The stable version is contained in the
+  \href{https://github.com/FeynCalc/feyncalc/tree/hotfix-stable}{hotfix-stable}
+  branch
+\item
+  The development version resides in the
+  \href{https://github.com/FeynCalc/feyncalc/tree/master}{master} branch
+\end{itemize}
+
+Notice that many of the
+\href{https://github.com/FeynCalc/feyncalc/tree/master/FeynCalc/Examples}{examples}
+shipped with the development version will not run with the stable
+version since they make use of new, previously unavailable routines.
+
+\hypertarget{does-feyncalc-support-working-in-other-spacetime-dimensions-than-4}{%
+\subsection{\texorpdfstring{Does FeynCalc support working in other
+spacetime dimensions than
+\texttt{4}?}{Does FeynCalc support working in other spacetime dimensions than ?}}\label{does-feyncalc-support-working-in-other-spacetime-dimensions-than-4}}
+
+FeynCalc can handle objects in \texttt{4} and \texttt{D} dimensions,
+where \texttt{D} is understood in the sense of dimensional
+regularization. Explicitly, the user can enter objects (e.g.~momenta,
+metric tensors, Dirac matrices) that live in \texttt{4}, \texttt{D} and
+\texttt{D-4} dimensions, where \texttt{D} can be any symbol like
+\texttt{D}, \texttt{d}, \texttt{dim} etc. Specifying dimension in a
+different way (e.g.~by writing \texttt{2}, \texttt{10}, \texttt{D-5},
+\texttt{D+1}, \texttt{2 Epsilon} etc.) is not supported. If quantities
+in different dimensions are contracted with each other, the contraction
+is always resolved according to the rules of the Breitenlohner-Maison-'t
+Hooft-Veltman (BMHV) scheme. For example, contracting a
+\texttt{D}-dimensional vector with a \texttt{D-4}-dimensional metric
+tensor will return a \texttt{D-4}-dimensional vector, while contracting
+a \texttt{4}-dimensional Dirac matrix with a \texttt{D-4}-dimensional
+Dirac matrix will give zero.
+
+\hypertarget{what-is-the-meaning-of-feyncalcexternal-fci-feyncalcexternal-or-fce}{%
+\subsection{What is the meaning of ``FeynCalcExternal'', ``FCI'',
+``FeynCalcExternal'' or
+``FCE''?}\label{what-is-the-meaning-of-feyncalcexternal-fci-feyncalcexternal-or-fce}}
+
+\texttt{FeynCalcInternal} or \texttt{FCI} is the name of the notation
+that FeynCalc uses to encode different physical entities as Mathematica
+functions. This notation is very useful for \emph{programming} FeynCalc,
+but can be rather inconvenient and verbose when used by the user for
+\emph{working} with FeynCalc. To address this issue FeynCalc also
+supports a different notation, called \texttt{FeynCalcExternal} or
+\texttt{FCE} which is much shorter and easier to use than \texttt{FCI}.
+For example, a \texttt{D}-dimensional momentum vector in the FCI
+notation reads
+\texttt{Pair[\allowbreak{}LorentzIndex[\allowbreak{}mu,\ \allowbreak{}D],\ \allowbreak{}Momentum[\allowbreak{}p,\ \allowbreak{}D]]}
+while in the \texttt{FCE}-notation it is just
+\texttt{FVD[\allowbreak{}p,\ \allowbreak{}mu]}. FeynCalc provides the
+functions \texttt{FeynCalcInternal} or \texttt{FCI} and
+\texttt{FeynCalcExternal} or \texttt{FCE} to convert between the two
+notations. The user input can use any of the two notations or even mix
+them. For example,
+
+\texttt{Contract[\allowbreak{}FV[\allowbreak{}p,\ \allowbreak{}mu] MT[\allowbreak{}mu,\ \allowbreak{}nu]]},
+\texttt{Contract[\allowbreak{}Pair[\allowbreak{}LorentzIndex[\allowbreak{}mu],\ \allowbreak{}LorentzIndex[\allowbreak{}nu]]*Pair[\allowbreak{}LorentzIndex[\allowbreak{}mu],\ \allowbreak{}Momentum[\allowbreak{}p]]]}
+and
+\texttt{Contract[\allowbreak{}Pair[\allowbreak{}LorentzIndex[\allowbreak{}mu],\ \allowbreak{}Momentum[\allowbreak{}p] MT[\allowbreak{}mu,\ \allowbreak{}nu]]]}
+are all valid FeynCalc expressions. This is because all FeynCalc
+functions first convert the user input to the \texttt{FCI} notation.
+Some commonly used FCE functions are
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{GA[\allowbreak{}mu]} (Dirac matrix in \texttt{4} dimensions)
+  for \texttt{DiracGamma[\allowbreak{}LorentzIndex[\allowbreak{}mu]]}
+\item
+  \texttt{GS[\allowbreak{}p]} (Dirac slash in \texttt{4} dimensions) for
+  \texttt{DiracGamma[\allowbreak{}Momentum[\allowbreak{}p]]}
+\item
+  \texttt{FV[\allowbreak{}p,\ \allowbreak{}mu]} (vector in \texttt{4}
+  dimensions) for
+  \texttt{Pair[\allowbreak{}LorentzIndex[\allowbreak{}mu],\ \allowbreak{}Momentum[\allowbreak{}p]]}
+\item
+  \texttt{LC[\allowbreak{}mu,\ \allowbreak{}nu,\ \allowbreak{}rho,\ \allowbreak{}sigma]}
+  (epsilon tensor in \texttt{4} dimensions) for
+  \texttt{Eps[\allowbreak{}LorentzIndex[\allowbreak{}mu],\ \allowbreak{}LorentzIndex[\allowbreak{}nu],\ \allowbreak{}LorentzIndex[\allowbreak{}rho],\ \allowbreak{}LorentzIndex[\allowbreak{}sigma]]}
+\item
+  \texttt{MT[\allowbreak{}mu,\ \allowbreak{}nu]} (metric tensor in
+  \texttt{4} dimensions) for
+  \texttt{Pair[\allowbreak{}LorentzIndex[\allowbreak{}mu],\ \allowbreak{}LorentzIndex[\allowbreak{}nu]]}
+\item
+  \texttt{SP[\allowbreak{}p1,\ \allowbreak{}p2]} (scalar product in
+  \texttt{4} dimensions) for
+  \texttt{Pair[\allowbreak{}Momentum[\allowbreak{}p1],\ \allowbreak{}Momentum[\allowbreak{}p2]]}
+\end{itemize}
+
+\hypertarget{how-can-i-automatically-generate-amplitudes-for-my-feynman-diagrams-to-evaluate-them-with-feyncalc}{%
+\subsection{How can I automatically generate amplitudes for my Feynman
+diagrams to evaluate them with
+FeynCalc?}\label{how-can-i-automatically-generate-amplitudes-for-my-feynman-diagrams-to-evaluate-them-with-feyncalc}}
+
+The simplest way is to use FeynArts and convert its output to Feyncalc.
+An interface to QGRAF is available via the FeynHelpers extension.
+
+\hypertarget{feynarts-functions-createtopologies-insertfields-or-paint-generate-a-lot-of-text-output-that-makes-my-notebook-difficult-to-read.-how-can-i-avoid-this}{%
+\subsection{\texorpdfstring{FeynArts' functions
+\texttt{CreateTopologies}, \texttt{InsertFields} or \texttt{Paint}
+generate a lot of text output that makes my notebook difficult to read.
+How can I avoid
+this?}{FeynArts' functions ,  or  generate a lot of text output that makes my notebook difficult to read. How can I avoid this?}}\label{feynarts-functions-createtopologies-insertfields-or-paint-generate-a-lot-of-text-output-that-makes-my-notebook-difficult-to-read.-how-can-i-avoid-this}}
+
+First of all, make sure that you put a semicolon after each FeynArts
+function, e.g.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{    tops }\ExtensionTok{=}\NormalTok{ CreateTopologies}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \DecValTok{2} \OtherTok{{-}\textgreater{}} \DecValTok{2}\OperatorTok{]}\NormalTok{;}
+\NormalTok{    diags }\ExtensionTok{=}\NormalTok{ InsertFields}\OperatorTok{[}\NormalTok{tops}\OperatorTok{,}\NormalTok{ ...}\OperatorTok{]}\NormalTok{;}
+\NormalTok{    Paint}\OperatorTok{[}\NormalTok{diags}\OperatorTok{]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+Second, you can prevent FeynArts from printing info messages by setting
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{    $FAVerbose}\ExtensionTok{=}\DecValTok{0}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+Finally, as far as the graphical output via \texttt{Paint} is concerned,
+you can use the options \texttt{Numbering} and \texttt{SheetHeader} to
+control the amount of additional information when visualizing your
+diagrams. Last but not least, using the \texttt{ColumnsXRows} option can
+make the diagrams look bigger and thus more readable. Compare the output
+of
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{    tops }\ExtensionTok{=}\NormalTok{ CreateTopologies}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \DecValTok{2} \OtherTok{{-}\textgreater{}} \DecValTok{2}\OperatorTok{]}
+\NormalTok{    diags }\ExtensionTok{=}\NormalTok{ InsertFields}\OperatorTok{[}\NormalTok{tops}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{F}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{\}],} \SpecialCharTok{{-}}\FunctionTok{F}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{\}]\}} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{F}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{\}],} \SpecialCharTok{{-}}\FunctionTok{F}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{\}]\},} 
+\NormalTok{    InsertionLevel }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{Classes}\OperatorTok{\},}\NormalTok{ Model }\OtherTok{{-}\textgreater{}} \StringTok{"SM"}\OperatorTok{,}\NormalTok{ ExcludeParticles }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{S}\OperatorTok{[}\DecValTok{1}\OperatorTok{],} \FunctionTok{S}\OperatorTok{[}\DecValTok{2}\OperatorTok{],} \FunctionTok{V}\OperatorTok{[}\DecValTok{2}\OperatorTok{]\}]}
+\NormalTok{    Paint}\OperatorTok{[}\NormalTok{diags}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+with
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{    $FAVerbose}\ExtensionTok{=}\DecValTok{0}\NormalTok{;}
+\NormalTok{    tops }\ExtensionTok{=}\NormalTok{ CreateTopologies}\OperatorTok{[}\DecValTok{0}\OperatorTok{,} \DecValTok{2} \OtherTok{{-}\textgreater{}} \DecValTok{2}\OperatorTok{]}\NormalTok{;}
+\NormalTok{    diags }\ExtensionTok{=}\NormalTok{ InsertFields}\OperatorTok{[}\NormalTok{ tops}\OperatorTok{,} \OperatorTok{\{}\FunctionTok{F}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{\}],} \SpecialCharTok{{-}}\FunctionTok{F}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{\}]\}} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{F}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{\}],} \SpecialCharTok{{-}}\FunctionTok{F}\OperatorTok{[}\DecValTok{2}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{\}]\},} 
+\NormalTok{    InsertionLevel }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{Classes}\OperatorTok{\},}\NormalTok{ Model }\OtherTok{{-}\textgreater{}} \StringTok{"SM"}\OperatorTok{,}\NormalTok{ ExcludeParticles }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{S}\OperatorTok{[}\DecValTok{1}\OperatorTok{],} \FunctionTok{S}\OperatorTok{[}\DecValTok{2}\OperatorTok{],} \FunctionTok{V}\OperatorTok{[}\DecValTok{2}\OperatorTok{]\}]}\NormalTok{;}
+\NormalTok{    Paint}\OperatorTok{[}\NormalTok{diags}\OperatorTok{,}\NormalTok{ ColumnsXRows }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},}\NormalTok{ Numbering }\OtherTok{{-}\textgreater{}} \ConstantTok{None}\OperatorTok{,}\NormalTok{ SheetHeader }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+and you will immediately see the difference.
+
+\hypertarget{why-diractrace-doesnt-evaluate-my-expression}{%
+\subsection{Why DiracTrace doesn't evaluate my
+expression?}\label{why-diractrace-doesnt-evaluate-my-expression}}
+
+By default \texttt{DiracTrace} isn't immediately applied. This is
+because in practical computations one often does not evaluate the trace
+right away, either because one wants to work with the expression inside
+the trace first or because it is desirable to have the final result with
+an unevaluated trace. An immediate evaluation of DiracTrace can be
+invoked by setting the option \texttt{DiracTraceEvaluate} to
+\texttt{True} or applying \texttt{DiracSimplify} to the whole
+expression. For example,
+\texttt{DiracTrace[\allowbreak{}GA[\allowbreak{}mu,\ \allowbreak{}nu]]}
+remains unevaluated but
+\texttt{DiracTrace[\allowbreak{}GA[\allowbreak{}mu,\ \allowbreak{}nu],\ \allowbreak{}DiracTraceEvaluate -> True]}
+or
+\texttt{DiracTrace[\allowbreak{}GA[\allowbreak{}mu,\ \allowbreak{}nu]]//DiracSimplify}
+are evaluated immediately.
+
+\hypertarget{can-i-use-feyncalcs-tensors-together-with-mathematicas-tensors-e.g.-kroneckerdelta-levicivitatensor-and-tensor-functions-e.g.-tensorcontract-tensortranspose-tensorproduct}{%
+\subsection{\texorpdfstring{Can I use FeynCalc's tensors together with
+Mathematica's tensors (e.g.~\texttt{KroneckerDelta},
+\texttt{LeviCivitaTensor}) and tensor functions
+(e.g.~\texttt{TensorContract}, \texttt{TensorTranspose},
+\texttt{TensorProduct})?}{Can I use FeynCalc's tensors together with Mathematica's tensors (e.g.~, ) and tensor functions (e.g.~, , )?}}\label{can-i-use-feyncalcs-tensors-together-with-mathematicas-tensors-e.g.-kroneckerdelta-levicivitatensor-and-tensor-functions-e.g.-tensorcontract-tensortranspose-tensorproduct}}
+
+No, you cannot mix those objects. FeynCalc's tensor functions like
+\texttt{Contract} can work properly only with tensors that are defined
+in FeynCalc (i.e.~\texttt{FV}, \texttt{MTD}, \texttt{TensorFunction}).
+The same goes for Mathematica's \texttt{TensorContract} applied to
+FeynCalc's tensors. Trying to combine tensors from Mathematica and
+FeynCalc will either not evaluate at all or produce wrong results.
+
+\hypertarget{why-there-is-no-kronecker-delta-in-feyncalc}{%
+\subsection{Why there is no Kronecker delta in
+FeynCalc?}\label{why-there-is-no-kronecker-delta-in-feyncalc}}
+
+FeynCalc doesn't really distinguish between upper and lower Lorentz
+indices. This is perfectly fine as long as you're working with
+manifestly Lorentz covariant expressions where Einstein summation
+convention is understood (which is normally the case in relativistic,
+manifestly Lorentz covariant QFTs like QED, QCD etc.). Hence, instead of
+Kronecker's delta you would use the metric tensor
+\texttt{MT[\allowbreak{}mu,\ \allowbreak{}nu]} (in 4-dimensions) or
+\texttt{MTD[\allowbreak{}mu,\ \allowbreak{}nu]} (in D-dimensions). This
+is not surprising since the Minkowskian Kronecker delta is just the
+metric tensor with one index up and the other down. If one of those
+indices is a dummy index, you can always pull it upstairs or downstairs,
+thus converting your Kronecker delta into a metric tensor with both
+indices up or down.
+
+\hypertarget{feyncalc-denotes-all-spinors-with-a-varphi-letter.-how-do-i-distinguish-between-u-baru-v-and-barv}{%
+\subsection{\texorpdfstring{FeynCalc denotes all spinors with a
+\(\varphi\) letter. How do I distinguish between \(u\), \(\bar{u}\),
+\(v\) and
+\(\bar{v}\)?}{FeynCalc denotes all spinors with a \textbackslash varphi letter. How do I distinguish between u, \textbackslash bar\{u\}, v and \textbackslash bar\{v\}?}}\label{feyncalc-denotes-all-spinors-with-a-varphi-letter.-how-do-i-distinguish-between-u-baru-v-and-barv}}
+
+FeynCalc (and FeynArts) figure out the type of the spinor depending on
+its position in the chain and the sign of its momentum. The first spinor
+in the chain with positive momentum is \(\bar{u}\) (outgoing fermion)
+and if the momentum is negative it is \(\bar{v}\) (ingoing antifermion).
+Likewise, the last spinor in the chain with positive momentum is \(u\)
+(ingoing fermion) and if the momentum is negative it is \(v\) (outgoing
+antifermion).
+
+\hypertarget{in-feyncalc-the-lorentz-indices-of-the-epsilon-tensor-are-sometimes-replaced-by-4-momenta.-what-does-this-mean}{%
+\subsection{In FeynCalc the Lorentz indices of the epsilon tensor are
+sometimes replaced by 4-momenta. What does this
+mean?}\label{in-feyncalc-the-lorentz-indices-of-the-epsilon-tensor-are-sometimes-replaced-by-4-momenta.-what-does-this-mean}}
+
+It is just a convention (also used e.g.~in FORM) to denote contractions
+between 4-vectors and the epsilon tensor. So,
+\texttt{LC[\allowbreak{}mu,\ \allowbreak{}nu,\ \allowbreak{}rho][\allowbreak{}p]}
+is the same as
+\texttt{Contract[\allowbreak{}LC[\allowbreak{}mu,\ \allowbreak{}nu,\ \allowbreak{}rho,\ \allowbreak{}si] FV[\allowbreak{}p,\ \allowbreak{}si]]}.
+There is also a technical reason for using this notation. Writing
+contractions without explicitly introducing dummy indices avoids the
+necessity to canonicalize the indices, e.g.~to ensure that say
+\texttt{LC[\allowbreak{}mu,\ \allowbreak{}nu,\ \allowbreak{}rho,\ \allowbreak{}si] FV[\allowbreak{}p,\ \allowbreak{}si] - LC[\allowbreak{}mu,\ \allowbreak{}nu,\ \allowbreak{}rho,\ \allowbreak{}tau] FV[\allowbreak{}p,\ \allowbreak{}tau]}
+is indeed zero.
+
+\hypertarget{how-are-the-loop-integrals-in-feyncalc-normalized}{%
+\subsection{How are the loop integrals in FeynCalc
+normalized?}\label{how-are-the-loop-integrals-in-feyncalc-normalized}}
+
+FeynCalc contains several objects that represent loop integrals:
+\texttt{FAD} (and its varieties such as \texttt{SFAD}, \texttt{CFAD} and
+\texttt{GFAD}), \texttt{PaVe} and \texttt{GLI}. \texttt{FAD}is the
+denominator of a general loop integral and does not imply any
+normalization factors. E.g.
+\texttt{FAD[\allowbreak{}\{\allowbreak{}p,\ \allowbreak{}m\}]} stands
+for \(\int d^D p \frac{1}{p^2-m^2}\). \texttt{PaVe} stands (depending on
+its arguments) for a Passarino-Veltman coefficient or scalar function.
+In FeynCalc they are normalized differently as compared to the
+literature, such that
+\texttt{PaVe[\allowbreak{}0,\ \allowbreak{}\{\allowbreak{}\},\ \allowbreak{}\{\allowbreak{}m\}]}
+(1-point scalar function) denotes
+\(\frac{1}{i Pi^2} \int d^D p \frac{1}{p^2-m^2}\). The same
+normalization holds also for all the other PaVe functions. This
+normalization is used also e.g.~in the OneLoop package.
+
+To sum it up, if we denote
+\(\int \frac{d^D p}{(2 \pi)^4} \frac{1}{p^2-m^2}\) (1-loop tadpole
+integral with the standard normalization) as \(I_0\) and
+\(-i (16 \pi^2) I_0\) (1-point PaVe scalar function with the standard
+normalization) as \(A_0\), then we have
+
+\begin{align*}
+\mathtt{FAD}[\{p,m\}] = (2\pi)^D I_0 = I \pi^2 (2 \pi)^{D-4} A_0 = i \pi^2 \, \mathtt{PaVe}[0, \{\}, \{m\}]
+\end{align*}
+
+This is consistent with the well-known relation
+
+\begin{align*}
+I_0 = \frac{i}{16 \pi^2} A_0
+\end{align*}
+
+Note, than when you convert \texttt{FAD}-type loop integrals to
+\texttt{PaVe}, FeynCalc automatically introduces the prefactor
+\(\frac{1}{\pi^2}\), to account for the fact that
+
+\begin{align*}
+\mathtt{PaVe}[0, \{\}, \{m\}] \to \frac{1}{i \pi^2} \mathtt{FAD}[\{p,m\}]
+\end{align*}
+
+If the prefactor \(\frac{1}{(\pi^2)^D}\) in front of each 1-loop
+integral from \texttt{FAD} or \texttt{PaVe} is taken to be implicit
+(i.e.~it understood but not written down explicitly), then one can
+conveniently work with the following replacements
+
+\begin{align*}
+\mathtt{FAD}[\{p,m\}] &\to I_0, \\
+\mathtt{FAD}[\{p,m\}] &\to \frac{i}{16 \pi^2} A_0, \\
+\mathtt{PaVe}[0, \{\}, \{m\}] &\to \frac{1}{i \pi^2} I_0, \\
+\mathtt{PaVe}[0, \{\}, \{m\}] &\to \frac{1}{(2 \pi)^4} A_0.
+\end{align*}
+
+For practical purposes, this approach is indeed the most convenient one.
+If you are generating your amplitudes with FeynArts, you need to use the
+option \texttt{Prefactor} of \texttt{CreateFeynAmp} to prevent FeynArts
+from adding explicit \texttt{1/(2Pi)^D} prefactors. For example,
+\texttt{CreateFeynAmp[\allowbreak{}myDiagrams,\ \allowbreak{}PreFactor -> 1]}
+will generate you the amplitude (I*M) without those prefactors.
+
+\hypertarget{how-can-i-define-a-complex-four-vector}{%
+\subsection{How can I define a complex four
+vector?}\label{how-can-i-define-a-complex-four-vector}}
+
+The simplest way is to write something like
+\texttt{FV[\allowbreak{}\{\allowbreak{}a,\ \allowbreak{}I\},\ \allowbreak{}mu]}.
+The presence of an explicit \texttt{I} will make this vector change
+under \texttt{ComplexConjugate}, such that
+
+\begin{verbatim}
+ComplexConjugate[FV[{a,I},mu]]//FCE
+\end{verbatim}
+
+will give you
+\texttt{FV[\allowbreak{}\{\allowbreak{}a,\ \allowbreak{}-I\},\ \allowbreak{}mu]}.
+
+\hypertarget{i-created-a-custom-model-for-feynarts-using-feynrules.-how-can-i-use-it-for-calculations-with-feyncalc}{%
+\subsection{I created a custom model for FeynArts using FeynRules. How
+can I use it for calculations with
+FeynCalc?}\label{i-created-a-custom-model-for-feynarts-using-feynrules.-how-can-i-use-it-for-calculations-with-feyncalc}}
+
+You need to copy your model to
+\texttt{FileNameJoin[\allowbreak{}\{\allowbreak{}\$FeynArtsDirectory,\ \allowbreak{}"Models"\}]}
+and evaluate (needed only once)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FAPatch}\OperatorTok{[}\NormalTok{PatchModelsOnly }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+This will patch the new model to be compatible with FeynCalc, after
+which you can follow the standard procedure of generating amplitudes
+with patched FeynArts and converting them to FeynCalc using
+\texttt{FCFAConvert}. Notice that some models you create with FeynRules
+might not work with FeynCalc, if they contain objects that are not
+present in FeynCalc.
+
+\hypertarget{how-does-feyncalc-treat-the-5th-dirac-matrix-gamma5-in-d-dimensions}{%
+\subsection{\texorpdfstring{How does FeynCalc treat the 5th Dirac matrix
+\(\gamma^5\) in \(D\)
+dimensions?}{How does FeynCalc treat the 5th Dirac matrix \textbackslash gamma\^{}5 in D dimensions?}}\label{how-does-feyncalc-treat-the-5th-dirac-matrix-gamma5-in-d-dimensions}}
+
+FeynCalc essentially offers two ways to handle the Dirac algebra
+involving \(\gamma^5\) in \(D\) dimensions. The default is anticommuting
+\(\gamma^5\) which corresponds to the naive dimensional regularization
+(NDR). That is,
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracSimplify}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\DecValTok{5}\OperatorTok{]}\NormalTok{.GAD}\OperatorTok{[}\NormalTok{mu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+returns
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{{-}}\NormalTok{GAD}\OperatorTok{[}\NormalTok{mu}\OperatorTok{]}\NormalTok{.GA}\OperatorTok{[}\DecValTok{5}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+As far as Dirac traces are concerned, a trace that contains an even
+number of \(\gamma^5\) (so that they can be anticommuted to the very
+right and eliminated via \((\gamma^5)^2 = 1\) can be computed directly,
+e.g.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracSimplify}\OperatorTok{[}\NormalTok{DiracTrace}\OperatorTok{[}\NormalTok{GAD}\OperatorTok{[}\NormalTok{i1}\OperatorTok{,}\NormalTok{i2}\OperatorTok{,}\NormalTok{i3}\OperatorTok{,}\NormalTok{i4}\OperatorTok{]}\NormalTok{.GA}\OperatorTok{[}\DecValTok{5}\OperatorTok{]}\NormalTok{.GAD}\OperatorTok{[}\NormalTok{i5}\OperatorTok{,}\NormalTok{i6}\OperatorTok{]}\NormalTok{.GA}\OperatorTok{[}\DecValTok{5}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+does not cause any problems. If the trace contains an odd number of
+\(\gamma^5\), NDR does not provide an unambiguous prescription to deal
+with such quantities. Therefore, FeynCalc will refuse to calculate such
+a trace, cf.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracSimplify}\OperatorTok{[}\NormalTok{DiracTrace}\OperatorTok{[}\NormalTok{GAD}\OperatorTok{[}\NormalTok{i1}\OperatorTok{,}\NormalTok{i2}\OperatorTok{,}\NormalTok{i3}\OperatorTok{,}\NormalTok{i4}\OperatorTok{]}\NormalTok{.GA}\OperatorTok{[}\DecValTok{5}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+An alternative prescription to handle \(\gamma^5\) available in FeynCalc
+is the so-called t'Hooft-Veltman scheme, also known as
+Breitenlohner-Maison-t'Hooft-Veltman (BMHV) scheme. This scheme is
+algebraically consistent in the sense that D-dimensional traces
+involving any number of \(\gamma^5\) can be evaluated unambiguously.
+However, it is often perceived as cumbersome, as in this scheme we must
+explicitly distinguish between quantities (Dirac matrices, Lorentz
+vectors etc.) that live in \(D\), \(4\) and \(D-4\) dimensions.
+Furthermore, this scheme breaks axial Ward identitites that have to be
+manually restored with a special counter-term. Cf.
+e.g.~arXiv:1809.01830, p.~101 for a brief overview. This scheme is
+activated by setting the global variable \texttt{\$BreitMaison} to
+\texttt{True}. After that FeynCalc can directly calculate traces with an
+odd number of \(\gamma^5\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$BreitMaison}\ExtensionTok{=}\ConstantTok{True}\NormalTok{;}
+\NormalTok{DiracSimplify}\OperatorTok{[}\NormalTok{DiracTrace}\OperatorTok{[}\NormalTok{GAD}\OperatorTok{[}\NormalTok{i1}\OperatorTok{,}\NormalTok{i2}\OperatorTok{,}\NormalTok{i3}\OperatorTok{,}\NormalTok{i4}\OperatorTok{,}\NormalTok{i5}\OperatorTok{,}\NormalTok{i6}\OperatorTok{]}\NormalTok{.GA}\OperatorTok{[}\DecValTok{5}\OperatorTok{]]]}
+\end{Highlighting}
+\end{Shaded}
+
+As one can immediately see, the price to pay is that the algebra
+involving \(\gamma^5\) becomes more complicated
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DiracSimplify}\OperatorTok{[}\NormalTok{GA}\OperatorTok{[}\DecValTok{5}\OperatorTok{]}\NormalTok{.GAD}\OperatorTok{[}\NormalTok{mu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+In this context quantities living in different dimensions are
+distinguished by having a bar (4-dimensions) a hat (D-4 dimensions) or
+no additional markers (D-dimensions). Cf.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{\{}\NormalTok{GAD}\OperatorTok{[}\NormalTok{mu}\OperatorTok{],}\NormalTok{ GSD}\OperatorTok{[}\NormalTok{mu}\OperatorTok{],}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,}\NormalTok{mu}\OperatorTok{],}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,}\FunctionTok{q}\OperatorTok{]\}} \CommentTok{(*D{-}dim*)}
+\OperatorTok{\{}\NormalTok{GA}\OperatorTok{[}\NormalTok{mu}\OperatorTok{],}\NormalTok{ GS}\OperatorTok{[}\NormalTok{mu}\OperatorTok{],}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,}\NormalTok{mu}\OperatorTok{],}\NormalTok{ SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,}\FunctionTok{q}\OperatorTok{]\}} \CommentTok{(*4{-}dim*)}
+\OperatorTok{\{}\NormalTok{GAE}\OperatorTok{[}\NormalTok{mu}\OperatorTok{],}\NormalTok{ GSE}\OperatorTok{[}\NormalTok{mu}\OperatorTok{],}\NormalTok{ FVE}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,}\NormalTok{mu}\OperatorTok{],}\NormalTok{ SPE}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,}\FunctionTok{q}\OperatorTok{]\}} \CommentTok{(*D{-}4{-}dim*)}
+\end{Highlighting}
+\end{Shaded}
+
+To return to the NDR scheme, you need to set
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{$BreitMaison}\ExtensionTok{=}\ConstantTok{False}
+\end{Highlighting}
+\end{Shaded}
+
+Notice that FeynCalc merely evaluates the user expressions according to
+the scheme setting. Since \(\gamma^5\) in \(D\) dimensions is always a
+problematic topic, it is up to you to make sure that what you are
+calculating makes sense from the physics point of view. Moreover, in
+case of the BMHV scheme, it is your task to workout the additional
+counter terms (which is often very nontrivial) and ensure that the axial
+current conservation is restored.
+
+\hypertarget{why-should-i-avoid-using-oneloop}{%
+\subsection{Why should I avoid using
+OneLoop?}\label{why-should-i-avoid-using-oneloop}}
+
+\texttt{OneLoop} is a legacy function that was originally introduced to
+completely handle the evaluation of 1-loop amplitudes in FeynCalc. Over
+the years, we realized that this approach is not very flexible and that
+it is often better to tackle the evaluation of the amplitude by applying
+lower level functions such as \texttt{TID}, \texttt{DiracSimplify},
+\texttt{SUNSimplify} etc. in the order determined by the type of the
+given amplitude. Moreover, it was observed that in some cases
+\texttt{OneLoop} may return inconsistent results, especially when
+calculating diagrams that involve \(\gamma^5\). Unfortunately, the
+enormous complexity of the \texttt{OneLoop} source code makes it
+unlikely that it can be fixed and debugged in the near future. This is
+why we recommend the FeynCalc users to avoid calling \texttt{OneLoop}
+altogether and use other (simpler) functions instead. In particular, as
+far as the tensor reduction of 1-loop integrals is concerned,
+\texttt{TID} can do everything (and even more) than is offered by
+\texttt{OneLoop}.
+
+\hypertarget{tensor-reduction-with-tid-is-very-slow-is-there-a-way-to-accelerate-it}{%
+\subsection{Tensor reduction with TID is very slow, is there a way to
+accelerate
+it?}\label{tensor-reduction-with-tid-is-very-slow-is-there-a-way-to-accelerate-it}}
+
+By default \texttt{TID} attempts to reduce all the occurring tensor
+integrals to scalar ones (tadpole, bubble, triangle and box). For
+integrals that are of a high rank and/or depend on many complicated
+invariants, such a reduction will generate a huge number of terms. This
+is why in such cases \texttt{TID} might require a lot of time to
+generate the output. However, very often the reduction to the basic
+scalar integrals is not really needed. If the output will be evaluated
+numerically (e.g.~using \texttt{LoopTools}) or analytically with the aid
+of \texttt{FeynHelpers}, it is fully sufficient to reduce each tensor
+integral to the corresponding Passarino-Veltman coefficient functions.
+In this case the reduction occurs much faster and the output is very
+compact. This mode can be activated via the option
+\texttt{UsePaVeBasis}. Compare e.g.~the output of
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TID}\OperatorTok{[}\NormalTok{FVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,}\NormalTok{ mu}\OperatorTok{]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,}\NormalTok{ nu}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,}\NormalTok{ m0}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{p} \SpecialCharTok{+}\NormalTok{ q1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{p} \SpecialCharTok{+}\NormalTok{ q2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{\}],} \FunctionTok{p}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+with
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TID}\OperatorTok{[}\NormalTok{FVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,}\NormalTok{ mu}\OperatorTok{]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,}\NormalTok{ nu}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{p}\OperatorTok{,}\NormalTok{ m0}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{p} \SpecialCharTok{+}\NormalTok{ q1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{p} \SpecialCharTok{+}\NormalTok{ q2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{\}],} \FunctionTok{p}\OperatorTok{,}
+\NormalTok{  UsePaVeBasis }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+to see the difference.
+\end{document}

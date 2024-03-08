@@ -1,0 +1,163 @@
+% !TeX program = pdflatex
+% !TeX root = Development.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{development}{
+\section{Development}\label{development}\index{Development}}
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}.
+
+If you are using FeynCalc in your research activities on a regular
+basis, sooner or later you will encounter situations, where FeynCalc is
+missing something that you need. Provided that you have some knowledge
+in Mathematica programming, you can in principle extend FeynCalc with
+whatever you want, where the only limits are your skills and the amount
+of time you want to invest into it.
+
+Here we collect some tips and recommendations for extending/modifying
+FeynCalc
+
+\hypertarget{unit-tests}{%
+\subsection{Unit tests}\label{unit-tests}}
+
+To improve the code quality of FeynCalc and avoid new bugs or
+regressions we employ a large number of
+\href{https://en.wikipedia.org/wiki/Unit_testing}{unit tests}. The tests
+are written using Mathematica's native framework \texttt{MUnit} and can
+be found in the
+\href{https://github.com/FeynCalc/feyncalc/tree/master/Tests}{Tests}
+directory of the FeynCalc repository
+
+The unit tests are useful not only for the developers. If you are
+modifying the source code of FeynCalc for your own needs or using
+FeynCalc together with other packages on the same kernel, it might be
+useful to check if FeynCalc is still working properly. This can be done
+by running the test suite and analyzing the results.
+
+\hypertarget{modifying-the-source-code}{%
+\subsection{Modifying the source code}\label{modifying-the-source-code}}
+
+In general, it is not a very good idea to modify the source code of
+FeynCalc directly, since this may give you a lot of troubles when
+updating to a newer version. Also, there is a fair chance to break
+existing functionality which might lead to erroneous results. However,
+for some deep modifications this might be sometimes necessary.
+
+Still, if you think that the feature that you want to implement could be
+useful also for other people, it won't harm to publish your request on
+the mailing list.
+
+\begin{itemize}
+\tightlist
+\item
+  The source code of FeynCalc is located in the
+  \texttt{\$FeynCalcDirectory} directory. The package is loaded via the
+  \texttt{FeynCalc.m} file.
+\item
+  In \texttt{FeynCalc.m} there is a code snippet that starts with
+  \texttt{boostrappingList = ...}. This is where different parts of the
+  FeynCalc package are loaded. Those parts are contained in different
+  directories inside \texttt{\$FeynCalcDirectory} (e.g.~\texttt{Shared},
+  \texttt{NonCommAlgebra}, \texttt{Lorentz}) depending on their purpose.
+  Every .m file from those directories is loaded into Mathematica.
+\end{itemize}
+
+\hypertarget{add-ons}{%
+\subsection{Add-ons}\label{add-ons}}
+
+Starting with the version 9.0, FeynCalc features a new add-on system.
+The purpose of add-ons is to extend FeynCalc with new features without
+the need to modify FeynCalc itself.
+
+The add-ons are placed in the directory \texttt{AddOns} inside
+\texttt{\$FeynCalcDirectory}. They are loaded in the same fashion as
+regular FeynCalc objects and functions and live in the context
+\texttt{FeynCalc\textasciigrave NameOfTheAddon\textasciigrave }.
+
+A toy add-on
+\href{https://github.com/FeynCalc/feyncalc/tree/master/FeynCalc/AddOns/FVProjection}{FVProjection}
+that represents a minimal working example is shipped together with
+FeynCalc. You can use its source code as a template for writing your own
+addons. The general structure of the main .m file
+(e.g.~\texttt{MyAddon.m}) for an add-on looks like
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\NormalTok{Foo::usage}\ExtensionTok{=}
+\StringTok{"Description of Foo"}\NormalTok{;}
+
+\NormalTok{Bar::usage}\ExtensionTok{=}
+\StringTok{"Description of Bar"}\NormalTok{;}
+
+\NormalTok{$MyAddonVersion::usage}\ExtensionTok{=}
+\StringTok{"$MyAddonVersion is the string that represents the version of MyAddon"}\NormalTok{;}
+
+\NormalTok{$MyAddonDirectory::usage}\ExtensionTok{=}
+\StringTok{"$MyAddonDirectory is the string that represents the full path to the MyAddon directory"}\NormalTok{;}
+
+\FunctionTok{Begin}\OperatorTok{[}\StringTok{"\textasciigrave{}Package\textasciigrave{}"}\OperatorTok{]}
+\FunctionTok{End}\OperatorTok{[]}
+
+\NormalTok{$MyAddonVersion}\ExtensionTok{=}\StringTok{"1.0.0"}\NormalTok{;}
+
+\NormalTok{$MyAddonDirectory }\ExtensionTok{=}
+\NormalTok{ToFileName}\OperatorTok{[\{}\NormalTok{$FeynCalcDirectory}\OperatorTok{,} \StringTok{"AddOns"}\OperatorTok{,} \StringTok{"MyAddon"}\OperatorTok{\}]}\NormalTok{;}
+
+\FunctionTok{Begin}\OperatorTok{[}\StringTok{"\textasciigrave{}MyAddon\textasciigrave{}Private\textasciigrave{}"}\OperatorTok{]}\NormalTok{;}
+
+\NormalTok{Foo}\OperatorTok{[}\AttributeTok{x\_}\OperatorTok{,}\AttributeTok{y\_}\OperatorTok{]}\ExtensionTok{:=}\NormalTok{ Pair}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{x}\OperatorTok{],}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{y}\OperatorTok{]]}\NormalTok{;}
+\NormalTok{Bar}\OperatorTok{[}\AttributeTok{x\_}\OperatorTok{,}\AttributeTok{y\_}\OperatorTok{]}\ExtensionTok{:=}\NormalTok{ DiracGamma}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\FunctionTok{x}\OperatorTok{]]}\NormalTok{.DiracGamma}\OperatorTok{[}\NormalTok{Momentum}\OperatorTok{[}\FunctionTok{y}\OperatorTok{]]}\NormalTok{;}
+
+\CommentTok{(* Print startup message *)}
+\FunctionTok{If}\OperatorTok{[}\NormalTok{ Global\textasciigrave{}$FeynCalcStartupMessages }\ExtensionTok{=}\NormalTok{!}\ExtensionTok{=} \ConstantTok{False}\OperatorTok{,}
+    \FunctionTok{Print}\OperatorTok{[}\FunctionTok{Style}\OperatorTok{[}\StringTok{"MyAddon "}\OperatorTok{,} \StringTok{"Text"}\OperatorTok{,} \FunctionTok{Bold}\OperatorTok{],} \FunctionTok{Style}\OperatorTok{[}\NormalTok{$MyAddonVersion \textless{}\textgreater{} }\StringTok{" loaded."}\OperatorTok{,} \StringTok{"Text"}\OperatorTok{]]}
+\OperatorTok{]}\NormalTok{;}
+
+
+\FunctionTok{End}\OperatorTok{[]}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{packages-that-use-feyncalc}{%
+\subsection{Packages that use
+FeynCalc}\label{packages-that-use-feyncalc}}
+
+Starting with FeynCalc 9.0 one can easily write something like
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{BeginPackage}\OperatorTok{[}\StringTok{"MyPackage\textasciigrave{}"}\OperatorTok{,\{}\StringTok{"FeynCalc\textasciigrave{}"}\OperatorTok{\}]}
+
+\NormalTok{MySP::usage}\ExtensionTok{=}
+\StringTok{"Description of MySP"}\NormalTok{;}
+
+\FunctionTok{Begin}\OperatorTok{[}\StringTok{"\textasciigrave{}Private\textasciigrave{}"}\OperatorTok{]}\NormalTok{;}
+
+\NormalTok{MySP}\OperatorTok{[}\AttributeTok{a\_}\OperatorTok{,}\AttributeTok{b\_}\OperatorTok{]}\ExtensionTok{:=}\NormalTok{ FCI}\OperatorTok{[}\NormalTok{SP}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,}\FunctionTok{b}\OperatorTok{]]}\NormalTok{;}
+
+\FunctionTok{End}\OperatorTok{[]}
+\FunctionTok{EndPackage}\OperatorTok{[]}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{package-or-add-on}{%
+\subsection{Package or add-on?}\label{package-or-add-on}}
+
+The decision, whether you want to write an add-on or a separate package
+that requires FeynCalc should be made depending on your working style.
+
+\begin{itemize}
+\tightlist
+\item
+  If you use FeynCalc as your primary tool for doing computations, an
+  add-on would be the best way to add things that you're missing.
+\item
+  If for you FeynCalc is only a part of a bigger framework, then a
+  package that combines different tools (including FeynCalc) would
+  probably be a better idea.
+\end{itemize}
+\end{document}

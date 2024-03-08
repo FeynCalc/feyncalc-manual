@@ -1,0 +1,51 @@
+% !TeX program = pdflatex
+% !TeX root = Parallelization.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{parallelization}{
+\section{Parallelization}\label{parallelization}\index{Parallelization}}
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}.
+
+Some FeynCalc routines can be parallelized meaning that the code will
+try to distribute chunks of the calculation to multiple Mathematica
+kernels.
+
+To this aim the number of subkernels should roughly correspond to the
+number of CPU cores
+
+\hypertarget{enabling-parallelization}{%
+\subsection{Enabling parallelization}\label{enabling-parallelization}}
+
+To enable the parallelization you need to actively launch some parallel
+kernels and then set the variable \texttt{\$ParallelizeFeynCalc} to
+\texttt{True}. In this case a copy of FeynCalc will be loaded on each of
+the parallel kernels and used to parallelize some selected operations.
+For example,
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{LaunchKernels}\OperatorTok{[}\DecValTok{8}\OperatorTok{]}
+\NormalTok{$ParallelizeFeynCalc }\ExtensionTok{=} \ConstantTok{True}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{functions-that-support-automatic-execution-on-parallel-kernels}{%
+\subsection{Functions that support automatic execution on parallel
+kernels}\label{functions-that-support-automatic-execution-on-parallel-kernels}}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{FCLoopFromGLI}
+\item
+  \texttt{FCFeynmanPrepare}
+\item
+  \texttt{FCLoopToPakForm}
+\item
+  \texttt{FCLoopFindIntegralMappings}
+\end{itemize}
+\end{document}

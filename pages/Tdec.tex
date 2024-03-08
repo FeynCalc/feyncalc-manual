@@ -59,4 +59,19 @@ This calculates integral transformation for any
 \begin{dmath*}\breakingcomma
 \left(p\cdot q_1\right) \left(p\cdot q_2\right) \left(p\cdot q_3\right)
 \end{dmath*}
+
+To calculate a tensor decomposition with specific kinematic constraints,
+use the option \texttt{FinalSubstitutions}. Notice that kinematic
+configurations involving zero Gram determinants are not supported.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Tdec}\OperatorTok{[\{\{}\FunctionTok{l}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]\},} \OperatorTok{\{}\FunctionTok{l}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]\}\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} 
+\NormalTok{  FinalSubstitutions }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{\},}\NormalTok{ FCE }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,} \FunctionTok{List} \OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-\frac{g^{\mu \nu } \left(l^2 (\text{p1}\cdot \;\text{p2})^2-2 (l\cdot \;\text{p1}) (l\cdot \;\text{p2}) (\text{p1}\cdot \;\text{p2})\right)}{(2-D) (\text{p1}\cdot \;\text{p2})^2}+\frac{\text{p2}^{\mu } \;\text{p2}^{\nu } \left(2 (l\cdot \;\text{p1})^2 (\text{p1}\cdot \;\text{p2})^2-D (l\cdot \;\text{p1})^2 (\text{p1}\cdot \;\text{p2})^2\right)}{(2-D) (\text{p1}\cdot \;\text{p2})^4}+\frac{\text{p1}^{\mu } \;\text{p1}^{\nu } \left(2 (l\cdot \;\text{p2})^2 (\text{p1}\cdot \;\text{p2})^2-D (l\cdot \;\text{p2})^2 (\text{p1}\cdot \;\text{p2})^2\right)}{(2-D) (\text{p1}\cdot \;\text{p2})^4}-\frac{\text{p1}^{\nu } \;\text{p2}^{\mu } \left(D (l\cdot \;\text{p1}) (l\cdot \;\text{p2}) (\text{p1}\cdot \;\text{p2})^2-l^2 (\text{p1}\cdot \;\text{p2})^3\right)}{(2-D) (\text{p1}\cdot \;\text{p2})^4}-\frac{\text{p1}^{\mu } \;\text{p2}^{\nu } \left(D (l\cdot \;\text{p1}) (l\cdot \;\text{p2}) (\text{p1}\cdot \;\text{p2})^2-l^2 (\text{p1}\cdot \;\text{p2})^3\right)}{(2-D) (\text{p1}\cdot \;\text{p2})^4}
+\end{dmath*}
 \end{document}
