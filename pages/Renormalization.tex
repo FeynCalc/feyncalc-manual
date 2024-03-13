@@ -193,11 +193,13 @@ Furthermore, before saving the FeynArts model via
 \texttt{WriteFeynArtsOutput} we need to set the global variable
 \texttt{FR\$Loop} to \texttt{True}. For example,
 
-\begin{verbatim}
-FR$Loop=True;
-SetDirectory[FileNameJoin[{$UserBaseDirectory,"Applications","FeynCalc","FeynArts","Models"}]];
-WriteFeynArtsOutput[LPhi4,Output->"Phi4",CouplingRename->False];
-\end{verbatim}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FR$Loop}\ExtensionTok{=}\ConstantTok{True}\NormalTok{;}
+\FunctionTok{SetDirectory}\OperatorTok{[}\FunctionTok{FileNameJoin}\OperatorTok{[\{}\VariableTok{$UserBaseDirectory}\OperatorTok{,}\StringTok{"Applications"}\OperatorTok{,}\StringTok{"FeynCalc"}\OperatorTok{,}\StringTok{"FeynArts"}\OperatorTok{,}\StringTok{"Models"}\OperatorTok{\}]]}\NormalTok{;}
+\NormalTok{WriteFeynArtsOutput}\OperatorTok{[}\NormalTok{LPhi4}\OperatorTok{,}\NormalTok{Output}\OtherTok{{-}\textgreater{}}\StringTok{"Phi4"}\OperatorTok{,}\NormalTok{CouplingRename}\OtherTok{{-}\textgreater{}}\ConstantTok{False}\OperatorTok{]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{renormalization-schemes}{%
 \subsection{Renormalization schemes}\label{renormalization-schemes}}
@@ -320,13 +322,13 @@ The bare 2-point function for the massless vector field is defined as
 and the renormalized one reads
 
 \begin{equation}
-    \Gamma_R^{\mu \nu} (q) = \Gamma^{\mu \nu} (q) + \text{CT}.
+    \Gamma_R^{\mu \nu} (q) = \Gamma^{\mu \nu} (q) + \;\text{CT}.
 \end{equation}
 
 For convenience we also introduce
 
 \begin{equation}
-    \tilde{\Gamma}^{\mu \nu}_R(q) = - \Pi^{\mu \nu} (q) + \text{CT}
+    \tilde{\Gamma}^{\mu \nu}_R(q) = - \Pi^{\mu \nu} (q) + \;\text{CT}
 \end{equation}
 
 which corresponds to what one actually calculates when considering the
@@ -438,13 +440,13 @@ The bare 2-point function for the massive vector field is defined as
 and the renormalized one reads
 
 \begin{equation}
-    \Gamma_R^{\mu \nu} (q) = \Gamma^{\mu \nu} (q) + \text{CT}
+    \Gamma_R^{\mu \nu} (q) = \Gamma^{\mu \nu} (q) + \;\text{CT}
 \end{equation}
 
 For convenience we also introduce
 
 \begin{equation}
-    \tilde{\Gamma}^{\mu \nu}_R(q) = - \Pi^{\mu \nu} (q) + \text{CT}
+    \tilde{\Gamma}^{\mu \nu}_R(q) = - \Pi^{\mu \nu} (q) + \;\text{CT}
 \end{equation}
 
 which corresponds to what one actually calculates when considering the

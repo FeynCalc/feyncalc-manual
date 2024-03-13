@@ -1,0 +1,55 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopGLILowerDimension.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopglilowerdimension}{
+\section{FCLoopGLILowerDimension}\label{fcloopglilowerdimension}\index{FCLoopGLILowerDimension}}
+
+\texttt{FCLoopGLILowerDimension[\allowbreak{}gli,\ \allowbreak{}topo]}
+lowers the dimension of the given \texttt{GLI} from \texttt{D} to
+\texttt{D-2} and expresses it in terms of \texttt{D}-dimensional loop
+integrals returned in the output.
+
+The algorithm is based on the code of the function \texttt{RaisingDRR}
+from R. Lee's LiteRed
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcloopgliraisedimension}{FCLoopGLIRaiseDimension}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{topo }\ExtensionTok{=}\NormalTok{ FCTopology}\OperatorTok{[}
+\NormalTok{   topo1}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\FunctionTok{Q} \SpecialCharTok{{-}}\NormalTok{ p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{],}\NormalTok{ SFAD}\OperatorTok{[}\FunctionTok{Q} \SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{],} 
+\NormalTok{    SFAD}\OperatorTok{[}\FunctionTok{Q} \SpecialCharTok{{-}}\NormalTok{ p1}\OperatorTok{]\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{Q}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{Hold}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{Q}\OperatorTok{]]} \OtherTok{{-}\textgreater{}}\NormalTok{ qq}\OperatorTok{\},} \OperatorTok{\{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCTopology}\left(\text{topo1},\left\{\frac{1}{(\text{p1}^2+i \eta )},\frac{1}{(\text{p2}^2+i \eta )},\frac{1}{((-\text{p1}-\text{p2}+Q)^2+i \eta )},\frac{1}{((Q-\text{p2})^2+i \eta )},\frac{1}{((Q-\text{p1})^2+i \eta )}\right\},\{\text{p1},\text{p2}\},\{Q\},\{\text{Hold}[\text{SPD}(Q)]\to \;\text{qq}\},\{\}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopGLILowerDimension}\OperatorTok{[}\NormalTok{GLI}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ topo}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+G^{\text{topo1}}(1,1,1,2,2)+G^{\text{topo1}}(1,1,2,1,2)+G^{\text{topo1}}(1,1,2,2,1)+G^{\text{topo1}}(1,2,1,1,2)+G^{\text{topo1}}(1,2,2,1,1)+G^{\text{topo1}}(2,1,1,2,1)+G^{\text{topo1}}(2,1,2,1,1)+G^{\text{topo1}}(2,2,1,1,1)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopGLILowerDimension}\OperatorTok{[}\NormalTok{GLI}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,} \OperatorTok{\{}\NormalTok{n1}\OperatorTok{,}\NormalTok{ n2}\OperatorTok{,}\NormalTok{ n3}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ topo}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+G^{\text{topo1}}(\text{n1},\text{n2},\text{n3},2,2)+\text{n3} G^{\text{topo1}}(\text{n1},\text{n2},\text{n3}+1,1,2)+\text{n3} G^{\text{topo1}}(\text{n1},\text{n2},\text{n3}+1,2,1)+\text{n2} G^{\text{topo1}}(\text{n1},\text{n2}+1,\text{n3},1,2)+\text{n2} \;\text{n3} G^{\text{topo1}}(\text{n1},\text{n2}+1,\text{n3}+1,1,1)+\text{n1} G^{\text{topo1}}(\text{n1}+1,\text{n2},\text{n3},2,1)+\text{n1} \;\text{n3} G^{\text{topo1}}(\text{n1}+1,\text{n2},\text{n3}+1,1,1)+\text{n1} \;\text{n2} G^{\text{topo1}}(\text{n1}+1,\text{n2}+1,\text{n3},1,1)
+\end{dmath*}
+\end{document}

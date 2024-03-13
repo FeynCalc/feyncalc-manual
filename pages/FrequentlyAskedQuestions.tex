@@ -444,9 +444,11 @@ The simplest way is to write something like
 The presence of an explicit \texttt{I} will make this vector change
 under \texttt{ComplexConjugate}, such that
 
-\begin{verbatim}
-ComplexConjugate[FV[{a,I},mu]]//FCE
-\end{verbatim}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ComplexConjugate}\OperatorTok{[}\NormalTok{FV}\OperatorTok{[\{}\FunctionTok{a}\OperatorTok{,}\FunctionTok{I}\OperatorTok{\},}\NormalTok{mu}\OperatorTok{]]}\SpecialCharTok{//}\NormalTok{FCE}
+\end{Highlighting}
+\end{Shaded}
 
 will give you
 \texttt{FV[\allowbreak{}\{\allowbreak{}a,\ \allowbreak{}-I\},\ \allowbreak{}mu]}.
