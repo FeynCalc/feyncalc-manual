@@ -31,10 +31,10 @@ bare and renormalized quantities appearing in the Lagrangian. For some
 generic masses, coupling constants and fields we can write
 
 \begin{align*}
-g_{\textrm{bare}} &=  \mu^{n \varepsilon} Z_g g_{\textrm{ren}} \\
-m_{\textrm{bare}} &=  Z_m m_{\textrm{ren}} \\
-\psi_{\textrm{bare}} &=  \sqrt{Z_m} \psi_{\textrm{ren}} \\
-A^\mu_{\textrm{bare}} &=  \sqrt{Z_A} A^\mu_{\textrm{ren}} \\
+g_{\textrm{bare}} &=  \mu^{n \varepsilon} Z_g g_{\textrm{ren}}, \\
+m_{\textrm{bare}} &=  Z_m m_{\textrm{ren}}, \\
+\psi_{\textrm{bare}} &=  \sqrt{Z_m} \psi_{\textrm{ren}}, \\
+A^\mu_{\textrm{bare}} &=  \sqrt{Z_A} A^\mu_{\textrm{ren}}. \\
 \end{align*}
 
 The renormalization scale \(\mu\) is needed to account for the fact,
@@ -93,8 +93,8 @@ Z_x = 1 + \delta Z_x,
 
 where \(\delta Z_x\) contains poles in \(\varepsilon\) and possibly also
 finite pieces (depending on the chosen renormalization scheme).
-Parametrically, \(Z_x\) is of order of the small coupling constant so
-that we can ``expand'' in it as if \(Z_x \ll 1\).
+Parametrically, \(\delta Z_x\) is of order of the small coupling
+constant so that we can ``expand'' in it as if \(\delta Z_x \ll 1\).
 
 \hypertarget{examples-of-renormalized-and-counter-term-lagrangians}{%
 \subsection{Examples of renormalized and counter-term
@@ -175,8 +175,8 @@ Feynman rules for the counter terms.
 
 Although those can be always derived by hand, doing so automatically is
 more convenient and allows to avoid many stupid mistakes. To this aim it
-useful to employ \href{https://feynrules.irmp.ucl.ac.be/}{FeynRules} for
-generating the corresponding FeynArts model. When writing down the
+is useful to employ \href{https://feynrules.irmp.ucl.ac.be/}{FeynRules}
+for generating the corresponding FeynArts model. When writing down the
 Lagrangian of our model we need to multiply every term in the counter
 term Lagragnian by \texttt{FR\$CT}, for example
 
