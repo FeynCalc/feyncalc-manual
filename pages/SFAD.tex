@@ -7,10 +7,10 @@
 \section{SFAD}\label{sfad}\index{SFAD}}
 
 \texttt{SFAD[\allowbreak{}\{\allowbreak{}\{\allowbreak{}q1 +...,\ \allowbreak{}p1 . q2 +...,\ \allowbreak{}\} \{\allowbreak{}m^2,\ \allowbreak{}s\},\ \allowbreak{}n\},\ \allowbreak{}...]}
-denotes a Cartesian propagator given by
+denotes a standard Lorentzian propagator given by
 \(\frac{1}{[(q_1+\ldots)^2 + p_1 \cdot q_2 ... + m^2 + s i \eta]^n}\),
-where \(q_1^2\) and \(p_1 \cdot q_2\) are Cartesian scalar products in
-\(D-1\) dimensions.
+where \(q_1^2\) and \(p_1 \cdot q_2\) are Lorentzian scalar products in
+\(D\) dimensions.
 
 For brevity one can also use shorter forms such as
 \texttt{SFAD[\allowbreak{}\{\allowbreak{}q1+ ...,\ \allowbreak{} m^2\},\ \allowbreak{}...]},
@@ -19,12 +19,18 @@ For brevity one can also use shorter forms such as
 \texttt{SFAD[\allowbreak{}q1,\ \allowbreak{}...]} etc.
 
 If \texttt{s} is not explicitly specified, its value is determined by
-the option \texttt{EtaSign}, which has the default value \texttt{+1}.
+the option \texttt{EtaSign}, which has the default value \texttt{+1} and
+corresponds to \(+ i \eta\)
 
 If \texttt{n} is not explicitly specified, then the default value
-\texttt{1} is assumed. Translation into FeynCalcI internal form is
-performed by \texttt{FeynCalcInternal}, where a \texttt{SFAD} is encoded
-using the special head \texttt{CartesianPropagatorDenominator}.
+\texttt{1} is assumed. Translation into the FeynCalc internal form is
+performed by \texttt{FeynCalcInternal}, where an \texttt{SFAD} is
+encoded using the special head \texttt{StandardPropagatorDenominator}.
+
+\texttt{SFAD} can represent more versatile propagators as compared to
+the old \texttt{FAD}. In particular, \texttt{FAD} does not allow one to
+enter eikonal propagators, track the sign of the \(i \eta\) or change
+the sign and the form of the mass term.
 
 \subsection{See also}
 
@@ -82,4 +88,60 @@ using the special head \texttt{CartesianPropagatorDenominator}.
 \begin{dmath*}\breakingcomma
 \frac{1}{(n\cdot q+i \eta )}
 \end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SFAD}\OperatorTok{[\{\{}\FunctionTok{p}\OperatorTok{,} \FunctionTok{p}\NormalTok{ . }\FunctionTok{q}\OperatorTok{\},} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(p^2+p\cdot q-m^2+i \eta )}
+\end{dmath*}
+
+The so called Smirnov-notation for propagators can be achieved by
+multiplying the quadratic part by \texttt{I} and switching the sign of
+the mass term.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SFAD}\OperatorTok{[\{\{}\FunctionTok{I}\SpecialCharTok{*}\FunctionTok{p}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \SpecialCharTok{{-}}\FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(-p^2+m^2+i \eta )}
+\end{dmath*}
+
+If one wants to have additional variables multiplying loop or external
+momenta, those need to be declared to be of the \texttt{FCVariable} type
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DataType}\OperatorTok{[}\NormalTok{la}\OperatorTok{,}\NormalTok{ FCVariable}\OperatorTok{]} \ExtensionTok{=} \ConstantTok{True}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,}\NormalTok{ la }\FunctionTok{p}\NormalTok{ . }\FunctionTok{q}\OperatorTok{\},} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{(\text{la} (p\cdot q)-m^2+i \eta )}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\SpecialCharTok{\%} \SpecialCharTok{//}\NormalTok{ FCI }\SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*FeynAmpDenominator[StandardPropagatorDenominator[0, la Pair[Momentum[p, D], Momentum[q, D]], {-}m\^{}2, \{1, 1\}]]*)}
+\end{Highlighting}
+\end{Shaded}
+
 \end{document}

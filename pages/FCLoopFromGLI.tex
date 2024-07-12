@@ -22,14 +22,14 @@ information provided in topologies.
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{topos }\ExtensionTok{=} \OperatorTok{\{}
-\NormalTok{   FCTopology}\OperatorTok{[}\StringTok{"topoBox1L"}\OperatorTok{,} \OperatorTok{\{}\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,}\NormalTok{ m0}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q} \SpecialCharTok{+}\NormalTok{ p1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q} \SpecialCharTok{+}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q} \SpecialCharTok{+}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ m3}\OperatorTok{\}]\},} 
+\NormalTok{   FCTopology}\OperatorTok{[}\StringTok{"topoBox1L"}\OperatorTok{,} \OperatorTok{\{}\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,}\NormalTok{ m0}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q} \SpecialCharTok{+}\NormalTok{ p1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q} \SpecialCharTok{+}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q} \SpecialCharTok{+}\NormalTok{ p3}\OperatorTok{,}\NormalTok{ m3}\OperatorTok{\}]\},} 
     \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ p3}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\}],} 
 \NormalTok{   FCTopology}\OperatorTok{[}\StringTok{"topoTad2L"}\OperatorTok{,} \OperatorTok{\{}\NormalTok{FAD}\OperatorTok{[\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ m1}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{q2}\OperatorTok{,}\NormalTok{ m2}\OperatorTok{\}],}\NormalTok{ FAD}\OperatorTok{[\{}\NormalTok{q1 }\SpecialCharTok{{-}}\NormalTok{ q2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{q1}\OperatorTok{,}\NormalTok{ q2}\OperatorTok{\},} \OperatorTok{\{\},} \OperatorTok{\{\},} \OperatorTok{\{\}]\}}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-\left\{\text{FCTopology}\left(\text{topoBox1L},\left\{\frac{1}{q^2-\text{m0}^2},\frac{1}{(\text{p1}+q)^2-\text{m1}^2},\frac{1}{(\text{p2}+q)^2-\text{m2}^2},\frac{1}{(\text{p2}+q)^2-\text{m3}^2}\right\},\{q\},\{\text{p1},\text{p2},\text{p3}\},\{\},\{\}\right),\text{FCTopology}\left(\text{topoTad2L},\left\{\frac{1}{\text{q1}^2-\text{m1}^2},\frac{1}{\text{q2}^2-\text{m2}^2},\frac{1}{(\text{q1}-\text{q2})^2}\right\},\{\text{q1},\text{q2}\},\{\},\{\},\{\}\right)\right\}
+\left\{\text{FCTopology}\left(\text{topoBox1L},\left\{\frac{1}{q^2-\text{m0}^2},\frac{1}{(\text{p1}+q)^2-\text{m1}^2},\frac{1}{(\text{p2}+q)^2-\text{m2}^2},\frac{1}{(\text{p3}+q)^2-\text{m3}^2}\right\},\{q\},\{\text{p1},\text{p2},\text{p3}\},\{\},\{\}\right),\text{FCTopology}\left(\text{topoTad2L},\left\{\frac{1}{\text{q1}^2-\text{m1}^2},\frac{1}{\text{q2}^2-\text{m2}^2},\frac{1}{(\text{q1}-\text{q2})^2}\right\},\{\text{q1},\text{q2}\},\{\},\{\},\{\}\right)\right\}
 \end{dmath*}
 
 \begin{Shaded}
@@ -49,7 +49,7 @@ information provided in topologies.
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-\frac{\text{a1}}{\left(q^2-\text{m0}^2\right) \left((\text{p1}+q)^2-\text{m1}^2\right) \left((\text{p2}+q)^2-\text{m2}^2\right) \left((\text{p2}+q)^2-\text{m3}^2\right)}+\frac{\text{a2}}{\left(\text{q1}^2-\text{m1}^2\right) \left(\text{q2}^2-\text{m2}^2\right)^2 (\text{q1}-\text{q2})^4}
+\frac{\text{a1}}{\left(q^2-\text{m0}^2\right) \left((\text{p1}+q)^2-\text{m1}^2\right) \left((\text{p2}+q)^2-\text{m2}^2\right) \left((\text{p3}+q)^2-\text{m3}^2\right)}+\frac{\text{a2}}{\left(\text{q1}^2-\text{m1}^2\right) \left(\text{q2}^2-\text{m2}^2\right)^2 (\text{q1}-\text{q2})^4}
 \end{dmath*}
 
 Notice that it is necessary to specify all topologies present in
@@ -65,7 +65,7 @@ unknown topologies
 \FloatBarrier
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=0.6\linewidth]{img/047duy8jklfe9.pdf}
+\includegraphics[width=0.6\linewidth]{img/0jtbiuq3nviq2.pdf}
 \end{figure}
 \FloatBarrier
 
@@ -85,7 +85,7 @@ names for the loop momenta.
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-\frac{1}{\left(\text{FCGV}(\text{lmom21})^2-\text{m0}^2\right) \left((\text{p1}+\text{FCGV}(\text{lmom11}))^2-\text{m1}^2\right) \left((\text{p2}+\text{FCGV}(\text{lmom11}))^2-\text{m3}^2\right) \left((\text{p2}+\text{FCGV}(\text{lmom21}))^2-\text{m2}^2\right)}
+\frac{1}{\left(\text{FCGV}(\text{lmom21})^2-\text{m0}^2\right) \left((\text{p1}+\text{FCGV}(\text{lmom11}))^2-\text{m1}^2\right) \left((\text{p3}+\text{FCGV}(\text{lmom11}))^2-\text{m3}^2\right) \left((\text{p2}+\text{FCGV}(\text{lmom21}))^2-\text{m2}^2\right)}
 \end{dmath*}
 
 You can customize the naming scheme for the momenta via the
@@ -111,7 +111,7 @@ momentum this integral depends on.
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-\frac{1}{\left(\text{p22}^2-\text{m0}^2\right) \left((\text{p11}+\text{p1})^2-\text{m1}^2\right) \left((\text{p22}+\text{p2})^2-\text{m2}^2\right) \left((\text{p11}+\text{p2})^2-\text{m3}^2\right)}
+\frac{1}{\left(\text{p22}^2-\text{m0}^2\right) \left((\text{p11}+\text{p1})^2-\text{m1}^2\right) \left((\text{p22}+\text{p2})^2-\text{m2}^2\right) \left((\text{p11}+\text{p3})^2-\text{m3}^2\right)}
 \end{dmath*}
 
 In general, \texttt{FCLoopFromGLI} can change the ordering of
@@ -128,6 +128,6 @@ remain unchanged, the following should help
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-\frac{\text{a1}}{\left(q^2-\text{m0}^2\right).\left((\text{p1}+q)^2-\text{m1}^2\right).\left((\text{p2}+q)^2-\text{m2}^2\right).\left((\text{p2}+q)^2-\text{m3}^2\right)}+\frac{\text{a2}}{\left(\text{q1}^2-\text{m1}^2\right).\left(\text{q2}^2-\text{m2}^2\right)^2.(\text{q1}-\text{q2})^4}
+\frac{\text{a1}}{\left(q^2-\text{m0}^2\right).\left((\text{p1}+q)^2-\text{m1}^2\right).\left((\text{p2}+q)^2-\text{m2}^2\right).\left((\text{p3}+q)^2-\text{m3}^2\right)}+\frac{\text{a2}}{\left(\text{q1}^2-\text{m1}^2\right).\left(\text{q2}^2-\text{m2}^2\right)^2.(\text{q1}-\text{q2})^4}
 \end{dmath*}
 \end{document}

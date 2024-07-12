@@ -1,0 +1,72 @@
+% !TeX program = pdflatex
+% !TeX root = FCLoopAddMissingHigherOrdersWarning.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcloopaddmissinghigherorderswarning}{
+\section{FCLoopAddMissingHigherOrdersWarning}\label{fcloopaddmissinghigherorderswarning}\index{FCLoopAddMissingHigherOrdersWarning}}
+
+\texttt{FCLoopAddMissingHigherOrdersWarning[\allowbreak{}expr,\ \allowbreak{}ep,\ \allowbreak{}fun]}
+determines the highest \texttt{ep}-power \(n\) in the given expression
+and adds a warning flag of order \(\textrm{ep}^n+1\). This is meant to
+prevent incorrect results stemming insufficient high expansions of
+\texttt{expr} in \texttt{ep}
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview},
+\hyperlink{fcfeynmanparametrize}{FCFeynmanParametrize},
+\hyperlink{fcfeynmanprepare}{FCFeynmanPrepare}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopAddMissingHigherOrdersWarning}\OperatorTok{[}\DecValTok{1}\SpecialCharTok{/}\NormalTok{ep}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ cc1 }\SpecialCharTok{+} \DecValTok{1}\SpecialCharTok{/}\NormalTok{ep cc2}\OperatorTok{,}\NormalTok{ ep}\OperatorTok{,}\NormalTok{ epHelp}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\text{cc1}}{\text{ep}^2}+\frac{\text{cc2}}{\text{ep}}+(1+i) \;\text{epHelp}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopAddMissingHigherOrdersWarning}\OperatorTok{[}\NormalTok{cc1}\OperatorTok{,}\NormalTok{ ep}\OperatorTok{,}\NormalTok{ epHelp}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{cc1}+(1+i) \;\text{ep} \;\text{epHelp}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopAddMissingHigherOrdersWarning}\OperatorTok{[}\NormalTok{cc1}\OperatorTok{,}\NormalTok{ ep}\OperatorTok{,}\NormalTok{ epHelp}\OperatorTok{,} \FunctionTok{Complex} \OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{cc1}+\text{ep} \;\text{epHelp}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopAddMissingHigherOrdersWarning}\OperatorTok{[}\NormalTok{cc1}\OperatorTok{,}\NormalTok{ ep}\OperatorTok{,}\NormalTok{ epHelp}\OperatorTok{,} \FunctionTok{Names} \OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{cc1}+(1+i) \;\text{ep} \;\text{epHelp}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopAddMissingHigherOrdersWarning}\OperatorTok{[}\NormalTok{GLI}\OperatorTok{[}\NormalTok{topo1}\OperatorTok{,} \OperatorTok{\{}\DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{,} \DecValTok{1}\OperatorTok{\}]} \OtherTok{{-}\textgreater{}}\NormalTok{ cc1}\SpecialCharTok{/}\NormalTok{ep}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{+}\NormalTok{ cc2}\SpecialCharTok{/}\NormalTok{ep }\SpecialCharTok{+}\NormalTok{ cc3 }\OperatorTok{,}\NormalTok{ ep}\OperatorTok{,}\NormalTok{ epHelp}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+G^{\text{topo1}}(1,1,1,1,1)\to \frac{\text{cc1}}{\text{ep}^2}+\frac{\text{cc2}}{\text{ep}}+\text{cc3}+(1+i) \;\text{ep} \;\text{epHelp}(\text{topo1X11111})
+\end{dmath*}
+\end{document}

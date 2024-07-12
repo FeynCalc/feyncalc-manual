@@ -128,21 +128,17 @@ FeynCalc}\label{packages-that-use-feyncalc}}
 
 Starting with FeynCalc 9.0 one can easily write something like
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{BeginPackage}\OperatorTok{[}\StringTok{"MyPackage\textasciigrave{}"}\OperatorTok{,\{}\StringTok{"FeynCalc\textasciigrave{}"}\OperatorTok{\}]}
+``\texttt{mathematica BeginPackage[\allowbreak{}"MyPackage}``,\{''FeynCalc```\}{]}
 
-\NormalTok{MySP::usage}\ExtensionTok{=}
-\StringTok{"Description of MySP"}\NormalTok{;}
+MySP::usage= ``Description of MySP'';
 
-\FunctionTok{Begin}\OperatorTok{[}\StringTok{"\textasciigrave{}Private\textasciigrave{}"}\OperatorTok{]}\NormalTok{;}
+Begin{[}``\texttt{Private}''{]};
 
-\NormalTok{MySP}\OperatorTok{[}\AttributeTok{a\_}\OperatorTok{,}\AttributeTok{b\_}\OperatorTok{]}\ExtensionTok{:=}\NormalTok{ FCI}\OperatorTok{[}\NormalTok{SP}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,}\FunctionTok{b}\OperatorTok{]]}\NormalTok{;}
+MySP{[}a\_,b\_{]}:= FCI{[}SP{[}a,b{]}{]};
 
-\FunctionTok{End}\OperatorTok{[]}
-\FunctionTok{EndPackage}\OperatorTok{[]}
-\end{Highlighting}
-\end{Shaded}
+End{[}{]} EndPackage{[}{]}
+
+```mathematica
 
 \hypertarget{package-or-add-on}{%
 \subsection{Package or add-on?}\label{package-or-add-on}}
