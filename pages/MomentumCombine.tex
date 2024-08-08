@@ -8,7 +8,34 @@
 
 \texttt{MomentumCombine[\allowbreak{}expr]} is the inverse operation to
 \texttt{MomentumExpand} and \texttt{ExpandScalarProduct}.
-\texttt{MomentumCombine} combines also \texttt{Pair}s.
+\texttt{MomentumCombine} combines also \texttt{Pair}s. Notice, that
+\texttt{MomentumCombine} cannot complete squares. It can, however, bring
+expressions containing scalar products to a suitable form that allows
+for a square completion using other means.
+
+This function offers multiple options.
+
+The option \texttt{NumberQ} (default is \texttt{True}) specifies whether
+one should only merge quantities with numerical prefactors or not.
+Setting it to \texttt{False} allows for symbolic prefactors.
+
+Setting the option \texttt{"Quadratic"} to \texttt{False} (default is
+\texttt{True}) effectively means that momenta squared will not be
+combined with anything else.
+
+With the option \texttt{"ExcludeScalarProducts"} we can ensure that
+scalar products containing any of the momenta listed are not merged with
+anything else. So \texttt{a.x + a.y} can be merged either if \texttt{a}
+contains no such momenta, or if both \texttt{x} and \texttt{y} are free
+of them.
+
+The option \texttt{Except} forbids merging the listed momenta with
+anything else. It is much more restrictive than
+\texttt{"ExcludeScalarProducts"} that allows for merging terms linear in
+the listed momenta.
+
+The option \texttt{Select} allows for gathering all terms linear in the
+given momenta before applying any other combining rules.
 
 \subsection{See also}
 
@@ -188,5 +215,71 @@ we need to use the option \texttt{Except}
 
 \begin{dmath*}\breakingcomma
 (\text{a1} n+\text{a2} \;\text{nb})\cdot p+k\cdot p+l\cdot p+p^2
+\end{dmath*}
+
+Suppose that we have an expression that can be written as a square. To
+achieve the desired combination of momenta we need to
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(DataType}\OperatorTok{[}\NormalTok{\#}\OperatorTok{,}\NormalTok{ FCVariable}\OperatorTok{]} \ExtensionTok{=} \ConstantTok{True}\NormalTok{) \& }\SpecialCharTok{/}\NormalTok{@ }\OperatorTok{\{}\NormalTok{gkin}\OperatorTok{,}\NormalTok{ meta}\OperatorTok{,}\NormalTok{ u0b}\OperatorTok{\}}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k1}\OperatorTok{]} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{]} \SpecialCharTok{+} \DecValTok{2}\NormalTok{ gkin meta SPD}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,} \FunctionTok{n}\OperatorTok{]} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ gkin meta u0b SPD}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,} \FunctionTok{n}\OperatorTok{]} \SpecialCharTok{{-}}\NormalTok{ meta u0b SPD}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]} \SpecialCharTok{+} 
+\NormalTok{   SPD}\OperatorTok{[}\NormalTok{k2}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{]} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ gkin meta SPD}\OperatorTok{[}\NormalTok{k2}\OperatorTok{,} \FunctionTok{n}\OperatorTok{]} \SpecialCharTok{+} \DecValTok{2}\NormalTok{ gkin meta u0b SPD}\OperatorTok{[}\NormalTok{k2}\OperatorTok{,} \FunctionTok{n}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{meta u0b SPD}\OperatorTok{[}\NormalTok{k2}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+-2 \;\text{gkin} \;\text{meta} \;\text{u0b} (\text{k1}\cdot n)+2 \;\text{gkin} \;\text{meta} (\text{k1}\cdot n)+2 \;\text{gkin} \;\text{meta} \;\text{u0b} (\text{k2}\cdot n)-2 \;\text{gkin} \;\text{meta} (\text{k2}\cdot n)-2 (\text{k1}\cdot \;\text{k2})-\text{meta} \;\text{u0b} (\text{k1}\cdot \;\text{nb})+\text{k1}^2+\text{meta} \;\text{u0b} (\text{k2}\cdot \;\text{nb})+\text{k2}^2
+\end{dmath*}
+
+The naive application of \texttt{MomentumCombine} doesn't return
+anything useful
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MomentumCombine}\OperatorTok{[}\NormalTok{ex}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{meta} \;\text{u0b} ((\text{k2}-\text{k1})\cdot \;\text{nb})+\text{k1}\cdot (\text{k1}-2 \;\text{k2})-2 \;\text{gkin} \;\text{meta} \;\text{u0b} (\text{k1}\cdot n)+2 \;\text{gkin} \;\text{meta} (\text{k1}\cdot n)+2 \;\text{gkin} \;\text{meta} \;\text{u0b} (\text{k2}\cdot n)-2 \;\text{gkin} \;\text{meta} (\text{k2}\cdot n)+\text{k2}^2
+\end{dmath*}
+
+Here we actually want to gather terms linear in \texttt{k1} and
+\texttt{k2}first before trying to combine them together. To that aim we
+can use the option \texttt{Select}. Employing the options
+\texttt{"Quadratic"} and \texttt{"ExcludeScalarProducts"} we can prevent
+\texttt{k1} and \texttt{k2} from getting combined with anything
+containing those momenta. Furthermore, we enable symbolical prefactor by
+setting \texttt{NumberQ} to false
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MomentumCombine}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,} \FunctionTok{Select} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{\},} \StringTok{"Quadratic"} \OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{,} \StringTok{"ExcludeScalarProducts"} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{\},} \FunctionTok{NumberQ} \OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{k1}\cdot (-2 \;\text{gkin} \;\text{meta} n \;\text{u0b}+2 \;\text{gkin} \;\text{meta} n-\text{meta} \;\text{nb} \;\text{u0b})+\text{k2}\cdot (2 \;\text{gkin} \;\text{meta} n \;\text{u0b}-2 \;\text{gkin} \;\text{meta} n+\text{meta} \;\text{nb} \;\text{u0b})-2 (\text{k1}\cdot \;\text{k2})+\text{k1}^2+\text{k2}^2
+\end{dmath*}
+
+This result looks very good, but \texttt{k1} and \texttt{k2} were not
+combined because they are contracted to long linear combinations of
+4-momenta that were not properly factorized. The option
+\texttt{Factoring} solves this issue
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{res }\ExtensionTok{=}\NormalTok{ MomentumCombine}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,} \FunctionTok{Select} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{\},} \StringTok{"Quadratic"} \OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{,} \StringTok{"ExcludeScalarProducts"} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{\},} \FunctionTok{NumberQ} \OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{,}\NormalTok{ Factoring }\OtherTok{{-}\textgreater{}}\NormalTok{ Factor2}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{meta} ((\text{k1}-\text{k2})\cdot (-2 \;\text{gkin} n \;\text{u0b}+2 \;\text{gkin} n-\text{nb} \;\text{u0b}))-2 (\text{k1}\cdot \;\text{k2})+\text{k1}^2+\text{k2}^2
 \end{dmath*}
 \end{document}

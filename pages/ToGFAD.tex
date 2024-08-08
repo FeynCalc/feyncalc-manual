@@ -12,7 +12,12 @@ This is mainly useful when doing expansions in kinematic invariants,
 where e.g.~scalar products may not be appear explicitly when using
 \texttt{FAD}- or \texttt{SFAD}-notation.
 
-ToGFAD is the inverse operation to FromGFAD.
+\texttt{ToGFAD} is the inverse operation to \texttt{FromGFAD}.
+
+Using the option ``OnlyMixedQuadraticEikonalPropagators'' one can limit
+the conversion to a particular type of standard and Cartesian propagator
+denominators that contain both quadratic and eikonal pieces. Those are
+the ones that usually cause issues when doing topology minimization
 
 \subsection{See also}
 
@@ -74,6 +79,29 @@ ToGFAD is the inverse operation to FromGFAD.
 \NormalTok{ToGFAD}\OperatorTok{[}\NormalTok{SFAD}\OperatorTok{[\{}\FunctionTok{p} \SpecialCharTok{+} \FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}],}\NormalTok{ FinalSubstitutions }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{\}]} \SpecialCharTok{//} \FunctionTok{StandardForm}
 
 \CommentTok{(*FeynAmpDenominator[GenericPropagatorDenominator[{-}m\^{}2 + Pair[Momentum[p, D], Momentum[p, D]] + 2 Pair[Momentum[p, D], Momentum[q, D]], \{1, 1\}]]*)}
+\end{Highlighting}
+\end{Shaded}
+
+This is not a mixed quadratic-eikonal propagator so it remains unchanged
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToGFAD}\OperatorTok{[}\NormalTok{SFAD}\OperatorTok{[\{\{}\NormalTok{k2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} \StringTok{"OnlyMixedQuadraticEikonalPropagators"} \OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,} 
+\NormalTok{   FCE }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*SFAD[\{\{k2, 0\}, \{0, 1\}, 1\}]*)}
+\end{Highlighting}
+\end{Shaded}
+
+This is a mixed propagator that will be converted to a \texttt{GFAD}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ToGFAD}\OperatorTok{[}\NormalTok{SFAD}\OperatorTok{[\{\{}\NormalTok{k1}\OperatorTok{,} \DecValTok{2}\NormalTok{ gkin meta k1 . }\FunctionTok{n} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ gkin meta u0b k1 . }\FunctionTok{n} \SpecialCharTok{{-}}\NormalTok{ meta u0b k1 . nb}\OperatorTok{\},} 
+     \OperatorTok{\{}\DecValTok{2}\NormalTok{ gkin meta}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ u0b }\SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ gkin meta}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ u0b}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+   \StringTok{"OnlyMixedQuadraticEikonalPropagators"} \OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{,}\NormalTok{ FCE }\OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]} \SpecialCharTok{//} \FunctionTok{StandardForm}
+
+\CommentTok{(*GFAD[\{\{{-}2 gkin meta\^{}2 u0b + 2 gkin meta\^{}2 u0b\^{}2 + SPD[k1, k1] + 2 gkin meta SPD[k1, n] {-} 2 gkin meta u0b SPD[k1, n] {-} meta u0b SPD[k1, nb], 1\}, 1\}]*)}
 \end{Highlighting}
 \end{Shaded}
 

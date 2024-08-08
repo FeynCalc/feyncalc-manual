@@ -3,6 +3,9 @@
 
 \documentclass[../FeynCalcManual.tex]{subfiles}
 \begin{document}
+\hypertarget{fcloopfindmomentumshifts}{
+\section{FCLoopFindMomentumShifts}\label{fcloopfindmomentumshifts}\index{FCLoopFindMomentumShifts}}
+
 \texttt{FCLoopFindMomentumShifts[\allowbreak{}source,\ \allowbreak{}target,\ \allowbreak{}\{\allowbreak{}p1,\ \allowbreak{}p2,\ \allowbreak{}...\}]}
 finds loop momentum shifts that bring loop integrals or topologies in
 the list \texttt{source} to the form specified in target. The
@@ -22,7 +25,9 @@ It is also possible to invoke the function as
 For topologies involving kinematic constraints some mappings may require
 shifts not only in the loop but also in the external momenta. Such
 shifts are disabled by default but can be activated by setting the
-option \texttt{Momentum} to \texttt{All}.
+option \texttt{Momentum} to \texttt{All}. This option can be dangerous,
+because the amplitude does not necessarily have to be symmetric under
+shifts of external momenta!
 
 Normally, \texttt{FCLoopFindMomentumShifts} will abort the evaluation if
 it fails to find any suitable shifts. Setting the option \texttt{Abort}
@@ -71,7 +76,7 @@ in such situations.
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-\{\{\text{p1}\to \;\text{p1}+\text{p4}+\text{q1},\text{p3}\to \;\text{p3},\text{p4}\to \;\text{p4}\}\}
+\{\{\text{p1}\to \;\text{p1}+\text{p4}+\text{q1}\}\}
 \end{dmath*}
 
 \begin{Shaded}
@@ -84,7 +89,7 @@ in such situations.
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-\{\{\text{p3}\to \;\text{p3},\text{r4}\to \;\text{p4},\text{r1}\to \;\text{p1}+\text{p4}+\text{q1}\}\}
+\{\{\text{r4}\to \;\text{p4},\text{r1}\to \;\text{p1}+\text{p4}+\text{q1}\}\}
 \end{dmath*}
 
 \begin{Shaded}
@@ -137,7 +142,7 @@ in such situations.
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-\{\{\text{p1}\to -\text{p1}-\text{p3}+Q,\text{p2}\to -\text{p2}-\text{p3}+Q,\text{p3}\to \;\text{p3}\},\{\text{p1}\to Q-\text{p2},\text{p2}\to Q-\text{p1},\text{p3}\to -\text{p3}\}\}
+\{\{\text{p1}\to -\text{p1}-\text{p3}+Q,\text{p2}\to -\text{p2}-\text{p3}+Q\},\{\text{p1}\to Q-\text{p2},\text{p2}\to Q-\text{p1},\text{p3}\to -\text{p3}\}\}
 \end{dmath*}
 
 \begin{Shaded}
@@ -182,6 +187,10 @@ external momenta
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
+\text{FCLoopFindMomentumShifts: }\;\text{Failed to derive the momentum shifts between topologies topo1 and topo2. This can be due to the presence of nonquadratic propagators or because shifts in external momenta are also necessary.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
 \{\{\}\}
 \end{dmath*}
 
@@ -194,6 +203,106 @@ Once we allow such shifts, everything works as expected
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-\{\{\text{l1}\to \;\text{l1}-\text{l2}-\text{q2},\text{l2}\to -\text{l2},\text{q1}\to \;\text{q2},\text{q2}\to \;\text{q1}\}\}
+\{\{\text{l1}\to -\text{l1}+\text{l2}+\text{q2},\text{q1}\to -\text{q2},\text{q2}\to -\text{q1}\}\}
+\end{dmath*}
+
+For equivalent topologies containing mixed quadratic-eikonal propagators
+it's often not possible to find suitable shifts because the function
+cannot reconstruct the correct momentum flow through such propagators
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{source3 }\ExtensionTok{=} \OperatorTok{\{}\NormalTok{FCTopology}\OperatorTok{[}\StringTok{"pfrTopo303"}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{\{}\NormalTok{k2}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{2}\NormalTok{ gkin meta k2 . }\FunctionTok{n} \SpecialCharTok{+}\NormalTok{ meta u0b k2 . nb}\OperatorTok{\},} 
+       \OperatorTok{\{}\DecValTok{2}\NormalTok{ gkin meta}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ u0b}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{k1 }\SpecialCharTok{{-}}\NormalTok{ k2}\OperatorTok{,}\NormalTok{ meta u0b (}\SpecialCharTok{{-}}\NormalTok{k1 }\SpecialCharTok{+}\NormalTok{ k2) . nb}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{     SFAD}\OperatorTok{[\{\{}\NormalTok{k1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{2}\NormalTok{ gkin meta k1 . }\FunctionTok{n}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{k1}\OperatorTok{,} \SpecialCharTok{{-}}\NormalTok{meta u0b k1 . nb}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],} 
+\NormalTok{     SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,} \SpecialCharTok{{-}}\NormalTok{k2 . nb}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,} \SpecialCharTok{{-}}\NormalTok{k1 . nb}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{\},} 
+    \OperatorTok{\{}\FunctionTok{Hold}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{][}\FunctionTok{n}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,} \FunctionTok{Hold}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{][}\NormalTok{nb}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,} \FunctionTok{Hold}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{][}\FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{2}\OperatorTok{\},} \OperatorTok{\{\}]\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{FCTopology}\left(\text{pfrTopo303},\left\{\frac{1}{(\text{k2}^2+\text{meta} \;\text{u0b} (\text{k2}\cdot \;\text{nb})-2 \;\text{gkin} \;\text{meta} (\text{k2}\cdot n)-2 \;\text{gkin} \;\text{meta}^2 \;\text{u0b}+i \eta )},\frac{1}{((\text{k1}-\text{k2})^2+\text{meta} \;\text{u0b} ((\text{k2}-\text{k1})\cdot \;\text{nb})+i \eta )},\frac{1}{(\text{k1}^2-2 \;\text{gkin} \;\text{meta} (\text{k1}\cdot n)+i \eta )},\frac{1}{(\text{k1}^2-\text{meta} \;\text{u0b} (\text{k1}\cdot \;\text{nb})+i \eta )},\frac{1}{(-\text{k2}\cdot \;\text{nb}+i \eta )},\frac{1}{(-\text{k1}\cdot \;\text{nb}+i \eta )}\right\},\{\text{k1},\text{k2}\},\{n,\text{nb}\},\{\text{Hold}[\text{SPD}][n]\to 0,\text{Hold}[\text{SPD}][\text{nb}]\to 0,\text{Hold}[\text{SPD}][n,\text{nb}]\to 2\},\{\}\right)\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{target3 }\ExtensionTok{=}\NormalTok{ FCTopology}\OperatorTok{[}\StringTok{"pfrTopo267"}\OperatorTok{,} \OperatorTok{\{}\NormalTok{SFAD}\OperatorTok{[\{\{}\NormalTok{k2}\OperatorTok{,} \DecValTok{0}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{k1 }\SpecialCharTok{{-}}\NormalTok{ k2}\OperatorTok{,} \DecValTok{2}\NormalTok{ gkin meta k1 . }\FunctionTok{n} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ gkin meta u0b k1 . }\FunctionTok{n} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ gkin meta k2 . }\FunctionTok{n} \SpecialCharTok{+} \DecValTok{2}\NormalTok{ gkin meta u0b k2 . }\FunctionTok{n} \SpecialCharTok{+}\NormalTok{ meta u0b (}\SpecialCharTok{{-}}\NormalTok{k1 }\SpecialCharTok{+}\NormalTok{ k2) . nb}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{2}\NormalTok{ gkin meta}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ u0b }\SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ gkin meta}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ u0b}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{k1}\OperatorTok{,} \DecValTok{2}\NormalTok{ gkin meta k1 . }\FunctionTok{n} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ gkin meta u0b k1 . }\FunctionTok{n} \SpecialCharTok{{-}}\NormalTok{ meta u0b k1 . nb}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{2}\NormalTok{ gkin meta}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ u0b }\SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ gkin meta}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ u0b}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\NormalTok{k1}\OperatorTok{,} \SpecialCharTok{{-}}\DecValTok{2}\NormalTok{ gkin meta u0b k1 . }\FunctionTok{n}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{0}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,}\NormalTok{ k2 . nb}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{2}\NormalTok{ gkin meta}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}],}\NormalTok{ SFAD}\OperatorTok{[\{\{}\DecValTok{0}\OperatorTok{,}\NormalTok{ k1 . nb}\OperatorTok{\},} \OperatorTok{\{}\DecValTok{2}\NormalTok{ gkin meta u0b}\OperatorTok{,} \DecValTok{1}\OperatorTok{\},} \DecValTok{1}\OperatorTok{\}]\},} \OperatorTok{\{}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{Hold}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{][}\FunctionTok{n}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,} \FunctionTok{Hold}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{][}\NormalTok{nb}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,} \FunctionTok{Hold}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{][}\FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{2}\OperatorTok{\},} \OperatorTok{\{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCTopology}\left(\text{pfrTopo267},\left\{\frac{1}{(\text{k2}^2+i \eta )},1\left/\left(((\text{k1}-\text{k2})^2+2 \;\text{gkin} \;\text{meta} (\text{k1}\cdot n)-2 \;\text{gkin} \;\text{meta} \;\text{u0b} (\text{k1}\cdot n)-2 \;\text{gkin} \;\text{meta} (\text{k2}\cdot n)+2 \;\text{gkin} \;\text{meta} \;\text{u0b} (\text{k2}\cdot n)+\text{meta} \;\text{u0b} ((\text{k2}-\text{k1})\cdot \;\text{nb})+2 \;\text{gkin} \;\text{meta}^2 \;\text{u0b}^2-2 \;\text{gkin} \;\text{meta}^2 \;\text{u0b}+i \eta )\right)\right.,\frac{1}{(\text{k1}^2+2 \;\text{gkin} \;\text{meta} (\text{k1}\cdot n)-2 \;\text{gkin} \;\text{meta} \;\text{u0b} (\text{k1}\cdot n)-\text{meta} \;\text{u0b} (\text{k1}\cdot \;\text{nb})+2 \;\text{gkin} \;\text{meta}^2 \;\text{u0b}^2-2 \;\text{gkin} \;\text{meta}^2 \;\text{u0b}+i \eta )},\frac{1}{(\text{k1}^2-2 \;\text{gkin} \;\text{meta} \;\text{u0b} (\text{k1}\cdot n)+i \eta )},\frac{1}{(\text{k2}\cdot \;\text{nb}-2 \;\text{gkin} \;\text{meta}+i \eta )},\frac{1}{(\text{k1}\cdot \;\text{nb}-2 \;\text{gkin} \;\text{meta} \;\text{u0b}+i \eta )}\right\},\{\text{k1},\text{k2}\},\{n,\text{nb}\},\{\text{Hold}[\text{SPD}][n]\to 0,\text{Hold}[\text{SPD}][\text{nb}]\to 0,\text{Hold}[\text{SPD}][n,\text{nb}]\to 2\},\{\}\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+(\text{DataType}[\#,\text{FCVariable}]=\text{True})\&\text{/@}\{\text{gkin},\text{meta},\text{u0b}\};
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopFindMomentumShifts}\OperatorTok{[}\NormalTok{source3}\OperatorTok{,}\NormalTok{ target3}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCLoopFindMomentumShifts: }\;\text{The topologies contain following mixed quadratic-eikonal propagators that complicate the determination of the shifts: }\left\{\frac{1}{(\text{k1}^2-2 \;\text{gkin} \;\text{meta} (\text{k1}\cdot n)+i \eta )},\frac{1}{(\text{k1}^2-2 \;\text{gkin} \;\text{meta} \;\text{u0b} (\text{k1}\cdot n)+i \eta )},\frac{1}{(\text{k1}^2-\text{meta} \;\text{u0b} (\text{k1}\cdot \;\text{nb})+i \eta )},\frac{1}{(\text{k1}^2+n\cdot (2 \;\text{gkin} \;\text{meta} \;\text{k1}-2 \;\text{gkin} \;\text{meta} \;\text{u0b} \;\text{k1})-\text{meta} \;\text{u0b} (\text{k1}\cdot \;\text{nb})+2 \;\text{gkin} \;\text{meta}^2 \;\text{u0b}^2-2 \;\text{gkin} \;\text{meta}^2 \;\text{u0b}+i \eta )},\frac{1}{((\text{k1}-\text{k2})^2+\text{meta} \;\text{u0b} ((\text{k2}-\text{k1})\cdot \;\text{nb})+i \eta )},\frac{1}{((\text{k1}-\text{k2})^2+\text{meta} \;\text{u0b} ((\text{k2}-\text{k1})\cdot \;\text{nb})+n\cdot (2 \;\text{gkin} \;\text{meta} \;\text{k1}-2 \;\text{gkin} \;\text{meta} \;\text{u0b} \;\text{k1}-2 \;\text{gkin} \;\text{meta} \;\text{k2}+2 \;\text{gkin} \;\text{meta} \;\text{u0b} \;\text{k2})+2 \;\text{gkin} \;\text{meta}^2 \;\text{u0b}^2-2 \;\text{gkin} \;\text{meta}^2 \;\text{u0b}+i \eta )},\frac{1}{(\text{k2}^2+\text{k2}\cdot (\text{meta} \;\text{u0b} \;\text{nb}-2 \;\text{gkin} \;\text{meta} n)-2 \;\text{gkin} \;\text{meta}^2 \;\text{u0b}+i \eta )}\right\}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{FCLoopFindMomentumShifts: }\;\text{You can try to trade them for purely quadratic propagators using FCLoopReplaceQuadraticEikonalPropagators.}
+\end{dmath*}
+
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.6\linewidth]{img/189bbth1nyc1e.pdf}
+\end{figure}
+\FloatBarrier
+
+\begin{dmath*}\breakingcomma
+\text{FCLoopFindMomentumShifts: }\;\text{Failed to derive the momentum shifts between topologies pfrTopo303 and pfrTopo267. This can be due to the presence of nonquadratic propagators or because shifts in external momenta are also necessary.}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{\$Aborted}
+\end{dmath*}
+
+To this aim one can try converting those mixed propagators to purely
+quadratic ones using \texttt{FCLoopReplaceQuadraticEikonalPropagators}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{source3New }\ExtensionTok{=}\NormalTok{ FCLoopReplaceQuadraticEikonalPropagators}\OperatorTok{[}\NormalTok{source3}\OperatorTok{,}\NormalTok{ LoopMomenta }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{\},} 
+\NormalTok{   InitialSubstitutions }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{ExpandScalarProduct}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{[}\NormalTok{k1 }\SpecialCharTok{{-}}\NormalTok{ k2}\OperatorTok{]]} \OtherTok{{-}\textgreater{}}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{k1 }\SpecialCharTok{{-}}\NormalTok{ k2}\OperatorTok{]\},} 
+\NormalTok{   IntermediateSubstitutions }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{n}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{nb}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{FCTopology}\left(\text{pfrTopo303},\left\{\frac{1}{((\text{k2}-\text{gkin} \;\text{meta} n+\frac{\text{meta} \;\text{u0b} \;\text{nb}}{2})^2+i \eta )},\frac{1}{((\text{k1}-\text{k2}-\frac{\text{meta} \;\text{u0b} \;\text{nb}}{2})^2+i \eta )},\frac{1}{((\text{k1}-\text{gkin} \;\text{meta} n)^2+i \eta )},\frac{1}{((\text{k1}-\frac{\text{meta} \;\text{u0b} \;\text{nb}}{2})^2+i \eta )},\frac{1}{(-\text{k2}\cdot \;\text{nb}+i \eta )},\frac{1}{(-\text{k1}\cdot \;\text{nb}+i \eta )}\right\},\{\text{k1},\text{k2}\},\{n,\text{nb}\},\{\text{Hold}[\text{SPD}][n]\to 0,\text{Hold}[\text{SPD}][\text{nb}]\to 0,\text{Hold}[\text{SPD}][n,\text{nb}]\to 2\},\{\}\right)\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{target3New }\ExtensionTok{=}\NormalTok{ FCLoopReplaceQuadraticEikonalPropagators}\OperatorTok{[}\NormalTok{target3}\OperatorTok{,}\NormalTok{ LoopMomenta }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{\},} 
+\NormalTok{    InitialSubstitutions }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{ExpandScalarProduct}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{[}\NormalTok{k1 }\SpecialCharTok{{-}}\NormalTok{ k2}\OperatorTok{]]} \OtherTok{{-}\textgreater{}}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{k1 }\SpecialCharTok{{-}}\NormalTok{ k2}\OperatorTok{]\},} 
+\NormalTok{    IntermediateSubstitutions }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{n}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{nb}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{n}\OperatorTok{,}\NormalTok{ nb}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{2}\OperatorTok{\}]} \SpecialCharTok{//} \FunctionTok{First}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FCTopology}\left(\text{pfrTopo267},\left\{\frac{1}{(\text{k2}^2+i \eta )},\frac{1}{((\text{k1}-\text{k2}+\text{gkin} \;\text{meta} n-\text{gkin} \;\text{meta} \;\text{u0b} n-\frac{\text{meta} \;\text{u0b} \;\text{nb}}{2})^2+i \eta )},\frac{1}{((\text{k1}+\text{gkin} \;\text{meta} n-\text{gkin} \;\text{meta} \;\text{u0b} n-\frac{\text{meta} \;\text{u0b} \;\text{nb}}{2})^2+i \eta )},\frac{1}{((\text{k1}-\text{gkin} \;\text{meta} \;\text{u0b} n)^2+i \eta )},\frac{1}{(\text{k2}\cdot \;\text{nb}-2 \;\text{gkin} \;\text{meta}+i \eta )},\frac{1}{(\text{k1}\cdot \;\text{nb}-2 \;\text{gkin} \;\text{meta} \;\text{u0b}+i \eta )}\right\},\{\text{k1},\text{k2}\},\{n,\text{nb}\},\{\text{Hold}[\text{SPD}][n]\to 0,\text{Hold}[\text{SPD}][\text{nb}]\to 0,\text{Hold}[\text{SPD}][n,\text{nb}]\to 2\},\{\}\right)
+\end{dmath*}
+
+With the new topologies everything works as expected
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopFindMomentumShifts}\OperatorTok{[}\NormalTok{source3New}\OperatorTok{,}\NormalTok{ target3New}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\left\{\text{k1}\to \;\text{gkin} \;\text{meta} n \;\text{u0b}-\text{k1}+\frac{\text{meta} \;\text{nb} \;\text{u0b}}{2},\text{k2}\to \frac{1}{2} (2 \;\text{gkin} \;\text{meta} n-2 \;\text{k2}-\text{meta} \;\text{nb} \;\text{u0b})\right\}\right\}
 \end{dmath*}
 \end{document}
