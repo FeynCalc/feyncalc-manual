@@ -10,8 +10,7 @@
 
 \hyperlink{toc}{Overview}.
 
-\hypertarget{propagators}{%
-\subsection{Propagators}\label{propagators}}
+\subsection{Propagators}\label{propagators}
 
 Propagators (and products thereof) are represented via
 \texttt{FeynAmpDenominator}
@@ -58,9 +57,8 @@ amplitudes and tree-level amplitudes. When you use functions that
 manipulate loop integrals, you need to tell them explicitly what is your
 loop momentum.
 
-\hypertarget{manipulations-of-feynampdenominators}{%
 \subsection{Manipulations of
-FeynAmpDenominators}\label{manipulations-of-feynampdenominators}}
+FeynAmpDenominators}\label{manipulations-of-feynampdenominators}
 
 There are several functions, that are useful both for tree- and
 loop-level amplitudes, depending on what we want to do
@@ -123,8 +121,7 @@ by \texttt{FeynAmpDenominatorExplicit}
 \frac{1}{\left(-2 (\text{k1}\cdot \;\text{k2})+\text{k1}^2+\text{k2}^2\right) \left(-2 (\text{k1}\cdot \;\text{p2})+\text{k1}^2-m^2+\text{p2}^2\right) \left(2 (\text{k2}\cdot \;\text{p2})+\text{k2}^2-m^2+\text{p2}^2\right)}
 \end{dmath*}
 
-\hypertarget{one-loop-tensor-reduction}{%
-\subsection{One-loop tensor reduction}\label{one-loop-tensor-reduction}}
+\subsection{One-loop tensor reduction}\label{one-loop-tensor-reduction}
 
 1-loop tensor reduction using Passarino-Veltman method is handled by
 \texttt{TID}
@@ -283,9 +280,8 @@ The resulting coefficient functions can be further reduced with
 \langle\langle 5\rangle\rangle +\frac{i \langle\langle 1\rangle\rangle \langle\langle 1\rangle\rangle \langle\langle 1\rangle\rangle  (\langle\langle 1\rangle\rangle )}{4 (2-D) \langle\langle 1\rangle\rangle ^2}
 \end{dmath*}
 
-\hypertarget{multi-loop-tensor-reduction}{%
 \subsection{Multi-loop tensor
-reduction}\label{multi-loop-tensor-reduction}}
+reduction}\label{multi-loop-tensor-reduction}
 
 In the case of multi-loop integrals (but also 1-loop integrals with
 linear propagators) one should use \texttt{FCMultiLoopTID}
@@ -305,9 +301,8 @@ linear propagators) one should use \texttt{FCMultiLoopTID}
 \frac{m^2 \left(l^{\mu } l^{\nu }-l^2 g^{\mu \nu }\right)}{(1-D) l^2 (q^2-m^2+i \eta ).(2 (l\cdot q)+i \eta )}
 \end{dmath*}
 
-\hypertarget{working-with-gli-and-fctopology-symbols}{%
 \subsection{Working with GLI and FCTopology
-symbols}\label{working-with-gli-and-fctopology-symbols}}
+symbols}\label{working-with-gli-and-fctopology-symbols}
 
 Integral families are encoded in form of
 \texttt{FCTopology[\allowbreak{}id,\ \allowbreak{}\{\allowbreak{}props\},\ \allowbreak{}\{\allowbreak{}lmoms\},\ \allowbreak{}\{\allowbreak{}extmoms\},\ \allowbreak{}kinematics,\ \allowbreak{}reserved]}
@@ -353,8 +348,7 @@ propagator notation
 \frac{\text{a1}}{\left(q^2-\text{m0}^2\right) \left((\text{p1}+q)^2-\text{m1}^2\right) \left((\text{p2}+q)^2-\text{m2}^2\right) \left((\text{p2}+q)^2-\text{m3}^2\right)}+\frac{\text{a2}}{\left(\text{q1}^2-\text{m1}^2\right) \left(\text{q2}^2-\text{m2}^2\right)^2 (\text{q1}-\text{q2})^4}
 \end{dmath*}
 
-\hypertarget{topology-identification}{%
-\subsection{Topology identification}\label{topology-identification}}
+\subsection{Topology identification}\label{topology-identification}
 
 The very first step is usually to identify the occurring topologies in
 the amplitude (without attempting to minimize their number)
@@ -422,8 +416,7 @@ denominators written as \texttt{GLI}s
 \text{FCGV}(\text{GLIProduct})\left(\xi  g_s^4 \;\text{q2}^{\text{Lor1}} p^{\text{Lor2}} \;\text{q2}^{\text{Lor2}} \;\text{q1}^{\text{Lor4}} g^{\text{Lor3}\;\text{Lor4}} (\text{q1}+\text{q2})^{\text{Lor1}} (\text{q2}-p)^{\text{Lor3}} f^{\text{Glu1}\;\text{Glu3}\;\text{Glu6}} f^{\text{Glu2}\;\text{Glu4}\;\text{Glu7}} f^{\text{Glu3}\;\text{Glu4}\;\text{Glu5}} f^{\text{Glu5}\;\text{Glu6}\;\text{Glu7}},G^{\text{fctopology1}}(2,1,1,1,1)\right)+\text{FCGV}(\text{GLIProduct})\left(-\frac{\xi  g_s^4 \;\text{q1}^{\text{Lor1}} p^{\text{Lor2}} p^{\text{Lor3}} \;\text{q2}^{\text{Lor4}} g^{\text{Lor3}\;\text{Lor4}} (\text{q1}-p)^{\text{Lor1}} (p-\text{q1})^{\text{Lor2}} f^{\text{Glu1}\;\text{Glu6}\;\text{Glu7}} f^{\text{Glu2}\;\text{Glu4}\;\text{Glu5}} f^{\text{Glu3}\;\text{Glu4}\;\text{Glu5}} f^{\text{Glu3}\;\text{Glu6}\;\text{Glu7}}}{p^2},G^{\text{fctopology2}}(1,1,1,2)\right)+\text{FCGV}(\text{GLIProduct})\left(-\frac{\xi  g_s^4 \;\text{q1}^{\text{Lor1}} p^{\text{Lor2}} p^{\text{Lor3}} \;\text{q2}^{\text{Lor4}} g^{\text{Lor1}\;\text{Lor2}} (p+\text{q2})^{\text{Lor3}} (-p-\text{q2})^{\text{Lor4}} f^{\text{Glu1}\;\text{Glu6}\;\text{Glu7}} f^{\text{Glu2}\;\text{Glu4}\;\text{Glu5}} f^{\text{Glu3}\;\text{Glu4}\;\text{Glu5}} f^{\text{Glu3}\;\text{Glu6}\;\text{Glu7}}}{p^2},G^{\text{fctopology2}}(1,1,2,1)\right)+\text{FCGV}(\text{GLIProduct})\left(-\frac{\xi ^2 g_s^4 \;\text{q1}^{\text{Lor1}} p^{\text{Lor2}} p^{\text{Lor3}} \;\text{q2}^{\text{Lor4}} (\text{q1}-p)^{\text{Lor1}} (p-\text{q1})^{\text{Lor2}} (p+\text{q2})^{\text{Lor3}} (-p-\text{q2})^{\text{Lor4}} f^{\text{Glu1}\;\text{Glu6}\;\text{Glu7}} f^{\text{Glu2}\;\text{Glu4}\;\text{Glu5}} f^{\text{Glu3}\;\text{Glu4}\;\text{Glu5}} f^{\text{Glu3}\;\text{Glu6}\;\text{Glu7}}}{p^2},G^{\text{fctopology2}}(1,1,2,2)\right)+\text{FCGV}(\text{GLIProduct})\left(-\frac{g_s^4 \;\text{q1}^{\text{Lor1}} p^{\text{Lor2}} p^{\text{Lor3}} \;\text{q2}^{\text{Lor4}} g^{\text{Lor1}\;\text{Lor2}} g^{\text{Lor3}\;\text{Lor4}} f^{\text{Glu1}\;\text{Glu6}\;\text{Glu7}} f^{\text{Glu2}\;\text{Glu4}\;\text{Glu5}} f^{\text{Glu3}\;\text{Glu4}\;\text{Glu5}} f^{\text{Glu3}\;\text{Glu6}\;\text{Glu7}}}{p^2},G^{\text{fctopology2}}(1,1,1,1)\right)
 \end{dmath*}
 
-\hypertarget{finding-topology-mappings}{%
-\subsection{Finding topology mappings}\label{finding-topology-mappings}}
+\subsection{Finding topology mappings}\label{finding-topology-mappings}
 
 Here we have a set of 5 topologies
 
@@ -504,9 +497,8 @@ And these are the final topologies
 \left\{\text{FCTopology}\left(\text{fctopology1},\left\{\frac{1}{(\text{p3}^2+i \eta )},\frac{1}{(\text{p2}^2+i \eta )},\frac{1}{(\text{p1}^2+i \eta )},\frac{1}{((\text{p2}+\text{p3})^2+i \eta )},\frac{1}{((\text{p2}-Q)^2+i \eta )},\frac{1}{((\text{p1}-Q)^2+i \eta )},\frac{1}{((\text{p2}+\text{p3}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p3}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p2}+\text{p3}-Q)^2+i \eta )}\right\},\{\text{p1},\text{p2},\text{p3}\},\{Q\},\{\},\{\}\right),\text{FCTopology}\left(\text{fctopology2},\left\{\frac{1}{(\text{p3}^2+i \eta )},\frac{1}{(\text{p2}^2+i \eta )},\frac{1}{(\text{p1}^2+i \eta )},\frac{1}{((\text{p2}+\text{p3})^2+i \eta )},\frac{1}{((\text{p2}-Q)^2+i \eta )},\frac{1}{((\text{p1}-Q)^2+i \eta )},\frac{1}{((\text{p2}+\text{p3}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p2}-Q)^2+i \eta )},\frac{1}{((\text{p1}+\text{p2}+\text{p3}-Q)^2+i \eta )}\right\},\{\text{p1},\text{p2},\text{p3}\},\{Q\},\{\},\{\}\right)\right\}
 \end{dmath*}
 
-\hypertarget{tensor-reductions-with-glis}{%
 \subsection{Tensor reductions with
-GLIs}\label{tensor-reductions-with-glis}}
+GLIs}\label{tensor-reductions-with-glis}
 
 Tensor reduction for topologies that have already been processed with
 \texttt{FCLoopFindTopologies} can be done using
@@ -542,9 +534,8 @@ Tensor reduction for topologies that have already been processed with
 \text{gliProduct}\left(-\frac{2 D p^{\mu } \gamma \cdot p (p\cdot q)^2-2 p^2 \gamma ^{\mu } (p\cdot q)^2-D p^4 q^2 \gamma ^{\mu }+3 p^4 q^2 \gamma ^{\mu }-2 p^2 q^2 p^{\mu } \gamma \cdot p}{(1-D) p^4},G^{\text{prop1l}}(1,2)\right)
 \end{dmath*}
 
-\hypertarget{applying-topology-mappings}{%
 \subsection{Applying topology
-mappings}\label{applying-topology-mappings}}
+mappings}\label{applying-topology-mappings}
 
 This is a trial expression representing some loop amplitude that has
 already been processed using \texttt{FCFindTopologies}
@@ -645,9 +636,8 @@ expression creating an output that is ready to be processed further
 The resulting \texttt{GLI}s in the expression are loop integrals that
 can be IBP-reduced
 
-\hypertarget{mappings-between-integrals}{%
 \subsection{Mappings between
-integrals}\label{mappings-between-integrals}}
+integrals}\label{mappings-between-integrals}
 
 To find one-to-one mappings between loop integrals use
 \texttt{FCLoopFindIntegralMappings}

@@ -10,8 +10,7 @@
 
 \hyperlink{toc}{Overview}.
 
-\hypertarget{what-is-feynarts}{%
-\subsection{What is FeynArts?}\label{what-is-feynarts}}
+\subsection{What is FeynArts?}\label{what-is-feynarts}
 
 FeynArts is a Mathematica package for generating Feynman diagrams and
 the corresponding amplitudes. The original FeynArts was created by J.
@@ -23,9 +22,8 @@ information about FeynArts please visit the
 \href{http://www.feynarts.de/}{official site}. The manual is available
 \href{http://www.feynarts.de/FA3Guide.pdf}{here}.
 
-\hypertarget{using-feynarts-with-feyncalc}{%
 \subsection{Using FeynArts with
-FeynCalc}\label{using-feynarts-with-feyncalc}}
+FeynCalc}\label{using-feynarts-with-feyncalc}
 
 FeynArts is not a part of FeynCalc but its output can be used by
 FeynCalc to evaluate the generated amplitudes. Unfortunately, many
@@ -44,9 +42,8 @@ such that all corresponding FeynArts functions are renamed and no
 shadowing occurs. In this case one can use FeynArts and FeynCalc in the
 same Mathematica session without any unwanted interference effects.
 
-\hypertarget{patching-feynarts-for-feyncalc}{%
 \subsection{Patching FeynArts for
-FeynCalc}\label{patching-feynarts-for-feyncalc}}
+FeynCalc}\label{patching-feynarts-for-feyncalc}
 
 If you install the stable or development version of FeynCalc using the
 \href{https://github.com/FeynCalc/feyncalc/wiki/Installation}{automatic
@@ -86,9 +83,8 @@ without resintalling FeynCalc. In this case follow these steps:
   warnings and errors.
 \end{itemize}
 
-\hypertarget{using-patched-and-unpatched-feynarts-on-the-same-system}{%
 \subsection{Using patched and unpatched FeynArts on the same
-system}\label{using-patched-and-unpatched-feynarts-on-the-same-system}}
+system}\label{using-patched-and-unpatched-feynarts-on-the-same-system}
 
 If you patched FeynArts for FeynCalc but also want to use the unpatched
 version (e.g.~for FormCalc), you can do so without any problems. When
@@ -110,17 +106,15 @@ that it will damage the patched FeynArts version. Just make sure that
 you never load patched FeynArts+FeynCalc and unpatched FeynArts+FormCalc
 in the same Mathematica session.
 
-\hypertarget{technical-details}{%
-\subsection{Technical details}\label{technical-details}}
+\subsection{Technical details}\label{technical-details}
 
 The patch is applied by the \texttt{FAPatch} function. Have a look at
 the
 \href{https://github.com/FeynCalc/feyncalc/blob/master/FeynCalc/Feynman/FAPatch.m}{source
 code} if you want to know how it works.
 
-\hypertarget{evaluating-the-output-of-feynarts-in-feyncalc}{%
 \subsection{Evaluating the output of FeynArts in
-FeynCalc}\label{evaluating-the-output-of-feynarts-in-feyncalc}}
+FeynCalc}\label{evaluating-the-output-of-feynarts-in-feyncalc}
 
 In general, the amplitudes produced by FeynArts cannot be directly
 evaluated by FeynCalc. However, it is always possible to convert the
@@ -132,9 +126,8 @@ replacements. The syntax is briefly described in the section 3.5 of
 \href{https://arxiv.org/pdf/1601.01167.pdf}{arXiv:1601.01167}. Many the
 example files that come with FeynCalc also use this function.
 
-\hypertarget{the-feynarts-mirror-repository}{%
 \subsection{The feynarts-mirror
-repository}\label{the-feynarts-mirror-repository}}
+repository}\label{the-feynarts-mirror-repository}
 
 The website of FeynArts doesn't provide a public repository and uses a
 special versioning system, where the version number is upped only for
