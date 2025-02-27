@@ -41,7 +41,7 @@ first. People often do this by hand, e.g.~as in
 \overline{r}^2 \left(\overline{p}\cdot \overline{r}+\overline{q}\cdot \overline{r}\right)^2
 \end{dmath*}
 
-However, since FeynCalc 9 there is a function for that
+However, FeynCalc offers a function for that
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -86,7 +86,7 @@ indices
 \overline{p}^{\text{\$AL}(\text{\$22})} \overline{q}^{\text{\$AL}(\text{\$22})}-\overline{p}^{\text{\$AL}(\text{\$21})} \overline{q}^{\text{\$AL}(\text{\$21})}
 \end{dmath*}
 
-But since FeynCalc 9.1 there is a function for that too
+There is a function for that too
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -103,9 +103,9 @@ But since FeynCalc 9.1 there is a function for that too
 0
 \end{dmath*}
 
-Finally, often we also need to uncontract already contracted indices.
-This is done by \texttt{Uncontract}. By default, it handles only
-contractions with Dirac matrices and Levi-Civita tensors
+Often we also need to uncontract already contracted indices. This is
+done by \texttt{Uncontract}. By default, it handles only contractions
+with Dirac matrices and Levi-Civita tensors
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -152,5 +152,89 @@ To uncontract scalar products as well, use the option \texttt{Pair->All}
 
 \begin{dmath*}\breakingcomma
 \overline{p}^{\text{\$AL}(\text{\$34})} \overline{q}^{\text{\$AL}(\text{\$34})}
+\end{dmath*}
+
+Sometimes one might want to define custom symbolic tensors that are not
+specified in terms of the 4-vectors, metric tensors and Levi-Civitas.
+This is possible in FeynCalc, but the handling of such objects is not as
+good as that of the built-in quantities
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DeclareFCTensor}\OperatorTok{[}\NormalTok{myTensor}\OperatorTok{]}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{myTensor}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\NormalTok{ex }\ExtensionTok{=}\NormalTok{ Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\nu } \overline{q}^{\mu } \;\text{myTensor}(\mu ,\nu )
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{myTensor}\left(\overline{q},\overline{p}\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Uncontract}\OperatorTok{[}\NormalTok{ex}\OperatorTok{,} \FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{,}\NormalTok{ Pair }\OtherTok{{-}\textgreater{}} \ConstantTok{All}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\text{\$AL}(\text{\$36})} \overline{q}^{\text{\$AL}(\text{\$35})} \;\text{myTensor}(\text{\$AL}(\text{\$35}),\text{\$AL}(\text{\$36}))
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(myTensor}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]]}\NormalTok{ MT}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]]} \SpecialCharTok{+} 
+\NormalTok{   myTensor}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{]],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{]]]}\NormalTok{ MT}\OperatorTok{[}\NormalTok{LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Alpha}\OperatorTok{]],}\NormalTok{ LorentzIndex}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\FunctionTok{Beta}\OperatorTok{]]]}\NormalTok{)}
+\NormalTok{FCCanonicalizeDummyIndices}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ LorentzIndexNames }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{i1}\OperatorTok{,}\NormalTok{ i2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\bar{g}^{\alpha \beta } \;\text{myTensor}(\alpha ,\beta )+\bar{g}^{\mu \nu } \;\text{myTensor}(\mu ,\nu )
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+2 \bar{g}^{\text{i1}\;\text{i2}} \;\text{myTensor}(\text{i1},\text{i2})
+\end{dmath*}
+
+To extract the list of free or dummy indices present in the expression,
+one can use \texttt{FCGetFreeIndices} and \texttt{FCGetDummyIndices}
+respectively
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]]} 
+\NormalTok{FCGetFreeIndices}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{}\NormalTok{LorentzIndex}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\mu } \overline{q}^{\nu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\{\mu ,\nu \}
+\end{dmath*}
+
+```mathematica FCI{[}FV{[}p, {[}Mu{]}{]} FV{[}q, {[}Mu{]}{]}{]}
+FCGetDummyIndices{[}\%, \{LorentzIndex\}{]}
+
+```mathematica
+
+\begin{dmath*}\breakingcomma
+\overline{p}^{\mu } \overline{q}^{\mu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\{\mu \}
 \end{dmath*}
 \end{document}

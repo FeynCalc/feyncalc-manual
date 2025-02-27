@@ -129,6 +129,21 @@ p^{\mu } \overline{q}^{\mu }
 0
 \end{dmath*}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(FVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]} \SpecialCharTok{+}\NormalTok{ FVE}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{) (FVD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]} \SpecialCharTok{+}\NormalTok{ FVE}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{)}
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(p^{\mu }+\hat{p}^{\mu }\right) \left(q^{\mu }+\hat{q}^{\mu }\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+3 \left(\hat{p}\cdot \hat{q}\right)+p\cdot q
+\end{dmath*}
+
 Sometimes we need to switch from one dimension to another, e.g.~to
 convert a 4-dimensional object to a \(D\)-dimensional one or vice versa.
 This is done via
@@ -164,5 +179,71 @@ p^{\mu }
 
 \begin{dmath*}\breakingcomma
 \hat{p}^{\mu }
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SP}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}
+\NormalTok{ChangeDimension}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \FunctionTok{D}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot \overline{q}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+p\cdot q
+\end{dmath*}
+
+To check the dimension of the given expression one can use
+\texttt{FCGetDimensions}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FVD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\NormalTok{FCGetDimensions}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,} \OperatorTok{\{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+p^{\mu } \overline{q}^{\mu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\{4,D\}
+\end{dmath*}
+
+If one needs to replace the dimensional symbols \texttt{D} in the
+prefactors of the Lorentz tensors, it is better to use
+\texttt{FCReplaceD} instead of a replacement rule. Otherwise, the
+dimensions of the tensors will get messed up
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCI}\OperatorTok{[}\NormalTok{(}\FunctionTok{D} \SpecialCharTok{+} \DecValTok{2}\NormalTok{) MTD}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]]} 
+\SpecialCharTok{\%} \OtherTok{/.} \FunctionTok{D} \OtherTok{{-}\textgreater{}} \DecValTok{4} \SpecialCharTok{{-}} \DecValTok{2}\NormalTok{ Epsilon}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(D+2) g^{\mu \nu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+(6-2 \varepsilon ) g_{\{4-2 \varepsilon ,4-2 \varepsilon \}}{}^{\mu \nu }
+\end{dmath*}
+
+```mathematica (D + 2) MTD{[}{[}Mu{]}, {[}Nu{]}{]} FCReplaceD{[}\%, D
+-\textgreater{} 4 - 2 Epsilon{]}
+
+```mathematica
+
+\begin{dmath*}\breakingcomma
+(D+2) g^{\mu \nu }
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+(6-2 \varepsilon ) g^{\mu \nu }
 \end{dmath*}
 \end{document}

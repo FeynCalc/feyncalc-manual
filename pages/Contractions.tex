@@ -26,11 +26,11 @@ corresponding function is called \texttt{Contract}
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-\overline{p}^{\mu } \bar{g}^{\mu \nu }
+\text{FV}(p,\mu ) \;\text{MT}(\mu ,\nu )
 \end{dmath*}
 
 \begin{dmath*}\breakingcomma
-\overline{p}^{\nu }
+\text{Contract}(\text{FV}(p,\mu ) \;\text{MT}(\mu ,\nu ))
 \end{dmath*}
 
 \begin{Shaded}
@@ -41,11 +41,11 @@ corresponding function is called \texttt{Contract}
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-\overline{p}^{\alpha } \overline{q}^{\alpha }
+\text{FV}(p,\alpha ) \;\text{FV}(q,\alpha )
 \end{dmath*}
 
 \begin{dmath*}\breakingcomma
-\overline{p}\cdot \overline{q}
+\text{Contract}(\text{FV}(p,\alpha ) \;\text{FV}(q,\alpha ))
 \end{dmath*}
 
 Notice that when we enter noncommutative objects, such as Dirac
@@ -60,11 +60,11 @@ matrices, we use \texttt{Dot} (\texttt{.}) and not \texttt{Times}
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-\overline{p}^{\alpha } \bar{\gamma }^{\alpha }.\bar{\gamma }^{\beta }.\bar{\gamma }^{\gamma } \bar{g}^{\beta \gamma }
+\text{FV}(p,\alpha ) \;\text{MT}(\beta ,\gamma ) \;\text{GA}(\alpha ).\text{GA}(\beta ).\text{GA}(\gamma )
 \end{dmath*}
 
 \begin{dmath*}\breakingcomma
-\left(\bar{\gamma }\cdot \overline{p}\right).\bar{\gamma }^{\gamma }.\bar{\gamma }^{\gamma }
+\text{Contract}(\text{FV}(p,\alpha ) \;\text{MT}(\beta ,\gamma ) \;\text{GA}(\alpha ).\text{GA}(\beta ).\text{GA}(\gamma ))
 \end{dmath*}
 
 This is because \texttt{Times} is commutative, so writing something like
@@ -76,9 +76,95 @@ This is because \texttt{Times} is commutative, so writing something like
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-\bar{\gamma }^{\alpha } \bar{\gamma }^{\beta } \bar{\gamma }^{\delta }
+\text{GA}(\alpha ) \;\text{GA}(\beta ) \;\text{GA}(\delta )
 \end{dmath*}
 
 will give you completely wrong results. It is also a very common
 beginner's mistake!
+
+It might be surprising that FeynCalc does not seem to distinguish
+between upper and lower Lorentz indices.
+
+In fact, FeynCalc tacitly assumes that all your expressions with Lorentz
+indices are manifestly Lorentz covariant and respect Einstein's
+summation. In particular, this implies that
+
+In an equality, if a free Lorentz index appears upstairs on the right
+hand side, it must also appear upstairs on the left hand side. Something
+like \(p^{\mu} = c q_{\mu}\) would violate manifest Lorentz covariance.
+Hence,
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]} \ExtensionTok{==} \FunctionTok{c}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FV}(p,\mu )=c \;\text{FV}(q,\mu )
+\end{dmath*}
+
+could equally stand for \(p^{\mu} = c q^{\mu}\) or
+\(p_{\mu} = c q_{\mu}\).
+
+For the sake of definiteness, we impose that a free Lorentz should be
+always understood to be an upper index. This becomes important when
+dealing with nonrelativistic expressions involving Cartesian indices,
+where there's no manifest Lorentz covariance.
+
+Since FeynCalc assumes that the expressions you enter are mathematically
+sensible, it will not check your input or complain, even if the
+expression you provided is obviously incorrect
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MT}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FV}(p,\mu ) \;\text{FV}(q,\mu ) \;\text{MT}(\mu ,\nu )
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{Contract}(\text{FV}(p,\mu ) \;\text{FV}(q,\mu ) \;\text{MT}(\mu ,\nu ))
+\end{dmath*}
+
+When it comes to products of Levi-Civita tensors (\texttt{Eps}),
+\texttt{Contract} will by default apply the product formula with the
+determinant of metric tensors
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LC}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]][}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}\NormalTok{ LC}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]][}\FunctionTok{r}\OperatorTok{,} \FunctionTok{s}\OperatorTok{]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{x}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FV}(x,\mu ) \;\text{LC}(\mu ,\nu )(p,q) \;\text{LC}(\rho ,\sigma )(r,s)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{Contract}(\text{FV}(x,\mu ) \;\text{LC}(\mu ,\nu )(p,q) \;\text{LC}(\rho ,\sigma )(r,s))
+\end{dmath*}
+
+This is, however, not always what we want and can be inhibited via the
+option \texttt{EpsContract}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LC}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Nu}\OperatorTok{]][}\FunctionTok{p}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}\NormalTok{ LC}\OperatorTok{[}\SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Rho}\OperatorTok{],} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Sigma}\OperatorTok{]][}\FunctionTok{r}\OperatorTok{,} \FunctionTok{s}\OperatorTok{]}\NormalTok{ FV}\OperatorTok{[}\FunctionTok{x}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]}
+\NormalTok{Contract}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ EpsContract }\OtherTok{{-}\textgreater{}} \ConstantTok{False}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{FV}(x,\mu ) \;\text{LC}(\mu ,\nu )(p,q) \;\text{LC}(\rho ,\sigma )(r,s)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\text{Contract}(\text{FV}(x,\mu ) \;\text{LC}(\mu ,\nu )(p,q) \;\text{LC}(\rho ,\sigma )(r,s),\text{EpsContract}\to \;\text{False})
+\end{dmath*}
 \end{document}

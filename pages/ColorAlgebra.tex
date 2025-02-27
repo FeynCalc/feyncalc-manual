@@ -86,7 +86,8 @@ C_F
 \end{dmath*}
 
 There are two main functions to deal with colored objects:
-\texttt{SUNSimplify} and \texttt{SUNTrace}
+\texttt{SUNSimplify} and \texttt{SUNTrace}. In general,
+\texttt{SUNSimplify} will also simplify color traces when possible
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -131,6 +132,66 @@ T^b.T^d.T^a.T^b.T^d
 
 \begin{dmath*}\breakingcomma
 \frac{T^a \left(C_A^2+1\right)}{4 C_A^2}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{r}\OperatorTok{,} \FunctionTok{s}\OperatorTok{]}\NormalTok{ SUNF}\OperatorTok{[}\FunctionTok{b}\OperatorTok{,} \FunctionTok{r}\OperatorTok{,} \FunctionTok{s}\OperatorTok{]}
+\NormalTok{SUNSimplify}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+f^{ars} f^{brs}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+C_A \delta ^{ab}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]}\NormalTok{  SUNF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]}
+\NormalTok{SUNSimplify}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(f^{abc}\right)^2
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+2 C_A^2 C_F
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNF}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]}\NormalTok{ SUND}\OperatorTok{[}\FunctionTok{d}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]} 
+\NormalTok{SUNSimplify}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+d^{bcd} f^{abc}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+0
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUND}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]}\NormalTok{ SUND}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{]} 
+\NormalTok{SUNSimplify}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(d^{abc}\right)^2
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+-2 \left(4-C_A^2\right) C_F
 \end{dmath*}
 
 The color factors \(C_A\) and \(C_F\) are reconstructed from \(N_c\)
@@ -219,10 +280,35 @@ indices
 \frac{1}{2} C_F T_{ij}^c
 \end{dmath*}
 
-Color traces with more than 3 matrices are not evaluated by default
-(assuming that no other simplifications are possible). The evaluation
-can be forced using the option \texttt{SUNTraceEvaluate} set to
-\texttt{True}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNDelta}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{]}\NormalTok{ SUNTF}\OperatorTok{[\{}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{\},} \FunctionTok{i}\OperatorTok{,} \FunctionTok{j}\OperatorTok{]}\NormalTok{ SUNTF}\OperatorTok{[\{}\FunctionTok{c}\OperatorTok{,} \FunctionTok{d}\OperatorTok{\},} \FunctionTok{j}\OperatorTok{,} \FunctionTok{i}\OperatorTok{]}
+\NormalTok{SUNSimplify}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\delta ^{ab} \left(T^aT^b\right){}_{ij} \left(T^cT^d\right){}_{ji}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\frac{1}{2} C_F \delta ^{cd}
+\end{dmath*}
+
+Color traces with more than 3 distinct matrices are not evaluated by
+default (assuming that no other simplifications are possible). The
+evaluation can be forced using the option \texttt{SUNTraceEvaluate} set
+to \texttt{True}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SUNTrace}\OperatorTok{[}\NormalTok{SUNT}\OperatorTok{[}\FunctionTok{a}\OperatorTok{,} \FunctionTok{b}\OperatorTok{,} \FunctionTok{c}\OperatorTok{,} \FunctionTok{d}\OperatorTok{]]} \SpecialCharTok{//}\NormalTok{ SUNSimplify}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\text{tr}\left(T^a.T^b.T^c.T^d\right)
+\end{dmath*}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -231,7 +317,7 @@ can be forced using the option \texttt{SUNTraceEvaluate} set to
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-\frac{1}{4} \delta ^{ad} \left(C_A-2 C_F\right) \delta ^{bc}-\frac{1}{4} \delta ^{ac} \left(C_A-2 C_F\right) \delta ^{bd}+\frac{1}{4} \delta ^{ab} \left(C_A-2 C_F\right) \delta ^{cd}-\frac{1}{8} i f^{ad\text{FCGV}(\text{sun941})} d^{bc\text{FCGV}(\text{sun941})}+\frac{1}{8} i d^{ad\text{FCGV}(\text{sun941})} f^{bc\text{FCGV}(\text{sun941})}+\frac{1}{8} d^{ad\text{FCGV}(\text{sun941})} d^{bc\text{FCGV}(\text{sun941})}-\frac{1}{8} d^{bd\text{FCGV}(\text{sun941})} d^{ac\text{FCGV}(\text{sun941})}+\frac{1}{8} d^{cd\text{FCGV}(\text{sun941})} d^{ab\text{FCGV}(\text{sun941})}
+\frac{1}{4} \delta ^{ad} \left(C_A-2 C_F\right) \delta ^{bc}-\frac{1}{4} \delta ^{ac} \left(C_A-2 C_F\right) \delta ^{bd}+\frac{1}{4} \delta ^{ab} \left(C_A-2 C_F\right) \delta ^{cd}-\frac{1}{8} i f^{ad\text{FCGV}(\text{sun1521})} d^{bc\text{FCGV}(\text{sun1521})}+\frac{1}{8} i d^{ad\text{FCGV}(\text{sun1521})} f^{bc\text{FCGV}(\text{sun1521})}+\frac{1}{8} d^{ad\text{FCGV}(\text{sun1521})} d^{bc\text{FCGV}(\text{sun1521})}-\frac{1}{8} d^{bd\text{FCGV}(\text{sun1521})} d^{ac\text{FCGV}(\text{sun1521})}+\frac{1}{8} d^{cd\text{FCGV}(\text{sun1521})} d^{ab\text{FCGV}(\text{sun1521})}
 \end{dmath*}
 
 One can automatically rename dummy indices using the

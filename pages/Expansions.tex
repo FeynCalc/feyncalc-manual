@@ -59,6 +59,25 @@ one can use
 \overline{p}^{\mu }+\overline{q}^{\mu }+\overline{r}^{\mu }
 \end{dmath*}
 
+Notice that \texttt{ExpandScalarProduct} can also do expansions only for
+the given momentum, while leaving the rest of the expression untouched,
+e.g.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{x}\NormalTok{ SP}\OperatorTok{[}\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p2}\OperatorTok{,}\NormalTok{ q1 }\SpecialCharTok{+}\NormalTok{ q2}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{y}\NormalTok{ SP}\OperatorTok{[}\NormalTok{p3 }\SpecialCharTok{+}\NormalTok{ p4}\OperatorTok{,}\NormalTok{ q3 }\SpecialCharTok{+}\NormalTok{ q4}\OperatorTok{]} \SpecialCharTok{+} \FunctionTok{z}\NormalTok{ SP}\OperatorTok{[}\NormalTok{p5 }\SpecialCharTok{+}\NormalTok{ p6}\OperatorTok{,}\NormalTok{ q5 }\SpecialCharTok{+}\NormalTok{ q6}\OperatorTok{]}
+\NormalTok{ExpandScalarProduct}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{,}\NormalTok{ Momentum }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{p1}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+x \left((\overline{\text{p1}}+\overline{\text{p2}})\cdot (\overline{\text{q1}}+\overline{\text{q2}})\right)+y \left((\overline{\text{p3}}+\overline{\text{p4}})\cdot (\overline{\text{q3}}+\overline{\text{q4}})\right)+z \left((\overline{\text{p5}}+\overline{\text{p6}})\cdot (\overline{\text{q5}}+\overline{\text{q6}})\right)
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+x \left(\overline{\text{p1}}\cdot (\overline{\text{q1}}+\overline{\text{q2}})+\overline{\text{p2}}\cdot (\overline{\text{q1}}+\overline{\text{q2}})\right)+y \left((\overline{\text{p3}}+\overline{\text{p4}})\cdot (\overline{\text{q3}}+\overline{\text{q4}})\right)+z \left((\overline{\text{p5}}+\overline{\text{p6}})\cdot (\overline{\text{q5}}+\overline{\text{q6}})\right)
+\end{dmath*}
+
 For the expansion of \texttt{Eps} tensors, we use
 
 \begin{Shaded}
@@ -76,8 +95,8 @@ For the expansion of \texttt{Eps} tensors, we use
 \bar{\epsilon }^{\overline{\text{p1}}\overline{q}\overline{r}\overline{s}}+\bar{\epsilon }^{\overline{\text{p2}}\overline{q}\overline{r}\overline{s}}
 \end{dmath*}
 
-EpsEvaluate also reorders the arguments of Eps according to its
-antisymmetric properties
+\texttt{EpsEvaluate} also reorders the arguments of \texttt{Eps}
+according to its antisymmetric properties
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -110,6 +129,49 @@ The inverse of \texttt{ExpandScalarProduct} is called
 
 \begin{dmath*}\breakingcomma
 \left(3 \overline{p}+4 \overline{q}\right)^{\mu }
+\end{dmath*}
+
+This also works for scalar products, but the results may not be always
+optimal
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SP}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{+} \FunctionTok{q} \SpecialCharTok{+} \FunctionTok{t}\OperatorTok{,} \FunctionTok{r} \SpecialCharTok{+} \FunctionTok{s}\OperatorTok{]}
+\NormalTok{ExpandScalarProduct}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\NormalTok{MomentumCombine}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(\overline{r}+\overline{s})\cdot (\overline{p}+\overline{q}+\overline{t})
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot \overline{r}+\overline{p}\cdot \overline{s}+\overline{q}\cdot \overline{r}+\overline{q}\cdot \overline{s}+\overline{r}\cdot \overline{t}+\overline{s}\cdot \overline{t}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+(\overline{r}+\overline{s})\cdot (\overline{p}+\overline{q}+\overline{t})
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SP}\OperatorTok{[}\FunctionTok{p} \SpecialCharTok{+} \FunctionTok{q} \SpecialCharTok{+} \FunctionTok{t}\OperatorTok{,} \FunctionTok{r} \SpecialCharTok{+} \FunctionTok{s}\OperatorTok{]} \SpecialCharTok{+}\NormalTok{ SP}\OperatorTok{[}\FunctionTok{r}\OperatorTok{,} \FunctionTok{s}\OperatorTok{]}
+\NormalTok{ExpandScalarProduct}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\NormalTok{MomentumCombine}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+(\overline{r}+\overline{s})\cdot (\overline{p}+\overline{q}+\overline{t})+\overline{r}\cdot \overline{s}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+\overline{p}\cdot \overline{r}+\overline{p}\cdot \overline{s}+\overline{q}\cdot \overline{r}+\overline{q}\cdot \overline{s}+\overline{r}\cdot \overline{s}+\overline{r}\cdot \overline{t}+\overline{s}\cdot \overline{t}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+(\overline{p}+\overline{q})\cdot (\overline{r}+\overline{s})+\overline{r}\cdot (\overline{s}+\overline{t})+\overline{s}\cdot \overline{t}
 \end{dmath*}
 
 For Dirac matrices the corresponding functions are
