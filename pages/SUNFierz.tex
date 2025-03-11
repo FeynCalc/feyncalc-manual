@@ -1,0 +1,36 @@
+% !TeX program = pdflatex
+% !TeX root = SUNFierz.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{sunfierz}{
+\section{SUNFierz}\label{sunfierz}\index{SUNFierz}}
+
+\texttt{SUNFierz[\allowbreak{}exp,\ \allowbreak{}\{\allowbreak{}i,\ \allowbreak{}j,\ \allowbreak{}k,\ \allowbreak{}l\}]}
+applies Fierz identity to the product of two Kronecker deltas the in
+fundamental representation (\texttt{SUNFDelta}) carrying indices
+\texttt{i}, \texttt{j}, \texttt{k} and \texttt{l} present in
+\texttt{exp}.
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{sunsimplify}{SUNSimplify},
+\hyperlink{sunt}{SUNT}, \hyperlink{suntf}{SUNTF},
+\hyperlink{sunfdelta}{SUNFDelta}.
+
+\subsection{Examples}
+
+```mathematica SUNFDelta{[}i, j{]} SUNFDelta{[}k, l{]}
+
+SUNFierz{[}\%, \{i, j, k, l\}, SUNIndexNames -\textgreater{} \{a\}{]}
+
+```mathematica
+
+\begin{dmath*}\breakingcomma
+\delta _{ij} \delta _{kl}
+\end{dmath*}
+
+\begin{dmath*}\breakingcomma
+2 T_{il}^a T_{kj}^a+\frac{\delta _{il} \delta _{jk}}{N}
+\end{dmath*}
+\end{document}

@@ -10,13 +10,58 @@
 
 \hyperlink{toc}{Overview}.
 
-If you want to create new FeynArts models using
-\href{https://feynrules.irmp.ucl.ac.be/}{FeynRules}, please keep in mind
-that those models must be patched for compatibility with FeynCalc before
-they can be used for calculations.
+Mathematica package \href{https://feynrules.irmp.ucl.ac.be/}{FeynRules}
+allows you to create new FeynArts models that can be used for
+calculations using FeynCalc. FeynRules is not a part of FeynCalc and
+must thus be downloaded and installed separately. You can obtain your
+copy from the \href{https://feynrules.irmp.ucl.ac.be/}{developer
+website}.
 
-The patching is done by using the function \texttt{FAPatch} with the
-option \texttt{PatchModelsOnly} set to \texttt{True}
+FeynCalc contains some examples of custom FeynRules models that are
+located inside
+
+\begin{verbatim}
+FileNameJoin[{$UserBaseDirectory, "Applications", "FeynCalc", "Examples", "FeynRules"}]
+\end{verbatim}
+
+The \texttt{XYZ.fr}-file is a FeynRules model, while the
+\texttt{GenerateModelXYZ.m} script creates a FeynArts model out of it.
+The script expects FeynRules to be located in
+
+\begin{verbatim}
+   FileNameJoin[{$UserBaseDirectory,"Applications","FeynRules"}]
+\end{verbatim}
+
+This means that you should be able to load FeynRules on a fresh
+Mathematica kernel using
+
+\begin{verbatim}
+$FeynRulesPath=FileNameJoin[{$UserBaseDirectory,"Applications","FeynRules"}];
+<<FeynRules`;
+\end{verbatim}
+
+without any error messages. If this does not work, then FeynRules have
+not been installed properly on your computer and cannot be used.
+
+The script \texttt{GenerateModelXYZ.m} must be evaluated on a fresh
+Mathematica kernel. You must ensure that no other packages are loaded,
+otherwise the process will most likely fail. For that you can either
+evaluate \texttt{Quit[\allowbreak{}]} before running the commands from
+the script or manually kill the kernel(s) via
+\texttt{Evaluation -> Quit Kernel -> ...}. After the script has
+successfully finished you must close the kernel again. Do not try to
+load FeynCalc on the same kernel, or you will run into more issues.
+
+The new FeynArts model should be now located inside
+
+\begin{verbatim}
+FileNameJoin[{$UserBaseDirectory,"Applications","FeynCalc","FeynArts","Models"}]
+\end{verbatim}
+
+Before it can be used for calculations, it must be patched for
+compatibility with FeynCalc. The patching is done by using the function
+\texttt{FAPatch} with the option \texttt{PatchModelsOnly} set to
+\texttt{True}
 
 \begin{itemize}
 \tightlist
@@ -34,4 +79,8 @@ The patching has to be done only once for each new model. However,
 rerunning \texttt{FAPatch[\allowbreak{}PatchModelsOnly -> True]} would
 not do any harm, so if you often modify existing or add new models, you
 might want to keep this command in your working notebooks.
+
+\textbf{Please note that we don't provide support on how to create or
+debug a particular FeynRules model. For that please consult the package
+manual or contact the package developers }
 \end{document}
