@@ -211,8 +211,37 @@ using the full BMHV scheme.
 
 FeynCalc implement the so-called Moch-Vermaseren-Vogt MVV formula from
 \href{https://arxiv.org/pdf/1506.04517.pdf}{Moch:2015usa} for
-calculating \(\gamma^5\)-traces in this scheme. The scheme itself is
-activated by setting
+calculating \(\gamma^5\)-traces in this scheme. This implementation has
+been developed for very particular types of calculations (DIS in QCD)
+and is not automatically applicable to any other process. In particular,
+there might be ambiguities that were not present in the calculation that
+the authors of \href{https://arxiv.org/pdf/1506.04517.pdf}{Moch:2015usa}
+had in mind. For example, traces of the form
+
+\begin{equation}
+\mathrm{Tr}(\ldots \gamma^5 \gamma^{\mu_1} \ldots \gamma^{\mu_j} \gamma^5 \ldots )
+\end{equation}
+
+where the chain \(\gamma^{\mu_{1}} \ldots \gamma^{\mu_{j}}\) can be
+simplified to something like
+
+\begin{equation}
+\gamma^{\mu_{1}} \ldots \gamma^{\mu_{j}} = 1 + \ldots
+\end{equation}
+
+are not well defined in this scheme. Depending on whether one applies
+the above simplification before or after calculating the
+\(\gamma^5\)-trace, the results will differ.
+
+The problem may arise already for traces like
+
+\begin{equation}
+\mathrm{Tr}(\gamma^\nu \gamma^\mu \gamma^5 (\gamma \cdot p) (\gamma \cdot q) \gamma^{5})
+\end{equation}
+
+where we may want to set \(p=q\) before or after calculating the trace.
+
+The scheme itself is activated by setting
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -246,5 +275,5 @@ to avoid incorrect results.
 Since FeynCalc has no way to know the origin of \(\varepsilon\)-tensors
 in the input expression, it is advised to rename the unrelated
 Levi-Civitas to something else while doing the trace calculations and
-reintroduce them after the traces have been succesfully evaluated.
+reintroduce them after the traces have been successfully evaluated.
 \end{document}
