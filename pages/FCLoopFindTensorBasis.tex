@@ -31,7 +31,7 @@ integrals. These integrals will depend on the new kinematic invariants
 but as the invariants should cancel in the final result for the reduced
 tensor integral. To see this cancellation explicitly one might need to
 use the linear relations between the external momenta uncovered by
-\texttt{FCLoopFindTensorBasis<<Feyn}
+\texttt{FCLoopFindTensorBasis}
 
 Using the option \texttt{All} one can get all possible sets of new basis
 vectors. This can be useful if one needs to select one of them for the
@@ -50,7 +50,7 @@ basis. There are no linearly dependent vectors
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{FCLoopFindTensorBasis}\OperatorTok{[\{}\NormalTok{k1}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\NormalTok{k1}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{\},} \FunctionTok{n}\OperatorTok{,} \FunctionTok{Head} \OtherTok{{-}\textgreater{}}\NormalTok{ pref}\OperatorTok{]}
+\NormalTok{FCLoopFindTensorBasis}\OperatorTok{[\{}\NormalTok{k1}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\NormalTok{k1}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{\},} \FunctionTok{n}\OperatorTok{,}\NormalTok{ Prefactor }\OtherTok{{-}\textgreater{}}\NormalTok{ pref}\OperatorTok{]}
 \end{Highlighting}
 \end{Shaded}
 
@@ -65,7 +65,7 @@ expressed through \texttt{k1}
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{FCLoopFindTensorBasis}\OperatorTok{[\{}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{\},} 
-  \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\NormalTok{k1}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{k2}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{\},} \FunctionTok{n}\OperatorTok{,} \FunctionTok{Head} \OtherTok{{-}\textgreater{}}\NormalTok{ pref}\OperatorTok{]}
+  \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\NormalTok{k1}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{k2}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{\},} \FunctionTok{n}\OperatorTok{,}\NormalTok{ Prefactor }\OtherTok{{-}\textgreater{}}\NormalTok{ pref}\OperatorTok{]}
 \end{Highlighting}
 \end{Shaded}
 
@@ -79,7 +79,7 @@ possible choice
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{FCLoopFindTensorBasis}\OperatorTok{[\{}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{\},} 
-  \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\NormalTok{k1}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{k2}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{\},} \FunctionTok{n}\OperatorTok{,} \FunctionTok{Head} \OtherTok{{-}\textgreater{}}\NormalTok{ pref}\OperatorTok{,} \ConstantTok{All} \OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
+  \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\NormalTok{k1}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{k2}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \DecValTok{0}\OperatorTok{\},} \FunctionTok{n}\OperatorTok{,}\NormalTok{ Prefactor }\OtherTok{{-}\textgreater{}}\NormalTok{ pref}\OperatorTok{,} \ConstantTok{All} \OtherTok{{-}\textgreater{}} \ConstantTok{True}\OperatorTok{]}
 \end{Highlighting}
 \end{Shaded}
 
@@ -151,6 +151,41 @@ light-like momenta
  \;\text{k1} \\
  \;\text{k2} \\
  \;\text{k2}\to \;\text{k1} \;\text{FCGV}(\text{Prefactor})\left(\frac{d}{c}\right) \\
+\end{array}
+\right)
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopFindTensorBasis}\OperatorTok{[\{}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\NormalTok{k1}\OperatorTok{]} \OtherTok{{-}\textgreater{}}\NormalTok{ m2}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{k2}\OperatorTok{]} \OtherTok{{-}\textgreater{}}\NormalTok{ m2}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{]} \OtherTok{{-}\textgreater{}}\NormalTok{ m2 }\OperatorTok{\},} \FunctionTok{n}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{c}
+ \;\text{k1} \\
+ \;\text{k2} \\
+ \;\text{k2}\to \;\text{k1} \;\text{FCGV}(\text{Prefactor})(1) \\
+\end{array}
+\right)
+\end{dmath*}
+
+Cartesian momenta also supported too
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopFindTensorBasis}\OperatorTok{[\{}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{\},} \OperatorTok{\{}\NormalTok{CSPD}\OperatorTok{[}\NormalTok{k1}\OperatorTok{]} \OtherTok{{-}\textgreater{}}\NormalTok{ m2}\OperatorTok{,}\NormalTok{ CSPD}\OperatorTok{[}\NormalTok{k2}\OperatorTok{]} \OtherTok{{-}\textgreater{}}\NormalTok{ m2}\OperatorTok{,}\NormalTok{ CSPD}\OperatorTok{[}\NormalTok{k1}\OperatorTok{,}\NormalTok{ k2}\OperatorTok{]} \OtherTok{{-}\textgreater{}}\NormalTok{ m2 }\OperatorTok{\},} \FunctionTok{n}\OperatorTok{,} 
+  \FunctionTok{Head} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{CartesianPair}\OperatorTok{,}\NormalTok{ CartesianMomentum}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{c}
+ \;\text{k1} \\
+ \;\text{k2} \\
+ \;\text{k2}\to \;\text{k1} \;\text{FCGV}(\text{Prefactor})(1) \\
 \end{array}
 \right)
 \end{dmath*}

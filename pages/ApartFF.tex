@@ -35,7 +35,8 @@ performed only after multiplying \texttt{amp} with \texttt{extraPiece1}.
 \subsection{See also}
 
 \hyperlink{toc}{Overview}, \hyperlink{fcapart}{FCApart},
-\hyperlink{feynampdenominatorsimplify}{FeynAmpDenominatorSimplify}.
+\hyperlink{feynampdenominatorsimplify}{FeynAmpDenominatorSimplify},
+\hyperlink{fcloopfindtensorbasis}{FCLoopFindTensorBasis}.
 
 \subsection{Examples}
 
@@ -74,7 +75,7 @@ performed only after multiplying \texttt{amp} with \texttt{extraPiece1}.
 \end{dmath*}
 
 \begin{dmath*}\breakingcomma
-\frac{p^2 r^2}{4 q^2.(q-r)^2.(q-p)^2}+\frac{p^2+2 (q\cdot r)+2 r^2}{4 q^2.(-p+q+r)^2}+-\frac{p^2}{4 q^2.(q-p)^2}-\frac{r^2}{4 q^2.(q-r)^2}
+\frac{p^2 r^2}{4 q^2.(q-p)^2.(q-r)^2}+\frac{p^2+2 (q\cdot r)+2 r^2}{4 q^2.(-p+q+r)^2}+-\frac{p^2}{4 q^2.(q-p)^2}-\frac{r^2}{4 q^2.(q-r)^2}
 \end{dmath*}
 
 \begin{Shaded}
@@ -106,7 +107,7 @@ performed only after multiplying \texttt{amp} with \texttt{extraPiece1}.
 \end{dmath*}
 
 \begin{dmath*}\breakingcomma
-\frac{\left(m^2+p^2\right)^3}{8 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q2}-p)^2.(\text{q1}-\text{q2})^2.(\text{q1}-p)^2}-\frac{\left(m^2+p^2\right)^2}{4 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-\text{q2})^2.(\text{q1}-p)^2}+\frac{\left(m^2+p^2\right) \left(m^2+2 p^2\right)}{4 \;\text{q2}^2.\text{q1}^2.\left((\text{q1}-p)^2-m^2\right).(\text{q1}-\text{q2})^2}-\frac{\left(m^2+p^2\right) (p\cdot \;\text{q1})}{4 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q2}-p)^2.(\text{q1}-\text{q2})^2}-\frac{\left(m^2+p^2\right) (p\cdot \;\text{q1})}{4 \;\text{q2}^2.\text{q1}^2.(\text{q1}-\text{q2})^2.\left((\text{q2}-p)^2-m^2\right)}-\frac{p\cdot \;\text{q1}}{4 \left(\text{q2}^2-m^2\right).(\text{q1}-\text{q2})^2.(\text{q1}-p)^2}-\frac{m^2+p\cdot \;\text{q1}+p^2}{4 \left(\text{q1}^2-m^2\right).(\text{q2}-p)^2.(\text{q1}-\text{q2})^2}+\frac{m^2+2 (p\cdot \;\text{q1})+p^2}{8 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-\text{q2})^2}
+\frac{\left(m^2+p^2\right)^3}{8 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-p)^2.(\text{q1}-\text{q2})^2.(\text{q2}-p)^2}-\frac{\left(m^2+p^2\right)^2}{4 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-p)^2.(\text{q1}-\text{q2})^2}+\frac{\left(m^2+p^2\right) \left(m^2+2 p^2\right)}{4 \;\text{q1}^2.\text{q2}^2.\left((\text{q1}-p)^2-m^2\right).(\text{q1}-\text{q2})^2}-\frac{\left(m^2+p^2\right) (p\cdot \;\text{q1})}{4 \;\text{q1}^2.\text{q2}^2.(\text{q1}-\text{q2})^2.\left((\text{q2}-p)^2-m^2\right)}-\frac{\left(m^2+p^2\right) (p\cdot \;\text{q1})}{4 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-\text{q2})^2.(\text{q2}-p)^2}-\frac{p\cdot \;\text{q1}}{4 \left(\text{q2}^2-m^2\right).(\text{q1}-p)^2.(\text{q1}-\text{q2})^2}-\frac{m^2+p\cdot \;\text{q1}+p^2}{4 \left(\text{q1}^2-m^2\right).(\text{q1}-\text{q2})^2.(\text{q2}-p)^2}+\frac{m^2+2 (p\cdot \;\text{q1})+p^2}{8 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-\text{q2})^2}
 \end{dmath*}
 
 \begin{Shaded}
@@ -146,7 +147,7 @@ option \texttt{FDS->False}
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-\frac{\left(m^2+p^2\right)^2}{4 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q2}-p)^2.(\text{q1}-\text{q2})^2.(\text{q1}-p)^2}-\frac{m^2+p^2}{2 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-\text{q2})^2.(\text{q1}-p)^2}+\frac{m^2+p^2}{2 \;\text{q2}^2.\text{q1}^2.\left((\text{q1}-p)^2-m^2\right).(\text{q1}-\text{q2})^2}-\frac{1}{2 \left(\text{q1}^2-m^2\right).(\text{q2}-p)^2.(\text{q1}-\text{q2})^2}+\frac{1}{4 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-\text{q2})^2}
+\frac{\left(m^2+p^2\right)^2}{4 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-p)^2.(\text{q1}-\text{q2})^2.(\text{q2}-p)^2}+\frac{m^2+p^2}{2 \;\text{q1}^2.\text{q2}^2.\left((\text{q1}-p)^2-m^2\right).(\text{q1}-\text{q2})^2}-\frac{m^2+p^2}{2 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-p)^2.(\text{q1}-\text{q2})^2}-\frac{1}{2 \left(\text{q1}^2-m^2\right).(\text{q1}-\text{q2})^2.(\text{q2}-p)^2}+\frac{1}{4 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-\text{q2})^2}
 \end{dmath*}
 
 \begin{Shaded}
@@ -156,7 +157,7 @@ option \texttt{FDS->False}
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-\frac{\left(m^2+p^2\right)^2}{4 \left(\text{q2}^2-m^2\right).(\text{q2}-p)^2.(\text{q2}-\text{q1})^2.\left(\text{q1}^2-m^2\right).(\text{q1}-p)^2}-\frac{m^2+p^2}{4 \left(\text{q1}^2-m^2\right).(\text{q1}-p)^2.\left(\text{q2}^2-m^2\right).(\text{q2}-\text{q1})^2}+\frac{m^2+p^2}{4 \left(\text{q1}^2-m^2\right).(\text{q1}-p)^2.(\text{q2}-p)^2.(\text{q2}-\text{q1})^2}-\frac{m^2+p^2}{4 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q2}-p)^2.(\text{q2}-\text{q1})^2}+\frac{m^2+p^2}{4 (\text{q1}-p)^2.\left(\text{q2}^2-m^2\right).(\text{q2}-p)^2.(\text{q2}-\text{q1})^2}-\frac{1}{4 (\text{q2}-\text{q1})^2.\left(\text{q1}^2-m^2\right).(\text{q2}-p)^2}-\frac{1}{4 (\text{q2}-\text{q1})^2.(\text{q1}-p)^2.\left(\text{q2}^2-m^2\right)}+\frac{1}{4 (\text{q2}-\text{q1})^2.\left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right)}+\frac{1}{4 (\text{q2}-\text{q1})^2.(\text{q1}-p)^2.(\text{q2}-p)^2}
+\frac{\left(m^2+p^2\right)^2}{4 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-p)^2.(\text{q2}-p)^2.(\text{q2}-\text{q1})^2}+\frac{m^2+p^2}{4 \left(\text{q1}^2-m^2\right).(\text{q1}-p)^2.(\text{q2}-p)^2.(\text{q2}-\text{q1})^2}-\frac{m^2+p^2}{4 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q1}-p)^2.(\text{q2}-\text{q1})^2}-\frac{m^2+p^2}{4 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q2}-p)^2.(\text{q2}-\text{q1})^2}+\frac{m^2+p^2}{4 \left(\text{q2}^2-m^2\right).(\text{q1}-p)^2.(\text{q2}-p)^2.(\text{q2}-\text{q1})^2}-\frac{1}{4 \left(\text{q1}^2-m^2\right).(\text{q2}-p)^2.(\text{q2}-\text{q1})^2}-\frac{1}{4 \left(\text{q2}^2-m^2\right).(\text{q1}-p)^2.(\text{q2}-\text{q1})^2}+\frac{1}{4 \left(\text{q1}^2-m^2\right).\left(\text{q2}^2-m^2\right).(\text{q2}-\text{q1})^2}+\frac{1}{4 (\text{q1}-p)^2.(\text{q2}-p)^2.(\text{q2}-\text{q1})^2}
 \end{dmath*}
 
 If the partial fractioning should be performed only w. r. t. the
@@ -223,7 +224,7 @@ integrals without numerators should not be partial fractioned
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
-\frac{q^2}{k^2.(p-k)^2.\left(k^2-m^2\right)}+\frac{m^2+p^2}{2 m^2 k^2.\left((k-p)^2-m^2\right)}+-\frac{1}{2 m^2 \left(k^2-m^2\right)}-\frac{p^2}{2 m^2 k^2.(k-p)^2}
+\frac{q^2}{k^2.\left(k^2-m^2\right).(p-k)^2}+\frac{m^2+p^2}{2 m^2 k^2.\left((k-p)^2-m^2\right)}+-\frac{1}{2 m^2 \left(k^2-m^2\right)}-\frac{p^2}{2 m^2 k^2.(k-p)^2}
 \end{dmath*}
 
 The \texttt{extraPiece}-trick is useful for cases where a direct partial
@@ -345,5 +346,78 @@ scaleless integrals
 
 \begin{dmath*}\breakingcomma
 1-\frac{\text{k1}\cdot \;\text{nb}}{(\text{k1}\cdot \;\text{nb}+\text{k2}\cdot \;\text{nb}+i \eta )}
+\end{dmath*}
+
+When we need to deal with linearly dependent external momenta, there
+might be some relations between scalar products involving those momenta
+and loop momenta. Since the routine cannot determine those relations
+automatically, we need to supply them by hand via the option
+\texttt{FinalSubstitutions}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClearScalarProducts}\OperatorTok{[]}\NormalTok{;}
+\NormalTok{int3 }\ExtensionTok{=}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{{-}}\NormalTok{ p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\text{p1}\cdot q}{\left(q^2-m^2\right).(-\text{p1}-\text{p2}+q)^2}
+\end{dmath*}
+
+Supplying the kinematics alone doesn't work
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{kinRules }\ExtensionTok{=} \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \FunctionTok{M}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{p2}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \FunctionTok{M}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{,}\NormalTok{ SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{]} \OtherTok{{-}\textgreater{}} \FunctionTok{M}\SpecialCharTok{\^{}}\DecValTok{2}\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left\{\text{p1}^2\to M^2,\text{p2}^2\to M^2,\text{p1}\cdot \;\text{p2}\to M^2\right\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ApartFF}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{{-}}\NormalTok{ p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{\}],} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},}\NormalTok{ FinalSubstitutions }\OtherTok{{-}\textgreater{}}\NormalTok{ kinRules}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\text{p1}\cdot q}{\left(q^2-m^2\right).(-\text{p1}-\text{p2}+q)^2}
+\end{dmath*}
+
+Using \texttt{FCLoopFindTensorBasis} we see that \texttt{p2} is
+proportional to \texttt{p1}. Hence, we have an equality between
+\texttt{p1.q} and \texttt{p2.q}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopFindTensorBasis}\OperatorTok{[\{}\NormalTok{p1}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{\},}\NormalTok{ kinRules}\OperatorTok{,} \FunctionTok{n}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\left(
+\begin{array}{c}
+ \;\text{p1} \\
+ \;\text{p2} \\
+ \;\text{p2}\to \;\text{p1} \;\text{FCGV}(\text{Prefactor})(1) \\
+\end{array}
+\right)
+\end{dmath*}
+
+Supplying this information to \texttt{ApartFF} we can finally achieve
+the desired simplification
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ApartFF}\OperatorTok{[}\NormalTok{SPD}\OperatorTok{[}\NormalTok{p1}\OperatorTok{,} \FunctionTok{q}\OperatorTok{]}\NormalTok{ FAD}\OperatorTok{[\{}\FunctionTok{q}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},} \OperatorTok{\{}\FunctionTok{q} \SpecialCharTok{{-}}\NormalTok{ p1 }\SpecialCharTok{{-}}\NormalTok{ p2}\OperatorTok{\}],} \OperatorTok{\{}\FunctionTok{q}\OperatorTok{\},}\NormalTok{ FinalSubstitutions }\OtherTok{{-}\textgreater{}} \FunctionTok{Join}\OperatorTok{[}\NormalTok{kinRules}\OperatorTok{,} 
+    \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,}\NormalTok{ p2}\OperatorTok{]} \OtherTok{{-}\textgreater{}}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{q}\OperatorTok{,}\NormalTok{ p1}\OperatorTok{]\}]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{m^2+4 M^2}{4 \left(q^2-m^2\right).(-\text{p1}-\text{p2}+q)^2}-\frac{1}{4 \left(q^2-m^2\right)}
 \end{dmath*}
 \end{document}

@@ -130,21 +130,135 @@ automatically if there are zero Gram determinants
 \begin{Highlighting}[]
 \NormalTok{FCClearScalarProducts}\OperatorTok{[]}\NormalTok{; }
  
-\NormalTok{SPD}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{1}\OperatorTok{],} \FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{1}\OperatorTok{]]} \ExtensionTok{=} \DecValTok{0}\NormalTok{; }
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{1}\OperatorTok{],} \FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{1}\OperatorTok{]]} \ExtensionTok{=} \FunctionTok{M}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{; }
  
-\NormalTok{SPD}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{2}\OperatorTok{],} \FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{2}\OperatorTok{]]} \ExtensionTok{=} \DecValTok{0}\NormalTok{; }
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{2}\OperatorTok{],} \FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{2}\OperatorTok{]]} \ExtensionTok{=} \FunctionTok{M}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{; }
  
-\NormalTok{SPD}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{1}\OperatorTok{],} \FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{2}\OperatorTok{]]} \ExtensionTok{=} \DecValTok{0}\NormalTok{; }
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{1}\OperatorTok{],} \FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{2}\OperatorTok{]]} \ExtensionTok{=} \FunctionTok{M}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{; }
  
-\NormalTok{TID}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{k}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},} \FunctionTok{k} \SpecialCharTok{{-}} \FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{1}\OperatorTok{],} \FunctionTok{k} \SpecialCharTok{{-}} \FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{2}\OperatorTok{]]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]]} \SpecialCharTok{//}\NormalTok{ FCI}\OperatorTok{,} \FunctionTok{k}\OperatorTok{]} 
- 
-\NormalTok{FCClearScalarProducts}\OperatorTok{[]}\NormalTok{;}
+\NormalTok{TID}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{k}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},} \FunctionTok{k} \SpecialCharTok{{-}} \FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{1}\OperatorTok{],} \FunctionTok{k} \SpecialCharTok{{-}} \FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{2}\OperatorTok{]]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],} \FunctionTok{k}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.6\linewidth]{img/1d92pz2yqj2pc.pdf}
+\end{figure}
+\FloatBarrier
+
+\begin{dmath*}\breakingcomma
+-i \pi ^2 \left(p_1{}^{\mu }+p_2{}^{\mu }\right) \;\text{C}_1\left(0,M^2,M^2,0,0,m^2\right)
+\end{dmath*}
+
+A vanishing Gram determinant signals that the external momenta are
+linearly dependent on each other. This redundancy can be resolved by
+switching to a different basis. To that aim we need to run
+\texttt{FCLoopFindTensorBasis} to analyze the set of external momenta
+causing troubles
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopFindTensorBasis}\OperatorTok{[\{}\SpecialCharTok{{-}}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{1}\OperatorTok{],} \SpecialCharTok{{-}}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{2}\OperatorTok{]\},} \OperatorTok{\{\},} \FunctionTok{n}\OperatorTok{]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{dmath*}\breakingcomma
--i \pi ^2 \left(p_1{}^{\mu }+p_2{}^{\mu }\right) \;\text{C}_1\left(0,0,0,0,0,m^2\right)
+\left(
+\begin{array}{c}
+ -p_1 \\
+ -p_2 \\
+ -p_2\to -p_1 \;\text{FCGV}(\text{Prefactor})(1) \\
+\end{array}
+\right)
 \end{dmath*}
+
+We see that \(p_1\) and \(p_2\) are proportional to each other, so that
+only one of these vectors is linearly independent. This also means that
+the scalar products involving loop momentum \(p_1 \cdot k\) and
+\(p_2 \cdot k\) are identical. Supplying this information to
+\texttt{TID} we can now achieve the desired reduction to scalars.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{TID}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{k}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},} \FunctionTok{k} \SpecialCharTok{{-}} \FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{1}\OperatorTok{],} \FunctionTok{k} \SpecialCharTok{{-}} \FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{2}\OperatorTok{]]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],} \FunctionTok{k}\OperatorTok{,} 
+\NormalTok{  TensorReductionBasisChange }\OtherTok{{-}\textgreater{}} \OperatorTok{\{\{}\SpecialCharTok{{-}}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{1}\OperatorTok{],} \SpecialCharTok{{-}}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{2}\OperatorTok{]\}} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\SpecialCharTok{{-}}\FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{1}\OperatorTok{]\}\},} 
+\NormalTok{  FinalSubstitutions }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\NormalTok{SPD}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{2}\OperatorTok{]]} \OtherTok{{-}\textgreater{}}\NormalTok{ SPD}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \FunctionTok{Subscript}\OperatorTok{[}\FunctionTok{p}\OperatorTok{,} \DecValTok{1}\OperatorTok{]]\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{\left((m-M) (m+M)+2 M^2\right) p_1{}^{\mu }}{2 M^2 \left(k^2\right)^2.\left((k+p_1){}^2-m^2\right)}-\frac{p_1{}^{\mu }}{2 M^2 k^2.\left((k+p_1){}^2-m^2\right)}
+\end{dmath*}
+
+Notice that the result contains a propagator squared. This can be
+reduced further using IBPs (e.g.~by employing FIRE or KIRA via the
+FeynHelpers interface).
+
+For cases involving light-like external momenta we often need to
+introduce an auxiliary vector, since the available vector are not
+sufficient to form a basis
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCClearScalarProducts}\OperatorTok{[]}\NormalTok{; }
+ 
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{p}\OperatorTok{]} \ExtensionTok{=} \DecValTok{0}\NormalTok{; }
+ 
+\NormalTok{TID}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{k}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},} \FunctionTok{k} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],} \FunctionTok{k}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.6\linewidth]{img/0kz04gd9tjslc.pdf}
+\end{figure}
+\FloatBarrier
+
+\begin{dmath*}\breakingcomma
+\frac{p^{\mu }}{k^2.\left((k-p)^2-m^2\right)}+i \pi ^2 p^{\mu } \;\text{B}_1\left(0,0,m^2\right)
+\end{dmath*}
+
+Running \texttt{FCLoopFindTensorBasis} we get a suggestion to introduce
+an auxiliary vector \(n\) to the basis. The scalar products of this
+vector with other external momenta must be nonvanishing, but we are free
+to make the vector itself light-like (for simplicity)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCLoopFindTensorBasis}\OperatorTok{[\{}\SpecialCharTok{{-}}\FunctionTok{p}\OperatorTok{\},} \OperatorTok{\{\},} \FunctionTok{n}\OperatorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\{\{-p,n\},\{\},\{\}\}
+\end{dmath*}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SPD}\OperatorTok{[}\FunctionTok{n}\OperatorTok{]} \ExtensionTok{=} \DecValTok{0}\NormalTok{; }
+ 
+\NormalTok{TID}\OperatorTok{[}\NormalTok{FAD}\OperatorTok{[\{}\FunctionTok{k}\OperatorTok{,} \FunctionTok{m}\OperatorTok{\},} \FunctionTok{k} \SpecialCharTok{{-}} \FunctionTok{p}\OperatorTok{]}\NormalTok{ FVD}\OperatorTok{[}\FunctionTok{k}\OperatorTok{,} \SpecialCharTok{\textbackslash{}}\OperatorTok{[}\NormalTok{Mu}\OperatorTok{]],} \FunctionTok{k}\OperatorTok{,}\NormalTok{ TensorReductionBasisChange }\OtherTok{{-}\textgreater{}} \OperatorTok{\{\{}\SpecialCharTok{{-}}\FunctionTok{p}\OperatorTok{\}} \OtherTok{{-}\textgreater{}} \OperatorTok{\{}\SpecialCharTok{{-}}\FunctionTok{p}\OperatorTok{,} \FunctionTok{n}\OperatorTok{\}\},}\NormalTok{ AuxiliaryMomenta }\OtherTok{{-}\textgreater{}} \OperatorTok{\{}\FunctionTok{n}\OperatorTok{\}]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{dmath*}\breakingcomma
+\frac{-2 p^{\mu } (k\cdot n)+m^2 n^{\mu }+2 p^{\mu } (n\cdot p)}{2 (n\cdot p) k^2.\left((k-p)^2-m^2\right)}-\frac{n^{\mu }}{2 (n\cdot p) \left(k^2-m^2\right)}
+\end{dmath*}
+
+Unfortunately, in this case \texttt{TID} alone cannot eliminate the
+scalar products of \(n\) with the loop momentum in the numerator. For
+that we need to use IBPs. Still, it manages to reduce the tensor
+integral to scalars, even though at this stage not all of them can be
+mapped to scalar PaVe functions.
+
+The dependence on the auxiliary vector \(n\) must cancel in the final
+result for this integral, as the auxiliary vector is unphysical and the
+original integral does not depend on it. To arrive at these
+cancellations for more complicated tensor integral it might be necessary
+to exploit the relations between the physical vectors as given by
+\texttt{FCLoopFindTensorBasis} and contract those with \(n\).
 
 In FeynCalc, Passarino-Veltman coefficient functions are defined in the
 same way as in LoopTools. If one wants to use a different definition, it
@@ -165,6 +279,13 @@ is useful to activate the option GenPaVe
 \NormalTok{FCClearScalarProducts}\OperatorTok{[]}\NormalTok{;}
 \end{Highlighting}
 \end{Shaded}
+
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.6\linewidth]{img/1mx6pq1c6qsv5.pdf}
+\end{figure}
+\FloatBarrier
 
 \begin{dmath*}\breakingcomma
 -i \pi ^2 p_1{}^{\mu } \;\text{GenPaVe}\left(\{1\},\left(
@@ -236,15 +357,12 @@ corresponding variables to be of \texttt{FCVariable} type
 \NormalTok{ExpandScalarProduct}\OperatorTok{[}\NormalTok{SP}\OperatorTok{[}\FunctionTok{P}\OperatorTok{,} \FunctionTok{Q}\OperatorTok{]} \OtherTok{/.} \FunctionTok{P} \OtherTok{{-}\textgreater{}} \FunctionTok{a}\NormalTok{ P1 }\SpecialCharTok{+} \FunctionTok{b}\NormalTok{ P2}\OperatorTok{]} 
  
 \FunctionTok{StandardForm}\OperatorTok{[}\SpecialCharTok{\%}\OperatorTok{]}
-\end{Highlighting}
-\end{Shaded}
 
-\begin{dmath*}\breakingcomma
-a \left(\overline{\text{P1}}\cdot \overline{Q}\right)+b \left(\overline{\text{P2}}\cdot \overline{Q}\right)
-\end{dmath*}
+\NormalTok{\textasciigrave{}\textasciigrave{}\textasciigrave{}mathematica}
 
-\begin{Shaded}
-\begin{Highlighting}[]
+\NormalTok{$$a }\SpecialCharTok{\textbackslash{}}\FunctionTok{left}\NormalTok{(}\SpecialCharTok{\textbackslash{}}\NormalTok{overline}\OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\FunctionTok{text}\OperatorTok{\{}\NormalTok{P1}\OperatorTok{\}\}}\SpecialCharTok{\textbackslash{}}\NormalTok{cdot }\SpecialCharTok{\textbackslash{}}\NormalTok{overline}\OperatorTok{\{}\FunctionTok{Q}\OperatorTok{\}}\SpecialCharTok{\textbackslash{}}\FunctionTok{right}\NormalTok{)}\SpecialCharTok{+}\FunctionTok{b} \SpecialCharTok{\textbackslash{}}\FunctionTok{left}\NormalTok{(}\SpecialCharTok{\textbackslash{}}\NormalTok{overline}\OperatorTok{\{}\SpecialCharTok{\textbackslash{}}\FunctionTok{text}\OperatorTok{\{}\NormalTok{P2}\OperatorTok{\}\}}\SpecialCharTok{\textbackslash{}}\NormalTok{cdot }\SpecialCharTok{\textbackslash{}}\NormalTok{overline}\OperatorTok{\{}\FunctionTok{Q}\OperatorTok{\}}\SpecialCharTok{\textbackslash{}}\FunctionTok{right}\NormalTok{)$$}
+
+\NormalTok{\textasciigrave{}\textasciigrave{}\textasciigrave{}mathematica}
 \CommentTok{(*a Pair[Momentum[P1], Momentum[Q]] + b Pair[Momentum[P2], Momentum[Q]]*)}
 \end{Highlighting}
 \end{Shaded}
