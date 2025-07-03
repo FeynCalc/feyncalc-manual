@@ -1,0 +1,43 @@
+% !TeX program = pdflatex
+% !TeX root = FCScalarProductsSynchronizedQ.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcscalarproductssynchronizedq}{
+\section{FCScalarProductsSynchronizedQ}\label{fcscalarproductssynchronizedq}\index{FCScalarProductsSynchronizedQ}}
+
+\texttt{FCScalarProductsSynchronizedQ[\allowbreak{}]} compares up and
+down values of scalar products and other kinematic-related symbols such
+as \texttt{Momentum}, \texttt{CartesianMomentum}, \texttt{TC} etc.
+between the master kernel and the subkernels and returns \texttt{True}
+if all of them identical.
+
+This routine is only relevant in the parallel mode of FeynCalc. It helps
+to avoid inconsistencies through definitions that were introduced before
+activating the parallel mode and not correctly propagated to the
+subkernels
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{scalarproduct}{ScalarProduct},
+\hyperlink{pair}{Pair}, \hyperlink{sp}{SP}, \hyperlink{spd}{SPD}.
+
+\subsection{Examples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{FCScalarProductsSynchronizedQ}\OperatorTok{[]}
+\end{Highlighting}
+\end{Shaded}
+
+\FloatBarrier
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.6\linewidth]{img/1baac185a4bv4.pdf}
+\end{figure}
+\FloatBarrier
+
+\begin{dmath*}\breakingcomma
+\text{True}
+\end{dmath*}
+\end{document}

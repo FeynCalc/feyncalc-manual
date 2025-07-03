@@ -1,0 +1,26 @@
+% !TeX program = pdflatex
+% !TeX root = FCValuesSynchronizedQ.tex
+
+\documentclass[../FeynCalcManual.tex]{subfiles}
+\begin{document}
+\hypertarget{fcvaluessynchronizedq}{
+\section{FCValuesSynchronizedQ}\label{fcvaluessynchronizedq}\index{FCValuesSynchronizedQ}}
+
+\texttt{FCValuesSynchronizedQ[\allowbreak{}\{\allowbreak{}val1,\ \allowbreak{}val2\},\ \allowbreak{}type]}
+compares definitions of \texttt{val1}, \texttt{val2}, \ldots{} between
+the master kernel and the subkernels and returns \texttt{True} if all of
+them identical. Supported \texttt{type}s are \texttt{DownValues},
+\texttt{UpValues} and \texttt{OwnValues}.
+
+This routine is only relevant in the parallel mode of FeynCalc. It helps
+to avoid inconsistencies through definitions that were introduced before
+activating the parallel mode and not correctly propagated to the
+subkernels
+
+\subsection{See also}
+
+\hyperlink{toc}{Overview}, \hyperlink{datatype}{DataType},
+\hyperlink{fcscalarproductssynchronizedq}{FCScalarProductsSynchronizedQ}
+
+\subsection{Examples}
+\end{document}

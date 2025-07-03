@@ -32,6 +32,39 @@ For example,
 \end{Highlighting}
 \end{Shaded}
 
+Notice that as of now only a small subset of FeynCalc routines supports
+parallelization. Every such function has an option
+\texttt{FCParallelize} that is set to \texttt{False} by default. To
+enable the parallel mode you explicitly need to call the given function
+with the option \texttt{FCParallelize->True}.
+
+\subsection{Synchronizing definitions between multiple
+kernels}\label{synchronizing-definitions-between-multiple-kernels}
+
+All definitions made via
+\texttt{DataType[\allowbreak{}x,\ \allowbreak{}y]=True},
+\texttt{ScalarProduct[\allowbreak{}a,\ \allowbreak{}b] = c},
+\texttt{SPD[\allowbreak{}a,\ \allowbreak{}b] = c} as well as
+\texttt{Commutator} or \texttt{AntiCommutator} \emph{before} activating
+the parallel mode must be repeated. This is necessary to ensure that
+they are synchronized between the master kernel and the subkernels. To
+this aim it is recommended to remove all definitions via
+
+\begin{verbatim}
+FCClearScalarProducts[]
+FCClearDataTypes[]
+UnDeclareAllCommutators[]
+UnDeclareAllAntiCommutators[]
+\end{verbatim}
+
+and then introduce them again.
+
+Alternatively, you can \emph{first} activate the parallel mode without
+making any definitions and \emph{then} define everything as you like.
+\texttt{DataType}, \texttt{ScalarProduct}, \texttt{Commutator} and
+\texttt{AntiCommutator} will automatically distribute the definitions
+among all subkernels if they detect the parallel mode.
+
 \subsection{Functions that support automatic execution on parallel
 kernels}\label{functions-that-support-automatic-execution-on-parallel-kernels}
 
@@ -47,5 +80,33 @@ kernels}\label{functions-that-support-automatic-execution-on-parallel-kernels}
   \texttt{FCLoopFindIntegralMappings}
 \item
   \texttt{FCLoopFindTopologyMappings}
+\item
+  \texttt{FCLoopFindSubtopologies}
+\item
+  \texttt{FCLoopFindTopologies}
+\item
+  \texttt{FCLoopCreatePartialFractioningRules}
+\item
+  \texttt{FCLoopApplyTopologyMappings}
+\item
+  \texttt{FCLoopGetKinematicInvariants}
+\item
+  \texttt{FCLoopTensorReduce}
+\item
+  \texttt{Tdec}
+\item
+  \texttt{FCLoopIsolate}
+\item
+  \texttt{MomentumCombine}
+\item
+  \texttt{Collect2} (only when isolation is disabled)
+\item
+  \texttt{FCClearScalarProducts} (parallelization is enabled by default)
+\item
+  \texttt{ScalarProduct} (parallelization is enabled by default)
+\item
+  \texttt{DataType} (parallelization is enabled by default)
+\item
+  \texttt{FCClearDataTypes} (parallelization is enabled by default)
 \end{itemize}
 \end{document}
